@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto-École Marti | Bayonne depuis 1962</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --noir: #0a0a0a;
+            --blanc: #fafaf8;
+            --creme: #f5f0e8;
+            --rouge: #c0392b;
+            --rouge-doux: #e74c3c;
+            --rouge-sombre: #922b21;
+            --vert: #1a5c38;
+            --vert-clair: #27ae60;
+            --gris: #6b7280;
+            --gris-clair: #e5e5e5;
+            --basque-rouge: #d63031;
+            --basque-vert: #00695c;
+            --or: #d4a853;
+            --ombre: 0 4px 30px rgba(0,0,0,0.08);
+            --ombre-forte: 0 20px 60px rgba(0,0,0,0.12);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--blanc);
+            color: var(--noir);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ====== NAVBAR ====== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: var(--transition);
+            background: transparent;
+        }
+
+        nav.scrolled {
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 1px 30px rgba(0,0,0,0.06);
+            padding: 0.6rem 2rem;
+        }
+
+        nav .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        nav .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--noir);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        nav .logo span { color: var(--basque-rouge); }
+
+        nav.scrolled .logo { color: var(--noir); }
+
+        nav .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav .nav-links a {
+            text-decoration: none;
+            color: var(--noir);
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--basque-rouge);
+            transition: var(--transition);
+        }
+
+        nav .nav-links a:hover::after { width: 100%; }
+
+        nav .nav-cta {
+            background: var(--basque-rouge);
+            color: white !important;
+            padding: 0.6rem 1.4rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+
+        nav .nav-cta::after { display: none !important; }
+        nav .nav-cta:hover { background: var(--rouge-sombre); transform: translateY(-1px); }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--noir);
+            transition: var(--transition);
+        }
+
+        /* ====== HERO ====== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #fdfcfa 0%, #f0ebe0 50%, #e8dfd0 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(214,48,49,0.06) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -10%;
+            left: -5%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0,105,92,0.05) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0,105,92,0.08);
+            color: var(--basque-vert);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--basque-vert);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 5vw, 4.2rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out 0.1s both;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--basque-rouge);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--gris);
+            max-width: 480px;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--basque-rouge);
+            color: white;
+            box-shadow: 0 4px 20px rgba(214,48,49,0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(214,48,49,0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--noir);
+            border: 2px solid var(--gris-clair);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--noir);
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .hero-card {
+            background: white;
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: var(--ombre-forte);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--basque-rouge), var(--basque-vert));
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat .number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--basque-rouge);
+            line-height: 1;
+        }
+
+        .hero-stat .number.green { color: var(--basque-vert); }
+
+        .hero-stat .label {
+            font-size: 0.82rem;
+            color: var(--gris);
+            margin-top: 0.3rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .hero-floating {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: var(--basque-vert);
+            color: white;
+            padding: 1.2rem 1.6rem;
+            border-radius: 16px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0,105,92,0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero-floating span { font-size: 1.4rem; display: block; font-weight: 700; }
+
+        /* ====== SECTIONS SHARED ====== */
+        section { padding: 6rem 2rem; }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--basque-rouge);
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--gris);
+            font-size: 1.05rem;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        /* ====== CONFIANCE / TRUST BAR ====== */
+        .trust-bar {
+            background: var(--noir);
+            padding: 3rem 2rem;
+            overflow: hidden;
+        }
+
+        .trust-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: white;
+        }
+
+        .trust-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .trust-item .trust-text .trust-val {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .trust-item .trust-text .trust-desc {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 0.02em;
+        }
+
+        /* ====== FORMATIONS ====== */
+        .formations { background: var(--blanc); }
+
+        .formations-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .formation-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 2.5rem 2rem;
+            border: 1px solid #eee;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .formation-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--ombre-forte);
+            border-color: transparent;
+        }
+
+        .formation-card.featured {
+            background: var(--noir);
+            color: white;
+            border-color: transparent;
+        }
+
+        .formation-card.featured .formation-price { color: var(--or); }
+        .formation-card.featured .formation-tag { background: rgba(255,255,255,0.1); color: white; }
+        .formation-card.featured .formation-features li { color: rgba(255,255,255,0.7); }
+        .formation-card.featured .formation-features li::before { color: var(--or); }
+
+        .formation-tag {
+            display: inline-block;
+            background: var(--creme);
+            color: var(--noir);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .formation-card.featured .popular-badge {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.2rem;
+            background: var(--basque-rouge);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+
+        .formation-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .formation-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--basque-rouge);
+            line-height: 1;
+            margin-bottom: 0.3rem;
+        }
+
+        .formation-price-note {
+            font-size: 0.8rem;
+            color: var(--gris);
+            margin-bottom: 1.5rem;
+        }
+
+        .formation-card.featured .formation-price-note { color: rgba(255,255,255,0.4); }
+
+        .formation-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .formation-features li {
+            padding: 0.4rem 0;
+            font-size: 0.9rem;
+            color: var(--gris);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+        }
+
+        .formation-features li::before {
+            content: '✓';
+            color: var(--basque-vert);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .formation-cta {
+            display: block;
+            text-align: center;
+            padding: 0.9rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: var(--transition);
+            border: 2px solid #eee;
+            color: var(--noir);
+            background: transparent;
+        }
+
+        .formation-cta:hover {
+            border-color: var(--basque-rouge);
+            color: var(--basque-rouge);
+        }
+
+        .formation-card.featured .formation-cta {
+            background: var(--or);
+            color: var(--noir);
+            border-color: var(--or);
+        }
+
+        .formation-card.featured .formation-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(212,168,83,0.4);
+        }
+
+        .tarif-note {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            color: var(--gris);
+        }
+
+        .tarif-heure {
+            text-align: center;
+            margin-top: 2.5rem;
+            padding: 1.5rem;
+            background: var(--creme);
+            border-radius: var(--radius);
+            font-size: 1.05rem;
+        }
+
+        .tarif-heure strong { color: var(--basque-rouge); font-size: 1.2rem; }
+
+        /* ====== HISTOIRE ====== */
+        .histoire {
+            background: var(--creme);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .histoire::before {
+            content: '1962';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Playfair Display', serif;
+            font-size: 20vw;
+            font-weight: 700;
+            color: rgba(0,0,0,0.02);
+            pointer-events: none;
+        }
+
+        .histoire-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .histoire-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .histoire-content h2 em {
+            font-style: italic;
+            color: var(--basque-rouge);
+        }
+
+        .histoire-content p {
+            color: var(--gris);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .histoire-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .timeline-year {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--basque-rouge);
+            min-width: 60px;
+            padding-top: 2px;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--ombre);
+            flex: 1;
+        }
+
+        .timeline-content h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-content p {
+            font-size: 0.85rem;
+            color: var(--gris);
+            margin: 0;
+        }
+
+        /* ====== AVANTAGES ====== */
+        .avantages-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .avantage-card {
+            padding: 2rem 1.5rem;
+            border-radius: var(--radius);
+            background: white;
+            border: 1px solid #eee;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .avantage-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--ombre);
+            border-color: transparent;
+        }
+
+        .avantage-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--creme);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin: 0 auto 1rem;
+        }
+
+        .avantage-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .avantage-card p {
+            font-size: 0.85rem;
+            color: var(--gris);
+            line-height: 1.6;
+        }
+
+        /* ====== AVIS / REVIEWS ====== */
+        .avis {
+            background: var(--noir);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .avis::before {
+            content: '"';
+            position: absolute;
+            top: 2rem;
+            left: 5%;
+            font-family: 'Playfair Display', serif;
+            font-size: 30rem;
+            color: rgba(255,255,255,0.02);
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .avis .section-tag { color: var(--or); }
+        .avis .section-header p { color: rgba(255,255,255,0.5); }
+
+        .avis-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .avis-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius);
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .avis-card:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-4px);
+        }
+
+        .avis-stars {
+            color: var(--or);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .avis-text {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .avis-author {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .avis-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--basque-rouge), var(--basque-vert));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .avis-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .avis-date {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.35);
+        }
+
+        /* ====== OFFRES SPECIALES ====== */
+        .offres { background: var(--creme); }
+
+        .offres-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .offre-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            border: 1px solid #eee;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offre-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--basque-rouge);
+        }
+
+        .offre-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--ombre-forte);
+        }
+
+        .offre-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .offre-card p {
+            color: var(--gris);
+            font-size: 0.92rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .offre-highlight {
+            display: inline-block;
+            background: rgba(214,48,49,0.08);
+            color: var(--basque-rouge);
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            margin-top: 0.5rem;
+        }
+
+        /* ====== CONTACT ====== */
+        .contact {
+            background: var(--blanc);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .contact-detail-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--creme);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .contact-detail-text h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 0.15rem;
+        }
+
+        .contact-detail-text p {
+            font-size: 0.88rem;
+            color: var(--gris);
+        }
+
+        .contact-detail-text a {
+            color: var(--basque-rouge);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-detail-text a:hover { text-decoration: underline; }
+
+        .contact-horaires {
+            background: var(--creme);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+        }
+
+        .contact-horaires h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .horaire-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.4rem 0;
+            font-size: 0.88rem;
+        }
+
+        .horaire-row .jour { color: var(--gris); }
+        .horaire-row .heure { font-weight: 600; }
+        .horaire-row .heure.fermé { color: var(--gris); font-weight: 400; }
+
+        .contact-map {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--ombre);
+            min-height: 400px;
+        }
+
+        .contact-map iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            border: none;
+        }
+
+        /* ====== FORM CARD ====== */
+        .contact-form-card {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            box-shadow: var(--ombre);
+        }
+
+        .form-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .form-subtitle {
+            font-size: 0.88rem;
+            color: var(--gris);
+            margin-bottom: 1.8rem;
+        }
+
+        .form-submit-btn {
+            width: 100%;
+            justify-content: center;
+            font-size: 1rem;
+            padding: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .form-submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .captcha-group {
+            background: var(--creme);
+            padding: 1rem 1.2rem;
+            border-radius: var(--radius-sm);
+            margin-bottom: 1.2rem;
+        }
+
+        .captcha-group label {
+            font-size: 0.85rem !important;
+            font-weight: 600;
+        }
+
+        .captcha-group input {
+            max-width: 120px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+        }
+
+        .form-feedback {
+            margin-top: 1rem;
+            padding: 0;
+            font-size: 0.88rem;
+            border-radius: var(--radius-sm);
+            display: none;
+        }
+
+        .form-feedback.show {
+            display: block;
+            padding: 0.8rem 1rem;
+        }
+
+        .form-feedback.error {
+            background: rgba(214,48,49,0.08);
+            color: var(--basque-rouge);
+        }
+
+        .form-feedback.success {
+            background: rgba(0,105,92,0.08);
+            color: var(--basque-vert);
+        }
+
+        /* ====== FORMULAIRE ====== */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.02em;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: var(--radius-sm);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--basque-rouge);
+            box-shadow: 0 0 0 3px rgba(214,48,49,0.1);
+        }
+
+        .form-group textarea { min-height: 120px; resize: vertical; }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+        /* ====== CTA BANNER ====== */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--basque-rouge) 0%, var(--rouge-sombre) 100%);
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .cta-banner h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .cta-banner p {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+
+        .cta-banner .btn {
+            background: white;
+            color: var(--basque-rouge);
+            font-weight: 700;
+            position: relative;
+        }
+
+        .cta-banner .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* ====== FOOTER ====== */
+        footer {
+            background: var(--noir);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .footer-brand .logo span { color: var(--basque-rouge); }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.88rem;
+            line-height: 1.7;
+        }
+
+        .footer-col h4 {
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.2rem;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .footer-col ul { list-style: none; }
+
+        .footer-col ul li { margin-bottom: 0.6rem; }
+
+        .footer-col ul a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .footer-col ul a:hover { color: white; }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.35);
+        }
+
+        /* ====== ANIMATIONS ====== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 1024px) {
+            .formations-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+            .avantages-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-inner { grid-template-columns: 1fr; text-align: center; }
+            .hero p { margin-left: auto; margin-right: auto; }
+            .hero-buttons { justify-content: center; }
+            .hero-visual { max-width: 450px; margin: 0 auto; }
+            .histoire-grid { grid-template-columns: 1fr; }
+            .avis-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr 1fr; }
+            .offres-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: white;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                z-index: 999;
+            }
+
+            .avantages-grid { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
+            .trust-inner { gap: 2rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+
+            section { padding: 4rem 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ====== NAVBAR ====== -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="#" class="logo">MARTI<span>.</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#formations">Formations</a></li>
+            <li><a href="#histoire">Notre histoire</a></li>
+            <li><a href="#avis">Avis</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="mailto:autoecole.marti@gmail.com" class="nav-cta">S'inscrire</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger" onclick="toggleNav()">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+</nav>
+
+<!-- ====== HERO ====== -->
+<section class="hero" id="accueil">
+    <div class="hero-inner">
+        <div class="hero-text">
+            <div class="hero-badge">Bayonne &amp; Anglet</div>
+            <h1>Votre permis,<br>notre <em>expertise</em><br>depuis 1962.</h1>
+            <p>L'auto-école de confiance du Pays Basque. Une pédagogie personnalisée, des tarifs transparents et plus de 60 ans d'expérience à votre service.</p>
+            <div class="hero-buttons">
+                <a href="#formations" class="btn btn-primary">Découvrir nos formules →</a>
+                <a href="#contact" class="btn btn-secondary">Nous contacter</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-card">
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="number">63</div>
+                        <div class="label">Années d'expérience</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="number green">40€</div>
+                        <div class="label">L'heure de conduite</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="number">3</div>
+                        <div class="label">Formules au choix</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="number green">2</div>
+                        <div class="label">Points de RDV</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-floating">
+                À partir de<br>
+                <span>840€</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== TRUST BAR ====== -->
+<div class="trust-bar">
+    <div class="trust-inner">
+        <div class="trust-item">
+            <div class="trust-icon">📍</div>
+            <div class="trust-text">
+                <div class="trust-val">Petit Bayonne</div>
+                <div class="trust-desc">13, rue Marengo</div>
+            </div>
+        </div>
+        <div class="trust-item">
+            <div class="trust-icon">🚗</div>
+            <div class="trust-text">
+                <div class="trust-val">RDV conduite Anglet</div>
+                <div class="trust-desc">Place Quintaou</div>
+            </div>
+        </div>
+        <div class="trust-item">
+            <div class="trust-icon">📞</div>
+            <div class="trust-text">
+                <div class="trust-val">05 59 59 12 60</div>
+                <div class="trust-desc">Du mardi au samedi</div>
+            </div>
+        </div>
+        <div class="trust-item">
+            <div class="trust-icon">✉️</div>
+            <div class="trust-text">
+                <div class="trust-val">autoecole.marti@gmail.com</div>
+                <div class="trust-desc">Réponse sous 24h</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ====== FORMATIONS ====== -->
+<section class="formations" id="formations">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-tag">Nos formules</div>
+            <h2>Des formations adaptées à votre projet</h2>
+            <p>Choisissez la formule qui vous correspond. Toutes incluent le code en ligne et l'accompagnement à l'examen.</p>
+        </div>
+
+        <div class="formations-grid">
+            <!-- Boîte auto -->
+            <div class="formation-card fade-in">
+                <div class="formation-tag">Boîte automatique</div>
+                <div class="formation-title">Permis B — BVA</div>
+                <div class="formation-price">840€</div>
+                <div class="formation-price-note">13h de conduite minimum</div>
+                <ul class="formation-features">
+                    <li>Frais de dossier inclus</li>
+                    <li>Prépacode (accès internet)</li>
+                    <li>1 évaluation initiale en circulation</li>
+                    <li>13 heures de conduite</li>
+                    <li>Accompagnement à l'examen</li>
+                </ul>
+                <a href="#contact" class="formation-cta">En savoir plus</a>
+            </div>
+
+            <!-- Traditionnel -->
+            <div class="formation-card featured fade-in">
+                <div class="popular-badge">★ Populaire</div>
+                <div class="formation-tag">Boîte manuelle</div>
+                <div class="formation-title">Permis B — Traditionnel</div>
+                <div class="formation-price">1 092€</div>
+                <div class="formation-price-note">20h de conduite minimum</div>
+                <ul class="formation-features">
+                    <li>Frais de dossier inclus</li>
+                    <li>Prépacode (accès internet)</li>
+                    <li>1 évaluation initiale en circulation</li>
+                    <li>20 heures de conduite</li>
+                    <li>Accompagnement à l'examen</li>
+                </ul>
+                <a href="#contact" class="formation-cta">Choisir cette formule</a>
+            </div>
+
+            <!-- Conduite accompagnée -->
+            <div class="formation-card fade-in">
+                <div class="formation-tag">Conduite accompagnée</div>
+                <div class="formation-title">Permis B — AAC</div>
+                <div class="formation-price">1 412€</div>
+                <div class="formation-price-note">Dès 15 ans</div>
+                <ul class="formation-features">
+                    <li>Frais de dossier inclus</li>
+                    <li>Prépacode (accès internet)</li>
+                    <li>1 évaluation initiale en circulation</li>
+                    <li>20 heures de conduite</li>
+                    <li>1 RDV préalable + 2 RDV pédagogiques</li>
+                    <li>Accompagnement à l'examen</li>
+                </ul>
+                <a href="#contact" class="formation-cta">En savoir plus</a>
+            </div>
+        </div>
+
+        <div class="tarif-heure fade-in">
+            Heure de conduite supplémentaire : <strong>40€ TTC</strong> (boîte manuelle) · <strong>42€ TTC</strong> (boîte automatique)
+        </div>
+        <p class="tarif-note">* Détails complets des offres disponibles à l'auto-école.</p>
+    </div>
+</section>
+
+<!-- ====== AVANTAGES ====== -->
+<section class="avantages" id="avantages">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-tag">Pourquoi nous choisir</div>
+            <h2>L'auto-école qui fait la différence</h2>
+        </div>
+        <div class="avantages-grid">
+            <div class="avantage-card fade-in">
+                <div class="avantage-icon">🎓</div>
+                <h3>+60 ans d'expérience</h3>
+                <p>Fondée en 1962, notre auto-école a formé des générations de conducteurs bayonnais.</p>
+            </div>
+            <div class="avantage-card fade-in">
+                <div class="avantage-icon">💰</div>
+                <h3>Tarifs compétitifs</h3>
+                <p>Le meilleur rapport qualité-prix de Bayonne. Permis B dès 840€, sans surprise.</p>
+            </div>
+            <div class="avantage-card fade-in">
+                <div class="avantage-icon">👥</div>
+                <h3>Suivi personnalisé</h3>
+                <p>Une équipe pédagogique à l'écoute qui vous accompagne tout au long de votre formation.</p>
+            </div>
+            <div class="avantage-card fade-in">
+                <div class="avantage-icon">📍</div>
+                <h3>2 points de RDV</h3>
+                <p>Bureau à Bayonne centre (rue Marengo) et point de rendez-vous conduite à Anglet (Quintaou).</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== HISTOIRE ====== -->
+<section class="histoire" id="histoire">
+    <div class="container">
+        <div class="histoire-grid">
+            <div class="histoire-content fade-in">
+                <div class="section-tag">Notre histoire</div>
+                <h2>Une institution<br>du <em>Petit Bayonne</em><br>depuis 1962</h2>
+                <p>Située en plein cœur du Petit Bayonne, l'auto-école Marti est une véritable institution locale. Créée en 1962 par M. Marti père, elle a accompagné des centaines d'élèves conducteurs au fil des décennies.</p>
+                <p>Forte de cette expérience unique, notre équipe pédagogique met son savoir-faire au service de votre réussite. Du code à la conduite, nous vous guidons avec patience et professionnalisme.</p>
+            </div>
+            <div class="histoire-timeline fade-in">
+                <div class="timeline-item">
+                    <div class="timeline-year">1962</div>
+                    <div class="timeline-content">
+                        <h4>Création de l'auto-école</h4>
+                        <p>M. Marti père fonde l'auto-école au cœur du Petit Bayonne, rue Marengo.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1980s</div>
+                    <div class="timeline-content">
+                        <h4>Une réputation qui grandit</h4>
+                        <p>L'auto-école devient une référence incontournable pour les Bayonnais.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2000s</div>
+                    <div class="timeline-content">
+                        <h4>Modernisation continue</h4>
+                        <p>Adoption de nouvelles méthodes pédagogiques et extension vers Anglet.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">Auj.</div>
+                    <div class="timeline-content">
+                        <h4>Un nouveau souffle</h4>
+                        <p>Plus de 60 ans d'expertise au service de la nouvelle génération de conducteurs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== AVIS ====== -->
+<section class="avis" id="avis">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-tag">Témoignages</div>
+            <h2 style="color:white">Ce que disent nos élèves</h2>
+            <p>La satisfaction de nos élèves est notre meilleure publicité.</p>
+        </div>
+        <div class="avis-grid">
+            <div class="avis-card fade-in">
+                <div class="avis-stars">★★★★★</div>
+                <div class="avis-text">« Super auto-école ! Les moniteurs sont patients et très pédagogues. J'ai eu mon permis du premier coup grâce à eux. Je recommande vivement ! »</div>
+                <div class="avis-author">
+                    <div class="avis-avatar">M.L</div>
+                    <div>
+                        <div class="avis-name">Marie L.</div>
+                        <div class="avis-date">Permis B — 2024</div>
+                    </div>
+                </div>
+            </div>
+            <div class="avis-card fade-in">
+                <div class="avis-stars">★★★★★</div>
+                <div class="avis-text">« Excellente ambiance et des tarifs vraiment compétitifs pour Bayonne. L'équipe est disponible et à l'écoute. La conduite accompagnée s'est très bien passée. »</div>
+                <div class="avis-author">
+                    <div class="avis-avatar">T.E</div>
+                    <div>
+                        <div class="avis-name">Thomas E.</div>
+                        <div class="avis-date">AAC — 2024</div>
+                    </div>
+                </div>
+            </div>
+            <div class="avis-card fade-in">
+                <div class="avis-stars">★★★★★</div>
+                <div class="avis-text">« Après un échec dans une autre auto-école, j'ai trouvé chez Marti des moniteurs qui ont su me redonner confiance. Merci pour votre patience ! »</div>
+                <div class="avis-author">
+                    <div class="avis-avatar">S.A</div>
+                    <div>
+                        <div class="avis-name">Sofia A.</div>
+                        <div class="avis-date">Permis B — 2025</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== OFFRES SPÉCIALES ====== -->
+<section class="offres" id="offres">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-tag">Bons plans</div>
+            <h2>Nos offres spéciales</h2>
+            <p>Des formules pensées pour maximiser vos chances de réussite et réduire les coûts.</p>
+        </div>
+        <div class="offres-grid" style="grid-template-columns:1fr; max-width:600px; margin:0 auto;">
+            <div class="offre-card fade-in">
+                <h3>Conduite supervisée :<br>économisez intelligemment</h3>
+                <p>Vous souhaitez augmenter vos chances de réussite tout en réduisant le coût global ? Si un proche a le permis depuis au moins 5 ans, la conduite supervisée est faite pour vous.</p>
+                <div class="offre-highlight">Économies + meilleur taux de réussite</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== CONTACT ====== -->
+<section class="contact" id="contact">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-tag">Contact</div>
+            <h2>Venez nous rencontrer</h2>
+            <p>Passez nous voir ou écrivez-nous, nous vous répondrons rapidement.</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info fade-in">
+                <div class="contact-details">
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon">📍</div>
+                        <div class="contact-detail-text">
+                            <h4>Adresse</h4>
+                            <p>13, rue Marengo — 64100 Bayonne</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon">📞</div>
+                        <div class="contact-detail-text">
+                            <h4>Téléphone</h4>
+                            <p><a href="tel:0559591260">05 59 59 12 60</a> · <a href="tel:0622008209">06 22 00 82 09</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon">✉️</div>
+                        <div class="contact-detail-text">
+                            <h4>Email</h4>
+                            <p><a href="mailto:autoecole.marti@gmail.com">autoecole.marti@gmail.com</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon">🚗</div>
+                        <div class="contact-detail-text">
+                            <h4>Point de RDV conduite</h4>
+                            <p>Place Quintaou — Anglet</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-horaires">
+                    <h4>🕐 Horaires d'accueil (inscriptions & code)</h4>
+                    <div class="horaire-row"><span class="jour">Lundi</span><span class="heure fermé">Fermé</span></div>
+                    <div class="horaire-row"><span class="jour">Mardi</span><span class="heure fermé">Leçons de conduite uniquement</span></div>
+                    <div class="horaire-row"><span class="jour">Mercredi</span><span class="heure">16h00 — 18h00</span></div>
+                    <div class="horaire-row"><span class="jour">Jeudi</span><span class="heure fermé">Leçons de conduite uniquement</span></div>
+                    <div class="horaire-row"><span class="jour">Vendredi</span><span class="heure fermé">Leçons de conduite uniquement</span></div>
+                    <div class="horaire-row"><span class="jour">Samedi</span><span class="heure">16h00 — 18h00</span></div>
+                    <div class="horaire-row"><span class="jour">Dimanche</span><span class="heure fermé">Fermé</span></div>
+                </div>
+            </div>
+
+            <!-- FORMULAIRE DE CONTACT -->
+            <div class="contact-form-wrapper fade-in">
+                <div class="contact-form-card">
+                    <h3 class="form-title">Envoyez-nous un message</h3>
+                    <p class="form-subtitle">Nous vous répondrons sous 24h.</p>
+                    
+                    <!-- 
+                        ⚠️ IMPORTANT — À configurer :
+                        Remplace VOTRE_EMAIL@EXEMPLE.COM dans l'action du formulaire 
+                        par ton adresse email réelle (ex: autoecole.marti@gmail.com).
+                        
+                        La première fois qu'un message sera envoyé, FormSubmit t'enverra 
+                        un email de confirmation. Clique dessus pour activer le formulaire.
+                    -->
+                    <form 
+                        action="https://formsubmit.co/VOTRE_EMAIL@EXEMPLE.COM" 
+                        method="POST"
+                        id="contactForm"
+                        onsubmit="return validateForm()"
+                    >
+                        <!-- FormSubmit : désactive leur captcha (on a le nôtre) -->
+                        <input type="hidden" name="_captcha" value="false">
+                        <!-- FormSubmit : page de confirmation après envoi -->
+                        <input type="hidden" name="_next" value="#">
+                        <!-- FormSubmit : objet de l'email reçu -->
+                        <input type="hidden" name="_subject" value="Nouveau message depuis le site Auto-école Marti">
+                        <!-- FormSubmit : champ honeypot anti-bot (invisible pour les humains) -->
+                        <input type="text" name="_honey" style="display:none !important" tabindex="-1" autocomplete="off">
+                        <!-- Deuxième honeypot custom (les bots remplissent tout) -->
+                        <div style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
+                            <label for="website_url">Ne pas remplir</label>
+                            <input type="text" name="website_url" id="website_url" tabindex="-1" autocomplete="off">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="prenom">Prénom *</label>
+                                <input type="text" id="prenom" name="Prénom" required placeholder="Votre prénom">
+                            </div>
+                            <div class="form-group">
+                                <label for="nom">Nom *</label>
+                                <input type="text" id="nom" name="Nom" required placeholder="Votre nom">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="Email" required placeholder="votre@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="tel">Téléphone</label>
+                                <input type="tel" id="tel" name="Téléphone" placeholder="06 XX XX XX XX">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sujet">Sujet</label>
+                            <select id="sujet" name="Sujet">
+                                <option value="">— Choisir un sujet —</option>
+                                <option value="Inscription permis B">Inscription permis B</option>
+                                <option value="Conduite accompagnée">Conduite accompagnée</option>
+                                <option value="Boîte automatique">Boîte automatique</option>
+                                <option value="Conduite supervisée">Conduite supervisée</option>
+                                <option value="Renseignement tarifs">Renseignement tarifs</option>
+                                <option value="Autre">Autre</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="Message" required placeholder="Décrivez votre demande..."></textarea>
+                        </div>
+
+                        <!-- Anti-spam : question simple que les bots ne savent pas résoudre -->
+                        <div class="form-group captcha-group">
+                            <label for="captcha">🔒 Question anti-spam : combien font 3 + 4 ? *</label>
+                            <input type="text" id="captcha" required placeholder="Votre réponse" autocomplete="off">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary form-submit-btn" id="submitBtn">
+                            Envoyer le message →
+                        </button>
+
+                        <div class="form-feedback" id="formFeedback"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carte pleine largeur sous le formulaire -->
+        <div class="contact-map fade-in" style="margin-top: 2.5rem;">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2897.5!2d-1.4747!3d43.4889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd51411a8e9e1c1b%3A0x4e7a2e8c8f4e2f1a!2s13%20Rue%20Marengo%2C%2064100%20Bayonne!5e0!3m2!1sfr!2sfr!4v1700000000000!5m2!1sfr!2sfr" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
+</section>
+
+<!-- ====== CTA BANNER ====== -->
+<div class="cta-banner">
+    <h2>Prêt à prendre le volant ?</h2>
+    <p>Inscrivez-vous dès maintenant ou passez nous voir au bureau. Votre permis commence ici.</p>
+    <a href="mailto:autoecole.marti@gmail.com?subject=Demande d'inscription" class="btn">Contactez-nous →</a>
+</div>
+
+<!-- ====== FOOTER ====== -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="logo">MARTI<span>.</span></div>
+                <p>Auto-école de confiance à Bayonne depuis 1962. Formations permis B, conduite accompagnée et boîte automatique.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Formations</h4>
+                <ul>
+                    <li><a href="#formations">Permis B</a></li>
+                    <li><a href="#formations">Conduite accompagnée</a></li>
+                    <li><a href="#formations">Boîte automatique</a></li>
+                    <li><a href="#offres">Offres spéciales</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#histoire">Notre histoire</a></li>
+                    <li><a href="#avis">Avis</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:0559591260">05 59 59 12 60</a></li>
+                    <li><a href="tel:0622008209">06 22 00 82 09</a></li>
+                    <li><a href="mailto:autoecole.marti@gmail.com">autoecole.marti@gmail.com</a></li>
+                    <li><a href="#contact">13 rue Marengo, Bayonne</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 Auto-école Marti — Bayonne. Tous droits réservés.</span>
+            <span>SIRET : 382 930 188 00018 · APE : 8500Z</span>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Navbar scroll effect
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Mobile nav toggle
+    function toggleNav() {
+        document.getElementById('navLinks').classList.toggle('active');
+    }
+
+    // Close mobile nav on link click
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            document.getElementById('navLinks').classList.remove('active');
+        });
+    });
+
+    // Scroll reveal animation
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // ====== FORMULAIRE : validation anti-spam ======
+    function validateForm() {
+        const feedback = document.getElementById('formFeedback');
+        
+        // 1. Vérifier le honeypot custom (les bots remplissent ce champ caché)
+        const honeypot = document.getElementById('website_url');
+        if (honeypot && honeypot.value !== '') {
+            // C'est un bot → on simule un succès pour ne pas l'alerter
+            feedback.textContent = '✅ Message envoyé avec succès !';
+            feedback.className = 'form-feedback show success';
+            return false; // bloque l'envoi réel
+        }
+        
+        // 2. Vérifier la question anti-spam (3 + 4 = 7)
+        const captchaInput = document.getElementById('captcha');
+        const answer = captchaInput.value.trim();
+        if (answer !== '7') {
+            feedback.textContent = '❌ Mauvaise réponse à la question anti-spam. Indice : faites l\'addition !';
+            feedback.className = 'form-feedback show error';
+            captchaInput.focus();
+            return false;
+        }
+
+        // 3. Vérification basique du temps (les bots remplissent en < 3 secondes)
+        const now = Date.now();
+        if (window._formLoadTime && (now - window._formLoadTime) < 3000) {
+            feedback.textContent = '✅ Message envoyé avec succès !';
+            feedback.className = 'form-feedback show success';
+            return false; // trop rapide = bot
+        }
+
+        // 4. Tout est OK → on envoie
+        const btn = document.getElementById('submitBtn');
+        btn.disabled = true;
+        btn.textContent = 'Envoi en cours...';
+        
+        feedback.textContent = '';
+        feedback.className = 'form-feedback';
+        
+        return true; // autorise l'envoi du formulaire vers FormSubmit
+    }
+
+    // Enregistrer le moment où le formulaire est chargé (anti-bot timing)
+    window._formLoadTime = Date.now();
+</script>
+
+</body>
+</html>
