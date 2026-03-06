@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permis B Boîte Manuelle | Auto-École Marti Bayonne</title>
+    <meta name="description" content="Passez votre permis B boîte manuelle à l'auto-école Marti à Bayonne. Formation complète à partir de 1 260€ TTC, 20h de conduite, code inclus. Rue Marengo, Bayonne.">
+    <link rel="canonical" href="https://autoecole-marti-bayonne.fr/permis-b-manuel.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --noir: #0a0a0a;
+            --blanc: #fafaf8;
+            --creme: #f5f0e8;
+            --rouge: #c0392b;
+            --rouge-doux: #e74c3c;
+            --rouge-sombre: #922b21;
+            --vert: #1a5c38;
+            --vert-clair: #27ae60;
+            --gris: #6b7280;
+            --gris-clair: #e5e5e5;
+            --basque-rouge: #d63031;
+            --basque-vert: #00695c;
+            --or: #d4a853;
+            --ombre: 0 4px 30px rgba(0,0,0,0.08);
+            --ombre-forte: 0 20px 60px rgba(0,0,0,0.12);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--blanc); color: var(--noir); line-height: 1.7; overflow-x: hidden; }
+
+        /* NAVBAR */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 1rem 2rem; background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 1px 30px rgba(0,0,0,0.06);
+        }
+        nav .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        nav .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--noir); text-decoration: none; letter-spacing: -0.02em; }
+        nav .logo span { color: var(--basque-rouge); }
+        nav .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+        nav .nav-links a { text-decoration: none; color: var(--noir); font-size: 0.9rem; font-weight: 500; letter-spacing: 0.02em; transition: var(--transition); }
+        nav .nav-links a:hover { color: var(--basque-rouge); }
+        nav .nav-cta { background: var(--basque-rouge); color: white !important; padding: 0.6rem 1.4rem; border-radius: 50px; font-weight: 600; font-size: 0.85rem; transition: var(--transition); }
+        nav .nav-cta:hover { background: var(--rouge-sombre); transform: translateY(-1px); }
+
+        /* HERO */
+        .page-hero {
+            padding: 120px 2rem 60px;
+            background: linear-gradient(135deg, var(--noir) 0%, #1a1a2e 100%);
+            color: white;
+            text-align: center;
+        }
+        .page-hero .breadcrumb { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-bottom: 1.5rem; }
+        .page-hero .breadcrumb a { color: rgba(255,255,255,0.5); text-decoration: none; }
+        .page-hero .breadcrumb a:hover { color: white; }
+        .page-hero .badge {
+            display: inline-block; background: var(--basque-rouge); color: white;
+            padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: 600;
+            letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.2rem;
+        }
+        .page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; line-height: 1.15; margin-bottom: 1rem; }
+        .page-hero h1 em { font-style: italic; color: var(--or); }
+        .page-hero .subtitle { font-size: 1.1rem; color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto 2rem; }
+        .page-hero .price-tag { font-size: 2.5rem; font-weight: 700; color: white; }
+        .page-hero .price-tag span { font-size: 1rem; font-weight: 400; color: rgba(255,255,255,0.6); }
+
+        /* CONTAINER */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+        /* SECTION */
+        section { padding: 5rem 2rem; }
+
+        /* AVANTAGES */
+        .avantages { background: var(--blanc); }
+        .section-tag { display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--basque-rouge); margin-bottom: 0.8rem; }
+        .avantages h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 1rem; }
+        .avantages h2 em { font-style: italic; color: var(--basque-rouge); }
+        .avantages-intro { color: var(--gris); font-size: 1rem; max-width: 620px; margin-bottom: 3rem; }
+        .avantages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+        .avantage-card {
+            background: var(--creme); border-radius: var(--radius); padding: 1.8rem;
+            transition: var(--transition);
+        }
+        .avantage-card:hover { transform: translateY(-4px); box-shadow: var(--ombre-forte); }
+        .avantage-card .icon { font-size: 2rem; margin-bottom: 1rem; }
+        .avantage-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .avantage-card p { font-size: 0.88rem; color: var(--gris); }
+
+        /* TARIF */
+        .tarif { background: var(--creme); }
+        .tarif h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 0.5rem; }
+        .tarif h2 em { font-style: italic; color: var(--basque-rouge); }
+        .tarif-subtitle { color: var(--gris); margin-bottom: 3rem; }
+        .tarif-card {
+            background: white; border-radius: var(--radius); box-shadow: var(--ombre);
+            overflow: hidden; max-width: 680px;
+        }
+        .tarif-header {
+            background: var(--noir); color: white; padding: 2rem 2.5rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .tarif-header h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; }
+        .tarif-header .total { text-align: right; }
+        .tarif-header .total-label { font-size: 0.8rem; opacity: 0.6; }
+        .tarif-header .total-price { font-size: 2rem; font-weight: 700; }
+        .tarif-lines { padding: 1.5rem 2.5rem; }
+        .tarif-line {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0.9rem 0; border-bottom: 1px solid var(--gris-clair);
+        }
+        .tarif-line:last-child { border-bottom: none; }
+        .tarif-line .label { font-size: 0.95rem; color: var(--noir); }
+        .tarif-line .detail { font-size: 0.8rem; color: var(--gris); margin-top: 0.1rem; }
+        .tarif-line .price { font-weight: 600; font-size: 0.95rem; white-space: nowrap; }
+        .tarif-note {
+            background: rgba(214,48,49,0.06); border-left: 3px solid var(--basque-rouge);
+            padding: 1rem 2.5rem; font-size: 0.85rem; color: var(--gris);
+        }
+
+        /* PROGRAMME */
+        .programme { background: var(--blanc); }
+        .programme h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 0.5rem; }
+        .programme h2 em { font-style: italic; color: var(--basque-rouge); }
+        .programme-subtitle { color: var(--gris); margin-bottom: 3rem; }
+        .steps { display: flex; flex-direction: column; gap: 1.5rem; max-width: 720px; }
+        .step { display: flex; gap: 1.5rem; align-items: flex-start; }
+        .step-num {
+            flex-shrink: 0; width: 44px; height: 44px;
+            background: var(--basque-rouge); color: white;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 1rem;
+        }
+        .step-body h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+        .step-body p { font-size: 0.88rem; color: var(--gris); }
+
+        /* PIECES */
+        .pieces { background: var(--creme); }
+        .pieces h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 0.5rem; }
+        .pieces h2 em { font-style: italic; color: var(--basque-rouge); }
+        .pieces-subtitle { color: var(--gris); margin-bottom: 3rem; }
+        .pieces-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .pieces-block { background: white; border-radius: var(--radius); padding: 1.8rem; }
+        .pieces-block h3 { font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--basque-rouge); margin-bottom: 1rem; }
+        .pieces-block ul { list-style: none; }
+        .pieces-block li { font-size: 0.88rem; color: var(--gris); padding: 0.4rem 0; border-bottom: 1px solid var(--gris-clair); display: flex; gap: 0.6rem; }
+        .pieces-block li:last-child { border-bottom: none; }
+        .pieces-block li::before { content: '—'; color: var(--basque-rouge); flex-shrink: 0; }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, var(--basque-rouge) 0%, var(--rouge-sombre) 100%);
+            color: white; text-align: center; padding: 5rem 2rem;
+        }
+        .cta-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 1rem; }
+        .cta-section p { font-size: 1rem; opacity: 0.85; max-width: 500px; margin: 0 auto 2.5rem; }
+        .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .btn-white { background: white; color: var(--basque-rouge); padding: 0.9rem 2rem; border-radius: 50px; font-weight: 700; font-size: 0.95rem; text-decoration: none; transition: var(--transition); }
+        .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+        .btn-outline { border: 2px solid rgba(255,255,255,0.6); color: white; padding: 0.9rem 2rem; border-radius: 50px; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: var(--transition); }
+        .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+        /* FOOTER */
+        footer { background: var(--noir); color: rgba(255,255,255,0.7); padding: 3rem 2rem; text-align: center; font-size: 0.85rem; }
+        footer .logo-footer { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: white; margin-bottom: 0.8rem; }
+        footer .logo-footer span { color: var(--basque-rouge); }
+        footer p { margin-bottom: 0.4rem; }
+        footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+        footer a:hover { color: white; }
+        footer .footer-links { display: flex; gap: 1.5rem; justify-content: center; margin: 1.2rem 0; flex-wrap: wrap; }
+
+        /* RESPONSIVE */
+        @media (max-width: 640px) {
+            .tarif-header { flex-direction: column; gap: 1rem; text-align: center; }
+            .tarif-header .total { text-align: center; }
+            nav .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="nav-inner">
+        <a href="index.html" class="logo">MARTI<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html#formations">Formations</a></li>
+            <li><a href="index.html#tarifs">Tarifs</a></li>
+            <li><a href="index.html#histoire">Notre histoire</a></li>
+            <li><a href="index.html#contact" class="nav-cta">Nous contacter</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+    <p class="breadcrumb"><a href="index.html">Accueil</a> / Permis B Boîte Manuelle</p>
+    <div class="badge">Permis B</div>
+    <h1>Permis B<br><em>Boîte Manuelle</em></h1>
+    <p class="subtitle">La formation classique et complète pour conduire tous types de véhicules. Apprentissage sur boîte de vitesses manuelle, le choix de la polyvalence.</p>
+    <div class="price-tag">1 260 € <span>TTC tout compris</span></div>
+</div>
+
+<!-- AVANTAGES -->
+<section class="avantages">
+    <div class="container">
+        <div class="section-tag">Pourquoi choisir cette formule</div>
+        <h2>La formation <em>complète</em><br>et polyvalente</h2>
+        <p class="avantages-intro">Le permis boîte manuelle vous permet de conduire n'importe quel véhicule, automatique ou manuel. C'est le choix le plus polyvalent pour votre avenir de conducteur.</p>
+        <div class="avantages-grid">
+            <div class="avantage-card">
+                <div class="icon">🚗</div>
+                <h3>Polyvalence totale</h3>
+                <p>Avec le permis boîte manuelle, vous pouvez conduire tous les véhicules : manuels et automatiques, sans restriction.</p>
+            </div>
+            <div class="avantage-card">
+                <div class="icon">📚</div>
+                <h3>Code inclus</h3>
+                <p>Le pack code (salle + internet) est inclus dans la formule. Préparez l'examen théorique à votre rythme, en salle ou depuis chez vous.</p>
+            </div>
+            <div class="avantage-card">
+                <div class="icon">🎯</div>
+                <h3>Accompagnement examen</h3>
+                <p>L'accompagnement à l'examen pratique est compris : votre moniteur est à vos côtés le jour J pour vous mettre dans les meilleures conditions.</p>
+            </div>
+            <div class="avantage-card">
+                <div class="icon">💳</div>
+                <h3>Paiement en plusieurs fois</h3>
+                <p>Vous pouvez régler la formation en plusieurs fois, sans frais. Renseignez-vous directement auprès de l'auto-école.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TARIF -->
+<section class="tarif">
+    <div class="container">
+        <div class="section-tag">Tarif détaillé</div>
+        <h2>Détail du <em>tarif</em></h2>
+        <p class="tarif-subtitle">Tous les tarifs sont TTC et en vigueur à compter du 09/03/2026.</p>
+        <div class="tarif-card">
+            <div class="tarif-header">
+                <h3>Permis B — Boîte Manuelle</h3>
+                <div class="total">
+                    <div class="total-label">Total TTC</div>
+                    <div class="total-price">1 260 €</div>
+                </div>
+            </div>
+            <div class="tarif-lines">
+                <div class="tarif-line">
+                    <div>
+                        <div class="label">Frais administratifs + dossier</div>
+                    </div>
+                    <div class="price">200,00 €</div>
+                </div>
+                <div class="tarif-line">
+                    <div>
+                        <div class="label">Pack code</div>
+                        <div class="detail">Accès salle + internet</div>
+                    </div>
+                    <div class="price">50,00 €</div>
+                </div>
+                <div class="tarif-line">
+                    <div>
+                        <div class="label">Évaluation de départ</div>
+                        <div class="detail">Bilan de conduite initial</div>
+                    </div>
+                    <div class="price">40,00 €</div>
+                </div>
+                <div class="tarif-line">
+                    <div>
+                        <div class="label">20h de conduite minimum</div>
+                        <div class="detail">Soit 46,00 €/heure</div>
+                    </div>
+                    <div class="price">920,00 €</div>
+                </div>
+                <div class="tarif-line">
+                    <div>
+                        <div class="label">Accompagnement à l'examen</div>
+                        <div class="detail">1 présentation incluse</div>
+                    </div>
+                    <div class="price">50,00 €</div>
+                </div>
+            </div>
+            <div class="tarif-note">
+                Le nombre d'heures de conduite indiqué est le minimum légal. Des heures supplémentaires peuvent être ajoutées selon votre progression, à 46,00 €/heure.
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROGRAMME -->
+<section class="programme">
+    <div class="container">
+        <div class="section-tag">Déroulement de la formation</div>
+        <h2>Comment se <em>déroule</em><br>votre formation ?</h2>
+        <p class="programme-subtitle">Un parcours clair, du premier rendez-vous jusqu'à l'obtention de votre permis.</p>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-body">
+                    <h3>Inscription & constitution du dossier</h3>
+                    <p>Rendez-vous à l'auto-école avec vos pièces justificatives. Nous enregistrons votre dossier et vous inscrivons au permis.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-body">
+                    <h3>Évaluation de départ</h3>
+                    <p>Une leçon de bilan vous permet de situer votre niveau de conduite et de définir un plan de formation personnalisé.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-body">
+                    <h3>Préparation au code</h3>
+                    <p>Accès illimité à la salle de code et à la plateforme internet pour vous préparer à l'épreuve théorique générale (ETG).</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">4</div>
+                <div class="step-body">
+                    <h3>Leçons de conduite</h3>
+                    <p>20 heures minimum de conduite sur boîte manuelle avec un moniteur diplômé. Progressez à votre rythme sur les routes de Bayonne et alentours.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">5</div>
+                <div class="step-body">
+                    <h3>Passage des examens</h3>
+                    <p>Votre moniteur vous accompagne le jour de l'examen pratique. Félicitations — vous êtes prêt(e) à prendre la route !</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PIÈCES À FOURNIR -->
+<section class="pieces">
+    <div class="container">
+        <div class="section-tag">Constitution du dossier</div>
+        <h2>Pièces <em>à fournir</em></h2>
+        <p class="pieces-subtitle">Réunissez ces documents avant votre inscription pour accélérer l'ouverture de votre dossier.</p>
+        <div class="pieces-grid">
+            <div class="pieces-block">
+                <h3>Documents obligatoires</h3>
+                <ul>
+                    <li>1 photo numérique d'identité</li>
+                    <li>Photocopie recto/verso de la pièce d'identité</li>
+                    <li>Attestation JDC (candidats français de 17 à 25 ans)</li>
+                    <li>Justificatif de domicile de moins de 6 mois</li>
+                </ul>
+            </div>
+            <div class="pieces-block">
+                <h3>Si mineur ou hébergé chez un tiers</h3>
+                <ul>
+                    <li>Attestation d'hébergement sur l'honneur</li>
+                    <li>Pièce d'identité de l'hébergeant</li>
+                    <li>Justificatif de domicile de l'hébergeant (moins de 6 mois)</li>
+                </ul>
+            </div>
+            <div class="pieces-block">
+                <h3>Le cas échéant</h3>
+                <ul>
+                    <li>Permis de conduire actuel recto/verso (A1, AM…)</li>
+                    <li>ASSR2 (si pas de permis) pour les moins de 21 ans</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <h2>Prêt à démarrer ?</h2>
+    <p>Prenez rendez-vous à l'auto-école Marti ou contactez-nous pour toute question sur cette formule.</p>
+    <div class="cta-btns">
+        <a href="tel:0559591260" class="btn-white">📞 05 59 59 12 60</a>
+        <a href="index.html#contact" class="btn-outline">Nous écrire</a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="logo-footer">MARTI<span>.</span></div>
+    <p>13 rue Marengo — 64100 Bayonne</p>
+    <p>Agrément n°E02 064 064 10</p>
+    <div class="footer-links">
+        <a href="index.html">Accueil</a>
+        <a href="permis-b-automatique.html">Permis B Automatique</a>
+        <a href="conduite-accompagnee.html">Conduite accompagnée</a>
+        <a href="mentions-legales.html">Mentions légales</a>
+    </div>
+    <p style="margin-top:1rem; font-size:0.78rem; opacity:0.4;">Tarifs TTC à compter du 09/03/2026 — Auto-École Marti, Bayonne depuis 1962</p>
+</footer>
+
+</body>
+</html>
