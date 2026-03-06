@@ -1172,9 +1172,9 @@
         <div class="lightbox-header">
             <h3 id="lightboxTitle">Plaquette tarifaire</h3>
             <div class="lightbox-actions">
-                <a id="lightboxDownload" href="#" download class="lightbox-download">
+                <button id="lightboxDownload" onclick="downloadPdf()" class="lightbox-download">
                     ⬇ Télécharger le PDF
-                </a>
+                </button>
                 <button class="lightbox-close" onclick="closePdfLightbox()" aria-label="Fermer">✕</button>
             </div>
         </div>
@@ -1283,8 +1283,8 @@
         const dlBtn = document.getElementById('lightboxDownload');
 
         titleEl.textContent = title;
-        dlBtn.href = pdfFile;
-        dlBtn.download = title + '.pdf';
+        dlBtn.dataset.pdfFile = pdfFile;
+        dlBtn.dataset.pdfTitle = title + '.pdf';
 
         overlay.classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -1306,6 +1306,27 @@
         overlay.classList.remove('active');
         document.body.style.overflow = '';
         pdfDoc = null;
+    }
+
+    async function downloadPdf() {
+        const dlBtn = document.getElementById('lightboxDownload');
+        const pdfFile = dlBtn.dataset.pdfFile;
+        const pdfTitle = dlBtn.dataset.pdfTitle;
+        if (!pdfFile) return;
+        try {
+            const response = await fetch(pdfFile);
+            const blob = await response.blob();
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = pdfTitle;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
+        } catch (e) {
+            console.error('Erreur téléchargement PDF:', e);
+        }
     }
 
     async function renderPage(pageNum) {
