@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <style>
         /* ═══════════════════════════════════════
            RESET & VARIABLES
@@ -527,119 +526,6 @@
             .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
             section { padding: 4rem 1.2rem; }
         }
-        /* ═══════════════════════════════════════
-           LIGHTBOX PDF
-        ═══════════════════════════════════════ */
-        .lightbox-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.85);
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-            backdrop-filter: blur(6px);
-        }
-        .lightbox-overlay.active { display: flex; }
-        .lightbox-box {
-            background: var(--blanc);
-            border-radius: var(--radius);
-            width: 100%;
-            max-width: 1000px;
-            max-height: 90vh;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.4);
-            overflow: hidden;
-        }
-        .lightbox-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1.2rem 1.5rem;
-            border-bottom: 1px solid var(--gris-clair);
-            background: white;
-            flex-shrink: 0;
-        }
-        .lightbox-header h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            color: var(--noir);
-        }
-        .lightbox-actions { display: flex; gap: 0.75rem; align-items: center; }
-        .lightbox-download {
-            display: inline-flex; align-items: center; gap: 0.4rem;
-            background: var(--basque-rouge); color: white;
-            padding: 0.45rem 1rem; border-radius: 8px;
-            text-decoration: none; font-size: 0.85rem; font-weight: 600;
-            transition: var(--transition);
-        }
-        .lightbox-download:hover { background: var(--rouge-sombre); transform: translateY(-1px); }
-        .lightbox-close {
-            width: 36px; height: 36px;
-            border: 2px solid var(--gris-clair); background: none;
-            border-radius: 50%; cursor: pointer; font-size: 1.1rem; color: var(--gris);
-            display: flex; align-items: center; justify-content: center;
-            transition: var(--transition);
-        }
-        .lightbox-close:hover { border-color: var(--basque-rouge); color: var(--basque-rouge); }
-        .lightbox-body {
-            flex: 1;
-            overflow: auto;
-            background: #e5e5e5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
-        #pdf-canvas {
-            max-width: 100%;
-            max-height: 100%;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .pdf-controls {
-            background: white;
-            border-top: 1px solid var(--gris-clair);
-            padding: 0.8rem 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            flex-shrink: 0;
-            flex-wrap: wrap;
-        }
-        .pdf-controls button {
-            background: var(--creme);
-            border: 1px solid var(--gris-clair);
-            padding: 0.5rem 0.8rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.85rem;
-            transition: var(--transition);
-        }
-        .pdf-controls button:hover { background: var(--gris-clair); }
-        .pdf-controls button:disabled { opacity: 0.5; cursor: not-allowed; }
-        .pdf-page-info {
-            font-size: 0.9rem;
-            color: var(--gris);
-            min-width: 120px;
-            text-align: center;
-        }
-        .pdf-zoom {
-            display: flex;
-            gap: 0.3rem;
-            align-items: center;
-            border-left: 1px solid var(--gris-clair);
-            padding-left: 1rem;
-        }
-        .pdf-zoom button { padding: 0.4rem 0.6rem; font-size: 0.8rem; }
-        @media (max-width: 600px) {
-            .lightbox-box { max-height: 95vh; border-radius: 12px; }
-            .pdf-controls { flex-direction: column; gap: 0.5rem; }
-            .pdf-zoom { border-left: none; border-top: 1px solid var(--gris-clair); padding-left: 0; padding-top: 0.5rem; width: 100%; justify-content: center; }
-        }
     </style>
 </head>
 <body>
@@ -767,7 +653,7 @@
                     <li>13 heures de conduite</li>
                     <li>Accompagnement à l'examen</li>
                 </ul>
-                <button class="formation-cta" onclick="openLightbox('Plaquette_Permis_B_BVA.pdf', 'Permis B — Boîte automatique')">En savoir plus</button>
+                <a href="formules/permis-b-automatique.html" class="formation-cta">En savoir plus</a>
             </div>
 
             <!-- PERMIS B TRADITIONNEL — 1 260€ -->
@@ -784,7 +670,7 @@
                     <li>20 heures de conduite</li>
                     <li>Accompagnement à l'examen</li>
                 </ul>
-                <button class="formation-cta" onclick="openLightbox('Plaquette_Permis_B_Manuel.pdf', 'Permis B — Boîte manuelle')">En savoir plus</button>
+                <a href="formules/permis-b-manuel.html" class="formation-cta">En savoir plus</a>
             </div>
 
             <!-- CONDUITE ACCOMPAGNÉE — 1 640€ -->
@@ -801,14 +687,14 @@
                     <li>1 RDV préalable + 2 RDV pédagogiques</li>
                     <li>Accompagnement à l'examen</li>
                 </ul>
-                <button class="formation-cta" onclick="openLightbox('Plaquette_AAC.pdf', 'Permis B — Conduite accompagnée (AAC)')">En savoir plus</button>
+                <a href="formules/conduite-accompagnee.html" class="formation-cta">En savoir plus</a>
             </div>
         </div>
 
         <div class="tarif-heure fade-in">
             Heure de conduite supplémentaire : <strong>46€ TTC</strong> (boîte manuelle) · <strong>48€ TTC</strong> (boîte automatique)
         </div>
-        <p class="tarif-note">* Tarifs TTC à compter du 09/03/2026. Cliquez sur « En savoir plus » pour consulter le détail complet de chaque formule.</p>
+        <p class="tarif-note">* Tarifs TTC à compter du 09/03/2026. Cliquez sur « En savoir plus » pour accéder à la page détaillée de chaque formule.</p>
     </div>
 </section>
 
@@ -1166,44 +1052,6 @@
     </div>
 </footer>
 
-<!-- ══════════════════════════════════════════════════════════════
-     JAVASCRIPT
-══════════════════════════════════════════════════════════════ -->
-<!-- ══════════════════════════════════════════════════════════════
-     LIGHTBOX PDF
-══════════════════════════════════════════════════════════════ -->
-<!-- ══════════════════════════════════════════════════════════════
-     LIGHTBOX PDF
-══════════════════════════════════════════════════════════════ -->
-<div class="lightbox-overlay" id="pdfLightbox" role="dialog" aria-modal="true" aria-label="Plaquette tarifaire">
-    <div class="lightbox-box">
-        <div class="lightbox-header">
-            <h3 id="lightboxTitle">Plaquette tarifaire</h3>
-            <div class="lightbox-actions">
-                <button id="lightboxDownload" onclick="downloadPdf()" class="lightbox-download">
-                    ⬇ Télécharger le PDF
-                </button>
-                <button class="lightbox-close" onclick="closePdfLightbox()" aria-label="Fermer">✕</button>
-            </div>
-        </div>
-        <div class="lightbox-body">
-            <canvas id="pdf-canvas"></canvas>
-        </div>
-        <div class="pdf-controls">
-            <button id="pdf-prev" onclick="previousPage()">← Précédent</button>
-            <span class="pdf-page-info">
-                Page <span id="pdf-current-page">1</span> / <span id="pdf-total-pages">0</span>
-            </span>
-            <button id="pdf-next" onclick="nextPage()">Suivant →</button>
-            <div class="pdf-zoom">
-                <button onclick="zoomOut()" title="Zoom arrière">−</button>
-                <button onclick="resetZoom()" title="Réinitialiser">Reset</button>
-                <button onclick="zoomIn()" title="Zoom avant">+</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // ── Navbar scroll effect ──
     const nav = document.getElementById('navbar');
@@ -1279,127 +1127,6 @@
         return true;
     }
 
-    /* ── Lightbox PDF avec PDF.js ── */
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-    let pdfDoc = null;
-    let currentPage = 1;
-    let scale = 1.2;
-
-    async function openLightbox(pdfFile, title) {
-        const overlay = document.getElementById('pdfLightbox');
-        const titleEl = document.getElementById('lightboxTitle');
-        const dlBtn = document.getElementById('lightboxDownload');
-
-        titleEl.textContent = title;
-        dlBtn.dataset.pdfFile = pdfFile;
-        dlBtn.dataset.pdfTitle = title + '.pdf';
-
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-
-        try {
-            pdfDoc = await pdfjsLib.getDocument(pdfFile).promise;
-            currentPage = 1;
-            scale = 1.2;
-            document.getElementById('pdf-total-pages').textContent = pdfDoc.numPages;
-            renderPage(currentPage);
-        } catch (error) {
-            console.error('Erreur lors du chargement du PDF:', error);
-            alert('Impossible de charger le PDF. Vérifiez l\'URL.');
-        }
-    }
-
-    function closePdfLightbox() {
-        const overlay = document.getElementById('pdfLightbox');
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
-        pdfDoc = null;
-    }
-
-    async function downloadPdf() {
-        const dlBtn = document.getElementById('lightboxDownload');
-        const pdfFile = dlBtn.dataset.pdfFile;
-        const pdfTitle = dlBtn.dataset.pdfTitle;
-        if (!pdfFile) return;
-        try {
-            const response = await fetch(pdfFile);
-            const blob = await response.blob();
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = pdfTitle;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            setTimeout(() => URL.revokeObjectURL(url), 1000);
-        } catch (e) {
-            console.error('Erreur téléchargement PDF:', e);
-        }
-    }
-
-    async function renderPage(pageNum) {
-        if (!pdfDoc) return;
-        try {
-            const page = await pdfDoc.getPage(pageNum);
-            const canvas = document.getElementById('pdf-canvas');
-            const context = canvas.getContext('2d');
-            const viewport = page.getViewport({ scale: scale });
-            canvas.width = viewport.width;
-            canvas.height = viewport.height;
-            await page.render({
-                canvasContext: context,
-                viewport: viewport
-            }).promise;
-            document.getElementById('pdf-current-page').textContent = pageNum;
-            document.getElementById('pdf-prev').disabled = pageNum <= 1;
-            document.getElementById('pdf-next').disabled = pageNum >= pdfDoc.numPages;
-        } catch (error) {
-            console.error('Erreur lors du rendu:', error);
-        }
-    }
-
-    function nextPage() {
-        if (currentPage < pdfDoc.numPages) {
-            currentPage++;
-            renderPage(currentPage);
-        }
-    }
-
-    function previousPage() {
-        if (currentPage > 1) {
-            currentPage--;
-            renderPage(currentPage);
-        }
-    }
-
-    function zoomIn() {
-        scale += 0.2;
-        renderPage(currentPage);
-    }
-
-    function zoomOut() {
-        if (scale > 0.6) {
-            scale -= 0.2;
-            renderPage(currentPage);
-        }
-    }
-
-    function resetZoom() {
-        scale = 1.2;
-        renderPage(currentPage);
-    }
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && document.getElementById('pdfLightbox').classList.contains('active')) {
-            closePdfLightbox();
-        }
-    });
-
-    document.getElementById('pdfLightbox').addEventListener('click', (e) => {
-        if (e.target.id === 'pdfLightbox') {
-            closePdfLightbox();
-        }
-    });
 </script>
 </body>
 </html>
