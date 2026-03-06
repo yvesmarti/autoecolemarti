@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <style>
         /* ═══════════════════════════════════════
            RESET & VARIABLES
@@ -1020,14 +1020,8 @@
                     <h3 class="form-title">Envoyez-nous un message</h3>
                     <p class="form-subtitle">Nous vous répondrons sous 24h.</p>
                     
-                    <!-- 
-                        ⚠️ À CONFIGURER :
-                        Remplace VOTRE_EMAIL@EXEMPLE.COM par ton adresse email réelle.
-                        Au premier envoi, FormSubmit t'enverra un email de confirmation —
-                        clique dessus une seule fois pour activer le formulaire.
-                    -->
-                    <form 
-                        action="https://formsubmit.co/VOTRE_EMAIL@EXEMPLE.COM" 
+                    <form
+                        action="https://formsubmit.co/autoecole.marti@gmail.com"
                         method="POST"
                         id="contactForm"
                         onsubmit="return validateForm()"
@@ -1278,7 +1272,7 @@
     }
 
     /* ── Lightbox PDF avec PDF.js ── */
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.js';
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
     let pdfDoc = null;
     let currentPage = 1;
     let scale = 1.2;
