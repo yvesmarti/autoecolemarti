@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mentions légales & Règlement intérieur — Auto-École Marti | Bayonne</title>
+  <meta name="description" content="Mentions légales et règlement intérieur de l'Auto-École Marti, 13 rue Marengo, Bayonne (64100). SIRET 382 930 188 00018." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Inter:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --noir: #111111;
+      --blanc: #fafaf8;
+      --gris: #6b6b6b;
+      --gris-clair: #f0ede8;
+      --accent: #c8a96e;
+      --bordure: #e2ddd6;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--blanc);
+      color: var(--noir);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--blanc);
+      border-bottom: 1px solid var(--bordure);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      color: var(--noir);
+    }
+
+    .nav-back {
+      font-size: 0.85rem;
+      color: var(--gris);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--noir); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--noir);
+      color: var(--blanc);
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .hero-sub {
+      color: #999;
+      font-size: 0.9rem;
+      font-weight: 300;
+    }
+
+    /* ── SOMMAIRE ── */
+    .toc {
+      max-width: 760px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+
+    .toc-inner {
+      background: var(--gris-clair);
+      border-left: 3px solid var(--accent);
+      padding: 1.5rem 2rem;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .toc-title {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gris);
+      margin-bottom: 0.8rem;
+    }
+
+    .toc ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .toc a {
+      color: var(--noir);
+      text-decoration: none;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.2s;
+    }
+    .toc a::before { content: '→'; color: var(--accent); font-size: 0.8rem; }
+    .toc a:hover { color: var(--accent); }
+
+    /* ── CONTENU ── */
+    .content {
+      max-width: 760px;
+      margin: 0 auto 5rem;
+      padding: 0 2rem;
+    }
+
+    section {
+      margin-bottom: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--bordure);
+    }
+
+    .section-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      line-height: 1.25;
+    }
+
+    h3 {
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+      text-transform: uppercase;
+      color: var(--noir);
+    }
+
+    p {
+      color: #333;
+      font-size: 0.95rem;
+      margin-bottom: 0.8rem;
+    }
+
+    /* ── ARTICLE ── */
+    .article {
+      margin-bottom: 2.5rem;
+    }
+
+    .article-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--bordure);
+    }
+
+    .article-num {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .article-title {
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--noir);
+    }
+
+    ul.liste {
+      list-style: none;
+      margin: 0.5rem 0 0.8rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    ul.liste li {
+      font-size: 0.93rem;
+      color: #333;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    ul.liste li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.8rem;
+    }
+
+    ol.liste-num {
+      padding-left: 1.5rem;
+      margin: 0.5rem 0 0.8rem;
+    }
+
+    ol.liste-num li {
+      font-size: 0.93rem;
+      color: #333;
+      margin-bottom: 0.3rem;
+    }
+
+    .encart {
+      background: var(--gris-clair);
+      border-radius: 6px;
+      padding: 1.2rem 1.5rem;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+      color: #444;
+    }
+
+    .encart strong { color: var(--noir); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--noir);
+      color: #888;
+      text-align: center;
+      padding: 2.5rem 2rem;
+      font-size: 0.82rem;
+      line-height: 2;
+    }
+
+    footer a { color: var(--accent); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      nav { padding: 0.8rem 1rem; }
+      .hero { padding: 3.5rem 1rem 3rem; }
+      .content, .toc { padding: 0 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="/">MARTI.</a>
+  <a class="nav-back" href="/">← Retour à l'accueil</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">Informations légales</p>
+  <h1>Règlement intérieur<br><em>et mentions légales</em></h1>
+  <p class="hero-sub">Auto-École Marti — Bayonne — Mise à jour : mars 2026</p>
+</div>
+
+<!-- SOMMAIRE -->
+<div class="toc">
+  <div class="toc-inner">
+    <p class="toc-title">Sommaire</p>
+    <ul>
+      <li><a href="#reglement">Partie 1 — Règlement intérieur</a></li>
+      <li><a href="#mentions">Partie 2 — Mentions légales</a></li>
+      <li><a href="#editeur">Éditeur du site</a></li>
+      <li><a href="#hebergement">Hébergement</a></li>
+      <li><a href="#propriete">Propriété intellectuelle</a></li>
+      <li><a href="#donnees">Données personnelles (RGPD)</a></li>
+      <li><a href="#cookies">Cookies</a></li>
+      <li><a href="#responsabilite">Responsabilité</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════ -->
+<!-- PARTIE 1 — RÈGLEMENT INTÉRIEUR -->
+<!-- ════════════════════════════════════ -->
+<div class="content">
+
+  <section id="reglement">
+    <p class="section-eyebrow">Partie 1</p>
+    <h2>Règlement intérieur</h2>
+    <p>Ce règlement a pour objet de définir les règles relatives à l'hygiène, à la sécurité ainsi qu'à la discipline nécessaire au bon fonctionnement de l'établissement. Il est applicable à l'ensemble des élèves.</p>
+  </section>
+
+  <!-- ART 1 -->
+  <div class="article">
+    <div class="article-header">
+      <span class="article-num">Art. 1</span>
+      <span class="article-title">Cadre réglementaire</span>
+    </div>
+    <p>L'auto-école Marti applique les règles d'enseignement selon les lois en vigueur, notamment l'arrêté ministériel relatif au référentiel pour l'éducation à une motricité citoyenne (REMC) en vigueur depuis le 01/07/2014.</p>
+  </div>
+
+  <!-- ART 2 -->
+  <div class="article">
+    <div class="article-header">
+      <span class="article-num">Art. 2</span>
+      <span class="article-title">Comportement & discipline</span>
+    </div>
+    <p>Tous les élèves inscrits dans l'établissement se doivent de respecter les conditions de fonctionnement de l'auto-école Marti, à savoir :</p>
+    <ul class="liste">
+      <li>Respecter le personnel de l'établissement</li>
+      <li>Respecter les autres élèves sans discrimination aucune</li>
+      <li>Adopter une hygiène, une tenue et un comportement corrects</li>
+    </ul>
+    <p>Les élèves sont tenus de :</p>
+    <ul class="liste">
+      <li>Ne pas fumer à l'intérieur de l'établissement ni dans les véhicules</li>
+      <li>Ne pas consommer, ni avoir consommé, de boissons alcoolisées, substances illicites ou médicaments pouvant nuire à la conduite d'un véhicule</li>
+    </ul>
+    <p>Il est interdit de diffuser sur les réseaux sociaux tout élément (photo ou texte) concernant l'auto-école Marti, ses formateurs ou les autres élèves.</p>
+    <p>Il est demandé aux élèves de lire les informations mises à leur disposition sur les tableaux d'affichage.</p>
+  </div>
+
+  <!-- ART 3 -->
+  <div class="article">
+    <div class="article-header">
+      <span class="article-num">Art. 3</span>
+      <span class="article-title">Dossier administratif</span>
+    </div>
+    <p>L'élève s'engage à fournir tous les documents demandés pour son inscription dans les meilleurs délais. Tout retard de traitement du dossier résultant d'un document manquant ne pourra être reproché à l'auto-école.</p>
+    <p>Sauf avis contraire exprimé explicitement, l'élève donne son consentement à l'utilisation de ses données personnelles par l'auto-école Marti dans l'exercice de son activité professionnelle. Ces données ne seront utilisées à aucune autre finalité.</p>
+    <p>Pour tout changement le concernant (état civil, adresse, numéro de téléphone, adresse email), l'élève doit en avertir le secrétariat.</p>
+    <p>Le dossier est la propriété de l'élève. Il lui sera restitué, après solde de tout compte, sur demande écrite et sans frais supplémentaires.</p>
+  </div>
+
+  <!-- ART 4 -->
+  <div class="article">
+    <div class="article-header">
+      <span class="article-num">Art. 4</span>
+      <span class="article-title">Organisation des séances de code</span>
+    </div>
+    <p>L'accès à la salle de code n'est autorisé qu'après constitution complète du dossier d'inscription et versement d'un acompte. Le forfait code est dû à l'inscription et est considéré comme débuté dès celle-ci.</p>
+    <p>Les séances de code ont lieu <strong>du mardi au vendredi à 18h00</strong> et <strong>le samedi à 14h00</strong>. Une séance dure environ 50 minutes.</p>
+    <p>Aucun élève n'est admis en salle de code après le démarrage de la séance. Aucune sortie n'est autorisée avant la fin de la séance.</p>
+    <p>En salle de code, il est interdit de :</p>
+    <ul class="liste">
+      <li>Utiliser des appareils sonores (MP3, téléphones portables, etc.)</li>
+      <li>Filmer la séance</li>
+      <li>Manger ou boire</li>
+    </ul>
+    <p>Chaque élève est tenu de respecter le matériel et les locaux.</p>
+  </div>
+
+  <!-- ART 5 -->
+  <div class="article">
+    <div class="article-header">
+      <span class="article-num">Art. 5</span>
+      <span class="article-title">Organisation des leçons de conduite</span>
+    </div>
+
+    <h3>Évaluation de départ</h3>
+    <p>Avant la signature du contrat de formation, une évaluation de conduite est obligatoire. Elle vise à estimer le nombre de leçons nécessaires au candidat pour atteindre le niveau requis pour l'examen. Ce volume est indicatif et dépend de la motivation, de la régularité et de la vitesse d'acquisition des compétences.</p>
+
+    <h3>Livret d'apprentissage</h3>
+    <p>À l'issue de l'évaluation, le livret d'apprentissage est remis au candidat. Il doit être présenté à chaque leçon de conduite, accompagné d'une pièce d'identité. En cas de perte, l'élève doit en avertir le secrétariat ; des frais de duplicata seront facturés.</p>
+
+    <h3>Dépistage d'alcoolémie</h3>
+    <p>Tout élève peut être soumis à un dépistage d'alcoolémie avant sa leçon, réalisé par l'enseignant au moyen d'un éthylotest. En cas de test positif ou de refus, la leçon sera annulée et facturée à l'élève.</p>
+
+    <h3>Réservation des leçons</h3>
+    <p>Les réservations se font en concertation avec l'enseignant, au secrétariat pendant les horaires d'ouverture. Un planning est remis à l'élève. Il peut être modifié par l'auto-école (véhicule immobilisé, absence maladie, planification d'examens…).</p>
+    <p>La formation pratique peut débuter avant l'obtention du code. L'ordre de priorité pour la planification est le suivant :</p>
+    <ol class="liste-num">
+      <li>Élèves convoqués à l'examen pratique</li>
+      <li>Élèves ayant obtenu leur code</li>
+      <li>Élèves n'ayant pas encore obtenu leur code</li>
+    </ol>
+
+    <h3>Annulation des leçons</h3>
+    <div class="encart">
+      <strong>Délai d'annulation : 48 heures minimum</strong>, par téléphone auprès du moniteur ou par email à <a href="mailto:autoecole.marti@gmail.com">autoecole.marti@gmail.com</a>.<br>
+      Aucune annulation par message sur répondeur n'est acceptée.<br>
+      Toute leçon non annulée dans ce délai est due et facturée.
+    </div>
+
+    <h3>Déroulement d'une leçon</h3>
+    <p>Chaque leçon se déroule selon la structure suivante : installation et fixation des objectifs → explication théorique → mise en pratique → bilan et commentaires.</p>
+    <p>Toute leçon débute et se termine à l'auto-école. Si l'élève demande un point de départ ou d'arrivée différent, le temps de trajet du moniteur entre l'auto-école et ce lieu sera déduit du temps de conduite de l'élève.</p>
+    <p><strong>Retard :</strong> sans nouvelles de l'élève, le moniteur ne l'attendra pas au-delà de 20 minutes. La leçon sera facturée.</p>
+
+    <h3>Tenue vestimentaire</h3>
+    <p>Des chaussures plates sont obligatoires. Les talons hauts, chaussures ouvertes au talon et tongs sont interdits.</p>
+
+    <h3>Examen pratique</h3>
+    <p>Les places d'examen sont attribuées par la Préfecture. Ni l'élève ni l'auto-école ne peuvent choisir les dates et horaires d'examen. Le résultat est disponible 48 heures après sur <a href="https://permisdeconduire.gouv.fr" target="_blank" rel="noopener">permisdeconduire.gouv.fr</a> (le numéro NEPH correspond au numéro du livret d'apprentissage). En cas d'échec, le candidat est placé en liste d'attente par ordre chronologique.</p>
+  </div>
+
+  <!-- ART 6 -->
+  <div class="article">
+    <div class="article-header">
+      <span class="article-num">Art. 6</span>
+      <span class="article-title">Sanctions</span>
+    </div>
+    <p>Tout manquement aux dispositions du présent règlement pourra faire l'objet d'une sanction graduée selon la nature et la gravité du manquement :</p>
+    <ul class="liste">
+      <li>Avertissement oral</li>
+      <li>Avertissement écrit</li>
+      <li>Suspension provisoire</li>
+      <li>Exclusion définitive</li>
+    </ul>
+    <p>Le responsable de l'établissement peut décider d'exclure un élève à tout moment pour l'un des motifs suivants :</p>
+    <ul class="liste">
+      <li>Non-paiement des sommes dues</li>
+      <li>Attitude empêchant la réalisation du travail de formation</li>
+      <li>Inaptitude constatée par le responsable pédagogique</li>
+      <li>Non-respect du présent règlement intérieur</li>
+    </ul>
+  </div>
+
+  <div class="encart" style="margin-top:3rem;text-align:center;">
+    Nous sommes heureux de vous accueillir parmi nos élèves et vous souhaitons une excellente formation.<br>
+    <strong>L'équipe Auto-École Marti</strong>
+  </div>
+
+  <!-- ════════════════════════════════════ -->
+  <!-- PARTIE 2 — MENTIONS LÉGALES -->
+  <!-- ════════════════════════════════════ -->
+
+  <section id="mentions" style="margin-top:3rem;">
+    <p class="section-eyebrow">Partie 2</p>
+    <h2>Mentions légales</h2>
+    <p>Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004 pour la confiance en l'économie numérique (LCEN), les présentes mentions légales s'appliquent au site internet <strong>autoecolemarti.fr</strong>.</p>
+  </section>
+
+  <section id="editeur">
+    <h3>Éditeur du site</h3>
+    <div class="encart">
+      <strong>Auto-École Marti</strong><br>
+      Statut : Entrepreneur individuel<br>
+      SIRET : 382 930 188 00018<br>
+      Code APE : 8553Z (Enseignement de la conduite)<br>
+      Agrément préfectoral : E-64-064-0025-0<br><br>
+      Adresse : 13 rue Marengo — 64100 Bayonne<br>
+      Téléphone : <a href="tel:0559591260">05 59 59 12 60</a> / <a href="tel:0622008209">06 22 00 82 09</a><br>
+      Email : <a href="mailto:autoecole.marti@gmail.com">autoecole.marti@gmail.com</a>
+    </div>
+    <p><strong>Directeur de la publication :</strong> Yves Marti</p>
+  </section>
+
+  <section id="hebergement">
+    <h3>Hébergement</h3>
+    <p>Le site <strong>autoecolemarti.fr</strong> est hébergé par :</p>
+    <div class="encart">
+      <!-- ⚠️ À COMPLÉTER avec le nom de votre hébergeur (ex: o2switch, OVH, Hostinger...) -->
+      <strong>[Nom de l'hébergeur]</strong><br>
+      [Adresse de l'hébergeur]<br>
+      [Téléphone / site web de l'hébergeur]
+    </div>
+    <p style="font-size:0.82rem;color:var(--gris);">⚠️ Merci de compléter ces informations avec les coordonnées de votre hébergeur.</p>
+  </section>
+
+  <section id="propriete">
+    <h3>Propriété intellectuelle</h3>
+    <p>L'ensemble du contenu du site <strong>autoecolemarti.fr</strong> (textes, images, logos, structure) est la propriété exclusive de l'Auto-École Marti, sauf mentions contraires.</p>
+    <p>Toute reproduction, représentation, modification, publication ou adaptation, totale ou partielle, de ces éléments, sans autorisation écrite préalable de l'Auto-École Marti, est strictement interdite et constitue une contrefaçon sanctionnée par les articles L.335-2 et suivants du Code de la propriété intellectuelle.</p>
+  </section>
+
+  <section id="donnees">
+    <h3>Données personnelles (RGPD)</h3>
+    <p>Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés du 6 janvier 1978 modifiée, vous disposez des droits suivants concernant vos données personnelles :</p>
+    <ul class="liste">
+      <li>Droit d'accès à vos données</li>
+      <li>Droit de rectification des données inexactes</li>
+      <li>Droit à l'effacement (« droit à l'oubli »)</li>
+      <li>Droit à la limitation du traitement</li>
+      <li>Droit à la portabilité de vos données</li>
+      <li>Droit d'opposition au traitement</li>
+    </ul>
+    <p>Les données collectées via le formulaire de contact (nom, prénom, email, téléphone, message) sont utilisées exclusivement dans le cadre de la réponse à votre demande et de la gestion de votre formation. Elles ne sont ni vendues ni transmises à des tiers.</p>
+    <p>Pour exercer vos droits ou pour toute question relative à vos données personnelles, vous pouvez contacter :</p>
+    <div class="encart">
+      <strong>Auto-École Marti</strong> — responsable du traitement<br>
+      13 rue Marengo — 64100 Bayonne<br>
+      Email : <a href="mailto:autoecole.marti@gmail.com">autoecole.marti@gmail.com</a>
+    </div>
+    <p>En cas de réclamation non résolue, vous pouvez saisir la <strong>CNIL</strong> — <a href="https://www.cnil.fr" target="_blank" rel="noopener">www.cnil.fr</a>.</p>
+    <p>Les données sont conservées le temps nécessaire à la finalité pour laquelle elles ont été collectées, conformément aux délais légaux applicables.</p>
+  </section>
+
+  <section id="cookies">
+    <h3>Cookies</h3>
+    <p>Le site peut utiliser des cookies techniques strictement nécessaires au bon fonctionnement (session, sécurité du formulaire de contact). Aucun cookie publicitaire ou de traçage tiers n'est déposé sans votre consentement.</p>
+    <p>Vous pouvez à tout moment désactiver les cookies depuis les paramètres de votre navigateur.</p>
+  </section>
+
+  <section id="responsabilite">
+    <h3>Limitation de responsabilité</h3>
+    <p>L'Auto-École Marti s'efforce de maintenir les informations publiées sur ce site aussi exactes et à jour que possible. Toutefois, elle ne saurait être tenue responsable des erreurs, omissions ou résultats obtenus par suite d'un mauvais usage de ces informations.</p>
+    <p>Les liens hypertextes présents sur le site peuvent renvoyer vers des sites tiers dont l'Auto-École Marti n'est pas responsable du contenu.</p>
+    <p><strong>Droit applicable :</strong> Les présentes mentions légales sont soumises au droit français. En cas de litige, les juridictions compétentes sont celles du ressort du Tribunal de Bayonne.</p>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>© 2026 Auto-École Marti — Bayonne | SIRET : 382 930 188 00018 | APE : 8553Z</div>
+  <div>13 rue Marengo, 64100 Bayonne — <a href="tel:0559591260">05 59 59 12 60</a> — <a href="mailto:autoecole.marti@gmail.com">autoecole.marti@gmail.com</a></div>
+  <div style="margin-top:0.8rem;"><a href="/">← Retour à l'accueil</a></div>
+</footer>
+
+</body>
+</html>
