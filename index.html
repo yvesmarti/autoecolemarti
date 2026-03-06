@@ -269,6 +269,7 @@
             display: block; text-align: center; padding: 0.9rem; border-radius: 50px;
             font-weight: 600; font-size: 0.9rem; text-decoration: none;
             transition: var(--transition); border: 2px solid #eee; color: var(--noir); background: transparent;
+            cursor: pointer; width: 100%; font-family: inherit;
         }
         .formation-cta:hover { border-color: var(--basque-rouge); color: var(--basque-rouge); }
         .formation-card.featured .formation-cta { background: var(--or); color: var(--noir); border-color: var(--or); }
@@ -525,6 +526,79 @@
             .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
             section { padding: 4rem 1.2rem; }
         }
+        /* ═══════════════════════════════════════
+           LIGHTBOX PDF
+        ═══════════════════════════════════════ */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            backdrop-filter: blur(6px);
+        }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-box {
+            background: var(--blanc);
+            border-radius: var(--radius);
+            width: 100%;
+            max-width: 860px;
+            max-height: 92vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.4);
+            overflow: hidden;
+        }
+        .lightbox-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid var(--gris-clair);
+            background: white;
+            flex-shrink: 0;
+        }
+        .lightbox-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--noir);
+        }
+        .lightbox-actions { display: flex; gap: 0.75rem; align-items: center; }
+        .lightbox-download {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: var(--basque-rouge); color: white;
+            padding: 0.45rem 1rem; border-radius: 8px;
+            text-decoration: none; font-size: 0.85rem; font-weight: 600;
+            transition: var(--transition);
+        }
+        .lightbox-download:hover { background: var(--rouge-sombre); transform: translateY(-1px); }
+        .lightbox-close {
+            width: 36px; height: 36px;
+            border: 2px solid var(--gris-clair); background: none;
+            border-radius: 50%; cursor: pointer; font-size: 1.1rem; color: var(--gris);
+            display: flex; align-items: center; justify-content: center;
+            transition: var(--transition);
+        }
+        .lightbox-close:hover { border-color: var(--basque-rouge); color: var(--basque-rouge); }
+        .lightbox-body {
+            flex: 1;
+            overflow: hidden;
+            background: #e5e5e5;
+        }
+        .lightbox-body iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 500px;
+            border: none;
+            display: block;
+        }
+        @media (max-width: 600px) {
+            .lightbox-box { max-height: 95vh; border-radius: 12px; }
+            .lightbox-body iframe { min-height: 380px; }
+        }
     </style>
 </head>
 <body>
@@ -570,7 +644,7 @@
                         <div class="label">Années d'expérience</div>
                     </div>
                     <div class="hero-stat">
-                        <div class="number green">48€</div>
+                        <div class="number green">46€</div>
                         <div class="label">L'heure de conduite</div>
                     </div>
                     <div class="hero-stat">
@@ -585,7 +659,7 @@
             </div>
             <div class="hero-floating">
                 À partir de<br>
-                <span>990€</span>
+                <span>964€</span>
             </div>
         </div>
     </div>
@@ -639,12 +713,12 @@
         </div>
 
         <div class="formations-grid">
-            <!-- BOÎTE AUTOMATIQUE — 990€ -->
+            <!-- BOÎTE AUTOMATIQUE — 964€ -->
             <div class="formation-card fade-in">
                 <div class="formation-tag">Boîte automatique</div>
                 <div class="formation-title">Permis B — BVA</div>
-                <div class="formation-price">990€</div>
-                <div class="formation-price-note">13h de conduite minimum</div>
+                <div class="formation-price">964€</div>
+                <div class="formation-price-note">13h de conduite minimum · 48€/h</div>
                 <ul class="formation-features">
                     <li>Frais administratifs + dossier</li>
                     <li>Pack code (salle + internet)</li>
@@ -652,16 +726,16 @@
                     <li>13 heures de conduite</li>
                     <li>Accompagnement à l'examen</li>
                 </ul>
-                <a href="#contact" class="formation-cta">En savoir plus</a>
+                <button class="formation-cta" onclick="openLightbox('Plaquette_Permis_B_BVA.pdf', 'Permis B — Boîte automatique')">En savoir plus</button>
             </div>
 
-            <!-- PERMIS B TRADITIONNEL — 1 300€ -->
+            <!-- PERMIS B TRADITIONNEL — 1 260€ -->
             <div class="formation-card featured fade-in">
                 <div class="popular-badge">★ Populaire</div>
                 <div class="formation-tag">Boîte manuelle</div>
                 <div class="formation-title">Permis B — Traditionnel</div>
-                <div class="formation-price">1 300€</div>
-                <div class="formation-price-note">20h de conduite minimum</div>
+                <div class="formation-price">1 260€</div>
+                <div class="formation-price-note">20h de conduite minimum · 46€/h</div>
                 <ul class="formation-features">
                     <li>Frais administratifs + dossier</li>
                     <li>Pack code (salle + internet)</li>
@@ -669,15 +743,15 @@
                     <li>20 heures de conduite</li>
                     <li>Accompagnement à l'examen</li>
                 </ul>
-                <a href="#contact" class="formation-cta">Choisir cette formule</a>
+                <button class="formation-cta" onclick="openLightbox('Plaquette_Permis_B_Manuel.pdf', 'Permis B — Boîte manuelle')">En savoir plus</button>
             </div>
 
-            <!-- CONDUITE ACCOMPAGNÉE — 1 680€ -->
+            <!-- CONDUITE ACCOMPAGNÉE — 1 640€ -->
             <div class="formation-card fade-in">
                 <div class="formation-tag">Conduite accompagnée</div>
                 <div class="formation-title">Permis B — AAC</div>
-                <div class="formation-price">1 680€</div>
-                <div class="formation-price-note">Dès 15 ans</div>
+                <div class="formation-price">1 640€</div>
+                <div class="formation-price-note">Dès 15 ans · 46€/h de conduite</div>
                 <ul class="formation-features">
                     <li>Frais administratifs + dossier</li>
                     <li>Pack code (salle + internet)</li>
@@ -686,14 +760,14 @@
                     <li>1 RDV préalable + 2 RDV pédagogiques</li>
                     <li>Accompagnement à l'examen</li>
                 </ul>
-                <a href="#contact" class="formation-cta">En savoir plus</a>
+                <button class="formation-cta" onclick="openLightbox('Plaquette_AAC.pdf', 'Permis B — Conduite accompagnée (AAC)')">En savoir plus</button>
             </div>
         </div>
 
         <div class="tarif-heure fade-in">
-            Heure de conduite supplémentaire : <strong>48€ TTC</strong> (boîte manuelle) · <strong>50€ TTC</strong> (boîte automatique)
+            Heure de conduite supplémentaire : <strong>46€ TTC</strong> (boîte manuelle) · <strong>48€ TTC</strong> (boîte automatique)
         </div>
-        <p class="tarif-note">* Détails complets des offres disponibles à l'auto-école.</p>
+        <p class="tarif-note">* Tarifs TTC à compter du 09/03/2026. Cliquez sur « En savoir plus » pour consulter le détail complet de chaque formule.</p>
     </div>
 </section>
 
@@ -715,7 +789,7 @@
             <div class="avantage-card fade-in">
                 <div class="avantage-icon">💰</div>
                 <h3>Tarifs compétitifs</h3>
-                <p>Le meilleur rapport qualité-prix de Bayonne. Permis B dès 990€, sans surprise.</p>
+                <p>Le meilleur rapport qualité-prix de Bayonne. Permis B dès 964€, sans surprise.</p>
             </div>
             <div class="avantage-card fade-in">
                 <div class="avantage-icon">👥</div>
@@ -1052,6 +1126,26 @@
 <!-- ══════════════════════════════════════════════════════════════
      JAVASCRIPT
 ══════════════════════════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════════════════════════════
+     LIGHTBOX PDF
+══════════════════════════════════════════════════════════════ -->
+<div class="lightbox-overlay" id="pdfLightbox" role="dialog" aria-modal="true" aria-label="Plaquette tarifaire">
+    <div class="lightbox-box">
+        <div class="lightbox-header">
+            <h3 id="lightboxTitle">Plaquette tarifaire</h3>
+            <div class="lightbox-actions">
+                <a id="lightboxDownload" href="#" download class="lightbox-download">
+                    ⬇ Télécharger le PDF
+                </a>
+                <button class="lightbox-close" onclick="closeLightbox()" aria-label="Fermer">✕</button>
+            </div>
+        </div>
+        <div class="lightbox-body">
+            <iframe id="lightboxFrame" src="" title="Plaquette tarifaire"></iframe>
+        </div>
+    </div>
+</div>
+
 <script>
     // ── Navbar scroll effect ──
     const nav = document.getElementById('navbar');
@@ -1126,6 +1220,41 @@
         feedback.className = 'form-feedback';
         return true;
     }
+
+    /* ── Lightbox PDF ── */
+    function openLightbox(pdfFile, title) {
+        const overlay = document.getElementById('pdfLightbox');
+        const frame   = document.getElementById('lightboxFrame');
+        const dl      = document.getElementById('lightboxDownload');
+        const ttl     = document.getElementById('lightboxTitle');
+
+        ttl.textContent   = title;
+        dl.href           = pdfFile;
+        dl.download       = pdfFile;
+        frame.src         = pdfFile;
+
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        const overlay = document.getElementById('pdfLightbox');
+        const frame   = document.getElementById('lightboxFrame');
+
+        overlay.classList.remove('active');
+        frame.src = '';
+        document.body.style.overflow = '';
+    }
+
+    // Close on overlay click (outside the box)
+    document.getElementById('pdfLightbox').addEventListener('click', function(e) {
+        if (e.target === this) closeLightbox();
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeLightbox();
+    });
 </script>
 
 </body>
