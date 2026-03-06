@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conduite Accompagnée AAC | Auto-École Marti Bayonne</title>
+    <meta name="description" content="Formule conduite accompagnée (AAC) à l'auto-école Marti à Bayonne. Commencez dès 15 ans, accumulez de l'expérience, réduisez le risque d'accident. Formation complète à 1 640€ TTC. Rue Marengo, Bayonne.">
+    <link rel="canonical" href="https://autoecole-marti-bayonne.fr/conduite-accompagnee.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --noir: #0a0a0a;
+            --blanc: #fafaf8;
+            --creme: #f5f0e8;
+            --rouge: #c0392b;
+            --rouge-doux: #e74c3c;
+            --rouge-sombre: #922b21;
+            --vert: #1a5c38;
+            --vert-clair: #27ae60;
+            --gris: #6b7280;
+            --gris-clair: #e5e5e5;
+            --basque-rouge: #d63031;
+            --basque-vert: #00695c;
+            --or: #d4a853;
+            --aac: #1a5c38;
+            --aac-clair: #27ae60;
+            --ombre: 0 4px 30px rgba(0,0,0,0.08);
+            --ombre-forte: 0 20px 60px rgba(0,0,0,0.12);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--blanc); color: var(--noir); line-height: 1.7; overflow-x: hidden; }
+
+        /* NAVBAR */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 1rem 2rem; background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 1px 30px rgba(0,0,0,0.06);
+        }
+        nav .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        nav .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--noir); text-decoration: none; letter-spacing: -0.02em; }
+        nav .logo span { color: var(--basque-rouge); }
+        nav .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+        nav .nav-links a { text-decoration: none; color: var(--noir); font-size: 0.9rem; font-weight: 500; letter-spacing: 0.02em; transition: var(--transition); }
+        nav .nav-links a:hover { color: var(--aac); }
+        nav .nav-cta { background: var(--basque-rouge); color: white !important; padding: 0.6rem 1.4rem; border-radius: 50px; font-weight: 600; font-size: 0.85rem; transition: var(--transition); }
+        nav .nav-cta:hover { background: var(--rouge-sombre); transform: translateY(-1px); }
+
+        /* HERO */
+        .page-hero {
+            padding: 120px 2rem 60px;
+            background: linear-gradient(135deg, #0d3b24 0%, #1a5c38 60%, #27ae60 100%);
+            color: white;
+            text-align: center;
+        }
+        .page-hero .breadcrumb { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-bottom: 1.5rem; }
+        .page-hero .breadcrumb a { color: rgba(255,255,255,0.5); text-decoration: none; }
+        .page-hero .breadcrumb a:hover { color: white; }
+        .page-hero .badge {
+            display: inline-block; background: var(--or); color: var(--noir);
+            padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700;
+            letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.2rem;
+        }
+        .page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; line-height: 1.15; margin-bottom: 1rem; }
+        .page-hero h1 em { font-style: italic; color: var(--or); }
+        .page-hero .subtitle { font-size: 1.1rem; color: rgba(255,255,255,0.75); max-width: 620px; margin: 0 auto 2rem; }
+        .page-hero .price-tag { font-size: 2.5rem; font-weight: 700; color: white; }
+        .page-hero .price-tag span { font-size: 1rem; font-weight: 400; color: rgba(255,255,255,0.6); }
+        .page-hero .age-badge {
+            display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+            color: white; padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.85rem; margin-top: 1rem;
+        }
+
+        /* CONTAINER */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        section { padding: 5rem 2rem; }
+
+        /* AVANTAGES */
+        .avantages { background: var(--blanc); }
+        .section-tag { display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--aac); margin-bottom: 0.8rem; }
+        .avantages h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 1rem; }
+        .avantages h2 em { font-style: italic; color: var(--aac); }
+        .avantages-intro { color: var(--gris); font-size: 1rem; max-width: 650px; margin-bottom: 3rem; }
+        .avantages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+        .avantage-card { background: var(--creme); border-radius: var(--radius); padding: 1.8rem; transition: var(--transition); }
+        .avantage-card:hover { transform: translateY(-4px); box-shadow: var(--ombre-forte); }
+        .avantage-card .icon { font-size: 2rem; margin-bottom: 1rem; }
+        .avantage-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .avantage-card p { font-size: 0.88rem; color: var(--gris); }
+        .avantage-card.highlight-card { background: var(--aac); color: white; }
+        .avantage-card.highlight-card p { color: rgba(255,255,255,0.8); }
+
+        /* TARIF */
+        .tarif { background: var(--creme); }
+        .tarif h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 0.5rem; }
+        .tarif h2 em { font-style: italic; color: var(--aac); }
+        .tarif-subtitle { color: var(--gris); margin-bottom: 3rem; }
+        .tarif-card { background: white; border-radius: var(--radius); box-shadow: var(--ombre); overflow: hidden; max-width: 680px; }
+        .tarif-header { background: var(--noir); color: white; padding: 2rem 2.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .tarif-header h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; }
+        .tarif-header .total { text-align: right; }
+        .tarif-header .total-label { font-size: 0.8rem; opacity: 0.6; }
+        .tarif-header .total-price { font-size: 2rem; font-weight: 700; }
+        .tarif-lines { padding: 1.5rem 2.5rem; }
+        .tarif-line { display: flex; justify-content: space-between; align-items: center; padding: 0.9rem 0; border-bottom: 1px solid var(--gris-clair); }
+        .tarif-line:last-child { border-bottom: none; }
+        .tarif-line .label { font-size: 0.95rem; color: var(--noir); }
+        .tarif-line .detail { font-size: 0.8rem; color: var(--gris); margin-top: 0.1rem; }
+        .tarif-line .price { font-weight: 600; font-size: 0.95rem; white-space: nowrap; }
+        .tarif-note { background: rgba(26,92,56,0.07); border-left: 3px solid var(--aac); padding: 1rem 2.5rem; font-size: 0.85rem; color: var(--gris); }
+
+        /* PROGRAMME */
+        .programme { background: var(--blanc); }
+        .programme h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 0.5rem; }
+        .programme h2 em { font-style: italic; color: var(--aac); }
+        .programme-subtitle { color: var(--gris); margin-bottom: 3rem; }
+        .steps { display: flex; flex-direction: column; gap: 1.5rem; max-width: 720px; }
+        .step { display: flex; gap: 1.5rem; align-items: flex-start; }
+        .step-num { flex-shrink: 0; width: 44px; height: 44px; background: var(--aac); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; }
+        .step-body h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+        .step-body p { font-size: 0.88rem; color: var(--gris); }
+
+        /* RDV BLOCK */
+        .rdv-block {
+            background: var(--creme); border-radius: var(--radius); padding: 1.5rem;
+            margin-top: 1rem; border-left: 4px solid var(--aac);
+        }
+        .rdv-block h4 { font-size: 0.9rem; font-weight: 700; color: var(--aac); margin-bottom: 0.5rem; }
+        .rdv-block p { font-size: 0.85rem; color: var(--gris); }
+
+        /* CONDITIONS */
+        .conditions { background: var(--creme); }
+        .conditions h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 0.5rem; }
+        .conditions h2 em { font-style: italic; color: var(--aac); }
+        .conditions-subtitle { color: var(--gris); margin-bottom: 3rem; }
+        .conditions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .condition-card { background: white; border-radius: var(--radius); padding: 1.8rem; }
+        .condition-card h3 { font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--aac); margin-bottom: 1rem; }
+        .condition-card ul { list-style: none; }
+        .condition-card li { font-size: 0.88rem; color: var(--gris); padding: 0.4rem 0; border-bottom: 1px solid var(--gris-clair); display: flex; gap: 0.6rem; }
+        .condition-card li:last-child { border-bottom: none; }
+        .condition-card li::before { content: '✓'; color: var(--aac); flex-shrink: 0; font-weight: 700; }
+
+        /* PIECES */
+        .pieces { background: var(--blanc); }
+        .pieces h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 0.5rem; }
+        .pieces h2 em { font-style: italic; color: var(--aac); }
+        .pieces-subtitle { color: var(--gris); margin-bottom: 3rem; }
+        .pieces-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .pieces-block { background: var(--creme); border-radius: var(--radius); padding: 1.8rem; }
+        .pieces-block h3 { font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--aac); margin-bottom: 1rem; }
+        .pieces-block ul { list-style: none; }
+        .pieces-block li { font-size: 0.88rem; color: var(--gris); padding: 0.4rem 0; border-bottom: 1px solid var(--gris-clair); display: flex; gap: 0.6rem; }
+        .pieces-block li:last-child { border-bottom: none; }
+        .pieces-block li::before { content: '—'; color: var(--aac); flex-shrink: 0; }
+
+        /* CTA */
+        .cta-section { background: linear-gradient(135deg, var(--aac) 0%, #0d3b24 100%); color: white; text-align: center; padding: 5rem 2rem; }
+        .cta-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 1rem; }
+        .cta-section p { font-size: 1rem; opacity: 0.85; max-width: 500px; margin: 0 auto 2.5rem; }
+        .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .btn-white { background: white; color: var(--aac); padding: 0.9rem 2rem; border-radius: 50px; font-weight: 700; font-size: 0.95rem; text-decoration: none; transition: var(--transition); }
+        .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+        .btn-outline { border: 2px solid rgba(255,255,255,0.6); color: white; padding: 0.9rem 2rem; border-radius: 50px; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: var(--transition); }
+        .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+        /* FOOTER */
+        footer { background: var(--noir); color: rgba(255,255,255,0.7); padding: 3rem 2rem; text-align: center; font-size: 0.85rem; }
+        footer .logo-footer { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: white; margin-bottom: 0.8rem; }
+        footer .logo-footer span { color: var(--basque-rouge); }
+        footer p { margin-bottom: 0.4rem; }
+        footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+        footer a:hover { color: white; }
+        footer .footer-links { display: flex; gap: 1.5rem; justify-content: center; margin: 1.2rem 0; flex-wrap: wrap; }
+
+        @media (max-width: 640px) {
+            .tarif-header { flex-direction: column; gap: 1rem; text-align: center; }
+            .tarif-header .total { text-align: center; }
+            nav .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="nav-inner">
+        <a href="index.html" class="logo">MARTI<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html#formations">Formations</a></li>
+            <li><a href="index.html#tarifs">Tarifs</a></li>
+            <li><a href="index.html#histoire">Notre histoire</a></li>
+            <li><a href="index.html#contact" class="nav-cta">Nous contacter</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+    <p class="breadcrumb"><a href="index.html">Accueil</a> / Conduite Accompagnée (AAC)</p>
+    <div class="badge">Dès 15 ans</div>
+    <h1>Conduite<br><em>Accompagnée</em></h1>
+    <p class="subtitle">L'apprentissage anticipé de la conduite (AAC) vous permet de démarrer dès 15 ans, d'accumuler de l'expérience en conditions réelles, et d'obtenir votre permis plus sereinement.</p>
+    <div class="price-tag">1 640 € <span>TTC tout compris</span></div>
+    <div class="age-badge">Accessible dès 15 ans révolus</div>
+</div>
+
+<!-- AVANTAGES -->
+<section class="avantages">
+    <div class="container">
+        <div class="section-tag">Pourquoi choisir l'AAC</div>
+        <h2>Plus d'expérience,<br><em>plus de confiance</em></h2>
+        <p class="avantages-intro">La conduite accompagnée est reconnue comme l'une des méthodes les plus efficaces pour former des conducteurs responsables. Les statistiques parlent d'elles-mêmes : moins d'accidents, plus d'autonomie.</p>
+        <div class="avantages-grid">
+            <div class="avantage-card highlight-card">
+                <div class="icon">🎓</div>
+                <h3>Dès 15 ans révolus</h3>
+                <p>Commencez la formation en auto-école dès 15 ans. Plus tôt vous démarrez, plus vous accumulez d'expérience avant l'examen.</p>
+            </div>
+            <div class="avantage-card">
+                <div class="icon">🚦</div>
+                <h3>Milliers de km d'expérience</h3>
+                <p>Entre les leçons, vous roulez avec un accompagnateur agréé (parent, proche). Chaque kilomètre construit votre maîtrise de la route.</p>
+            </div>
+            <div class="avantage-card">
+                <div class="icon">📉</div>
+                <h3>Moins d'accidents</h3>
+                <p>Les conducteurs formés en AAC ont statistiquement moins d'accidents. La pratique régulière développe les réflexes de sécurité.</p>
+            </div>
+            <div class="avantage-card">
+                <div class="icon">🏆</div>
+                <h3>Meilleur taux de réussite</h3>
+                <p>Les élèves en conduite accompagnée obtiennent leur permis en moyenne plus facilement, avec une meilleure note à l'examen.</p>
+            </div>
+            <div class="avantage-card">
+                <div class="icon">⏳</div>
+                <h3>Période probatoire réduite</h3>
+                <p>Après l'obtention du permis, la période probatoire de 2 ans peut être réduite à 1 an si vous n'avez commis aucune infraction.</p>
+            </div>
+            <div class="avantage-card">
+                <div class="icon">💳</div>
+                <h3>Paiement en plusieurs fois</h3>
+                <p>Vous pouvez régler la formation en plusieurs fois. Renseignez-vous directement auprès de l'auto-école.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TARIF -->
+<section class="tarif">
+    <div class="container">
+        <div class="section-tag">Tarif détaillé</div>
+        <h2>Détail du <em>tarif</em></h2>
+        <p class="tarif-subtitle">Tous les tarifs sont TTC et en vigueur à compter du 09/03/2026.</p>
+        <div class="tarif-card">
+            <div class="tarif-header">
+                <h3>Conduite Accompagnée (AAC)</h3>
+                <div class="total">
+                    <div class="total-label">Total TTC</div>
+                    <div class="total-price">1 640 €</div>
+                </div>
+            </div>
+            <div class="tarif-lines">
+                <div class="tarif-line">
+                    <div>
+                        <div class="label">Frais administratifs</div>
+                    </div>
+                    <div class="price">200,00 €</div>
+                </div>
+                <div class="tarif-line">
+                    <div>
+                        <div class="label">Pack code</div>
+                        <div class="detail">Accès salle + internet</div>
+                    </div>
+                    <div class="price">50,00 €</div>
+                </div>
+                <div class="tarif-line">
+                    <div>
+                        <div class="label">Évaluation de départ</div>
+                        <div class="detail">Bilan de conduite initial</div>
+                    </div>
+                    <div class="price">40,00 €</div>
+                </div>
+                <div class="tarif-line">
+                    <div>
+                        <div class="label">20h de conduite minimum</div>
+                        <div class="detail">Soit 46,00 €/heure</div>
+                    </div>
+                    <div class="price">920,00 €</div>
+                </div>
+                <div class="tarif-line">
+                    <div>
+                        <div class="label">1 RDV préalable</div>
+                        <div class="detail">2h — formation de l'accompagnateur</div>
+                    </div>
+                    <div class="price">100,00 €</div>
+                </div>
+                <div class="tarif-line">
+                    <div>
+                        <div class="label">2 RDV pédagogiques</div>
+                        <div class="detail">2 × 2h — soit 140,00 €/session</div>
+                    </div>
+                    <div class="price">280,00 €</div>
+                </div>
+                <div class="tarif-line">
+                    <div>
+                        <div class="label">Accompagnement à l'examen</div>
+                        <div class="detail">1 présentation incluse</div>
+                    </div>
+                    <div class="price">50,00 €</div>
+                </div>
+            </div>
+            <div class="tarif-note">
+                Le nombre d'heures de conduite en auto-école est le minimum légal. La pratique entre les leçons avec l'accompagnateur agréé est en sus et à votre propre initiative.
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROGRAMME -->
+<section class="programme">
+    <div class="container">
+        <div class="section-tag">Déroulement de la formation</div>
+        <h2>Comment fonctionne<br>la <em>conduite accompagnée</em> ?</h2>
+        <p class="programme-subtitle">Un parcours en plusieurs étapes, de l'inscription à l'obtention du permis.</p>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-body">
+                    <h3>Inscription dès 15 ans</h3>
+                    <p>L'élève doit avoir au moins 15 ans révolus. L'inscription se fait à l'auto-école avec les pièces justificatives de l'élève et de l'accompagnateur.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-body">
+                    <h3>Évaluation de départ</h3>
+                    <p>Un bilan de conduite initial permet de situer le niveau de l'élève et de définir le plan de formation personnalisé.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-body">
+                    <h3>Préparation au code</h3>
+                    <p>Accès illimité à la salle de code et à la plateforme internet. L'épreuve théorique peut être passée dès 15 ans en AAC.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">4</div>
+                <div class="step-body">
+                    <h3>20h de conduite en auto-école</h3>
+                    <p>Formation progressive avec un moniteur diplômé. À l'issue, le moniteur évalue si l'élève est apte à poursuivre en conduite accompagnée.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">5</div>
+                <div class="step-body">
+                    <h3>RDV préalable de l'accompagnateur</h3>
+                    <p>Séance obligatoire de 2h avec l'accompagnateur (et l'élève). Le moniteur forme l'accompagnateur au rôle qu'il aura à tenir pendant la pratique autonome.</p>
+                    <div class="rdv-block">
+                        <h4>Qui peut être accompagnateur ?</h4>
+                        <p>Toute personne titulaire du permis B depuis au moins 5 ans, sans restriction en cours, et résidant avec l'élève ou désignée par ses parents.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">6</div>
+                <div class="step-body">
+                    <h3>Phase de conduite accompagnée</h3>
+                    <p>L'élève conduit régulièrement avec son accompagnateur agréé (minimum 3 000 km recommandés). Cette pratique est le cœur de la formation AAC.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">7</div>
+                <div class="step-body">
+                    <h3>2 RDV pédagogiques de suivi</h3>
+                    <p>Deux rendez-vous de 2h chacun avec le moniteur pour faire le point sur la progression, corriger les habitudes et préparer l'examen.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">8</div>
+                <div class="step-body">
+                    <h3>Passage de l'examen pratique</h3>
+                    <p>À partir de 17½ ans (pour obtenir le permis à 18 ans). Votre moniteur vous accompagne le jour J.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONDITIONS -->
+<section class="conditions">
+    <div class="container">
+        <div class="section-tag">Conditions & règles</div>
+        <h2>Ce qu'il faut <em>savoir</em></h2>
+        <p class="conditions-subtitle">Les conditions de la conduite accompagnée à respecter pendant la phase autonome.</p>
+        <div class="conditions-grid">
+            <div class="condition-card">
+                <h3>L'élève en phase AAC doit</h3>
+                <ul>
+                    <li>Avoir l'autorisation signée de ses parents (si mineur)</li>
+                    <li>Toujours être accompagné par l'accompagnateur agréé</li>
+                    <li>Respecter une limite de 0,20 g d'alcool/L de sang</li>
+                    <li>Respecter les vitesses limitées pour les AAC</li>
+                    <li>Apposer le disque magnétique A sur le véhicule</li>
+                </ul>
+            </div>
+            <div class="condition-card">
+                <h3>Vitesses autorisées (AAC)</h3>
+                <ul>
+                    <li>110 km/h sur autoroute (au lieu de 130)</li>
+                    <li>100 km/h sur voie rapide (au lieu de 110)</li>
+                    <li>80 km/h sur route (au lieu de 80 — identique)</li>
+                    <li>50 km/h en agglomération (identique)</li>
+                </ul>
+            </div>
+            <div class="condition-card">
+                <h3>Avantages après le permis</h3>
+                <ul>
+                    <li>Période probatoire réduite à 1 an (au lieu de 2 ans)</li>
+                    <li>Capital de 6 points dès le départ (au lieu de 6, mais progression plus rapide)</li>
+                    <li>Tarif assurance souvent plus favorable</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PIÈCES À FOURNIR -->
+<section class="pieces">
+    <div class="container">
+        <div class="section-tag">Constitution du dossier</div>
+        <h2>Pièces <em>à fournir</em></h2>
+        <p class="pieces-subtitle">Réunissez ces documents avant votre inscription pour accélérer l'ouverture de votre dossier.</p>
+        <div class="pieces-grid">
+            <div class="pieces-block">
+                <h3>Documents obligatoires (élève)</h3>
+                <ul>
+                    <li>1 photo numérique d'identité</li>
+                    <li>Photocopie recto/verso de la pièce d'identité</li>
+                    <li>Attestation JDC (candidats français de 17 à 25 ans)</li>
+                    <li>Justificatif de domicile de moins de 6 mois</li>
+                </ul>
+            </div>
+            <div class="pieces-block">
+                <h3>Si mineur ou hébergé chez un tiers</h3>
+                <ul>
+                    <li>Attestation d'hébergement sur l'honneur</li>
+                    <li>Pièce d'identité de l'hébergeant</li>
+                    <li>Justificatif de domicile de l'hébergeant (moins de 6 mois)</li>
+                </ul>
+            </div>
+            <div class="pieces-block">
+                <h3>Le cas échéant</h3>
+                <ul>
+                    <li>Permis de conduire actuel recto/verso (A1, AM…)</li>
+                    <li>ASSR2 (si pas de permis) pour les moins de 21 ans</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <h2>Votre enfant a 15 ans ?</h2>
+    <p>C'est le bon moment pour s'inscrire en conduite accompagnée. Contactez-nous pour toute question ou pour prendre rendez-vous à l'auto-école Marti.</p>
+    <div class="cta-btns">
+        <a href="tel:0559591260" class="btn-white">📞 05 59 59 12 60</a>
+        <a href="index.html#contact" class="btn-outline">Nous écrire</a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="logo-footer">MARTI<span>.</span></div>
+    <p>13 rue Marengo — 64100 Bayonne</p>
+    <p>Agrément n°E02 064 064 10</p>
+    <div class="footer-links">
+        <a href="index.html">Accueil</a>
+        <a href="permis-b-manuel.html">Permis B Boîte Manuelle</a>
+        <a href="permis-b-automatique.html">Permis B Automatique</a>
+        <a href="mentions-legales.html">Mentions légales</a>
+    </div>
+    <p style="margin-top:1rem; font-size:0.78rem; opacity:0.4;">Tarifs TTC à compter du 09/03/2026 — Auto-École Marti, Bayonne depuis 1962</p>
+</footer>
+
+</body>
+</html>
