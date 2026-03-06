@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -177,6 +178,34 @@
             .compare-row { grid-template-columns: 1fr 1fr; }
             .compare-row .cell:first-child { grid-column: 1 / -1; font-weight: 600; background: #f9f9f9; }
         }
+
+        /* LIGHTBOX PDF */
+        .lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; align-items: center; justify-content: center; padding: 1rem; backdrop-filter: blur(6px); }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-box { background: var(--blanc); border-radius: var(--radius); width: 100%; max-width: 1000px; max-height: 90vh; display: flex; flex-direction: column; box-shadow: 0 40px 100px rgba(0,0,0,0.4); overflow: hidden; }
+        .lightbox-header { display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 1.5rem; border-bottom: 1px solid var(--gris-clair); background: white; flex-shrink: 0; }
+        .lightbox-header h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--noir); }
+        .lightbox-actions { display: flex; gap: 0.75rem; align-items: center; }
+        .lightbox-download { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--basque-vert); color: white; padding: 0.45rem 1rem; border-radius: 8px; text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: var(--transition); border: none; cursor: pointer; }
+        .lightbox-download:hover { background: #003d35; transform: translateY(-1px); }
+        .lightbox-close { width: 36px; height: 36px; border: 2px solid var(--gris-clair); background: none; border-radius: 50%; cursor: pointer; font-size: 1.1rem; color: var(--gris); display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+        .lightbox-close:hover { border-color: var(--basque-vert); color: var(--basque-vert); }
+        .lightbox-body { flex: 1; overflow: auto; background: #e5e5e5; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+        #pdf-canvas { max-width: 100%; max-height: 100%; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .pdf-controls { background: white; border-top: 1px solid var(--gris-clair); padding: 0.8rem 1.5rem; display: flex; align-items: center; justify-content: center; gap: 1rem; flex-shrink: 0; flex-wrap: wrap; }
+        .pdf-controls button { background: var(--creme); border: 1px solid var(--gris-clair); padding: 0.5rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85rem; transition: var(--transition); }
+        .pdf-controls button:hover { background: var(--gris-clair); }
+        .pdf-controls button:disabled { opacity: 0.5; cursor: not-allowed; }
+        .pdf-page-info { font-size: 0.9rem; color: var(--gris); min-width: 120px; text-align: center; }
+        .pdf-zoom { display: flex; gap: 0.3rem; align-items: center; border-left: 1px solid var(--gris-clair); padding-left: 1rem; }
+        .pdf-zoom button { padding: 0.4rem 0.6rem; font-size: 0.8rem; }
+        .btn-pdf { display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; border: 2px solid var(--gris-clair); color: var(--noir); padding: 0.7rem 1.5rem; border-radius: 50px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: var(--transition); font-family: inherit; margin-top: 1.5rem; }
+        .btn-pdf:hover { border-color: var(--basque-vert); color: var(--basque-vert); }
+        @media (max-width: 600px) {
+            .lightbox-box { max-height: 95vh; border-radius: 12px; }
+            .pdf-controls { flex-direction: column; gap: 0.5rem; }
+            .pdf-zoom { border-left: none; border-top: 1px solid var(--gris-clair); padding-left: 0; padding-top: 0.5rem; width: 100%; justify-content: center; }
+        }
     </style>
 </head>
 <body>
@@ -184,19 +213,19 @@
 <!-- NAVBAR -->
 <nav>
     <div class="nav-inner">
-        <a href="index.html" class="logo">MARTI<span>.</span></a>
+        <a href="../index.html" class="logo">MARTI<span>.</span></a>
         <ul class="nav-links">
-            <li><a href="index.html#formations">Formations</a></li>
-            <li><a href="index.html#tarifs">Tarifs</a></li>
-            <li><a href="index.html#histoire">Notre histoire</a></li>
-            <li><a href="index.html#contact" class="nav-cta">Nous contacter</a></li>
+            <li><a href="../index.html#formations">Formations</a></li>
+            <li><a href="../index.html#tarifs">Tarifs</a></li>
+            <li><a href="../index.html#histoire">Notre histoire</a></li>
+            <li><a href="../index.html#contact" class="nav-cta">Nous contacter</a></li>
         </ul>
     </div>
 </nav>
 
 <!-- HERO -->
 <div class="page-hero">
-    <p class="breadcrumb"><a href="index.html">Accueil</a> / Permis B Boîte Automatique</p>
+    <p class="breadcrumb"><a href="../index.html">Accueil</a> / Permis B Boîte Automatique</p>
     <div class="badge">Tarif le plus bas</div>
     <h1>Permis B<br><em>Boîte Automatique</em></h1>
     <p class="subtitle">Moins d'heures, moins de stress. La boîte automatique simplifie l'apprentissage et permet d'obtenir le permis plus rapidement.</p>
@@ -330,6 +359,7 @@
                 Le permis obtenu en boîte automatique porte la mention BVA. Il ne vous autorise pas à conduire un véhicule à boîte manuelle, sauf si vous passez la mise à niveau (2h de conduite en manuel).
             </div>
         </div>
+        <button class="btn-pdf" onclick="openLightbox()">📄 Consulter la plaquette tarifaire PDF</button>
     </div>
 </section>
 
@@ -420,7 +450,7 @@
     <p>Prenez rendez-vous à l'auto-école Marti ou contactez-nous pour toute question sur cette formule.</p>
     <div class="cta-btns">
         <a href="tel:0559591260" class="btn-white">📞 05 59 59 12 60</a>
-        <a href="index.html#contact" class="btn-outline">Nous écrire</a>
+        <a href="../index.html#contact" class="btn-outline">Nous écrire</a>
     </div>
 </section>
 
@@ -430,13 +460,100 @@
     <p>13 rue Marengo — 64100 Bayonne</p>
     <p>Agrément n°E02 064 064 10</p>
     <div class="footer-links">
-        <a href="index.html">Accueil</a>
+        <a href="../index.html">Accueil</a>
         <a href="permis-b-manuel.html">Permis B Boîte Manuelle</a>
         <a href="conduite-accompagnee.html">Conduite accompagnée</a>
-        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="../mentions-legales.html">Mentions légales</a>
     </div>
     <p style="margin-top:1rem; font-size:0.78rem; opacity:0.4;">Tarifs TTC à compter du 09/03/2026 — Auto-École Marti, Bayonne depuis 1962</p>
 </footer>
+
+<!-- LIGHTBOX PDF -->
+<div class="lightbox-overlay" id="pdfLightbox" role="dialog" aria-modal="true" aria-label="Plaquette tarifaire">
+    <div class="lightbox-box">
+        <div class="lightbox-header">
+            <h3>Permis B — Boîte Automatique</h3>
+            <div class="lightbox-actions">
+                <button onclick="downloadPdf()" class="lightbox-download">⬇ Télécharger le PDF</button>
+                <button class="lightbox-close" onclick="closeLightbox()" aria-label="Fermer">✕</button>
+            </div>
+        </div>
+        <div class="lightbox-body">
+            <canvas id="pdf-canvas"></canvas>
+        </div>
+        <div class="pdf-controls">
+            <button id="pdf-prev" onclick="previousPage()">← Précédent</button>
+            <span class="pdf-page-info">Page <span id="pdf-current-page">1</span> / <span id="pdf-total-pages">0</span></span>
+            <button id="pdf-next" onclick="nextPage()">Suivant →</button>
+            <div class="pdf-zoom">
+                <button onclick="zoomOut()" title="Zoom arrière">−</button>
+                <button onclick="resetZoom()" title="Réinitialiser">Reset</button>
+                <button onclick="zoomIn()" title="Zoom avant">+</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    const PDF_FILE = '../Plaquette_Permis_B_BVA.pdf';
+    const PDF_TITLE = 'Plaquette_Permis_B_BVA.pdf';
+    let pdfDoc = null, currentPage = 1, scale = 1.2;
+
+    async function openLightbox() {
+        document.getElementById('pdfLightbox').classList.add('active');
+        document.body.style.overflow = 'hidden';
+        if (!pdfDoc) {
+            try {
+                pdfDoc = await pdfjsLib.getDocument(PDF_FILE).promise;
+                document.getElementById('pdf-total-pages').textContent = pdfDoc.numPages;
+                renderPage(1);
+            } catch (e) { console.error('Erreur chargement PDF:', e); }
+        } else {
+            renderPage(currentPage);
+        }
+    }
+
+    function closeLightbox() {
+        document.getElementById('pdfLightbox').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    async function downloadPdf() {
+        try {
+            const response = await fetch(PDF_FILE);
+            const blob = await response.blob();
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = PDF_TITLE;
+            document.body.appendChild(a); a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
+        } catch (e) { console.error('Erreur téléchargement PDF:', e); }
+    }
+
+    async function renderPage(pageNum) {
+        if (!pdfDoc) return;
+        const page = await pdfDoc.getPage(pageNum);
+        const canvas = document.getElementById('pdf-canvas');
+        const viewport = page.getViewport({ scale });
+        canvas.width = viewport.width; canvas.height = viewport.height;
+        await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+        currentPage = pageNum;
+        document.getElementById('pdf-current-page').textContent = pageNum;
+        document.getElementById('pdf-prev').disabled = pageNum <= 1;
+        document.getElementById('pdf-next').disabled = pageNum >= pdfDoc.numPages;
+    }
+
+    function nextPage() { if (pdfDoc && currentPage < pdfDoc.numPages) renderPage(currentPage + 1); }
+    function previousPage() { if (currentPage > 1) renderPage(currentPage - 1); }
+    function zoomIn() { scale += 0.2; renderPage(currentPage); }
+    function zoomOut() { if (scale > 0.6) { scale -= 0.2; renderPage(currentPage); } }
+    function resetZoom() { scale = 1.2; renderPage(currentPage); }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+    document.getElementById('pdfLightbox').addEventListener('click', e => { if (e.target.id === 'pdfLightbox') closeLightbox(); });
+</script>
 
 </body>
 </html>
