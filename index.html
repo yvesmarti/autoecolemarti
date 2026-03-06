@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.js"></script>
     <style>
         /* ═══════════════════════════════════════
            RESET & VARIABLES
@@ -545,8 +546,8 @@
             background: var(--blanc);
             border-radius: var(--radius);
             width: 100%;
-            max-width: 860px;
-            max-height: 92vh;
+            max-width: 1000px;
+            max-height: 90vh;
             display: flex;
             flex-direction: column;
             box-shadow: 0 40px 100px rgba(0,0,0,0.4);
@@ -585,19 +586,59 @@
         .lightbox-close:hover { border-color: var(--basque-rouge); color: var(--basque-rouge); }
         .lightbox-body {
             flex: 1;
-            overflow: hidden;
+            overflow: auto;
             background: #e5e5e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
         }
-        .lightbox-body iframe {
-            width: 100%;
-            height: 100%;
-            min-height: 500px;
-            border: none;
-            display: block;
+        #pdf-canvas {
+            max-width: 100%;
+            max-height: 100%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
+        .pdf-controls {
+            background: white;
+            border-top: 1px solid var(--gris-clair);
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-shrink: 0;
+            flex-wrap: wrap;
+        }
+        .pdf-controls button {
+            background: var(--creme);
+            border: 1px solid var(--gris-clair);
+            padding: 0.5rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+        .pdf-controls button:hover { background: var(--gris-clair); }
+        .pdf-controls button:disabled { opacity: 0.5; cursor: not-allowed; }
+        .pdf-page-info {
+            font-size: 0.9rem;
+            color: var(--gris);
+            min-width: 120px;
+            text-align: center;
+        }
+        .pdf-zoom {
+            display: flex;
+            gap: 0.3rem;
+            align-items: center;
+            border-left: 1px solid var(--gris-clair);
+            padding-left: 1rem;
+        }
+        .pdf-zoom button { padding: 0.4rem 0.6rem; font-size: 0.8rem; }
         @media (max-width: 600px) {
             .lightbox-box { max-height: 95vh; border-radius: 12px; }
-            .lightbox-body iframe { min-height: 380px; }
+            .pdf-controls { flex-direction: column; gap: 0.5rem; }
+            .pdf-zoom { border-left: none; border-top: 1px solid var(--gris-clair); padding-left: 0; padding-top: 0.5rem; width: 100%; justify-content: center; }
         }
     </style>
 </head>
@@ -614,7 +655,7 @@
             <li><a href="#histoire">Notre histoire</a></li>
             <li><a href="#avis">Avis</a></li>
             <li><a href="#contact">Contact</a></li>
-            <li><a href="mailto:autoecole.marti@gmail.com" class="nav-cta">S'inscrire</a></li>
+            <li><a href="/cdn-cgi/l/email-protection#77160203181214181b12591a1605031e37101a161e1b5914181a" class="nav-cta">S'inscrire</a></li>
         </ul>
         <div class="hamburger" id="hamburger" onclick="toggleNav()">
             <span></span><span></span><span></span>
@@ -694,7 +735,7 @@
         <div class="trust-item">
             <div class="trust-icon">✉️</div>
             <div class="trust-text">
-                <div class="trust-val">autoecole.marti@gmail.com</div>
+                <div class="trust-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="83e2f6f7ece6e0ecefe6adeee2f1f7eac3e4eee2eaefade0ecee">[email&#160;protected]</a></div>
                 <div class="trust-desc">Réponse sous 24h</div>
             </div>
         </div>
@@ -949,7 +990,7 @@
                         <div class="contact-detail-icon">✉️</div>
                         <div class="contact-detail-text">
                             <h4>Email</h4>
-                            <p><a href="mailto:autoecole.marti@gmail.com">autoecole.marti@gmail.com</a></p>
+                            <p><a href="/cdn-cgi/l/email-protection#a1c0d4d5cec4c2cecdc48fccc0d3d5c8e1c6ccc0c8cd8fc2cecc"><span class="__cf_email__" data-cfemail="1d7c686972787e72717833707c6f69745d7a707c7471337e7270">[email&#160;protected]</span></a></p>
                         </div>
                     </div>
                     <div class="contact-detail">
@@ -1075,7 +1116,7 @@
 <div class="cta-banner">
     <h2>Prêt à prendre le volant ?</h2>
     <p>Inscrivez-vous dès maintenant ou passez nous voir au bureau. Votre permis commence ici.</p>
-    <a href="mailto:autoecole.marti@gmail.com?subject=Demande d'inscription" class="btn">Contactez-nous →</a>
+    <a href="/cdn-cgi/l/email-protection#2e4f5b5a414b4d41424b00434f5c5a476e49434f4742004d4143115d5b4c444b4d5a136a4b434f404a4b0e4a0947405d4d5c475e5a474140" class="btn">Contactez-nous →</a>
 </div>
 
 <!-- ══════════════════════════════════════════════════════════════
@@ -1111,7 +1152,7 @@
                 <ul>
                     <li><a href="tel:0559591260">05 59 59 12 60</a></li>
                     <li><a href="tel:0622008209">06 22 00 82 09</a></li>
-                    <li><a href="mailto:autoecole.marti@gmail.com">autoecole.marti@gmail.com</a></li>
+                    <li><a href="/cdn-cgi/l/email-protection#b4d5c1c0dbd1d7dbd8d19ad9d5c6c0ddf4d3d9d5ddd89ad7dbd9"><span class="__cf_email__" data-cfemail="2c4d595843494f43404902414d5e58456c4b414d4540024f4341">[email&#160;protected]</span></a></li>
                     <li><a href="#contact">13 rue Marengo, Bayonne</a></li>
                 </ul>
             </div>
@@ -1129,6 +1170,9 @@
 <!-- ══════════════════════════════════════════════════════════════
      LIGHTBOX PDF
 ══════════════════════════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════════════════════════════
+     LIGHTBOX PDF
+══════════════════════════════════════════════════════════════ -->
 <div class="lightbox-overlay" id="pdfLightbox" role="dialog" aria-modal="true" aria-label="Plaquette tarifaire">
     <div class="lightbox-box">
         <div class="lightbox-header">
@@ -1137,16 +1181,28 @@
                 <a id="lightboxDownload" href="#" download class="lightbox-download">
                     ⬇ Télécharger le PDF
                 </a>
-                <button class="lightbox-close" onclick="closeLightbox()" aria-label="Fermer">✕</button>
+                <button class="lightbox-close" onclick="closePdfLightbox()" aria-label="Fermer">✕</button>
             </div>
         </div>
         <div class="lightbox-body">
-            <iframe id="lightboxFrame" src="" title="Plaquette tarifaire"></iframe>
+            <canvas id="pdf-canvas"></canvas>
+        </div>
+        <div class="pdf-controls">
+            <button id="pdf-prev" onclick="previousPage()">← Précédent</button>
+            <span class="pdf-page-info">
+                Page <span id="pdf-current-page">1</span> / <span id="pdf-total-pages">0</span>
+            </span>
+            <button id="pdf-next" onclick="nextPage()">Suivant →</button>
+            <div class="pdf-zoom">
+                <button onclick="zoomOut()" title="Zoom arrière">−</button>
+                <button onclick="resetZoom()" title="Réinitialiser">Reset</button>
+                <button onclick="zoomIn()" title="Zoom avant">+</button>
+            </div>
         </div>
     </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // ── Navbar scroll effect ──
     const nav = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
@@ -1221,41 +1277,106 @@
         return true;
     }
 
-    /* ── Lightbox PDF ── */
-    function openLightbox(pdfFile, title) {
-        const overlay = document.getElementById('pdfLightbox');
-        const frame   = document.getElementById('lightboxFrame');
-        const dl      = document.getElementById('lightboxDownload');
-        const ttl     = document.getElementById('lightboxTitle');
+    /* ── Lightbox PDF avec PDF.js ── */
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.js';
+    let pdfDoc = null;
+    let currentPage = 1;
+    let scale = 1.2;
 
-        ttl.textContent   = title;
-        dl.href           = pdfFile;
-        dl.download       = pdfFile;
-        frame.src         = pdfFile;
+    async function openLightbox(pdfFile, title) {
+        const overlay = document.getElementById('pdfLightbox');
+        const titleEl = document.getElementById('lightboxTitle');
+        const dlBtn = document.getElementById('lightboxDownload');
+
+        titleEl.textContent = title;
+        dlBtn.href = pdfFile;
+        dlBtn.download = title + '.pdf';
 
         overlay.classList.add('active');
         document.body.style.overflow = 'hidden';
+
+        try {
+            pdfDoc = await pdfjsLib.getDocument(pdfFile).promise;
+            currentPage = 1;
+            scale = 1.2;
+            document.getElementById('pdf-total-pages').textContent = pdfDoc.numPages;
+            renderPage(currentPage);
+        } catch (error) {
+            console.error('Erreur lors du chargement du PDF:', error);
+            alert('Impossible de charger le PDF. Vérifiez l\'URL.');
+        }
     }
 
-    function closeLightbox() {
+    function closePdfLightbox() {
         const overlay = document.getElementById('pdfLightbox');
-        const frame   = document.getElementById('lightboxFrame');
-
         overlay.classList.remove('active');
-        frame.src = '';
         document.body.style.overflow = '';
+        pdfDoc = null;
     }
 
-    // Close on overlay click (outside the box)
-    document.getElementById('pdfLightbox').addEventListener('click', function(e) {
-        if (e.target === this) closeLightbox();
+    async function renderPage(pageNum) {
+        if (!pdfDoc) return;
+        try {
+            const page = await pdfDoc.getPage(pageNum);
+            const canvas = document.getElementById('pdf-canvas');
+            const context = canvas.getContext('2d');
+            const viewport = page.getViewport({ scale: scale });
+            canvas.width = viewport.width;
+            canvas.height = viewport.height;
+            await page.render({
+                canvasContext: context,
+                viewport: viewport
+            }).promise;
+            document.getElementById('pdf-current-page').textContent = pageNum;
+            document.getElementById('pdf-prev').disabled = pageNum <= 1;
+            document.getElementById('pdf-next').disabled = pageNum >= pdfDoc.numPages;
+        } catch (error) {
+            console.error('Erreur lors du rendu:', error);
+        }
+    }
+
+    function nextPage() {
+        if (currentPage < pdfDoc.numPages) {
+            currentPage++;
+            renderPage(currentPage);
+        }
+    }
+
+    function previousPage() {
+        if (currentPage > 1) {
+            currentPage--;
+            renderPage(currentPage);
+        }
+    }
+
+    function zoomIn() {
+        scale += 0.2;
+        renderPage(currentPage);
+    }
+
+    function zoomOut() {
+        if (scale > 0.6) {
+            scale -= 0.2;
+            renderPage(currentPage);
+        }
+    }
+
+    function resetZoom() {
+        scale = 1.2;
+        renderPage(currentPage);
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && document.getElementById('pdfLightbox').classList.contains('active')) {
+            closePdfLightbox();
+        }
     });
 
-    // Close on Escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') closeLightbox();
+    document.getElementById('pdfLightbox').addEventListener('click', (e) => {
+        if (e.target.id === 'pdfLightbox') {
+            closePdfLightbox();
+        }
     });
 </script>
-
 </body>
 </html>
