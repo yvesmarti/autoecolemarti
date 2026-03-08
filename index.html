@@ -97,7 +97,7 @@
            HERO
         ═══════════════════════════════════════ */
         .hero {
-            min-height: 100vh; display: flex; align-items: center;
+            min-height: 88vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
             position: relative; overflow: hidden;
             background: linear-gradient(135deg, #fdfcfa 0%, #f0ebe0 50%, #e8dfd0 100%);
         }
@@ -114,7 +114,7 @@
             border-radius: 50%;
         }
         .hero-inner {
-            max-width: 1200px; margin: 0 auto; padding: 8rem 2rem 4rem;
+            max-width: 1200px; width: 100%; margin: 0 auto; padding: 6rem 2rem 2.5rem;
             display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
             align-items: center; position: relative; z-index: 2;
         }
@@ -201,21 +201,31 @@
         .container { max-width: 1200px; margin: 0 auto; }
 
         /* ═══════════════════════════════════════
-           TRUST BAR
+           INFO BAR (intégrée dans le hero)
         ═══════════════════════════════════════ */
-        .trust-bar { background: var(--noir); padding: 3rem 2rem; overflow: hidden; }
-        .trust-inner {
+        .hero-info-bar {
+            width: 100%; padding: 0 2rem 3rem;
+            position: relative; z-index: 2;
+        }
+        .info-cards {
             max-width: 1200px; margin: 0 auto;
-            display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
         }
-        .trust-item { display: flex; align-items: center; gap: 1rem; color: white; }
-        .trust-icon {
-            width: 48px; height: 48px; background: rgba(255,255,255,0.08);
-            border-radius: 12px; display: flex; align-items: center;
-            justify-content: center; font-size: 1.3rem;
+        .info-card {
+            background: white; border-radius: var(--radius-sm);
+            padding: 1rem 1.2rem; display: flex; align-items: center; gap: 0.9rem;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.07); border: 1px solid rgba(0,0,0,0.04);
         }
-        .trust-item .trust-text .trust-val { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.02em; }
-        .trust-item .trust-text .trust-desc { font-size: 0.78rem; color: rgba(255,255,255,0.5); letter-spacing: 0.02em; }
+        .info-card-icon {
+            width: 44px; height: 44px; flex-shrink: 0;
+            background: var(--creme); border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+        }
+        .info-card-val { font-size: 0.95rem; font-weight: 700; letter-spacing: -0.01em; color: var(--noir); }
+        .info-card-desc { font-size: 0.78rem; color: var(--gris); margin-top: 0.1rem; }
+        .info-card-desc.accent { color: var(--basque-rouge); }
+        .info-card-val a { color: inherit; text-decoration: none; }
+        .info-card-val a:hover { color: var(--basque-rouge); }
 
         /* ═══════════════════════════════════════
            FORMATIONS / PRICING CARDS
@@ -512,9 +522,7 @@
                 justify-content: center; align-items: center; gap: 2rem; z-index: 999;
             }
             .avantages-grid { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
-            .trust-inner { gap: 1.5rem; flex-direction: column; align-items: flex-start; max-width: 320px; margin: 0 auto; }
-            .trust-item { width: 100%; }
-            .trust-icon { flex-shrink: 0; }
+            .info-cards { grid-template-columns: 1fr 1fr; }
             .form-row { grid-template-columns: 1fr; }
             .footer-top { grid-template-columns: 1fr; }
             .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
@@ -581,43 +589,39 @@
 
         </div>
     </div>
-</section>
-
-<!-- ══════════════════════════════════════════════════════════════
-     TRUST BAR
-══════════════════════════════════════════════════════════════ -->
-<div class="trust-bar">
-    <div class="trust-inner">
-        <div class="trust-item">
-            <div class="trust-icon">📍</div>
-            <div class="trust-text">
-                <div class="trust-val">Petit Bayonne</div>
-                <div class="trust-desc">13, rue Marengo</div>
+    <div class="hero-info-bar">
+        <div class="info-cards">
+            <div class="info-card">
+                <div class="info-card-icon">📍</div>
+                <div>
+                    <div class="info-card-val">Petit Bayonne</div>
+                    <div class="info-card-desc">13, rue Marengo</div>
+                </div>
             </div>
-        </div>
-        <div class="trust-item">
-            <div class="trust-icon">🚗</div>
-            <div class="trust-text">
-                <div class="trust-val">RDV conduite Anglet</div>
-                <div class="trust-desc">Place Quintaou</div>
+            <div class="info-card">
+                <div class="info-card-icon">🚗</div>
+                <div>
+                    <div class="info-card-val">RDV conduite Anglet</div>
+                    <div class="info-card-desc accent">Place Quintaou</div>
+                </div>
             </div>
-        </div>
-        <div class="trust-item">
-            <div class="trust-icon">📞</div>
-            <div class="trust-text">
-                <div class="trust-val">05 59 59 12 60</div>
-                <div class="trust-desc">Du mardi au samedi</div>
+            <div class="info-card">
+                <div class="info-card-icon">📞</div>
+                <div>
+                    <div class="info-card-val">05 59 59 12 60</div>
+                    <div class="info-card-desc accent">Du mardi au samedi</div>
+                </div>
             </div>
-        </div>
-        <div class="trust-item">
-            <div class="trust-icon">✉️</div>
-            <div class="trust-text">
-                <div class="trust-val"><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></div>
-                <div class="trust-desc">Réponse sous 24h</div>
+            <div class="info-card">
+                <div class="info-card-icon">✉️</div>
+                <div>
+                    <div class="info-card-val"><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></div>
+                    <div class="info-card-desc">Réponse sous 24h</div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 
 <!-- ══════════════════════════════════════════════════════════════
      FORMATIONS — NOUVEAUX TARIFS
