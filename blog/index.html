@@ -412,13 +412,13 @@
 ══════════════════════════════════════════════════════════════ -->
 <div class="filtres">
     <div class="filtres-inner">
-        <button class="filtre-btn active">Tous les articles</button>
-        <button class="filtre-btn">Code de la route</button>
-        <button class="filtre-btn">Conduite</button>
-        <button class="filtre-btn">Conduite accompagnée</button>
-        <button class="filtre-btn">Tarifs &amp; financement</button>
-        <button class="filtre-btn">Réglementation</button>
-        <button class="filtre-btn">Conseils pratiques</button>
+        <button class="filtre-btn active" data-filter="tous">Tous les articles</button>
+        <button class="filtre-btn" data-filter="code-de-la-route">Code de la route</button>
+        <button class="filtre-btn" data-filter="conduite">Conduite</button>
+        <button class="filtre-btn" data-filter="conduite-accompagnee">Conduite accompagnée</button>
+        <button class="filtre-btn" data-filter="tarifs">Tarifs &amp; financement</button>
+        <button class="filtre-btn" data-filter="reglementation">Réglementation</button>
+        <button class="filtre-btn" data-filter="conseils-pratiques">Conseils pratiques</button>
     </div>
 </div>
 
@@ -431,103 +431,103 @@
         <div class="articles-grid">
 
             <!-- ── ARTICLE FEATURED (à la une) ── -->
-            <article class="article-card featured fade-in">
-                <div class="article-thumb conduite" aria-hidden="true">🚗</div>
+            <article class="article-card featured fade-in" data-category="conduite-accompagnee">
+                <div class="article-thumb aac" aria-hidden="true">🤝</div>
                 <div class="article-body">
                     <div class="article-meta">
-                        <span class="article-cat vert">Conduite</span>
-                        <span class="article-date">À venir</span>
+                        <span class="article-cat vert">Conduite accompagnée</span>
+                        <span class="article-date">4 mars 2026</span>
                     </div>
-                    <h2 class="article-title">Conduite accompagnée (AAC) : tout ce que vous devez savoir avant de vous lancer</h2>
-                    <p class="article-excerpt">La conduite accompagnée permet de commencer l'apprentissage dès 15 ans et d'accumuler de l'expérience avant l'examen. Découvrez comment fonctionne ce dispositif, ses avantages concrets sur le taux de réussite et pourquoi l'auto-école Marti vous recommande cette formule.</p>
+                    <h2 class="article-title">L'AAC : conduire dès 15 ans avec la conduite accompagnée</h2>
+                    <p class="article-excerpt">La conduite accompagnée permet de commencer l'apprentissage dès 15 ans et d'accumuler de l'expérience avant l'examen. Découvrez ses avantages concrets sur le taux de réussite et les bénéfices pour l'assurance.</p>
                     <div class="article-footer">
-                        <span class="article-reading">⏱ 6 min de lecture</span>
-                        <a href="#" class="article-link">Lire l'article →</a>
+                        <span class="article-reading">⏱ 5 min de lecture</span>
+                        <a href="aac-apprentissage-anticipe-conduite.html" class="article-link">Lire l'article →</a>
                     </div>
                 </div>
             </article>
 
             <!-- ── ARTICLE 2 ── -->
-            <article class="article-card fade-in">
-                <div class="article-thumb code" aria-hidden="true">📖</div>
+            <article class="article-card fade-in" data-category="conduite-accompagnee">
+                <div class="article-thumb conduite" aria-hidden="true">👥</div>
                 <div class="article-body">
                     <div class="article-meta">
-                        <span class="article-cat rouge">Code de la route</span>
-                        <span class="article-date">À venir</span>
+                        <span class="article-cat vert">Conduite accompagnée</span>
+                        <span class="article-date">4 mars 2026</span>
                     </div>
-                    <h2 class="article-title">Comment préparer son code de la route efficacement ?</h2>
-                    <p class="article-excerpt">Méthodes, outils en ligne et erreurs à éviter : nos conseils pour décrocher le code du premier coup et aborder la conduite sereinement.</p>
+                    <h2 class="article-title">La conduite supervisée dès 18 ans</h2>
+                    <p class="article-excerpt">Flexible et économique, la conduite supervisée permet de progresser après la formation en auto-école avec un accompagnateur. Une excellente option pour gagner en expérience avant l'examen.</p>
                     <div class="article-footer">
                         <span class="article-reading">⏱ 4 min de lecture</span>
-                        <a href="#" class="article-link">Lire l'article →</a>
+                        <a href="conduite-supervisee.html" class="article-link">Lire l'article →</a>
                     </div>
                 </div>
             </article>
 
             <!-- ── ARTICLE 3 ── -->
-            <article class="article-card fade-in">
-                <div class="article-thumb tarifs" aria-hidden="true">💶</div>
+            <article class="article-card fade-in" data-category="conseils-pratiques">
+                <div class="article-thumb conseils" aria-hidden="true">✅</div>
                 <div class="article-body">
                     <div class="article-meta">
-                        <span class="article-cat or">Tarifs &amp; financement</span>
-                        <span class="article-date">À venir</span>
+                        <span class="article-cat or">Conseils pratiques</span>
+                        <span class="article-date">4 mars 2026</span>
                     </div>
-                    <h2 class="article-title">Permis à 1 € par jour : êtes-vous éligible ?</h2>
-                    <p class="article-excerpt">Le financement du permis peut peser lourd dans un budget. Le permis à 1 € par jour permet d'étaler le coût facilement. On vous explique les conditions et les démarches.</p>
+                    <h2 class="article-title">Réussir son permis B : le guide complet</h2>
+                    <p class="article-excerpt">Déroulé de l'examen, erreurs fréquentes, fautes éliminatoires et stratégies pour rester serein le jour J. Tout ce qu'il faut savoir pour décrocher le permis du premier coup.</p>
                     <div class="article-footer">
-                        <span class="article-reading">⏱ 3 min de lecture</span>
-                        <a href="#" class="article-link">Lire l'article →</a>
+                        <span class="article-reading">⏱ 7 min de lecture</span>
+                        <a href="comment-reussir-son-permis-conduire.html" class="article-link">Lire l'article →</a>
                     </div>
                 </div>
             </article>
 
             <!-- ── ARTICLE 4 ── -->
-            <article class="article-card fade-in">
+            <article class="article-card fade-in" data-category="conduite">
                 <div class="article-thumb aac" aria-hidden="true">🔄</div>
                 <div class="article-body">
                     <div class="article-meta">
-                        <span class="article-cat bleu">Réglementation</span>
+                        <span class="article-cat vert">Conduite</span>
                         <span class="article-date">À venir</span>
                     </div>
-                    <h2 class="article-title">Boîte automatique ou boîte manuelle : laquelle choisir pour votre permis ?</h2>
+                    <h2 class="article-title">Boîte auto ou manuelle : laquelle choisir ?</h2>
                     <p class="article-excerpt">Passer son permis en boîte automatique est de plus en plus courant. Mais quelles sont les restrictions ? Et comment se décider ? Tour d'horizon complet.</p>
                     <div class="article-footer">
                         <span class="article-reading">⏱ 5 min de lecture</span>
-                        <a href="#" class="article-link">Lire l'article →</a>
+                        <a href="#" class="article-link">Bientôt disponible</a>
                     </div>
                 </div>
             </article>
 
             <!-- ── ARTICLE 5 ── -->
-            <article class="article-card fade-in">
-                <div class="article-thumb conseils" aria-hidden="true">✅</div>
+            <article class="article-card fade-in" data-category="conseils-pratiques">
+                <div class="article-thumb conseils" aria-hidden="true">🧠</div>
                 <div class="article-body">
                     <div class="article-meta">
-                        <span class="article-cat vert">Conseils pratiques</span>
+                        <span class="article-cat or">Conseils pratiques</span>
                         <span class="article-date">À venir</span>
                     </div>
-                    <h2 class="article-title">Les 7 erreurs à éviter le jour de l'examen du permis B</h2>
+                    <h2 class="article-title">Les 7 erreurs à éviter le jour de l'examen</h2>
                     <p class="article-excerpt">Stress, oublis, mauvais réflexes… Nos moniteurs partagent les erreurs les plus fréquentes le jour J et comment les éviter pour aborder l'examen avec confiance.</p>
                     <div class="article-footer">
                         <span class="article-reading">⏱ 4 min de lecture</span>
-                        <a href="#" class="article-link">Lire l'article →</a>
+                        <a href="#" class="article-link">Bientôt disponible</a>
                     </div>
                 </div>
             </article>
 
             <!-- ── ARTICLE 6 ── -->
-            <article class="article-card fade-in">
+            <article class="article-card fade-in" data-category="reglementation">
                 <div class="article-thumb regle" aria-hidden="true">📋</div>
                 <div class="article-body">
                     <div class="article-meta">
                         <span class="article-cat bleu">Réglementation</span>
                         <span class="article-date">À venir</span>
                     </div>
-                    <h2 class="article-title">Permis probatoire : tout savoir sur les 3 ans après l'obtention</h2>
-                    <p class="article-excerpt">Capital de points réduit, vitesses abaissées, tolérance zéro à l'alcool… Le permis probatoire impose des règles spécifiques. Faites le point pour ne rien rater.</p>
+                    <h2 class="article-title">Le permis probatoire : 3 ans de règles spécifiques</h2>
+                    <p class="article-excerpt">Capital de points réduit, vitesses abaissées, tolérance zéro à l'alcool… Le permis probatoire impose des règles précises. Faites le point pour ne rien rater.</p>
                     <div class="article-footer">
                         <span class="article-reading">⏱ 5 min de lecture</span>
-                        <a href="#" class="article-link">Lire l'article →</a>
+                        <a href="#" class="article-link">Bientôt disponible</a>
                     </div>
                 </div>
             </article>
@@ -608,11 +608,40 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-    // ── Filtres (UI seulement pour l'instant) ──
-    document.querySelectorAll('.filtre-btn').forEach(btn => {
+    // ── Filtres catégories ──
+    const filtresBtns = document.querySelectorAll('.filtre-btn');
+    const articleCards = document.querySelectorAll('.article-card');
+    const grid = document.querySelector('.articles-grid');
+
+    // Créer un message "aucun article" caché
+    const noResult = document.createElement('p');
+    noResult.textContent = 'Aucun article dans cette catégorie pour l\'instant — revenez bientôt !';
+    noResult.style.cssText = 'display:none; text-align:center; color:var(--gris); padding:3rem 0; grid-column:1/-1; font-size:1rem;';
+    grid.appendChild(noResult);
+
+    filtresBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            document.querySelectorAll('.filtre-btn').forEach(b => b.classList.remove('active'));
+            // Mettre à jour les boutons actifs
+            filtresBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
+
+            const filter = btn.dataset.filter;
+            let visibleCount = 0;
+
+            articleCards.forEach(card => {
+                const match = filter === 'tous' || card.dataset.category === filter;
+                card.style.display = match ? '' : 'none';
+                if (match) visibleCount++;
+            });
+
+            // Réajuster la carte featured si elle est visible
+            const featured = document.querySelector('.article-card.featured');
+            if (featured && featured.style.display !== 'none') {
+                featured.style.gridColumn = '1 / -1';
+                featured.style.flexDirection = '';
+            }
+
+            noResult.style.display = visibleCount === 0 ? 'block' : 'none';
         });
     });
 </script>

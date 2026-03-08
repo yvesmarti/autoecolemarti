@@ -3,120 +3,644 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apprentissage Anticipé de la Conduite (AAC) à Bayonne | Auto-École MARTI</title>
-    <meta name="description" content="Découvrez l'apprentissage anticipé de la conduite (AAC). Formation complète, taux de réussite élevé, avantages assurance. Auto-École MARTI à Bayonne.">
+    <title>L'AAC : conduire dès 15 ans — Blog Auto-École Marti | Bayonne</title>
+    <link rel="icon" type="image/png" href="../favicon.ico.png">
+    <meta name="description" content="Découvrez l'apprentissage anticipé de la conduite (AAC). Formation complète, taux de réussite élevé, avantages assurance. Auto-École Marti à Bayonne.">
     <meta name="keywords" content="AAC, apprentissage anticipé conduite, conduite accompagnée, permis B, auto-école Bayonne">
-    <meta property="og:title" content="Apprentissage Anticipé de la Conduite (AAC) à Bayonne">
-    <meta property="og:description" content="Découvrez l'AAC et comment débuter la conduite dès 15 ans avec l'auto-école MARTI">
+    <meta property="og:title" content="L'AAC : conduire dès 15 ans — Auto-École Marti">
+    <meta property="og:description" content="Découvrez l'AAC et comment débuter la conduite dès 15 ans avec l'auto-école Marti">
     <meta property="og:type" content="article">
-    <meta property="og:image" content="/images/aac-apprentissage.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; }
-        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
-        header { background: #f5f5f5; padding: 20px 0; margin-bottom: 30px; border-bottom: 3px solid #1a3d5c; }
-        h1 { color: #1a3d5c; margin-bottom: 10px; font-size: 2em; }
-        .breadcrumb { color: #666; font-size: 0.9em; margin-bottom: 20px; }
-        .breadcrumb a { color: #0066cc; text-decoration: none; }
-        h2 { color: #1a3d5c; margin-top: 30px; margin-bottom: 15px; font-size: 1.5em; }
-        h3 { color: #2c5aa0; margin-top: 20px; margin-bottom: 10px; }
-        p { margin-bottom: 15px; }
-        ul { margin-left: 20px; margin-bottom: 15px; }
-        li { margin-bottom: 8px; }
-        .intro { background: #e8f4f8; padding: 20px; border-left: 4px solid #0066cc; margin-bottom: 30px; }
-        .cta { background: #1a3d5c; color: white; padding: 20px; margin-top: 30px; text-align: center; border-radius: 5px; }
-        .cta a { color: white; text-decoration: none; font-weight: bold; }
-        footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 0.9em; color: #666; }
-        .related-articles { margin-top: 30px; padding: 20px; background: #f9f9f9; border-radius: 5px; }
-        .related-articles a { color: #0066cc; text-decoration: none; display: block; margin: 10px 0; }
+        /* ═══════════════════════════════════════
+           RESET & VARIABLES
+        ═══════════════════════════════════════ */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --noir: #0a0a0a;
+            --blanc: #fafaf8;
+            --creme: #f5f0e8;
+            --rouge: #c0392b;
+            --rouge-doux: #e74c3c;
+            --rouge-sombre: #922b21;
+            --vert: #1a5c38;
+            --vert-clair: #27ae60;
+            --gris: #6b7280;
+            --gris-clair: #e5e5e5;
+            --basque-rouge: #d63031;
+            --basque-vert: #00695c;
+            --or: #d4a853;
+            --ombre: 0 4px 30px rgba(0,0,0,0.08);
+            --ombre-forte: 0 20px 60px rgba(0,0,0,0.12);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--blanc);
+            color: var(--noir);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ═══════════════════════════════════════
+           NAVBAR
+        ═══════════════════════════════════════ */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 1rem 2rem; transition: var(--transition);
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 1px 30px rgba(0,0,0,0.06);
+        }
+        nav .nav-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        nav .logo {
+            font-family: 'Playfair Display', serif; font-size: 1.5rem;
+            font-weight: 700; color: var(--noir); text-decoration: none; letter-spacing: -0.02em;
+        }
+        nav .logo span { color: var(--basque-rouge); }
+        nav .nav-links {
+            display: flex; gap: 2rem; list-style: none; align-items: center;
+        }
+        nav .nav-links a {
+            text-decoration: none; color: var(--noir); font-size: 0.9rem;
+            font-weight: 500; letter-spacing: 0.02em; transition: var(--transition);
+            position: relative;
+        }
+        nav .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 0; height: 2px; background: var(--basque-rouge); transition: var(--transition);
+        }
+        nav .nav-links a:hover::after { width: 100%; }
+        nav .nav-links a.active::after { width: 100%; }
+        nav .nav-cta {
+            background: var(--basque-rouge); color: white !important;
+            padding: 0.6rem 1.4rem; border-radius: 50px;
+            font-weight: 600; font-size: 0.85rem; transition: var(--transition);
+        }
+        nav .nav-cta::after { display: none !important; }
+        nav .nav-cta:hover { background: var(--rouge-sombre); transform: translateY(-1px); }
+
+        /* ═══════════════════════════════════════
+           ARTICLE HERO
+        ═══════════════════════════════════════ */
+        .article-hero {
+            min-height: 52vh;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: flex-end;
+            padding: 9rem 2rem 4rem;
+            background: linear-gradient(135deg, #f0fffe 0%, #c8f0ec 50%, #a8e4df 100%);
+            position: relative; overflow: hidden; text-align: center;
+        }
+        .article-hero::before {
+            content: ''; position: absolute; top: -20%; right: -10%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(0,105,92,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .article-hero::after {
+            content: ''; position: absolute; bottom: -10%; left: -5%;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(214,48,49,0.06) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .article-hero-inner { position: relative; z-index: 2; max-width: 780px; }
+
+        .article-breadcrumb {
+            display: flex; align-items: center; justify-content: center;
+            gap: 0.5rem; margin-bottom: 1.5rem;
+            font-size: 0.82rem; color: var(--gris);
+        }
+        .article-breadcrumb a {
+            color: var(--gris); text-decoration: none; transition: var(--transition);
+        }
+        .article-breadcrumb a:hover { color: var(--basque-vert); }
+        .article-breadcrumb span { opacity: 0.5; }
+
+        .article-hero-meta {
+            display: flex; align-items: center; justify-content: center;
+            gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;
+        }
+        .article-cat-pill {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: rgba(0,105,92,0.12); color: var(--basque-vert);
+            padding: 0.4rem 1rem; border-radius: 50px;
+            font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+        }
+        .article-reading-pill {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: rgba(0,0,0,0.06); color: var(--gris);
+            padding: 0.4rem 1rem; border-radius: 50px;
+            font-size: 0.8rem; font-weight: 500;
+        }
+
+        .article-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 700;
+            line-height: 1.15; letter-spacing: -0.03em;
+            margin-bottom: 1.2rem; color: var(--noir);
+        }
+        .article-hero h1 em { font-style: italic; color: var(--basque-vert); }
+
+        .article-date-pub {
+            font-size: 0.82rem; color: var(--gris);
+        }
+
+        /* ═══════════════════════════════════════
+           ARTICLE LAYOUT
+        ═══════════════════════════════════════ */
+        .article-wrap {
+            max-width: 780px; margin: 0 auto;
+            padding: 4rem 2rem 5rem;
+        }
+
+        /* Introduction encadrée */
+        .article-intro {
+            background: rgba(0,105,92,0.06);
+            border-left: 4px solid var(--basque-vert);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            padding: 1.8rem 2rem;
+            margin-bottom: 3rem;
+            font-size: 1.05rem;
+            line-height: 1.75;
+        }
+        .article-intro strong { color: var(--basque-vert); font-weight: 600; }
+
+        /* Headings */
+        .article-wrap h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+            font-weight: 700; letter-spacing: -0.02em;
+            color: var(--noir); margin: 3rem 0 1rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 2px solid var(--gris-clair);
+        }
+        .article-wrap h3 {
+            font-size: 1.05rem; font-weight: 700;
+            color: var(--basque-vert); margin: 2rem 0 0.8rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .article-wrap h3::before {
+            content: ''; display: inline-block;
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--basque-vert); flex-shrink: 0;
+        }
+
+        /* Paragraphes & listes */
+        .article-wrap p { margin-bottom: 1.2rem; font-size: 1rem; color: var(--noir); }
+        .article-wrap ul {
+            margin: 0 0 1.5rem 0; padding: 0;
+            list-style: none;
+        }
+        .article-wrap ul li {
+            padding: 0.45rem 0 0.45rem 1.6rem;
+            position: relative; font-size: 0.97rem;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+        }
+        .article-wrap ul li:last-child { border-bottom: none; }
+        .article-wrap ul li::before {
+            content: '→'; position: absolute; left: 0;
+            color: var(--basque-vert); font-weight: 700; font-size: 0.9rem;
+        }
+        .article-wrap ul li strong { color: var(--noir); font-weight: 600; }
+
+        /* Callout boxes */
+        .callout {
+            display: flex; gap: 1rem; align-items: flex-start;
+            padding: 1.4rem 1.6rem; border-radius: var(--radius-sm);
+            margin: 2rem 0; border-left: 4px solid;
+        }
+        .callout-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 0.1rem; }
+        .callout-body { flex: 1; }
+        .callout-body p { margin-bottom: 0; }
+        .callout-body strong { display: block; margin-bottom: 0.4rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+        .callout-info {
+            background: rgba(0,105,92,0.06);
+            border-color: var(--basque-vert);
+        }
+        .callout-info .callout-body strong { color: var(--basque-vert); }
+
+        .callout-warning {
+            background: rgba(212,168,83,0.1);
+            border-color: var(--or);
+        }
+        .callout-warning .callout-body strong { color: #8a6a1a; }
+
+        .callout-success {
+            background: rgba(39,174,96,0.08);
+            border-color: var(--vert-clair);
+        }
+        .callout-success .callout-body strong { color: var(--vert); }
+
+        .callout-danger {
+            background: rgba(214,48,49,0.06);
+            border-color: var(--basque-rouge);
+        }
+        .callout-danger .callout-body strong { color: var(--basque-rouge); }
+
+        /* Étapes numérotées */
+        .steps { margin: 2rem 0; }
+        .step {
+            display: flex; gap: 1.4rem; margin-bottom: 2rem;
+            align-items: flex-start;
+        }
+        .step-number {
+            flex-shrink: 0; width: 44px; height: 44px;
+            background: var(--basque-vert); color: white;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700;
+        }
+        .step-content h3 {
+            margin: 0.5rem 0 0.5rem; color: var(--noir);
+            font-size: 1rem;
+        }
+        .step-content h3::before { display: none; }
+        .step-content p { margin-bottom: 0.6rem; }
+
+        /* Séparateur de section */
+        .section-divider {
+            border: none; border-top: 1px solid var(--gris-clair);
+            margin: 3rem 0;
+        }
+
+        /* ═══════════════════════════════════════
+           ARTICLES CONNEXES
+        ═══════════════════════════════════════ */
+        .related-wrap {
+            background: var(--creme); padding: 4rem 2rem;
+        }
+        .related-inner {
+            max-width: 780px; margin: 0 auto;
+        }
+        .related-inner h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem; font-weight: 700;
+            margin-bottom: 1.5rem; letter-spacing: -0.02em;
+        }
+        .related-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem;
+        }
+        .related-card {
+            background: white; border-radius: var(--radius-sm);
+            padding: 1.4rem; border: 1px solid #eee;
+            text-decoration: none; color: var(--noir);
+            display: flex; align-items: center; gap: 1rem;
+            transition: var(--transition);
+        }
+        .related-card:hover {
+            border-color: var(--basque-vert);
+            box-shadow: var(--ombre);
+            transform: translateY(-2px);
+        }
+        .related-card-icon {
+            font-size: 1.8rem; flex-shrink: 0;
+        }
+        .related-card-body small {
+            font-size: 0.72rem; color: var(--basque-vert);
+            font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+        }
+        .related-card-body p {
+            font-size: 0.9rem; font-weight: 600; margin: 0.2rem 0 0;
+            line-height: 1.35; color: var(--noir);
+        }
+
+        /* Retour au blog */
+        .back-to-blog {
+            max-width: 780px; margin: 0 auto;
+            padding: 2rem 2rem 0;
+        }
+        .back-link {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            font-size: 0.88rem; font-weight: 600; color: var(--gris);
+            text-decoration: none; transition: var(--transition);
+        }
+        .back-link:hover { color: var(--basque-rouge); gap: 0.8rem; }
+
+        /* ═══════════════════════════════════════
+           CTA BANNER
+        ═══════════════════════════════════════ */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--basque-vert) 0%, #004d44 100%);
+            color: white; text-align: center; padding: 5rem 2rem;
+            position: relative; overflow: hidden;
+        }
+        .cta-banner::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .cta-banner h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700;
+            margin-bottom: 1rem; position: relative;
+        }
+        .cta-banner p {
+            font-size: 1.05rem; opacity: 0.85; margin-bottom: 2rem;
+            max-width: 480px; margin-left: auto; margin-right: auto; position: relative;
+        }
+        .cta-banner .btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 1rem 2.2rem; border-radius: 50px; font-size: 0.95rem;
+            font-weight: 700; text-decoration: none; transition: var(--transition);
+            background: white; color: var(--basque-vert); position: relative;
+        }
+        .cta-banner .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+
+        /* ═══════════════════════════════════════
+           FOOTER
+        ═══════════════════════════════════════ */
+        footer { background: var(--noir); color: white; padding: 4rem 2rem 2rem; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+        .footer-brand .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: white; margin-bottom: 1rem; display: block; }
+        .footer-brand .logo span { color: var(--basque-rouge); }
+        .footer-brand p { color: rgba(255,255,255,0.5); font-size: 0.88rem; line-height: 1.7; }
+        .footer-col h4 { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.2rem; color: rgba(255,255,255,0.4); }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.6rem; }
+        .footer-col ul a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; transition: var(--transition); }
+        .footer-col ul a:hover { color: white; }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 0.82rem; color: rgba(255,255,255,0.35);
+        }
+
+        /* ═══════════════════════════════════════
+           RESPONSIVE
+        ═══════════════════════════════════════ */
+        @media (max-width: 768px) {
+            nav { padding: 0.6rem 1rem; }
+            .nav-inner { flex-direction: column; align-items: stretch; gap: 0; }
+            nav .logo { white-space: nowrap; font-size: 1.2rem; padding-bottom: 0.35rem; }
+            .nav-links {
+                display: flex !important; flex-direction: row;
+                gap: 1rem; overflow-x: auto; flex-wrap: nowrap;
+                padding-bottom: 0; width: 100%;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none; -ms-overflow-style: none;
+            }
+            .nav-links::-webkit-scrollbar { display: none; }
+            .nav-links li { flex-shrink: 0; }
+            .nav-links a { font-size: 0.82rem; }
+            .article-hero { padding: 8rem 1.2rem 3rem; }
+            .article-wrap { padding: 3rem 1.2rem 4rem; }
+            .related-grid { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+            .back-to-blog { padding: 2rem 1.2rem 0; }
+            .related-wrap { padding: 3rem 1.2rem; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="breadcrumb">
-                <a href="/">Accueil</a> > <a href="/blog/">Blog</a> > Apprentissage Anticipé
+
+<!-- ══════════════════════════════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════════════════════════════ -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../index.html" class="logo">AUTO-ÉCOLE MARTI<span>.</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="../index.html#formations">Formations</a></li>
+            <li><a href="../index.html#histoire">Notre histoire</a></li>
+            <li><a href="../index.html#avis">Avis</a></li>
+            <li><a href="index.html" class="active">Blog</a></li>
+            <li><a href="../index.html#contact">Contact</a></li>
+            <li><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" class="nav-cta">S'inscrire</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════════
+     ARTICLE HERO
+══════════════════════════════════════════════════════════════ -->
+<div class="article-hero">
+    <div class="article-hero-inner">
+        <nav class="article-breadcrumb" aria-label="Fil d'ariane">
+            <a href="../index.html">Accueil</a>
+            <span>›</span>
+            <a href="index.html">Blog</a>
+            <span>›</span>
+            <span>L'AAC</span>
+        </nav>
+        <div class="article-hero-meta">
+            <span class="article-cat-pill">🤝 Conduite accompagnée</span>
+            <span class="article-reading-pill">⏱ 5 min de lecture</span>
+        </div>
+        <h1>L'apprentissage anticipé de la conduite<br><em>(AAC)</em> : avantages et fonctionnement</h1>
+        <p class="article-date-pub">Publié le 4 mars 2026 · Par l'équipe Auto-École Marti</p>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CONTENU DE L'ARTICLE
+══════════════════════════════════════════════════════════════ -->
+<div class="back-to-blog">
+    <a href="index.html" class="back-link">← Retour au blog</a>
+</div>
+
+<article class="article-wrap">
+
+    <div class="article-intro">
+        <p><strong>L'apprentissage anticipé de la conduite</strong> (aussi appelée conduite accompagnée) permet aux jeunes de commencer à conduire dès l'âge de <strong>15 ans</strong>. Cette formule est aujourd'hui très populaire car elle offre de nombreux avantages pour préparer le permis de conduire dans les meilleures conditions.</p>
+        <p style="margin-bottom:0">À l'auto-école Marti à Bayonne, nous proposons cette formation pour aider les jeunes conducteurs à acquérir de l'expérience avant de passer l'examen du permis.</p>
+    </div>
+
+    <h2>Comment fonctionne l'AAC ?</h2>
+
+    <p>La formation AAC se déroule en plusieurs étapes bien définies. Voici le processus complet :</p>
+
+    <div class="steps">
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h3>Formation théorique et pratique initiale</h3>
+                <p>L'élève suit une formation classique en auto-école qui comprend :</p>
+                <ul>
+                    <li>L'apprentissage du <strong>code de la route</strong></li>
+                    <li>Un minimum de <strong>20 heures de conduite</strong> en double commande</li>
+                </ul>
             </div>
-            <h1>Apprentissage Anticipé de la Conduite (AAC) : Avantages et Fonctionnement</h1>
-        </header>
-
-        <div class="intro">
-            <p><strong>L'apprentissage anticipé de la conduite</strong> (aussi appelée conduite accompagnée) permet aux jeunes de commencer à conduire dès l'âge de 15 ans. Cette formule est aujourd'hui très populaire car elle offre de nombreux avantages pour préparer le permis de conduire dans les meilleures conditions.</p>
-            <p>À l'auto-école MARTI à Bayonne, nous proposons cette formation pour aider les jeunes conducteurs à acquérir de l'expérience avant de passer l'examen du permis.</p>
         </div>
 
-        <h2>Comment fonctionne l'apprentissage anticipé de la conduite ?</h2>
-        
-        <p>La formation AAC se déroule en plusieurs étapes bien définies. Voici le processus complet :</p>
-
-        <h3>Étape 1 : Formation théorique et pratique initiale</h3>
-        <p>L'élève suit une formation classique en auto-école qui comprend :</p>
-        <ul>
-            <li>L'apprentissage du code de la route</li>
-            <li>Un minimum de 20 heures de conduite en double commande</li>
-        </ul>
-
-        <h3>Étape 2 : La conduite accompagnée</h3>
-        <p>Une fois la formation initiale validée, l'élève peut commencer la conduite accompagnée avec un adulte expérimenté.</p>
-        <p>Les exigences sont :</p>
-        <ul>
-            <li>Parcourir au minimum 3000 kilomètres</li>
-            <li>Sur une période minimale d'un an</li>
-            <li>Avec un accompagnateur de confiance</li>
-        </ul>
-
-        <h2>Taux de réussite plus élevé à l'examen du permis</h2>
-        
-        <p>Les statistiques montrent que les élèves ayant suivi l'apprentissage anticipé de la conduite <strong>réussissent plus souvent l'examen du permis</strong> que les candidats ayant suivi une formation traditionnelle.</p>
-        
-        <p>Cette réussite s'explique par plusieurs facteurs :</p>
-        <ul>
-            <li><strong>Davantage d'expérience au volant</strong> : les 3000 km en conditions réelles constituent une excellente préparation</li>
-            <li><strong>Meilleure gestion des situations</strong> : exposition à diverse situations de circulation</li>
-            <li><strong>Confiance accrue</strong> : pratique régulière renforce l'assurance du jeune conducteur</li>
-        </ul>
-
-        <h2>Avantages pour l'assurance automobile</h2>
-        
-        <p>Les compagnies d'assurance considèrent les jeunes conducteurs issus de l'AAC comme moins à risque. Cela offre des avantages financiers concrets :</p>
-        <ul>
-            <li><strong>Surprime réduite</strong> sur le contrat d'assurance</li>
-            <li><strong>Suppression plus rapide du statut</strong> de jeune conducteur</li>
-            <li>Meilleures conditions d'assurance à long terme</li>
-        </ul>
-
-        <h2>Une excellente préparation au permis</h2>
-        
-        <p>L'apprentissage anticipé de la conduite est aujourd'hui considérée comme <strong>l'une des meilleures façons d'apprendre à conduire</strong>. Elle permet :</p>
-        <ul>
-            <li>D'acquérir des réflexes solides et automatisés</li>
-            <li>De se préparer sereinement à l'examen pratique</li>
-            <li>De développer une véritable sécurité routière</li>
-        </ul>
-
-        <div class="cta">
-            <p>Souhaitez-vous en savoir plus sur l'AAC à Bayonne ?</p>
-            <p><a href="/contact/">Contactez l'auto-école MARTI</a> pour discuter de votre projet de formation.</p>
-        </div>
-
-        <div class="related-articles">
-            <h3>Articles connexes</h3>
-            <a href="/blog/conduite-supervisee.html">→ La conduite supervisée : une alternative intéressante</a>
-            <a href="/blog/reussir-permis-conduite.html">→ Comment réussir l'examen du permis de conduire ?</a>
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h3>La conduite accompagnée</h3>
+                <p>Une fois la formation initiale validée, l'élève peut commencer la conduite accompagnée avec un adulte expérimenté. Les exigences sont :</p>
+                <ul>
+                    <li>Parcourir au minimum <strong>3 000 kilomètres</strong></li>
+                    <li>Sur une période minimale <strong>d'un an</strong></li>
+                    <li>Avec un <strong>accompagnateur de confiance</strong></li>
+                </ul>
+            </div>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2024 Auto-École MARTI - 13 rue Marengo, 64100 Bayonne | <a href="mailto:autoecole.marti@gmail.com">autoecole.marti@gmail.com</a> | Tél. 05 59 59 12 60</p>
-    </footer>
+    <h2>Un taux de réussite plus élevé à l'examen</h2>
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Auto-École MARTI",
-        "image": "/images/logo.jpg",
-        "description": "Auto-école à Bayonne proposant l'apprentissage anticipé de la conduite (AAC)",
+    <p>Les statistiques montrent que les élèves ayant suivi l'apprentissage anticipé de la conduite <strong>réussissent plus souvent l'examen du permis</strong> que les candidats ayant suivi une formation traditionnelle.</p>
+
+    <p>Cette réussite s'explique par plusieurs facteurs :</p>
+    <ul>
+        <li><strong>Davantage d'expérience au volant</strong> : les 3 000 km en conditions réelles constituent une excellente préparation</li>
+        <li><strong>Meilleure gestion des situations</strong> : exposition à diverses situations de circulation</li>
+        <li><strong>Confiance accrue</strong> : la pratique régulière renforce l'assurance du jeune conducteur</li>
+    </ul>
+
+    <div class="callout callout-info">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">
+            <strong>Le saviez-vous ?</strong>
+            <p>En France, les candidats ayant suivi l'AAC obtiennent leur permis au premier essai dans près de 70 % des cas, contre moins de 55 % pour la filière classique.</p>
+        </div>
+    </div>
+
+    <h2>Des avantages concrets pour l'assurance</h2>
+
+    <p>Les compagnies d'assurance considèrent les jeunes conducteurs issus de l'AAC comme moins à risque. Cela se traduit par des avantages financiers concrets dès l'obtention du permis :</p>
+    <ul>
+        <li><strong>Surprime réduite</strong> sur le contrat d'assurance</li>
+        <li><strong>Suppression plus rapide</strong> du statut de jeune conducteur</li>
+        <li><strong>Meilleures conditions</strong> d'assurance à long terme</li>
+    </ul>
+
+    <h2>Une excellente préparation au permis</h2>
+
+    <p>L'apprentissage anticipé de la conduite est aujourd'hui considéré comme <strong>l'une des meilleures façons d'apprendre à conduire</strong>. Elle permet :</p>
+    <ul>
+        <li>D'acquérir des <strong>réflexes solides et automatisés</strong></li>
+        <li>De se préparer <strong>sereinement</strong> à l'examen pratique</li>
+        <li>De développer une véritable <strong>culture de la sécurité routière</strong></li>
+    </ul>
+
+    <div class="callout callout-success">
+        <div class="callout-icon">✅</div>
+        <div class="callout-body">
+            <strong>Notre recommandation</strong>
+            <p>L'équipe Marti recommande l'AAC à tous les élèves qui commencent leur formation avant leurs 18 ans. Plus tôt on commence, plus sereins on aborde l'examen.</p>
+        </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <p>Vous souhaitez en savoir plus sur nos modalités d'inscription en conduite accompagnée ? N'hésitez pas à nous contacter — notre équipe est disponible pour répondre à toutes vos questions.</p>
+
+</article>
+
+<!-- ══════════════════════════════════════════════════════════════
+     ARTICLES CONNEXES
+══════════════════════════════════════════════════════════════ -->
+<div class="related-wrap">
+    <div class="related-inner">
+        <h2>Articles connexes</h2>
+        <div class="related-grid">
+            <a href="conduite-supervisee.html" class="related-card">
+                <div class="related-card-icon">👥</div>
+                <div class="related-card-body">
+                    <small>Conduite accompagnée</small>
+                    <p>La conduite supervisée : une alternative dès 18 ans</p>
+                </div>
+            </a>
+            <a href="comment-reussir-son-permis-conduire.html" class="related-card">
+                <div class="related-card-icon">✅</div>
+                <div class="related-card-body">
+                    <small>Conseils pratiques</small>
+                    <p>Réussir son permis B : guide complet de l'examen</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CTA BANNER
+══════════════════════════════════════════════════════════════ -->
+<div class="cta-banner">
+    <h2>Intéressé par la conduite accompagnée ?</h2>
+    <p>Venez nous rencontrer ou appelez-nous — on vous explique tout sur l'AAC et comment s'inscrire chez Marti.</p>
+    <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" class="btn">Nous contacter →</a>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════════ -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="logo">MARTI<span>.</span></div>
+                <p>Auto-école de confiance à Bayonne depuis 1962. Formations permis B, conduite accompagnée et boîte automatique.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Formations</h4>
+                <ul>
+                    <li><a href="../formules/permis-b-manuel.html">Permis B</a></li>
+                    <li><a href="../formules/conduite-accompagnee.html">Conduite accompagnée</a></li>
+                    <li><a href="../formules/permis-b-automatique.html">Boîte automatique</a></li>
+                    <li><a href="../index.html#offres">Offres spéciales</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="../index.html">Accueil</a></li>
+                    <li><a href="../index.html#histoire">Notre histoire</a></li>
+                    <li><a href="../index.html#avis">Avis</a></li>
+                    <li><a href="index.html">Blog</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:0559591260">05 59 59 12 60</a></li>
+                    <li><a href="tel:0622008209">06 22 00 82 09</a></li>
+                    <li><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></li>
+                    <li><a href="../index.html#contact">13 rue Marengo, Bayonne</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 Auto-école Marti — Bayonne. Tous droits réservés.</span>
+            <span>SIRET : 382 930 188 00018 · APE : 8500Z</span>
+            <a href="../mentions-legales.html" style="color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.85rem;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Règlement intérieur &amp; mentions légales</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // ── Scroll reveal ──
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "L'apprentissage anticipé de la conduite (AAC) : avantages et fonctionnement",
+    "description": "Découvrez l'AAC et comment débuter la conduite dès 15 ans avec l'auto-école Marti à Bayonne.",
+    "datePublished": "2026-03-04",
+    "author": { "@type": "Organization", "name": "Auto-École Marti" },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Auto-École Marti",
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "13 rue Marengo",
@@ -124,11 +648,9 @@
             "postalCode": "64100",
             "addressCountry": "FR"
         },
-        "telephone": "05 59 59 12 60",
-        "email": "autoecole.marti@gmail.com",
-        "priceRange": "€",
-        "areaServed": "Bayonne"
+        "telephone": "05 59 59 12 60"
     }
-    </script>
+}
+</script>
 </body>
 </html>
