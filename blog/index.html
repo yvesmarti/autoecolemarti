@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — Auto-École Marti | Conseils permis de conduire Bayonne</title>
+    <link rel="icon" type="image/png" href="../favicon.ico.png">
+    <meta name="description" content="Conseils, guides et actualités pour réussir votre permis de conduire. L'auto-école Marti partage son expertise depuis 1962.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* ═══════════════════════════════════════
+           RESET & VARIABLES
+        ═══════════════════════════════════════ */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --noir: #0a0a0a;
+            --blanc: #fafaf8;
+            --creme: #f5f0e8;
+            --rouge: #c0392b;
+            --rouge-doux: #e74c3c;
+            --rouge-sombre: #922b21;
+            --vert: #1a5c38;
+            --vert-clair: #27ae60;
+            --gris: #6b7280;
+            --gris-clair: #e5e5e5;
+            --basque-rouge: #d63031;
+            --basque-vert: #00695c;
+            --or: #d4a853;
+            --ombre: 0 4px 30px rgba(0,0,0,0.08);
+            --ombre-forte: 0 20px 60px rgba(0,0,0,0.12);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--blanc);
+            color: var(--noir);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ═══════════════════════════════════════
+           NAVBAR
+        ═══════════════════════════════════════ */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 1rem 2rem; transition: var(--transition);
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 1px 30px rgba(0,0,0,0.06);
+        }
+        nav .nav-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        nav .logo {
+            font-family: 'Playfair Display', serif; font-size: 1.5rem;
+            font-weight: 700; color: var(--noir); text-decoration: none; letter-spacing: -0.02em;
+        }
+        nav .logo span { color: var(--basque-rouge); }
+        nav .nav-links {
+            display: flex; gap: 2rem; list-style: none; align-items: center;
+        }
+        nav .nav-links a {
+            text-decoration: none; color: var(--noir); font-size: 0.9rem;
+            font-weight: 500; letter-spacing: 0.02em; transition: var(--transition);
+            position: relative;
+        }
+        nav .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 0; height: 2px; background: var(--basque-rouge); transition: var(--transition);
+        }
+        nav .nav-links a:hover::after { width: 100%; }
+        nav .nav-links a.active::after { width: 100%; }
+        nav .nav-cta {
+            background: var(--basque-rouge); color: white !important;
+            padding: 0.6rem 1.4rem; border-radius: 50px;
+            font-weight: 600; font-size: 0.85rem; transition: var(--transition);
+        }
+        nav .nav-cta::after { display: none !important; }
+        nav .nav-cta:hover { background: var(--rouge-sombre); transform: translateY(-1px); }
+
+        /* ═══════════════════════════════════════
+           SHARED
+        ═══════════════════════════════════════ */
+        section { padding: 6rem 2rem; }
+        .section-header { text-align: center; max-width: 680px; margin: 0 auto 4rem; }
+        .section-tag {
+            display: inline-block; font-size: 0.78rem; font-weight: 700;
+            letter-spacing: 0.15em; text-transform: uppercase; color: var(--basque-rouge);
+            margin-bottom: 1rem;
+        }
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 700;
+            letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem;
+        }
+        .section-header p { color: var(--gris); font-size: 1.05rem; }
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        .btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 1rem 2rem; border-radius: 50px; font-size: 0.95rem;
+            font-weight: 600; text-decoration: none; transition: var(--transition);
+            cursor: pointer; border: none;
+        }
+        .btn-primary {
+            background: var(--basque-rouge); color: white;
+            box-shadow: 0 4px 20px rgba(214,48,49,0.3);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(214,48,49,0.4); }
+        .btn-secondary { background: transparent; color: var(--noir); border: 2px solid var(--gris-clair); }
+        .btn-secondary:hover { border-color: var(--noir); transform: translateY(-2px); }
+
+        /* ═══════════════════════════════════════
+           HERO BLOG
+        ═══════════════════════════════════════ */
+        .hero-blog {
+            min-height: 52vh; display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
+            background: linear-gradient(135deg, #fdfcfa 0%, #f0ebe0 50%, #e8dfd0 100%);
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+        }
+        .hero-blog::before {
+            content: ''; position: absolute; top: -20%; right: -10%;
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(214,48,49,0.06) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero-blog::after {
+            content: ''; position: absolute; bottom: -10%; left: -5%;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(0,105,92,0.05) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero-blog-inner { position: relative; z-index: 2; max-width: 700px; }
+        .hero-blog .badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: rgba(0,105,92,0.08); color: var(--basque-vert);
+            padding: 0.5rem 1rem; border-radius: 50px;
+            font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em;
+            margin-bottom: 1.5rem;
+        }
+        .hero-blog h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 700;
+            line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 1.2rem;
+        }
+        .hero-blog h1 em { font-style: italic; color: var(--basque-rouge); }
+        .hero-blog p {
+            font-size: 1.1rem; color: var(--gris); margin-bottom: 0.5rem;
+        }
+
+        /* ═══════════════════════════════════════
+           FILTRES / CATÉGORIES
+        ═══════════════════════════════════════ */
+        .filtres {
+            background: var(--blanc);
+            padding: 2.5rem 2rem 0;
+        }
+        .filtres-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center;
+        }
+        .filtre-btn {
+            padding: 0.5rem 1.2rem; border-radius: 50px;
+            font-size: 0.82rem; font-weight: 600; cursor: pointer;
+            border: 2px solid var(--gris-clair); background: white;
+            color: var(--gris); transition: var(--transition);
+            font-family: 'DM Sans', sans-serif; letter-spacing: 0.02em;
+        }
+        .filtre-btn:hover,
+        .filtre-btn.active {
+            border-color: var(--basque-rouge);
+            color: var(--basque-rouge);
+            background: rgba(214,48,49,0.04);
+        }
+
+        /* ═══════════════════════════════════════
+           ARTICLES GRID
+        ═══════════════════════════════════════ */
+        .articles { background: var(--blanc); padding-top: 3rem; }
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        /* ── Carte article ── */
+        .article-card {
+            background: white; border-radius: var(--radius);
+            border: 1px solid #eee; transition: var(--transition);
+            overflow: hidden; display: flex; flex-direction: column;
+        }
+        .article-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--ombre-forte);
+            border-color: transparent;
+        }
+
+        /* Vignette image placeholder */
+        .article-thumb {
+            height: 200px; background: var(--creme);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 3rem; position: relative; overflow: hidden;
+            flex-shrink: 0;
+        }
+        .article-thumb::after {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--basque-rouge), var(--basque-vert));
+        }
+        /* Couleurs d'accent différentes par catégorie */
+        .article-thumb.code    { background: linear-gradient(135deg, #fff5f5, #ffe0e0); }
+        .article-thumb.conduite { background: linear-gradient(135deg, #f0f9f5, #d4ede5); }
+        .article-thumb.conseils { background: linear-gradient(135deg, #fdfaf0, #f5edca); }
+        .article-thumb.regle   { background: linear-gradient(135deg, #f0f4ff, #dbe5ff); }
+        .article-thumb.tarifs  { background: linear-gradient(135deg, #fff8f0, #fce3c0); }
+        .article-thumb.aac     { background: linear-gradient(135deg, #f0fffe, #c8f0ec); }
+
+        .article-body { padding: 1.8rem; flex: 1; display: flex; flex-direction: column; }
+
+        .article-meta {
+            display: flex; align-items: center; gap: 1rem;
+            margin-bottom: 0.9rem; flex-wrap: wrap;
+        }
+        .article-cat {
+            display: inline-block; background: var(--creme); color: var(--noir);
+            padding: 0.3rem 0.9rem; border-radius: 50px; font-size: 0.72rem;
+            font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+        }
+        .article-cat.rouge  { background: rgba(214,48,49,0.08); color: var(--basque-rouge); }
+        .article-cat.vert   { background: rgba(0,105,92,0.08);  color: var(--basque-vert); }
+        .article-cat.or     { background: rgba(212,168,83,0.15); color: #8a6a1a; }
+        .article-cat.bleu   { background: rgba(63,94,251,0.08); color: #2d3fb5; }
+
+        .article-date { font-size: 0.78rem; color: var(--gris); }
+
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.18rem; font-weight: 700; line-height: 1.35;
+            margin-bottom: 0.7rem; color: var(--noir);
+        }
+        .article-excerpt {
+            font-size: 0.88rem; color: var(--gris);
+            line-height: 1.7; flex: 1;
+        }
+
+        .article-footer {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-top: 1.5rem; padding-top: 1.2rem;
+            border-top: 1px solid var(--gris-clair);
+        }
+        .article-reading {
+            font-size: 0.78rem; color: var(--gris);
+            display: flex; align-items: center; gap: 0.4rem;
+        }
+        .article-link {
+            font-size: 0.85rem; font-weight: 700;
+            color: var(--basque-rouge); text-decoration: none;
+            display: inline-flex; align-items: center; gap: 0.3rem;
+            transition: var(--transition);
+        }
+        .article-link:hover { gap: 0.6rem; }
+
+        /* ── Carte featured (1re carte en pleine largeur) ── */
+        .article-card.featured {
+            grid-column: 1 / -1;
+            flex-direction: row;
+        }
+        .article-card.featured .article-thumb {
+            width: 420px; height: auto; min-height: 260px; flex-shrink: 0;
+            font-size: 4rem;
+        }
+        .article-card.featured .article-title { font-size: 1.7rem; }
+        .article-card.featured .article-excerpt { font-size: 0.95rem; }
+
+        /* ═══════════════════════════════════════
+           PAGINATION / CHARGEMENT
+        ═══════════════════════════════════════ */
+        .pagination {
+            text-align: center; margin-top: 3.5rem; padding-top: 2rem;
+            border-top: 1px solid var(--gris-clair);
+        }
+        .pagination p { color: var(--gris); font-size: 0.9rem; margin-bottom: 1.5rem; }
+
+        /* ═══════════════════════════════════════
+           CTA BANNER
+        ═══════════════════════════════════════ */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--basque-rouge) 0%, var(--rouge-sombre) 100%);
+            color: white; text-align: center; padding: 5rem 2rem;
+            position: relative; overflow: hidden;
+        }
+        .cta-banner::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .cta-banner h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 700;
+            margin-bottom: 1rem; position: relative;
+        }
+        .cta-banner p {
+            font-size: 1.1rem; opacity: 0.85; margin-bottom: 2rem;
+            max-width: 500px; margin-left: auto; margin-right: auto; position: relative;
+        }
+        .cta-banner .btn { background: white; color: var(--basque-rouge); font-weight: 700; position: relative; }
+        .cta-banner .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+
+        /* ═══════════════════════════════════════
+           FOOTER
+        ═══════════════════════════════════════ */
+        footer { background: var(--noir); color: white; padding: 4rem 2rem 2rem; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+        .footer-brand .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: white; margin-bottom: 1rem; display: block; }
+        .footer-brand .logo span { color: var(--basque-rouge); }
+        .footer-brand p { color: rgba(255,255,255,0.5); font-size: 0.88rem; line-height: 1.7; }
+        .footer-col h4 { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.2rem; color: rgba(255,255,255,0.4); }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.6rem; }
+        .footer-col ul a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; transition: var(--transition); }
+        .footer-col ul a:hover { color: white; }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 0.82rem; color: rgba(255,255,255,0.35);
+        }
+
+        /* ═══════════════════════════════════════
+           ANIMATIONS
+        ═══════════════════════════════════════ */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* ═══════════════════════════════════════
+           RESPONSIVE
+        ═══════════════════════════════════════ */
+        @media (max-width: 1024px) {
+            .articles-grid { grid-template-columns: repeat(2, 1fr); }
+            .article-card.featured { flex-direction: column; grid-column: auto; }
+            .article-card.featured .article-thumb { width: 100%; min-height: 200px; }
+            .footer-top { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            nav { padding: 0.6rem 1rem; }
+            .nav-inner { flex-direction: column; align-items: stretch; gap: 0; }
+            nav .logo {
+                white-space: nowrap; font-size: 1.2rem;
+                padding-bottom: 0.35rem;
+            }
+            .nav-links {
+                display: flex !important; flex-direction: row;
+                gap: 1rem; overflow-x: auto; flex-wrap: nowrap;
+                padding-bottom: 0; width: 100%;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none; -ms-overflow-style: none;
+            }
+            .nav-links::-webkit-scrollbar { display: none; }
+            .nav-links li { flex-shrink: 0; }
+            .nav-links a { font-size: 0.82rem; }
+            .articles-grid { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+            section { padding: 4rem 1.2rem; }
+            .filtres { padding: 2rem 1.2rem 0; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════════════════════════════ -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../index.html" class="logo">AUTO-ÉCOLE MARTI<span>.</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="../index.html#formations">Formations</a></li>
+            <li><a href="../index.html#histoire">Notre histoire</a></li>
+            <li><a href="../index.html#avis">Avis</a></li>
+            <li><a href="index.html" class="active">Blog</a></li>
+            <li><a href="../index.html#contact">Contact</a></li>
+            <li><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" class="nav-cta">S'inscrire</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════════
+     HERO BLOG
+══════════════════════════════════════════════════════════════ -->
+<div class="hero-blog">
+    <div class="hero-blog-inner">
+        <div class="badge">Conseils &amp; Actualités</div>
+        <h1>Le blog de l'<em>auto-école</em><br>Marti</h1>
+        <p>Guides pratiques, conseils d'experts et actus du permis — par une équipe qui forme des conducteurs depuis 1962.</p>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FILTRES CATÉGORIES
+══════════════════════════════════════════════════════════════ -->
+<div class="filtres">
+    <div class="filtres-inner">
+        <button class="filtre-btn active">Tous les articles</button>
+        <button class="filtre-btn">Code de la route</button>
+        <button class="filtre-btn">Conduite</button>
+        <button class="filtre-btn">Conduite accompagnée</button>
+        <button class="filtre-btn">Tarifs &amp; financement</button>
+        <button class="filtre-btn">Réglementation</button>
+        <button class="filtre-btn">Conseils pratiques</button>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     ARTICLES
+══════════════════════════════════════════════════════════════ -->
+<section class="articles">
+    <div class="container">
+
+        <div class="articles-grid">
+
+            <!-- ── ARTICLE FEATURED (à la une) ── -->
+            <article class="article-card featured fade-in">
+                <div class="article-thumb conduite" aria-hidden="true">🚗</div>
+                <div class="article-body">
+                    <div class="article-meta">
+                        <span class="article-cat vert">Conduite</span>
+                        <span class="article-date">À venir</span>
+                    </div>
+                    <h2 class="article-title">Conduite accompagnée (AAC) : tout ce que vous devez savoir avant de vous lancer</h2>
+                    <p class="article-excerpt">La conduite accompagnée permet de commencer l'apprentissage dès 15 ans et d'accumuler de l'expérience avant l'examen. Découvrez comment fonctionne ce dispositif, ses avantages concrets sur le taux de réussite et pourquoi l'auto-école Marti vous recommande cette formule.</p>
+                    <div class="article-footer">
+                        <span class="article-reading">⏱ 6 min de lecture</span>
+                        <a href="#" class="article-link">Lire l'article →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ── ARTICLE 2 ── -->
+            <article class="article-card fade-in">
+                <div class="article-thumb code" aria-hidden="true">📖</div>
+                <div class="article-body">
+                    <div class="article-meta">
+                        <span class="article-cat rouge">Code de la route</span>
+                        <span class="article-date">À venir</span>
+                    </div>
+                    <h2 class="article-title">Comment préparer son code de la route efficacement ?</h2>
+                    <p class="article-excerpt">Méthodes, outils en ligne et erreurs à éviter : nos conseils pour décrocher le code du premier coup et aborder la conduite sereinement.</p>
+                    <div class="article-footer">
+                        <span class="article-reading">⏱ 4 min de lecture</span>
+                        <a href="#" class="article-link">Lire l'article →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ── ARTICLE 3 ── -->
+            <article class="article-card fade-in">
+                <div class="article-thumb tarifs" aria-hidden="true">💶</div>
+                <div class="article-body">
+                    <div class="article-meta">
+                        <span class="article-cat or">Tarifs &amp; financement</span>
+                        <span class="article-date">À venir</span>
+                    </div>
+                    <h2 class="article-title">Permis à 1 € par jour : êtes-vous éligible ?</h2>
+                    <p class="article-excerpt">Le financement du permis peut peser lourd dans un budget. Le permis à 1 € par jour permet d'étaler le coût facilement. On vous explique les conditions et les démarches.</p>
+                    <div class="article-footer">
+                        <span class="article-reading">⏱ 3 min de lecture</span>
+                        <a href="#" class="article-link">Lire l'article →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ── ARTICLE 4 ── -->
+            <article class="article-card fade-in">
+                <div class="article-thumb aac" aria-hidden="true">🔄</div>
+                <div class="article-body">
+                    <div class="article-meta">
+                        <span class="article-cat bleu">Réglementation</span>
+                        <span class="article-date">À venir</span>
+                    </div>
+                    <h2 class="article-title">Boîte automatique ou boîte manuelle : laquelle choisir pour votre permis ?</h2>
+                    <p class="article-excerpt">Passer son permis en boîte automatique est de plus en plus courant. Mais quelles sont les restrictions ? Et comment se décider ? Tour d'horizon complet.</p>
+                    <div class="article-footer">
+                        <span class="article-reading">⏱ 5 min de lecture</span>
+                        <a href="#" class="article-link">Lire l'article →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ── ARTICLE 5 ── -->
+            <article class="article-card fade-in">
+                <div class="article-thumb conseils" aria-hidden="true">✅</div>
+                <div class="article-body">
+                    <div class="article-meta">
+                        <span class="article-cat vert">Conseils pratiques</span>
+                        <span class="article-date">À venir</span>
+                    </div>
+                    <h2 class="article-title">Les 7 erreurs à éviter le jour de l'examen du permis B</h2>
+                    <p class="article-excerpt">Stress, oublis, mauvais réflexes… Nos moniteurs partagent les erreurs les plus fréquentes le jour J et comment les éviter pour aborder l'examen avec confiance.</p>
+                    <div class="article-footer">
+                        <span class="article-reading">⏱ 4 min de lecture</span>
+                        <a href="#" class="article-link">Lire l'article →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ── ARTICLE 6 ── -->
+            <article class="article-card fade-in">
+                <div class="article-thumb regle" aria-hidden="true">📋</div>
+                <div class="article-body">
+                    <div class="article-meta">
+                        <span class="article-cat bleu">Réglementation</span>
+                        <span class="article-date">À venir</span>
+                    </div>
+                    <h2 class="article-title">Permis probatoire : tout savoir sur les 3 ans après l'obtention</h2>
+                    <p class="article-excerpt">Capital de points réduit, vitesses abaissées, tolérance zéro à l'alcool… Le permis probatoire impose des règles spécifiques. Faites le point pour ne rien rater.</p>
+                    <div class="article-footer">
+                        <span class="article-reading">⏱ 5 min de lecture</span>
+                        <a href="#" class="article-link">Lire l'article →</a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+        <!-- Pagination / note -->
+        <div class="pagination fade-in">
+            <p>D'autres articles arrivent bientôt — revenez régulièrement !</p>
+            <a href="../index.html#contact" class="btn btn-secondary">Nous contacter →</a>
+        </div>
+
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CTA BANNER
+══════════════════════════════════════════════════════════════ -->
+<div class="cta-banner">
+    <h2>Prêt à prendre le volant ?</h2>
+    <p>Inscrivez-vous dès maintenant ou passez nous voir au bureau. Votre permis commence ici.</p>
+    <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" class="btn">Contactez-nous →</a>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════════ -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="logo">MARTI<span>.</span></div>
+                <p>Auto-école de confiance à Bayonne depuis 1962. Formations permis B, conduite accompagnée et boîte automatique.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Formations</h4>
+                <ul>
+                    <li><a href="../formules/permis-b-manuel.html">Permis B</a></li>
+                    <li><a href="../formules/conduite-accompagnee.html">Conduite accompagnée</a></li>
+                    <li><a href="../formules/permis-b-automatique.html">Boîte automatique</a></li>
+                    <li><a href="../index.html#offres">Offres spéciales</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="../index.html">Accueil</a></li>
+                    <li><a href="../index.html#histoire">Notre histoire</a></li>
+                    <li><a href="../index.html#avis">Avis</a></li>
+                    <li><a href="index.html">Blog</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:0559591260">05 59 59 12 60</a></li>
+                    <li><a href="tel:0622008209">06 22 00 82 09</a></li>
+                    <li><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></li>
+                    <li><a href="../index.html#contact">13 rue Marengo, Bayonne</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 Auto-école Marti — Bayonne. Tous droits réservés.</span>
+            <span>SIRET : 382 930 188 00018 · APE : 8500Z</span>
+            <a href="../mentions-legales.html" style="color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.85rem;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Règlement intérieur &amp; mentions légales</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // ── Scroll reveal animations ──
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // ── Filtres (UI seulement pour l'instant) ──
+    document.querySelectorAll('.filtre-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.filtre-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
+</script>
+</body>
+</html>
