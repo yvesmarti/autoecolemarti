@@ -3,142 +3,614 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conduite Supervisée : Alternative Formule Permis | Auto-École MARTI Bayonne</title>
-    <meta name="description" content="Conduite supervisée : économique et efficace. Dès 18 ans, avec un accompagnateur. Formation complète à l'auto-école MARTI à Bayonne.">
+    <title>La conduite supervisée dès 18 ans — Blog Auto-École Marti | Bayonne</title>
+    <link rel="icon" type="image/png" href="../favicon.ico.png">
+    <meta name="description" content="Conduite supervisée : économique et efficace. Dès 18 ans, avec un accompagnateur. Formation complète à l'auto-école Marti à Bayonne.">
     <meta name="keywords" content="conduite supervisée, permis B, accompagnateur, auto-école Bayonne, formation conduite">
-    <meta property="og:title" content="Conduite Supervisée : Une Alternative Intéressante">
+    <meta property="og:title" content="La conduite supervisée dès 18 ans — Auto-École Marti">
     <meta property="og:description" content="Découvrez la conduite supervisée et comment progresser efficacement à partir de 18 ans">
     <meta property="og:type" content="article">
-    <meta property="og:image" content="/images/conduite-supervisee.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; }
-        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
-        header { background: #f5f5f5; padding: 20px 0; margin-bottom: 30px; border-bottom: 3px solid #1a3d5c; }
-        h1 { color: #1a3d5c; margin-bottom: 10px; font-size: 2em; }
-        .breadcrumb { color: #666; font-size: 0.9em; margin-bottom: 20px; }
-        .breadcrumb a { color: #0066cc; text-decoration: none; }
-        h2 { color: #1a3d5c; margin-top: 30px; margin-bottom: 15px; font-size: 1.5em; }
-        h3 { color: #2c5aa0; margin-top: 20px; margin-bottom: 10px; }
-        p { margin-bottom: 15px; }
-        ul { margin-left: 20px; margin-bottom: 15px; }
-        li { margin-bottom: 8px; }
-        .intro { background: #e8f4f8; padding: 20px; border-left: 4px solid #0066cc; margin-bottom: 30px; }
-        .conditions { background: #fff3cd; padding: 20px; border-left: 4px solid #ffc107; margin: 20px 0; border-radius: 5px; }
-        .cta { background: #1a3d5c; color: white; padding: 20px; margin-top: 30px; text-align: center; border-radius: 5px; }
-        .cta a { color: white; text-decoration: none; font-weight: bold; }
-        footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 0.9em; color: #666; }
-        .related-articles { margin-top: 30px; padding: 20px; background: #f9f9f9; border-radius: 5px; }
-        .related-articles a { color: #0066cc; text-decoration: none; display: block; margin: 10px 0; }
-        strong { color: #1a3d5c; }
+        /* ═══════════════════════════════════════
+           RESET & VARIABLES
+        ═══════════════════════════════════════ */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --noir: #0a0a0a;
+            --blanc: #fafaf8;
+            --creme: #f5f0e8;
+            --rouge: #c0392b;
+            --rouge-doux: #e74c3c;
+            --rouge-sombre: #922b21;
+            --vert: #1a5c38;
+            --vert-clair: #27ae60;
+            --gris: #6b7280;
+            --gris-clair: #e5e5e5;
+            --basque-rouge: #d63031;
+            --basque-vert: #00695c;
+            --or: #d4a853;
+            --ombre: 0 4px 30px rgba(0,0,0,0.08);
+            --ombre-forte: 0 20px 60px rgba(0,0,0,0.12);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--blanc);
+            color: var(--noir);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ═══════════════════════════════════════
+           NAVBAR
+        ═══════════════════════════════════════ */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 1rem 2rem; transition: var(--transition);
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 1px 30px rgba(0,0,0,0.06);
+        }
+        nav .nav-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        nav .logo {
+            font-family: 'Playfair Display', serif; font-size: 1.5rem;
+            font-weight: 700; color: var(--noir); text-decoration: none; letter-spacing: -0.02em;
+        }
+        nav .logo span { color: var(--basque-rouge); }
+        nav .nav-links {
+            display: flex; gap: 2rem; list-style: none; align-items: center;
+        }
+        nav .nav-links a {
+            text-decoration: none; color: var(--noir); font-size: 0.9rem;
+            font-weight: 500; letter-spacing: 0.02em; transition: var(--transition);
+            position: relative;
+        }
+        nav .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 0; height: 2px; background: var(--basque-rouge); transition: var(--transition);
+        }
+        nav .nav-links a:hover::after { width: 100%; }
+        nav .nav-links a.active::after { width: 100%; }
+        nav .nav-cta {
+            background: var(--basque-rouge); color: white !important;
+            padding: 0.6rem 1.4rem; border-radius: 50px;
+            font-weight: 600; font-size: 0.85rem; transition: var(--transition);
+        }
+        nav .nav-cta::after { display: none !important; }
+        nav .nav-cta:hover { background: var(--rouge-sombre); transform: translateY(-1px); }
+
+        /* ═══════════════════════════════════════
+           ARTICLE HERO
+        ═══════════════════════════════════════ */
+        .article-hero {
+            min-height: 52vh;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: flex-end;
+            padding: 9rem 2rem 4rem;
+            background: linear-gradient(135deg, #f0fffe 0%, #d4ede5 50%, #b8ddd6 100%);
+            position: relative; overflow: hidden; text-align: center;
+        }
+        .article-hero::before {
+            content: ''; position: absolute; top: -20%; right: -10%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(0,105,92,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .article-hero::after {
+            content: ''; position: absolute; bottom: -10%; left: -5%;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(214,48,49,0.06) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .article-hero-inner { position: relative; z-index: 2; max-width: 780px; }
+
+        .article-breadcrumb {
+            display: flex; align-items: center; justify-content: center;
+            gap: 0.5rem; margin-bottom: 1.5rem;
+            font-size: 0.82rem; color: var(--gris);
+        }
+        .article-breadcrumb a {
+            color: var(--gris); text-decoration: none; transition: var(--transition);
+        }
+        .article-breadcrumb a:hover { color: var(--basque-vert); }
+        .article-breadcrumb span { opacity: 0.5; }
+
+        .article-hero-meta {
+            display: flex; align-items: center; justify-content: center;
+            gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;
+        }
+        .article-cat-pill {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: rgba(0,105,92,0.12); color: var(--basque-vert);
+            padding: 0.4rem 1rem; border-radius: 50px;
+            font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+        }
+        .article-reading-pill {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: rgba(0,0,0,0.06); color: var(--gris);
+            padding: 0.4rem 1rem; border-radius: 50px;
+            font-size: 0.8rem; font-weight: 500;
+        }
+
+        .article-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 700;
+            line-height: 1.15; letter-spacing: -0.03em;
+            margin-bottom: 1.2rem; color: var(--noir);
+        }
+        .article-hero h1 em { font-style: italic; color: var(--basque-vert); }
+
+        .article-date-pub {
+            font-size: 0.82rem; color: var(--gris);
+        }
+
+        /* ═══════════════════════════════════════
+           ARTICLE LAYOUT
+        ═══════════════════════════════════════ */
+        .article-wrap {
+            max-width: 780px; margin: 0 auto;
+            padding: 4rem 2rem 5rem;
+        }
+
+        .article-intro {
+            background: rgba(0,105,92,0.06);
+            border-left: 4px solid var(--basque-vert);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            padding: 1.8rem 2rem;
+            margin-bottom: 3rem;
+            font-size: 1.05rem;
+            line-height: 1.75;
+        }
+        .article-intro strong { color: var(--basque-vert); font-weight: 600; }
+
+        .article-wrap h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+            font-weight: 700; letter-spacing: -0.02em;
+            color: var(--noir); margin: 3rem 0 1rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 2px solid var(--gris-clair);
+        }
+        .article-wrap h3 {
+            font-size: 1.05rem; font-weight: 700;
+            color: var(--basque-vert); margin: 2rem 0 0.8rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .article-wrap h3::before {
+            content: ''; display: inline-block;
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--basque-vert); flex-shrink: 0;
+        }
+
+        .article-wrap p { margin-bottom: 1.2rem; font-size: 1rem; color: var(--noir); }
+        .article-wrap ul {
+            margin: 0 0 1.5rem 0; padding: 0;
+            list-style: none;
+        }
+        .article-wrap ul li {
+            padding: 0.45rem 0 0.45rem 1.6rem;
+            position: relative; font-size: 0.97rem;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+        }
+        .article-wrap ul li:last-child { border-bottom: none; }
+        .article-wrap ul li::before {
+            content: '→'; position: absolute; left: 0;
+            color: var(--basque-vert); font-weight: 700; font-size: 0.9rem;
+        }
+        .article-wrap ul li strong { color: var(--noir); font-weight: 600; }
+
+        /* Callout boxes */
+        .callout {
+            display: flex; gap: 1rem; align-items: flex-start;
+            padding: 1.4rem 1.6rem; border-radius: var(--radius-sm);
+            margin: 2rem 0; border-left: 4px solid;
+        }
+        .callout-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 0.1rem; }
+        .callout-body { flex: 1; }
+        .callout-body p { margin-bottom: 0; }
+        .callout-body strong { display: block; margin-bottom: 0.4rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+        .callout-info { background: rgba(0,105,92,0.06); border-color: var(--basque-vert); }
+        .callout-info .callout-body strong { color: var(--basque-vert); }
+        .callout-warning { background: rgba(212,168,83,0.1); border-color: var(--or); }
+        .callout-warning .callout-body strong { color: #8a6a1a; }
+        .callout-success { background: rgba(39,174,96,0.08); border-color: var(--vert-clair); }
+        .callout-success .callout-body strong { color: var(--vert); }
+        .callout-danger { background: rgba(214,48,49,0.06); border-color: var(--basque-rouge); }
+        .callout-danger .callout-body strong { color: var(--basque-rouge); }
+
+        /* Avantages en grille */
+        .avantages-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            gap: 1rem; margin: 2rem 0;
+        }
+        .avantage-card {
+            background: white; border: 1px solid var(--gris-clair);
+            border-radius: var(--radius-sm); padding: 1.4rem;
+            transition: var(--transition);
+        }
+        .avantage-card:hover { border-color: var(--basque-vert); box-shadow: var(--ombre); }
+        .avantage-card .icon { font-size: 1.8rem; margin-bottom: 0.7rem; }
+        .avantage-card h4 { font-size: 0.92rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--noir); }
+        .avantage-card p { font-size: 0.85rem; color: var(--gris); margin: 0; }
+
+        .section-divider {
+            border: none; border-top: 1px solid var(--gris-clair);
+            margin: 3rem 0;
+        }
+
+        /* ═══════════════════════════════════════
+           ARTICLES CONNEXES
+        ═══════════════════════════════════════ */
+        .related-wrap {
+            background: var(--creme); padding: 4rem 2rem;
+        }
+        .related-inner { max-width: 780px; margin: 0 auto; }
+        .related-inner h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem; font-weight: 700;
+            margin-bottom: 1.5rem; letter-spacing: -0.02em;
+        }
+        .related-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem;
+        }
+        .related-card {
+            background: white; border-radius: var(--radius-sm);
+            padding: 1.4rem; border: 1px solid #eee;
+            text-decoration: none; color: var(--noir);
+            display: flex; align-items: center; gap: 1rem;
+            transition: var(--transition);
+        }
+        .related-card:hover {
+            border-color: var(--basque-vert);
+            box-shadow: var(--ombre);
+            transform: translateY(-2px);
+        }
+        .related-card-icon { font-size: 1.8rem; flex-shrink: 0; }
+        .related-card-body small {
+            font-size: 0.72rem; color: var(--basque-vert);
+            font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+        }
+        .related-card-body p {
+            font-size: 0.9rem; font-weight: 600; margin: 0.2rem 0 0;
+            line-height: 1.35; color: var(--noir);
+        }
+
+        .back-to-blog { max-width: 780px; margin: 0 auto; padding: 2rem 2rem 0; }
+        .back-link {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            font-size: 0.88rem; font-weight: 600; color: var(--gris);
+            text-decoration: none; transition: var(--transition);
+        }
+        .back-link:hover { color: var(--basque-rouge); gap: 0.8rem; }
+
+        /* ═══════════════════════════════════════
+           CTA BANNER
+        ═══════════════════════════════════════ */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--basque-vert) 0%, #004d44 100%);
+            color: white; text-align: center; padding: 5rem 2rem;
+            position: relative; overflow: hidden;
+        }
+        .cta-banner::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .cta-banner h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700;
+            margin-bottom: 1rem; position: relative;
+        }
+        .cta-banner p {
+            font-size: 1.05rem; opacity: 0.85; margin-bottom: 2rem;
+            max-width: 480px; margin-left: auto; margin-right: auto; position: relative;
+        }
+        .cta-banner .btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 1rem 2.2rem; border-radius: 50px; font-size: 0.95rem;
+            font-weight: 700; text-decoration: none; transition: var(--transition);
+            background: white; color: var(--basque-vert); position: relative;
+        }
+        .cta-banner .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+
+        /* ═══════════════════════════════════════
+           FOOTER
+        ═══════════════════════════════════════ */
+        footer { background: var(--noir); color: white; padding: 4rem 2rem 2rem; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+        .footer-brand .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: white; margin-bottom: 1rem; display: block; }
+        .footer-brand .logo span { color: var(--basque-rouge); }
+        .footer-brand p { color: rgba(255,255,255,0.5); font-size: 0.88rem; line-height: 1.7; }
+        .footer-col h4 { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.2rem; color: rgba(255,255,255,0.4); }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.6rem; }
+        .footer-col ul a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; transition: var(--transition); }
+        .footer-col ul a:hover { color: white; }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 0.82rem; color: rgba(255,255,255,0.35);
+        }
+
+        /* ═══════════════════════════════════════
+           RESPONSIVE
+        ═══════════════════════════════════════ */
+        @media (max-width: 768px) {
+            nav { padding: 0.6rem 1rem; }
+            .nav-inner { flex-direction: column; align-items: stretch; gap: 0; }
+            nav .logo { white-space: nowrap; font-size: 1.2rem; padding-bottom: 0.35rem; }
+            .nav-links {
+                display: flex !important; flex-direction: row;
+                gap: 1rem; overflow-x: auto; flex-wrap: nowrap;
+                padding-bottom: 0; width: 100%;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none; -ms-overflow-style: none;
+            }
+            .nav-links::-webkit-scrollbar { display: none; }
+            .nav-links li { flex-shrink: 0; }
+            .nav-links a { font-size: 0.82rem; }
+            .article-hero { padding: 8rem 1.2rem 3rem; }
+            .article-wrap { padding: 3rem 1.2rem 4rem; }
+            .avantages-grid { grid-template-columns: 1fr; }
+            .related-grid { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+            .back-to-blog { padding: 2rem 1.2rem 0; }
+            .related-wrap { padding: 3rem 1.2rem; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="breadcrumb">
-                <a href="/">Accueil</a> > <a href="/blog/">Blog</a> > Conduite Supervisée
-            </div>
-            <h1>Conduite Supervisée : Une Alternative Intéressante</h1>
-        </header>
 
-        <div class="intro">
-            <p>La <strong>conduite supervisée</strong> est une formule qui permet aux candidats au permis de conduire de continuer à s'entraîner après leur formation en auto-école.</p>
-            <p>Contrairement à la conduite accompagnée, elle est accessible à partir de <strong>18 ans</strong> et offre une solution flexible et économique pour progresser.</p>
+<!-- ══════════════════════════════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════════════════════════════ -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../index.html" class="logo">AUTO-ÉCOLE MARTI<span>.</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="../index.html#formations">Formations</a></li>
+            <li><a href="../index.html#histoire">Notre histoire</a></li>
+            <li><a href="../index.html#avis">Avis</a></li>
+            <li><a href="index.html" class="active">Blog</a></li>
+            <li><a href="../index.html#contact">Contact</a></li>
+            <li><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" class="nav-cta">S'inscrire</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════════
+     ARTICLE HERO
+══════════════════════════════════════════════════════════════ -->
+<div class="article-hero">
+    <div class="article-hero-inner">
+        <nav class="article-breadcrumb" aria-label="Fil d'ariane">
+            <a href="../index.html">Accueil</a>
+            <span>›</span>
+            <a href="index.html">Blog</a>
+            <span>›</span>
+            <span>Conduite supervisée</span>
+        </nav>
+        <div class="article-hero-meta">
+            <span class="article-cat-pill">👥 Conduite accompagnée</span>
+            <span class="article-reading-pill">⏱ 4 min de lecture</span>
         </div>
+        <h1>La <em>conduite supervisée</em> :<br>une alternative intéressante dès 18 ans</h1>
+        <p class="article-date-pub">Publié le 4 mars 2026 · Par l'équipe Auto-École Marti</p>
+    </div>
+</div>
 
-        <h2>Qu'est-ce que la conduite supervisée ?</h2>
-        
-        <p>La conduite supervisée est une alternative à l'apprentissage anticipé de la conduite. Elle peut être mise en place dans deux situations :</p>
-        <ul>
-            <li><strong>Après la formation initiale</strong> : pour progresser avant de passer l'examen</li>
-            <li><strong>Après un échec à l'examen</strong> : pour se préparer à une nouvelle tentative</li>
-        </ul>
+<!-- ══════════════════════════════════════════════════════════════
+     CONTENU DE L'ARTICLE
+══════════════════════════════════════════════════════════════ -->
+<div class="back-to-blog">
+    <a href="index.html" class="back-link">← Retour au blog</a>
+</div>
 
-        <p>C'est une solution particulièrement utile pour les jeunes adultes qui souhaitent bénéficier d'une expérience supplémentaire avant ou après l'examen du permis.</p>
+<article class="article-wrap">
 
-        <h2>Comment fonctionne la conduite supervisée ?</h2>
+    <div class="article-intro">
+        <p>La <strong>conduite supervisée</strong> est une formule qui permet aux candidats au permis de conduire de continuer à s'entraîner après leur formation en auto-école. Contrairement à la conduite accompagnée (AAC), elle est accessible à partir de <strong>18 ans</strong> et offre une solution flexible et économique pour progresser.</p>
+    </div>
 
-        <h3>Conditions préalables</h3>
-        
-        <p>Pour accéder à la conduite supervisée, le candidat doit avoir rempli les conditions suivantes :</p>
-        <ul>
-            <li><strong>Réussi le code de la route</strong></li>
-            <li><strong>Effectué minimum 20 heures de conduite</strong> en auto-école</li>
-        </ul>
+    <h2>Qu'est-ce que la conduite supervisée ?</h2>
 
-        <h3>L'accompagnateur : profil et conditions</h3>
-        
-        <p>Une fois les conditions remplies, le candidat peut conduire avec un accompagnateur. Cet accompagnateur doit impérativement :</p>
-        <ul>
-            <li><strong>Avoir son permis depuis au moins 5 ans</strong></li>
-            <li><strong>Obtenir l'accord de l'assurance</strong> avant de commencer</li>
-            <li>Être une personne d'expérience pouvant conseiller le jeune conducteur</li>
-        </ul>
+    <p>La conduite supervisée est une alternative à l'apprentissage anticipé de la conduite. Elle peut être mise en place dans deux situations :</p>
+    <ul>
+        <li><strong>Après la formation initiale</strong> : pour progresser avant de passer l'examen</li>
+        <li><strong>Après un échec à l'examen</strong> : pour se préparer à une nouvelle tentative</li>
+    </ul>
+    <p>C'est une solution particulièrement utile pour les jeunes adultes qui souhaitent bénéficier d'une expérience supplémentaire avant ou après l'examen du permis.</p>
 
-        <div class="conditions">
-            <p><strong>⚠️ Important :</strong> L'accord de l'assurance est obligatoire. Contactez votre assureur avant de débuter la conduite supervisée pour éviter tout problème en cas d'incident.</p>
-        </div>
+    <h2>Comment fonctionne la conduite supervisée ?</h2>
 
-        <h2>Un moyen efficace de progresser et gagner en confiance</h2>
-        
-        <p>La conduite supervisée permet <strong>d'accumuler de l'expérience réelle</strong> et de gagner progressivement en confiance au volant.</p>
-        
-        <p>C'est une excellente solution pour :</p>
-        <ul>
-            <li><strong>Améliorer sa maîtrise du véhicule</strong> dans un contexte moins formel qu'en auto-école</li>
-            <li><strong>S'habituer à différentes situations de circulation</strong> : autoroute, ville, routes secondaires</li>
-            <li><strong>Préparer un nouvel examen du permis</strong> après un échec</li>
-            <li><strong>Développer l'autonomie</strong> en tant que conducteur</li>
-        </ul>
+    <h3>Conditions préalables</h3>
+    <p>Pour accéder à la conduite supervisée, le candidat doit avoir rempli les conditions suivantes :</p>
+    <ul>
+        <li><strong>Réussi le code de la route</strong></li>
+        <li><strong>Effectué minimum 20 heures de conduite</strong> en auto-école</li>
+    </ul>
 
-        <h2>Une solution économique</h2>
-        
-        <p>L'un des principaux avantages de la conduite supervisée est son <strong>aspect économique</strong>.</p>
-        
-        <p>En s'entraînant régulièrement avec un accompagnateur, les candidats peuvent :</p>
-        <ul>
-            <li><strong>Réduire le nombre d'heures supplémentaires</strong> nécessaires à l'auto-école</li>
-            <li><strong>Réaliser des économies significatives</strong> sur le coût total du permis de conduire</li>
-            <li>Progresser à son rythme sans surcoûts de leçons privées</li>
-        </ul>
+    <h3>L'accompagnateur : profil et conditions</h3>
+    <p>Une fois les conditions remplies, le candidat peut conduire avec un accompagnateur. Cet accompagnateur doit impérativement :</p>
+    <ul>
+        <li><strong>Avoir son permis depuis au moins 5 ans</strong></li>
+        <li><strong>Obtenir l'accord de l'assurance</strong> avant de commencer</li>
+        <li>Être une personne d'expérience pouvant conseiller le jeune conducteur</li>
+    </ul>
 
-        <p>Pour un budget serré, c'est souvent la meilleure option pour acquérir l'expérience nécessaire.</p>
-
-        <h2>Conduite supervisée à l'auto-école MARTI</h2>
-        
-        <p>À l'auto-école MARTI à Bayonne, nous proposons <strong>la conduite supervisée</strong> pour aider les élèves à maximiser leurs chances de réussite.</p>
-        
-        <p>Nous vous accompagnons dans :</p>
-        <ul>
-            <li>L'organisation de votre parcours de conduite supervisée</li>
-            <li>Le choix de votre accompagnateur</li>
-            <li>La préparation à votre examen du permis</li>
-        </ul>
-
-        <div class="cta">
-            <p>Intéressé par la conduite supervisée à Bayonne ?</p>
-            <p><a href="/contact/">Contactez l'auto-école MARTI pour en savoir plus</a></p>
-        </div>
-
-        <div class="related-articles">
-            <h3>Articles connexes</h3>
-            <a href="/blog/aac-apprentissage-anticipe-conduite.html">→ Apprentissage Anticipé de la Conduite (AAC)</a>
-            <a href="/blog/reussir-permis-conduite.html">→ Comment réussir l'examen du permis de conduire ?</a>
+    <div class="callout callout-warning">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body">
+            <strong>Important</strong>
+            <p>L'accord de l'assurance est obligatoire. Contactez votre assureur avant de débuter la conduite supervisée pour éviter tout problème en cas d'incident.</p>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2024 Auto-École MARTI - 13 rue Marengo, 64100 Bayonne | <a href="mailto:autoecole.marti@gmail.com">autoecole.marti@gmail.com</a> | Tél. 05 59 59 12 60</p>
-    </footer>
+    <h2>Un moyen efficace de progresser</h2>
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Auto-École MARTI",
-        "image": "/images/logo.jpg",
-        "description": "Auto-école à Bayonne proposant la conduite supervisée et d'autres formations au permis",
+    <p>La conduite supervisée permet <strong>d'accumuler de l'expérience réelle</strong> et de gagner progressivement en confiance au volant.</p>
+
+    <div class="avantages-grid">
+        <div class="avantage-card">
+            <div class="icon">🛣️</div>
+            <h4>Maîtrise renforcée</h4>
+            <p>Progressez dans un contexte moins formel qu'en auto-école.</p>
+        </div>
+        <div class="avantage-card">
+            <div class="icon">🌆</div>
+            <h4>Situations variées</h4>
+            <p>Autoroute, ville, routes secondaires : pratiquez partout.</p>
+        </div>
+        <div class="avantage-card">
+            <div class="icon">🔄</div>
+            <h4>Après un échec</h4>
+            <p>Préparez sereinement une nouvelle tentative à l'examen.</p>
+        </div>
+        <div class="avantage-card">
+            <div class="icon">🎯</div>
+            <h4>Autonomie</h4>
+            <p>Développez votre indépendance en tant que conducteur.</p>
+        </div>
+    </div>
+
+    <h2>Une solution économique</h2>
+
+    <p>L'un des principaux avantages de la conduite supervisée est son <strong>aspect économique</strong>. En s'entraînant régulièrement avec un accompagnateur, les candidats peuvent :</p>
+    <ul>
+        <li><strong>Réduire le nombre d'heures supplémentaires</strong> nécessaires en auto-école</li>
+        <li><strong>Réaliser des économies significatives</strong> sur le coût total du permis</li>
+        <li>Progresser à son rythme <strong>sans surcoûts</strong> de leçons privées</li>
+    </ul>
+
+    <div class="callout callout-success">
+        <div class="callout-icon">✅</div>
+        <div class="callout-body">
+            <strong>Bon à savoir</strong>
+            <p>Pour un budget serré, la conduite supervisée est souvent la meilleure option pour acquérir l'expérience nécessaire sans multiplier les heures en auto-école.</p>
+        </div>
+    </div>
+
+    <h2>La conduite supervisée chez Marti</h2>
+
+    <p>À l'auto-école Marti à Bayonne, nous proposons <strong>la conduite supervisée</strong> pour aider les élèves à maximiser leurs chances de réussite. Nous vous accompagnons dans :</p>
+    <ul>
+        <li>L'organisation de votre parcours de conduite supervisée</li>
+        <li>Le choix et l'information de votre accompagnateur</li>
+        <li>La préparation ciblée à votre examen du permis</li>
+    </ul>
+
+    <hr class="section-divider">
+
+    <p>Intéressé par la conduite supervisée ? Contactez-nous pour en savoir plus sur les modalités et voir comment cette formule peut s'adapter à votre situation.</p>
+
+</article>
+
+<!-- ══════════════════════════════════════════════════════════════
+     ARTICLES CONNEXES
+══════════════════════════════════════════════════════════════ -->
+<div class="related-wrap">
+    <div class="related-inner">
+        <h2>Articles connexes</h2>
+        <div class="related-grid">
+            <a href="aac-apprentissage-anticipe-conduite.html" class="related-card">
+                <div class="related-card-icon">🤝</div>
+                <div class="related-card-body">
+                    <small>Conduite accompagnée</small>
+                    <p>L'AAC : conduire dès 15 ans avec la conduite accompagnée</p>
+                </div>
+            </a>
+            <a href="comment-reussir-son-permis-conduire.html" class="related-card">
+                <div class="related-card-icon">✅</div>
+                <div class="related-card-body">
+                    <small>Conseils pratiques</small>
+                    <p>Réussir son permis B : guide complet de l'examen</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CTA BANNER
+══════════════════════════════════════════════════════════════ -->
+<div class="cta-banner">
+    <h2>Envie de progresser à votre rythme ?</h2>
+    <p>Renseignez-vous sur la conduite supervisée — notre équipe vous explique tout et vous aide à vous lancer.</p>
+    <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" class="btn">Nous contacter →</a>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════════ -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="logo">MARTI<span>.</span></div>
+                <p>Auto-école de confiance à Bayonne depuis 1962. Formations permis B, conduite accompagnée et boîte automatique.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Formations</h4>
+                <ul>
+                    <li><a href="../formules/permis-b-manuel.html">Permis B</a></li>
+                    <li><a href="../formules/conduite-accompagnee.html">Conduite accompagnée</a></li>
+                    <li><a href="../formules/permis-b-automatique.html">Boîte automatique</a></li>
+                    <li><a href="../index.html#offres">Offres spéciales</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="../index.html">Accueil</a></li>
+                    <li><a href="../index.html#histoire">Notre histoire</a></li>
+                    <li><a href="../index.html#avis">Avis</a></li>
+                    <li><a href="index.html">Blog</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:0559591260">05 59 59 12 60</a></li>
+                    <li><a href="tel:0622008209">06 22 00 82 09</a></li>
+                    <li><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></li>
+                    <li><a href="../index.html#contact">13 rue Marengo, Bayonne</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 Auto-école Marti — Bayonne. Tous droits réservés.</span>
+            <span>SIRET : 382 930 188 00018 · APE : 8500Z</span>
+            <a href="../mentions-legales.html" style="color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.85rem;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Règlement intérieur &amp; mentions légales</a>
+        </div>
+    </div>
+</footer>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "La conduite supervisée : une alternative intéressante dès 18 ans",
+    "description": "Conduite supervisée à Bayonne — économique et efficace. Dès 18 ans, avec un accompagnateur. Formation complète à l'auto-école Marti.",
+    "datePublished": "2026-03-04",
+    "author": { "@type": "Organization", "name": "Auto-École Marti" },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Auto-École Marti",
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "13 rue Marengo",
@@ -146,11 +618,9 @@
             "postalCode": "64100",
             "addressCountry": "FR"
         },
-        "telephone": "05 59 59 12 60",
-        "email": "autoecole.marti@gmail.com",
-        "priceRange": "€",
-        "areaServed": "Bayonne"
+        "telephone": "05 59 59 12 60"
     }
-    </script>
+}
+</script>
 </body>
 </html>

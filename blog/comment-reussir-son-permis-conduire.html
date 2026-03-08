@@ -3,325 +3,707 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comment Réussir Son Permis de Conduire ? Guide Complet | Auto-École MARTI Bayonne</title>
-    <meta name="description" content="Guide complet pour réussir son permis de conduire. Déroulé de l'examen, erreurs à éviter, fautes éliminatoires, conseils pratiques. Auto-école MARTI à Bayonne.">
+    <title>Réussir son permis B : guide complet — Blog Auto-École Marti | Bayonne</title>
+    <link rel="icon" type="image/png" href="../favicon.ico.png">
+    <meta name="description" content="Guide complet pour réussir son permis de conduire. Déroulé de l'examen, erreurs à éviter, fautes éliminatoires, conseils pratiques. Auto-école Marti à Bayonne.">
     <meta name="keywords" content="réussir permis conduire, examen pratique, fautes éliminatoires, préparation permis, auto-école">
-    <meta property="og:title" content="Comment Réussir Son Permis de Conduire ? Guide Complet">
+    <meta property="og:title" content="Réussir son permis B : guide complet — Auto-École Marti">
     <meta property="og:description" content="Découvrez le déroulé exact de l'examen du permis et les stratégies pour réussir">
     <meta property="og:type" content="article">
-    <meta property="og:image" content="/images/examen-permis-conduire.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; }
-        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
-        header { background: #f5f5f5; padding: 20px 0; margin-bottom: 30px; border-bottom: 3px solid #1a3d5c; }
-        h1 { color: #1a3d5c; margin-bottom: 10px; font-size: 2em; }
-        .breadcrumb { color: #666; font-size: 0.9em; margin-bottom: 20px; }
-        .breadcrumb a { color: #0066cc; text-decoration: none; }
-        h2 { color: #1a3d5c; margin-top: 30px; margin-bottom: 15px; font-size: 1.5em; }
-        h3 { color: #2c5aa0; margin-top: 20px; margin-bottom: 10px; }
-        p { margin-bottom: 15px; }
-        ul { margin-left: 20px; margin-bottom: 15px; }
-        li { margin-bottom: 8px; }
-        .intro { background: #e8f4f8; padding: 20px; border-left: 4px solid #0066cc; margin-bottom: 30px; }
-        .danger-box { background: #f8d7da; padding: 20px; border-left: 4px solid #dc3545; margin: 20px 0; border-radius: 5px; }
-        .success-box { background: #d4edda; padding: 20px; border-left: 4px solid #28a745; margin: 20px 0; border-radius: 5px; }
-        .info-box { background: #e7f3ff; padding: 20px; border-left: 4px solid #0066cc; margin: 20px 0; border-radius: 5px; }
-        .cta { background: #1a3d5c; color: white; padding: 20px; margin-top: 30px; text-align: center; border-radius: 5px; }
-        .cta a { color: white; text-decoration: none; font-weight: bold; }
-        footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 0.9em; color: #666; }
-        .related-articles { margin-top: 30px; padding: 20px; background: #f9f9f9; border-radius: 5px; }
-        .related-articles a { color: #0066cc; text-decoration: none; display: block; margin: 10px 0; }
-        strong { color: #1a3d5c; }
-        .duration-badge { display: inline-block; background: #1a3d5c; color: white; padding: 5px 10px; border-radius: 3px; font-weight: bold; }
+        /* ═══════════════════════════════════════
+           RESET & VARIABLES
+        ═══════════════════════════════════════ */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --noir: #0a0a0a;
+            --blanc: #fafaf8;
+            --creme: #f5f0e8;
+            --rouge: #c0392b;
+            --rouge-doux: #e74c3c;
+            --rouge-sombre: #922b21;
+            --vert: #1a5c38;
+            --vert-clair: #27ae60;
+            --gris: #6b7280;
+            --gris-clair: #e5e5e5;
+            --basque-rouge: #d63031;
+            --basque-vert: #00695c;
+            --or: #d4a853;
+            --ombre: 0 4px 30px rgba(0,0,0,0.08);
+            --ombre-forte: 0 20px 60px rgba(0,0,0,0.12);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--blanc);
+            color: var(--noir);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ═══════════════════════════════════════
+           NAVBAR
+        ═══════════════════════════════════════ */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 1rem 2rem; transition: var(--transition);
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 1px 30px rgba(0,0,0,0.06);
+        }
+        nav .nav-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        nav .logo {
+            font-family: 'Playfair Display', serif; font-size: 1.5rem;
+            font-weight: 700; color: var(--noir); text-decoration: none; letter-spacing: -0.02em;
+        }
+        nav .logo span { color: var(--basque-rouge); }
+        nav .nav-links {
+            display: flex; gap: 2rem; list-style: none; align-items: center;
+        }
+        nav .nav-links a {
+            text-decoration: none; color: var(--noir); font-size: 0.9rem;
+            font-weight: 500; letter-spacing: 0.02em; transition: var(--transition);
+            position: relative;
+        }
+        nav .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 0; height: 2px; background: var(--basque-rouge); transition: var(--transition);
+        }
+        nav .nav-links a:hover::after { width: 100%; }
+        nav .nav-links a.active::after { width: 100%; }
+        nav .nav-cta {
+            background: var(--basque-rouge); color: white !important;
+            padding: 0.6rem 1.4rem; border-radius: 50px;
+            font-weight: 600; font-size: 0.85rem; transition: var(--transition);
+        }
+        nav .nav-cta::after { display: none !important; }
+        nav .nav-cta:hover { background: var(--rouge-sombre); transform: translateY(-1px); }
+
+        /* ═══════════════════════════════════════
+           ARTICLE HERO — couleur chaleureuse (conseils)
+        ═══════════════════════════════════════ */
+        .article-hero {
+            min-height: 52vh;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: flex-end;
+            padding: 9rem 2rem 4rem;
+            background: linear-gradient(135deg, #fdfaf0 0%, #f5edca 50%, #ede0a0 100%);
+            position: relative; overflow: hidden; text-align: center;
+        }
+        .article-hero::before {
+            content: ''; position: absolute; top: -20%; right: -10%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(212,168,83,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .article-hero::after {
+            content: ''; position: absolute; bottom: -10%; left: -5%;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(214,48,49,0.06) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .article-hero-inner { position: relative; z-index: 2; max-width: 780px; }
+
+        .article-breadcrumb {
+            display: flex; align-items: center; justify-content: center;
+            gap: 0.5rem; margin-bottom: 1.5rem;
+            font-size: 0.82rem; color: var(--gris);
+        }
+        .article-breadcrumb a {
+            color: var(--gris); text-decoration: none; transition: var(--transition);
+        }
+        .article-breadcrumb a:hover { color: #8a6a1a; }
+        .article-breadcrumb span { opacity: 0.5; }
+
+        .article-hero-meta {
+            display: flex; align-items: center; justify-content: center;
+            gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;
+        }
+        .article-cat-pill {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: rgba(212,168,83,0.2); color: #8a6a1a;
+            padding: 0.4rem 1rem; border-radius: 50px;
+            font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+        }
+        .article-reading-pill {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: rgba(0,0,0,0.06); color: var(--gris);
+            padding: 0.4rem 1rem; border-radius: 50px;
+            font-size: 0.8rem; font-weight: 500;
+        }
+
+        .article-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 700;
+            line-height: 1.15; letter-spacing: -0.03em;
+            margin-bottom: 1.2rem; color: var(--noir);
+        }
+        .article-hero h1 em { font-style: italic; color: #8a6a1a; }
+
+        .article-date-pub { font-size: 0.82rem; color: var(--gris); }
+
+        /* Badge durée examen */
+        .duration-badge {
+            display: inline-block;
+            background: var(--basque-rouge); color: white;
+            padding: 0.2rem 0.7rem; border-radius: 6px;
+            font-weight: 700; font-size: 0.9rem;
+        }
+
+        /* ═══════════════════════════════════════
+           ARTICLE LAYOUT
+        ═══════════════════════════════════════ */
+        .article-wrap {
+            max-width: 780px; margin: 0 auto;
+            padding: 4rem 2rem 5rem;
+        }
+
+        .article-intro {
+            background: rgba(212,168,83,0.08);
+            border-left: 4px solid var(--or);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            padding: 1.8rem 2rem;
+            margin-bottom: 3rem;
+            font-size: 1.05rem;
+            line-height: 1.75;
+        }
+        .article-intro strong { color: #8a6a1a; font-weight: 600; }
+
+        .article-wrap h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+            font-weight: 700; letter-spacing: -0.02em;
+            color: var(--noir); margin: 3rem 0 1rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 2px solid var(--gris-clair);
+        }
+        .article-wrap h3 {
+            font-size: 1.05rem; font-weight: 700;
+            color: #8a6a1a; margin: 2rem 0 0.8rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .article-wrap h3::before {
+            content: ''; display: inline-block;
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--or); flex-shrink: 0;
+        }
+
+        .article-wrap p { margin-bottom: 1.2rem; font-size: 1rem; color: var(--noir); }
+        .article-wrap ul, .article-wrap ol {
+            margin: 0 0 1.5rem 0; padding: 0;
+            list-style: none;
+        }
+        .article-wrap ul li, .article-wrap ol li {
+            padding: 0.45rem 0 0.45rem 1.6rem;
+            position: relative; font-size: 0.97rem;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            counter-increment: none;
+        }
+        .article-wrap ul li:last-child, .article-wrap ol li:last-child { border-bottom: none; }
+        .article-wrap ul li::before {
+            content: '→'; position: absolute; left: 0;
+            color: var(--or); font-weight: 700; font-size: 0.9rem;
+        }
+        .article-wrap ul li strong { color: var(--noir); font-weight: 600; }
+
+        /* Callout boxes */
+        .callout {
+            display: flex; gap: 1rem; align-items: flex-start;
+            padding: 1.4rem 1.6rem; border-radius: var(--radius-sm);
+            margin: 2rem 0; border-left: 4px solid;
+        }
+        .callout-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 0.1rem; }
+        .callout-body { flex: 1; }
+        .callout-body p { margin-bottom: 0; }
+        .callout-body ul { margin-bottom: 0; }
+        .callout-body strong { display: block; margin-bottom: 0.4rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+        .callout-info { background: rgba(0,105,92,0.06); border-color: var(--basque-vert); }
+        .callout-info .callout-body strong { color: var(--basque-vert); }
+        .callout-info .callout-body ul li::before { color: var(--basque-vert); }
+        .callout-warning { background: rgba(212,168,83,0.1); border-color: var(--or); }
+        .callout-warning .callout-body strong { color: #8a6a1a; }
+        .callout-success { background: rgba(39,174,96,0.08); border-color: var(--vert-clair); }
+        .callout-success .callout-body strong { color: var(--vert); }
+        .callout-danger { background: rgba(214,48,49,0.06); border-color: var(--basque-rouge); }
+        .callout-danger .callout-body strong { color: var(--basque-rouge); }
+
+        /* Étapes numérotées */
+        .steps { margin: 2rem 0; }
+        .step {
+            display: flex; gap: 1.4rem; margin-bottom: 2rem;
+            align-items: flex-start;
+        }
+        .step-number {
+            flex-shrink: 0; width: 44px; height: 44px;
+            background: var(--or); color: white;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700;
+        }
+        .step-content { flex: 1; }
+        .step-content h3 {
+            margin: 0.5rem 0 0.5rem; color: var(--noir);
+            font-size: 1rem; color: #8a6a1a;
+        }
+        .step-content h3::before { background: var(--or); }
+        .step-content p { margin-bottom: 0.6rem; }
+
+        .section-divider {
+            border: none; border-top: 1px solid var(--gris-clair);
+            margin: 3rem 0;
+        }
+
+        /* Grille 4 piliers */
+        .piliers-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            gap: 1rem; margin: 1rem 0 2rem;
+        }
+        .pilier-card {
+            background: white; border: 1px solid var(--gris-clair);
+            border-radius: var(--radius-sm); padding: 1.2rem 1.4rem;
+            border-left: 3px solid var(--or);
+            transition: var(--transition);
+        }
+        .pilier-card:hover { border-color: var(--or); box-shadow: var(--ombre); }
+        .pilier-card .num { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--or); margin-bottom: 0.3rem; }
+        .pilier-card p { font-size: 0.9rem; font-weight: 600; margin: 0; color: var(--noir); }
+        .pilier-card small { font-size: 0.8rem; color: var(--gris); }
+
+        /* ═══════════════════════════════════════
+           ARTICLES CONNEXES
+        ═══════════════════════════════════════ */
+        .related-wrap {
+            background: var(--creme); padding: 4rem 2rem;
+        }
+        .related-inner { max-width: 780px; margin: 0 auto; }
+        .related-inner h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem; font-weight: 700;
+            margin-bottom: 1.5rem; letter-spacing: -0.02em;
+        }
+        .related-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem;
+        }
+        .related-card {
+            background: white; border-radius: var(--radius-sm);
+            padding: 1.4rem; border: 1px solid #eee;
+            text-decoration: none; color: var(--noir);
+            display: flex; align-items: center; gap: 1rem;
+            transition: var(--transition);
+        }
+        .related-card:hover {
+            border-color: var(--or);
+            box-shadow: var(--ombre);
+            transform: translateY(-2px);
+        }
+        .related-card-icon { font-size: 1.8rem; flex-shrink: 0; }
+        .related-card-body small {
+            font-size: 0.72rem; color: #8a6a1a;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+        }
+        .related-card-body p {
+            font-size: 0.9rem; font-weight: 600; margin: 0.2rem 0 0;
+            line-height: 1.35; color: var(--noir);
+        }
+
+        .back-to-blog { max-width: 780px; margin: 0 auto; padding: 2rem 2rem 0; }
+        .back-link {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            font-size: 0.88rem; font-weight: 600; color: var(--gris);
+            text-decoration: none; transition: var(--transition);
+        }
+        .back-link:hover { color: var(--basque-rouge); gap: 0.8rem; }
+
+        /* ═══════════════════════════════════════
+           CTA BANNER
+        ═══════════════════════════════════════ */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--basque-rouge) 0%, var(--rouge-sombre) 100%);
+            color: white; text-align: center; padding: 5rem 2rem;
+            position: relative; overflow: hidden;
+        }
+        .cta-banner::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .cta-banner h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700;
+            margin-bottom: 1rem; position: relative;
+        }
+        .cta-banner p {
+            font-size: 1.05rem; opacity: 0.85; margin-bottom: 2rem;
+            max-width: 480px; margin-left: auto; margin-right: auto; position: relative;
+        }
+        .cta-banner .btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 1rem 2.2rem; border-radius: 50px; font-size: 0.95rem;
+            font-weight: 700; text-decoration: none; transition: var(--transition);
+            background: white; color: var(--basque-rouge); position: relative;
+        }
+        .cta-banner .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+
+        /* ═══════════════════════════════════════
+           FOOTER
+        ═══════════════════════════════════════ */
+        footer { background: var(--noir); color: white; padding: 4rem 2rem 2rem; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+        .footer-brand .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: white; margin-bottom: 1rem; display: block; }
+        .footer-brand .logo span { color: var(--basque-rouge); }
+        .footer-brand p { color: rgba(255,255,255,0.5); font-size: 0.88rem; line-height: 1.7; }
+        .footer-col h4 { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.2rem; color: rgba(255,255,255,0.4); }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.6rem; }
+        .footer-col ul a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; transition: var(--transition); }
+        .footer-col ul a:hover { color: white; }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 0.82rem; color: rgba(255,255,255,0.35);
+        }
+
+        /* ═══════════════════════════════════════
+           RESPONSIVE
+        ═══════════════════════════════════════ */
+        @media (max-width: 768px) {
+            nav { padding: 0.6rem 1rem; }
+            .nav-inner { flex-direction: column; align-items: stretch; gap: 0; }
+            nav .logo { white-space: nowrap; font-size: 1.2rem; padding-bottom: 0.35rem; }
+            .nav-links {
+                display: flex !important; flex-direction: row;
+                gap: 1rem; overflow-x: auto; flex-wrap: nowrap;
+                padding-bottom: 0; width: 100%;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none; -ms-overflow-style: none;
+            }
+            .nav-links::-webkit-scrollbar { display: none; }
+            .nav-links li { flex-shrink: 0; }
+            .nav-links a { font-size: 0.82rem; }
+            .article-hero { padding: 8rem 1.2rem 3rem; }
+            .article-wrap { padding: 3rem 1.2rem 4rem; }
+            .piliers-grid { grid-template-columns: 1fr; }
+            .related-grid { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+            .back-to-blog { padding: 2rem 1.2rem 0; }
+            .related-wrap { padding: 3rem 1.2rem; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="breadcrumb">
-                <a href="/">Accueil</a> > <a href="/blog/">Blog</a> > Réussir son Permis
+
+<!-- ══════════════════════════════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════════════════════════════ -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../index.html" class="logo">AUTO-ÉCOLE MARTI<span>.</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="../index.html#formations">Formations</a></li>
+            <li><a href="../index.html#histoire">Notre histoire</a></li>
+            <li><a href="../index.html#avis">Avis</a></li>
+            <li><a href="index.html" class="active">Blog</a></li>
+            <li><a href="../index.html#contact">Contact</a></li>
+            <li><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" class="nav-cta">S'inscrire</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════════
+     ARTICLE HERO
+══════════════════════════════════════════════════════════════ -->
+<div class="article-hero">
+    <div class="article-hero-inner">
+        <nav class="article-breadcrumb" aria-label="Fil d'ariane">
+            <a href="../index.html">Accueil</a>
+            <span>›</span>
+            <a href="index.html">Blog</a>
+            <span>›</span>
+            <span>Réussir son permis</span>
+        </nav>
+        <div class="article-hero-meta">
+            <span class="article-cat-pill">✅ Conseils pratiques</span>
+            <span class="article-reading-pill">⏱ 7 min de lecture</span>
+        </div>
+        <h1>Comment réussir son<br><em>permis de conduire</em> ?<br>Le guide complet</h1>
+        <p class="article-date-pub">Publié le 4 mars 2026 · Par l'équipe Auto-École Marti</p>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CONTENU DE L'ARTICLE
+══════════════════════════════════════════════════════════════ -->
+<div class="back-to-blog">
+    <a href="index.html" class="back-link">← Retour au blog</a>
+</div>
+
+<article class="article-wrap">
+
+    <div class="article-intro">
+        <p>Obtenir son permis de conduire est une <strong>étape importante</strong> dans la vie. Pour beaucoup de candidats, l'examen peut être une source de stress et d'appréhension.</p>
+        <p>Pourtant, avec une <strong>bonne préparation</strong> et une bonne compréhension de ce qui est attendu le jour J, il est tout à fait possible de <strong>mettre toutes les chances de son côté</strong>. Voici le déroulé exact de l'examen, les erreurs les plus fréquentes et les stratégies pour réussir.</p>
+    </div>
+
+    <h2>Le déroulé de l'examen pratique</h2>
+
+    <p>L'examen pratique du permis de conduire dure environ <span class="duration-badge">32 minutes</span>. Pendant ce temps, l'examinateur évalue votre capacité à conduire de manière sûre et autonome.</p>
+
+    <div class="steps">
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h3>L'installation au poste de conduite</h3>
+                <p>L'examinateur vous demandera d'effectuer plusieurs vérifications essentielles :</p>
+                <ul>
+                    <li><strong>Réglage du siège</strong> : position adaptée pour une bonne visibilité</li>
+                    <li><strong>Réglage des rétroviseurs</strong> : intérieur et extérieurs bien positionnés</li>
+                    <li><strong>Réglage de l'appuie-tête</strong> : sécurité en cas de freinage brutal</li>
+                    <li><strong>Mise de la ceinture</strong> : élément indispensable et obligatoire</li>
+                </ul>
             </div>
-            <h1>Comment Réussir Son Permis de Conduire ? Guide Complet</h1>
-        </header>
-
-        <div class="intro">
-            <p>Obtenir son permis de conduire est une <strong>étape importante</strong> dans la vie. Pour beaucoup de candidats, l'examen peut être une source de stress et d'appréhension.</p>
-            <p>Pourtant, avec une <strong>bonne préparation</strong> et une bonne compréhension de ce qui est attendu le jour de l'examen, il est tout à fait possible de <strong>mettre toutes les chances de son côté</strong>.</p>
-            <p>Découvrez dans cet article le déroulé exact de l'examen, les erreurs les plus fréquentes et les stratégies pour réussir votre permis de conduire.</p>
         </div>
 
-        <h2>Le Déroulé de l'Examen du Permis de Conduire</h2>
-        
-        <p>L'examen pratique du permis de conduire dure environ <span class="duration-badge">32 minutes</span>. Pendant ce temps, l'examinateur va évaluer votre capacité à conduire de manière sûre et autonome.</p>
-
-        <h3>1. L'Installation au Poste de Conduite</h3>
-        
-        <p>Au début de l'examen, l'examinateur vous demandera de vous installer au poste de conduite et d'effectuer plusieurs vérifications essentielles :</p>
-        <ul>
-            <li><strong>Réglage du siège</strong> : position adaptée pour une bonne visibilité et contrôle</li>
-            <li><strong>Réglage des rétroviseurs</strong> : intérieur et extérieurs doivent être bien positionnés</li>
-            <li><strong>Réglage de l'appuie-tête</strong> : pour la sécurité en cas de freinage brutal</li>
-            <li><strong>Mise de la ceinture de sécurité</strong> : élément indispensable et obligatoire</li>
-        </ul>
-
-        <p>Ces vérifications initiales permettent d'évaluer que vous <strong>adoptez une position de conduite adaptée et sécurisée</strong>. Ce sont des points importants dans l'évaluation globale.</p>
-
-        <h3>2. La Conduite en Circulation</h3>
-        
-        <p>La majeure partie de l'examen (environ 25 minutes) consiste à conduire dans <strong>différentes situations de circulation</strong>. L'examinateur pourra vous demander :</p>
-        <ul>
-            <li>De suivre une direction donnée</li>
-            <li>De tourner à une intersection</li>
-            <li>De changer de direction</li>
-            <li>De stationner</li>
-            <li>D'effectuer une manœuvre</li>
-        </ul>
-
-        <p>L'objectif est d'évaluer votre capacité à :</p>
-        <ul>
-            <li><strong>Respecter les règles du code de la route</strong></li>
-            <li><strong>Observer votre environnement</strong> de manière constante</li>
-            <li><strong>Anticiper les situations</strong> de circulation</li>
-            <li><strong>Adapter votre vitesse</strong> aux conditions et limitations</li>
-        </ul>
-
-        <div class="info-box">
-            <p><strong>💡 Conseil :</strong> Pendant cette phase, conduisez comme vous l'avez appris avec votre moniteur. Restez naturel et n'essayez pas de "surjouer" la sécurité.</p>
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h3>La conduite en circulation (~25 minutes)</h3>
+                <p>La majeure partie de l'examen consiste à conduire dans différentes situations. L'examinateur évalue votre capacité à :</p>
+                <ul>
+                    <li><strong>Respecter les règles</strong> du code de la route</li>
+                    <li><strong>Observer votre environnement</strong> de manière constante</li>
+                    <li><strong>Anticiper les situations</strong> de circulation</li>
+                    <li><strong>Adapter votre vitesse</strong> aux conditions et limitations</li>
+                </ul>
+            </div>
         </div>
 
-        <h3>3. Les Manœuvres Obligatoires</h3>
-        
-        <p>Pendant l'examen, <strong>une manœuvre vous sera obligatoirement demandée</strong>. Il peut s'agir de :</p>
-        <ul>
-            <li><strong>Stationnement en créneau</strong> : entre deux véhicules en parallèle</li>
-            <li><strong>Stationnement en bataille</strong> : stationnement perpendiculaire</li>
-            <li><strong>Rangement en épi</strong> : stationnement en diagonal</li>
-            <li><strong>Demi-tour</strong> : faire rebrousser chemin</li>
-            <li><strong>Marche arrière</strong> : effectuer une trajectoire en arrière</li>
-        </ul>
-
-        <p>La précision de la manœuvre est importante, mais l'examinateur observe surtout :</p>
-        <ul>
-            <li><strong>La sécurité</strong> : absence de danger pour les tiers</li>
-            <li><strong>Les contrôles visuels</strong> : vérification des angles morts et rétroviseurs</li>
-            <li><strong>L'autonomie</strong> : capacité à effectuer la manœuvre sans aide</li>
-        </ul>
-
-        <h3>4. Les Questions de Vérification</h3>
-        
-        <p>Depuis la réforme du permis de conduire, l'examinateur pose également <strong>trois questions</strong> au cours de l'examen :</p>
-        <ul>
-            <li><strong>Une question de vérification</strong> intérieure ou extérieure du véhicule (ex : "Montrez-moi les essuie-glaces")</li>
-            <li><strong>Une question de sécurité routière</strong> (ex : "Comment vous préparez-vous pour un long trajet ?")</li>
-            <li><strong>Une question de premiers secours</strong> (ex : "Que faire en cas d'accident ?")</li>
-        </ul>
-
-        <p>Ces questions permettent de vérifier que le candidat possède <strong>les connaissances essentielles liées à la sécurité</strong>. Prenez le temps de répondre calmement et clairement.</p>
-
-        <h2>Les Erreurs Fréquentes des Candidats au Permis</h2>
-        
-        <p>Certaines erreurs reviennent très souvent chez les candidats. Elles ne sont pas toujours éliminatoires, mais elles peuvent coûter des points importants lors de l'évaluation.</p>
-
-        <h3>Le Manque d'Observation</h3>
-        
-        <p>L'une des <strong>erreurs les plus fréquentes</strong> est le manque d'observation de l'environnement.</p>
-        
-        <p>Beaucoup de candidats oublient de :</p>
-        <ul>
-            <li><strong>Vérifier leurs angles morts</strong> avant un changement de direction</li>
-            <li><strong>Contrôler leurs rétroviseurs</strong> régulièrement</li>
-            <li><strong>Regarder suffisamment loin</strong> pour anticiper</li>
-        </ul>
-
-        <p>Une bonne observation permet <strong>d'anticiper les dangers</strong> et d'adapter sa conduite en conséquence. C'est une compétence clé que l'examinateur évalue.</p>
-
-        <h3>Une Vitesse Mal Adaptée</h3>
-        
-        <p>Rouler trop vite est dangereux et penalisé à l'examen. Mais <strong>rouler trop lentement peut aussi poser problème</strong>.</p>
-        
-        <p>Une vitesse trop faible peut :</p>
-        <ul>
-            <li>Gêner la circulation des autres usagers</li>
-            <li>Montrer un manque d'assurance</li>
-            <li>Créer des situations dangereuses</li>
-        </ul>
-
-        <p>Il est important d'<strong>adapter sa vitesse</strong> à :</p>
-        <ul>
-            <li>Aux limitations de vitesse</li>
-            <li>À la circulation observée</li>
-            <li>Aux conditions météorologiques</li>
-        </ul>
-
-        <h3>Le Manque d'Anticipation</h3>
-        
-        <p>Certains candidats se concentrent uniquement sur l'instant présent et oublient d'anticiper ce qui se passe plus loin sur la route.</p>
-        
-        <p>Par exemple, ils ne voient pas :</p>
-        <ul>
-            <li>Un piéton qui s'approche d'un passage piéton</li>
-            <li>Un feu rouge en amont (freinage trop tard)</li>
-            <li>Un rond-point en approche (réduction de vitesse insuffisante)</li>
-        </ul>
-
-        <p><strong>L'anticipation est une qualité essentielle</strong> pour une conduite sécurisée et c'est un des critères principaux d'évaluation.</p>
-
-        <h3>Une Gestion du Stress Difficile</h3>
-        
-        <p>Le stress est un facteur important lors de l'examen. Il peut entraîner :</p>
-        <ul>
-            <li><strong>Des oublis</strong> : manquer une instruction, oublier une vérification</li>
-            <li><strong>Des gestes brusques</strong> : mouvements non maîtrisés</li>
-            <li><strong>Une perte de concentration</strong> : attention réduite</li>
-        </ul>
-
-        <p><strong>La meilleure solution est de rester concentré sur la route</strong> et de conduire exactement comme lors d'une leçon de conduite classique avec votre moniteur.</p>
-
-        <div class="success-box">
-            <p><strong>✓ Conseil :</strong> Rappelez-vous que l'examinateur ne cherche pas la perfection. Il cherche à voir si vous pouvez conduire de manière sûre et autonome.</p>
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h3>Les manœuvres obligatoires</h3>
+                <p>Une manœuvre vous sera obligatoirement demandée :</p>
+                <ul>
+                    <li><strong>Stationnement en créneau</strong> (entre deux véhicules en parallèle)</li>
+                    <li><strong>Stationnement en bataille</strong> (perpendiculaire)</li>
+                    <li><strong>Rangement en épi</strong> (diagonal)</li>
+                    <li><strong>Demi-tour</strong> ou <strong>marche arrière</strong></li>
+                </ul>
+            </div>
         </div>
 
-        <h2>Les Fautes Éliminatoires au Permis de Conduire</h2>
-        
-        <p>Certaines erreurs entraînent un <strong>échec immédiat</strong> à l'examen car elles mettent en danger les autres usagers de la route.</p>
-        
-        <p>Ces fautes sont appelées <strong>fautes éliminatoires</strong>. Les connaître est essentiel pour les éviter.</p>
-
-        <h3>Le Refus de Priorité</h3>
-        
-        <p><strong>Ne pas respecter une priorité</strong> est l'une des fautes éliminatoires les plus fréquentes.</p>
-        
-        <p>Cela peut concerner :</p>
-        <ul>
-            <li><strong>Une priorité à droite</strong> : ne pas céder le passage à un véhicule venant de la droite</li>
-            <li><strong>Un rond-point</strong> : ne pas laisser passer les véhicules circulant</li>
-            <li><strong>Un cédez-le-passage</strong> : ne pas ralentir face à un panneau de cédez-le-passage</li>
-        </ul>
-
-        <div class="danger-box">
-            <p><strong>🚨 Éliminatoire :</strong> Le refus de priorité est sanctionné immédiatement. Soyez vigilant à chaque intersection.</p>
-        </div>
-
-        <h3>Le Non-Respect d'un Feu Rouge ou d'un Stop</h3>
-        
-        <p>Franchir un feu rouge ou ne pas marquer l'arrêt à un stop est considéré comme <strong>une faute grave et éliminatoire</strong>.</p>
-        
-        <p>À un stop, l'examinateur attend :</p>
-        <ul>
-            <li><strong>Un arrêt complet</strong> (pas juste un ralentissement)</li>
-            <li><strong>Un contrôle de la circulation</strong> avant de repartir</li>
-            <li><strong>Une reprise sûre</strong> de la conduite</li>
-        </ul>
-
-        <h3>La Mise en Danger d'un Piéton ou d'un Cycliste</h3>
-        
-        <p>Les usagers vulnérables sont particulièrement protégés par le code de la route. <strong>Toute mise en danger est éliminatoire</strong>.</p>
-        
-        <p>Par exemple :</p>
-        <ul>
-            <li>Ne pas laisser passer un piéton engagé sur un passage piéton</li>
-            <li>Frôler un cycliste ou ne pas maintenir la distance de sécurité</li>
-            <li>Ne pas adapter sa vitesse face à des usagers vulnérables</li>
-        </ul>
-
-        <h3>Une Intervention de l'Examinateur</h3>
-        
-        <p>Si l'examinateur doit intervenir pour <strong>éviter un danger</strong>, l'examen est automatiquement échoué.</p>
-        
-        <p>Cela peut se produire s'il :</p>
-        <ul>
-            <li><strong>Freine à votre place</strong> via la pédale dupliquée</li>
-            <li><strong>Intervient sur le volant</strong></li>
-            <li><strong>Donne un ordre</strong> pour éviter une situation dangereuse</li>
-        </ul>
-
-        <h2>Conseils pour Mettre Toutes les Chances de Son Côté</h2>
-        
-        <p>Pour réussir votre permis de conduire, quelques conseils simples peuvent faire une réelle différence :</p>
-
-        <div class="info-box">
-            <h3 style="margin-top: 0;">Les 4 Piliers de la Réussite</h3>
-            <ul style="margin-left: 20px;">
-                <li><strong>Bien observer son environnement</strong> : rétroviseurs, angles morts, circulation lointaine</li>
-                <li><strong>Anticiper les situations</strong> : voir avant d'agir</li>
-                <li><strong>Adapter sa vitesse</strong> : toujours appropriée aux conditions</li>
-                <li><strong>Rester calme et concentré</strong> : la confiance vient de la préparation</li>
-            </ul>
-        </div>
-
-        <h3>Le Jour de l'Examen</h3>
-        
-        <p>Quelques heures avant :</p>
-        <ul>
-            <li>Préparez tous vos documents</li>
-            <li>Ayez une hygiène de vie normale (bien dormir, bien manger)</li>
-            <li>Évitez les révisions intensives</li>
-        </ul>
-
-        <p>Pendant l'examen :</p>
-        <ul>
-            <li>Écoutez attentivement les consignes de l'examinateur</li>
-            <li>Respectez les règles de la route</li>
-            <li>Adoptez une conduite naturelle et fluide</li>
-        </ul>
-
-        <h3>La Philosophie de l'Examen</h3>
-        
-        <p>L'objectif de l'examen n'est <strong>pas de conduire parfaitement</strong>, mais de montrer que vous êtes capable de <strong>circuler en toute sécurité</strong> de manière autonome.</p>
-        
-        <p>L'examinateur cherche à s'assurer que vous :</p>
-        <ul>
-            <li>Respectez le code de la route</li>
-            <li>Êtes conscient des risques</li>
-            <li>Pouvez vous adapter aux situations</li>
-        </ul>
-
-        <h2>Conclusion : La Réussite est à Votre Portée</h2>
-        
-        <p>Avec <strong>de la préparation et de la pratique</strong>, la réussite au permis est tout à fait accessible. Ne sous-estimez pas l'importance des conseils de votre moniteur et des heures de conduite.</p>
-        
-        <p>N'oubliez pas que beaucoup de candidats réussissent chaque année. C'est une épreuve difficile, mais pas insurmontable.</p>
-
-        <div class="cta">
-            <p>Prêt à vous lancer dans l'examen du permis de conduire ?</p>
-            <p><a href="/contact/">Contactez l'auto-école MARTI à Bayonne pour vous préparer</a></p>
-        </div>
-
-        <div class="related-articles">
-            <h3>Articles connexes</h3>
-            <a href="/blog/aac-apprentissage-anticipe-conduite.html">→ Apprentissage Anticipé de la Conduite (AAC)</a>
-            <a href="/blog/conduite-supervisee.html">→ Conduite Supervisée : Une Alternative Intéressante</a>
-            <a href="/blog/reussir-examen-permis-conduire.html">→ Conseils pour Réussir l'Examen du Permis</a>
+        <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h3>Les questions de vérification (3 questions)</h3>
+                <p>L'examinateur pose trois questions :</p>
+                <ul>
+                    <li>Une question de <strong>vérification intérieure/extérieure</strong> du véhicule</li>
+                    <li>Une question de <strong>sécurité routière</strong></li>
+                    <li>Une question de <strong>premiers secours</strong></li>
+                </ul>
+            </div>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2024 Auto-École MARTI - 13 rue Marengo, 64100 Bayonne | <a href="mailto:autoecole.marti@gmail.com">autoecole.marti@gmail.com</a> | Tél. 05 59 59 12 60</p>
-    </footer>
+    <div class="callout callout-info">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">
+            <strong>Conseil de nos moniteurs</strong>
+            <p>Pendant la phase de conduite, roulez exactement comme vous l'avez appris. Restez naturel et n'essayez pas de « surjouer » la sécurité.</p>
+        </div>
+    </div>
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": "Comment Réussir Son Permis de Conduire ? Guide Complet",
-        "description": "Guide complet pour réussir son permis de conduire. Déroulé de l'examen, erreurs à éviter, fautes éliminatoires.",
-        "image": "/images/examen-permis-conduire.jpg",
-        "datePublished": "2024-03-08",
-        "author": {
-            "@type": "Organization",
-            "name": "Auto-École MARTI"
-        }
-    }
-    </script>
+    <h2>Les erreurs fréquentes des candidats</h2>
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Auto-École MARTI",
-        "image": "/images/logo.jpg",
-        "description": "Auto-école à Bayonne pour préparer et réussir l'examen du permis de conduire",
+    <h3>Le manque d'observation</h3>
+    <p>L'une des erreurs les plus fréquentes est le manque d'observation de l'environnement. Beaucoup de candidats oublient de :</p>
+    <ul>
+        <li><strong>Vérifier les angles morts</strong> avant un changement de direction</li>
+        <li><strong>Contrôler les rétroviseurs</strong> régulièrement</li>
+        <li><strong>Regarder suffisamment loin</strong> pour anticiper</li>
+    </ul>
+
+    <h3>Une vitesse mal adaptée</h3>
+    <p>Rouler trop vite est dangereux — mais <strong>rouler trop lentement peut aussi poser problème</strong>. Une vitesse trop faible peut gêner la circulation et montrer un manque d'assurance.</p>
+
+    <h3>Le manque d'anticipation</h3>
+    <p>Certains candidats se concentrent uniquement sur l'instant présent. Ils ne voient pas, par exemple, un piéton qui s'approche d'un passage, un feu rouge en amont ou un rond-point en approche. <strong>L'anticipation est une qualité essentielle</strong> pour une conduite sécurisée.</p>
+
+    <h3>La gestion difficile du stress</h3>
+    <p>Le stress peut entraîner des oublis, des gestes brusques ou une perte de concentration. La meilleure solution : conduire exactement comme lors d'une leçon avec votre moniteur.</p>
+
+    <div class="callout callout-success">
+        <div class="callout-icon">✅</div>
+        <div class="callout-body">
+            <strong>À retenir</strong>
+            <p>L'examinateur ne cherche pas la perfection. Il cherche à voir si vous pouvez conduire de manière <strong>sûre et autonome</strong>.</p>
+        </div>
+    </div>
+
+    <h2>Les fautes éliminatoires</h2>
+
+    <p>Certaines erreurs entraînent un <strong>échec immédiat</strong> à l'examen car elles mettent en danger les autres usagers. Connaître ces fautes est essentiel pour les éviter.</p>
+
+    <div class="callout callout-danger">
+        <div class="callout-icon">🚨</div>
+        <div class="callout-body">
+            <strong>Les 4 grandes fautes éliminatoires</strong>
+            <ul style="margin-bottom:0;margin-top:0.5rem">
+                <li><strong>Refus de priorité</strong> (priorité à droite, rond-point, cédez-le-passage)</li>
+                <li><strong>Non-respect d'un feu rouge ou d'un stop</strong></li>
+                <li><strong>Mise en danger d'un piéton ou cycliste</strong></li>
+                <li><strong>Intervention de l'examinateur</strong> pour éviter un danger</li>
+            </ul>
+        </div>
+    </div>
+
+    <p>À un stop, l'examinateur attend un <strong>arrêt complet</strong> (pas juste un ralentissement), un contrôle de la circulation et une reprise sûre. Soyez vigilant à chaque intersection.</p>
+
+    <h2>Les 4 piliers de la réussite</h2>
+
+    <div class="piliers-grid">
+        <div class="pilier-card">
+            <div class="num">01</div>
+            <p>Bien observer son environnement</p>
+            <small>Rétroviseurs, angles morts, loin devant</small>
+        </div>
+        <div class="pilier-card">
+            <div class="num">02</div>
+            <p>Anticiper les situations</p>
+            <small>Voir avant d'agir</small>
+        </div>
+        <div class="pilier-card">
+            <div class="num">03</div>
+            <p>Adapter sa vitesse</p>
+            <small>Toujours appropriée aux conditions</small>
+        </div>
+        <div class="pilier-card">
+            <div class="num">04</div>
+            <p>Rester calme et concentré</p>
+            <small>La confiance vient de la préparation</small>
+        </div>
+    </div>
+
+    <h3>Le jour de l'examen</h3>
+    <ul>
+        <li>Préparez tous vos <strong>documents la veille</strong></li>
+        <li>Dormez bien et mangez normalement</li>
+        <li>Évitez les <strong>révisions intensives</strong> le jour même</li>
+        <li>Écoutez attentivement les consignes de l'examinateur</li>
+        <li>Adoptez une conduite <strong>naturelle et fluide</strong></li>
+    </ul>
+
+    <hr class="section-divider">
+
+    <p>Avec de la préparation et de la pratique, la réussite au permis est tout à fait accessible. Ne sous-estimez pas l'importance des conseils de votre moniteur et des heures de conduite. <strong>Beaucoup de candidats réussissent chaque année</strong> — et vous en ferez partie.</p>
+
+</article>
+
+<!-- ══════════════════════════════════════════════════════════════
+     ARTICLES CONNEXES
+══════════════════════════════════════════════════════════════ -->
+<div class="related-wrap">
+    <div class="related-inner">
+        <h2>Articles connexes</h2>
+        <div class="related-grid">
+            <a href="aac-apprentissage-anticipe-conduite.html" class="related-card">
+                <div class="related-card-icon">🤝</div>
+                <div class="related-card-body">
+                    <small>Conduite accompagnée</small>
+                    <p>L'AAC : conduire dès 15 ans avec la conduite accompagnée</p>
+                </div>
+            </a>
+            <a href="conduite-supervisee.html" class="related-card">
+                <div class="related-card-icon">👥</div>
+                <div class="related-card-body">
+                    <small>Conduite accompagnée</small>
+                    <p>La conduite supervisée : une alternative dès 18 ans</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CTA BANNER
+══════════════════════════════════════════════════════════════ -->
+<div class="cta-banner">
+    <h2>Prêt à passer votre permis ?</h2>
+    <p>Inscrivez-vous dès maintenant ou passez nous voir. Notre équipe vous prépare à réussir du premier coup.</p>
+    <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" class="btn">S'inscrire chez Marti →</a>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════════ -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="logo">MARTI<span>.</span></div>
+                <p>Auto-école de confiance à Bayonne depuis 1962. Formations permis B, conduite accompagnée et boîte automatique.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Formations</h4>
+                <ul>
+                    <li><a href="../formules/permis-b-manuel.html">Permis B</a></li>
+                    <li><a href="../formules/conduite-accompagnee.html">Conduite accompagnée</a></li>
+                    <li><a href="../formules/permis-b-automatique.html">Boîte automatique</a></li>
+                    <li><a href="../index.html#offres">Offres spéciales</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="../index.html">Accueil</a></li>
+                    <li><a href="../index.html#histoire">Notre histoire</a></li>
+                    <li><a href="../index.html#avis">Avis</a></li>
+                    <li><a href="index.html">Blog</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:0559591260">05 59 59 12 60</a></li>
+                    <li><a href="tel:0622008209">06 22 00 82 09</a></li>
+                    <li><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></li>
+                    <li><a href="../index.html#contact">13 rue Marengo, Bayonne</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 Auto-école Marti — Bayonne. Tous droits réservés.</span>
+            <span>SIRET : 382 930 188 00018 · APE : 8500Z</span>
+            <a href="../mentions-legales.html" style="color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.85rem;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Règlement intérieur &amp; mentions légales</a>
+        </div>
+    </div>
+</footer>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Comment réussir son permis de conduire ? Guide complet",
+    "description": "Guide complet pour réussir son permis de conduire. Déroulé de l'examen, erreurs à éviter, fautes éliminatoires, conseils pratiques.",
+    "datePublished": "2026-03-04",
+    "author": { "@type": "Organization", "name": "Auto-École Marti" },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Auto-École Marti",
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "13 rue Marengo",
@@ -329,11 +711,9 @@
             "postalCode": "64100",
             "addressCountry": "FR"
         },
-        "telephone": "05 59 59 12 60",
-        "email": "autoecole.marti@gmail.com",
-        "priceRange": "€",
-        "areaServed": "Bayonne"
+        "telephone": "05 59 59 12 60"
     }
-    </script>
+}
+</script>
 </body>
 </html>
