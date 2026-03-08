@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DEK5H3Z9DR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-DEK5H3Z9DR');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message envoyé — Auto-École Marti | Bayonne</title>
+    <link rel="icon" type="image/png" href="favicon.ico.png">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --noir: #0a0a0a;
+            --blanc: #fafaf8;
+            --creme: #f5f0e8;
+            --basque-rouge: #d63031;
+            --rouge-sombre: #922b21;
+            --basque-vert: #00695c;
+            --or: #d4a853;
+            --gris: #6b7280;
+            --ombre: 0 4px 30px rgba(0,0,0,0.08);
+            --ombre-forte: 0 20px 60px rgba(0,0,0,0.12);
+            --radius: 16px;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html { font-size: 16px; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--blanc);
+            color: var(--noir);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ── Navbar ── */
+        nav {
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 1px 30px rgba(0,0,0,0.06);
+            padding: 0.6rem 2rem;
+        }
+        nav .nav-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        nav .logo {
+            font-family: 'Playfair Display', serif; font-size: 1.5rem;
+            font-weight: 700; color: var(--noir); text-decoration: none; letter-spacing: -0.02em;
+        }
+        nav .logo span { color: var(--basque-rouge); }
+
+        /* ── Page principale ── */
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #fdfcfa 0%, #f0ebe0 50%, #e8dfd0 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        main::before {
+            content: ''; position: absolute; top: -20%; right: -10%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(0,105,92,0.07) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        main::after {
+            content: ''; position: absolute; bottom: -10%; left: -5%;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(214,48,49,0.05) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 3rem 3.5rem;
+            box-shadow: var(--ombre-forte);
+            text-align: center;
+            max-width: 520px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .icon-check {
+            width: 72px; height: 72px;
+            background: rgba(0,105,92,0.1);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1.6rem;
+            font-size: 2rem;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.9rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: var(--noir);
+        }
+
+        .subtitle {
+            color: var(--gris);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Barre de progression */
+        .progress-bar-wrapper {
+            background: #e5e5e5;
+            border-radius: 50px;
+            height: 4px;
+            overflow: hidden;
+            margin-bottom: 0.8rem;
+        }
+        .progress-bar {
+            height: 100%;
+            background: var(--basque-vert);
+            border-radius: 50px;
+            width: 100%;
+            animation: shrink 6s linear forwards;
+        }
+        @keyframes shrink {
+            from { width: 100%; }
+            to   { width: 0%; }
+        }
+
+        .countdown-text {
+            font-size: 0.82rem;
+            color: var(--gris);
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.85rem 2rem;
+            background: var(--basque-rouge);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.92rem;
+            transition: var(--transition);
+        }
+        .btn:hover {
+            background: var(--rouge-sombre);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(214,48,49,0.3);
+        }
+
+        /* ── Footer minimal ── */
+        footer {
+            background: var(--noir);
+            color: rgba(255,255,255,0.4);
+            text-align: center;
+            padding: 1.2rem 2rem;
+            font-size: 0.82rem;
+        }
+
+        @media (max-width: 480px) {
+            .card { padding: 2rem 1.5rem; }
+            h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="/" class="logo">MARTI<span>.</span></a>
+    </div>
+</nav>
+
+<main>
+    <div class="card">
+        <div class="icon-check">✓</div>
+
+        <h1>Message envoyé !</h1>
+        <p class="subtitle">
+            Merci pour votre message. Nous vous répondrons dans les plus brefs délais, généralement sous 24h.
+        </p>
+
+        <div class="progress-bar-wrapper">
+            <div class="progress-bar"></div>
+        </div>
+        <p class="countdown-text" id="countdownText">Retour automatique à l'accueil dans <strong>6</strong> secondes…</p>
+
+        <a href="/" class="btn">← Retour à l'accueil</a>
+    </div>
+</main>
+
+<footer>
+    © 2025 Auto-école Marti — Bayonne · <a href="mentions-legales.html" style="color:rgba(255,255,255,0.4);text-decoration:none;">Mentions légales</a>
+</footer>
+
+<script>
+    let seconds = 6;
+    const countdownEl = document.querySelector('#countdownText strong');
+
+    const interval = setInterval(() => {
+        seconds--;
+        if (countdownEl) countdownEl.textContent = seconds;
+        if (seconds <= 0) {
+            clearInterval(interval);
+            window.location.href = '/';
+        }
+    }, 1000);
+</script>
+
+</body>
+</html>
