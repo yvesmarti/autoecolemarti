@@ -523,6 +523,14 @@
             }
             .avantages-grid { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
             .info-cards { grid-template-columns: 1fr 1fr; }
+            /* Adresse (1) et Téléphone (3) côte à côte en ligne 1 */
+            .info-cards .info-card:nth-child(1) { order: 1; }
+            .info-cards .info-card:nth-child(3) { order: 2; }
+            /* RDV conduite (2) et Email (4) en pleine largeur en dessous */
+            .info-cards .info-card:nth-child(2) { order: 3; grid-column: 1 / -1; }
+            .info-cards .info-card:nth-child(4) { order: 4; grid-column: 1 / -1; }
+            /* Empêche le texte de déborder dans les cartes pleine largeur */
+            .info-card-val a { word-break: break-all; }
             .form-row { grid-template-columns: 1fr; }
             .footer-top { grid-template-columns: 1fr; }
             .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
