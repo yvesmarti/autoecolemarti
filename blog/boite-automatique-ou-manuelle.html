@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boîte automatique ou manuelle : laquelle choisir pour son permis ? — Blog Auto-École Marti | Bayonne</title>
+    <link rel="icon" type="image/png" href="../favicon.ico.png">
+    <meta name="description" content="Boîte automatique ou manuelle : découvrez les différences, les restrictions et comment choisir la formation la plus adaptée à votre projet. Auto-école Marti à Bayonne.">
+    <meta name="keywords" content="boîte automatique, boîte manuelle, permis conduire automatique, permis automatique restrictions, formation passerelle, auto-école Bayonne">
+    <meta property="og:title" content="Boîte automatique ou manuelle : laquelle choisir pour son permis ? — Auto-École Marti">
+    <meta property="og:description" content="Différences, restrictions et conseils pour choisir entre permis boîte automatique et boîte manuelle.">
+    <meta property="og:type" content="article">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* ═══════════════════════════════════════
+           RESET & VARIABLES
+        ═══════════════════════════════════════ */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --noir: #0a0a0a;
+            --blanc: #fafaf8;
+            --creme: #f5f0e8;
+            --rouge: #c0392b;
+            --rouge-doux: #e74c3c;
+            --rouge-sombre: #922b21;
+            --vert: #1a5c38;
+            --vert-clair: #27ae60;
+            --gris: #6b7280;
+            --gris-clair: #e5e5e5;
+            --basque-rouge: #d63031;
+            --basque-vert: #00695c;
+            --or: #d4a853;
+            --ombre: 0 4px 30px rgba(0,0,0,0.08);
+            --ombre-forte: 0 20px 60px rgba(0,0,0,0.12);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--blanc);
+            color: var(--noir);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ═══════════════════════════════════════
+           NAVBAR
+        ═══════════════════════════════════════ */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 1rem 2rem; transition: var(--transition);
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 1px 30px rgba(0,0,0,0.06);
+        }
+        nav .nav-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        nav .logo {
+            font-family: 'Playfair Display', serif; font-size: 1.5rem;
+            font-weight: 700; color: var(--noir); text-decoration: none; letter-spacing: -0.02em;
+        }
+        nav .logo span { color: var(--basque-rouge); }
+        nav .nav-links {
+            display: flex; gap: 2rem; list-style: none; align-items: center;
+        }
+        nav .nav-links a {
+            text-decoration: none; color: var(--noir); font-size: 0.9rem;
+            font-weight: 500; letter-spacing: 0.02em; transition: var(--transition);
+            position: relative;
+        }
+        nav .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 0; height: 2px; background: var(--basque-rouge); transition: var(--transition);
+        }
+        nav .nav-links a:hover::after { width: 100%; }
+        nav .nav-links a.active::after { width: 100%; }
+        nav .nav-cta {
+            background: var(--basque-rouge); color: white !important;
+            padding: 0.6rem 1.4rem; border-radius: 50px;
+            font-weight: 600; font-size: 0.85rem; transition: var(--transition);
+        }
+        nav .nav-cta::after { display: none !important; }
+        nav .nav-cta:hover { background: var(--rouge-sombre); transform: translateY(-1px); }
+
+        /* ═══════════════════════════════════════
+           ARTICLE HERO — couleur verte (conduite)
+        ═══════════════════════════════════════ */
+        .article-hero {
+            min-height: 52vh;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: flex-end;
+            padding: 9rem 2rem 4rem;
+            background: linear-gradient(135deg, #f0f9f5 0%, #d4ede5 50%, #b8ddd2 100%);
+            position: relative; overflow: hidden; text-align: center;
+        }
+        .article-hero::before {
+            content: ''; position: absolute; top: -20%; right: -10%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(0,105,92,0.12) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .article-hero::after {
+            content: ''; position: absolute; bottom: -10%; left: -5%;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(214,48,49,0.06) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .article-hero-inner { position: relative; z-index: 2; max-width: 780px; }
+
+        .article-breadcrumb {
+            display: flex; align-items: center; justify-content: center;
+            gap: 0.5rem; margin-bottom: 1.5rem;
+            font-size: 0.82rem; color: var(--gris);
+        }
+        .article-breadcrumb a {
+            color: var(--gris); text-decoration: none; transition: var(--transition);
+        }
+        .article-breadcrumb a:hover { color: var(--basque-vert); }
+        .article-breadcrumb span { opacity: 0.5; }
+
+        .article-hero-meta {
+            display: flex; align-items: center; justify-content: center;
+            gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;
+        }
+        .article-cat-pill {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: rgba(0,105,92,0.15); color: var(--basque-vert);
+            padding: 0.4rem 1rem; border-radius: 50px;
+            font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+        }
+        .article-reading-pill {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: rgba(0,0,0,0.06); color: var(--gris);
+            padding: 0.4rem 1rem; border-radius: 50px;
+            font-size: 0.8rem; font-weight: 500;
+        }
+
+        .article-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 700;
+            line-height: 1.15; letter-spacing: -0.03em;
+            margin-bottom: 1.2rem; color: var(--noir);
+        }
+        .article-hero h1 em { font-style: italic; color: var(--basque-vert); }
+
+        .article-date-pub { font-size: 0.82rem; color: var(--gris); }
+
+        /* ═══════════════════════════════════════
+           ARTICLE LAYOUT
+        ═══════════════════════════════════════ */
+        .article-wrap {
+            max-width: 780px; margin: 0 auto;
+            padding: 4rem 2rem 5rem;
+        }
+
+        .article-intro {
+            background: rgba(0,105,92,0.06);
+            border-left: 4px solid var(--basque-vert);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            padding: 1.8rem 2rem;
+            margin-bottom: 3rem;
+            font-size: 1.05rem;
+            line-height: 1.75;
+        }
+        .article-intro strong { color: var(--basque-vert); font-weight: 600; }
+
+        .article-wrap h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+            font-weight: 700; letter-spacing: -0.02em;
+            color: var(--noir); margin: 3rem 0 1rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 2px solid var(--gris-clair);
+        }
+        .article-wrap h3 {
+            font-size: 1.05rem; font-weight: 700;
+            color: var(--basque-vert); margin: 2rem 0 0.8rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .article-wrap h3::before {
+            content: ''; display: inline-block;
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--basque-vert); flex-shrink: 0;
+        }
+
+        .article-wrap p { margin-bottom: 1.2rem; font-size: 1rem; color: var(--noir); }
+        .article-wrap ul, .article-wrap ol {
+            margin: 0 0 1.5rem 0; padding: 0;
+            list-style: none;
+        }
+        .article-wrap ul li, .article-wrap ol li {
+            padding: 0.45rem 0 0.45rem 1.6rem;
+            position: relative; font-size: 0.97rem;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+        }
+        .article-wrap ul li:last-child, .article-wrap ol li:last-child { border-bottom: none; }
+        .article-wrap ul li::before {
+            content: '→'; position: absolute; left: 0;
+            color: var(--basque-vert); font-weight: 700; font-size: 0.9rem;
+        }
+        .article-wrap ul li strong { color: var(--noir); font-weight: 600; }
+
+        /* Callout boxes */
+        .callout {
+            display: flex; gap: 1rem; align-items: flex-start;
+            padding: 1.4rem 1.6rem; border-radius: var(--radius-sm);
+            margin: 2rem 0; border-left: 4px solid;
+        }
+        .callout-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 0.1rem; }
+        .callout-body { flex: 1; }
+        .callout-body p { margin-bottom: 0; }
+        .callout-body ul { margin-bottom: 0; }
+        .callout-body strong { display: block; margin-bottom: 0.4rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+        .callout-info { background: rgba(0,105,92,0.06); border-color: var(--basque-vert); }
+        .callout-info .callout-body strong { color: var(--basque-vert); }
+        .callout-info .callout-body ul li::before { color: var(--basque-vert); }
+        .callout-warning { background: rgba(212,168,83,0.1); border-color: var(--or); }
+        .callout-warning .callout-body strong { color: #8a6a1a; }
+        .callout-success { background: rgba(39,174,96,0.08); border-color: var(--vert-clair); }
+        .callout-success .callout-body strong { color: var(--vert); }
+        .callout-danger { background: rgba(214,48,49,0.06); border-color: var(--basque-rouge); }
+        .callout-danger .callout-body strong { color: var(--basque-rouge); }
+
+        /* Grille de comparaison */
+        .comparaison-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 1.2rem; margin: 1.5rem 0 2rem;
+        }
+        .comparaison-card {
+            background: white; border: 1px solid var(--gris-clair);
+            border-radius: var(--radius-sm); padding: 1.4rem;
+        }
+        .comparaison-card.auto { border-top: 3px solid var(--basque-vert); }
+        .comparaison-card.manuelle { border-top: 3px solid var(--basque-rouge); }
+        .comparaison-card h4 {
+            font-size: 1rem; font-weight: 700; margin-bottom: 1rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .comparaison-card.auto h4 { color: var(--basque-vert); }
+        .comparaison-card.manuelle h4 { color: var(--basque-rouge); }
+        .comparaison-card ul { margin-bottom: 0; }
+        .comparaison-card ul li::before { color: inherit; }
+        .comparaison-card.auto ul li::before { color: var(--basque-vert); }
+        .comparaison-card.manuelle ul li::before { color: var(--basque-rouge); }
+
+        /* Heures minimum */
+        .heures-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 1rem; margin: 1.5rem 0 2rem;
+        }
+        .heure-card {
+            background: white; border: 1px solid var(--gris-clair);
+            border-radius: var(--radius-sm); padding: 1.4rem; text-align: center;
+        }
+        .heure-card .nombre {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem; font-weight: 700; line-height: 1;
+            margin-bottom: 0.3rem;
+        }
+        .heure-card.auto .nombre { color: var(--basque-vert); }
+        .heure-card.manuelle .nombre { color: var(--basque-rouge); }
+        .heure-card p { font-size: 0.88rem; color: var(--gris); margin: 0; font-weight: 500; }
+        .heure-card small { font-size: 0.75rem; color: var(--gris); opacity: 0.7; }
+
+        .section-divider {
+            border: none; border-top: 1px solid var(--gris-clair);
+            margin: 3rem 0;
+        }
+
+        /* ═══════════════════════════════════════
+           ARTICLES CONNEXES
+        ═══════════════════════════════════════ */
+        .related-wrap {
+            background: var(--creme); padding: 4rem 2rem;
+        }
+        .related-inner { max-width: 780px; margin: 0 auto; }
+        .related-inner h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem; font-weight: 700;
+            margin-bottom: 1.5rem; letter-spacing: -0.02em;
+        }
+        .related-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem;
+        }
+        .related-card {
+            background: white; border-radius: var(--radius-sm);
+            padding: 1.4rem; border: 1px solid #eee;
+            text-decoration: none; color: var(--noir);
+            display: flex; align-items: center; gap: 1rem;
+            transition: var(--transition);
+        }
+        .related-card:hover {
+            border-color: var(--basque-vert);
+            box-shadow: var(--ombre);
+            transform: translateY(-2px);
+        }
+        .related-card-icon { font-size: 1.8rem; flex-shrink: 0; }
+        .related-card-body small {
+            font-size: 0.72rem; color: var(--basque-vert);
+            font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+        }
+        .related-card-body p {
+            font-size: 0.9rem; font-weight: 600; margin: 0.2rem 0 0;
+            line-height: 1.35; color: var(--noir);
+        }
+
+        .back-to-blog { max-width: 780px; margin: 0 auto; padding: 2rem 2rem 0; }
+        .back-link {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            font-size: 0.88rem; font-weight: 600; color: var(--gris);
+            text-decoration: none; transition: var(--transition);
+        }
+        .back-link:hover { color: var(--basque-rouge); gap: 0.8rem; }
+
+        /* ═══════════════════════════════════════
+           CTA BANNER
+        ═══════════════════════════════════════ */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--basque-rouge) 0%, var(--rouge-sombre) 100%);
+            color: white; text-align: center; padding: 5rem 2rem;
+            position: relative; overflow: hidden;
+        }
+        .cta-banner::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .cta-banner h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700;
+            margin-bottom: 1rem; position: relative;
+        }
+        .cta-banner p {
+            font-size: 1.05rem; opacity: 0.85; margin-bottom: 2rem;
+            max-width: 480px; margin-left: auto; margin-right: auto; position: relative;
+        }
+        .cta-banner .btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 1rem 2.2rem; border-radius: 50px; font-size: 0.95rem;
+            font-weight: 700; text-decoration: none; transition: var(--transition);
+            background: white; color: var(--basque-rouge); position: relative;
+        }
+        .cta-banner .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+
+        /* ═══════════════════════════════════════
+           FOOTER
+        ═══════════════════════════════════════ */
+        footer { background: var(--noir); color: white; padding: 4rem 2rem 2rem; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+        .footer-brand .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: white; margin-bottom: 1rem; display: block; }
+        .footer-brand .logo span { color: var(--basque-rouge); }
+        .footer-brand p { color: rgba(255,255,255,0.5); font-size: 0.88rem; line-height: 1.7; }
+        .footer-col h4 { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.2rem; color: rgba(255,255,255,0.4); }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.6rem; }
+        .footer-col ul a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; transition: var(--transition); }
+        .footer-col ul a:hover { color: white; }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 0.82rem; color: rgba(255,255,255,0.35);
+        }
+
+        /* ═══════════════════════════════════════
+           RESPONSIVE
+        ═══════════════════════════════════════ */
+        @media (max-width: 768px) {
+            nav { padding: 0.6rem 1rem; }
+            .nav-inner { flex-direction: column; align-items: stretch; gap: 0; }
+            nav .logo { white-space: nowrap; font-size: 1.2rem; padding-bottom: 0.35rem; }
+            .nav-links {
+                display: flex !important; flex-direction: row;
+                gap: 1rem; overflow-x: auto; flex-wrap: nowrap;
+                padding-bottom: 0; width: 100%;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none; -ms-overflow-style: none;
+            }
+            .nav-links::-webkit-scrollbar { display: none; }
+            .nav-links li { flex-shrink: 0; }
+            .nav-links a { font-size: 0.82rem; }
+            .article-hero { padding: 8rem 1.2rem 3rem; }
+            .article-wrap { padding: 3rem 1.2rem 4rem; }
+            .comparaison-grid { grid-template-columns: 1fr; }
+            .heures-grid { grid-template-columns: 1fr; }
+            .related-grid { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+            .back-to-blog { padding: 2rem 1.2rem 0; }
+            .related-wrap { padding: 3rem 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════════════════════════════ -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../index.html" class="logo">AUTO-ÉCOLE MARTI<span>.</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="../index.html#formations">Formations</a></li>
+            <li><a href="../index.html#histoire">Notre histoire</a></li>
+            <li><a href="../index.html#avis">Avis</a></li>
+            <li><a href="index.html" class="active">Blog</a></li>
+            <li><a href="../index.html#contact">Contact</a></li>
+            <li><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" class="nav-cta">S'inscrire</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════════
+     ARTICLE HERO
+══════════════════════════════════════════════════════════════ -->
+<div class="article-hero">
+    <div class="article-hero-inner">
+        <nav class="article-breadcrumb" aria-label="Fil d'ariane">
+            <a href="../index.html">Accueil</a>
+            <span>›</span>
+            <a href="index.html">Blog</a>
+            <span>›</span>
+            <span>Boîte automatique ou manuelle</span>
+        </nav>
+        <div class="article-hero-meta">
+            <span class="article-cat-pill">🔄 Conduite</span>
+            <span class="article-reading-pill">⏱ 5 min de lecture</span>
+        </div>
+        <h1>Boîte automatique ou manuelle :<br><em>laquelle choisir</em><br>pour son permis ?</h1>
+        <p class="article-date-pub">Publié le 8 mars 2026 · Par l'équipe Auto-École Marti</p>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CONTENU DE L'ARTICLE
+══════════════════════════════════════════════════════════════ -->
+<div class="back-to-blog">
+    <a href="index.html" class="back-link">← Retour au blog</a>
+</div>
+
+<article class="article-wrap">
+
+    <div class="article-intro">
+        <p>Lorsqu'on s'inscrit au permis de conduire, une question revient de plus en plus souvent : faut-il passer son permis sur une voiture à <strong>boîte automatique</strong> ou sur une voiture à <strong>boîte manuelle</strong> ?</p>
+        <p>Depuis quelques années, le permis sur boîte automatique connaît un véritable essor en France. Mais quelles sont réellement les différences entre ces deux types de permis ? Existe-t-il des restrictions ? Voici un tour d'horizon complet pour choisir la solution la plus adaptée à votre situation.</p>
+    </div>
+
+    <h2>Quelle différence entre boîte manuelle et boîte automatique ?</h2>
+
+    <p>La principale différence concerne la manière de changer les vitesses pendant la conduite.</p>
+
+    <div class="comparaison-grid">
+        <div class="comparaison-card manuelle">
+            <h4>🕹️ Boîte manuelle</h4>
+            <ul>
+                <li><strong>Pédale d'embrayage</strong> à gérer</li>
+                <li><strong>Levier de vitesses</strong> à manipuler</li>
+                <li><strong>Passage des rapports</strong> manuel</li>
+                <li>Demande un peu de coordination au début</li>
+            </ul>
+        </div>
+        <div class="comparaison-card auto">
+            <h4>⚙️ Boîte automatique</h4>
+            <ul>
+                <li>Passage des vitesses <strong>géré par le véhicule</strong></li>
+                <li>Seulement <strong>accélérateur et frein</strong></li>
+                <li>Conduite plus <strong>simple et fluide</strong></li>
+                <li>Idéal en ville et en embouteillages</li>
+            </ul>
+        </div>
+    </div>
+
+    <p>Aujourd'hui, de nombreuses auto-écoles proposent les deux formations. L'auto-école MARTI propose ainsi la formation au permis de conduire en boîte manuelle mais également en boîte automatique, afin de s'adapter au profil et aux besoins de chaque élève.</p>
+
+    <h2>Le permis boîte automatique : une solution de plus en plus choisie</h2>
+
+    <p>Le permis sur boîte automatique attire de plus en plus de candidats. Plusieurs raisons expliquent cet engouement.</p>
+
+    <h3>Une conduite plus simple à apprendre</h3>
+    <p>Sans embrayage ni passage de vitesses à gérer, l'élève peut se concentrer davantage sur les aspects essentiels de la conduite :</p>
+    <ul>
+        <li>L'<strong>observation de la route</strong></li>
+        <li>La <strong>gestion des priorités</strong></li>
+        <li>L'<strong>anticipation des situations</strong> de circulation</li>
+    </ul>
+    <p>Cela permet souvent de progresser plus rapidement lors des premières heures de conduite.</p>
+
+    <h3>Une formation souvent plus courte</h3>
+    <p>La réglementation prévoit un minimum d'heures de conduite différent selon le type de boîte :</p>
+
+    <div class="heures-grid">
+        <div class="heure-card manuelle">
+            <div class="nombre">20h</div>
+            <p>minimum requises</p>
+            <small>Boîte manuelle</small>
+        </div>
+        <div class="heure-card auto">
+            <div class="nombre">13h</div>
+            <p>minimum requises</p>
+            <small>Boîte automatique</small>
+        </div>
+    </div>
+
+    <p>Cela peut permettre de réduire le nombre d'heures nécessaires et donc parfois le coût global de la formation.</p>
+
+    <h3>Une solution adaptée à certains profils</h3>
+    <p>Le permis automatique peut être particulièrement intéressant pour :</p>
+    <ul>
+        <li>Les personnes <strong>stressées par la conduite</strong></li>
+        <li>Les candidats qui ont des difficultés avec <strong>l'embrayage</strong></li>
+        <li>Les personnes souhaitant obtenir leur permis <strong>rapidement</strong></li>
+    </ul>
+
+    <div class="callout callout-info">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">
+            <strong>Conseil de nos moniteurs</strong>
+            <p>Commencer directement en boîte automatique peut permettre de gagner en confiance au volant, notamment pour les candidats qui appréhendent la gestion de l'embrayage.</p>
+        </div>
+    </div>
+
+    <h2>Quelles sont les restrictions du permis boîte automatique ?</h2>
+
+    <p>Le permis passé sur boîte automatique comporte une restriction importante : il <strong>autorise uniquement la conduite de véhicules équipés d'une boîte automatique</strong>.</p>
+
+    <p>Concrètement, cela signifie qu'un conducteur titulaire de ce permis ne peut pas conduire immédiatement une voiture à boîte manuelle. Cependant, cette limitation peut être levée assez facilement.</p>
+
+    <div class="callout callout-warning">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body">
+            <strong>À retenir</strong>
+            <p>Avec un permis boîte automatique, vous ne pouvez pas conduire une voiture à boîte manuelle — ni en louer une lors d'un voyage, par exemple.</p>
+        </div>
+    </div>
+
+    <h2>Comment passer de la boîte automatique à la boîte manuelle ?</h2>
+
+    <p>Il est tout à fait possible de transformer son permis automatique en permis classique sans repasser l'examen du permis de conduire.</p>
+
+    <h3>La formation passerelle</h3>
+    <p>Cette formation dure généralement <strong>7 heures de conduite</strong> sur une voiture à boîte manuelle. Elle permet d'apprendre :</p>
+    <ul>
+        <li>L'utilisation de <strong>l'embrayage</strong></li>
+        <li>Le <strong>passage des vitesses</strong></li>
+        <li>La <strong>coordination des mouvements</strong></li>
+    </ul>
+
+    <p>Une fois cette formation terminée, la restriction liée à la boîte automatique est supprimée. Certaines auto-écoles, comme l'auto-école MARTI, proposent cette formation afin de permettre aux conducteurs titulaires du permis automatique d'élargir leurs possibilités de conduite.</p>
+
+    <h2>Les avantages du permis sur boîte manuelle</h2>
+
+    <p>Malgré l'essor de la boîte automatique, le permis sur boîte manuelle reste aujourd'hui très répandu.</p>
+
+    <h3>Une plus grande liberté de conduite</h3>
+    <p>Le principal avantage est simple : le permis sur boîte manuelle permet de conduire <strong>tous les types de véhicules</strong> : voitures manuelles, voitures automatiques et véhicules de location.</p>
+
+    <h3>Une formation complète</h3>
+    <p>Apprendre à conduire sur une boîte manuelle permet également de mieux comprendre le fonctionnement d'un véhicule. Cela peut aider à mieux anticiper certaines situations et à développer de bons réflexes au volant.</p>
+
+    <h2>L'essor des voitures automatiques</h2>
+
+    <p>Le marché automobile évolue rapidement. Aujourd'hui, de plus en plus de véhicules sont équipés de boîtes automatiques, notamment :</p>
+    <ul>
+        <li>Les <strong>voitures hybrides</strong></li>
+        <li>Les <strong>voitures électriques</strong></li>
+        <li>De nombreux <strong>modèles récents</strong></li>
+    </ul>
+
+    <p>Dans certaines villes, la boîte automatique devient même majoritaire. Cette évolution explique pourquoi de plus en plus de candidats choisissent aujourd'hui de passer leur permis dans cette configuration.</p>
+
+    <h2>Comment choisir entre boîte automatique et boîte manuelle ?</h2>
+
+    <p>Le choix dépend avant tout de votre situation personnelle et de votre projet de conduite.</p>
+
+    <div class="comparaison-grid">
+        <div class="comparaison-card auto">
+            <h4>⚙️ Choisir la boîte automatique si…</h4>
+            <ul>
+                <li>Vous souhaitez un <strong>apprentissage plus simple</strong></li>
+                <li>Vous êtes stressé par la gestion de l'embrayage</li>
+                <li>Vous voulez obtenir votre permis <strong>rapidement</strong></li>
+                <li>Vous conduirez principalement des <strong>véhicules récents</strong></li>
+            </ul>
+        </div>
+        <div class="comparaison-card manuelle">
+            <h4>🕹️ Choisir la boîte manuelle si…</h4>
+            <ul>
+                <li>Vous voulez <strong>conduire n'importe quelle voiture</strong></li>
+                <li>Vous pensez louer ou emprunter des véhicules</li>
+                <li>Vous souhaitez une <strong>formation complète</strong> dès le départ</li>
+            </ul>
+        </div>
+    </div>
+
+    <p>Dans tous les cas, il est important de choisir une formation adaptée à votre profil. Les auto-écoles qui proposent à la fois la formation en boîte manuelle et en boîte automatique, comme l'auto-école MARTI, peuvent vous aider à choisir la solution la plus adaptée à votre situation.</p>
+
+    <hr class="section-divider">
+
+    <div class="callout callout-success">
+        <div class="callout-icon">✅</div>
+        <div class="callout-body">
+            <strong>Conclusion</strong>
+            <p>La boîte automatique offre une conduite plus simple et un apprentissage souvent plus rapide, tandis que la boîte manuelle permet une plus grande polyvalence dans le choix des véhicules. L'essentiel reste d'apprendre à conduire de manière sûre, responsable et autonome. N'hésitez pas à vous renseigner auprès de votre auto-école pour obtenir des conseils personnalisés.</p>
+        </div>
+    </div>
+
+</article>
+
+<!-- ══════════════════════════════════════════════════════════════
+     ARTICLES CONNEXES
+══════════════════════════════════════════════════════════════ -->
+<div class="related-wrap">
+    <div class="related-inner">
+        <h2>Articles connexes</h2>
+        <div class="related-grid">
+            <a href="comment-reussir-son-permis-conduire.html" class="related-card">
+                <div class="related-card-icon">✅</div>
+                <div class="related-card-body">
+                    <small>Conseils pratiques</small>
+                    <p>Réussir son permis B : le guide complet</p>
+                </div>
+            </a>
+            <a href="aac-apprentissage-anticipe-conduite.html" class="related-card">
+                <div class="related-card-icon">🤝</div>
+                <div class="related-card-body">
+                    <small>Conduite accompagnée</small>
+                    <p>L'AAC : conduire dès 15 ans avec la conduite accompagnée</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CTA BANNER
+══════════════════════════════════════════════════════════════ -->
+<div class="cta-banner">
+    <h2>Boîte auto ou manuelle ? On vous conseille.</h2>
+    <p>Venez en discuter avec notre équipe. Nous vous aidons à choisir la formation la plus adaptée à votre profil et votre projet.</p>
+    <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" class="btn">S'inscrire chez Marti →</a>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════════ -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="logo">MARTI<span>.</span></div>
+                <p>Auto-école de confiance à Bayonne depuis 1962. Formations permis B, conduite accompagnée et boîte automatique.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Formations</h4>
+                <ul>
+                    <li><a href="../formules/permis-b-manuel.html">Permis B</a></li>
+                    <li><a href="../formules/conduite-accompagnee.html">Conduite accompagnée</a></li>
+                    <li><a href="../formules/permis-b-automatique.html">Boîte automatique</a></li>
+                    <li><a href="../index.html#offres">Offres spéciales</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="../index.html">Accueil</a></li>
+                    <li><a href="../index.html#histoire">Notre histoire</a></li>
+                    <li><a href="../index.html#avis">Avis</a></li>
+                    <li><a href="index.html">Blog</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:0559591260">05 59 59 12 60</a></li>
+                    <li><a href="tel:0622008209">06 22 00 82 09</a></li>
+                    <li><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></li>
+                    <li><a href="../index.html#contact">13 rue Marengo, Bayonne</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 Auto-école Marti — Bayonne. Tous droits réservés.</span>
+            <span>SIRET : 382 930 188 00018 · APE : 8500Z</span>
+            <a href="../mentions-legales.html" style="color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.85rem;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Règlement intérieur &amp; mentions légales</a>
+        </div>
+    </div>
+</footer>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Boîte automatique ou manuelle : laquelle choisir pour son permis de conduire ?",
+    "description": "Différences, restrictions et conseils pour choisir entre permis boîte automatique et boîte manuelle. Auto-école Marti à Bayonne.",
+    "datePublished": "2026-03-08",
+    "author": { "@type": "Organization", "name": "Auto-École Marti" },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Auto-École Marti",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "13 rue Marengo",
+            "addressLocality": "Bayonne",
+            "postalCode": "64100",
+            "addressCountry": "FR"
+        },
+        "telephone": "05 59 59 12 60"
+    }
+}
+</script>
+</body>
+</html>
