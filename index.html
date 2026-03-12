@@ -294,6 +294,101 @@
         .tarif-heure strong { color: var(--basque-rouge); font-size: 1.2rem; }
 
         /* ═══════════════════════════════════════
+           PRÉPARER SON DOSSIER
+        ═══════════════════════════════════════ */
+        .dossier-trigger-wrap {
+            text-align: center; margin-top: 2rem;
+        }
+        .dossier-trigger-btn {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            padding: 0.85rem 1.8rem; border-radius: 50px;
+            background: transparent; border: 2px solid var(--basque-vert);
+            color: var(--basque-vert); font-family: inherit; font-size: 0.95rem;
+            font-weight: 600; cursor: pointer; transition: var(--transition);
+            text-decoration: none;
+        }
+        .dossier-trigger-btn:hover {
+            background: var(--basque-vert); color: #fff;
+        }
+        .dossier-trigger-btn svg { flex-shrink: 0; }
+
+        /* Lightbox overlay */
+        .dossier-overlay {
+            display: none; position: fixed; inset: 0; z-index: 2000;
+            background: rgba(10,10,10,0.6); backdrop-filter: blur(4px);
+            align-items: center; justify-content: center; padding: 1.5rem;
+        }
+        .dossier-overlay.open { display: flex; }
+        .dossier-modal {
+            background: var(--blanc); border-radius: var(--radius);
+            max-width: 860px; width: 100%; max-height: 90vh; overflow-y: auto;
+            box-shadow: var(--ombre-forte); position: relative;
+            animation: modalIn 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
+        }
+        @keyframes modalIn {
+            from { opacity: 0; transform: translateY(20px) scale(0.97); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .dossier-modal-header {
+            padding: 2rem 2rem 1rem;
+            border-bottom: 1px solid var(--gris-clair);
+        }
+        .dossier-modal-tag {
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--basque-vert); margin-bottom: 0.4rem;
+        }
+        .dossier-modal-header h2 {
+            font-family: 'Playfair Display', serif; font-size: 2rem;
+            font-weight: 700; letter-spacing: -0.02em; line-height: 1.15;
+            margin: 0 0 0.6rem;
+        }
+        .dossier-modal-header h2 em {
+            font-style: italic; color: var(--basque-vert);
+        }
+        .dossier-modal-header p {
+            color: var(--gris); font-size: 0.95rem; margin: 0;
+        }
+        .dossier-modal-close {
+            position: absolute; top: 1.2rem; right: 1.2rem;
+            background: var(--creme); border: none; border-radius: 50%;
+            width: 36px; height: 36px; cursor: pointer; font-size: 1.1rem;
+            display: flex; align-items: center; justify-content: center;
+            transition: var(--transition); color: var(--noir);
+        }
+        .dossier-modal-close:hover { background: var(--gris-clair); }
+        .dossier-modal-body {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+            padding: 1.5rem 2rem 2rem;
+        }
+        @media (max-width: 600px) {
+            .dossier-modal-body { grid-template-columns: 1fr; }
+            .dossier-modal-header h2 { font-size: 1.5rem; }
+            .dossier-modal-header, .dossier-modal-body { padding-left: 1.2rem; padding-right: 1.2rem; }
+        }
+        .dossier-card {
+            background: var(--creme); border-radius: var(--radius);
+            padding: 1.5rem; border: 1px solid rgba(0,0,0,0.05);
+        }
+        .dossier-card-title {
+            font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--basque-vert); margin-bottom: 1rem;
+        }
+        .dossier-list {
+            list-style: none; padding: 0; margin: 0;
+            display: flex; flex-direction: column; gap: 0;
+        }
+        .dossier-list li {
+            display: flex; align-items: flex-start; gap: 0.75rem;
+            padding: 0.7rem 0; border-bottom: 1px solid rgba(0,0,0,0.07);
+            font-size: 0.9rem; color: var(--noir); line-height: 1.4;
+        }
+        .dossier-list li:last-child { border-bottom: none; }
+        .dossier-list li::before {
+            content: '—'; color: var(--basque-vert); font-weight: 700;
+            flex-shrink: 0; margin-top: 0.05em;
+        }
+
+        /* ═══════════════════════════════════════
            AVANTAGES
         ═══════════════════════════════════════ */
         .avantages-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
@@ -731,8 +826,50 @@
             Heure de conduite supplémentaire : <strong>46€ TTC</strong> (boîte manuelle) · <strong>48€ TTC</strong> (boîte automatique)
         </div>
         <p class="tarif-note">* Tarifs TTC à compter du 09/03/2026. Cliquez sur « En savoir plus » pour accéder à la page détaillée de chaque formule.</p>
+
+        <div class="dossier-trigger-wrap fade-in">
+            <button class="dossier-trigger-btn" onclick="openDossier()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                Préparer son dossier — consulter les pièces à fournir
+            </button>
+        </div>
     </div>
 </section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     LIGHTBOX — PIÈCES À FOURNIR
+══════════════════════════════════════════════════════════════ -->
+<div class="dossier-overlay" id="dossierOverlay" onclick="closeDossierOutside(event)">
+    <div class="dossier-modal" role="dialog" aria-modal="true" aria-labelledby="dossierTitle">
+        <button class="dossier-modal-close" onclick="closeDossier()" aria-label="Fermer">✕</button>
+        <div class="dossier-modal-header">
+            <div class="dossier-modal-tag">Constitution du dossier</div>
+            <h2 id="dossierTitle">Pièces <em>à fournir</em></h2>
+            <p>Réunissez ces documents avant votre inscription pour accélérer l'ouverture de votre dossier.</p>
+        </div>
+        <div class="dossier-modal-body">
+            <div class="dossier-card">
+                <div class="dossier-card-title">Documents obligatoires</div>
+                <ul class="dossier-list">
+                    <li>1 photo numérique d'identité</li>
+                    <li>Photocopie recto/verso de la pièce d'identité</li>
+                    <li>Attestation JDC (candidats français de 17 à 25 ans)</li>
+                    <li>Justificatif de domicile de moins de 6 mois</li>
+                    <li>Permis de conduire actuel recto/verso (A1, AM…)</li>
+                    <li>ASSR2 (si pas de permis) pour les moins de 21 ans</li>
+                </ul>
+            </div>
+            <div class="dossier-card">
+                <div class="dossier-card-title">Si mineur ou hébergé chez un tiers</div>
+                <ul class="dossier-list">
+                    <li>Attestation d'hébergement sur l'honneur</li>
+                    <li>Pièce d'identité de l'hébergeant</li>
+                    <li>Justificatif de domicile de l'hébergeant (moins de 6 mois)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- ══════════════════════════════════════════════════════════════
      AVANTAGES
@@ -1103,6 +1240,22 @@
         link.addEventListener('click', () => {
             document.getElementById('navLinks').classList.remove('active');
         });
+    });
+
+    // ── Lightbox pièces à fournir ──
+    function openDossier() {
+        document.getElementById('dossierOverlay').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeDossier() {
+        document.getElementById('dossierOverlay').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+    function closeDossierOutside(e) {
+        if (e.target === document.getElementById('dossierOverlay')) closeDossier();
+    }
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeDossier();
     });
 
     // ── Scroll reveal animations ──
