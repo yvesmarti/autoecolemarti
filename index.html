@@ -245,6 +245,7 @@
             background: white; border-radius: var(--radius); padding: 2.5rem 2rem;
             border: 1px solid #eee; transition: var(--transition);
             position: relative; overflow: hidden;
+            display: flex; flex-direction: column;
         }
         .formation-card:hover { transform: translateY(-8px); box-shadow: var(--ombre-forte); border-color: transparent; }
         .formation-card.featured { background: #1e2a4a; color: white; border-color: transparent; }
@@ -282,6 +283,7 @@
             font-weight: 600; font-size: 0.9rem; text-decoration: none;
             transition: var(--transition); border: 2px solid #eee; color: var(--noir); background: transparent;
             cursor: pointer; width: 100%; font-family: inherit;
+            margin-top: auto;
         }
         .formation-cta:hover { border-color: var(--basque-rouge); color: var(--basque-rouge); }
         .formation-card.featured .formation-cta { background: var(--or); color: var(--noir); border-color: var(--or); }
