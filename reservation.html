@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservation de Leçons - Auto-École Marti</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #3b82f6;
+            --secondary: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-600: #4b5563;
+            --gray-800: #1f2937;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.3;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        .tabs {
+            display: flex;
+            background: var(--gray-100);
+            border-bottom: 2px solid var(--gray-200);
+        }
+
+        .tab {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--gray-600);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab:hover {
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .tab.active {
+            color: var(--primary);
+            background: white;
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .content {
+            padding: 30px;
+            min-height: 600px;
+        }
+
+        .view {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Calendrier */
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .week-nav {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--gray-200);
+            color: var(--gray-800);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gray-600);
+            color: white;
+        }
+
+        .moniteur-selector {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .moniteur-card {
+            padding: 15px 25px;
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .moniteur-card:hover {
+            border-color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .moniteur-card.selected {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: 80px repeat(7, 1fr);
+            gap: 1px;
+            background: var(--gray-200);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .time-slot-header {
+            background: var(--gray-100);
+            padding: 15px 5px;
+            font-weight: 600;
+            text-align: center;
+            font-size: 0.85em;
+            color: var(--gray-600);
+        }
+
+        .day-header {
+            background: var(--primary);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .day-header .day-name {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .day-header .day-number {
+            font-size: 1.3em;
+            margin-top: 5px;
+        }
+
+        .time-label {
+            background: var(--gray-100);
+            padding: 10px;
+            text-align: center;
+            font-size: 0.85em;
+            color: var(--gray-600);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slot {
+            background: white;
+            padding: 10px;
+            min-height: 60px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slot:hover:not(.booked):not(.pending) {
+            background: #eff6ff;
+            transform: scale(1.05);
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .slot.available {
+            background: #d1fae5;
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .slot.booked {
+            background: #fee2e2;
+            color: var(--danger);
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .slot.pending {
+            background: #fef3c7;
+            color: #d97706;
+            cursor: wait;
+        }
+
+        .slot.selected {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
+            z-index: 20;
+            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.4);
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            transform: scale(0.9);
+            animation: modalPop 0.3s forwards;
+        }
+
+        @keyframes modalPop {
+            to { transform: scale(1); }
+        }
+
+        .modal h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--gray-200);
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-light);
+        }
+
+        .selected-slots {
+            background: #eff6ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .selected-slot-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.9em;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Interface Moniteur */
+        .moniteur-panel {
+            background: var(--gray-100);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .availability-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .day-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .day-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .time-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            margin: 5px 0;
+            background: var(--gray-100);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .time-toggle:hover {
+            background: #dbeafe;
+        }
+
+        .time-toggle.active {
+            background: var(--success);
+            color: white;
+        }
+
+        .toggle-switch {
+            width: 50px;
+            height: 26px;
+            background: var(--gray-300);
+            border-radius: 13px;
+            position: relative;
+            transition: background 0.3s;
+        }
+
+        .time-toggle.active .toggle-switch {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .time-toggle.active .toggle-switch::after {
+            transform: translateX(24px);
+        }
+
+        .requests-list {
+            margin-top: 30px;
+        }
+
+        .request-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--secondary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .request-info h4 {
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .request-info p {
+            color: var(--gray-600);
+            font-size: 0.9em;
+        }
+
+        .request-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid var(--primary);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 10px 0;
+        }
+
+        .stat-label {
+            color: var(--gray-600);
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .calendar-grid {
+                grid-template-columns: 60px repeat(7, 1fr);
+                font-size: 0.8em;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--gray-800);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: none;
+            align-items: center;
+            gap: 10px;
+            z-index: 2000;
+            animation: slideIn 0.3s;
+        }
+
+        .toast.show {
+            display: flex;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(400px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .toast.success { background: var(--success); }
+        .toast.error { background: var(--danger); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>🚗 Auto-École Marti</h1>
+        <p>Réservation de leçons de conduite - Espace Clients & Moniteurs</p>
+    </div>
+
+    <div class="tabs">
+        <div class="tab active" onclick="switchTab('client')">
+            <span>📅</span> Réservation Client
+        </div>
+        <div class="tab" onclick="switchTab('moniteur')">
+            <span>👨‍🏫</span> Espace Moniteur
+        </div>
+    </div>
+
+    <!-- Vue Client -->
+    <div id="client-view" class="view active">
+        <div class="content">
+            <h2 style="margin-bottom: 20px; color: var(--primary);">Réserver une leçon de conduite</h2>
+            
+            <div class="moniteur-selector" id="moniteur-selector">
+                <div class="moniteur-card selected" onclick="selectMoniteur(1, this)">
+                    <strong>Moniteur 1</strong>
+                    <div style="font-size: 0.9em; color: var(--gray-600);">M. Dupont</div>
+                </div>
+                <div class="moniteur-card" onclick="selectMoniteur(2, this)">
+                    <strong>Moniteur 2</strong>
+                    <div style="font-size: 0.9em; color: var(--gray-600);">Mme Martin</div>
+                </div>
+            </div>
+
+            <div class="calendar-header">
+                <div class="week-nav">
+                    <button class="btn btn-secondary" onclick="changeWeek(-1)">← Semaine précédente</button>
+                    <h3 id="current-week-label" style="margin: 0 20px; color: var(--primary);"></h3>
+                    <button class="btn btn-secondary" onclick="changeWeek(1)">Semaine suivante →</button>
+                </div>
+                <button class="btn btn-primary" onclick="openReservationModal()" id="reserve-btn" style="opacity: 0.5; cursor: not-allowed;" disabled>
+                    Valider ma réservation
+                </button>
+            </div>
+
+            <div class="calendar-grid" id="calendar">
+                <!-- Généré dynamiquement -->
+            </div>
+
+            <div style="margin-top: 20px; display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.9em;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 20px; height: 20px; background: #d1fae5; border-radius: 4px;"></div>
+                    <span>Disponible</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 20px; height: 20px; background: #fee2e2; border-radius: 4px;"></div>
+                    <span>Réservé</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 20px; height: 20px; background: #fef3c7; border-radius: 4px;"></div>
+                    <span>En attente</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 20px; height: 20px; background: var(--primary); border-radius: 4px;"></div>
+                    <span>Sélectionné</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vue Moniteur -->
+    <div id="moniteur-view" class="view">
+        <div class="content">
+            <div class="moniteur-panel">
+                <h3 style="margin-bottom: 15px;">👤 Connexion Moniteur</h3>
+                <div class="form-group" style="max-width: 300px;">
+                    <select id="moniteur-login" onchange="loginMoniteur(this.value)">
+                        <option value="">Choisir un moniteur...</option>
+                        <option value="1">Moniteur 1 - M. Dupont</option>
+                        <option value="2">Moniteur 2 - Mme Martin</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="moniteur-dashboard" style="display: none;">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-label">Demandes en attente</div>
+                        <div class="stat-number" id="pending-count">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Leçons cette semaine</div>
+                        <div class="stat-number" id="lessons-count">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Heures disponibles</div>
+                        <div class="stat-number" id="available-count">0</div>
+                    </div>
+                </div>
+
+                <h3 style="margin-bottom: 20px; color: var(--primary);">📅 Définir mes disponibilités</h3>
+                <div class="availability-grid" id="availability-grid">
+                    <!-- Généré dynamiquement -->
+                </div>
+
+                <div class="requests-list">
+                    <h3 style="margin-bottom: 20px; color: var(--primary);">🔔 Demandes de réservation</h3>
+                    <div id="requests-container">
+                        <p style="color: var(--gray-600); text-align: center; padding: 40px;">Aucune demande en attente</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Réservation -->
+<div class="modal-overlay" id="reservation-modal">
+    <div class="modal">
+        <h2>📝 Confirmer votre réservation</h2>
+        
+        <div class="selected-slots">
+            <strong>Créneaux sélectionnés :</strong>
+            <div id="selected-slots-list"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Nom complet *</label>
+            <input type="text" id="client-name" placeholder="Votre nom et prénom">
+        </div>
+
+        <div class="form-group">
+            <label>Téléphone *</label>
+            <input type="tel" id="client-phone" placeholder="06 12 34 56 78">
+        </div>
+
+        <div class="form-group">
+            <label>Email *</label>
+            <input type="email" id="client-email" placeholder="votre@email.com">
+        </div>
+
+        <div class="form-group">
+            <label>Type de leçon</label>
+            <select id="lesson-type">
+                <option value="conduite">Leçon de conduite standard</option>
+                <option value="code">Code de la route</option>
+                <option value="parcours">Parcours examen</option>
+            </select>
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-top: 25px;">
+            <button class="btn btn-secondary" onclick="closeModal()" style="flex: 1;">Annuler</button>
+            <button class="btn btn-primary" onclick="submitReservation()" style="flex: 1;">
+                <span id="submit-text">Envoyer la demande</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// Configuration Supabase (à remplacer par vos vraies clés)
+const SUPABASE_URL = 'https://hxlbbphprbdvdpydbjvx.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh4bGJicGhwcmJkdmRweWRianZ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1ODgxNjYsImV4cCI6MjA4OTE2NDE2Nn0.6q3gCfJf5xPShATp35wvJiaIzK0cYJsVPpYYQyq110g';
+
+// Simulation de données (remplacer par les vraies données Supabase)
+let currentMoniteur = 1;
+let currentWeek = 0;
+let selectedSlots = [];
+let currentMoniteurLogged = null;
+
+// Données simulées
+const mockData = {
+    slots: [],
+    reservations: []
+};
+
+// Initialisation
+document.addEventListener('DOMContentLoaded', () => {
+    initCalendar();
+    updateWeekLabel();
+    generateMockData();
+});
+
+function generateMockData() {
+    // Générer des créneaux pour la démo
+    const today = new Date();
+    for (let i = 0; i < 14; i++) {
+        const date = new Date(today);
+        date.setDate(today.getDate() + i);
+        const dateStr = date.toISOString().split('T')[0];
+        
+        // Créneaux de 8h à 18h
+        for (let hour = 8; hour < 18; hour++) {
+            if (Math.random() > 0.3) { // 70% de disponibilité aléatoire
+                mockData.slots.push({
+                    id: `${dateStr}-${hour}`,
+                    moniteur_id: Math.random() > 0.5 ? 1 : 2,
+                    date: dateStr,
+                    hour: hour,
+                    status: Math.random() > 0.7 ? 'booked' : 'available'
+                });
+            }
+        }
+    }
+}
+
+function switchTab(tab) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    
+    event.target.closest('.tab').classList.add('active');
+    document.getElementById(`${tab}-view`).classList.add('active');
+    
+    if (tab === 'moniteur') {
+        initMoniteurDashboard();
+    }
+}
+
+function selectMoniteur(id, element) {
+    currentMoniteur = id;
+    document.querySelectorAll('.moniteur-card').forEach(c => c.classList.remove('selected'));
+    element.classList.add('selected');
+    initCalendar();
+}
+
+function changeWeek(delta) {
+    currentWeek += delta;
+    updateWeekLabel();
+    initCalendar();
+}
+
+function updateWeekLabel() {
+    const now = new Date();
+    const startOfWeek = new Date(now);
+    startOfWeek.setDate(now.getDate() - now.getDay() + 1 + (currentWeek * 7));
+    const endOfWeek = new Date(startOfWeek);
+    endOfWeek.setDate(startOfWeek.getDate() + 6);
+    
+    const options = { day: 'numeric', month: 'long' };
+    document.getElementById('current-week-label').textContent = 
+        `Semaine du ${startOfWeek.toLocaleDateString('fr-FR', options)} au ${endOfWeek.toLocaleDateString('fr-FR', options)}`;
+}
+
+function initCalendar() {
+    const calendar = document.getElementById('calendar');
+    calendar.innerHTML = '';
+    
+    // En-têtes des jours
+    calendar.innerHTML += '<div class="time-slot-header">Heure</div>';
+    const days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+    const now = new Date();
+    const startOfWeek = new Date(now);
+    startOfWeek.setDate(now.getDate() - now.getDay() + 1 + (currentWeek * 7));
+    
+    days.forEach((day, index) => {
+        const date = new Date(startOfWeek);
+        date.setDate(startOfWeek.getDate() + index);
+        calendar.innerHTML += `
+            <div class="day-header">
+                <div class="day-name">${day}</div>
+                <div class="day-number">${date.getDate()}</div>
+            </div>
+        `;
+    });
+    
+    // Créneaux horaires
+    for (let hour = 8; hour < 18; hour++) {
+        calendar.innerHTML += `<div class="time-label">${hour}:00</div>`;
+        
+        for (let day = 0; day < 7; day++) {
+            const date = new Date(startOfWeek);
+            date.setDate(startOfWeek.getDate() + day);
+            const dateStr = date.toISOString().split('T')[0];
+            const slotId = `${currentMoniteur}-${dateStr}-${hour}`;
+            
+            const existingSlot = mockData.slots.find(s => 
+                s.moniteur_id === currentMoniteur && 
+                s.date === dateStr && 
+                s.hour === hour
+            );
+            
+            let slotClass = 'slot';
+            let status = 'empty';
+            
+            if (existingSlot) {
+                status = existingSlot.status;
+                slotClass += ` ${status}`;
+            } else {
+                slotClass += ' empty';
+            }
+            
+            const isSelected = selectedSlots.find(s => s.id === slotId);
+            if (isSelected) slotClass += ' selected';
+            
+            const onclick = (status === 'available' || isSelected) ? 
+                `onclick="toggleSlot('${slotId}', '${dateStr}', ${hour})"` : '';
+            
+            const content = status === 'booked' ? '❌' : 
+                           status === 'pending' ? '⏳' : 
+                           isSelected ? '✓' : '';
+            
+            calendar.innerHTML += `
+                <div class="${slotClass}" ${onclick} data-slot="${slotId}">
+                    ${content}
+                </div>
+            `;
+        }
+    }
+}
+
+function toggleSlot(slotId, date, hour) {
+    const index = selectedSlots.findIndex(s => s.id === slotId);
+    
+    if (index > -1) {
+        selectedSlots.splice(index, 1);
+    } else {
+        if (selectedSlots.length >= 2) {
+            showToast('Vous ne pouvez sélectionner que 2 créneaux maximum', 'error');
+            return;
+        }
+        selectedSlots.push({ id: slotId, date, hour });
+    }
+    
+    updateReserveButton();
+    initCalendar();
+}
+
+function updateReserveButton() {
+    const btn = document.getElementById('reserve-btn');
+    if (selectedSlots.length > 0) {
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        btn.style.cursor = 'pointer';
+        btn.innerHTML = `Valider ma réservation (${selectedSlots.length})`;
+    } else {
+        btn.disabled = true;
+        btn.style.opacity = '0.5';
+        btn.style.cursor = 'not-allowed';
+        btn.innerHTML = 'Valider ma réservation';
+    }
+}
+
+function openReservationModal() {
+    if (selectedSlots.length === 0) return;
+    
+    const list = document.getElementById('selected-slots-list');
+    list.innerHTML = selectedSlots.map(s => `
+        <span class="selected-slot-tag">
+            📅 ${new Date(s.date).toLocaleDateString('fr-FR')} à ${s.hour}:00
+        </span>
+    `).join('');
+    
+    document.getElementById('reservation-modal').classList.add('active');
+}
+
+function closeModal() {
+    document.getElementById('reservation-modal').classList.remove('active');
+}
+
+function submitReservation() {
+    const name = document.getElementById('client-name').value;
+    const phone = document.getElementById('client-phone').value;
+    const email = document.getElementById('client-email').value;
+    
+    if (!name || !phone || !email) {
+        showToast('Veuillez remplir tous les champs obligatoires', 'error');
+        return;
+    }
+    
+    // Simulation d'envoi à Supabase
+    selectedSlots.forEach(slot => {
+        mockData.reservations.push({
+            id: Date.now() + Math.random(),
+            moniteur_id: currentMoniteur,
+            client_name: name,
+            client_phone: phone,
+            client_email: email,
+            date: slot.date,
+            hour: slot.hour,
+            status: 'pending',
+            created_at: new Date().toISOString()
+        });
+        
+        // Mettre à jour le statut du créneau
+        const slotData = mockData.slots.find(s => 
+            s.moniteur_id === currentMoniteur && 
+            s.date === slot.date && 
+            s.hour === slot.hour
+        );
+        if (slotData) slotData.status = 'pending';
+    });
+    
+    showToast('Demande de réservation envoyée ! En attente de confirmation.', 'success');
+    selectedSlots = [];
+    updateReserveButton();
+    closeModal();
+    initCalendar();
+}
+
+// Interface Moniteur
+function loginMoniteur(id) {
+    currentMoniteurLogged = id ? parseInt(id) : null;
+    document.getElementById('moniteur-dashboard').style.display = id ? 'block' : 'none';
+    if (id) initMoniteurDashboard();
+}
+
+function initMoniteurDashboard() {
+    if (!currentMoniteurLogged) return;
+    
+    const grid = document.getElementById('availability-grid');
+    grid.innerHTML = '';
+    
+    const days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+    const today = new Date();
+    
+    days.forEach((dayName, dayIndex) => {
+        const date = new Date(today);
+        date.setDate(today.getDate() - today.getDay() + 1 + dayIndex);
+        const dateStr = date.toISOString().split('T')[0];
+        
+        let html = `
+            <div class="day-card">
+                <h3>
+                    ${dayName}
+                    <small style="font-size: 0.7em; color: var(--gray-600);">${date.toLocaleDateString('fr-FR')}</small>
+                </h3>
+        `;
+        
+        for (let hour = 8; hour < 18; hour++) {
+            const existingSlot = mockData.slots.find(s => 
+                s.moniteur_id === currentMoniteurLogged && 
+                s.date === dateStr && 
+                s.hour === hour
+            );
+            
+            const isActive = !!existingSlot;
+            
+            html += `
+                <div class="time-toggle ${isActive ? 'active' : ''}" onclick="toggleAvailability('${dateStr}', ${hour})">
+                    <span>${hour}:00 - ${hour + 1}:00</span>
+                    <div class="toggle-switch"></div>
+                </div>
+            `;
+        }
+        
+        html += '</div>';
+        grid.innerHTML += html;
+    });
+    
+    updateRequestsList();
+    updateStats();
+}
+
+function toggleAvailability(date, hour) {
+    const existingIndex = mockData.slots.findIndex(s => 
+        s.moniteur_id === currentMoniteurLogged && 
+        s.date === date && 
+        s.hour === hour
+    );
+    
+    if (existingIndex > -1) {
+        // Vérifier si pas déjà réservé
+        if (mockData.slots[existingIndex].status === 'booked') {
+            showToast('Ce créneau est déjà réservé', 'error');
+            return;
+        }
+        mockData.slots.splice(existingIndex, 1);
+    } else {
+        mockData.slots.push({
+            id: `${currentMoniteurLogged}-${date}-${hour}`,
+            moniteur_id: currentMoniteurLogged,
+            date: date,
+            hour: hour,
+            status: 'available'
+        });
+    }
+    
+    initMoniteurDashboard();
+    updateStats();
+}
+
+function updateRequestsList() {
+    const container = document.getElementById('requests-container');
+    const pending = mockData.reservations.filter(r => 
+        r.moniteur_id === currentMoniteurLogged && 
+        r.status === 'pending'
+    );
+    
+    if (pending.length === 0) {
+        container.innerHTML = '<p style="color: var(--gray-600); text-align: center; padding: 40px;">Aucune demande en attente</p>';
+        return;
+    }
+    
+    container.innerHTML = pending.map(req => `
+        <div class="request-card">
+            <div class="request-info">
+                <h4>${req.client_name}</h4>
+                <p>📅 ${new Date(req.date).toLocaleDateString('fr-FR')} à ${req.hour}:00</p>
+                <p>📞 ${req.client_phone} | ✉️ ${req.client_email}</p>
+            </div>
+            <div class="request-actions">
+                <button class="btn btn-success" onclick="handleRequest(${req.id}, 'confirmed')">✓ Accepter</button>
+                <button class="btn btn-danger" onclick="handleRequest(${req.id}, 'rejected')">✗ Refuser</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function handleRequest(id, status) {
+    const req = mockData.reservations.find(r => r.id === id);
+    if (req) {
+        req.status = status;
+        
+        const slot = mockData.slots.find(s => 
+            s.moniteur_id === req.moniteur_id && 
+            s.date === req.date && 
+            s.hour === req.hour
+        );
+        
+        if (slot) {
+            slot.status = status === 'confirmed' ? 'booked' : 'available';
+        }
+        
+        showToast(status === 'confirmed' ? 'Réservation confirmée !' : 'Réservation refusée', status === 'confirmed' ? 'success' : 'error');
+        updateRequestsList();
+        updateStats();
+    }
+}
+
+function updateStats() {
+    const pending = mockData.reservations.filter(r => 
+        r.moniteur_id === currentMoniteurLogged && 
+        r.status === 'pending'
+    ).length;
+    
+    const booked = mockData.reservations.filter(r => 
+        r.moniteur_id === currentMoniteurLogged && 
+        r.status === 'confirmed'
+    ).length;
+    
+    const available = mockData.slots.filter(s => 
+        s.moniteur_id === currentMoniteurLogged && 
+        s.status === 'available'
+    ).length;
+    
+    document.getElementById('pending-count').textContent = pending;
+    document.getElementById('lessons-count').textContent = booked;
+    document.getElementById('available-count').textContent = available;
+}
+
+function showToast(message, type = 'success') {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.className = `toast show ${type}`;
+    
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
+}
+
+// Fermer le modal en cliquant à l'extérieur
+document.getElementById('reservation-modal').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) closeModal();
+});
+</script>
+
+</body>
+</html>
