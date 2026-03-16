@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Réservation de Leçons - Auto-École Marti</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -20,13 +22,14 @@
             --danger: #ef4444;
             --gray-100: #f3f4f6;
             --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
             --gray-600: #4b5563;
             --gray-800: #1f2937;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'DM Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 40%, #3b82f6 100%);
             min-height: 100vh;
             padding: 20px;
         }
@@ -62,6 +65,7 @@
         }
 
         .header h1 {
+            font-family: 'Sora', sans-serif;
             font-size: 2.5em;
             margin-bottom: 10px;
             position: relative;
@@ -70,6 +74,29 @@
         .header p {
             opacity: 0.9;
             font-size: 1.1em;
+            position: relative;
+        }
+
+        /* Indicateur de connexion Supabase */
+        .connection-status {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75em;
+            opacity: 0.8;
+        }
+        .connection-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ef4444;
+            transition: background 0.3s;
+        }
+        .connection-dot.connected {
+            background: #10b981;
         }
 
         .tabs {
@@ -134,6 +161,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .week-nav {
@@ -148,10 +177,12 @@
             border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
+            font-family: inherit;
             transition: all 0.3s;
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            font-size: 0.95em;
         }
 
         .btn-primary {
@@ -361,6 +392,7 @@
             border: 2px solid var(--gray-200);
             border-radius: 8px;
             font-size: 1em;
+            font-family: inherit;
             transition: border-color 0.3s;
         }
 
@@ -396,6 +428,14 @@
             padding: 20px;
             border-radius: 12px;
             margin-bottom: 20px;
+        }
+
+        .login-form {
+            max-width: 400px;
+        }
+
+        .login-form .form-group {
+            margin-bottom: 15px;
         }
 
         .availability-grid {
@@ -439,6 +479,12 @@
         .time-toggle.active {
             background: var(--success);
             color: white;
+        }
+
+        .time-toggle.booked {
+            background: #fee2e2;
+            color: var(--danger);
+            cursor: not-allowed;
         }
 
         .toggle-switch {
@@ -555,17 +601,19 @@
                 grid-template-columns: 60px repeat(7, 1fr);
                 font-size: 0.8em;
             }
-            
             .header h1 {
                 font-size: 1.8em;
             }
-            
             .tabs {
                 flex-direction: column;
             }
+            .week-nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
         }
 
-        .loading {
+        .loading-spinner {
             display: inline-block;
             width: 20px;
             height: 20px;
@@ -593,25 +641,76 @@
             gap: 10px;
             z-index: 2000;
             animation: slideIn 0.3s;
+            max-width: 400px;
         }
 
-        .toast.show {
-            display: flex;
-        }
-
+        .toast.show { display: flex; }
         @keyframes slideIn {
             from { transform: translateX(400px); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
         }
-
         .toast.success { background: var(--success); }
         .toast.error { background: var(--danger); }
+
+        /* Loading overlay pour les actions */
+        .loading-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255,255,255,0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+        }
+        .loading-overlay.active { display: flex; }
+        .loading-overlay .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--gray-200);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        .error-box {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            padding: 15px;
+            color: #991b1b;
+            margin-bottom: 20px;
+        }
+
+        .logout-btn {
+            background: none;
+            border: 1px solid var(--gray-300);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: inherit;
+            color: var(--gray-600);
+            font-size: 0.85em;
+            transition: all 0.3s;
+        }
+        .logout-btn:hover {
+            background: var(--danger);
+            color: white;
+            border-color: var(--danger);
+        }
     </style>
 </head>
 <body>
 
+<div class="loading-overlay" id="loading-overlay">
+    <div class="loader"></div>
+</div>
+
 <div class="container">
     <div class="header">
+        <div class="connection-status">
+            <div class="connection-dot" id="connection-dot"></div>
+            <span id="connection-text">Connexion...</span>
+        </div>
         <h1>🚗 Auto-École Marti</h1>
         <p>Réservation de leçons de conduite - Espace Clients & Moniteurs</p>
     </div>
@@ -625,27 +724,23 @@
         </div>
     </div>
 
-    <!-- Vue Client -->
+    <!-- ============================================ -->
+    <!-- VUE CLIENT : Calendrier + Réservation        -->
+    <!-- ============================================ -->
     <div id="client-view" class="view active">
         <div class="content">
             <h2 style="margin-bottom: 20px; color: var(--primary);">Réserver une leçon de conduite</h2>
             
+            <!-- Sélection du moniteur (rempli dynamiquement) -->
             <div class="moniteur-selector" id="moniteur-selector">
-                <div class="moniteur-card selected" onclick="selectMoniteur(1, this)">
-                    <strong>Moniteur 1</strong>
-                    <div style="font-size: 0.9em; color: var(--gray-600);">M. Dupont</div>
-                </div>
-                <div class="moniteur-card" onclick="selectMoniteur(2, this)">
-                    <strong>Moniteur 2</strong>
-                    <div style="font-size: 0.9em; color: var(--gray-600);">Mme Martin</div>
-                </div>
+                <!-- Rempli par JavaScript -->
             </div>
 
             <div class="calendar-header">
                 <div class="week-nav">
-                    <button class="btn btn-secondary" onclick="changeWeek(-1)">← Semaine précédente</button>
+                    <button class="btn btn-secondary" onclick="changeWeek(-1)">← Précédente</button>
                     <h3 id="current-week-label" style="margin: 0 20px; color: var(--primary);"></h3>
-                    <button class="btn btn-secondary" onclick="changeWeek(1)">Semaine suivante →</button>
+                    <button class="btn btn-secondary" onclick="changeWeek(1)">Suivante →</button>
                 </div>
                 <button class="btn btn-primary" onclick="openReservationModal()" id="reserve-btn" style="opacity: 0.5; cursor: not-allowed;" disabled>
                     Valider ma réservation
@@ -677,37 +772,61 @@
         </div>
     </div>
 
-    <!-- Vue Moniteur -->
+    <!-- ============================================ -->
+    <!-- VUE MONITEUR : Connexion + Dashboard          -->
+    <!-- ============================================ -->
     <div id="moniteur-view" class="view">
         <div class="content">
-            <div class="moniteur-panel">
-                <h3 style="margin-bottom: 15px;">👤 Connexion Moniteur</h3>
-                <div class="form-group" style="max-width: 300px;">
-                    <select id="moniteur-login" onchange="loginMoniteur(this.value)">
-                        <option value="">Choisir un moniteur...</option>
-                        <option value="1">Moniteur 1 - M. Dupont</option>
-                        <option value="2">Moniteur 2 - Mme Martin</option>
-                    </select>
+            <!-- Formulaire de connexion (visible si pas connecté) -->
+            <div class="moniteur-panel" id="login-panel">
+                <h3 style="margin-bottom: 15px;">🔐 Connexion Moniteur</h3>
+                <div class="login-form">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="login-email" placeholder="votre@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Mot de passe</label>
+                        <input type="password" id="login-password" placeholder="Votre mot de passe">
+                    </div>
+                    <div id="login-error" class="error-box" style="display: none;"></div>
+                    <button class="btn btn-primary" onclick="loginMoniteur()">
+                        Se connecter
+                    </button>
                 </div>
             </div>
 
+            <!-- Dashboard moniteur (visible après connexion) -->
             <div id="moniteur-dashboard" style="display: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2 style="color: var(--primary);" id="welcome-moniteur">Bienvenue</h2>
+                    <button class="logout-btn" onclick="logoutMoniteur()">🚪 Déconnexion</button>
+                </div>
+
                 <div class="stats-grid">
                     <div class="stat-card">
                         <div class="stat-label">Demandes en attente</div>
                         <div class="stat-number" id="pending-count">0</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-label">Leçons cette semaine</div>
+                        <div class="stat-label">Leçons confirmées</div>
                         <div class="stat-number" id="lessons-count">0</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-label">Heures disponibles</div>
+                        <div class="stat-label">Créneaux disponibles</div>
                         <div class="stat-number" id="available-count">0</div>
                     </div>
                 </div>
 
-                <h3 style="margin-bottom: 20px; color: var(--primary);">📅 Définir mes disponibilités</h3>
+                <!-- Semaine de disponibilités -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <h3 style="color: var(--primary);">📅 Définir mes disponibilités</h3>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="btn btn-secondary" onclick="changeMoniteurWeek(-1)">← Précédente</button>
+                        <button class="btn btn-secondary" onclick="changeMoniteurWeek(1)">Suivante →</button>
+                    </div>
+                </div>
+                <p id="moniteur-week-label" style="margin-bottom: 15px; color: var(--gray-600);"></p>
                 <div class="availability-grid" id="availability-grid">
                     <!-- Généré dynamiquement -->
                 </div>
@@ -715,7 +834,7 @@
                 <div class="requests-list">
                     <h3 style="margin-bottom: 20px; color: var(--primary);">🔔 Demandes de réservation</h3>
                     <div id="requests-container">
-                        <p style="color: var(--gray-600); text-align: center; padding: 40px;">Aucune demande en attente</p>
+                        <p style="color: var(--gray-600); text-align: center; padding: 40px;">Chargement...</p>
                     </div>
                 </div>
             </div>
@@ -723,7 +842,7 @@
     </div>
 </div>
 
-<!-- Modal Réservation -->
+<!-- Modal Réservation (pour les élèves) -->
 <div class="modal-overlay" id="reservation-modal">
     <div class="modal">
         <h2>📝 Confirmer votre réservation</h2>
@@ -759,8 +878,8 @@
 
         <div style="display: flex; gap: 10px; margin-top: 25px;">
             <button class="btn btn-secondary" onclick="closeModal()" style="flex: 1;">Annuler</button>
-            <button class="btn btn-primary" onclick="submitReservation()" style="flex: 1;">
-                <span id="submit-text">Envoyer la demande</span>
+            <button class="btn btn-primary" onclick="submitReservation()" style="flex: 1;" id="submit-btn">
+                Envoyer la demande
             </button>
         </div>
     </div>
@@ -769,100 +888,158 @@
 <div class="toast" id="toast"></div>
 
 <script>
-// Configuration Supabase (à remplacer par vos vraies clés)
+// ============================================================
+// CONFIGURATION SUPABASE
+// ============================================================
+// Ces deux valeurs viennent du dashboard Supabase > Settings > API
 const SUPABASE_URL = 'https://hxlbbphprbdvdpydbjvx.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh4bGJicGhwcmJkdmRweWRianZ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1ODgxNjYsImV4cCI6MjA4OTE2NDE2Nn0.6q3gCfJf5xPShATp35wvJiaIzK0cYJsVPpYYQyq110g';
 
-// Simulation de données (remplacer par les vraies données Supabase)
-let currentMoniteur = 1;
-let currentWeek = 0;
-let selectedSlots = [];
-let currentMoniteurLogged = null;
+// Crée le "client" Supabase = l'objet qui permet de parler à ta base de données
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// Données simulées
-const mockData = {
-    slots: [],
-    reservations: []
-};
+// ============================================================
+// VARIABLES GLOBALES
+// ============================================================
+let currentMoniteurId = null;      // UUID du moniteur sélectionné côté client
+let currentWeek = 0;               // Décalage de semaine (0 = cette semaine)
+let moniteurWeekOffset = 0;        // Décalage de semaine côté moniteur
+let selectedSlots = [];            // Créneaux sélectionnés par l'élève
+let loggedMoniteur = null;         // Moniteur connecté (objet complet)
+let moniteursList = [];            // Liste de tous les moniteurs
+let creneauxCache = [];            // Cache des créneaux chargés
 
-// Initialisation
-document.addEventListener('DOMContentLoaded', () => {
-    initCalendar();
+// ============================================================
+// INITIALISATION AU CHARGEMENT DE LA PAGE
+// ============================================================
+document.addEventListener('DOMContentLoaded', async () => {
+    await testConnection();
+    await loadMoniteurs();
     updateWeekLabel();
-    generateMockData();
+    await loadCreneaux();
+
+    // Vérifie si un moniteur était déjà connecté (session persistante)
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session) {
+        await restoreMoniteurSession(session.user.id);
+    }
 });
 
-function generateMockData() {
-    // Générer des créneaux pour la démo
-    const today = new Date();
-    for (let i = 0; i < 14; i++) {
-        const date = new Date(today);
-        date.setDate(today.getDate() + i);
-        const dateStr = date.toISOString().split('T')[0];
+// ============================================================
+// CONNEXION À SUPABASE
+// ============================================================
+async function testConnection() {
+    try {
+        // Tente de lire la table moniteurs pour vérifier que la connexion fonctionne
+        const { data, error } = await supabase.from('moniteurs').select('id').limit(1);
         
-        // Créneaux de 8h à 18h
-        for (let hour = 8; hour < 18; hour++) {
-            if (Math.random() > 0.3) { // 70% de disponibilité aléatoire
-                mockData.slots.push({
-                    id: `${dateStr}-${hour}`,
-                    moniteur_id: Math.random() > 0.5 ? 1 : 2,
-                    date: dateStr,
-                    hour: hour,
-                    status: Math.random() > 0.7 ? 'booked' : 'available'
-                });
-            }
-        }
+        if (error) throw error;
+        
+        document.getElementById('connection-dot').classList.add('connected');
+        document.getElementById('connection-text').textContent = 'Connecté';
+    } catch (err) {
+        document.getElementById('connection-text').textContent = 'Hors ligne';
+        console.error('Erreur connexion Supabase:', err.message);
+        showToast('Erreur de connexion à la base de données. Vérifiez la configuration.', 'error');
     }
 }
 
-function switchTab(tab) {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+// ============================================================
+// CHARGEMENT DES MONITEURS
+// ============================================================
+// Récupère la liste des moniteurs pour les afficher dans le sélecteur
+async function loadMoniteurs() {
+    const { data, error } = await supabase
+        .from('moniteurs')
+        .select('id, nom, prenom')
+        .order('nom');
     
-    event.target.closest('.tab').classList.add('active');
-    document.getElementById(`${tab}-view`).classList.add('active');
-    
-    if (tab === 'moniteur') {
-        initMoniteurDashboard();
+    if (error) {
+        console.error('Erreur chargement moniteurs:', error.message);
+        return;
     }
+    
+    moniteursList = data || [];
+    
+    // Sélectionne le premier moniteur par défaut
+    if (moniteursList.length > 0) {
+        currentMoniteurId = moniteursList[0].id;
+    }
+    
+    // Génère les cartes de sélection des moniteurs
+    const container = document.getElementById('moniteur-selector');
+    container.innerHTML = moniteursList.map((m, index) => `
+        <div class="moniteur-card ${index === 0 ? 'selected' : ''}" 
+             onclick="selectMoniteur('${m.id}', this)">
+            <strong>${m.prenom} ${m.nom}</strong>
+        </div>
+    `).join('');
 }
 
-function selectMoniteur(id, element) {
-    currentMoniteur = id;
-    document.querySelectorAll('.moniteur-card').forEach(c => c.classList.remove('selected'));
-    element.classList.add('selected');
-    initCalendar();
+// ============================================================
+// CHARGEMENT DES CRÉNEAUX (depuis Supabase)
+// ============================================================
+async function loadCreneaux() {
+    if (!currentMoniteurId) return;
+    
+    // Calcule les dates de début et fin de la semaine affichée
+    const { startDate, endDate } = getWeekRange(currentWeek);
+    
+    // Requête Supabase : récupère les créneaux du moniteur pour cette semaine
+    // .gte = "greater than or equal" (>=)
+    // .lte = "less than or equal" (<=)
+    const { data, error } = await supabase
+        .from('creneaux')
+        .select('id, date, heure, statut')
+        .eq('moniteur_id', currentMoniteurId)
+        .gte('date', startDate)
+        .lte('date', endDate)
+        .order('date')
+        .order('heure');
+    
+    if (error) {
+        console.error('Erreur chargement créneaux:', error.message);
+        showToast('Erreur lors du chargement des créneaux', 'error');
+        return;
+    }
+    
+    creneauxCache = data || [];
+    renderCalendar();
 }
 
-function changeWeek(delta) {
-    currentWeek += delta;
-    updateWeekLabel();
-    initCalendar();
-}
-
-function updateWeekLabel() {
+// ============================================================
+// CALCUL DES DATES DE SEMAINE
+// ============================================================
+function getWeekRange(weekOffset) {
     const now = new Date();
     const startOfWeek = new Date(now);
-    startOfWeek.setDate(now.getDate() - now.getDay() + 1 + (currentWeek * 7));
+    // Calcule le lundi de la semaine
+    const dayOfWeek = now.getDay(); // 0=dim, 1=lun, etc.
+    const diffToMonday = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+    startOfWeek.setDate(now.getDate() + diffToMonday + (weekOffset * 7));
+    
     const endOfWeek = new Date(startOfWeek);
     endOfWeek.setDate(startOfWeek.getDate() + 6);
     
-    const options = { day: 'numeric', month: 'long' };
-    document.getElementById('current-week-label').textContent = 
-        `Semaine du ${startOfWeek.toLocaleDateString('fr-FR', options)} au ${endOfWeek.toLocaleDateString('fr-FR', options)}`;
+    // Format YYYY-MM-DD pour Supabase
+    const startDate = startOfWeek.toISOString().split('T')[0];
+    const endDate = endOfWeek.toISOString().split('T')[0];
+    
+    return { startDate, endDate, startOfWeek, endOfWeek };
 }
 
-function initCalendar() {
+// ============================================================
+// AFFICHAGE DU CALENDRIER CLIENT
+// ============================================================
+function renderCalendar() {
     const calendar = document.getElementById('calendar');
     calendar.innerHTML = '';
     
-    // En-têtes des jours
-    calendar.innerHTML += '<div class="time-slot-header">Heure</div>';
+    const { startOfWeek } = getWeekRange(currentWeek);
     const days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
-    const now = new Date();
-    const startOfWeek = new Date(now);
-    startOfWeek.setDate(now.getDate() - now.getDay() + 1 + (currentWeek * 7));
     
+    // En-tête : case vide + 7 jours
+    calendar.innerHTML += '<div class="time-slot-header">Heure</div>';
     days.forEach((day, index) => {
         const date = new Date(startOfWeek);
         date.setDate(startOfWeek.getDate() + index);
@@ -874,44 +1051,46 @@ function initCalendar() {
         `;
     });
     
-    // Créneaux horaires
-    for (let hour = 8; hour < 18; hour++) {
+    // Lignes horaires : 8h à 18h
+    for (let hour = 8; hour < 19; hour++) {
         calendar.innerHTML += `<div class="time-label">${hour}:00</div>`;
         
         for (let day = 0; day < 7; day++) {
             const date = new Date(startOfWeek);
             date.setDate(startOfWeek.getDate() + day);
             const dateStr = date.toISOString().split('T')[0];
-            const slotId = `${currentMoniteur}-${dateStr}-${hour}`;
             
-            const existingSlot = mockData.slots.find(s => 
-                s.moniteur_id === currentMoniteur && 
-                s.date === dateStr && 
-                s.hour === hour
-            );
+            // Cherche si un créneau existe pour cette date/heure dans le cache
+            const creneau = creneauxCache.find(c => c.date === dateStr && c.heure === hour);
             
             let slotClass = 'slot';
-            let status = 'empty';
+            let content = '';
+            let onclick = '';
             
-            if (existingSlot) {
-                status = existingSlot.status;
-                slotClass += ` ${status}`;
+            if (creneau) {
+                if (creneau.statut === 'disponible') {
+                    // Vérifie si l'élève a sélectionné ce créneau
+                    const isSelected = selectedSlots.find(s => s.creneau_id === creneau.id);
+                    if (isSelected) {
+                        slotClass += ' selected';
+                        content = '✓';
+                    } else {
+                        slotClass += ' available';
+                    }
+                    onclick = `onclick="toggleSlot(${creneau.id}, '${dateStr}', ${hour})"`;
+                } else if (creneau.statut === 'en_attente') {
+                    slotClass += ' pending';
+                    content = '⏳';
+                } else if (creneau.statut === 'reserve') {
+                    slotClass += ' booked';
+                    content = '❌';
+                }
             } else {
                 slotClass += ' empty';
             }
             
-            const isSelected = selectedSlots.find(s => s.id === slotId);
-            if (isSelected) slotClass += ' selected';
-            
-            const onclick = (status === 'available' || isSelected) ? 
-                `onclick="toggleSlot('${slotId}', '${dateStr}', ${hour})"` : '';
-            
-            const content = status === 'booked' ? '❌' : 
-                           status === 'pending' ? '⏳' : 
-                           isSelected ? '✓' : '';
-            
             calendar.innerHTML += `
-                <div class="${slotClass}" ${onclick} data-slot="${slotId}">
+                <div class="${slotClass}" ${onclick}>
                     ${content}
                 </div>
             `;
@@ -919,21 +1098,50 @@ function initCalendar() {
     }
 }
 
-function toggleSlot(slotId, date, hour) {
-    const index = selectedSlots.findIndex(s => s.id === slotId);
+// ============================================================
+// SÉLECTION D'UN CRÉNEAU PAR L'ÉLÈVE
+// ============================================================
+function toggleSlot(creneauId, date, hour) {
+    const index = selectedSlots.findIndex(s => s.creneau_id === creneauId);
     
     if (index > -1) {
+        // Déjà sélectionné → on le retire
         selectedSlots.splice(index, 1);
     } else {
+        // Limite à 2 créneaux max
         if (selectedSlots.length >= 2) {
             showToast('Vous ne pouvez sélectionner que 2 créneaux maximum', 'error');
             return;
         }
-        selectedSlots.push({ id: slotId, date, hour });
+        selectedSlots.push({ creneau_id: creneauId, date, hour });
     }
     
     updateReserveButton();
-    initCalendar();
+    renderCalendar();
+}
+
+function selectMoniteur(id, element) {
+    currentMoniteurId = id;
+    selectedSlots = []; // Réinitialise la sélection
+    updateReserveButton();
+    document.querySelectorAll('.moniteur-card').forEach(c => c.classList.remove('selected'));
+    element.classList.add('selected');
+    loadCreneaux();
+}
+
+function changeWeek(delta) {
+    currentWeek += delta;
+    updateWeekLabel();
+    selectedSlots = [];
+    updateReserveButton();
+    loadCreneaux();
+}
+
+function updateWeekLabel() {
+    const { startOfWeek, endOfWeek } = getWeekRange(currentWeek);
+    const options = { day: 'numeric', month: 'long' };
+    document.getElementById('current-week-label').textContent = 
+        `Semaine du ${startOfWeek.toLocaleDateString('fr-FR', options)} au ${endOfWeek.toLocaleDateString('fr-FR', options)}`;
 }
 
 function updateReserveButton() {
@@ -951,13 +1159,16 @@ function updateReserveButton() {
     }
 }
 
+// ============================================================
+// MODAL DE RÉSERVATION
+// ============================================================
 function openReservationModal() {
     if (selectedSlots.length === 0) return;
     
     const list = document.getElementById('selected-slots-list');
     list.innerHTML = selectedSlots.map(s => `
         <span class="selected-slot-tag">
-            📅 ${new Date(s.date).toLocaleDateString('fr-FR')} à ${s.hour}:00
+            📅 ${new Date(s.date + 'T12:00:00').toLocaleDateString('fr-FR')} à ${s.hour}:00
         </span>
     `).join('');
     
@@ -968,86 +1179,227 @@ function closeModal() {
     document.getElementById('reservation-modal').classList.remove('active');
 }
 
-function submitReservation() {
-    const name = document.getElementById('client-name').value;
-    const phone = document.getElementById('client-phone').value;
-    const email = document.getElementById('client-email').value;
+// ============================================================
+// ENVOI DE LA RÉSERVATION À SUPABASE
+// ============================================================
+async function submitReservation() {
+    const name = document.getElementById('client-name').value.trim();
+    const phone = document.getElementById('client-phone').value.trim();
+    const email = document.getElementById('client-email').value.trim();
+    const typeLecon = document.getElementById('lesson-type').value;
     
     if (!name || !phone || !email) {
         showToast('Veuillez remplir tous les champs obligatoires', 'error');
         return;
     }
     
-    // Simulation d'envoi à Supabase
-    selectedSlots.forEach(slot => {
-        mockData.reservations.push({
-            id: Date.now() + Math.random(),
-            moniteur_id: currentMoniteur,
-            client_name: name,
-            client_phone: phone,
-            client_email: email,
-            date: slot.date,
-            hour: slot.hour,
-            status: 'pending',
-            created_at: new Date().toISOString()
+    // Désactive le bouton pendant l'envoi
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.innerHTML = '<div class="loading-spinner"></div> Envoi en cours...';
+    
+    try {
+        // Pour chaque créneau sélectionné, on crée une réservation
+        for (const slot of selectedSlots) {
+            // 1. Crée la réservation dans la table "reservations"
+            const { error: resError } = await supabase
+                .from('reservations')
+                .insert({
+                    creneau_id: slot.creneau_id,
+                    nom_client: name,
+                    telephone_client: phone,
+                    email_client: email,
+                    type_lecon: typeLecon,
+                    statut: 'en_attente'
+                });
+            
+            if (resError) throw resError;
+            
+            // 2. Met à jour le statut du créneau → "en_attente"
+            const { error: slotError } = await supabase
+                .from('creneaux')
+                .update({ statut: 'en_attente' })
+                .eq('id', slot.creneau_id);
+            
+            if (slotError) throw slotError;
+        }
+        
+        showToast('Demande de réservation envoyée ! En attente de confirmation du moniteur.', 'success');
+        selectedSlots = [];
+        updateReserveButton();
+        closeModal();
+        
+        // Vide le formulaire
+        document.getElementById('client-name').value = '';
+        document.getElementById('client-phone').value = '';
+        document.getElementById('client-email').value = '';
+        
+        // Recharge les créneaux pour voir le changement
+        await loadCreneaux();
+        
+    } catch (err) {
+        console.error('Erreur réservation:', err.message);
+        showToast('Erreur lors de la réservation. Veuillez réessayer.', 'error');
+    } finally {
+        btn.disabled = false;
+        btn.innerHTML = 'Envoyer la demande';
+    }
+}
+
+// ============================================================
+// CONNEXION MONITEUR (via Supabase Auth)
+// ============================================================
+async function loginMoniteur() {
+    const email = document.getElementById('login-email').value.trim();
+    const password = document.getElementById('login-password').value;
+    const errorBox = document.getElementById('login-error');
+    errorBox.style.display = 'none';
+    
+    if (!email || !password) {
+        errorBox.textContent = 'Veuillez remplir email et mot de passe.';
+        errorBox.style.display = 'block';
+        return;
+    }
+    
+    showLoading(true);
+    
+    try {
+        // Connexion via Supabase Auth
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email: email,
+            password: password
         });
         
-        // Mettre à jour le statut du créneau
-        const slotData = mockData.slots.find(s => 
-            s.moniteur_id === currentMoniteur && 
-            s.date === slot.date && 
-            s.hour === slot.hour
-        );
-        if (slotData) slotData.status = 'pending';
-    });
-    
-    showToast('Demande de réservation envoyée ! En attente de confirmation.', 'success');
-    selectedSlots = [];
-    updateReserveButton();
-    closeModal();
-    initCalendar();
+        if (error) throw error;
+        
+        // Récupère les infos du moniteur à partir de son auth_id
+        const { data: moniteurData, error: mError } = await supabase
+            .from('moniteurs')
+            .select('*')
+            .eq('auth_id', data.user.id)
+            .single();
+        
+        if (mError || !moniteurData) {
+            throw new Error('Ce compte n\'est pas associé à un moniteur.');
+        }
+        
+        loggedMoniteur = moniteurData;
+        showMoniteurDashboard();
+        
+    } catch (err) {
+        errorBox.textContent = err.message || 'Erreur de connexion';
+        errorBox.style.display = 'block';
+    } finally {
+        showLoading(false);
+    }
 }
 
-// Interface Moniteur
-function loginMoniteur(id) {
-    currentMoniteurLogged = id ? parseInt(id) : null;
-    document.getElementById('moniteur-dashboard').style.display = id ? 'block' : 'none';
-    if (id) initMoniteurDashboard();
+async function restoreMoniteurSession(authId) {
+    const { data, error } = await supabase
+        .from('moniteurs')
+        .select('*')
+        .eq('auth_id', authId)
+        .single();
+    
+    if (!error && data) {
+        loggedMoniteur = data;
+    }
 }
 
-function initMoniteurDashboard() {
-    if (!currentMoniteurLogged) return;
+async function logoutMoniteur() {
+    await supabase.auth.signOut();
+    loggedMoniteur = null;
+    document.getElementById('moniteur-dashboard').style.display = 'none';
+    document.getElementById('login-panel').style.display = 'block';
+    document.getElementById('login-email').value = '';
+    document.getElementById('login-password').value = '';
+    showToast('Déconnexion réussie', 'success');
+}
+
+// ============================================================
+// DASHBOARD MONITEUR
+// ============================================================
+function showMoniteurDashboard() {
+    document.getElementById('login-panel').style.display = 'none';
+    document.getElementById('moniteur-dashboard').style.display = 'block';
+    document.getElementById('welcome-moniteur').textContent = 
+        `Bonjour ${loggedMoniteur.prenom} ${loggedMoniteur.nom}`;
     
+    loadMoniteurAvailability();
+    loadMoniteurRequests();
+}
+
+// Charge les disponibilités du moniteur connecté
+async function loadMoniteurAvailability() {
+    if (!loggedMoniteur) return;
+    
+    const { startDate, endDate, startOfWeek } = getWeekRange(moniteurWeekOffset);
+    
+    // Affiche le label de la semaine
+    const opts = { day: 'numeric', month: 'long' };
+    const { endOfWeek } = getWeekRange(moniteurWeekOffset);
+    document.getElementById('moniteur-week-label').textContent = 
+        `Semaine du ${startOfWeek.toLocaleDateString('fr-FR', opts)} au ${endOfWeek.toLocaleDateString('fr-FR', opts)}`;
+    
+    // Récupère les créneaux du moniteur pour cette semaine
+    const { data, error } = await supabase
+        .from('creneaux')
+        .select('id, date, heure, statut')
+        .eq('moniteur_id', loggedMoniteur.id)
+        .gte('date', startDate)
+        .lte('date', endDate)
+        .order('date')
+        .order('heure');
+    
+    if (error) {
+        console.error('Erreur:', error.message);
+        return;
+    }
+    
+    const slots = data || [];
+    
+    // Génère la grille de disponibilités
     const grid = document.getElementById('availability-grid');
     grid.innerHTML = '';
     
     const days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
-    const today = new Date();
     
     days.forEach((dayName, dayIndex) => {
-        const date = new Date(today);
-        date.setDate(today.getDate() - today.getDay() + 1 + dayIndex);
+        const date = new Date(startOfWeek);
+        date.setDate(startOfWeek.getDate() + dayIndex);
         const dateStr = date.toISOString().split('T')[0];
         
         let html = `
             <div class="day-card">
                 <h3>
                     ${dayName}
-                    <small style="font-size: 0.7em; color: var(--gray-600);">${date.toLocaleDateString('fr-FR')}</small>
+                    <small style="font-size: 0.7em; color: var(--gray-600);">
+                        ${date.toLocaleDateString('fr-FR')}
+                    </small>
                 </h3>
         `;
         
-        for (let hour = 8; hour < 18; hour++) {
-            const existingSlot = mockData.slots.find(s => 
-                s.moniteur_id === currentMoniteurLogged && 
-                s.date === dateStr && 
-                s.hour === hour
-            );
+        for (let hour = 8; hour < 19; hour++) {
+            const existing = slots.find(s => s.date === dateStr && s.heure === hour);
             
-            const isActive = !!existingSlot;
+            let toggleClass = 'time-toggle';
+            let extraAttr = '';
+            
+            if (existing) {
+                if (existing.statut === 'reserve' || existing.statut === 'en_attente') {
+                    toggleClass += ' booked';
+                    extraAttr = `title="Ce créneau est ${existing.statut === 'reserve' ? 'réservé' : 'en attente de confirmation'}"`;
+                } else {
+                    toggleClass += ' active';
+                }
+            }
+            
+            const canToggle = !existing || existing.statut === 'disponible';
+            const onclickAttr = canToggle ? 
+                `onclick="toggleAvailability('${dateStr}', ${hour}, ${existing ? existing.id : 'null'})"` : '';
             
             html += `
-                <div class="time-toggle ${isActive ? 'active' : ''}" onclick="toggleAvailability('${dateStr}', ${hour})">
+                <div class="${toggleClass}" ${onclickAttr} ${extraAttr}>
                     <span>${hour}:00 - ${hour + 1}:00</span>
                     <div class="toggle-switch"></div>
                 </div>
@@ -1058,115 +1410,211 @@ function initMoniteurDashboard() {
         grid.innerHTML += html;
     });
     
-    updateRequestsList();
-    updateStats();
+    updateMoniteurStats(slots);
 }
 
-function toggleAvailability(date, hour) {
-    const existingIndex = mockData.slots.findIndex(s => 
-        s.moniteur_id === currentMoniteurLogged && 
-        s.date === date && 
-        s.hour === hour
-    );
+// ============================================================
+// AJOUTER / SUPPRIMER UN CRÉNEAU (par le moniteur)
+// ============================================================
+async function toggleAvailability(dateStr, hour, existingId) {
+    if (!loggedMoniteur) return;
     
-    if (existingIndex > -1) {
-        // Vérifier si pas déjà réservé
-        if (mockData.slots[existingIndex].status === 'booked') {
-            showToast('Ce créneau est déjà réservé', 'error');
-            return;
+    try {
+        if (existingId && existingId !== 'null') {
+            // Le créneau existe → on le supprime
+            const { error } = await supabase
+                .from('creneaux')
+                .delete()
+                .eq('id', existingId);
+            
+            if (error) throw error;
+        } else {
+            // Le créneau n'existe pas → on le crée
+            const { error } = await supabase
+                .from('creneaux')
+                .insert({
+                    moniteur_id: loggedMoniteur.id,
+                    date: dateStr,
+                    heure: hour,
+                    statut: 'disponible'
+                });
+            
+            if (error) throw error;
         }
-        mockData.slots.splice(existingIndex, 1);
-    } else {
-        mockData.slots.push({
-            id: `${currentMoniteurLogged}-${date}-${hour}`,
-            moniteur_id: currentMoniteurLogged,
-            date: date,
-            hour: hour,
-            status: 'available'
-        });
+        
+        // Recharge l'affichage
+        await loadMoniteurAvailability();
+        
+    } catch (err) {
+        console.error('Erreur toggle:', err.message);
+        showToast('Erreur lors de la modification du créneau', 'error');
     }
-    
-    initMoniteurDashboard();
-    updateStats();
 }
 
-function updateRequestsList() {
-    const container = document.getElementById('requests-container');
-    const pending = mockData.reservations.filter(r => 
-        r.moniteur_id === currentMoniteurLogged && 
-        r.status === 'pending'
-    );
+function changeMoniteurWeek(delta) {
+    moniteurWeekOffset += delta;
+    loadMoniteurAvailability();
+}
+
+// ============================================================
+// DEMANDES DE RÉSERVATION (côté moniteur)
+// ============================================================
+async function loadMoniteurRequests() {
+    if (!loggedMoniteur) return;
     
-    if (pending.length === 0) {
-        container.innerHTML = '<p style="color: var(--gray-600); text-align: center; padding: 40px;">Aucune demande en attente</p>';
+    // Requête avec jointure : on récupère les réservations
+    // liées aux créneaux de CE moniteur
+    const { data, error } = await supabase
+        .from('reservations')
+        .select(`
+            id,
+            nom_client,
+            telephone_client,
+            email_client,
+            type_lecon,
+            statut,
+            created_at,
+            creneaux!inner (
+                id,
+                date,
+                heure,
+                moniteur_id
+            )
+        `)
+        .eq('creneaux.moniteur_id', loggedMoniteur.id)
+        .eq('statut', 'en_attente')
+        .order('created_at', { ascending: false });
+    
+    if (error) {
+        console.error('Erreur chargement demandes:', error.message);
         return;
     }
     
-    container.innerHTML = pending.map(req => `
-        <div class="request-card">
-            <div class="request-info">
-                <h4>${req.client_name}</h4>
-                <p>📅 ${new Date(req.date).toLocaleDateString('fr-FR')} à ${req.hour}:00</p>
-                <p>📞 ${req.client_phone} | ✉️ ${req.client_email}</p>
+    const container = document.getElementById('requests-container');
+    const pending = data || [];
+    
+    // Met à jour le compteur
+    document.getElementById('pending-count').textContent = pending.length;
+    
+    if (pending.length === 0) {
+        container.innerHTML = '<p style="color: var(--gray-600); text-align: center; padding: 40px;">Aucune demande en attente 👍</p>';
+        return;
+    }
+    
+    // Affiche chaque demande avec boutons Accepter / Refuser
+    container.innerHTML = pending.map(req => {
+        const creneau = req.creneaux;
+        const dateFormatted = new Date(creneau.date + 'T12:00:00').toLocaleDateString('fr-FR');
+        return `
+            <div class="request-card">
+                <div class="request-info">
+                    <h4>${req.nom_client}</h4>
+                    <p>📅 ${dateFormatted} à ${creneau.heure}:00</p>
+                    <p>📞 ${req.telephone_client} | ✉️ ${req.email_client}</p>
+                    <p>🚗 ${req.type_lecon}</p>
+                </div>
+                <div class="request-actions">
+                    <button class="btn btn-success" onclick="handleRequest(${req.id}, ${creneau.id}, 'confirmee')">
+                        ✓ Accepter
+                    </button>
+                    <button class="btn btn-danger" onclick="handleRequest(${req.id}, ${creneau.id}, 'refusee')">
+                        ✗ Refuser
+                    </button>
+                </div>
             </div>
-            <div class="request-actions">
-                <button class="btn btn-success" onclick="handleRequest(${req.id}, 'confirmed')">✓ Accepter</button>
-                <button class="btn btn-danger" onclick="handleRequest(${req.id}, 'rejected')">✗ Refuser</button>
-            </div>
-        </div>
-    `).join('');
+        `;
+    }).join('');
 }
 
-function handleRequest(id, status) {
-    const req = mockData.reservations.find(r => r.id === id);
-    if (req) {
-        req.status = status;
+// ============================================================
+// ACCEPTER / REFUSER UNE DEMANDE
+// ============================================================
+async function handleRequest(reservationId, creneauId, newStatut) {
+    showLoading(true);
+    
+    try {
+        // 1. Met à jour le statut de la réservation
+        const { error: resError } = await supabase
+            .from('reservations')
+            .update({ statut: newStatut })
+            .eq('id', reservationId);
         
-        const slot = mockData.slots.find(s => 
-            s.moniteur_id === req.moniteur_id && 
-            s.date === req.date && 
-            s.hour === req.hour
-        );
+        if (resError) throw resError;
         
-        if (slot) {
-            slot.status = status === 'confirmed' ? 'booked' : 'available';
-        }
+        // 2. Met à jour le statut du créneau
+        const creneauStatut = newStatut === 'confirmee' ? 'reserve' : 'disponible';
+        const { error: slotError } = await supabase
+            .from('creneaux')
+            .update({ statut: creneauStatut })
+            .eq('id', creneauId);
         
-        showToast(status === 'confirmed' ? 'Réservation confirmée !' : 'Réservation refusée', status === 'confirmed' ? 'success' : 'error');
-        updateRequestsList();
-        updateStats();
+        if (slotError) throw slotError;
+        
+        const msg = newStatut === 'confirmee' ? 'Réservation confirmée !' : 'Réservation refusée';
+        showToast(msg, newStatut === 'confirmee' ? 'success' : 'error');
+        
+        // Recharge les données
+        await loadMoniteurRequests();
+        await loadMoniteurAvailability();
+        
+    } catch (err) {
+        console.error('Erreur traitement demande:', err.message);
+        showToast('Erreur lors du traitement de la demande', 'error');
+    } finally {
+        showLoading(false);
     }
 }
 
-function updateStats() {
-    const pending = mockData.reservations.filter(r => 
-        r.moniteur_id === currentMoniteurLogged && 
-        r.status === 'pending'
-    ).length;
+// ============================================================
+// MISE À JOUR DES STATS MONITEUR
+// ============================================================
+async function updateMoniteurStats(slots) {
+    if (!slots) slots = [];
     
-    const booked = mockData.reservations.filter(r => 
-        r.moniteur_id === currentMoniteurLogged && 
-        r.status === 'confirmed'
-    ).length;
-    
-    const available = mockData.slots.filter(s => 
-        s.moniteur_id === currentMoniteurLogged && 
-        s.status === 'available'
-    ).length;
-    
-    document.getElementById('pending-count').textContent = pending;
-    document.getElementById('lessons-count').textContent = booked;
+    const available = slots.filter(s => s.statut === 'disponible').length;
     document.getElementById('available-count').textContent = available;
+    
+    // Compte les leçons confirmées
+    const { data, error } = await supabase
+        .from('reservations')
+        .select('id, creneaux!inner(moniteur_id)')
+        .eq('creneaux.moniteur_id', loggedMoniteur.id)
+        .eq('statut', 'confirmee');
+    
+    document.getElementById('lessons-count').textContent = 
+        (!error && data) ? data.length : 0;
 }
 
+// ============================================================
+// NAVIGATION ENTRE ONGLETS
+// ============================================================
+function switchTab(tab) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    
+    event.target.closest('.tab').classList.add('active');
+    document.getElementById(`${tab}-view`).classList.add('active');
+    
+    if (tab === 'moniteur' && loggedMoniteur) {
+        showMoniteurDashboard();
+    }
+    if (tab === 'client') {
+        loadCreneaux();
+    }
+}
+
+// ============================================================
+// UTILITAIRES
+// ============================================================
 function showToast(message, type = 'success') {
     const toast = document.getElementById('toast');
     toast.textContent = message;
     toast.className = `toast show ${type}`;
-    
-    setTimeout(() => {
-        toast.classList.remove('show');
-    }, 3000);
+    setTimeout(() => { toast.classList.remove('show'); }, 4000);
+}
+
+function showLoading(show) {
+    document.getElementById('loading-overlay').classList.toggle('active', show);
 }
 
 // Fermer le modal en cliquant à l'extérieur
