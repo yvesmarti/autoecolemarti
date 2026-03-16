@@ -738,9 +738,9 @@
 
             <div class="calendar-header">
                 <div class="week-nav">
-                    <button class="btn btn-secondary" onclick="changeWeek(-1)">← Précédente</button>
+                    <button class="btn btn-secondary" id="btn-week-prev" onclick="changeWeek(-1)" disabled style="opacity:0.4">← Précédente</button>
                     <h3 id="current-week-label" style="margin: 0 20px; color: var(--primary);"></h3>
-                    <button class="btn btn-secondary" onclick="changeWeek(1)">Suivante →</button>
+                    <button class="btn btn-secondary" id="btn-week-next" onclick="changeWeek(1)">Suivante →</button>
                 </div>
                 <button class="btn btn-primary" onclick="openReservationModal()" id="reserve-btn" style="opacity: 0.5; cursor: not-allowed;" disabled>
                     Valider ma réservation
@@ -822,8 +822,8 @@
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                     <h3 style="color: var(--primary);">📅 Définir mes disponibilités</h3>
                     <div style="display: flex; gap: 10px;">
-                        <button class="btn btn-secondary" onclick="changeMoniteurWeek(-1)">← Précédente</button>
-                        <button class="btn btn-secondary" onclick="changeMoniteurWeek(1)">Suivante →</button>
+                        <button class="btn btn-secondary" id="btn-moniteur-week-prev" onclick="changeMoniteurWeek(-1)" disabled style="opacity:0.4">← Précédente</button>
+                        <button class="btn btn-secondary" id="btn-moniteur-week-next" onclick="changeMoniteurWeek(1)">Suivante →</button>
                     </div>
                 </div>
                 <p id="moniteur-week-label" style="margin-bottom: 15px; color: var(--gray-600);"></p>
@@ -1052,6 +1052,9 @@ function renderCalendar() {
         `;
     });
     
+    // Date/heure actuelle pour bloquer les créneaux déjà passés
+    const maintenant = new Date();
+
     // Lignes horaires : 8h à 18h
     for (let hour = 8; hour < 19; hour++) {
         calendar.innerHTML += `<div class="time-label">${hour}:00</div>`;
@@ -1061,6 +1064,11 @@ function renderCalendar() {
             date.setDate(startOfWeek.getDate() + day);
             const dateStr = date.toISOString().split('T')[0];
             
+            // Vérifie si ce créneau est dans le passé
+            const slotDateTime = new Date(date);
+            slotDateTime.setHours(hour, 0, 0, 0);
+            const estPasse = slotDateTime < maintenant;
+            
             // Cherche si un créneau existe pour cette date/heure dans le cache
             const creneau = creneauxCache.find(c => c.date === dateStr && c.heure === hour);
             
@@ -1068,7 +1076,10 @@ function renderCalendar() {
             let content = '';
             let onclick = '';
             
-            if (creneau) {
+            if (estPasse) {
+                // Créneau passé → grisé, non cliquable
+                slotClass += ' empty';
+            } else if (creneau) {
                 if (creneau.statut === 'disponible') {
                     // Vérifie si l'élève a sélectionné ce créneau
                     const isSelected = selectedSlots.find(s => s.creneau_id === creneau.id);
@@ -1131,11 +1142,29 @@ function selectMoniteur(id, element) {
 }
 
 function changeWeek(delta) {
-    currentWeek += delta;
+    const newWeek = currentWeek + delta;
+    // Bloque : pas de passé (min 0) et max 2 semaines dans le futur
+    if (newWeek < 0 || newWeek > 2) return;
+    currentWeek = newWeek;
     updateWeekLabel();
+    updateWeekNavButtons();
     selectedSlots = [];
     updateReserveButton();
     loadCreneaux();
+}
+
+// Grise les boutons de navigation quand on atteint les limites
+function updateWeekNavButtons() {
+    const btnPrev = document.getElementById('btn-week-prev');
+    const btnNext = document.getElementById('btn-week-next');
+    if (btnPrev) {
+        btnPrev.disabled = (currentWeek <= 0);
+        btnPrev.style.opacity = (currentWeek <= 0) ? '0.4' : '1';
+    }
+    if (btnNext) {
+        btnNext.disabled = (currentWeek >= 2);
+        btnNext.style.opacity = (currentWeek >= 2) ? '0.4' : '1';
+    }
 }
 
 function updateWeekLabel() {
@@ -1453,8 +1482,26 @@ async function toggleAvailability(dateStr, hour, existingId) {
 }
 
 function changeMoniteurWeek(delta) {
-    moniteurWeekOffset += delta;
+    const newOffset = moniteurWeekOffset + delta;
+    // Bloque : pas de passé (min 0) et max 2 semaines dans le futur
+    if (newOffset < 0 || newOffset > 2) return;
+    moniteurWeekOffset = newOffset;
+    updateMoniteurWeekNavButtons();
     loadMoniteurAvailability();
+}
+
+// Grise les boutons de navigation moniteur aux limites
+function updateMoniteurWeekNavButtons() {
+    const btnPrev = document.getElementById('btn-moniteur-week-prev');
+    const btnNext = document.getElementById('btn-moniteur-week-next');
+    if (btnPrev) {
+        btnPrev.disabled = (moniteurWeekOffset <= 0);
+        btnPrev.style.opacity = (moniteurWeekOffset <= 0) ? '0.4' : '1';
+    }
+    if (btnNext) {
+        btnNext.disabled = (moniteurWeekOffset >= 2);
+        btnNext.style.opacity = (moniteurWeekOffset >= 2) ? '0.4' : '1';
+    }
 }
 
 // ============================================================
