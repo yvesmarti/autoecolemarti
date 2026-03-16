@@ -6,7 +6,8 @@
     <title>Réservation de Leçons - Auto-École Marti</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="favicon.ico.png">
     <style>
         * {
             margin: 0;
@@ -15,78 +16,125 @@
         }
 
         :root {
-            --primary: #1e3a8a;
-            --primary-light: #3b82f6;
-            --secondary: #f59e0b;
-            --success: #10b981;
+            --primary: #d63031;
+            --primary-light: #e74c3c;
+            --primary-dark: #922b21;
+            --secondary: #d4a853;
+            --success: #00695c;
+            --success-light: #1a8a6e;
             --danger: #ef4444;
-            --gray-100: #f3f4f6;
-            --gray-200: #e5e7eb;
+            --blanc: #fafaf8;
+            --creme: #f5f0e8;
+            --noir: #0a0a0a;
+            --gray-100: #f5f0e8;
+            --gray-200: #e5e5e5;
             --gray-300: #d1d5db;
-            --gray-600: #4b5563;
-            --gray-800: #1f2937;
+            --gray-600: #6b7280;
+            --gray-800: #0a0a0a;
+            --radius: 16px;
+            --radius-sm: 10px;
+            --ombre: 0 4px 30px rgba(0,0,0,0.08);
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         body {
-            font-family: 'DM Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 40%, #3b82f6 100%);
+            font-family: 'DM Sans', sans-serif;
+            background: var(--blanc);
+            color: var(--noir);
             min-height: 100vh;
-            padding: 20px;
+            padding: 0;
+            line-height: 1.7;
         }
+
+        /* Navbar */
+        .site-nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 1px 30px rgba(0,0,0,0.06);
+        }
+        .site-nav .nav-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .site-nav .logo {
+            font-family: 'Playfair Display', serif; font-size: 1.5rem;
+            font-weight: 700; color: var(--noir); text-decoration: none; letter-spacing: -0.02em;
+        }
+        .site-nav .logo span { color: var(--primary); }
+        .site-nav .nav-links {
+            display: flex; gap: 2rem; list-style: none; align-items: center;
+        }
+        .site-nav .nav-links a {
+            text-decoration: none; color: var(--noir); font-size: 0.9rem;
+            font-weight: 500; letter-spacing: 0.02em; transition: var(--transition);
+            position: relative;
+        }
+        .site-nav .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 0; height: 2px; background: var(--primary); transition: var(--transition);
+        }
+        .site-nav .nav-links a:hover::after { width: 100%; }
+        .site-nav .nav-cta {
+            background: var(--primary); color: white !important;
+            padding: 0.6rem 1.4rem; border-radius: 50px;
+            font-weight: 600; font-size: 0.85rem; transition: var(--transition);
+        }
+        .site-nav .nav-cta::after { display: none !important; }
+        .site-nav .nav-cta:hover { background: var(--primary-dark); transform: translateY(-1px); }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
+            padding-top: 80px;
         }
 
-        .header {
-            background: var(--primary);
-            color: white;
-            padding: 30px;
+        .page-header {
             text-align: center;
-            position: relative;
-            overflow: hidden;
+            padding: 50px 30px 30px;
         }
 
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 20px 20px;
-            opacity: 0.3;
+        .page-header .badge {
+            display: inline-block;
+            background: var(--creme);
+            color: var(--primary);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: 0.03em;
         }
 
-        .header h1 {
-            font-family: 'Sora', sans-serif;
-            font-size: 2.5em;
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8em;
+            color: var(--noir);
             margin-bottom: 10px;
-            position: relative;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
         }
 
-        .header p {
-            opacity: 0.9;
+        .page-header p {
+            color: var(--gray-600);
             font-size: 1.1em;
-            position: relative;
+            max-width: 500px;
+            margin: 0 auto;
         }
 
         /* Indicateur de connexion Supabase */
         .connection-status {
-            position: absolute;
-            top: 15px;
-            right: 20px;
+            position: fixed;
+            bottom: 15px;
+            left: 20px;
             display: flex;
             align-items: center;
             gap: 6px;
-            font-size: 0.75em;
-            opacity: 0.8;
+            font-size: 0.7em;
+            opacity: 0.5;
+            z-index: 999;
+            color: var(--gray-600);
         }
         .connection-dot {
             width: 8px;
@@ -96,13 +144,11 @@
             transition: background 0.3s;
         }
         .connection-dot.connected {
-            background: #10b981;
+            background: var(--success);
         }
 
         .tabs {
-            display: flex;
-            background: var(--gray-100);
-            border-bottom: 2px solid var(--gray-200);
+            display: none;
         }
 
         .tab {
@@ -118,7 +164,7 @@
         }
 
         .tab:hover {
-            background: rgba(59, 130, 246, 0.1);
+            background: rgba(214, 48, 49, 0.05);
         }
 
         .tab.active {
@@ -139,6 +185,10 @@
         .content {
             padding: 30px;
             min-height: 600px;
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--ombre);
+            margin: 0 20px 30px;
         }
 
         .view {
@@ -172,17 +222,17 @@
         }
 
         .btn {
-            padding: 10px 20px;
+            padding: 10px 24px;
             border: none;
-            border-radius: 8px;
+            border-radius: 50px;
             cursor: pointer;
             font-weight: 600;
             font-family: inherit;
-            transition: all 0.3s;
+            transition: var(--transition);
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            font-size: 0.95em;
+            font-size: 0.9em;
         }
 
         .btn-primary {
@@ -191,19 +241,21 @@
         }
 
         .btn-primary:hover {
-            background: var(--primary-light);
+            background: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+            box-shadow: 0 4px 15px rgba(214, 48, 49, 0.3);
         }
 
         .btn-secondary {
-            background: var(--gray-200);
-            color: var(--gray-800);
+            background: transparent;
+            color: var(--gray-600);
+            border: 1.5px solid var(--gray-200);
         }
 
         .btn-secondary:hover {
-            background: var(--gray-600);
-            color: white;
+            border-color: var(--primary);
+            color: var(--primary);
+            background: rgba(214, 48, 49, 0.04);
         }
 
         .moniteur-selector {
@@ -216,21 +268,22 @@
         .moniteur-card {
             padding: 15px 25px;
             border: 2px solid var(--gray-200);
-            border-radius: 12px;
+            border-radius: var(--radius-sm);
             cursor: pointer;
-            transition: all 0.3s;
+            transition: var(--transition);
             background: white;
         }
 
         .moniteur-card:hover {
             border-color: var(--primary-light);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: var(--ombre);
         }
 
         .moniteur-card.selected {
             border-color: var(--primary);
-            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+            background: linear-gradient(135deg, #fdf2f2 0%, #fce4e4 100%);
+            box-shadow: 0 4px 12px rgba(214, 48, 49, 0.15);
         }
 
         .calendar-grid {
@@ -238,13 +291,13 @@
             grid-template-columns: 80px repeat(7, 1fr);
             gap: 1px;
             background: var(--gray-200);
-            border-radius: 12px;
+            border-radius: var(--radius);
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            box-shadow: var(--ombre);
         }
 
         .time-slot-header {
-            background: var(--gray-100);
+            background: var(--creme);
             padding: 15px 5px;
             font-weight: 600;
             text-align: center;
@@ -253,7 +306,7 @@
         }
 
         .day-header {
-            background: var(--primary);
+            background: var(--noir);
             color: white;
             padding: 15px;
             text-align: center;
@@ -271,7 +324,7 @@
         }
 
         .time-label {
-            background: var(--gray-100);
+            background: var(--creme);
             padding: 10px;
             text-align: center;
             font-size: 0.85em;
@@ -287,7 +340,7 @@
             padding: 10px;
             min-height: 60px;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: var(--transition);
             position: relative;
             display: flex;
             align-items: center;
@@ -295,14 +348,14 @@
         }
 
         .slot:hover:not(.booked):not(.pending) {
-            background: #eff6ff;
+            background: #fdf2f2;
             transform: scale(1.05);
             z-index: 10;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
 
         .slot.available {
-            background: #d1fae5;
+            background: #e0f2f1;
             color: var(--success);
             font-weight: 600;
         }
@@ -325,7 +378,7 @@
             color: white;
             transform: scale(1.1);
             z-index: 20;
-            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.4);
+            box-shadow: 0 4px 15px rgba(214, 48, 49, 0.4);
         }
 
         /* Modal */
@@ -351,13 +404,13 @@
 
         .modal {
             background: white;
-            border-radius: 20px;
+            border-radius: var(--radius);
             padding: 30px;
             max-width: 500px;
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.2);
             transform: scale(0.9);
             animation: modalPop 0.3s forwards;
         }
@@ -367,7 +420,8 @@
         }
 
         .modal h2 {
-            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+            color: var(--noir);
             margin-bottom: 20px;
             display: flex;
             align-items: center;
@@ -383,29 +437,32 @@
             margin-bottom: 8px;
             font-weight: 600;
             color: var(--gray-800);
+            font-size: 0.9em;
         }
 
         .form-group input,
         .form-group select {
             width: 100%;
-            padding: 12px;
-            border: 2px solid var(--gray-200);
-            border-radius: 8px;
+            padding: 12px 16px;
+            border: 1.5px solid var(--gray-200);
+            border-radius: var(--radius-sm);
             font-size: 1em;
             font-family: inherit;
             transition: border-color 0.3s;
+            background: var(--blanc);
         }
 
         .form-group input:focus,
         .form-group select:focus {
             outline: none;
-            border-color: var(--primary-light);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(214, 48, 49, 0.1);
         }
 
         .selected-slots {
-            background: #eff6ff;
+            background: var(--creme);
             padding: 15px;
-            border-radius: 8px;
+            border-radius: var(--radius-sm);
             margin-bottom: 20px;
             border-left: 4px solid var(--primary);
         }
@@ -424,9 +481,9 @@
 
         /* Interface Moniteur */
         .moniteur-panel {
-            background: var(--gray-100);
-            padding: 20px;
-            border-radius: 12px;
+            background: var(--creme);
+            padding: 25px;
+            border-radius: var(--radius);
             margin-bottom: 20px;
         }
 
@@ -447,17 +504,18 @@
 
         .day-card {
             background: white;
-            border-radius: 12px;
+            border-radius: var(--radius);
             padding: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            box-shadow: var(--ombre);
         }
 
         .day-card h3 {
-            color: var(--primary);
+            color: var(--noir);
             margin-bottom: 15px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            font-family: 'Playfair Display', serif;
         }
 
         .time-toggle {
@@ -466,14 +524,14 @@
             justify-content: space-between;
             padding: 10px;
             margin: 5px 0;
-            background: var(--gray-100);
-            border-radius: 8px;
+            background: var(--creme);
+            border-radius: var(--radius-sm);
             cursor: pointer;
-            transition: all 0.3s;
+            transition: var(--transition);
         }
 
         .time-toggle:hover {
-            background: #dbeafe;
+            background: #fdf2f2;
         }
 
         .time-toggle.active {
@@ -523,10 +581,10 @@
 
         .request-card {
             background: white;
-            border-radius: 12px;
+            border-radius: var(--radius);
             padding: 20px;
             margin-bottom: 15px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            box-shadow: var(--ombre);
             border-left: 4px solid var(--secondary);
             display: flex;
             justify-content: space-between;
@@ -536,7 +594,7 @@
         }
 
         .request-info h4 {
-            color: var(--primary);
+            color: var(--noir);
             margin-bottom: 5px;
         }
 
@@ -556,7 +614,8 @@
         }
 
         .btn-success:hover {
-            background: #059669;
+            background: var(--success-light);
+            transform: translateY(-2px);
         }
 
         .btn-danger {
@@ -566,6 +625,7 @@
 
         .btn-danger:hover {
             background: #dc2626;
+            transform: translateY(-2px);
         }
 
         .stats-grid {
@@ -578,8 +638,8 @@
         .stat-card {
             background: white;
             padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-radius: var(--radius);
+            box-shadow: var(--ombre);
             text-align: center;
             border-top: 4px solid var(--primary);
         }
@@ -589,6 +649,7 @@
             font-weight: bold;
             color: var(--primary);
             margin: 10px 0;
+            font-family: 'Playfair Display', serif;
         }
 
         .stat-label {
@@ -596,20 +657,76 @@
             font-size: 0.9em;
         }
 
+        /* Moniteur discreet access link */
+        .moniteur-access {
+            text-align: center;
+            padding: 30px 20px 40px;
+        }
+        .moniteur-access a {
+            color: var(--gray-600);
+            font-size: 0.8em;
+            text-decoration: none;
+            opacity: 0.5;
+            transition: var(--transition);
+        }
+        .moniteur-access a:hover {
+            opacity: 1;
+            color: var(--primary);
+        }
+        .back-to-client {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--gray-600);
+            font-size: 0.9em;
+            text-decoration: none;
+            margin-bottom: 20px;
+            transition: var(--transition);
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: inherit;
+            padding: 0;
+        }
+        .back-to-client:hover {
+            color: var(--primary);
+        }
+
+        /* Footer */
+        .site-footer {
+            background: var(--noir);
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.85em;
+            margin-top: 20px;
+        }
+        .site-footer a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+        }
+        .site-footer a:hover {
+            color: var(--primary);
+        }
+
         @media (max-width: 768px) {
             .calendar-grid {
                 grid-template-columns: 60px repeat(7, 1fr);
                 font-size: 0.8em;
             }
-            .header h1 {
+            .page-header h1 {
                 font-size: 1.8em;
             }
-            .tabs {
-                flex-direction: column;
+            .content {
+                margin: 0 10px 20px;
+                padding: 20px;
             }
             .week-nav {
                 flex-wrap: wrap;
                 justify-content: center;
+            }
+            .site-nav .nav-links {
+                display: none;
             }
         }
 
@@ -631,17 +748,18 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background: var(--gray-800);
+            background: var(--noir);
             color: white;
             padding: 15px 25px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-radius: var(--radius-sm);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             display: none;
             align-items: center;
             gap: 10px;
             z-index: 2000;
             animation: slideIn 0.3s;
             max-width: 400px;
+            font-size: 0.9em;
         }
 
         .toast.show { display: flex; }
@@ -650,7 +768,7 @@
             to { transform: translateX(0); opacity: 1; }
         }
         .toast.success { background: var(--success); }
-        .toast.error { background: var(--danger); }
+        .toast.error { background: var(--primary); }
 
         /* Loading overlay pour les actions */
         .loading-overlay {
@@ -666,7 +784,7 @@
         .loading-overlay .loader {
             width: 50px;
             height: 50px;
-            border: 5px solid var(--gray-200);
+            border: 4px solid var(--creme);
             border-top-color: var(--primary);
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
@@ -675,27 +793,28 @@
         .error-box {
             background: #fef2f2;
             border: 1px solid #fecaca;
-            border-radius: 8px;
+            border-radius: var(--radius-sm);
             padding: 15px;
             color: #991b1b;
             margin-bottom: 20px;
+            font-size: 0.9em;
         }
 
         .logout-btn {
             background: none;
-            border: 1px solid var(--gray-300);
-            padding: 8px 16px;
-            border-radius: 6px;
+            border: 1.5px solid var(--gray-200);
+            padding: 8px 20px;
+            border-radius: 50px;
             cursor: pointer;
             font-family: inherit;
             color: var(--gray-600);
             font-size: 0.85em;
-            transition: all 0.3s;
+            transition: var(--transition);
         }
         .logout-btn:hover {
-            background: var(--danger);
+            background: var(--primary);
             color: white;
-            border-color: var(--danger);
+            border-color: var(--primary);
         }
     </style>
 </head>
@@ -705,22 +824,38 @@
     <div class="loader"></div>
 </div>
 
+<div class="connection-status">
+    <div class="connection-dot" id="connection-dot"></div>
+    <span id="connection-text">Connexion...</span>
+</div>
+
+<nav class="site-nav">
+    <div class="nav-inner">
+        <a href="index.html" class="logo">AUTO-ECOLE MARTI<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html#formations">Formations</a></li>
+            <li><a href="index.html#histoire">Notre histoire</a></li>
+            <li><a href="index.html#avis">Avis</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="blog/index.html">Blog</a></li>
+            <li><a href="mailto:autoecole.marti@gmail.com" class="nav-cta">S'inscrire</a></li>
+        </ul>
+    </div>
+</nav>
+
 <div class="container">
-    <div class="header">
-        <div class="connection-status">
-            <div class="connection-dot" id="connection-dot"></div>
-            <span id="connection-text">Connexion...</span>
-        </div>
-        <h1>🚗 Auto-École Marti</h1>
-        <p>Réservation de leçons de conduite - Espace Clients & Moniteurs</p>
+    <div class="page-header">
+        <div class="badge">Prise de rendez-vous</div>
+        <h1>Réservez votre leçon<br>de conduite</h1>
+        <p>Choisissez votre moniteur et sélectionnez le créneau qui vous convient.</p>
     </div>
 
     <div class="tabs">
         <div class="tab active" onclick="switchTab('client')">
-            <span>📅</span> Réservation Client
+            <span></span> Réservation Client
         </div>
         <div class="tab" onclick="switchTab('moniteur')">
-            <span>👨‍🏫</span> Espace Moniteur
+            <span></span> Espace Moniteur
         </div>
     </div>
 
@@ -729,7 +864,7 @@
     <!-- ============================================ -->
     <div id="client-view" class="view active">
         <div class="content">
-            <h2 style="margin-bottom: 20px; color: var(--primary);">Réserver une leçon de conduite</h2>
+            <h2 style="margin-bottom: 20px; color: var(--noir); font-family: 'Playfair Display', serif;">Choisissez votre moniteur</h2>
             
             <!-- Sélection du moniteur (rempli dynamiquement) -->
             <div class="moniteur-selector" id="moniteur-selector">
@@ -739,7 +874,7 @@
             <div class="calendar-header">
                 <div class="week-nav">
                     <button class="btn btn-secondary" id="btn-week-prev" onclick="changeWeek(-1)" disabled style="opacity:0.4">← Précédente</button>
-                    <h3 id="current-week-label" style="margin: 0 20px; color: var(--primary);"></h3>
+                    <h3 id="current-week-label" style="margin: 0 20px; color: var(--noir); font-size: 0.95em;"></h3>
                     <button class="btn btn-secondary" id="btn-week-next" onclick="changeWeek(1)">Suivante →</button>
                 </div>
                 <button class="btn btn-primary" onclick="openReservationModal()" id="reserve-btn" style="opacity: 0.5; cursor: not-allowed;" disabled>
@@ -751,21 +886,21 @@
                 <!-- Généré dynamiquement -->
             </div>
 
-            <div style="margin-top: 20px; display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.9em;">
+            <div style="margin-top: 20px; display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.85em; color: var(--gray-600);">
                 <div style="display: flex; align-items: center; gap: 8px;">
-                    <div style="width: 20px; height: 20px; background: #d1fae5; border-radius: 4px;"></div>
+                    <div style="width: 16px; height: 16px; background: #e0f2f1; border-radius: 4px; border: 1px solid #b2dfdb;"></div>
                     <span>Disponible</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 8px;">
-                    <div style="width: 20px; height: 20px; background: #fee2e2; border-radius: 4px;"></div>
+                    <div style="width: 16px; height: 16px; background: #fee2e2; border-radius: 4px; border: 1px solid #fecaca;"></div>
                     <span>Réservé</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 8px;">
-                    <div style="width: 20px; height: 20px; background: #fef3c7; border-radius: 4px;"></div>
+                    <div style="width: 16px; height: 16px; background: #fef3c7; border-radius: 4px; border: 1px solid #fde68a;"></div>
                     <span>En attente</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 8px;">
-                    <div style="width: 20px; height: 20px; background: var(--primary); border-radius: 4px;"></div>
+                    <div style="width: 16px; height: 16px; background: var(--primary); border-radius: 4px;"></div>
                     <span>Sélectionné</span>
                 </div>
             </div>
@@ -777,9 +912,10 @@
     <!-- ============================================ -->
     <div id="moniteur-view" class="view">
         <div class="content">
+            <button class="back-to-client" onclick="switchTab('client')">← Retour à la réservation</button>
             <!-- Formulaire de connexion (visible si pas connecté) -->
             <div class="moniteur-panel" id="login-panel">
-                <h3 style="margin-bottom: 15px;">🔐 Connexion Moniteur</h3>
+                <h3 style="margin-bottom: 15px; font-family: 'Playfair Display', serif;">Connexion Moniteur</h3>
                 <div class="login-form">
                     <div class="form-group">
                         <label>Email</label>
@@ -799,7 +935,7 @@
             <!-- Dashboard moniteur (visible après connexion) -->
             <div id="moniteur-dashboard" style="display: none;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                    <h2 style="color: var(--primary);" id="welcome-moniteur">Bienvenue</h2>
+                    <h2 style="color: var(--noir); font-family: 'Playfair Display', serif;" id="welcome-moniteur">Bienvenue</h2>
                     <button class="logout-btn" onclick="logoutMoniteur()">🚪 Déconnexion</button>
                 </div>
 
@@ -820,7 +956,7 @@
 
                 <!-- Semaine de disponibilités -->
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                    <h3 style="color: var(--primary);">📅 Définir mes disponibilités</h3>
+                    <h3 style="color: var(--noir); font-family: 'Playfair Display', serif;">Définir mes disponibilités</h3>
                     <div style="display: flex; gap: 10px;">
                         <button class="btn btn-secondary" id="btn-moniteur-week-prev" onclick="changeMoniteurWeek(-1)" disabled style="opacity:0.4">← Précédente</button>
                         <button class="btn btn-secondary" id="btn-moniteur-week-next" onclick="changeMoniteurWeek(1)">Suivante →</button>
@@ -832,7 +968,7 @@
                 </div>
 
                 <div class="requests-list">
-                    <h3 style="margin-bottom: 20px; color: var(--primary);">🔔 Demandes de réservation</h3>
+                    <h3 style="margin-bottom: 20px; color: var(--noir); font-family: 'Playfair Display', serif;">Demandes de réservation</h3>
                     <div id="requests-container">
                         <p style="color: var(--gray-600); text-align: center; padding: 40px;">Chargement...</p>
                     </div>
@@ -840,7 +976,15 @@
             </div>
         </div>
     </div>
+
+    <div class="moniteur-access" id="moniteur-access-link">
+        <a href="#" onclick="switchTab('moniteur'); return false;">Espace moniteur</a>
+    </div>
 </div>
+
+<footer class="site-footer">
+    <p>Auto-Ecole Marti &mdash; 13 rue Marengo, 64100 Bayonne &mdash; <a href="tel:+33559591260">05 59 59 12 60</a></p>
+</footer>
 
 <!-- Modal Réservation (pour les élèves) -->
 <div class="modal-overlay" id="reservation-modal">
@@ -1639,14 +1783,19 @@ async function updateMoniteurStats(slots) {
 function switchTab(tab) {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-    
-    event.target.closest('.tab').classList.add('active');
+
     document.getElementById(`${tab}-view`).classList.add('active');
-    
-    if (tab === 'moniteur' && loggedMoniteur) {
-        showMoniteurDashboard();
-    }
-    if (tab === 'client') {
+
+    // Show/hide discreet moniteur link and page header
+    const moniteurLink = document.getElementById('moniteur-access-link');
+    const pageHeader = document.querySelector('.page-header');
+    if (tab === 'moniteur') {
+        if (moniteurLink) moniteurLink.style.display = 'none';
+        if (pageHeader) pageHeader.style.display = 'none';
+        if (loggedMoniteur) showMoniteurDashboard();
+    } else {
+        if (moniteurLink) moniteurLink.style.display = 'block';
+        if (pageHeader) pageHeader.style.display = 'block';
         loadCreneaux();
     }
 }
