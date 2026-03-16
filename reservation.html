@@ -896,7 +896,8 @@ const SUPABASE_URL = 'https://hxlbbphprbdvdpydbjvx.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh4bGJicGhwcmJkdmRweWRianZ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1ODgxNjYsImV4cCI6MjA4OTE2NDE2Nn0.6q3gCfJf5xPShATp35wvJiaIzK0cYJsVPpYYQyq110g';
 
 // Crée le "client" Supabase = l'objet qui permet de parler à ta base de données
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+// On l'appelle "db" (et pas "supabase") pour éviter un conflit avec la librairie
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // ============================================================
 // VARIABLES GLOBALES
@@ -919,7 +920,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadCreneaux();
 
     // Vérifie si un moniteur était déjà connecté (session persistante)
-    const { data: { session } } = await supabase.auth.getSession();
+    const { data: { session } } = await db.auth.getSession();
     if (session) {
         await restoreMoniteurSession(session.user.id);
     }
@@ -931,7 +932,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 async function testConnection() {
     try {
         // Tente de lire la table moniteurs pour vérifier que la connexion fonctionne
-        const { data, error } = await supabase.from('moniteurs').select('id').limit(1);
+        const { data, error } = await db.from('moniteurs').select('id').limit(1);
         
         if (error) throw error;
         
@@ -949,7 +950,7 @@ async function testConnection() {
 // ============================================================
 // Récupère la liste des moniteurs pour les afficher dans le sélecteur
 async function loadMoniteurs() {
-    const { data, error } = await supabase
+    const { data, error } = await db
         .from('moniteurs')
         .select('id, nom, prenom')
         .order('nom');
@@ -988,7 +989,7 @@ async function loadCreneaux() {
     // Requête Supabase : récupère les créneaux du moniteur pour cette semaine
     // .gte = "greater than or equal" (>=)
     // .lte = "less than or equal" (<=)
-    const { data, error } = await supabase
+    const { data, error } = await db
         .from('creneaux')
         .select('id, date, heure, statut')
         .eq('moniteur_id', currentMoniteurId)
@@ -1202,7 +1203,7 @@ async function submitReservation() {
         // Pour chaque créneau sélectionné, on crée une réservation
         for (const slot of selectedSlots) {
             // 1. Crée la réservation dans la table "reservations"
-            const { error: resError } = await supabase
+            const { error: resError } = await db
                 .from('reservations')
                 .insert({
                     creneau_id: slot.creneau_id,
@@ -1216,7 +1217,7 @@ async function submitReservation() {
             if (resError) throw resError;
             
             // 2. Met à jour le statut du créneau → "en_attente"
-            const { error: slotError } = await supabase
+            const { error: slotError } = await db
                 .from('creneaux')
                 .update({ statut: 'en_attente' })
                 .eq('id', slot.creneau_id);
@@ -1265,7 +1266,7 @@ async function loginMoniteur() {
     
     try {
         // Connexion via Supabase Auth
-        const { data, error } = await supabase.auth.signInWithPassword({
+        const { data, error } = await db.auth.signInWithPassword({
             email: email,
             password: password
         });
@@ -1273,7 +1274,7 @@ async function loginMoniteur() {
         if (error) throw error;
         
         // Récupère les infos du moniteur à partir de son auth_id
-        const { data: moniteurData, error: mError } = await supabase
+        const { data: moniteurData, error: mError } = await db
             .from('moniteurs')
             .select('*')
             .eq('auth_id', data.user.id)
@@ -1295,7 +1296,7 @@ async function loginMoniteur() {
 }
 
 async function restoreMoniteurSession(authId) {
-    const { data, error } = await supabase
+    const { data, error } = await db
         .from('moniteurs')
         .select('*')
         .eq('auth_id', authId)
@@ -1307,7 +1308,7 @@ async function restoreMoniteurSession(authId) {
 }
 
 async function logoutMoniteur() {
-    await supabase.auth.signOut();
+    await db.auth.signOut();
     loggedMoniteur = null;
     document.getElementById('moniteur-dashboard').style.display = 'none';
     document.getElementById('login-panel').style.display = 'block';
@@ -1342,7 +1343,7 @@ async function loadMoniteurAvailability() {
         `Semaine du ${startOfWeek.toLocaleDateString('fr-FR', opts)} au ${endOfWeek.toLocaleDateString('fr-FR', opts)}`;
     
     // Récupère les créneaux du moniteur pour cette semaine
-    const { data, error } = await supabase
+    const { data, error } = await db
         .from('creneaux')
         .select('id, date, heure, statut')
         .eq('moniteur_id', loggedMoniteur.id)
@@ -1422,7 +1423,7 @@ async function toggleAvailability(dateStr, hour, existingId) {
     try {
         if (existingId && existingId !== 'null') {
             // Le créneau existe → on le supprime
-            const { error } = await supabase
+            const { error } = await db
                 .from('creneaux')
                 .delete()
                 .eq('id', existingId);
@@ -1430,7 +1431,7 @@ async function toggleAvailability(dateStr, hour, existingId) {
             if (error) throw error;
         } else {
             // Le créneau n'existe pas → on le crée
-            const { error } = await supabase
+            const { error } = await db
                 .from('creneaux')
                 .insert({
                     moniteur_id: loggedMoniteur.id,
@@ -1464,7 +1465,7 @@ async function loadMoniteurRequests() {
     
     // Requête avec jointure : on récupère les réservations
     // liées aux créneaux de CE moniteur
-    const { data, error } = await supabase
+    const { data, error } = await db
         .from('reservations')
         .select(`
             id,
@@ -1534,7 +1535,7 @@ async function handleRequest(reservationId, creneauId, newStatut) {
     
     try {
         // 1. Met à jour le statut de la réservation
-        const { error: resError } = await supabase
+        const { error: resError } = await db
             .from('reservations')
             .update({ statut: newStatut })
             .eq('id', reservationId);
@@ -1543,7 +1544,7 @@ async function handleRequest(reservationId, creneauId, newStatut) {
         
         // 2. Met à jour le statut du créneau
         const creneauStatut = newStatut === 'confirmee' ? 'reserve' : 'disponible';
-        const { error: slotError } = await supabase
+        const { error: slotError } = await db
             .from('creneaux')
             .update({ statut: creneauStatut })
             .eq('id', creneauId);
@@ -1575,7 +1576,7 @@ async function updateMoniteurStats(slots) {
     document.getElementById('available-count').textContent = available;
     
     // Compte les leçons confirmées
-    const { data, error } = await supabase
+    const { data, error } = await db
         .from('reservations')
         .select('id, creneaux!inner(moniteur_id)')
         .eq('creneaux.moniteur_id', loggedMoniteur.id)
