@@ -355,21 +355,21 @@
         }
 
         .slot.available {
-            background: #e0f2f1;
-            color: var(--success);
+            background: #bbf7d0;
+            color: #15803d;
             font-weight: 600;
         }
 
         .slot.booked {
-            background: #fee2e2;
-            color: var(--danger);
+            background: #fecaca;
+            color: #dc2626;
             cursor: not-allowed;
             opacity: 0.7;
         }
 
         .slot.pending {
-            background: #fef3c7;
-            color: #d97706;
+            background: #fde68a;
+            color: #b45309;
             cursor: wait;
         }
 
@@ -888,15 +888,15 @@
 
             <div style="margin-top: 20px; display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.85em; color: var(--gray-600);">
                 <div style="display: flex; align-items: center; gap: 8px;">
-                    <div style="width: 16px; height: 16px; background: #e0f2f1; border-radius: 4px; border: 1px solid #b2dfdb;"></div>
+                    <div style="width: 16px; height: 16px; background: #bbf7d0; border-radius: 4px; border: 1px solid #86efac;"></div>
                     <span>Disponible</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 8px;">
-                    <div style="width: 16px; height: 16px; background: #fee2e2; border-radius: 4px; border: 1px solid #fecaca;"></div>
+                    <div style="width: 16px; height: 16px; background: #fecaca; border-radius: 4px; border: 1px solid #f87171;"></div>
                     <span>Réservé</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 8px;">
-                    <div style="width: 16px; height: 16px; background: #fef3c7; border-radius: 4px; border: 1px solid #fde68a;"></div>
+                    <div style="width: 16px; height: 16px; background: #fde68a; border-radius: 4px; border: 1px solid #fcd34d;"></div>
                     <span>En attente</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 8px;">
@@ -1014,9 +1014,8 @@
         <div class="form-group">
             <label>Type de leçon</label>
             <select id="lesson-type">
-                <option value="conduite">Leçon de conduite standard</option>
-                <option value="code">Code de la route</option>
-                <option value="parcours">Parcours examen</option>
+                <option value="conduite-manuelle">Conduite boite manuelle</option>
+                <option value="conduite-auto">Conduite boite auto</option>
             </select>
         </div>
 
