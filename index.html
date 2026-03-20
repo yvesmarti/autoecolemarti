@@ -127,9 +127,9 @@
             <li><a href="blog/index.html">Blog</a></li>
             <li><a href="mailto:autoecole.marti@gmail.com" class="nav-cta">S'inscrire</a></li>
         </ul>
-        <div class="hamburger" id="hamburger" onclick="toggleNav()">
+        <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Ouvrir le menu de navigation" aria-expanded="false">
             <span></span><span></span><span></span>
-        </div>
+        </button>
     </div>
 </nav>
 
@@ -414,7 +414,7 @@
             <h2 style="color:white">Ce que disent nos élèves</h2>
             <p>La satisfaction de nos élèves est notre meilleure publicité.</p>
         </div>
-        <div class="avis-carousel">
+        <div class="avis-carousel" role="region" aria-label="Avis de nos élèves" aria-roledescription="carousel">
             <div class="avis-track-wrap">
                 <div class="avis-track" id="avisTrack">
                     <!-- Slide 1 -->
@@ -828,7 +828,7 @@
                             Envoyer le message →
                         </button>
 
-                        <div class="form-feedback" id="formFeedback"></div>
+                        <div class="form-feedback" id="formFeedback" aria-live="polite"></div>
                     </form>
                 </div>
             </div>
@@ -836,8 +836,9 @@
 
         <!-- CARTE pleine largeur -->
         <div class="contact-map fade-in" style="margin-top: 2.5rem;">
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2897.5!2d-1.4747!3d43.4889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd51411a8e9e1c1b%3A0x4e7a2e8c8f4e2f1a!2s13%20Rue%20Marengo%2C%2064100%20Bayonne!5e0!3m2!1sfr!2sfr!4v1700000000000!5m2!1sfr!2sfr" 
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2897.5!2d-1.4747!3d43.4889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd51411a8e9e1c1b%3A0x4e7a2e8c8f4e2f1a!2s13%20Rue%20Marengo%2C%2064100%20Bayonne!5e0!3m2!1sfr!2sfr!4v1700000000000!5m2!1sfr!2sfr"
+                title="Carte Google Maps — Auto-École Marti, 13 rue Marengo, 64100 Bayonne"
                 allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
             </iframe>
         </div>
@@ -908,7 +909,10 @@
 
     // ── Mobile nav toggle ──
     function toggleNav() {
-        document.getElementById('navLinks').classList.toggle('active');
+        const links = document.getElementById('navLinks');
+        const hamburger = document.getElementById('hamburger');
+        links.classList.toggle('active');
+        hamburger.setAttribute('aria-expanded', links.classList.contains('active'));
     }
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {

@@ -951,11 +951,11 @@
                 <h3 style="margin-bottom: 15px; font-family: 'Playfair Display', serif;">Connexion Moniteur</h3>
                 <div class="login-form">
                     <div class="form-group">
-                        <label>Email</label>
+                        <label for="login-email">Email</label>
                         <input type="email" id="login-email" placeholder="votre@email.com">
                     </div>
                     <div class="form-group">
-                        <label>Mot de passe</label>
+                        <label for="login-password">Mot de passe</label>
                         <input type="password" id="login-password" placeholder="Votre mot de passe">
                     </div>
                     <div id="login-error" class="error-box" style="display: none;"></div>
@@ -1020,9 +1020,9 @@
 </footer>
 
 <!-- Modal Réservation (pour les élèves) -->
-<div class="modal-overlay" id="reservation-modal">
+<div class="modal-overlay" id="reservation-modal" role="dialog" aria-modal="true" aria-labelledby="reservation-modal-title">
     <div class="modal">
-        <h2>📝 Confirmer votre réservation</h2>
+        <h2 id="reservation-modal-title">📝 Confirmer votre réservation</h2>
         
         <div class="selected-slots">
             <strong>Créneaux sélectionnés :</strong>
@@ -1030,22 +1030,22 @@
         </div>
 
         <div class="form-group">
-            <label>Nom complet *</label>
+            <label for="client-name">Nom complet *</label>
             <input type="text" id="client-name" placeholder="Votre nom et prénom">
         </div>
 
         <div class="form-group">
-            <label>Téléphone *</label>
+            <label for="client-phone">Téléphone *</label>
             <input type="tel" id="client-phone" placeholder="06 12 34 56 78">
         </div>
 
         <div class="form-group">
-            <label>Email *</label>
+            <label for="client-email">Email *</label>
             <input type="email" id="client-email" placeholder="votre@email.com">
         </div>
 
         <div class="form-group">
-            <label>Type de leçon</label>
+            <label for="lesson-type">Type de leçon</label>
             <select id="lesson-type">
                 <option value="conduite-manuelle">Conduite boite manuelle</option>
                 <option value="conduite-auto">Conduite boite auto</option>
