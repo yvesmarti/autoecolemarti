@@ -78,6 +78,7 @@ nav .nav-cta:hover { background: var(--rouge-sombre); transform: translateY(-1px
 
 .hamburger {
     display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001;
+    background: none; border: none; padding: 0;
 }
 .hamburger span { width: 24px; height: 2px; background: var(--noir); transition: var(--transition); }
 
