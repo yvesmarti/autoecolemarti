@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz Panneaux – Auto-École Marti</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── VARIABLES ── */
+    :root {
+      --bg:        #0f1117;
+      --surface:   #1a1d27;
+      --border:    #2e3245;
+      --accent:    #e63946;
+      --accent2:   #457b9d;
+      --gold:      #f4d03f;
+      --green:     #2ecc71;
+      --red:       #e74c3c;
+      --text:      #e8eaf0;
+      --muted:     #8b8fa8;
+      --radius:    14px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ── HEADER ── */
+    header {
+      width: 100%;
+      background: var(--surface);
+      border-bottom: 2px solid var(--accent);
+      padding: 18px 32px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    header .logo-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    header .logo-text span { color: var(--accent); }
+    header .badge {
+      margin-left: auto;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── CONTAINER ── */
+    .container {
+      width: 100%;
+      max-width: 760px;
+      padding: 40px 20px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    /* ── PROGRESS ── */
+    .progress-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .progress-bar {
+      height: 5px;
+      background: var(--border);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent2), var(--accent));
+      border-radius: 99px;
+      transition: width 0.5s ease;
+    }
+
+    /* ── SCORE ── */
+    .scoreboard {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+    .score-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .score-pill .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+    }
+    .score-pill.correct .dot { background: var(--green); }
+    .score-pill.wrong   .dot { background: var(--red); }
+
+    /* ── CATEGORY TAG ── */
+    .cat-tag {
+      display: inline-block;
+      background: var(--border);
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    /* ── QUESTION CARD ── */
+    .question-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      animation: fadeUp 0.35s ease;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .question-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-align: center;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── SIGN IMAGE ── */
+    .sign-wrapper {
+      width: 180px;
+      height: 180px;
+      background: #fff;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      padding: 12px;
+    }
+    .sign-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .sign-code {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    /* ── ANSWERS GRID ── */
+    .answers-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .answer-btn {
+      background: var(--bg);
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-align: left;
+      line-height: 1.35;
+      transition: border-color 0.2s, background 0.2s, transform 0.1s;
+      position: relative;
+    }
+    .answer-btn:hover:not(:disabled) {
+      border-color: var(--accent2);
+      background: rgba(69,123,157,0.12);
+      transform: translateY(-2px);
+    }
+    .answer-btn:active:not(:disabled) { transform: translateY(0); }
+
+    .answer-btn.correct {
+      border-color: var(--green);
+      background: rgba(46,204,113,0.12);
+    }
+    .answer-btn.wrong {
+      border-color: var(--red);
+      background: rgba(231,76,60,0.1);
+      opacity: 0.7;
+    }
+    .answer-btn:disabled { cursor: default; }
+
+    .answer-letter {
+      display: inline-block;
+      width: 24px; height: 24px;
+      background: var(--border);
+      border-radius: 6px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 0.85rem;
+      line-height: 24px;
+      text-align: center;
+      margin-right: 10px;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+    .answer-btn.correct .answer-letter { background: var(--green); color: #fff; }
+    .answer-btn.wrong   .answer-letter { background: var(--red);   color: #fff; }
+
+    /* ── FEEDBACK ── */
+    .feedback {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      font-weight: 500;
+      display: none;
+      line-height: 1.5;
+    }
+    .feedback.show { display: block; }
+    .feedback.correct {
+      background: rgba(46,204,113,0.12);
+      border: 1px solid var(--green);
+      color: var(--green);
+    }
+    .feedback.wrong {
+      background: rgba(231,76,60,0.1);
+      border: 1px solid var(--red);
+      color: #ff8080;
+    }
+    .feedback strong { color: #fff; }
+
+    /* ── NEXT BUTTON ── */
+    .btn-next {
+      display: none;
+      align-self: flex-end;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 14px 30px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-next:hover  { background: #c0303a; transform: translateY(-2px); }
+    .btn-next:active { transform: translateY(0); }
+    .btn-next.show   { display: inline-block; }
+
+    /* ── RESULTS SCREEN ── */
+    .results-screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      text-align: center;
+      animation: fadeUp 0.5s ease;
+    }
+    .results-screen.show { display: flex; }
+
+    .results-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .results-title span { color: var(--accent); }
+
+    .results-circle {
+      width: 140px; height: 140px;
+      border-radius: 50%;
+      border: 5px solid var(--accent);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface);
+      box-shadow: 0 0 40px rgba(230,57,70,0.3);
+    }
+    .results-circle .big-score {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .results-circle .out-of {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .results-message {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 380px;
+      line-height: 1.6;
+    }
+
+    .btn-restart {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 16px 40px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-restart:hover  { background: #c0303a; transform: translateY(-2px); }
+    .btn-restart:active { transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 520px) {
+      .answers-grid { grid-template-columns: 1fr; }
+      .sign-wrapper { width: 140px; height: 140px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo-text">Auto-École <span>Marti</span></div>
+  <div class="badge">Quiz Panneaux</div>
+</header>
+
+<div class="container">
+
+  <!-- PROGRESS + SCORE -->
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span id="q-label">Question 1 / 10</span>
+      <span id="q-category"></span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+    </div>
+  </div>
+
+  <div class="scoreboard">
+    <div class="score-pill correct"><div class="dot"></div><span id="score-correct">0</span> correctes</div>
+    <div class="score-pill wrong"><div class="dot"></div><span id="score-wrong">0</span> erreurs</div>
+  </div>
+
+  <!-- QUESTION CARD -->
+  <div class="question-card" id="question-card">
+    <div class="question-title">Quel est ce panneau ?</div>
+
+    <div class="sign-wrapper">
+      <img id="sign-img" src="" alt="Panneau de signalisation" />
+    </div>
+    <div class="sign-code" id="sign-code"></div>
+
+    <div class="answers-grid" id="answers-grid"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="btn-next" id="btn-next" onclick="nextQuestion()">Question suivante →</button>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results-screen" id="results-screen">
+    <div class="results-title">Résultats <span>finaux</span></div>
+    <div class="results-circle">
+      <div class="big-score" id="final-score">0</div>
+      <div class="out-of" id="final-out-of">/ 10</div>
+    </div>
+    <div class="results-message" id="results-message"></div>
+    <button class="btn-restart" onclick="startQuiz()">Recommencer le quiz</button>
+  </div>
+
+</div>
+
+<script>
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║  CONFIGURATION                                                   ║
+// ║  Modifiez IMAGE_BASE_PATH pour pointer vers votre dossier SVG   ║
+// ╚══════════════════════════════════════════════════════════════════╝
+const IMAGE_BASE_PATH = "./panneaux/";   // ex: "/images/panneaux/" ou "https://autoecolemarti.fr/panneaux/"
+const TOTAL_QUESTIONS  = 10;
+const CHOICES_PER_Q    = 4;
+
+// ── DONNÉES ──────────────────────────────────────────────────────────
+const panneauxData = [
+  { code: "A1a",   categorie: "danger",       nom: "Virage à droite",                              type: "virage" },
+  { code: "A1b",   categorie: "danger",       nom: "Virage à gauche",                              type: "virage" },
+  { code: "A1c",   categorie: "danger",       nom: "Double virage, le premier à droite",           type: "virage" },
+  { code: "A1d",   categorie: "danger",       nom: "Double virage, le premier à gauche",           type: "virage" },
+  { code: "A2a",   categorie: "danger",       nom: "Chaussée rétrécie par la droite",              type: "chaussée" },
+  { code: "A2b",   categorie: "danger",       nom: "Chaussée rétrécie par la gauche",              type: "chaussée" },
+  { code: "A3",    categorie: "danger",       nom: "Chaussée rétrécie des deux côtés",             type: "chaussée" },
+  { code: "A4",    categorie: "danger",       nom: "Circulation bidirectionnelle",                 type: "circulation" },
+  { code: "A6",    categorie: "danger",       nom: "Carrefour giratoire",                          type: "intersection" },
+  { code: "A7",    categorie: "danger",       nom: "Feux de circulation",                          type: "feux" },
+  { code: "A8",    categorie: "danger",       nom: "Passage à niveau sans barrière",               type: "passage_niveau" },
+  { code: "A9",    categorie: "danger",       nom: "Passage à niveau avec barrière",               type: "passage_niveau" },
+  { code: "A13a",  categorie: "danger",       nom: "Travaux",                                      type: "chantier" },
+  { code: "A14",   categorie: "danger",       nom: "Autres dangers",                               type: "divers" },
+  { code: "A15a1", categorie: "danger",       nom: "Obstacle à droite",                            type: "obstacle" },
+  { code: "A15a2", categorie: "danger",       nom: "Obstacle à gauche",                            type: "obstacle" },
+  { code: "A15b",  categorie: "danger",       nom: "Obstacle au milieu",                           type: "obstacle" },
+  { code: "A16",   categorie: "danger",       nom: "Passage d'avions à basse altitude",            type: "divers" },
+  { code: "A17",   categorie: "danger",       nom: "Vent latéral",                                 type: "météo" },
+  { code: "A18",   categorie: "danger",       nom: "Animaux sauvages",                             type: "animaux" },
+  { code: "A19",   categorie: "danger",       nom: "Animaux domestiques",                          type: "animaux" },
+  { code: "A21",   categorie: "danger",       nom: "Chaussée glissante",                           type: "météo" },
+  { code: "A23",   categorie: "danger",       nom: "Cassis ou dos d'âne",                          type: "relief" },
+  { code: "A31",   categorie: "danger",       nom: "Risque de chute de pierres",                   type: "divers" },
+  { code: "AB1",   categorie: "danger",       nom: "Intersection avec priorité à droite",          type: "intersection" },
+  { code: "AB2",   categorie: "danger",       nom: "Intersection avec route prioritaire",          type: "intersection" },
+  { code: "AB3a",  categorie: "danger",       nom: "Intersection en T à droite",                  type: "intersection" },
+  { code: "AB3b",  categorie: "danger",       nom: "Intersection en T à gauche",                  type: "intersection" },
+  { code: "AB4",   categorie: "danger",       nom: "Intersection en croix",                       type: "intersection" },
+  { code: "AB5",   categorie: "danger",       nom: "Intersection décalée à droite",               type: "intersection" },
+  { code: "AB6",   categorie: "danger",       nom: "Intersection décalée à gauche",               type: "intersection" },
+  { code: "AB7",   categorie: "danger",       nom: "Intersection multiple",                       type: "intersection" },
+  // B
+  { code: "B0",    categorie: "interdiction", nom: "Entrée interdite",                            type: "acces" },
+  { code: "B1",    categorie: "interdiction", nom: "Sens interdit",                               type: "acces" },
+  { code: "B2a",   categorie: "interdiction", nom: "Accès interdit à tout véhicule",              type: "acces" },
+  { code: "B3",    categorie: "interdiction", nom: "Accès interdit aux cycles",                   type: "acces" },
+  { code: "B4",    categorie: "interdiction", nom: "Accès interdit aux piétons",                  type: "acces" },
+  { code: "B5a",   categorie: "interdiction", nom: "Accès interdit aux véhicules agricoles",      type: "acces" },
+  { code: "B9a",   categorie: "interdiction", nom: "Vitesse maximale",                            type: "vitesse" },
+  { code: "B9b",   categorie: "interdiction", nom: "Vitesse minimale",                            type: "vitesse" },
+  { code: "B9c",   categorie: "interdiction", nom: "Fin de limitation de vitesse",                type: "vitesse" },
+  { code: "B10a",  categorie: "interdiction", nom: "Interdiction de dépasser",                    type: "depassement" },
+  { code: "B11",   categorie: "interdiction", nom: "Interdiction de dépasser pour les poids lourds", type: "depassement" },
+  { code: "B12",   categorie: "interdiction", nom: "Fin d'interdiction de dépasser",              type: "depassement" },
+  { code: "B15",   categorie: "interdiction", nom: "Interdiction de virer à droite",              type: "direction" },
+  { code: "B16",   categorie: "interdiction", nom: "Interdiction de virer à gauche",              type: "direction" },
+  { code: "B17",   categorie: "interdiction", nom: "Interdiction de faire demi-tour",             type: "direction" },
+  { code: "B19",   categorie: "interdiction", nom: "Priorité au sens inverse",                    type: "priorite" },
+  { code: "B21-1", categorie: "interdiction", nom: "Stationnement interdit",                      type: "stationnement" },
+  { code: "B21b",  categorie: "interdiction", nom: "Arrêt interdit",                              type: "stationnement" },
+  { code: "B26",   categorie: "interdiction", nom: "Zone de rencontre",                           type: "zone" },
+  { code: "B30",   categorie: "interdiction", nom: "Zone 30",                                     type: "zone" },
+  // C
+  { code: "C1a",   categorie: "indication",   nom: "Direction obligatoire tout droit",            type: "direction" },
+  { code: "C1b",   categorie: "indication",   nom: "Direction obligatoire à droite",              type: "direction" },
+  { code: "C1c",   categorie: "indication",   nom: "Direction obligatoire à gauche",              type: "direction" },
+  { code: "C5",    categorie: "indication",   nom: "Rond-point",                                  type: "intersection" },
+  { code: "C6",    categorie: "indication",   nom: "Impasse",                                     type: "information" },
+  { code: "C12",   categorie: "indication",   nom: "Sens unique",                                 type: "direction" },
+  { code: "C20a",  categorie: "indication",   nom: "Route prioritaire",                           type: "priorite" },
+  { code: "C23",   categorie: "indication",   nom: "Cédez le passage",                            type: "priorite" },
+  { code: "C24a",  categorie: "indication",   nom: "Piste cyclable obligatoire",                  type: "piste" },
+  { code: "C28",   categorie: "indication",   nom: "Aire piétonne",                               type: "zone" },
+  { code: "C29a",  categorie: "indication",   nom: "Zone de rencontre",                           type: "zone" },
+  { code: "C30",   categorie: "indication",   nom: "Zone 30",                                     type: "zone" },
+  { code: "C62",   categorie: "indication",   nom: "Parking",                                     type: "stationnement" },
+  { code: "C111",  categorie: "indication",   nom: "Autoroute",                                   type: "route" },
+  { code: "C112",  categorie: "indication",   nom: "Fin d'autoroute",                             type: "route" },
+  { code: "C113",  categorie: "indication",   nom: "Route pour automobiles",                      type: "route" },
+  { code: "C107",  categorie: "indication",   nom: "Tunnel",                                      type: "ouvrage" },
+  // CE
+  { code: "CE1",   categorie: "service",      nom: "Hôpital",                                     type: "service" },
+  { code: "CE12",  categorie: "service",      nom: "Restaurant",                                  type: "service" },
+  { code: "CE15a", categorie: "service",      nom: "Station-service",                             type: "service" },
+  { code: "CE16",  categorie: "service",      nom: "Garage",                                      type: "service" },
+  { code: "CE19",  categorie: "service",      nom: "Hôtel",                                       type: "service" },
+  { code: "CE23",  categorie: "service",      nom: "WC",                                          type: "service" },
+  { code: "CE50",  categorie: "service",      nom: "Aéroport",                                    type: "service" },
+  { code: "CE51",  categorie: "service",      nom: "Gare",                                        type: "service" },
+  // D / EB
+  { code: "D1",    categorie: "localisation", nom: "Agglomération",                               type: "localisation" },
+  { code: "D2",    categorie: "localisation", nom: "Fin d'agglomération",                         type: "localisation" },
+  { code: "EB3",   categorie: "fin_obligation", nom: "Fin de limitation de vitesse",              type: "vitesse" },
+  { code: "EB4",   categorie: "fin_obligation", nom: "Fin de toutes les interdictions",           type: "divers" },
+];
+
+// ── ÉTAT DU QUIZ ──────────────────────────────────────────────────────
+let questions    = [];
+let currentIndex = 0;
+let scoreOk      = 0;
+let scoreKo      = 0;
+let answered     = false;
+
+// ── UTILITAIRES ───────────────────────────────────────────────────────
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function getCategoryLabel(cat) {
+  const labels = {
+    danger:        "⚠️ Danger",
+    interdiction:  "🚫 Interdiction",
+    indication:    "🔵 Indication / Obligation",
+    service:       "🛎️ Service",
+    localisation:  "📍 Localisation",
+    fin_obligation:"⚪ Fin d'obligation",
+  };
+  return labels[cat] || cat;
+}
+
+function getDistractors(correct) {
+  // Cherche dans la même catégorie en priorité, puis dans le même type, sinon autre
+  let pool = panneauxData.filter(p =>
+    p.code !== correct.code &&
+    p.categorie === correct.categorie
+  );
+  if (pool.length < CHOICES_PER_Q - 1) {
+    pool = panneauxData.filter(p => p.code !== correct.code);
+  }
+  return shuffle(pool).slice(0, CHOICES_PER_Q - 1);
+}
+
+// ── DÉMARRAGE ─────────────────────────────────────────────────────────
+function startQuiz() {
+  questions    = shuffle(panneauxData).slice(0, TOTAL_QUESTIONS);
+  currentIndex = 0;
+  scoreOk      = 0;
+  scoreKo      = 0;
+
+  document.getElementById("results-screen").classList.remove("show");
+  document.getElementById("question-card").style.display = "flex";
+  document.getElementById("progress-wrap") && null;
+
+  updateScoreboard();
+  renderQuestion();
+}
+
+// ── RENDU QUESTION ────────────────────────────────────────────────────
+function renderQuestion() {
+  answered = false;
+  const q = questions[currentIndex];
+
+  // Progress
+  const pct = (currentIndex / TOTAL_QUESTIONS) * 100;
+  document.getElementById("progress-fill").style.width = pct + "%";
+  document.getElementById("q-label").textContent = `Question ${currentIndex + 1} / ${TOTAL_QUESTIONS}`;
+  document.getElementById("q-category").textContent = getCategoryLabel(q.categorie);
+
+  // Image
+  const img = document.getElementById("sign-img");
+  img.src = IMAGE_BASE_PATH + q.code + ".svg";
+  img.alt = "Panneau " + q.code;
+  document.getElementById("sign-code").textContent = "Code : " + q.code;
+
+  // Choix (bonne réponse + 3 distracteurs, mélangés)
+  const distractors = getDistractors(q);
+  const choices = shuffle([q, ...distractors]);
+
+  const grid = document.getElementById("answers-grid");
+  grid.innerHTML = "";
+  const letters = ["A", "B", "C", "D"];
+
+  choices.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "answer-btn";
+    btn.innerHTML = `<span class="answer-letter">${letters[i]}</span>${choice.nom}`;
+    btn.dataset.code = choice.code;
+    btn.addEventListener("click", () => handleAnswer(btn, choice.code === q.code, q));
+    grid.appendChild(btn);
+  });
+
+  // Reset feedback / bouton
+  const fb = document.getElementById("feedback");
+  fb.className = "feedback";
+  fb.textContent = "";
+
+  document.getElementById("btn-next").classList.remove("show");
+
+  // Animation de la carte
+  const card = document.getElementById("question-card");
+  card.style.animation = "none";
+  requestAnimationFrame(() => { card.style.animation = ""; });
+}
+
+// ── GESTION RÉPONSE ───────────────────────────────────────────────────
+function handleAnswer(btn, isCorrect, panneau) {
+  if (answered) return;
+  answered = true;
+
+  const allBtns = document.querySelectorAll(".answer-btn");
+  allBtns.forEach(b => {
+    b.disabled = true;
+    if (b.dataset.code === panneau.code) b.classList.add("correct");
+  });
+
+  const fb = document.getElementById("feedback");
+
+  if (isCorrect) {
+    scoreOk++;
+    btn.classList.add("correct");
+    fb.className = "feedback correct show";
+    fb.innerHTML = `✅ Bonne réponse ! <strong>${panneau.nom}</strong> — ${getDescription(panneau.code)}`;
+  } else {
+    scoreKo++;
+    btn.classList.add("wrong");
+    fb.className = "feedback wrong show";
+    fb.innerHTML = `❌ Raté ! La bonne réponse était <strong>${panneau.nom}</strong>. ${getDescription(panneau.code)}`;
+  }
+
+  updateScoreboard();
+  document.getElementById("btn-next").classList.add("show");
+}
+
+function getDescription(code) {
+  const descriptions = {
+    "A1a":  "Annonce un virage serré vers la droite.",
+    "A1b":  "Annonce un virage serré vers la gauche.",
+    "A1c":  "Succession de virages, le premier vers la droite.",
+    "A1d":  "Succession de virages, le premier vers la gauche.",
+    "A2a":  "La route devient plus étroite du côté droit.",
+    "A2b":  "La route devient plus étroite du côté gauche.",
+    "A3":   "La route devient plus étroite des deux côtés.",
+    "A4":   "Annonce que l'on va croiser des véhicules en sens inverse.",
+    "A6":   "Annonce un rond-point où la priorité est à gauche.",
+    "A7":   "Annonce des feux tricolores à proximité.",
+    "A8":   "Passage à niveau non gardé.",
+    "A9":   "Passage à niveau gardé.",
+    "A13a": "Annonce des travaux sur la chaussée.",
+    "A14":  "Annonce un danger non représenté par les autres panneaux.",
+    "A15a1":"Annonce un obstacle isolé sur la droite.",
+    "A15a2":"Annonce un obstacle isolé sur la gauche.",
+    "A15b": "Annonce un obstacle isolé au milieu de la route.",
+    "A16":  "Annonce le survol d'avions à faible hauteur.",
+    "A17":  "Annonce des risques de vent fort sur le côté.",
+    "A18":  "Annonce la traversée possible d'animaux sauvages.",
+    "A19":  "Annonce la traversée possible d'animaux domestiques.",
+    "A21":  "Annonce un risque de perte d'adhérence.",
+    "A23":  "Annonce une surélévation ou un creux sur la route.",
+    "A31":  "Annonce des éboulements possibles.",
+    "AB1":  "Carrefour où la priorité est à droite.",
+    "AB2":  "Intersection avec une route prioritaire.",
+    "AB3a": "Carrefour en T, route prioritaire à droite.",
+    "AB3b": "Carrefour en T, route prioritaire à gauche.",
+    "AB4":  "Carrefour en croix avec route prioritaire.",
+    "AB5":  "Deux intersections décalées (décalage droite).",
+    "AB6":  "Deux intersections décalées (décalage gauche).",
+    "AB7":  "Carrefour complexe.",
+    "B0":   "Interdit l'accès à tous les véhicules.",
+    "B1":   "Interdit l'accès dans ce sens (sens unique).",
+    "B2a":  "Interdit l'accès à tous les véhicules (sauf riverains).",
+    "B3":   "Interdit l'accès aux vélos.",
+    "B4":   "Interdit l'accès aux piétons.",
+    "B5a":  "Interdit l'accès aux tracteurs et engins agricoles.",
+    "B9a":  "Interdit de dépasser la vitesse indiquée.",
+    "B9b":  "Oblige à rouler au moins à la vitesse indiquée.",
+    "B9c":  "Annule la limitation de vitesse précédente.",
+    "B10a": "Interdit de dépasser les véhicules à moteur.",
+    "B11":  "Interdit aux véhicules >3,5t de dépasser.",
+    "B12":  "Annule l'interdiction de dépasser.",
+    "B15":  "Interdit de tourner à droite à l'intersection.",
+    "B16":  "Interdit de tourner à gauche à l'intersection.",
+    "B17":  "Interdit de faire demi-tour.",
+    "B19":  "Cédez le passage aux véhicules venant en face.",
+    "B21-1":"Interdit de se garer (mais permet l'arrêt court).",
+    "B21b": "Interdit de s'arrêter.",
+    "B26":  "Priorité aux piétons, vitesse max 20 km/h.",
+    "B30":  "Vitesse limitée à 30 km/h.",
+    "C1a":  "Oblige à aller tout droit.",
+    "C1b":  "Oblige à tourner à droite.",
+    "C1c":  "Oblige à tourner à gauche.",
+    "C5":   "Obligation de tourner autour du rond-point.",
+    "C6":   "Indique une rue sans issue.",
+    "C12":  "Indique un sens unique.",
+    "C20a": "Indique que vous êtes sur une route prioritaire.",
+    "C23":  "Rappel de l'obligation de céder le passage.",
+    "C24a": "Oblige les cycles à emprunter la piste.",
+    "C28":  "Zone réservée aux piétons.",
+    "C29a": "Entrée dans une zone de rencontre.",
+    "C30":  "Entrée dans une zone 30.",
+    "C62":  "Indique un parking.",
+    "C107": "Indique l'entrée d'un tunnel.",
+    "C111": "Indique l'entrée sur une autoroute.",
+    "C112": "Indique la sortie d'autoroute.",
+    "C113": "Route réservée aux voitures.",
+    "CE1":  "Indique la direction d'un hôpital.",
+    "CE12": "Indique la direction d'un restaurant.",
+    "CE15a":"Indique une station-service.",
+    "CE16": "Indique un garage de réparation.",
+    "CE19": "Indique un hôtel.",
+    "CE23": "Indique des toilettes publiques.",
+    "CE50": "Indique la direction d'un aéroport.",
+    "CE51": "Indique la direction d'une gare.",
+    "D1":   "Indique l'entrée dans une agglomération.",
+    "D2":   "Indique la sortie d'agglomération.",
+    "EB3":  "Fin de la limitation de vitesse.",
+    "EB4":  "Fin de toutes les interdictions précédentes.",
+  };
+  return descriptions[code] || "";
+}
+
+// ── QUESTION SUIVANTE ─────────────────────────────────────────────────
+function nextQuestion() {
+  currentIndex++;
+  if (currentIndex >= TOTAL_QUESTIONS) {
+    showResults();
+  } else {
+    renderQuestion();
+  }
+}
+
+// ── RÉSULTATS ─────────────────────────────────────────────────────────
+function showResults() {
+  document.getElementById("question-card").style.display = "none";
+  document.getElementById("progress-fill").style.width = "100%";
+
+  const pct = Math.round((scoreOk / TOTAL_QUESTIONS) * 100);
+  let msg = "";
+  if (pct === 100) msg = "Score parfait ! Vous êtes prêt(e) pour l'examen 🎉";
+  else if (pct >= 70) msg = "Très bien ! Continuez à vous entraîner pour viser le sans-faute.";
+  else if (pct >= 50) msg = "Pas mal, mais il reste des notions à réviser. Recommencez !";
+  else msg = "Il faut reprendre l'étude des panneaux. Courage, vous y arriverez !";
+
+  document.getElementById("final-score").textContent = scoreOk;
+  document.getElementById("final-out-of").textContent = `/ ${TOTAL_QUESTIONS}`;
+  document.getElementById("results-message").textContent = msg;
+  document.getElementById("results-screen").classList.add("show");
+}
+
+// ── SCORE DISPLAY ─────────────────────────────────────────────────────
+function updateScoreboard() {
+  document.getElementById("score-correct").textContent = scoreOk;
+  document.getElementById("score-wrong").textContent   = scoreKo;
+}
+
+// ── LANCEMENT ─────────────────────────────────────────────────────────
+startQuiz();
+</script>
+</body>
+</html>
