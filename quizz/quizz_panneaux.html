@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Quiz Panneaux – Auto-École Marti</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/fonts.css">
   <style>
     :root {
       --bg:        #fafaf8;
@@ -37,37 +37,81 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding-top: 68px;
     }
 
-    header {
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 1000;
+      padding: 1rem 2rem;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 1px 30px rgba(0,0,0,0.06);
+      transition: padding 0.4s ease;
+    }
+    nav.scrolled { padding: 0.6rem 2rem; }
+    nav .nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    nav .logo {
+      font-family: 'Playfair Display', serif; font-size: 1.4rem;
+      font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: -0.02em;
+    }
+    nav .logo span { color: var(--accent); }
+    nav .nav-links {
+      display: flex; gap: 2rem; list-style: none; align-items: center;
+    }
+    nav .nav-links a {
+      text-decoration: none; color: var(--text); font-size: 0.9rem;
+      font-weight: 500; letter-spacing: 0.02em;
+      position: relative;
+    }
+    nav .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 2px; background: var(--accent); transition: width 0.3s ease;
+    }
+    nav .nav-links a:hover::after, nav .nav-links a.active::after { width: 100%; }
+    nav .nav-cta {
+      background: var(--accent); color: white !important;
+      padding: 0.6rem 1.4rem; border-radius: 50px;
+      font-weight: 600; font-size: 0.85rem;
+    }
+    nav .nav-cta::after { display: none !important; }
+    nav .nav-cta:hover { background: var(--accent-h); transform: translateY(-1px); }
+
+    /* ── FOOTER ── */
+    footer {
       width: 100%;
-      background: var(--surface);
-      border-bottom: 2px solid var(--accent);
-      padding: 18px 32px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      box-shadow: var(--shadow);
+      background: var(--text);
+      color: white;
+      padding: 3rem 2rem 1.5rem;
+      margin-top: auto;
     }
-    header .logo-text {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--text);
+    .footer-inner { max-width: 900px; margin: 0 auto; }
+    .footer-top {
+      display: flex; gap: 3rem; flex-wrap: wrap; margin-bottom: 2rem;
     }
-    header .logo-text span { color: var(--accent); font-style: italic; }
-    header .badge {
-      margin-left: auto;
-      background: var(--accent);
-      color: #fff;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 700;
-      padding: 5px 14px;
-      border-radius: 20px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
+    .footer-brand { flex: 2; min-width: 200px; }
+    .footer-brand .f-logo {
+      font-family: 'Playfair Display', serif; font-size: 1.3rem;
+      font-weight: 700; color: white; margin-bottom: 0.6rem; display: block;
+    }
+    .footer-brand .f-logo span { color: var(--accent); }
+    .footer-brand p { color: rgba(255,255,255,0.45); font-size: 0.85rem; line-height: 1.7; }
+    .footer-col { flex: 1; min-width: 120px; }
+    .footer-col h4 {
+      font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; margin-bottom: 1rem; color: rgba(255,255,255,0.35);
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.5rem; }
+    .footer-col ul a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.88rem; }
+    .footer-col ul a:hover { color: white; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
+      font-size: 0.8rem; color: rgba(255,255,255,0.3);
     }
 
     .container {
@@ -406,10 +450,19 @@
 </head>
 <body>
 
-<header>
-  <div class="logo-text">Auto-École <span>Marti</span></div>
-  <div class="badge">Quiz Panneaux</div>
-</header>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo">AUTO-ÉCOLE MARTI<span>.</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html#formations">Formations</a></li>
+      <li><a href="../index.html#histoire">Notre histoire</a></li>
+      <li><a href="../index.html#avis">Avis</a></li>
+      <li><a href="../blog/index.html">Blog</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+      <li><a href="mailto:autoecole.marti@gmail.com" class="nav-cta">S'inscrire</a></li>
+    </ul>
+  </div>
+</nav>
 
 <div class="container">
 
@@ -528,7 +581,7 @@ const panneauxData = [
   { code: "B4",    categorie: "interdiction", nom: "Arrêt au poste de douane",                    description: "Arrêt obligatoire au poste de douane." },
   { code: "B5a",   categorie: "interdiction", nom: "Arrêt au poste de gendarmerie",               description: "Arrêt obligatoire au poste de gendarmerie." },
   { code: "B5b",   categorie: "interdiction", nom: "Arrêt au poste de police",                    description: "Arrêt obligatoire au poste de police." },
-  { code: "B5c",   categorie: "interdiction", nom: "Arrêt au poste de péage",                     description: "Arrêt obligatoire au poste de péage." },
+  { code: "B5c2",  categorie: "interdiction", nom: "Arrêt au poste de péage",                     description: "Arrêt obligatoire au poste de péage." },
   { code: "B6a1",  categorie: "interdiction", nom: "Stationnement interdit",                      description: "Interdit de stationner. L'arrêt bref pour prendre ou déposer un passager est autorisé." },
   { code: "B6a2",  categorie: "interdiction", nom: "Stationnement interdit du 1er au 15 du mois", description: "Interdit de stationner du 1er au 15 du mois (stationnement unilatéral alterné)." },
   { code: "B6a3",  categorie: "interdiction", nom: "Stationnement interdit du 16 à la fin du mois", description: "Interdit de stationner du 16 à la fin du mois (stationnement unilatéral alterné)." },
@@ -588,7 +641,7 @@ const panneauxData = [
   { code: "B42",   categorie: "fin_obligation", nom: "Fin de chemin obligatoire pour cavaliers",  description: "Signale la fin du chemin obligatoire pour cavaliers." },
   { code: "B43",   categorie: "fin_obligation", nom: "Fin de vitesse minimale obligatoire",       description: "Signale la fin de l'obligation de vitesse minimale." },
   { code: "B44",   categorie: "fin_obligation", nom: "Fin d'obligation des chaînes à neige",      description: "Signale la fin de l'obligation d'utiliser des chaînes à neige." },
-  { code: "B45",   categorie: "fin_obligation", nom: "Fin de voie réservée aux transports en commun", description: "Signale la fin de la voie réservée aux véhicules de transport en commun." },
+  { code: "B45a",  categorie: "fin_obligation", nom: "Fin de voie réservée aux transports en commun", description: "Signale la fin de la voie réservée aux véhicules de transport en commun." },
   { code: "B50a",  categorie: "fin_obligation", nom: "Sortie de zone à stationnement interdit",   description: "Signale la sortie d'une zone à stationnement interdit." },
   { code: "B50d",  categorie: "fin_obligation", nom: "Sortie de zone à stationnement payant",     description: "Sortie de zone à stationnement payant." },
   { code: "B51",   categorie: "fin_obligation", nom: "Sortie de zone 30",                         description: "Signale la sortie d'une zone à vitesse limitée à 30 km/h." },
@@ -645,12 +698,6 @@ const panneauxData = [
   { code: "CE30a", categorie: "service", nom: "Issue de secours (vers la droite)",                description: "Indique une issue de secours vers la droite (tunnels)." },
   { code: "CE30b", categorie: "service", nom: "Issue de secours (vers la gauche)",                description: "Indique une issue de secours vers la gauche (tunnels)." },
 
-  // ── FAMILLE E : LOCALISATION ─────────────────────────
-  { code: "EB10",  categorie: "localisation", nom: "Entrée d'agglomération",                      description: "Signale l'entrée dans une agglomération. La vitesse est limitée à 50 km/h sauf indication contraire." },
-  { code: "EB20",  categorie: "localisation", nom: "Sortie d'agglomération",                      description: "Signale la sortie d'une agglomération. La limite de 50 km/h cesse de s'appliquer." },
-  { code: "E31",   categorie: "localisation", nom: "Localisation (lieu traversé)",                description: "Localisation de tous les lieux traversés par la route pour lesquels il n'existe pas de panneau spécifique." },
-  { code: "E32",   categorie: "localisation", nom: "Localisation d'un cours d'eau",               description: "Signale la présence d'un cours d'eau." },
-  { code: "E36",   categorie: "localisation", nom: "Localisation d'une région ou d'un département", description: "Signale l'entrée dans une région administrative ou un département." },
 
 ];
 
@@ -890,6 +937,44 @@ function updateScoreboard() {
 // ═══════════════════════════════════════════════════════
 buildFilterBar();
 startQuiz();
+
+// ── Nav scroll effect ──
+const navEl = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navEl.classList.toggle('scrolled', window.scrollY > 50);
+});
 </script>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="f-logo">MARTI<span>.</span></span>
+        <p>Auto-école de confiance à Bayonne depuis 1962. Formations permis B, conduite accompagnée et boîte automatique.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Formations</h4>
+        <ul>
+          <li><a href="../formules/permis-b-manuel.html">Permis B</a></li>
+          <li><a href="../formules/conduite-accompagnee.html">Conduite accompagnée</a></li>
+          <li><a href="../formules/permis-b-automatique.html">Boîte automatique</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:0559591260">05 59 59 12 60</a></li>
+          <li><a href="mailto:autoecole.marti@gmail.com">autoecole.marti@gmail.com</a></li>
+          <li><a href="../index.html#contact">13 rue Marengo, Bayonne</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Auto-école Marti — Bayonne. Tous droits réservés.</span>
+      <a href="../mentions-legales.html" style="color:rgba(255,255,255,0.4);text-decoration:none;font-size:0.8rem;">Mentions légales</a>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
