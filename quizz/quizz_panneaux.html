@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Quiz Panneaux – Auto-École Marti</title>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
-  <script src="panneaux_data.js"></script>
   <style>
-    /* ── VARIABLES ── */
     :root {
       --bg:        #0f1117;
       --surface:   #1a1d27;
@@ -34,7 +32,6 @@
       align-items: center;
     }
 
-    /* ── HEADER ── */
     header {
       width: 100%;
       background: var(--surface);
@@ -65,7 +62,6 @@
       letter-spacing: 0.06em;
     }
 
-    /* ── CONTAINER ── */
     .container {
       width: 100%;
       max-width: 760px;
@@ -75,7 +71,6 @@
       gap: 28px;
     }
 
-    /* ── PROGRESS ── */
     .progress-wrap {
       display: flex;
       flex-direction: column;
@@ -102,7 +97,6 @@
       transition: width 0.5s ease;
     }
 
-    /* ── SCORE ── */
     .scoreboard {
       display: flex;
       gap: 12px;
@@ -126,7 +120,6 @@
     .score-pill.correct .dot { background: var(--green); }
     .score-pill.wrong   .dot { background: var(--red); }
 
-    /* ── CATEGORY TAG ── */
     .cat-tag {
       display: inline-block;
       background: var(--border);
@@ -139,7 +132,6 @@
       border-radius: 6px;
     }
 
-    /* ── QUESTION CARD ── */
     .question-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -166,7 +158,6 @@
       letter-spacing: 0.04em;
     }
 
-    /* ── SIGN IMAGE ── */
     .sign-wrapper {
       width: 180px;
       height: 180px;
@@ -191,7 +182,6 @@
       letter-spacing: 0.1em;
     }
 
-    /* ── ANSWERS GRID ── */
     .answers-grid {
       width: 100%;
       display: grid;
@@ -249,7 +239,6 @@
     .answer-btn.correct .answer-letter { background: var(--green); color: #fff; }
     .answer-btn.wrong   .answer-letter { background: var(--red);   color: #fff; }
 
-    /* ── FEEDBACK ── */
     .feedback {
       width: 100%;
       padding: 14px 18px;
@@ -272,7 +261,6 @@
     }
     .feedback strong { color: #fff; }
 
-    /* ── NEXT BUTTON ── */
     .btn-next {
       display: none;
       align-self: flex-end;
@@ -293,7 +281,6 @@
     .btn-next:active { transform: translateY(0); }
     .btn-next.show   { display: inline-block; }
 
-    /* ── RESULTS SCREEN ── */
     .results-screen {
       display: none;
       flex-direction: column;
@@ -359,7 +346,43 @@
     .btn-restart:hover  { background: #c0303a; transform: translateY(-2px); }
     .btn-restart:active { transform: translateY(0); }
 
-    /* ── RESPONSIVE ── */
+    /* Filtre de catégorie */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+    .filter-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 99px;
+      padding: 6px 14px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .filter-btn:hover { border-color: var(--accent2); color: var(--text); }
+    .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .filter-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: -4px;
+    }
+
     @media (max-width: 520px) {
       .answers-grid { grid-template-columns: 1fr; }
       .sign-wrapper { width: 140px; height: 140px; }
@@ -374,6 +397,10 @@
 </header>
 
 <div class="container">
+
+  <!-- FILTRE CATÉGORIE -->
+  <div class="filter-label">Filtrer par famille</div>
+  <div class="filter-bar" id="filter-bar"></div>
 
   <!-- PROGRESS + SCORE -->
   <div class="progress-wrap">
@@ -394,12 +421,10 @@
   <!-- QUESTION CARD -->
   <div class="question-card" id="question-card">
     <div class="question-title">Quel est ce panneau ?</div>
-
     <div class="sign-wrapper">
       <img id="sign-img" src="" alt="Panneau de signalisation" />
     </div>
     <div class="sign-code" id="sign-code"></div>
-
     <div class="answers-grid" id="answers-grid"></div>
     <div class="feedback" id="feedback"></div>
     <button class="btn-next" id="btn-next" onclick="nextQuestion()">Question suivante →</button>
@@ -419,24 +444,228 @@
 </div>
 
 <script>
-// ╔══════════════════════════════════════════════════════════════════╗
-// ║  CONFIGURATION                                                   ║
-// ║  Modifiez IMAGE_BASE_PATH pour pointer vers votre dossier SVG   ║
-// ╚══════════════════════════════════════════════════════════════════╝
-const IMAGE_BASE_PATH = "./panneaux/";   // ex: "/images/panneaux/" ou "https://autoecolemarti.fr/panneaux/"
-const TOTAL_QUESTIONS  = 10;
-const CHOICES_PER_Q    = 4;
+// ═══════════════════════════════════════════════════════
+//  CONFIGURATION
+// ═══════════════════════════════════════════════════════
+// Modifiez IMAGE_BASE_PATH pour pointer vers votre dossier d'images
+// Exemple : "./panneaux/" si les SVG sont dans un sous-dossier "panneaux/"
+//           "/images/panneaux/" si hébergés à la racine
+const IMAGE_BASE_PATH = "./panneaux/";
+const IMAGE_EXT       = ".svg";   // extension des fichiers image
+const TOTAL_QUESTIONS = 10;
+const CHOICES_PER_Q   = 4;
 
-// panneauxData est chargé depuis panneaux_data.js (balise <script> dans le <head>)
+// ═══════════════════════════════════════════════════════
+//  BASE DE DONNÉES DES PANNEAUX
+//  Source : IISR – CEREMA / édition juin 2009
+// ═══════════════════════════════════════════════════════
+const panneauxData = [
 
-// ── ÉTAT DU QUIZ ──────────────────────────────────────────────────────
+  // ── FAMILLE A : DANGER ──────────────────────────────
+  { code: "A1a",   categorie: "danger", nom: "Virage à droite",                                    description: "Annonce un virage à droite." },
+  { code: "A1b",   categorie: "danger", nom: "Virage à gauche",                                    description: "Annonce un virage à gauche." },
+  { code: "A1c",   categorie: "danger", nom: "Succession de virages, le premier à droite",         description: "Annonce une succession de virages dont le premier est à droite." },
+  { code: "A1d",   categorie: "danger", nom: "Succession de virages, le premier à gauche",         description: "Annonce une succession de virages dont le premier est à gauche." },
+  { code: "A2a",   categorie: "danger", nom: "Cassis ou dos-d'âne",                                description: "Annonce un cassis (dépression transversale) ou un dos-d'âne sur la chaussée." },
+  { code: "A2b",   categorie: "danger", nom: "Ralentisseur de type dos-d'âne",                     description: "Annonce un ralentisseur de type dos-d'âne." },
+  { code: "A3",    categorie: "danger", nom: "Chaussée rétrécie",                                  description: "Annonce un rétrécissement de la chaussée (des deux côtés ou sans précision)." },
+  { code: "A3a",   categorie: "danger", nom: "Chaussée rétrécie par la droite",                    description: "Annonce un rétrécissement de la chaussée du côté droit." },
+  { code: "A3b",   categorie: "danger", nom: "Chaussée rétrécie par la gauche",                    description: "Annonce un rétrécissement de la chaussée du côté gauche." },
+  { code: "A4",    categorie: "danger", nom: "Chaussée particulièrement glissante",                description: "Annonce une portion de route particulièrement glissante (verglas, boue, gravillons…)." },
+  { code: "A6",    categorie: "danger", nom: "Pont mobile",                                        description: "Annonce un pont mobile pouvant s'ouvrir pour laisser passer des embarcations." },
+  { code: "A7",    categorie: "danger", nom: "Passage à niveau avec barrières manuelles",          description: "Annonce un passage à niveau muni de barrières à fonctionnement manuel." },
+  { code: "A8",    categorie: "danger", nom: "Passage à niveau sans barrières ni demi-barrières",  description: "Annonce un passage à niveau sans barrières ni demi-barrières." },
+  { code: "A9",    categorie: "danger", nom: "Traversée de voies de tramways",                     description: "Annonce une traversée de voies de tramways." },
+  { code: "A13a",  categorie: "danger", nom: "Endroit fréquenté par les enfants",                  description: "Annonce un endroit fréquenté par les enfants (école, terrain de jeux…)." },
+  { code: "A13b",  categorie: "danger", nom: "Passage pour piétons",                               description: "Annonce un passage pour piétons." },
+  { code: "A14",   categorie: "danger", nom: "Autres dangers",                                     description: "Annonce un danger dont la nature peut être précisée par un panonceau." },
+  { code: "A15a1", categorie: "danger", nom: "Passage d'animaux domestiques",                      description: "Annonce la traversée possible d'animaux domestiques." },
+  { code: "A15b",  categorie: "danger", nom: "Passage d'animaux sauvages",                         description: "Annonce la traversée possible d'animaux sauvages." },
+  { code: "A15c",  categorie: "danger", nom: "Passage de cavaliers",                               description: "Annonce la traversée possible de cavaliers." },
+  { code: "A16",   categorie: "danger", nom: "Descente dangereuse",                                description: "Annonce une descente dangereuse. Le pourcentage de pente peut être indiqué." },
+  { code: "A17",   categorie: "danger", nom: "Annonce de feux tricolores",                         description: "Annonce des feux tricolores à proximité." },
+  { code: "A18",   categorie: "danger", nom: "Circulation dans les deux sens",                     description: "Annonce une section où la circulation se fait dans les deux sens." },
+  { code: "A19",   categorie: "danger", nom: "Risque de chute de pierres",                         description: "Annonce un risque de chute de pierres sur la route." },
+  { code: "A20",   categorie: "danger", nom: "Débouché sur un quai ou une berge",                  description: "Annonce un débouché sur un quai ou une berge (risque de chute dans l'eau)." },
+  { code: "A21",   categorie: "danger", nom: "Débouché de cyclistes",                              description: "Annonce un débouché de cyclistes venant de droite ou de gauche." },
+  { code: "A23",   categorie: "danger", nom: "Traversée d'une aire de danger aérien",              description: "Annonce la traversée d'une aire de danger aérien (survol d'avions à basse altitude)." },
+  { code: "A24",   categorie: "danger", nom: "Vent latéral",                                       description: "Annonce des risques de vent latéral violent pouvant déstabiliser les véhicules." },
+
+  // ── FAMILLE AB : PRIORITÉ ────────────────────────────
+  { code: "AB1",   categorie: "priorite", nom: "Cédez le passage aux véhicules venant de droite", description: "Intersection où le conducteur est tenu de céder le passage aux véhicules débouchant de sa droite." },
+  { code: "AB2",   categorie: "priorite", nom: "Intersection avec route non prioritaire",         description: "Intersection avec une route dont les usagers doivent céder le passage." },
+  { code: "AB3a",  categorie: "priorite", nom: "Cédez le passage à l'intersection (signal de position)", description: "Signal de position indiquant l'obligation de céder le passage à l'intersection." },
+  { code: "AB3b",  categorie: "priorite", nom: "Cédez le passage à l'intersection (signal avancé)", description: "Signal avancé de l'AB3a annonçant l'obligation de céder le passage." },
+  { code: "AB4",   categorie: "priorite", nom: "Stop (signal de position)",                       description: "Arrêt absolu obligatoire à l'intersection. Signal de position placé au niveau de la ligne de feu." },
+  { code: "AB5",   categorie: "priorite", nom: "Stop (signal avancé)",                            description: "Signal avancé du panneau AB4 annonçant l'obligation de marquer l'arrêt." },
+  { code: "AB6",   categorie: "priorite", nom: "Route prioritaire",                               description: "Indique le caractère prioritaire de la route sur laquelle il est implanté." },
+  { code: "AB7",   categorie: "priorite", nom: "Fin de route prioritaire",                        description: "Signale la fin du caractère prioritaire de la route." },
+  { code: "AB25",  categorie: "priorite", nom: "Carrefour à sens giratoire",                      description: "Annonce un carrefour à sens giratoire (rond-point). Les véhicules engagés sont prioritaires." },
+
+  // ── FAMILLE B : INTERDICTION ─────────────────────────
+  { code: "B0",    categorie: "interdiction", nom: "Circulation interdite dans les deux sens",    description: "Interdit toute circulation dans les deux sens." },
+  { code: "B1",    categorie: "interdiction", nom: "Sens interdit",                               description: "Interdit l'accès à tout véhicule dans ce sens." },
+  { code: "B2a",   categorie: "interdiction", nom: "Interdiction de tourner à gauche",            description: "Interdit de tourner à gauche à la prochaine intersection." },
+  { code: "B2b",   categorie: "interdiction", nom: "Interdiction de tourner à droite",            description: "Interdit de tourner à droite à la prochaine intersection." },
+  { code: "B2c",   categorie: "interdiction", nom: "Interdiction de faire demi-tour",             description: "Interdit de faire demi-tour jusqu'à la prochaine intersection." },
+  { code: "B3",    categorie: "interdiction", nom: "Interdiction de dépasser",                    description: "Interdit de dépasser tous les véhicules à moteur autres que ceux à deux roues sans side-car." },
+  { code: "B3a",   categorie: "interdiction", nom: "Interdiction de dépasser pour les poids lourds", description: "Interdit aux véhicules de transport de marchandises de plus de 3,5 t de dépasser." },
+  { code: "B4",    categorie: "interdiction", nom: "Arrêt au poste de douane",                    description: "Arrêt obligatoire au poste de douane." },
+  { code: "B5a",   categorie: "interdiction", nom: "Arrêt au poste de gendarmerie",               description: "Arrêt obligatoire au poste de gendarmerie." },
+  { code: "B5b",   categorie: "interdiction", nom: "Arrêt au poste de police",                    description: "Arrêt obligatoire au poste de police." },
+  { code: "B5c",   categorie: "interdiction", nom: "Arrêt au poste de péage",                     description: "Arrêt obligatoire au poste de péage." },
+  { code: "B6a1",  categorie: "interdiction", nom: "Stationnement interdit",                      description: "Interdit de stationner. L'arrêt bref pour prendre ou déposer un passager est autorisé." },
+  { code: "B6a2",  categorie: "interdiction", nom: "Stationnement interdit du 1er au 15 du mois", description: "Interdit de stationner du 1er au 15 du mois (stationnement unilatéral alterné)." },
+  { code: "B6a3",  categorie: "interdiction", nom: "Stationnement interdit du 16 à la fin du mois", description: "Interdit de stationner du 16 à la fin du mois (stationnement unilatéral alterné)." },
+  { code: "B6b1",  categorie: "interdiction", nom: "Entrée de zone à stationnement interdit",     description: "Signale l'entrée d'une zone où le stationnement est interdit." },
+  { code: "B6b4",  categorie: "interdiction", nom: "Entrée de zone à stationnement payant",       description: "Entrée d'une zone à stationnement payant." },
+  { code: "B6d",   categorie: "interdiction", nom: "Arrêt et stationnement interdits",            description: "Interdit tout arrêt et tout stationnement, même momentané." },
+  { code: "B7a",   categorie: "interdiction", nom: "Accès interdit aux véhicules à moteur sauf cyclomoteurs", description: "Interdit l'accès aux véhicules à moteur à l'exception des cyclomoteurs." },
+  { code: "B7b",   categorie: "interdiction", nom: "Accès interdit à tous les véhicules à moteur", description: "Interdit l'accès à tous les véhicules à moteur." },
+  { code: "B8",    categorie: "interdiction", nom: "Accès interdit aux véhicules de transport de marchandises", description: "Interdit l'accès aux véhicules affectés au transport de marchandises." },
+  { code: "B9a",   categorie: "interdiction", nom: "Accès interdit aux piétons",                  description: "Interdit l'accès aux piétons." },
+  { code: "B9b",   categorie: "interdiction", nom: "Accès interdit aux cycles",                   description: "Interdit l'accès aux bicyclettes et cycles." },
+  { code: "B9g",   categorie: "interdiction", nom: "Accès interdit aux cyclomoteurs",             description: "Interdit l'accès aux cyclomoteurs." },
+  { code: "B9h",   categorie: "interdiction", nom: "Accès interdit aux motocyclettes",            description: "Interdit l'accès aux motocyclettes et motocyclettes légères." },
+  { code: "B10a",  categorie: "interdiction", nom: "Longueur maximale",                           description: "Interdit l'accès aux véhicules dont la longueur dépasse la valeur indiquée." },
+  { code: "B11",   categorie: "interdiction", nom: "Largeur maximale",                            description: "Interdit l'accès aux véhicules dont la largeur (chargement compris) dépasse la valeur indiquée." },
+  { code: "B12",   categorie: "interdiction", nom: "Hauteur maximale",                            description: "Interdit l'accès aux véhicules dont la hauteur (chargement compris) dépasse la valeur indiquée." },
+  { code: "B13",   categorie: "interdiction", nom: "Poids total maximal autorisé",                description: "Interdit l'accès aux véhicules dont le PTAC dépasse la valeur indiquée." },
+  { code: "B14",   categorie: "interdiction", nom: "Vitesse maximale autorisée",                  description: "Interdit de dépasser la vitesse indiquée (en km/h)." },
+  { code: "B15",   categorie: "interdiction", nom: "Cédez le passage à la circulation en sens inverse", description: "Passage étroit : cédez le passage aux véhicules venant en sens inverse." },
+  { code: "B16",   categorie: "interdiction", nom: "Signaux sonores interdits",                   description: "Interdit l'usage de l'avertisseur sonore (klaxon), sauf danger immédiat." },
+  { code: "B17",   categorie: "interdiction", nom: "Intervalle minimal obligatoire",              description: "Interdit aux véhicules de circuler sans maintenir entre eux un intervalle au moins égal au nombre indiqué." },
+  { code: "B18a",  categorie: "interdiction", nom: "Accès interdit aux véhicules transportant des explosifs", description: "Interdit l'accès aux véhicules transportant des marchandises explosives." },
+  { code: "B18b",  categorie: "interdiction", nom: "Accès interdit aux véhicules transportant des polluants", description: "Interdit l'accès aux véhicules transportant des marchandises susceptibles de polluer les eaux." },
+  { code: "B18c",  categorie: "interdiction", nom: "Accès interdit aux véhicules transportant des matières dangereuses", description: "Interdit l'accès aux véhicules transportant des marchandises dangereuses." },
+  { code: "B19",   categorie: "interdiction", nom: "Autres interdictions",                        description: "Autre interdiction dont la nature est indiquée par une inscription sur le panneau." },
+
+  // ── FAMILLE B : OBLIGATION ───────────────────────────
+  { code: "B21-1", categorie: "obligation", nom: "Tourner à droite obligatoire (avant le panneau)", description: "Oblige à tourner à droite avant le panneau." },
+  { code: "B21-2", categorie: "obligation", nom: "Tourner à gauche obligatoire (avant le panneau)", description: "Oblige à tourner à gauche avant le panneau." },
+  { code: "B21a1", categorie: "obligation", nom: "Contournement obligatoire par la droite",       description: "Oblige à contourner l'obstacle par la droite." },
+  { code: "B21a2", categorie: "obligation", nom: "Contournement obligatoire par la gauche",       description: "Oblige à contourner l'obstacle par la gauche." },
+  { code: "B21b",  categorie: "obligation", nom: "Direction obligatoire : tout droit",            description: "Oblige à aller tout droit à la prochaine intersection." },
+  { code: "B21c1", categorie: "obligation", nom: "Direction obligatoire : à droite",              description: "Oblige à tourner à droite à la prochaine intersection." },
+  { code: "B21c2", categorie: "obligation", nom: "Direction obligatoire : à gauche",              description: "Oblige à tourner à gauche à la prochaine intersection." },
+  { code: "B21d1", categorie: "obligation", nom: "Direction obligatoire : tout droit ou à droite", description: "Oblige à aller tout droit ou à tourner à droite à la prochaine intersection." },
+  { code: "B21d2", categorie: "obligation", nom: "Direction obligatoire : tout droit ou à gauche", description: "Oblige à aller tout droit ou à tourner à gauche à la prochaine intersection." },
+  { code: "B21e",  categorie: "obligation", nom: "Direction obligatoire : à droite ou à gauche",  description: "Oblige à tourner à droite ou à gauche à la prochaine intersection." },
+  { code: "B22a",  categorie: "obligation", nom: "Piste ou bande cyclable obligatoire",           description: "Piste ou bande obligatoire pour les cycles sans side-car ni remorque." },
+  { code: "B22b",  categorie: "obligation", nom: "Chemin obligatoire pour piétons",               description: "Chemin obligatoire pour les piétons." },
+  { code: "B22c",  categorie: "obligation", nom: "Chemin obligatoire pour cavaliers",             description: "Chemin obligatoire pour les cavaliers." },
+  { code: "B25",   categorie: "obligation", nom: "Vitesse minimale obligatoire",                  description: "Oblige à circuler à une vitesse au moins égale à la valeur indiquée (en km/h)." },
+  { code: "B26",   categorie: "obligation", nom: "Chaînes à neige obligatoires",                  description: "Oblige à équiper d'chaînes à neige au moins deux roues motrices." },
+  { code: "B27a",  categorie: "obligation", nom: "Voie réservée aux transports en commun",        description: "Voie réservée aux véhicules des services réguliers de transport en commun." },
+  { code: "B27b",  categorie: "obligation", nom: "Voie réservée aux tramways",                    description: "Voie réservée aux tramways." },
+  { code: "B30",   categorie: "obligation", nom: "Entrée en zone 30",                             description: "Signale l'entrée dans une zone à vitesse limitée à 30 km/h." },
+  { code: "B52",   categorie: "obligation", nom: "Entrée en zone de rencontre",                   description: "Signale l'entrée dans une zone de rencontre : vitesse max 20 km/h, piétons prioritaires." },
+  { code: "B54",   categorie: "obligation", nom: "Entrée d'aire piétonne",                        description: "Signale l'entrée dans une aire piétonne. Accès interdit aux véhicules sauf exceptions." },
+
+  // ── FAMILLE B : FIN DE PRESCRIPTION ─────────────────
+  { code: "B31",   categorie: "fin_obligation", nom: "Fin de toutes les interdictions",           description: "Signale la fin de toutes les interdictions précédemment signalées aux véhicules en mouvement." },
+  { code: "B33",   categorie: "fin_obligation", nom: "Fin de limitation de vitesse",              description: "Signale la fin de la limitation de vitesse imposée par le panneau B14." },
+  { code: "B34",   categorie: "fin_obligation", nom: "Fin d'interdiction de dépasser",            description: "Signale la fin de l'interdiction de dépasser notifiée par le panneau B3." },
+  { code: "B34a",  categorie: "fin_obligation", nom: "Fin d'interdiction de dépasser pour les PL", description: "Signale la fin de l'interdiction de dépasser pour les poids lourds (B3a)." },
+  { code: "B35",   categorie: "fin_obligation", nom: "Fin d'interdiction des signaux sonores",    description: "Signale la fin de l'interdiction de l'usage de l'avertisseur sonore." },
+  { code: "B40",   categorie: "fin_obligation", nom: "Fin de piste ou bande cyclable obligatoire", description: "Signale la fin de la piste ou bande cyclable obligatoire." },
+  { code: "B41",   categorie: "fin_obligation", nom: "Fin de chemin obligatoire pour piétons",    description: "Signale la fin du chemin obligatoire pour piétons." },
+  { code: "B42",   categorie: "fin_obligation", nom: "Fin de chemin obligatoire pour cavaliers",  description: "Signale la fin du chemin obligatoire pour cavaliers." },
+  { code: "B43",   categorie: "fin_obligation", nom: "Fin de vitesse minimale obligatoire",       description: "Signale la fin de l'obligation de vitesse minimale." },
+  { code: "B44",   categorie: "fin_obligation", nom: "Fin d'obligation des chaînes à neige",      description: "Signale la fin de l'obligation d'utiliser des chaînes à neige." },
+  { code: "B45",   categorie: "fin_obligation", nom: "Fin de voie réservée aux transports en commun", description: "Signale la fin de la voie réservée aux véhicules de transport en commun." },
+  { code: "B50a",  categorie: "fin_obligation", nom: "Sortie de zone à stationnement interdit",   description: "Signale la sortie d'une zone à stationnement interdit." },
+  { code: "B50d",  categorie: "fin_obligation", nom: "Sortie de zone à stationnement payant",     description: "Sortie de zone à stationnement payant." },
+  { code: "B51",   categorie: "fin_obligation", nom: "Sortie de zone 30",                         description: "Signale la sortie d'une zone à vitesse limitée à 30 km/h." },
+  { code: "B53",   categorie: "fin_obligation", nom: "Sortie de zone de rencontre",               description: "Signale la sortie d'une zone de rencontre." },
+  { code: "B55",   categorie: "fin_obligation", nom: "Sortie d'aire piétonne",                    description: "Signale la sortie d'une aire piétonne." },
+
+  // ── FAMILLE C : INDICATION ───────────────────────────
+  { code: "C1a",   categorie: "indication", nom: "Parc de stationnement",                         description: "Indique un lieu aménagé pour le stationnement." },
+  { code: "C1b",   categorie: "indication", nom: "Stationnement gratuit à durée limitée (disque)", description: "Lieu aménagé pour le stationnement gratuit à durée limitée avec contrôle par disque." },
+  { code: "C1c",   categorie: "indication", nom: "Stationnement payant",                          description: "Lieu aménagé pour le stationnement payant." },
+  { code: "C4a",   categorie: "indication", nom: "Vitesse conseillée",                            description: "Indique la vitesse à laquelle il est conseillé de circuler si les conditions le permettent." },
+  { code: "C4b",   categorie: "indication", nom: "Fin de vitesse conseillée",                     description: "Signale la fin de la vitesse conseillée." },
+  { code: "C5",    categorie: "indication", nom: "Station de taxis",                              description: "Station de taxis. L'arrêt et le stationnement y sont réservés aux taxis en service." },
+  { code: "C6",    categorie: "indication", nom: "Arrêt d'autobus",                               description: "Arrêt d'autobus. Le stationnement et l'arrêt des autres véhicules y sont interdits." },
+  { code: "C12",   categorie: "indication", nom: "Circulation à sens unique",                     description: "Indique que la circulation est à sens unique dans le sens de la flèche." },
+  { code: "C13a",  categorie: "indication", nom: "Impasse",                                       description: "Signale une impasse (voie sans issue)." },
+  { code: "C13b",  categorie: "indication", nom: "Présignalisation d'une impasse",                description: "Annonce une impasse à venir." },
+  { code: "C18",   categorie: "indication", nom: "Priorité par rapport au sens inverse",          description: "Indique que vous avez la priorité par rapport à la circulation venant en sens inverse (passage étroit)." },
+  { code: "C20a",  categorie: "indication", nom: "Passage pour piétons",                          description: "Signale un passage pour piétons." },
+  { code: "C20c",  categorie: "indication", nom: "Traversée de tramways",                         description: "Signale une traversée de voies de tramways." },
+  { code: "C24a",  categorie: "indication", nom: "Conditions particulières de circulation par voie", description: "Indique les conditions particulières de circulation par voie sur la route suivie." },
+  { code: "C25a",  categorie: "indication", nom: "Limites de vitesse à la frontière",             description: "Indication aux frontières des limites de vitesse sur le territoire français." },
+  { code: "C25b",  categorie: "indication", nom: "Rappel des limites de vitesse sur autoroute",   description: "Rappel des limites de vitesse applicables sur autoroute." },
+  { code: "C27",   categorie: "indication", nom: "Surélévation de chaussée",                      description: "Signale une surélévation de chaussée (dos-d'âne, ralentisseur)." },
+  { code: "C28",   categorie: "indication", nom: "Réduction du nombre de voies",                  description: "Signale une réduction du nombre de voies sur une route à chaussées séparées." },
+  { code: "C107",  categorie: "indication", nom: "Route à accès réglementé",                      description: "Annonce le début d'une route à accès réglementé (règles similaires à l'autoroute, vitesse max 110 km/h)." },
+  { code: "C108",  categorie: "indication", nom: "Fin de route à accès réglementé",               description: "Signale la fin d'une section de route à accès réglementé." },
+  { code: "C111",  categorie: "indication", nom: "Entrée d'un tunnel",                            description: "Signale l'entrée d'un tunnel. Demi-tour, arrêt et stationnement interdits. Feux de croisement obligatoires." },
+  { code: "C112",  categorie: "indication", nom: "Sortie de tunnel",                              description: "Signale la sortie du tunnel. Fin des prescriptions du C111." },
+  { code: "C113",  categorie: "indication", nom: "Piste ou bande cyclable conseillée",            description: "Piste ou bande cyclable conseillée et réservée aux cycles à deux ou trois roues." },
+  { code: "C115",  categorie: "indication", nom: "Voie verte",                                    description: "Voie verte réservée à la circulation des piétons et des véhicules non motorisés." },
+  { code: "C207",  categorie: "indication", nom: "Début d'une section d'autoroute",               description: "Signale le début d'une section d'autoroute et l'application des règles particulières de circulation." },
+  { code: "C208",  categorie: "indication", nom: "Fin d'une section d'autoroute",                 description: "Signale la fin de la section d'autoroute. Les règles particulières cessent de s'appliquer." },
+
+  // ── FAMILLE CE : SERVICES ────────────────────────────
+  { code: "CE1",   categorie: "service", nom: "Poste de secours",                                 description: "Indique la présence d'un poste de secours." },
+  { code: "CE2a",  categorie: "service", nom: "Poste d'appel d'urgence",                          description: "Indique la présence d'un poste d'appel d'urgence." },
+  { code: "CE4a",  categorie: "service", nom: "Terrain de camping pour tentes",                   description: "Indique un terrain de camping pour tentes." },
+  { code: "CE4b",  categorie: "service", nom: "Terrain de camping pour caravanes",                description: "Indique un terrain de camping pour caravanes et autocaravanes." },
+  { code: "CE4c",  categorie: "service", nom: "Terrain de camping mixte",                         description: "Indique un terrain de camping pour tentes, caravanes et autocaravanes." },
+  { code: "CE7",   categorie: "service", nom: "Aire de pique-nique",                              description: "Indique un emplacement pour pique-nique." },
+  { code: "CE10",  categorie: "service", nom: "Embarcadère",                                      description: "Indique un embarcadère (bac, ferry…)." },
+  { code: "CE12",  categorie: "service", nom: "Toilettes publiques",                              description: "Indique des toilettes ouvertes au public." },
+  { code: "CE14",  categorie: "service", nom: "Installations accessibles aux personnes handicapées", description: "Indique des installations accessibles aux personnes à mobilité réduite." },
+  { code: "CE15a", categorie: "service", nom: "Station-service ouverte 24h/24",                   description: "Poste de distribution de carburant ouvert 7j/7 et 24h/24." },
+  { code: "CE16",  categorie: "service", nom: "Restaurant ouvert 7j/7",                           description: "Restaurant ouvert 7 jours sur 7." },
+  { code: "CE17",  categorie: "service", nom: "Hôtel ou motel ouvert 7j/7",                       description: "Hôtel ou motel ouvert 7 jours sur 7." },
+  { code: "CE21",  categorie: "service", nom: "Point de vue",                                     description: "Indique un point de vue remarquable." },
+  { code: "CE23",  categorie: "service", nom: "Jeux d'enfants",                                   description: "Indique un emplacement de jeux pour enfants." },
+  { code: "CE25",  categorie: "service", nom: "Distributeur de billets de banque",                description: "Indique la présence d'un distributeur de billets de banque." },
+  { code: "CE26",  categorie: "service", nom: "Station de gonflage gratuite",                     description: "Station de gonflage hors station-service, dont l'usage est gratuit." },
+  { code: "CE27",  categorie: "service", nom: "Point de détente",                                 description: "Indique un point de détente." },
+  { code: "CE28",  categorie: "service", nom: "Poste de dépannage",                               description: "Indique la présence d'un poste de dépannage." },
+  { code: "CE30a", categorie: "service", nom: "Issue de secours (vers la droite)",                description: "Indique une issue de secours vers la droite (tunnels)." },
+  { code: "CE30b", categorie: "service", nom: "Issue de secours (vers la gauche)",                description: "Indique une issue de secours vers la gauche (tunnels)." },
+
+  // ── FAMILLE E : LOCALISATION ─────────────────────────
+  { code: "EB10",  categorie: "localisation", nom: "Entrée d'agglomération",                      description: "Signale l'entrée dans une agglomération. La vitesse est limitée à 50 km/h sauf indication contraire." },
+  { code: "EB20",  categorie: "localisation", nom: "Sortie d'agglomération",                      description: "Signale la sortie d'une agglomération. La limite de 50 km/h cesse de s'appliquer." },
+  { code: "E31",   categorie: "localisation", nom: "Localisation (lieu traversé)",                description: "Localisation de tous les lieux traversés par la route pour lesquels il n'existe pas de panneau spécifique." },
+  { code: "E32",   categorie: "localisation", nom: "Localisation d'un cours d'eau",               description: "Signale la présence d'un cours d'eau." },
+  { code: "E36",   categorie: "localisation", nom: "Localisation d'une région ou d'un département", description: "Signale l'entrée dans une région administrative ou un département." },
+
+];
+
+// ═══════════════════════════════════════════════════════
+//  LABELS ET COULEURS DES CATÉGORIES
+// ═══════════════════════════════════════════════════════
+const CATEGORIES = {
+  danger:        { label: "⚠️ Danger",          color: "#e63946" },
+  priorite:      { label: "🔺 Priorité",         color: "#f4a261" },
+  interdiction:  { label: "🚫 Interdiction",      color: "#c77dff" },
+  obligation:    { label: "🔵 Obligation",        color: "#457b9d" },
+  fin_obligation:{ label: "⚪ Fin prescription",  color: "#8b8fa8" },
+  indication:    { label: "🟦 Indication",        color: "#2a9d8f" },
+  service:       { label: "🛎️ Service",           color: "#e9c46a" },
+  localisation:  { label: "📍 Localisation",      color: "#a8dadc" },
+};
+
+// ═══════════════════════════════════════════════════════
+//  ÉTAT DU QUIZ
+// ═══════════════════════════════════════════════════════
 let questions    = [];
 let currentIndex = 0;
 let scoreOk      = 0;
 let scoreKo      = 0;
 let answered     = false;
+let activeFilter = "all";
 
-// ── UTILITAIRES ───────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════
+//  UTILITAIRES
+// ═══════════════════════════════════════════════════════
 function shuffle(arr) {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
@@ -446,37 +675,59 @@ function shuffle(arr) {
   return a;
 }
 
-function getCategoryLabel(cat) {
-  const labels = {
-    danger:        "⚠️ Danger",
-    priorite:      "🔺 Priorité",
-    interdiction:  "🚫 Interdiction",
-    obligation:    "🔵 Obligation",
-    indication:    "🔵 Indication",
-    service:       "🛎️ Service",
-    localisation:  "📍 Localisation",
-    fin_obligation:"⚪ Fin d'obligation",
-    chantier:      "🚧 Chantier",
-  };
-  return labels[cat] || cat;
-}
-
 function getDistractors(correct) {
-  // Cherche dans la même catégorie en priorité, puis dans le même type, sinon autre
-  let pool = panneauxData.filter(p =>
-    p.code !== correct.code &&
-    p.categorie === correct.categorie
-  );
+  // 1. Priorité : même catégorie
+  let pool = panneauxData.filter(p => p.code !== correct.code && p.categorie === correct.categorie);
+  // 2. Si pas assez : toute la base
   if (pool.length < CHOICES_PER_Q - 1) {
     pool = panneauxData.filter(p => p.code !== correct.code);
   }
   return shuffle(pool).slice(0, CHOICES_PER_Q - 1);
 }
 
-// ── DÉMARRAGE ─────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════
+//  FILTRES DE CATÉGORIE
+// ═══════════════════════════════════════════════════════
+function buildFilterBar() {
+  const bar = document.getElementById("filter-bar");
+  bar.innerHTML = "";
+
+  // Bouton "Toutes"
+  const allBtn = document.createElement("button");
+  allBtn.className = "filter-btn active";
+  allBtn.textContent = "🎲 Toutes les familles";
+  allBtn.dataset.cat = "all";
+  allBtn.addEventListener("click", () => setFilter("all", allBtn));
+  bar.appendChild(allBtn);
+
+  // Un bouton par catégorie présente dans les données
+  const cats = [...new Set(panneauxData.map(p => p.categorie))];
+  cats.forEach(cat => {
+    const info = CATEGORIES[cat] || { label: cat, color: "#8b8fa8" };
+    const btn = document.createElement("button");
+    btn.className = "filter-btn";
+    btn.textContent = info.label;
+    btn.dataset.cat = cat;
+    btn.addEventListener("click", () => setFilter(cat, btn));
+    bar.appendChild(btn);
+  });
+}
+
+function setFilter(cat, clickedBtn) {
+  activeFilter = cat;
+  document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+  clickedBtn.classList.add("active");
+  startQuiz();
+}
+
+// ═══════════════════════════════════════════════════════
+//  DÉMARRAGE
+// ═══════════════════════════════════════════════════════
 function startQuiz() {
-  // On ne garde que les panneaux dont le SVG existe réellement (filtré au premier run)
-  const pool   = typeof availablePanneaux !== 'undefined' ? availablePanneaux : panneauxData;
+  const pool = activeFilter === "all"
+    ? panneauxData
+    : panneauxData.filter(p => p.categorie === activeFilter);
+
   questions    = shuffle(pool).slice(0, Math.min(TOTAL_QUESTIONS, pool.length));
   currentIndex = 0;
   scoreOk      = 0;
@@ -484,37 +735,40 @@ function startQuiz() {
 
   document.getElementById("results-screen").classList.remove("show");
   document.getElementById("question-card").style.display = "flex";
-  document.getElementById("progress-wrap") && null;
-
   updateScoreboard();
   renderQuestion();
 }
 
-// ── RENDU QUESTION ────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════
+//  RENDU D'UNE QUESTION
+// ═══════════════════════════════════════════════════════
 function renderQuestion() {
   answered = false;
+  const total = questions.length;
   const q = questions[currentIndex];
 
-  // Progress
-  const pct = (currentIndex / TOTAL_QUESTIONS) * 100;
-  document.getElementById("progress-fill").style.width = pct + "%";
-  document.getElementById("q-label").textContent = `Question ${currentIndex + 1} / ${TOTAL_QUESTIONS}`;
-  document.getElementById("q-category").textContent = getCategoryLabel(q.categorie);
+  // Barre de progression
+  document.getElementById("progress-fill").style.width = ((currentIndex / total) * 100) + "%";
+  document.getElementById("q-label").textContent = `Question ${currentIndex + 1} / ${total}`;
+
+  // Catégorie
+  const catInfo = CATEGORIES[q.categorie] || { label: q.categorie };
+  document.getElementById("q-category").textContent = catInfo.label;
 
   // Image
   const img = document.getElementById("sign-img");
   img.onerror = function() {
-    // Si le SVG est manquant, on passe à la question suivante sans compter
+    // Si l'image est absente, on saute silencieusement cette question
     questions.splice(currentIndex, 1);
     if (questions.length === 0) { showResults(); return; }
     if (currentIndex >= questions.length) currentIndex = 0;
     renderQuestion();
   };
-  img.src = IMAGE_BASE_PATH + q.code + ".svg";
+  img.src = IMAGE_BASE_PATH + q.code + IMAGE_EXT;
   img.alt = "Panneau " + q.code;
   document.getElementById("sign-code").textContent = "Code : " + q.code;
 
-  // Choix (bonne réponse + 3 distracteurs, mélangés)
+  // Choix : bonne réponse + 3 distracteurs de la même famille
   const distractors = getDistractors(q);
   const choices = shuffle([q, ...distractors]);
 
@@ -531,11 +785,10 @@ function renderQuestion() {
     grid.appendChild(btn);
   });
 
-  // Reset feedback / bouton
+  // Reset feedback et bouton suivant
   const fb = document.getElementById("feedback");
   fb.className = "feedback";
   fb.textContent = "";
-
   document.getElementById("btn-next").classList.remove("show");
 
   // Animation de la carte
@@ -544,13 +797,15 @@ function renderQuestion() {
   requestAnimationFrame(() => { card.style.animation = ""; });
 }
 
-// ── GESTION RÉPONSE ───────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════
+//  GESTION DE LA RÉPONSE
+// ═══════════════════════════════════════════════════════
 function handleAnswer(btn, isCorrect, panneau) {
   if (answered) return;
   answered = true;
 
-  const allBtns = document.querySelectorAll(".answer-btn");
-  allBtns.forEach(b => {
+  // Désactiver tous les boutons + montrer la bonne réponse
+  document.querySelectorAll(".answer-btn").forEach(b => {
     b.disabled = true;
     if (b.dataset.code === panneau.code) b.classList.add("correct");
   });
@@ -561,58 +816,64 @@ function handleAnswer(btn, isCorrect, panneau) {
     scoreOk++;
     btn.classList.add("correct");
     fb.className = "feedback correct show";
-    fb.innerHTML = `✅ Bonne réponse ! <strong>${panneau.nom}</strong> — ${getDescription(panneau.code)}`;
+    fb.innerHTML = `✅ Bonne réponse ! <strong>${panneau.nom}</strong> — ${panneau.description}`;
   } else {
     scoreKo++;
     btn.classList.add("wrong");
     fb.className = "feedback wrong show";
-    fb.innerHTML = `❌ Raté ! La bonne réponse était <strong>${panneau.nom}</strong>. ${getDescription(panneau.code)}`;
+    fb.innerHTML = `❌ Raté ! La bonne réponse était <strong>${panneau.nom}</strong>. ${panneau.description}`;
   }
 
   updateScoreboard();
   document.getElementById("btn-next").classList.add("show");
 }
 
-function getDescription(code) {
-  const p = panneauxData.find(x => x.code === code);
-  return p && p.description ? p.description : "";
-}
-
-// ── QUESTION SUIVANTE ─────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════
+//  QUESTION SUIVANTE
+// ═══════════════════════════════════════════════════════
 function nextQuestion() {
   currentIndex++;
-  if (currentIndex >= TOTAL_QUESTIONS) {
+  if (currentIndex >= questions.length) {
     showResults();
   } else {
     renderQuestion();
   }
 }
 
-// ── RÉSULTATS ─────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════
+//  ÉCRAN DE RÉSULTATS
+// ═══════════════════════════════════════════════════════
 function showResults() {
   document.getElementById("question-card").style.display = "none";
   document.getElementById("progress-fill").style.width = "100%";
 
-  const pct = Math.round((scoreOk / TOTAL_QUESTIONS) * 100);
+  const total = questions.length;
+  const pct   = Math.round((scoreOk / total) * 100);
+
   let msg = "";
   if (pct === 100) msg = "Score parfait ! Vous êtes prêt(e) pour l'examen 🎉";
   else if (pct >= 70) msg = "Très bien ! Continuez à vous entraîner pour viser le sans-faute.";
   else if (pct >= 50) msg = "Pas mal, mais il reste des notions à réviser. Recommencez !";
   else msg = "Il faut reprendre l'étude des panneaux. Courage, vous y arriverez !";
 
-  document.getElementById("final-score").textContent = scoreOk;
-  document.getElementById("final-out-of").textContent = `/ ${TOTAL_QUESTIONS}`;
+  document.getElementById("final-score").textContent  = scoreOk;
+  document.getElementById("final-out-of").textContent = `/ ${total}`;
   document.getElementById("results-message").textContent = msg;
   document.getElementById("results-screen").classList.add("show");
 }
 
-// ── SCORE DISPLAY ─────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════
+//  SCORE AFFICHÉ EN TEMPS RÉEL
+// ═══════════════════════════════════════════════════════
 function updateScoreboard() {
   document.getElementById("score-correct").textContent = scoreOk;
   document.getElementById("score-wrong").textContent   = scoreKo;
 }
 
-// ── LANCEMENT ─────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════
+//  INITIALISATION
+// ═══════════════════════════════════════════════════════
+buildFilterBar();
 startQuiz();
 </script>
 </body>
