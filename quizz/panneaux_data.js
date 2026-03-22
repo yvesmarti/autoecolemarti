@@ -355,4 +355,7 @@ const panneauxData = [
 
 ];
 
-export default panneauxData;
+// Export pour usage en module et accès global depuis le HTML
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = panneauxData;
+}
