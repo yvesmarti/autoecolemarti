@@ -1,69 +1,84 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-
+This XML file does not appear to have any style information associated with it. The document tree is shown below.
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!--  created with Free Online Sitemap Generator www.xml-sitemaps.com  -->
 <url>
-  <loc>https://autoecolemarti.fr/</loc>
-  <lastmod>2026-03-08T15:05:01+00:00</lastmod>
-  <priority>1.00</priority>
+<loc>https://autoecolemarti.fr/</loc>
+<lastmod>2026-03-22T20:33:02+00:00</lastmod>
+<priority>1.00</priority>
 </url>
 <url>
-  <loc>https://autoecolemarti.fr/blog/index.html</loc>
-  <lastmod>2026-03-08T15:05:01+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://autoecolemarti.fr/blog/index.html</loc>
+<lastmod>2026-03-22T20:33:02+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://autoecolemarti.fr/formules/permis-b-automatique.html</loc>
-  <lastmod>2026-03-08T15:05:01+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://autoecolemarti.fr/formules/permis-b-automatique.html</loc>
+<lastmod>2026-03-22T20:33:02+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://autoecolemarti.fr/formules/permis-b-manuel.html</loc>
-  <lastmod>2026-03-08T15:05:01+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://autoecolemarti.fr/formules/permis-b-manuel.html</loc>
+<lastmod>2026-03-22T20:33:02+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://autoecolemarti.fr/formules/conduite-accompagnee.html</loc>
-  <lastmod>2026-03-08T15:05:01+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://autoecolemarti.fr/formules/conduite-accompagnee.html</loc>
+<lastmod>2026-03-22T20:33:02+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://autoecolemarti.fr/mentions-legales.html</loc>
-  <lastmod>2026-03-08T15:05:01+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://autoecolemarti.fr/mentions-legales.html</loc>
+<lastmod>2026-03-22T20:33:02+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://autoecolemarti.fr/index.html</loc>
-  <lastmod>2026-03-08T15:05:01+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://autoecolemarti.fr/index.html</loc>
+<lastmod>2026-03-22T20:33:02+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://autoecolemarti.fr/blog/aac-apprentissage-anticipe-conduite.html</loc>
-  <lastmod>2026-03-08T15:05:01+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://autoecolemarti.fr/blog/aac-apprentissage-anticipe-conduite.html</loc>
+<lastmod>2026-03-22T20:33:02+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://autoecolemarti.fr/blog/conduite-supervisee.html</loc>
-  <lastmod>2026-03-08T15:05:01+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://autoecolemarti.fr/blog/conduite-supervisee.html</loc>
+<lastmod>2026-03-22T20:33:02+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://autoecolemarti.fr/blog/comment-reussir-son-permis-conduire.html</loc>
-  <lastmod>2026-03-08T15:05:01+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://autoecolemarti.fr/blog/comment-reussir-son-permis-conduire.html</loc>
+<lastmod>2026-03-22T20:33:02+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://autoecolemarti.fr/blog/boite-automatique-ou-manuelle.html</loc>
-  <lastmod>2026-03-08T15:05:01+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://autoecolemarti.fr/blog/boite-automatique-ou-manuelle.html</loc>
+<lastmod>2026-03-22T20:33:02+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://autoecolemarti.fr/blog/reussir-code-route-premier-coup.html</loc>
-  <lastmod>2026-03-13T12:00:00+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://autoecolemarti.fr/blog/reussir-code-route-premier-coup.html</loc>
+<lastmod>2026-03-22T20:33:02+00:00</lastmod>
+<priority>0.64</priority>
 </url>
-
+<url>
+<loc>https://autoecolemarti.fr/blog/questions-pieges-code-route.html</loc>
+<lastmod>2026-03-22T20:33:02+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://autoecolemarti.fr/quizz/quizz_panneaux.html</loc>
+<lastmod>2026-03-22T20:33:02+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://autoecolemarti.fr/blog/distances-securite.html</loc>
+<lastmod>2026-03-22T20:33:02+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://autoecolemarti.fr/blog/regles-permis-probatoire.html</loc>
+<lastmod>2026-03-22T20:33:02+00:00</lastmod>
+<priority>0.64</priority>
+</url>
 </urlset>
