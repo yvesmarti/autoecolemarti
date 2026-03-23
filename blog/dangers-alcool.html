@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Calculateur d'alcoolémie – Auto-École Marti</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bleu-marine:  #003366;
+            --bleu-moyen:   #004b99;
+            --bleu-clair:   #0066cc;
+            --rouge-marti:  #cc2200;
+            --gris-clair:   #f4f6fa;
+            --gris-bord:    #d0d8e4;
+            --texte:        #1a2740;
+            --texte-doux:   #4a5568;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: var(--gris-clair);
+            color: var(--texte);
+            padding: 24px 16px 40px;
+            min-height: 100vh;
+        }
+
+        /* ─── HEADER ─────────────────────────────────────── */
+        .header {
+            max-width: 660px;
+            margin: 0 auto 20px;
+            background: var(--bleu-marine);
+            border-radius: 12px 12px 0 0;
+            overflow: hidden;
+        }
+        .header-top {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 18px 24px 14px;
+            border-bottom: 3px solid var(--rouge-marti);
+        }
+        .header-logo {
+            width: 48px;
+            height: 48px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+        .header-brand {
+            color: white;
+            flex: 1;
+        }
+        .header-brand .school-name {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.15rem;
+            letter-spacing: 0.5px;
+            line-height: 1.1;
+        }
+        .header-brand .school-sub {
+            font-size: 0.72rem;
+            opacity: 0.65;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+        .header-title {
+            padding: 14px 24px 18px;
+            text-align: center;
+        }
+        .header-title h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: white;
+            letter-spacing: 0.3px;
+        }
+        .header-title p {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.65);
+            margin-top: 5px;
+        }
+
+        /* ─── CARD ────────────────────────────────────────── */
+        .card {
+            max-width: 660px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 0 0 12px 12px;
+            border: 1px solid var(--gris-bord);
+            border-top: none;
+            overflow: hidden;
+        }
+
+        .form-section {
+            padding: 24px 24px 16px;
+            border-bottom: 1px solid var(--gris-bord);
+        }
+
+        .section-label {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--bleu-moyen);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--gris-bord);
+        }
+
+        /* ─── INPUTS ──────────────────────────────────────── */
+        .row-2cols {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .row-2cols .input-group { flex: 1; min-width: 130px; }
+
+        .input-group { margin-bottom: 16px; }
+
+        label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.88rem;
+            margin-bottom: 6px;
+            color: var(--bleu-marine);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px 14px;
+            font-size: 0.95rem;
+            border: 1.5px solid var(--gris-bord);
+            border-radius: 6px;
+            background: #fafbfd;
+            font-family: inherit;
+            color: var(--texte);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--bleu-clair);
+            box-shadow: 0 0 0 3px rgba(0,102,204,0.12);
+            background: white;
+        }
+
+        /* ─── BOISSONS ────────────────────────────────────── */
+        .drinks-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .drink-card {
+            flex: 1;
+            min-width: 120px;
+            background: var(--gris-clair);
+            border: 1.5px solid var(--gris-bord);
+            border-radius: 8px;
+            padding: 14px 10px 12px;
+            text-align: center;
+        }
+        .drink-card .drink-icon { font-size: 1.7rem; margin-bottom: 4px; }
+        .drink-card .drink-name {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.82rem;
+            color: var(--bleu-marine);
+            margin-bottom: 2px;
+        }
+        .drink-card .drink-desc {
+            font-size: 0.68rem;
+            color: var(--texte-doux);
+            margin-bottom: 10px;
+        }
+        .drink-card input {
+            text-align: center;
+            padding: 8px 6px;
+            font-size: 0.95rem;
+            border-radius: 6px;
+        }
+
+        /* ─── PROFIL ──────────────────────────────────────── */
+        .profile-selector {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .profile-option {
+            flex: 1;
+            min-width: 140px;
+            background: var(--gris-clair);
+            border: 2px solid var(--gris-bord);
+            border-radius: 8px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: all 0.18s;
+            text-align: center;
+        }
+        .profile-option.selected {
+            background: #e8f0fb;
+            border-color: var(--bleu-clair);
+            box-shadow: 0 2px 8px rgba(0,102,204,0.15);
+        }
+        .profile-option input { display: none; }
+        .profile-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--bleu-marine);
+            margin-bottom: 3px;
+        }
+        .profile-limit {
+            font-size: 0.78rem;
+            color: var(--texte-doux);
+        }
+
+        /* ─── BOUTON ──────────────────────────────────────── */
+        .btn-wrapper { padding: 20px 24px; }
+        button {
+            background: var(--rouge-marti);
+            color: white;
+            border: none;
+            padding: 13px 20px;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.5px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.18s, transform 0.1s;
+            text-transform: uppercase;
+        }
+        button:hover { background: #a81c00; }
+        button:active { transform: scale(0.99); }
+
+        /* ─── RÉSULTAT ────────────────────────────────────── */
+        .result-section {
+            padding: 0 24px 24px;
+        }
+        .result-card {
+            background: var(--gris-clair);
+            border: 1.5px solid var(--gris-bord);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        .result-label {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--texte-doux);
+            margin-bottom: 6px;
+        }
+        .bac-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 8px;
+            transition: color 0.3s;
+        }
+        .legal-msg {
+            font-size: 0.88rem;
+            margin: 10px 0 8px;
+            line-height: 1.5;
+        }
+        .time-zero {
+            font-size: 0.88rem;
+            color: var(--bleu-moyen);
+            font-weight: 600;
+            margin: 8px 0;
+        }
+        .prevention-box {
+            background: #fff8e1;
+            border-left: 4px solid #e67e22;
+            border-radius: 6px;
+            padding: 10px 14px;
+            font-size: 0.85rem;
+            text-align: left;
+            margin-top: 12px;
+            line-height: 1.5;
+        }
+
+        .danger { color: #b91c1c; font-weight: 700; }
+        .warning { color: #b45f06; font-weight: 600; }
+        .safe    { color: #1e6e3a; font-weight: 600; }
+
+        /* ─── NOTE & FOOTER ───────────────────────────────── */
+        .small-note {
+            max-width: 660px;
+            margin: 14px auto 0;
+            font-size: 0.73rem;
+            color: var(--texte-doux);
+            text-align: center;
+            line-height: 1.6;
+        }
+        footer {
+            max-width: 660px;
+            margin: 10px auto 0;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #8a94a6;
+        }
+        footer a {
+            color: var(--bleu-clair);
+            text-decoration: none;
+        }
+
+        /* ─── INTRO ───────────────────────────────────────── */
+        .intro-block {
+            max-width: 660px;
+            margin: 0 auto 16px;
+            background: white;
+            border: 1.5px solid var(--gris-bord);
+            border-radius: 10px;
+            padding: 18px 22px;
+            font-size: 0.92rem;
+            line-height: 1.7;
+            color: var(--texte);
+        }
+        .intro-block strong { color: var(--rouge-marti); }
+        .intro-effects {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .intro-effect-tag {
+            background: #fff0ed;
+            border: 1px solid #f5c2b8;
+            color: #8b2000;
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+
+        /* ─── ARTICLE ─────────────────────────────────────── */
+        .article-wrapper {
+            max-width: 660px;
+            margin: 24px auto 0;
+        }
+        .article-card {
+            background: white;
+            border: 1.5px solid var(--gris-bord);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .article-header {
+            background: var(--bleu-marine);
+            padding: 18px 24px;
+            border-bottom: 3px solid var(--rouge-marti);
+        }
+        .article-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.05rem;
+            color: white;
+            letter-spacing: 0.2px;
+        }
+        .article-header .article-meta {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.55);
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .article-body {
+            padding: 24px;
+            font-size: 0.91rem;
+            line-height: 1.75;
+            color: var(--texte);
+        }
+        .article-body p { margin-bottom: 14px; }
+        .article-section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.88rem;
+            color: var(--bleu-marine);
+            margin: 22px 0 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .article-section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--gris-bord);
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin: 14px 0;
+        }
+        .stat-box {
+            background: var(--gris-clair);
+            border: 1.5px solid var(--gris-bord);
+            border-radius: 8px;
+            padding: 14px 12px;
+            text-align: center;
+        }
+        .stat-box .stat-num {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.6rem;
+            color: var(--rouge-marti);
+            line-height: 1.1;
+        }
+        .stat-box .stat-label {
+            font-size: 0.72rem;
+            color: var(--texte-doux);
+            margin-top: 4px;
+            line-height: 1.4;
+        }
+        .sanction-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.84rem;
+            margin: 12px 0;
+        }
+        .sanction-table th {
+            background: var(--bleu-marine);
+            color: white;
+            padding: 8px 12px;
+            text-align: left;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.78rem;
+        }
+        .sanction-table td {
+            padding: 8px 12px;
+            border-bottom: 1px solid var(--gris-bord);
+            vertical-align: top;
+        }
+        .sanction-table tr:nth-child(even) td { background: var(--gris-clair); }
+        .badge-danger { background: #fce8e8; color: #8b0000; border-radius: 4px; padding: 1px 6px; font-weight: 700; font-size: 0.78rem; }
+        .badge-warning { background: #fff3cd; color: #7a4700; border-radius: 4px; padding: 1px 6px; font-weight: 700; font-size: 0.78rem; }
+        .myth-list { list-style: none; padding: 0; margin: 10px 0; }
+        .myth-list li {
+            padding: 8px 12px;
+            margin-bottom: 6px;
+            border-radius: 6px;
+            font-size: 0.86rem;
+        }
+        .myth-list li.faux {
+            background: #fce8e8;
+            border-left: 4px solid #cc2200;
+        }
+        .myth-list li.vrai {
+            background: #e8f5e9;
+            border-left: 4px solid #2e7d32;
+        }
+        .reflexes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+            margin: 12px 0;
+        }
+        .reflexe-item {
+            background: var(--gris-clair);
+            border: 1.5px solid var(--gris-bord);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--bleu-marine);
+        }
+        .reflexe-item .reflexe-icon { font-size: 1.4rem; margin-bottom: 4px; }
+        .article-cta {
+            background: var(--bleu-marine);
+            color: white;
+            padding: 18px 24px;
+            text-align: center;
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+        .article-cta strong { color: #f0c040; }
+
+        /* ─── RESPONSIVE ──────────────────────────────────── */
+        @media (max-width: 520px) {
+            .drinks-row { flex-direction: column; }
+            .profile-selector { flex-direction: column; }
+            .row-2cols { flex-direction: column; gap: 0; }
+            .bac-value { font-size: 2.4rem; }
+            .header-brand .school-name { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- INTRO -->
+<div class="intro-block">
+    <p>L'alcool agit dès le premier verre : il ralentit les réflexes, réduit le champ visuel et fausse l'appréciation des distances. Ce qui est trompeur, c'est que <strong>l'alcool donne une fausse impression de maîtrise</strong> — alors même que les capacités de conduite sont déjà altérées. En moyenne, il faut <strong>environ 1 heure pour éliminer un seul verre</strong>, et aucune astuce (café, eau, air frais) n'accélère ce processus. Le calculateur ci-dessous vous donne une estimation indicative basée sur votre profil.</p>
+    <div class="intro-effects">
+        <span class="intro-effect-tag">⚡ Réflexes ralentis</span>
+        <span class="intro-effect-tag">👁 Vision réduite</span>
+        <span class="intro-effect-tag">📏 Distances mal évaluées</span>
+        <span class="intro-effect-tag">🧠 Jugement altéré</span>
+        <span class="intro-effect-tag">😴 Vigilance diminuée</span>
+    </div>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+    <div class="header-top">
+        <div class="header-logo">🚗</div>
+        <div class="header-brand">
+            <div class="school-name">Auto-École Marti</div>
+            <div class="school-sub">13 rue Marengo · Bayonne · Depuis 1962</div>
+        </div>
+    </div>
+    <div class="header-title">
+        <h1>🍷 Estimateur de taux d'alcoolémie</h1>
+        <p>Outil pédagogique – Ne remplace pas un éthylotest homologué</p>
+    </div>
+</div>
+
+<!-- CARD -->
+<div class="card">
+
+    <!-- PROFIL PHYSIQUE -->
+    <div class="form-section">
+        <div class="section-label">Profil physique</div>
+        <div class="row-2cols">
+            <div class="input-group">
+                <label for="sexe">Sexe</label>
+                <select id="sexe">
+                    <option value="homme">Homme</option>
+                    <option value="femme">Femme</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="poids">Poids (kg)</label>
+                <input type="number" id="poids" value="70" min="30" max="300" step="1">
+            </div>
+        </div>
+    </div>
+
+    <!-- CONSOMMATION -->
+    <div class="form-section">
+        <div class="section-label">Consommation</div>
+        <div class="drinks-row">
+            <div class="drink-card">
+                <div class="drink-icon">🍺</div>
+                <div class="drink-name">Bière / Cidre</div>
+                <div class="drink-desc">25 cl (5°)</div>
+                <input type="number" id="bieres" value="0" step="0.5" min="0" placeholder="Verres">
+            </div>
+            <div class="drink-card">
+                <div class="drink-icon">🍷</div>
+                <div class="drink-name">Vin</div>
+                <div class="drink-desc">10 cl (12°)</div>
+                <input type="number" id="vins" value="0" step="0.5" min="0" placeholder="Verres">
+            </div>
+            <div class="drink-card">
+                <div class="drink-icon">🥃</div>
+                <div class="drink-name">Spiritueux</div>
+                <div class="drink-desc">3 cl (40°)</div>
+                <input type="number" id="spiritueux" value="0" step="0.5" min="0" placeholder="Verres">
+            </div>
+        </div>
+
+        <div class="row-2cols">
+            <div class="input-group">
+                <label for="temps">⏱ Temps écoulé depuis le 1er verre (heures)</label>
+                <input type="number" id="temps" value="1" step="0.5" min="0" max="24">
+            </div>
+            <div class="input-group" style="visibility:hidden;"></div>
+        </div>
+    </div>
+
+    <!-- PROFIL CONDUCTEUR -->
+    <div class="form-section">
+        <div class="section-label">Profil conducteur</div>
+        <div class="profile-selector" id="profileSelector">
+            <div class="profile-option" data-profile="jeune">
+                <input type="radio" name="profil" id="profilJeune" value="jeune" checked hidden>
+                <div class="profile-title">🔰 Jeune conducteur</div>
+                <div class="profile-limit">Permis probatoire – limite à 0,2 g/L</div>
+            </div>
+            <div class="profile-option" data-profile="classique">
+                <input type="radio" name="profil" id="profilClassique" value="classique" hidden>
+                <div class="profile-title">🚗 Permis classique</div>
+                <div class="profile-limit">Limite légale à 0,5 g/L</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOUTON -->
+    <div class="btn-wrapper">
+        <button id="calculerBtn">Calculer mon taux d'alcoolémie</button>
+    </div>
+
+    <!-- RÉSULTAT -->
+    <div class="result-section">
+        <div class="result-card">
+            <div class="result-label">Résultat estimé</div>
+            <div class="bac-value" id="bacDisplay">— g/L</div>
+            <div class="legal-msg" id="messageLegal"></div>
+            <div class="time-zero" id="timeZeroMessage"></div>
+            <div class="prevention-box" id="preventionMessage" style="display:none;"></div>
+        </div>
+    </div>
+
+</div><!-- /card -->
+
+<div class="small-note">
+    ⚠️ Estimation basée sur la formule de Widmark. L'absorption et le métabolisme varient selon chaque individu.<br>
+    <strong>La seule certitude : zéro alcool avant de prendre le volant.</strong>
+</div>
+<footer>
+    Auto-École Marti · 13 rue Marengo, 64100 Bayonne · 05 59 59 12 60 · <a href="mailto:autoecole.marti@gmail.com">autoecole.marti@gmail.com</a>
+</footer>
+
+<!-- ARTICLE -->
+<div class="article-wrapper">
+<div class="article-card">
+
+    <div class="article-header">
+        <h2>🚗 Alcool au volant : des dangers qu'il ne faut jamais sous-estimer</h2>
+        <div class="article-meta">Dossier pédagogique · Auto-École Marti</div>
+    </div>
+
+    <div class="article-body">
+
+        <p>Prendre le volant après avoir consommé de l'alcool reste l'une des principales causes d'accidents graves sur la route. Pourtant, beaucoup d'automobilistes continuent de minimiser les risques, en pensant « gérer » leur consommation. La réalité est tout autre : dès le premier verre, les capacités de conduite sont altérées.</p>
+
+        <div class="article-section-title">🚗 Une altération immédiate des capacités de conduite</div>
+        <p>Contrairement aux idées reçues, il n'existe pas de « seuil sans risque ». Dès 0,2 g/L d'alcool dans le sang, les effets commencent à apparaître :</p>
+        <ul style="margin: 8px 0 14px 20px; line-height: 2.1;">
+            <li>Diminution de la vigilance</li>
+            <li>Allongement du temps de réaction</li>
+            <li>Mauvaise évaluation des distances</li>
+            <li>Réduction du champ visuel (effet tunnel)</li>
+            <li>Surestimation de ses capacités (prise de risques accrue)</li>
+        </ul>
+        <p>À mesure que le taux d'alcool augmente, ces effets s'intensifient. Le conducteur devient moins lucide, plus impulsif, et nettement moins apte à réagir face à un danger.</p>
+
+        <div class="article-section-title">⚠️ Un facteur majeur d'accidents graves</div>
+        <p>L'alcool est impliqué dans près d'un tiers des accidents mortels sur les routes. Et ces accidents ont des caractéristiques bien particulières :</p>
+        <ul style="margin: 8px 0 14px 20px; line-height: 2.1;">
+            <li>Ils sont souvent plus violents (vitesse excessive, absence de freinage)</li>
+            <li>Ils surviennent davantage la nuit et le week-end</li>
+            <li>Ils touchent fréquemment des conducteurs jeunes</li>
+        </ul>
+        <p>Un conducteur alcoolisé multiplie par plusieurs fois le risque d'accident mortel, pour lui-même mais aussi pour les autres usagers : passagers, piétons, cyclistes…</p>
+
+        <div class="article-section-title">👨‍⚖️ Des sanctions lourdes et immédiates</div>
+        <p>La loi est très claire en matière d'alcool au volant. En France :</p>
+        <ul style="margin: 8px 0 10px 20px; line-height: 2.1;">
+            <li><strong>0,5 g/L</strong> : limite légale pour les conducteurs expérimentés</li>
+            <li><strong>0,2 g/L</strong> : limite pour les jeunes conducteurs (permis probatoire)</li>
+        </ul>
+        <p>En cas de dépassement, les sanctions peuvent être sévères :</p>
+        <table class="sanction-table">
+            <thead>
+                <tr><th>Taux</th><th>Sanctions principales</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="badge-warning">Entre 0,5 et 0,8 g/L</span></td>
+                    <td>Amende forfaitaire de 135 €, retrait de 6 points, immobilisation possible du véhicule</td>
+                </tr>
+                <tr>
+                    <td><span class="badge-danger">À partir de 0,8 g/L (délit)</span></td>
+                    <td>Jusqu'à 4 500 € d'amende, suspension ou annulation du permis, stage obligatoire, peine de prison possible, installation d'un éthylotest anti-démarrage (EAD)</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>En cas d'accident avec alcool, les sanctions sont encore aggravées, surtout s'il y a des blessés ou un décès.</p>
+
+        <div class="article-section-title">💸 Des conséquences lourdes avec l'assurance</div>
+        <p>Beaucoup l'ignorent, mais conduire sous l'emprise de l'alcool peut coûter extrêmement cher :</p>
+        <ul style="margin: 8px 0 14px 20px; line-height: 2.1;">
+            <li>L'assurance peut refuser de couvrir les dommages subis par le conducteur</li>
+            <li>Elle indemnisera les victimes… puis se retournera contre le conducteur pour récupérer les sommes</li>
+            <li>Résultat : des dizaines voire des centaines de milliers d'euros à rembourser</li>
+        </ul>
+        <p>De plus, après une infraction liée à l'alcool : le contrat peut être résilié, les primes d'assurance augmentent fortement, et il devient difficile de retrouver un assureur.</p>
+
+        <div class="article-section-title">👨‍👩‍👧‍👦 Des conséquences humaines irréversibles</div>
+        <p>Au-delà des sanctions, ce sont surtout les conséquences humaines qui sont les plus lourdes :</p>
+        <ul style="margin: 8px 0 14px 20px; line-height: 2.1;">
+            <li>Blessures graves ou handicap à vie</li>
+            <li>Décès de proches ou d'inconnus</li>
+            <li>Traumatisme psychologique durable</li>
+            <li>Culpabilité et conséquences sur toute une vie</li>
+        </ul>
+        <p>Un simple « verre de trop » peut détruire plusieurs vies en quelques secondes.</p>
+
+        <div class="article-section-title">🧠 Les idées reçues à oublier</div>
+        <p>Certaines croyances sont tenaces, mais totalement fausses :</p>
+        <ul class="myth-list">
+            <li class="faux">❌ <strong>« Le café fait redescendre l'alcool »</strong> → Faux</li>
+            <li class="faux">❌ <strong>« Dormir 1 heure suffit »</strong> → Faux</li>
+            <li class="faux">❌ <strong>« Je tiens bien l'alcool »</strong> → Faux</li>
+        </ul>
+        <p>Seul le temps permet d'éliminer l'alcool. En moyenne, il faut environ 1 à 2 heures pour éliminer un seul verre.</p>
+
+        <div class="article-section-title">✅ Les bons réflexes à adopter</div>
+        <p>Pour éviter tout risque, quelques solutions simples existent :</p>
+        <div class="reflexes-grid">
+            <div class="reflexe-item"><div class="reflexe-icon">🧑‍✈️</div>Désigner un conducteur sobre (« Sam »)</div>
+            <div class="reflexe-item"><div class="reflexe-icon">🧪</div>Utiliser un éthylotest avant de conduire</div>
+            <div class="reflexe-item"><div class="reflexe-icon">🚕</div>Prendre un taxi ou un VTC</div>
+            <div class="reflexe-item"><div class="reflexe-icon">🛌</div>Dormir sur place</div>
+            <div class="reflexe-item"><div class="reflexe-icon">🚌</div>Utiliser les transports en commun</div>
+        </div>
+        <p style="margin-top: 14px;">Anticiper, c'est protéger sa vie… et celle des autres.</p>
+
+        <div class="article-section-title">🎯 En résumé</div>
+        <p>Conduire après avoir bu, même en petite quantité, n'est jamais anodin. Les risques sont multiples : accident, sanctions judiciaires, conséquences financières et drames humains.</p>
+        <p>La meilleure décision reste toujours la plus simple : <strong>ne pas conduire après avoir consommé de l'alcool.</strong></p>
+
+    </div>
+
+    <div class="article-cta">
+        À l'Auto-École Marti, nous sensibilisons nos élèves à ces risques dès leur formation.<br>
+        <strong>La sécurité routière commence par des comportements responsables.</strong>
+    </div>
+
+</div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(function() {
+    const ALCOOL_PAR_VERRE = 10;
+    const METABOLISME       = 0.15;
+    const R_HOMME           = 0.7;
+    const R_FEMME           = 0.6;
+    const LIMITE_NORMALE    = 0.5;
+    const LIMITE_PROBA      = 0.2;
+
+    const sexeSelect        = document.getElementById('sexe');
+    const poidsInput        = document.getElementById('poids');
+    const bieresInput       = document.getElementById('bieres');
+    const vinsInput         = document.getElementById('vins');
+    const spiritueuxInput   = document.getElementById('spiritueux');
+    const tempsInput        = document.getElementById('temps');
+    const calculerBtn       = document.getElementById('calculerBtn');
+    const bacDisplay        = document.getElementById('bacDisplay');
+    const messageLegalDiv   = document.getElementById('messageLegal');
+    const timeZeroSpan      = document.getElementById('timeZeroMessage');
+    const preventionDiv     = document.getElementById('preventionMessage');
+    const profileOptions    = document.querySelectorAll('.profile-option');
+    let isJeune = true;
+
+    function setActiveProfile(jeune) {
+        isJeune = jeune;
+        profileOptions.forEach(opt => {
+            opt.classList.toggle('selected', opt.dataset.profile === (jeune ? 'jeune' : 'classique'));
+        });
+        document.getElementById(jeune ? 'profilJeune' : 'profilClassique').checked = true;
+        calculer();
+    }
+
+    profileOptions.forEach(opt => {
+        opt.addEventListener('click', () => setActiveProfile(opt.dataset.profile === 'jeune'));
+    });
+
+    function calculer() {
+        const poids = parseFloat(poidsInput.value);
+        const temps = parseFloat(tempsInput.value);
+        const sexe  = sexeSelect.value;
+
+        if (isNaN(poids) || poids <= 0 || poids > 300) {
+            afficherErreur("Veuillez saisir un poids valide.");
+            return;
+        }
+        if (isNaN(temps) || temps < 0) {
+            afficherErreur("Le temps écoulé doit être positif ou nul.");
+            return;
+        }
+
+        const alcool    = ((parseFloat(bieresInput.value)||0) + (parseFloat(vinsInput.value)||0) + (parseFloat(spiritueuxInput.value)||0)) * ALCOOL_PAR_VERRE;
+        const r         = sexe === 'homme' ? R_HOMME : R_FEMME;
+        const tauxMax   = alcool / (poids * r);
+        let   taux      = Math.max(0, tauxMax - METABOLISME * temps);
+        const tauxAff   = taux.toFixed(3);
+
+        bacDisplay.textContent = tauxAff + ' g/L';
+
+        // Couleur du taux
+        if      (taux >= 0.8)             bacDisplay.style.color = '#b91c1c';
+        else if (taux >= LIMITE_NORMALE)  bacDisplay.style.color = '#e67e22';
+        else if (taux >= (isJeune ? LIMITE_PROBA : LIMITE_PROBA)) bacDisplay.style.color = '#d97706';
+        else                              bacDisplay.style.color = '#1e6e3a';
+
+        // Messages
+        let legal = '', prevention = '';
+        const limit = isJeune ? LIMITE_PROBA : LIMITE_NORMALE;
+
+        if (taux >= LIMITE_NORMALE) {
+            legal      = `⚠️ <span class="danger">Taux ≥ ${LIMITE_NORMALE} g/L</span> – Conduite interdite. Risque de retrait de permis, amende et mise en danger d'autrui.`;
+            prevention = '❌ Ne prenez pas le volant. Attendez plusieurs heures ou jusqu\'au lendemain. Appelez un taxi ou une personne sobre.';
+        } else if (isJeune && taux >= LIMITE_PROBA) {
+            legal      = `⚠️ <span class="warning">Taux ≥ ${LIMITE_PROBA} g/L</span> – En période probatoire, la limite légale est 0,2 g/L. Conduite interdite et retrait de points.`;
+            prevention = 'Même un taux faible peut entraîner amende, suspension et stage obligatoire. Attendez que votre taux redescende sous 0,2 g/L.';
+        } else if (!isJeune && taux >= LIMITE_PROBA && taux < LIMITE_NORMALE) {
+            legal      = `ℹ️ <span class="warning">Taux entre ${LIMITE_PROBA} et ${LIMITE_NORMALE} g/L</span> – Vous êtes sous le seuil légal, mais l'alcool altère déjà les réflexes.`;
+            prevention = 'La loi vous autorise à conduire, mais le risque d\'accident augmente dès le premier verre. Évitez tout déplacement non indispensable.';
+        } else {
+            legal      = `✅ <span class="safe">Taux inférieur à ${limit} g/L</span> – Sous la limite ${isJeune ? 'probatoire (0,2 g/L)' : 'légale (0,5 g/L)'}.`;
+            prevention = 'Même en dessous des seuils légaux, l\'alcool peut affecter la vigilance. Restez prudent.';
+        }
+
+        // Temps pour zéro
+        let msgZero = '';
+        if (taux > 0) {
+            const h = Math.floor(taux / METABOLISME);
+            const m = Math.round(((taux / METABOLISME) - h) * 60);
+            msgZero = h === 0
+                ? `⏳ Environ ${m} min pour atteindre 0,00 g/L (si vous ne buvez plus).`
+                : `⏳ Environ ${h}h${m > 0 ? m + ' min' : ''} pour atteindre 0,00 g/L.`;
+        } else {
+            msgZero = '✅ Alcoolémie estimée à 0,00 g/L. Restez attentif à votre état de fatigue.';
+        }
+
+        messageLegalDiv.innerHTML   = legal;
+        timeZeroSpan.textContent    = msgZero;
+        preventionDiv.innerHTML     = prevention;
+        preventionDiv.style.display = 'block';
+    }
+
+    function afficherErreur(msg) {
+        bacDisplay.textContent      = '❌ Erreur';
+        bacDisplay.style.color      = '#b91c1c';
+        messageLegalDiv.innerHTML   = `<span class="danger">${msg}</span>`;
+        timeZeroSpan.textContent    = '';
+        preventionDiv.style.display = 'none';
+    }
+
+    calculerBtn.addEventListener('click', e => { e.preventDefault(); calculer(); });
+    [poidsInput, bieresInput, vinsInput, spiritueuxInput, 
