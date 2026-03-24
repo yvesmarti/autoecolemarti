@@ -317,7 +317,7 @@
             <li><a href="../index.html#avis">Avis</a></li>
             <li><a href="index.html" class="active">Blog</a></li>
             <li><a href="../index.html#contact">Contact</a></li>
-            <li><a href="mailto:autoecole.marti@gmail.com" class="nav-cta">S'inscrire</a></li>
+            <li><a href="/cdn-cgi/l/email-protection#b7d6c2c3d8d2d4d8dbd299dad6c5c3def7d0dad6dedb99d4d8da" class="nav-cta">S'inscrire</a></li>
         </ul>
     </div>
 </nav>
@@ -427,7 +427,7 @@
             </div>
         </div>
 
-        <button class="calc-btn" id="calculerBtn">Calculer mon taux d'alcoolémie</button>
+        <button class="calc-btn" id="calculerBtn" style="display:none;">Calculer mon taux d'alcoolémie</button>
     </div>
 
     <!-- RÉSULTAT -->
@@ -602,7 +602,7 @@
 <div class="cta-banner">
     <h2>Prêt à passer votre permis ?</h2>
     <p>Rejoignez l'auto-école Marti à Bayonne et bénéficiez d'une formation complète depuis 1962.</p>
-    <a href="mailto:autoecole.marti@gmail.com" class="btn">Nous contacter →</a>
+    <a href="/cdn-cgi/l/email-protection#ceafbbbaa1abada1a2abe0a3afbcbaa78ea9a3afa7a2e0ada1a3" class="btn">Nous contacter →</a>
 </div>
 
 <!-- ══════════════════════════════════════════════════════════════
@@ -639,7 +639,7 @@
                 <ul>
                     <li><a href="tel:0559591260">05 59 59 12 60</a></li>
                     <li><a href="tel:0622008209">06 22 00 82 09</a></li>
-                    <li><a href="mailto:autoecole.marti@gmail.com">autoecole.marti@gmail.com</a></li>
+                    <li><a href="/cdn-cgi/l/email-protection#f09185849f95939f9c95de9d91828499b0979d91999cde939f9d"><span class="__cf_email__" data-cfemail="79180c0d161c1a16151c5714180b0d10391e14181015571a1614">[email&#160;protected]</span></a></li>
                     <li><a href="../index.html#contact">13 rue Marengo, Bayonne</a></li>
                 </ul>
             </div>
@@ -652,7 +652,7 @@
     </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // ── Scroll reveal navbar ──
     window.addEventListener('scroll', () => {
         document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
@@ -691,7 +691,16 @@
         }
 
         profileOptions.forEach(opt => {
-            opt.addEventListener('click', () => setActiveProfile(opt.dataset.profile === 'jeune'));
+            opt.addEventListener('click', () => {
+                setActiveProfile(opt.dataset.profile === 'jeune');
+                calculer();
+            });
+        });
+
+        // Recalcul automatique à chaque changement
+        [sexeSelect, poidsInput, bieresInput, vinsInput, spiritueuxInput, tempsInput].forEach(el => {
+            el.addEventListener('input', calculer);
+            el.addEventListener('change', calculer);
         });
 
         function calculer() {
@@ -776,16 +785,4 @@
             resultCard.classList.remove('danger-level');
         }
 
-        calculerBtn.addEventListener('click', calculer);
-
-        // Calcul auto au changement des inputs
-        [sexeSelect, poidsInput, bieresInput, vinsInput, spiritueuxInput, tempsInput].forEach(el => {
-            el.addEventListener('input', calculer);
-        });
-
-        // Calcul initial
-        calculer();
-    })();
-</script>
-</body>
-</html>
+    
