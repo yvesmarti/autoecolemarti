@@ -1,743 +1,380 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Auto-école du Basque | Éco-conduite : calculez vos économies</title>
-  <!-- Google Fonts (DM Sans + Playfair) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
-  <style>
-    /* ═══════════════════════════════════════
-       RESET & VARIABLES (charte graphique fournie)
-    ═══════════════════════════════════════ */
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-        --noir: #0a0a0a;
-        --blanc: #fafaf8;
-        --creme: #f5f0e8;
-        --rouge: #c0392b;
-        --rouge-doux: #e74c3c;
-        --rouge-sombre: #922b21;
-        --vert: #1a5c38;
-        --vert-clair: #27ae60;
-        --gris: #6b7280;
-        --gris-clair: #e5e5e5;
-        --basque-rouge: #d63031;
-        --basque-vert: #00695c;
-        --or: #d4a853;
-        --ombre: 0 4px 30px rgba(0,0,0,0.08);
-        --ombre-forte: 0 20px 60px rgba(0,0,0,0.12);
-        --radius: 16px;
-        --radius-sm: 10px;
-        --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-
-        --article-accent: var(--basque-vert);
-        --article-accent-bg: rgba(0,105,92,0.06);
-        --article-accent-pill: rgba(0,105,92,0.12);
-        --article-hero-gradient: linear-gradient(135deg, #f0fffe 0%, #c8f0ec 50%, #a8e4df 100%);
-        --article-hero-glow: rgba(0,105,92,0.1);
-        --cta-gradient: linear-gradient(135deg, var(--basque-vert) 0%, #004d44 100%);
-        --cta-btn-color: var(--basque-vert);
-    }
-
-    html { scroll-behavior: smooth; font-size: 16px; }
-
-    body {
-        font-family: 'DM Sans', sans-serif;
-        background: var(--blanc);
-        color: var(--noir);
-        line-height: 1.7;
-        overflow-x: hidden;
-    }
-
-    /* ═══════════════════════════════════════
-       NAVBAR
-    ═══════════════════════════════════════ */
-    nav {
-        position: fixed; top: 0; width: 100%; z-index: 1000;
-        padding: 1rem 2rem; transition: var(--transition);
-        background: rgba(255,255,255,0.92);
-        backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-        box-shadow: 0 1px 30px rgba(0,0,0,0.06);
-    }
-    nav .nav-inner {
-        max-width: 1200px; margin: 0 auto;
-        display: flex; align-items: center; justify-content: space-between;
-    }
-    nav .logo {
-        font-family: 'Playfair Display', serif; font-size: 1.5rem;
-        font-weight: 700; color: var(--noir); text-decoration: none; letter-spacing: -0.02em;
-    }
-    nav .logo span { color: var(--basque-rouge); }
-    nav .nav-links {
-        display: flex; gap: 2rem; list-style: none; align-items: center;
-    }
-    nav .nav-links a {
-        text-decoration: none; color: var(--noir); font-size: 0.9rem;
-        font-weight: 500; letter-spacing: 0.02em; transition: var(--transition);
-        position: relative;
-    }
-    nav .nav-links a::after {
-        content: ''; position: absolute; bottom: -4px; left: 0;
-        width: 0; height: 2px; background: var(--basque-rouge); transition: var(--transition);
-    }
-    nav .nav-links a:hover::after { width: 100%; }
-    nav .nav-links a.active::after { width: 100%; }
-    nav .nav-cta {
-        background: var(--basque-rouge); color: white !important;
-        padding: 0.6rem 1.4rem; border-radius: 50px;
-        font-weight: 600; font-size: 0.85rem; transition: var(--transition);
-    }
-    nav .nav-cta::after { display: none !important; }
-    nav .nav-cta:hover { background: var(--rouge-sombre); transform: translateY(-1px); }
-
-    /* ═══════════════════════════════════════
-       ARTICLE HERO
-    ═══════════════════════════════════════ */
-    .article-hero {
-        min-height: 52vh;
-        display: flex; flex-direction: column;
-        align-items: center; justify-content: flex-end;
-        padding: 9rem 2rem 4rem;
-        background: var(--article-hero-gradient);
-        position: relative; overflow: hidden; text-align: center;
-    }
-    .article-hero::before {
-        content: ''; position: absolute; top: -20%; right: -10%;
-        width: 600px; height: 600px;
-        background: radial-gradient(circle, var(--article-hero-glow) 0%, transparent 70%);
-        border-radius: 50%;
-    }
-    .article-hero::after {
-        content: ''; position: absolute; bottom: -10%; left: -5%;
-        width: 400px; height: 400px;
-        background: radial-gradient(circle, rgba(214,48,49,0.06) 0%, transparent 70%);
-        border-radius: 50%;
-    }
-    .article-hero-inner { position: relative; z-index: 2; max-width: 780px; }
-
-    .article-breadcrumb {
-        display: flex; align-items: center; justify-content: center;
-        gap: 0.5rem; margin-bottom: 1.5rem;
-        font-size: 0.82rem; color: var(--gris);
-    }
-    .article-breadcrumb a {
-        color: var(--gris); text-decoration: none; transition: var(--transition);
-    }
-    .article-breadcrumb a:hover { color: var(--article-accent); }
-    .article-breadcrumb span { opacity: 0.5; }
-
-    .article-hero-meta {
-        display: flex; align-items: center; justify-content: center;
-        gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;
-    }
-    .article-cat-pill {
-        display: inline-flex; align-items: center; gap: 0.4rem;
-        background: var(--article-accent-pill); color: var(--article-accent);
-        padding: 0.4rem 1rem; border-radius: 50px;
-        font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-    }
-    .article-reading-pill {
-        display: inline-flex; align-items: center; gap: 0.4rem;
-        background: rgba(0,0,0,0.06); color: var(--gris);
-        padding: 0.4rem 1rem; border-radius: 50px;
-        font-size: 0.8rem; font-weight: 500;
-    }
-
-    .article-hero h1 {
-        font-family: 'Playfair Display', serif;
-        font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 700;
-        line-height: 1.15; letter-spacing: -0.03em;
-        margin-bottom: 1.2rem; color: var(--noir);
-    }
-    .article-hero h1 em { font-style: italic; color: var(--article-accent); }
-
-    .article-date-pub { font-size: 0.82rem; color: var(--gris); }
-
-    /* ═══════════════════════════════════════
-       ARTICLE LAYOUT
-    ═══════════════════════════════════════ */
-    .article-wrap {
-        max-width: 780px; margin: 0 auto;
-        padding: 4rem 2rem 5rem;
-    }
-
-    /* Introduction encadrée */
-    .article-intro {
-        background: var(--article-accent-bg);
-        border-left: 4px solid var(--article-accent);
-        border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-        padding: 1.8rem 2rem;
-        margin-bottom: 3rem;
-        font-size: 1.05rem;
-        line-height: 1.75;
-    }
-    .article-intro strong { color: var(--article-accent); font-weight: 600; }
-
-    /* Headings */
-    .article-wrap h2 {
-        font-family: 'Playfair Display', serif;
-        font-size: clamp(1.4rem, 2.5vw, 1.8rem);
-        font-weight: 700; letter-spacing: -0.02em;
-        color: var(--noir); margin: 3rem 0 1rem;
-        padding-bottom: 0.6rem;
-        border-bottom: 2px solid var(--gris-clair);
-    }
-    .article-wrap h3 {
-        font-size: 1.05rem; font-weight: 700;
-        color: var(--article-accent); margin: 2rem 0 0.8rem;
-        display: flex; align-items: center; gap: 0.5rem;
-    }
-    .article-wrap h3::before {
-        content: ''; display: inline-block;
-        width: 8px; height: 8px; border-radius: 50%;
-        background: var(--article-accent); flex-shrink: 0;
-    }
-
-    /* Callout boxes */
-    .callout {
-        display: flex; gap: 1rem; align-items: flex-start;
-        padding: 1.4rem 1.6rem; border-radius: var(--radius-sm);
-        margin: 2rem 0; border-left: 4px solid;
-    }
-    .callout-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 0.1rem; }
-    .callout-body { flex: 1; }
-    .callout-body p { margin-bottom: 0; }
-    .callout-body strong { display: block; margin-bottom: 0.4rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; }
-
-    .callout-info { background: rgba(0,105,92,0.06); border-color: var(--basque-vert); }
-    .callout-info .callout-body strong { color: var(--basque-vert); }
-    .callout-success { background: rgba(39,174,96,0.08); border-color: var(--vert-clair); }
-    .callout-success .callout-body strong { color: var(--vert); }
-
-    /* Styles du calculateur (harmonisés avec charte) */
-    .calculator-card {
-        background: white;
-        border-radius: var(--radius);
-        box-shadow: var(--ombre);
-        margin: 2.5rem 0;
-        overflow: hidden;
-        border: 1px solid var(--gris-clair);
-    }
-    .calculator-header {
-        background: var(--basque-vert);
-        padding: 1.2rem 1.8rem;
-        color: white;
-    }
-    .calculator-header h3 {
-        margin: 0;
-        font-size: 1.3rem;
-        font-family: 'Playfair Display', serif;
-    }
-    .calculator-header p {
-        margin: 0.3rem 0 0;
-        opacity: 0.85;
-        font-size: 0.85rem;
-    }
-    .calculator-body {
-        padding: 1.8rem;
-    }
-    .form-group {
-        margin-bottom: 1.4rem;
-    }
-    .form-group label {
-        display: block;
-        font-weight: 600;
-        margin-bottom: 0.4rem;
-        font-size: 0.9rem;
-        color: var(--noir);
-    }
-    select, input {
-        width: 100%;
-        padding: 0.7rem 1rem;
-        border-radius: 2rem;
-        border: 1.5px solid var(--gris-clair);
-        background: white;
-        font-size: 0.9rem;
-        font-family: 'DM Sans', sans-serif;
-        transition: 0.2s;
-    }
-    select:focus, input:focus {
-        border-color: var(--basque-vert);
-        outline: none;
-        box-shadow: 0 0 0 3px rgba(0,105,92,0.2);
-    }
-    .radio-group {
-        display: flex;
-        gap: 1rem;
-        background: #f5f7f5;
-        padding: 0.5rem;
-        border-radius: 3rem;
-        border: 1px solid var(--gris-clair);
-    }
-    .radio-group label {
-        flex: 1;
-        text-align: center;
-        font-weight: 600;
-        margin: 0;
-        padding: 0.5rem 0;
-        border-radius: 2rem;
-        cursor: pointer;
-        transition: 0.2s;
-        background: transparent;
-        color: var(--noir);
-    }
-    input[type="radio"] {
-        display: none;
-    }
-    .radio-group input:checked + label {
-        background: var(--basque-vert);
-        color: white;
-    }
-    .row-2col {
-        display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
-    }
-    .row-2col > div {
-        flex: 1;
-        min-width: 140px;
-    }
-    .results-area {
-        background: var(--creme);
-        border-radius: var(--radius-sm);
-        padding: 1.5rem;
-        margin-top: 1.8rem;
-        transition: all 0.2s;
-    }
-    .result-stats {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        margin-bottom: 1.2rem;
-    }
-    .result-stat {
-        background: white;
-        border-radius: 1rem;
-        padding: 1rem;
-        flex: 1;
-        min-width: 140px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-        border: 1px solid #e2e2e2;
-    }
-    .result-stat .stat-label {
-        font-size: 0.7rem;
-        text-transform: uppercase;
-        color: var(--gris);
-        letter-spacing: 0.5px;
-    }
-    .result-stat .stat-value {
-        font-size: 1.6rem;
-        font-weight: 800;
-        color: var(--basque-vert);
-        line-height: 1.2;
-    }
-    .comparison-block {
-        background: #eef5ec;
-        border-radius: 1rem;
-        padding: 1rem;
-        margin: 1rem 0;
-        font-size: 0.9rem;
-    }
-    .eco-tip {
-        background: #fef3e0;
-        border-left: 4px solid var(--or);
-        padding: 1rem;
-        border-radius: 0.8rem;
-        margin-top: 1rem;
-    }
-    .eco-tip strong {
-        color: #b87c00;
-    }
-    .price-hint {
-        font-size: 0.75rem;
-        color: var(--gris);
-        margin-top: 0.3rem;
-        text-align: right;
-    }
-    hr {
-        margin: 1rem 0;
-        border: 0;
-        height: 1px;
-        background: var(--gris-clair);
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .article-wrap { padding: 2rem 1rem; }
-        .calculator-body { padding: 1.2rem; }
-        .result-stat .stat-value { font-size: 1.2rem; }
-        .radio-group { flex-direction: column; gap: 0.4rem; border-radius: 1.5rem; }
-    }
-    /* suite charte */
-    .related-wrap {
-        background: var(--creme); padding: 4rem 2rem;
-    }
-    .related-inner {
-        max-width: 780px; margin: 0 auto;
-    }
-    .related-inner h2 {
-        font-family: 'Playfair Display', serif;
-        font-size: 1.5rem; font-weight: 700;
-        margin-bottom: 1.5rem; letter-spacing: -0.02em;
-    }
-    .related-grid {
-        display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem;
-    }
-    .related-card {
-        background: white; border-radius: var(--radius-sm);
-        padding: 1.4rem; border: 1px solid #eee;
-        text-decoration: none; color: var(--noir);
-        display: flex; align-items: center; gap: 1rem;
-        transition: var(--transition);
-    }
-    .related-card:hover {
-        border-color: var(--article-accent);
-        box-shadow: var(--ombre);
-        transform: translateY(-2px);
-    }
-    .back-to-blog {
-        max-width: 780px; margin: 0 auto;
-        padding: 2rem 2rem 0;
-    }
-    .back-link {
-        display: inline-flex; align-items: center; gap: 0.5rem;
-        font-size: 0.88rem; font-weight: 600; color: var(--gris);
-        text-decoration: none; transition: var(--transition);
-    }
-    .cta-banner {
-        background: var(--cta-gradient);
-        color: white; text-align: center; padding: 5rem 2rem;
-        position: relative; overflow: hidden;
-    }
-    .cta-banner h2 {
-        font-family: 'Playfair Display', serif;
-        font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700;
-        margin-bottom: 1rem;
-    }
-    .cta-banner .btn {
-        display: inline-flex; align-items: center; gap: 0.5rem;
-        padding: 1rem 2.2rem; border-radius: 50px; font-size: 0.95rem;
-        font-weight: 700; text-decoration: none; transition: var(--transition);
-        background: white; color: var(--cta-btn-color);
-    }
-    footer {
-        background: var(--noir); color: white; padding: 4rem 2rem 2rem;
-    }
-    .footer-inner { max-width: 1200px; margin: 0 auto; }
-    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
-    .footer-brand .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: white; margin-bottom: 1rem; display: block; }
-    .footer-col h4 { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.2rem; color: rgba(255,255,255,0.4); }
-    .footer-col ul { list-style: none; }
-    .footer-col ul li { margin-bottom: 0.6rem; }
-    .footer-col ul a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; transition: var(--transition); }
-    .footer-bottom {
-        border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem;
-        display: flex; justify-content: space-between; align-items: center;
-        font-size: 0.82rem; color: rgba(255,255,255,0.35);
-    }
-    @media (max-width: 768px) {
-        .footer-top { grid-template-columns: 1fr; }
-        .related-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DEK5H3Z9DR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-DEK5H3Z9DR');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulateur éco-conduite : calculez vos économies — Auto-École Marti | Bayonne</title>
+    <link rel="icon" type="image/png" href="../favicon.ico.png">
+    <meta name="description" content="Calculez en temps réel vos économies de carburant et vos émissions de CO₂ selon votre style de conduite. Outil pédagogique interactif de l'auto-école Marti à Bayonne.">
+    <meta name="keywords" content="éco-conduite, économies carburant, CO2, simulateur, conduite souple, permis de conduire, auto-école Marti, Bayonne">
+    <meta property="og:title" content="Simulateur éco-conduite : calculez vos économies — Auto-École Marti">
+    <meta property="og:description" content="Découvrez l'impact de votre style de conduite sur votre budget et l'environnement. Outil pédagogique interactif de l'auto-école Marti, Bayonne.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Auto-École Marti">
+    <link rel="canonical" href="https://autoecolemarti.fr/blog/simulateur-ecoconduite.html">
+    <link rel="stylesheet" href="../css/fonts.css">
+    <link rel="stylesheet" href="../css/blog-article.css">
 </head>
 <body>
-  <nav>
+
+<!-- ══════════════════════════════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════════════════════════════ -->
+<nav id="navbar">
     <div class="nav-inner">
-      <a href="#" class="logo">Auto‑École <span>Basque</span></a>
-      <ul class="nav-links">
-        <li><a href="#">Accueil</a></li>
-        <li><a href="#" class="active">Blog</a></li>
-        <li><a href="#">Cours</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#" class="nav-cta">Réserver</a></li>
-      </ul>
+        <a href="../index.html" class="logo">AUTO-ÉCOLE MARTI<span>.</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="../index.html#formations">Formations</a></li>
+            <li><a href="../index.html#histoire">Notre histoire</a></li>
+            <li><a href="../index.html#avis">Avis</a></li>
+            <li><a href="index.html" class="active">Blog</a></li>
+            <li><a href="../index.html#contact">Contact</a></li>
+            <li><a href="mailto:autoecole.marti@gmail.com" class="nav-cta">S'inscrire</a></li>
+        </ul>
     </div>
-  </nav>
+</nav>
 
-  <main>
-    <div class="article-hero">
-      <div class="article-hero-inner">
-        <div class="article-breadcrumb">
-          <a href="#">Blog</a> <span>/</span> <span>Éco-conduite</span>
-        </div>
+<!-- ══════════════════════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════════════════════ -->
+<div class="article-hero">
+    <div class="article-hero-inner">
+        <nav class="article-breadcrumb" aria-label="Fil d'ariane">
+            <a href="../index.html">Accueil</a>
+            <span>›</span>
+            <a href="index.html">Blog</a>
+            <span>›</span>
+            <span>Outils pédagogiques</span>
+        </nav>
         <div class="article-hero-meta">
-          <span class="article-cat-pill">🌱 Éco-conduite</span>
-          <span class="article-reading-pill">📘 5 min de lecture</span>
+            <span class="article-cat-pill">🌱 Éco-conduite</span>
+            <span class="article-reading-pill">⚙️ Interactif</span>
         </div>
-        <h1>Simulateur <em>éco‑conduite</em><br>Calculez vos économies</h1>
-        <div class="article-date-pub">Publié le 24 mars 2026 • Mis à jour</div>
-      </div>
+        <h1>Simulateur <em>éco‑conduite</em></h1>
+        <p class="article-date-pub">Publié le 24 mars 2026 · Par l'équipe Auto-École Marti</p>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     OUTIL INTERACTIF
+══════════════════════════════════════════════════════════════ -->
+<div class="back-to-blog">
+    <a href="index.html" class="back-link">← Retour au blog</a>
+</div>
+
+<div class="article-wrap">
+
+    <div class="article-intro">
+        <strong>🌿 Un outil pédagogique pour votre permis</strong> — Adopter une conduite souple réduit votre consommation jusqu'à 25 %, diminue les émissions de CO₂ et améliore votre sécurité. Testez dès maintenant l'impact de votre style de conduite sur votre budget et l'environnement.
     </div>
 
-    <div class="article-wrap">
-      <div class="article-intro">
-        <strong>🌿 Un outil pédagogique pour votre permis</strong> — Adopter une conduite souple réduit votre consommation jusqu’à 25 %, diminue les émissions de CO₂ et améliore votre sécurité. Testez dès maintenant l’impact de votre style de conduite sur votre budget et l’environnement.
-      </div>
-
-      <!-- CALCULATEUR ÉCO-CONDUITE (mise à jour en temps réel + prix modifiable) -->
-      <div class="calculator-card">
+    <!-- CALCULATEUR ÉCO-CONDUITE -->
+    <div class="calculator-card">
         <div class="calculator-header">
-          <h3>📊 Calculateur consommation & CO₂</h3>
-          <p>Modifiez les paramètres ci-dessous — les résultats se mettent à jour instantanément</p>
+            <h3>📊 Calculateur consommation &amp; CO₂</h3>
+            <p>Modifiez les paramètres ci-dessous — les résultats se mettent à jour instantanément</p>
         </div>
         <div class="calculator-body">
-          <div class="form-group">
-            <label>🚗 Type de véhicule</label>
-            <select id="vehicleSelect">
-              <option value="essence_citadine">Essence - Citadine</option>
-              <option value="essence_berline">Essence - Berline</option>
-              <option value="essence_suv">Essence - SUV</option>
-              <option value="diesel_citadine">Diesel - Citadine</option>
-              <option value="diesel_berline">Diesel - Berline</option>
-              <option value="diesel_suv">Diesel - SUV</option>
-              <option value="hybride">Hybride (essence)</option>
-              <option value="electrique">Électrique</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label>🛣️ Parcours / vitesse moyenne</label>
-            <select id="routeSelect">
-              <option value="urbain">Urbain (30 km/h) – feux, ralentissements</option>
-              <option value="mixte">Mixte (70 km/h) – route départementale</option>
-              <option value="autoroute">Autoroute (120 km/h) – longs trajets</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label>⚡ Style de conduite</label>
-            <div class="radio-group" id="styleGroup">
-              <input type="radio" name="drivingStyle" id="styleSouple" value="souple" checked>
-              <label for="styleSouple">🌱 Souple (éco-conduite)</label>
-              <input type="radio" name="drivingStyle" id="styleNerveux" value="nerveux">
-              <label for="styleNerveux">⚡ Nerveux (accélérations vives)</label>
-            </div>
-          </div>
-
-          <div class="row-2col">
             <div class="form-group">
-              <label>📅 Kilométrage annuel (km)</label>
-              <input type="number" id="annualKm" value="12000" step="500" min="0">
+                <label>🚗 Type de véhicule</label>
+                <select id="vehicleSelect">
+                    <option value="essence_citadine">Essence - Citadine</option>
+                    <option value="essence_berline">Essence - Berline</option>
+                    <option value="essence_suv">Essence - SUV</option>
+                    <option value="diesel_citadine">Diesel - Citadine</option>
+                    <option value="diesel_berline">Diesel - Berline</option>
+                    <option value="diesel_suv">Diesel - SUV</option>
+                    <option value="hybride">Hybride (essence)</option>
+                    <option value="electrique">Électrique</option>
+                </select>
             </div>
-            <div class="form-group">
-              <label id="fuelPriceLabel">💰 Prix du carburant (€/L)</label>
-              <input type="number" id="fuelPriceInput" step="0.01" min="0" value="1.80">
-              <div class="price-hint" id="fuelPriceHint">Prix modifiable manuellement</div>
-            </div>
-          </div>
 
-          <div id="resultsContainer" class="results-area">
-            <div style="text-align:center; padding:1rem;">🔍 Les résultats s'affichent automatiquement</div>
-          </div>
+            <div class="form-group">
+                <label>🛣️ Parcours / vitesse moyenne</label>
+                <select id="routeSelect">
+                    <option value="urbain">Urbain (30 km/h) – feux, ralentissements</option>
+                    <option value="mixte">Mixte (70 km/h) – route départementale</option>
+                    <option value="autoroute">Autoroute (120 km/h) – longs trajets</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>⚡ Style de conduite</label>
+                <div class="radio-group" id="styleGroup">
+                    <input type="radio" name="drivingStyle" id="styleSouple" value="souple" checked>
+                    <label for="styleSouple">🌱 Souple (éco-conduite)</label>
+                    <input type="radio" name="drivingStyle" id="styleNerveux" value="nerveux">
+                    <label for="styleNerveux">⚡ Nerveux (accélérations vives)</label>
+                </div>
+            </div>
+
+            <div class="row-2col">
+                <div class="form-group">
+                    <label>📅 Kilométrage annuel (km)</label>
+                    <input type="number" id="annualKm" value="12000" step="500" min="0">
+                </div>
+                <div class="form-group">
+                    <label id="fuelPriceLabel">💰 Prix du carburant (€/L)</label>
+                    <input type="number" id="fuelPriceInput" step="0.01" min="0" value="1.80">
+                    <div class="price-hint" id="fuelPriceHint">Prix modifiable manuellement</div>
+                </div>
+            </div>
+
+            <div id="resultsContainer" class="results-area">
+                <div style="text-align:center; padding:1rem;">🔍 Les résultats s'affichent automatiquement</div>
+            </div>
         </div>
-      </div>
+    </div>
 
-      <div class="callout callout-info">
+    <div class="callout callout-info">
         <div class="callout-icon">💡</div>
         <div class="callout-body">
-          <strong>Pourquoi l'éco-conduite est notée à l'examen ?</strong>
-          <p>Depuis la réforme, l'inspecteur évalue votre capacité à anticiper, à utiliser le frein moteur et à adopter une conduite fluide. C'est un atout pour réussir et pour votre permis à points.</p>
+            <strong>Pourquoi l'éco-conduite est notée à l'examen ?</strong>
+            <p>Depuis la réforme, l'inspecteur évalue votre capacité à anticiper, à utiliser le frein moteur et à adopter une conduite fluide. C'est un atout pour réussir et pour votre permis à points.</p>
         </div>
-      </div>
     </div>
 
-    <!-- section articles connexes -->
-    <div class="related-wrap">
-      <div class="related-inner">
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     ARTICLES CONNEXES
+══════════════════════════════════════════════════════════════ -->
+<div class="related-wrap">
+    <div class="related-inner">
         <h2>📖 À lire aussi</h2>
         <div class="related-grid">
-          <a href="#" class="related-card">
-            <div class="related-card-icon">🚦</div>
-            <div class="related-card-body"><small>Anticipation</small><p>Frein moteur : comment économiser 15% de carburant</p></div>
-          </a>
-          <a href="#" class="related-card">
-            <div class="related-card-icon">🔋</div>
-            <div class="related-card-body"><small>Hybride / Électrique</small><p>Les astuces pour maximiser l'autonomie</p></div>
-          </a>
+            <a href="distances-securite.html" class="related-card">
+                <div class="related-card-icon">📏</div>
+                <div class="related-card-body">
+                    <small>Outil pédagogique</small>
+                    <p>Distances de sécurité : calculez votre distance d'arrêt</p>
+                </div>
+            </a>
+            <a href="boite-automatique-ou-manuelle.html" class="related-card">
+                <div class="related-card-icon">⚙️</div>
+                <div class="related-card-body">
+                    <small>Conduite</small>
+                    <p>Boîte automatique ou manuelle : laquelle choisir ?</p>
+                </div>
+            </a>
         </div>
-      </div>
     </div>
-  </main>
+</div>
 
-  <div class="cta-banner">
-    <h2>Prêt à adopter l’éco-conduite ?</h2>
-    <p>Entraînez-vous avec nos moniteurs et validez votre examen du premier coup.</p>
-    <a href="#" class="btn">📞 Réserver une leçon</a>
-  </div>
+<!-- ══════════════════════════════════════════════════════════════
+     CTA BANNER
+══════════════════════════════════════════════════════════════ -->
+<div class="cta-banner">
+    <h2>Prêt à adopter l'éco-conduite ?</h2>
+    <p>Rejoignez l'auto-école Marti à Bayonne et bénéficiez d'une formation complète depuis 1962.</p>
+    <a href="mailto:autoecole.marti@gmail.com" class="btn">Nous contacter →</a>
+</div>
 
-  <footer>
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════════ -->
+<footer>
     <div class="footer-inner">
-      <div class="footer-top">
-        <div class="footer-brand"><a href="#" class="logo">Auto‑École <span>Basque</span></a><p>La conduite responsable et durable depuis 2005.</p></div>
-        <div class="footer-col"><h4>Liens utiles</h4><ul><li><a href="#">Mentions légales</a></li><li><a href="#">Politique de confidentialité</a></li></ul></div>
-        <div class="footer-col"><h4>Contact</h4><ul><li><a href="#">05 59 00 00 00</a></li><li><a href="#">contact@autoecole-basque.fr</a></li></ul></div>
-      </div>
-      <div class="footer-bottom"><span>© 2026 Auto-École Basque — Tous droits réservés</span><span>🌍 Éco-conduite & sécurité</span></div>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="logo">MARTI<span>.</span></div>
+                <p>Auto-école de confiance à Bayonne depuis 1962. Formations permis B, conduite accompagnée et boîte automatique.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Formations</h4>
+                <ul>
+                    <li><a href="../formules/permis-b-manuel.html">Permis B</a></li>
+                    <li><a href="../formules/conduite-accompagnee.html">Conduite accompagnée</a></li>
+                    <li><a href="../formules/permis-b-automatique.html">Boîte automatique</a></li>
+                    <li><a href="../index.html#offres">Offres spéciales</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="../index.html">Accueil</a></li>
+                    <li><a href="../index.html#histoire">Notre histoire</a></li>
+                    <li><a href="../index.html#avis">Avis</a></li>
+                    <li><a href="index.html">Blog</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:0559591260">05 59 59 12 60</a></li>
+                    <li><a href="tel:0622008209">06 22 00 82 09</a></li>
+                    <li><a href="mailto:autoecole.marti@gmail.com">autoecole.marti@gmail.com</a></li>
+                    <li><a href="../index.html#contact">13 rue Marengo, Bayonne</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 Auto-école Marti — Bayonne. Tous droits réservés.</span>
+            <span>SIRET : 382 930 188 00018 · APE : 8500Z</span>
+            <a href="../mentions-legales.html" style="color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.85rem;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Règlement intérieur &amp; mentions légales</a>
+        </div>
     </div>
-  </footer>
+</footer>
 
-  <script>
-    // BASE DE DONNÉES CONSOMMATION (souple < nerveux)
+<script>
+    // ── Scroll reveal navbar ──
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // ── BASE DE DONNÉES CONSOMMATION (souple < nerveux) ──
     const vehiclesDB = {
-      essence_citadine: { name:"Essence Citadine", fuelType:"essence", co2PerLiter:2.3, defaultPrice:1.80, unit:"L/100km",
-        consumption: { urbain:{ souple:5.8, nerveux:7.2 }, mixte:{ souple:5.0, nerveux:6.2 }, autoroute:{ souple:6.0, nerveux:7.0 } } },
-      essence_berline: { name:"Essence Berline", fuelType:"essence", co2PerLiter:2.3, defaultPrice:1.80, unit:"L/100km",
-        consumption: { urbain:{ souple:7.0, nerveux:8.5 }, mixte:{ souple:5.9, nerveux:7.2 }, autoroute:{ souple:6.4, nerveux:7.6 } } },
-      essence_suv: { name:"Essence SUV", fuelType:"essence", co2PerLiter:2.3, defaultPrice:1.80, unit:"L/100km",
-        consumption: { urbain:{ souple:8.3, nerveux:10.0 }, mixte:{ souple:7.0, nerveux:8.5 }, autoroute:{ souple:7.6, nerveux:8.9 } } },
-      diesel_citadine: { name:"Diesel Citadine", fuelType:"diesel", co2PerLiter:2.6, defaultPrice:1.75, unit:"L/100km",
-        consumption: { urbain:{ souple:5.1, nerveux:6.4 }, mixte:{ souple:4.4, nerveux:5.5 }, autoroute:{ souple:4.9, nerveux:5.9 } } },
-      diesel_berline: { name:"Diesel Berline", fuelType:"diesel", co2PerLiter:2.6, defaultPrice:1.75, unit:"L/100km",
-        consumption: { urbain:{ souple:5.9, nerveux:7.3 }, mixte:{ souple:4.9, nerveux:6.2 }, autoroute:{ souple:5.4, nerveux:6.6 } } },
-      diesel_suv: { name:"Diesel SUV", fuelType:"diesel", co2PerLiter:2.6, defaultPrice:1.75, unit:"L/100km",
-        consumption: { urbain:{ souple:6.9, nerveux:8.4 }, mixte:{ souple:5.8, nerveux:7.2 }, autoroute:{ souple:6.4, nerveux:7.7 } } },
-      hybride: { name:"Hybride (essence)", fuelType:"essence", co2PerLiter:2.3, defaultPrice:1.80, unit:"L/100km",
-        consumption: { urbain:{ souple:4.0, nerveux:5.4 }, mixte:{ souple:4.3, nerveux:5.7 }, autoroute:{ souple:5.4, nerveux:6.8 } } },
-      electrique: { name:"Électrique", fuelType:"electric", defaultPrice:0.20, unit:"kWh/100km", electricCO2PerkWh:0.050,
-        consumption: { urbain:{ souple:14.0, nerveux:17.5 }, mixte:{ souple:15.5, nerveux:18.5 }, autoroute:{ souple:18.5, nerveux:22.0 } } }
+        essence_citadine: { name:"Essence Citadine", fuelType:"essence", co2PerLiter:2.3, defaultPrice:1.80, unit:"L/100km",
+            consumption: { urbain:{ souple:5.8, nerveux:7.2 }, mixte:{ souple:5.0, nerveux:6.2 }, autoroute:{ souple:6.0, nerveux:7.0 } } },
+        essence_berline: { name:"Essence Berline", fuelType:"essence", co2PerLiter:2.3, defaultPrice:1.80, unit:"L/100km",
+            consumption: { urbain:{ souple:7.0, nerveux:8.5 }, mixte:{ souple:5.9, nerveux:7.2 }, autoroute:{ souple:6.4, nerveux:7.6 } } },
+        essence_suv: { name:"Essence SUV", fuelType:"essence", co2PerLiter:2.3, defaultPrice:1.80, unit:"L/100km",
+            consumption: { urbain:{ souple:8.3, nerveux:10.0 }, mixte:{ souple:7.0, nerveux:8.5 }, autoroute:{ souple:7.6, nerveux:8.9 } } },
+        diesel_citadine: { name:"Diesel Citadine", fuelType:"diesel", co2PerLiter:2.6, defaultPrice:1.75, unit:"L/100km",
+            consumption: { urbain:{ souple:5.1, nerveux:6.4 }, mixte:{ souple:4.4, nerveux:5.5 }, autoroute:{ souple:4.9, nerveux:5.9 } } },
+        diesel_berline: { name:"Diesel Berline", fuelType:"diesel", co2PerLiter:2.6, defaultPrice:1.75, unit:"L/100km",
+            consumption: { urbain:{ souple:5.9, nerveux:7.3 }, mixte:{ souple:4.9, nerveux:6.2 }, autoroute:{ souple:5.4, nerveux:6.6 } } },
+        diesel_suv: { name:"Diesel SUV", fuelType:"diesel", co2PerLiter:2.6, defaultPrice:1.75, unit:"L/100km",
+            consumption: { urbain:{ souple:6.9, nerveux:8.4 }, mixte:{ souple:5.8, nerveux:7.2 }, autoroute:{ souple:6.4, nerveux:7.7 } } },
+        hybride: { name:"Hybride (essence)", fuelType:"essence", co2PerLiter:2.3, defaultPrice:1.80, unit:"L/100km",
+            consumption: { urbain:{ souple:4.0, nerveux:5.4 }, mixte:{ souple:4.3, nerveux:5.7 }, autoroute:{ souple:5.4, nerveux:6.8 } } },
+        electrique: { name:"Électrique", fuelType:"electric", defaultPrice:0.20, unit:"kWh/100km", electricCO2PerkWh:0.050,
+            consumption: { urbain:{ souple:14.0, nerveux:17.5 }, mixte:{ souple:15.5, nerveux:18.5 }, autoroute:{ souple:18.5, nerveux:22.0 } } }
     };
 
     const routeLabels = { urbain:"Urbain", mixte:"Mixte", autoroute:"Autoroute" };
 
     function updateFuelPriceField() {
-      const vehicleKey = document.getElementById("vehicleSelect").value;
-      const vehicle = vehiclesDB[vehicleKey];
-      const isElectric = vehicleKey === "electrique";
-      const priceInput = document.getElementById("fuelPriceInput");
-      const priceLabel = document.getElementById("fuelPriceLabel");
-      const priceHint = document.getElementById("fuelPriceHint");
+        const vehicleKey = document.getElementById("vehicleSelect").value;
+        const vehicle = vehiclesDB[vehicleKey];
+        const isElectric = vehicleKey === "electrique";
+        const priceInput = document.getElementById("fuelPriceInput");
+        const priceLabel = document.getElementById("fuelPriceLabel");
+        const priceHint = document.getElementById("fuelPriceHint");
 
-      if (isElectric) {
-        priceLabel.innerHTML = "🔌 Prix de l'électricité (€/kWh)";
-        priceHint.innerHTML = "Prix modifiable manuellement | valeur par défaut 0,20 €/kWh";
-        if (!priceInput.value || priceInput.value === "") {
-          priceInput.value = vehicle.defaultPrice;
+        if (isElectric) {
+            priceLabel.innerHTML = "🔌 Prix de l'électricité (€/kWh)";
+            priceHint.innerHTML = "Prix modifiable manuellement | valeur par défaut 0,20 €/kWh";
+            if (!priceInput.value || priceInput.value === "") {
+                priceInput.value = vehicle.defaultPrice;
+            }
+        } else {
+            priceLabel.innerHTML = "💰 Prix du carburant (€/L)";
+            priceHint.innerHTML = "Prix modifiable manuellement | essence : 1,80 €/L, diesel : 1,75 €/L";
+            if (!priceInput.value || priceInput.value === "") {
+                priceInput.value = vehicle.defaultPrice;
+            }
         }
-      } else {
-        priceLabel.innerHTML = "💰 Prix du carburant (€/L)";
-        priceHint.innerHTML = "Prix modifiable manuellement | essence : 1,80 €/L, diesel : 1,75 €/L";
-        if (!priceInput.value || priceInput.value === "") {
-          priceInput.value = vehicle.defaultPrice;
+        const currentVal = parseFloat(priceInput.value);
+        if (isNaN(currentVal)) {
+            priceInput.value = vehicle.defaultPrice;
         }
-      }
-      // Si l'utilisateur n'a jamais touché au champ, on le force à la valeur par défaut du véhicule
-      const currentVal = parseFloat(priceInput.value);
-      if (isNaN(currentVal)) {
-        priceInput.value = vehicle.defaultPrice;
-      }
     }
 
     function updateResults() {
-      const vehicleKey = document.getElementById("vehicleSelect").value;
-      const routeKey = document.getElementById("routeSelect").value;
-      const style = document.querySelector('input[name="drivingStyle"]:checked').value;
-      let annualKm = parseInt(document.getElementById("annualKm").value);
-      if (isNaN(annualKm) || annualKm < 0) annualKm = 12000;
+        const vehicleKey = document.getElementById("vehicleSelect").value;
+        const routeKey = document.getElementById("routeSelect").value;
+        const style = document.querySelector('input[name="drivingStyle"]:checked').value;
+        let annualKm = parseInt(document.getElementById("annualKm").value);
+        if (isNaN(annualKm) || annualKm < 0) annualKm = 12000;
 
-      const vehicle = vehiclesDB[vehicleKey];
-      if (!vehicle) return;
-      const isElectric = vehicleKey === "electrique";
+        const vehicle = vehiclesDB[vehicleKey];
+        if (!vehicle) return;
+        const isElectric = vehicleKey === "electrique";
 
-      // Récupération du prix utilisateur (si vide, on prend la valeur par défaut du véhicule)
-      let userPrice = parseFloat(document.getElementById("fuelPriceInput").value);
-      if (isNaN(userPrice) || userPrice <= 0) {
-        userPrice = vehicle.defaultPrice;
-        document.getElementById("fuelPriceInput").value = userPrice;
-      }
+        let userPrice = parseFloat(document.getElementById("fuelPriceInput").value);
+        if (isNaN(userPrice) || userPrice <= 0) {
+            userPrice = vehicle.defaultPrice;
+            document.getElementById("fuelPriceInput").value = userPrice;
+        }
 
-      const consData = vehicle.consumption[routeKey];
-      if (!consData) return;
+        const consData = vehicle.consumption[routeKey];
+        if (!consData) return;
 
-      const currentConso = consData[style];
-      const oppositeStyle = style === "souple" ? "nerveux" : "souple";
-      const oppositeConso = consData[oppositeStyle];
+        const currentConso = consData[style];
+        const oppositeStyle = style === "souple" ? "nerveux" : "souple";
+        const oppositeConso = consData[oppositeStyle];
 
-      let currentCo2PerKm, oppositeCo2PerKm, currentCostPer100, oppositeCostPer100;
-      if (isElectric) {
-        currentCo2PerKm = currentConso * 0.5;   // g/km (50g/kWh)
-        oppositeCo2PerKm = oppositeConso * 0.5;
-        currentCostPer100 = currentConso * userPrice;
-        oppositeCostPer100 = oppositeConso * userPrice;
-      } else {
-        currentCo2PerKm = currentConso * vehicle.co2PerLiter * 10;
-        oppositeCo2PerKm = oppositeConso * vehicle.co2PerLiter * 10;
-        currentCostPer100 = currentConso * userPrice;
-        oppositeCostPer100 = oppositeConso * userPrice;
-      }
+        let currentCo2PerKm, oppositeCo2PerKm, currentCostPer100, oppositeCostPer100;
+        if (isElectric) {
+            currentCo2PerKm = currentConso * 0.5;
+            oppositeCo2PerKm = oppositeConso * 0.5;
+            currentCostPer100 = currentConso * userPrice;
+            oppositeCostPer100 = oppositeConso * userPrice;
+        } else {
+            currentCo2PerKm = currentConso * vehicle.co2PerLiter * 10;
+            oppositeCo2PerKm = oppositeConso * vehicle.co2PerLiter * 10;
+            currentCostPer100 = currentConso * userPrice;
+            oppositeCostPer100 = oppositeConso * userPrice;
+        }
 
-      const currentCostYear = (currentCostPer100 / 100) * annualKm;
-      const oppositeCostYear = (oppositeCostPer100 / 100) * annualKm;
-      const currentCo2Year = (currentCo2PerKm * annualKm) / 1000; // kg
-      const oppositeCo2Year = (oppositeCo2PerKm * annualKm) / 1000;
-      const savingsEuros = oppositeCostYear - currentCostYear; // positif si la conduite actuelle est moins chère
+        const currentCostYear = (currentCostPer100 / 100) * annualKm;
+        const oppositeCostYear = (oppositeCostPer100 / 100) * annualKm;
+        const currentCo2Year = (currentCo2PerKm * annualKm) / 1000;
+        const oppositeCo2Year = (oppositeCo2PerKm * annualKm) / 1000;
+        const savingsEuros = oppositeCostYear - currentCostYear;
 
-      const styleLabel = style === "souple" ? "🌱 Conduite souple (éco)" : "⚡ Conduite nerveuse";
-      const oppositeLabel = style === "souple" ? "nerveuse" : "souple (éco-conduite)";
-      const consoUnit = vehicle.unit;
+        const styleLabel = style === "souple" ? "🌱 Conduite souple (éco)" : "⚡ Conduite nerveuse";
+        const oppositeLabel = style === "souple" ? "nerveuse" : "souple (éco-conduite)";
+        const consoUnit = vehicle.unit;
 
-      let html = `
-        <div class="result-stats">
-          <div class="result-stat"><div class="stat-label">${vehicle.name} · ${routeLabels[routeKey]}</div><div class="stat-value">${currentConso.toFixed(1)} <span style="font-size:1rem;">${consoUnit}</span></div><div class="stat-label">${styleLabel}</div></div>
-          <div class="result-stat"><div class="stat-label">CO₂ émis</div><div class="stat-value">${Math.round(currentCo2PerKm)} <span style="font-size:1rem;">g/km</span></div><div class="stat-label">${Math.round(currentCo2Year)} kg CO₂/an</div></div>
-          <div class="result-stat"><div class="stat-label">Budget annuel</div><div class="stat-value">${Math.round(currentCostYear)} <span style="font-size:1rem;">€</span></div><div class="stat-label">soit ${(currentCostYear/annualKm).toFixed(2)} €/100km</div></div>
-        </div>
-        <div class="comparison-block">
-          <strong>📊 Comparaison avec conduite ${oppositeLabel}</strong><br>
-          Consommation ${oppositeLabel} : ${oppositeConso.toFixed(1)} ${consoUnit} (${Math.abs(((currentConso-oppositeConso)/oppositeConso)*100).toFixed(0)}% de différence)<br>
-          Coût annuel ${oppositeLabel} : ${Math.round(oppositeCostYear)} €
-        </div>
-      `;
+        let html = `
+            <div class="result-stats">
+                <div class="result-stat"><div class="stat-label">${vehicle.name} · ${routeLabels[routeKey]}</div><div class="stat-value">${currentConso.toFixed(1)} <span style="font-size:1rem;">${consoUnit}</span></div><div class="stat-label">${styleLabel}</div></div>
+                <div class="result-stat"><div class="stat-label">CO₂ émis</div><div class="stat-value">${Math.round(currentCo2PerKm)} <span style="font-size:1rem;">g/km</span></div><div class="stat-label">${Math.round(currentCo2Year)} kg CO₂/an</div></div>
+                <div class="result-stat"><div class="stat-label">Budget annuel</div><div class="stat-value">${Math.round(currentCostYear)} <span style="font-size:1rem;">€</span></div><div class="stat-label">soit ${(currentCostYear/annualKm).toFixed(2)} €/100km</div></div>
+            </div>
+            <div class="comparison-block">
+                <strong>📊 Comparaison avec conduite ${oppositeLabel}</strong><br>
+                Consommation ${oppositeLabel} : ${oppositeConso.toFixed(1)} ${consoUnit} (${Math.abs(((currentConso-oppositeConso)/oppositeConso)*100).toFixed(0)}% de différence)<br>
+                Coût annuel ${oppositeLabel} : ${Math.round(oppositeCostYear)} €
+            </div>
+        `;
 
-      // Messages d'économie reformulés sans "actuellement"
-      if (style === "souple") {
-        // L'utilisateur est en conduite souple : on lui montre ce qu'il économise par rapport à la nerveuse
-        html += `<div class="comparison-block" style="background:#d9f0d9;">🌟 En conduite souple, vous économisez <strong>${Math.abs(savingsEuros).toFixed(0)} €/an</strong> et <strong>${Math.abs(oppositeCo2Year - currentCo2Year).toFixed(0)} kg CO₂</strong> par rapport à une conduite nerveuse.</div>`;
-      } else {
-        // L'utilisateur est en nerveux : on lui montre ce qu'il économiserait en passant à la souple
-        html += `<div class="comparison-block" style="background:#fff0d6;">💡 En adoptant une conduite souple, vous économiseriez <strong>${Math.abs(savingsEuros).toFixed(0)} €/an</strong> et <strong>${Math.abs(oppositeCo2Year - currentCo2Year).toFixed(0)} kg CO₂</strong>.</div>`;
-      }
+        if (style === "souple") {
+            html += `<div class="comparison-block" style="background:#d9f0d9;">🌟 En conduite souple, vous économisez <strong>${Math.abs(savingsEuros).toFixed(0)} €/an</strong> et <strong>${Math.abs(oppositeCo2Year - currentCo2Year).toFixed(0)} kg CO₂</strong> par rapport à une conduite nerveuse.</div>`;
+        } else {
+            html += `<div class="comparison-block" style="background:#fff0d6;">💡 En adoptant une conduite souple, vous économiseriez <strong>${Math.abs(savingsEuros).toFixed(0)} €/an</strong> et <strong>${Math.abs(oppositeCo2Year - currentCo2Year).toFixed(0)} kg CO₂</strong>.</div>`;
+        }
 
-      // Conseils personnalisés
-      let adviceMsg = "";
-      if (style === "nerveux") {
-        adviceMsg = "⚠️ Conduite nerveuse détectée : anticipez les ralentissements, relâchez l’accélérateur tôt, utilisez le frein moteur. Vous pouvez réduire votre consommation de 15 à 20 %.";
-      } else {
-        adviceMsg = "✅ Excellente démarche ! Pour aller plus loin : vérifiez la pression des pneus, évitez les charges inutiles, et limitez la climatisation excessive.";
-      }
-      if (routeKey === "urbain") adviceMsg += " En ville, privilégiez les hauts rapports et anticipez les feux rouges pour ne pas perdre l’énergie accumulée.";
-      if (routeKey === "autoroute") adviceMsg += " Sur autoroute, rouler à 110 km/h au lieu de 130 réduit la consommation de 20 %.";
-      if (vehicleKey === "electrique") adviceMsg += " Pour l’électrique, l’éco-conduite préserve l’autonomie (régénération, vitesse stable).";
-      html += `<div class="eco-tip"><strong>💡 Conseil éco-conduite</strong><br>${adviceMsg}</div>`;
-      document.getElementById("resultsContainer").innerHTML = html;
+        let adviceMsg = "";
+        if (style === "nerveux") {
+            adviceMsg = "⚠️ Conduite nerveuse détectée : anticipez les ralentissements, relâchez l'accélérateur tôt, utilisez le frein moteur. Vous pouvez réduire votre consommation de 15 à 20 %.";
+        } else {
+            adviceMsg = "✅ Excellente démarche ! Pour aller plus loin : vérifiez la pression des pneus, évitez les charges inutiles, et limitez la climatisation excessive.";
+        }
+        if (routeKey === "urbain") adviceMsg += " En ville, privilégiez les hauts rapports et anticipez les feux rouges pour ne pas perdre l'énergie accumulée.";
+        if (routeKey === "autoroute") adviceMsg += " Sur autoroute, rouler à 110 km/h au lieu de 130 réduit la consommation de 20 %.";
+        if (vehicleKey === "electrique") adviceMsg += " Pour l'électrique, l'éco-conduite préserve l'autonomie (régénération, vitesse stable).";
+        html += `<div class="eco-tip"><strong>💡 Conseil éco-conduite</strong><br>${adviceMsg}</div>`;
+        document.getElementById("resultsContainer").innerHTML = html;
     }
 
-    // Écouteurs pour mise à jour automatique
+    // ── Écouteurs pour mise à jour automatique ──
     const vehicleSelect = document.getElementById("vehicleSelect");
     const routeSelect = document.getElementById("routeSelect");
     const annualInput = document.getElementById("annualKm");
     const styleRadios = document.querySelectorAll('input[name="drivingStyle"]');
     const fuelPriceInput = document.getElementById("fuelPriceInput");
 
-    function bindEvents() {
-      vehicleSelect.addEventListener("change", () => {
-        updateFuelPriceField();
-        updateResults();
-      });
-      routeSelect.addEventListener("change", updateResults);
-      annualInput.addEventListener("input", updateResults);
-      styleRadios.forEach(radio => radio.addEventListener("change", updateResults));
-      fuelPriceInput.addEventListener("input", updateResults);
-    }
+    vehicleSelect.addEventListener("change", () => { updateFuelPriceField(); updateResults(); });
+    routeSelect.addEventListener("change", updateResults);
+    annualInput.addEventListener("input", updateResults);
+    styleRadios.forEach(radio => radio.addEventListener("change", updateResults));
+    fuelPriceInput.addEventListener("input", updateResults);
 
-    // Initialisation
+    // ── Initialisation ──
     updateFuelPriceField();
-    bindEvents();
     updateResults();
-  </script>
+</script>
 </body>
 </html>
