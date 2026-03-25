@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz – Les bons réflexes à avoir | Auto-École Marti</title>
+
+    <!-- Polices identiques au blog -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS externe du blog (variables, nav, boutons, footer…) -->
+    <link rel="stylesheet" href="blog-index.css">
+
+    <style>
+        /* ═══════════════════════════════════════
+           PAGE QUIZ — styles spécifiques
+           Hérite des variables de blog-index.css
+        ═══════════════════════════════════════ */
+
+        body {
+            background: var(--blanc);
+            color: var(--noir);
+            font-family: 'DM Sans', sans-serif;
+            min-height: 100vh;
+        }
+
+        /* ── Conteneur centré ── */
+        .quiz-wrapper {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 5rem 1.5rem 4rem;
+        }
+
+        /* ── En-tête de la page ── */
+        .quiz-page-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .logo-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0, 105, 92, 0.08);
+            color: var(--basque-vert);
+            padding: 0.45rem 1.1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+        }
+
+        .quiz-page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            color: var(--noir);
+            margin-bottom: 0.7rem;
+        }
+
+        .quiz-page-header h1 em {
+            font-style: italic;
+            color: var(--basque-rouge);
+        }
+
+        .subtitle {
+            color: var(--gris);
+            font-size: 1rem;
+        }
+
+        /* ── Tableau de score ── */
+        .score-board {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .score-item {
+            background: white;
+            border: 1px solid var(--gris-clair);
+            padding: 1rem 2rem;
+            border-radius: var(--radius-sm);
+            text-align: center;
+            box-shadow: var(--ombre);
+            min-width: 140px;
+        }
+
+        .score-item .label {
+            font-size: 0.73rem;
+            color: var(--gris);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .score-item .value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--noir);
+            line-height: 1;
+        }
+
+        .score-item.success .value { color: var(--vert-clair); }
+        .score-item.warning .value  { color: var(--or); }
+
+        /* ── Onglets scénarios (style filtre-btn du blog) ── */
+        .scenario-tabs {
+            display: flex;
+            gap: 0.7rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid var(--gris-clair);
+            background: white;
+            color: var(--gris);
+            transition: var(--transition);
+            font-family: 'DM Sans', sans-serif;
+            letter-spacing: 0.02em;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--basque-rouge);
+            color: var(--basque-rouge);
+            background: rgba(214, 48, 49, 0.04);
+        }
+
+        .tab-btn.active {
+            border-color: var(--basque-rouge);
+            color: var(--basque-rouge);
+            background: rgba(214, 48, 49, 0.06);
+        }
+
+        .tab-btn .icon { font-size: 1em; }
+
+        /* ── Carte quiz ── */
+        .quiz-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 2rem;
+            border: 1px solid var(--gris-clair);
+            box-shadow: var(--ombre);
+        }
+
+        /* ── En-tête scénario ── */
+        .scenario-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px solid var(--gris-clair);
+        }
+
+        .scenario-icon { font-size: 2.5rem; }
+
+        .scenario-title { flex: 1; }
+
+        .scenario-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            color: var(--noir);
+            margin-bottom: 0.2rem;
+        }
+
+        .scenario-title p { color: var(--gris); font-size: 0.87rem; }
+
+        /* ── Barre de progression ── */
+        .progress-bar {
+            background: var(--gris-clair);
+            height: 5px;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, var(--basque-vert), var(--vert-clair));
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        /* ── Timer ── */
+        .timer {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--gris);
+            font-size: 0.88rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes blink { 50% { opacity: 0.4; } }
+
+        .timer.warning .timer-value { color: #b7860b; animation: blink 0.7s infinite; }
+        .timer.danger  .timer-value { color: var(--basque-rouge); animation: blink 0.35s infinite; }
+
+        /* ── Question ── */
+        .question-text {
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: var(--gris);
+        }
+
+        .question-text span { color: var(--basque-rouge); font-weight: 700; }
+
+        /* ── Slots de réponse ── */
+        .answer-slots {
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .answer-slot {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--creme);
+            padding: 0.9rem 1.2rem;
+            border-radius: var(--radius-sm);
+            border: 2px solid transparent;
+            min-height: 58px;
+            transition: var(--transition);
+            cursor: default;
+        }
+
+        .answer-slot.highlight {
+            border-color: var(--basque-rouge);
+            background: rgba(214, 48, 49, 0.04);
+        }
+
+        .answer-slot.filled {
+            border-color: var(--basque-vert);
+            background: rgba(0, 105, 92, 0.05);
+            cursor: pointer;
+        }
+
+        .answer-slot .slot-number {
+            width: 30px;
+            height: 30px;
+            border: 2px solid var(--gris-clair);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--gris);
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .answer-slot.filled .slot-number {
+            background: var(--basque-vert);
+            border-color: var(--basque-vert);
+            color: white;
+        }
+
+        .answer-slot .slot-content {
+            flex: 1;
+            color: var(--gris);
+            font-size: 0.88rem;
+        }
+
+        .answer-slot.filled .slot-content { color: var(--noir); font-weight: 500; }
+
+        /* ── Options ── */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .option-btn {
+            background: white;
+            border: 1.5px solid var(--gris-clair);
+            padding: 0.9rem 1.1rem;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: left;
+            color: var(--noir);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.88rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            border-color: var(--basque-rouge);
+            background: rgba(214, 48, 49, 0.03);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(214, 48, 49, 0.1);
+        }
+
+        .option-btn.selected {
+            background: rgba(214, 48, 49, 0.06);
+            border-color: var(--basque-rouge);
+            color: var(--basque-rouge);
+        }
+
+        .option-btn:disabled { cursor: default; opacity: 0.45; }
+        .option-btn .opt-icon { font-size: 1.15em; flex-shrink: 0; margin-top: 1px; }
+
+        /* ── Feedback ── */
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .feedback {
+            padding: 1.1rem 1.4rem;
+            border-radius: var(--radius-sm);
+            margin-bottom: 1.5rem;
+            display: none;
+            animation: slideIn 0.35s ease;
+        }
+
+        .feedback.show { display: block; }
+
+        .feedback.success {
+            background: rgba(0, 105, 92, 0.06);
+            border: 1px solid var(--basque-vert);
+        }
+
+        .feedback.error {
+            background: rgba(214, 48, 49, 0.06);
+            border: 1px solid var(--basque-rouge);
+        }
+
+        .feedback-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.4rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .feedback.success .feedback-header { color: var(--basque-vert); }
+        .feedback.error   .feedback-header { color: var(--basque-rouge); }
+        .feedback-text { color: var(--gris); line-height: 1.7; font-size: 0.88rem; }
+
+        /* ── Boutons (override blog pour le quiz) ── */
+        .btn-container {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        /* Redéfinition locale pour éviter les conflits avec .btn du blog */
+        .btn {
+            padding: 0.85rem 1.8rem;
+            border-radius: 50px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--basque-rouge);
+            color: white;
+            box-shadow: 0 4px 20px rgba(214, 48, 49, 0.25);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(214, 48, 49, 0.35);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.35;
+            cursor: default;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--noir);
+            border: 2px solid var(--gris-clair);
+        }
+
+        .btn-secondary:hover { border-color: var(--noir); transform: translateY(-2px); }
+
+        .btn-success {
+            background: var(--basque-vert);
+            color: white;
+            box-shadow: 0 4px 20px rgba(0, 105, 92, 0.25);
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(0, 105, 92, 0.35);
+        }
+
+        /* ── Écran résultat ── */
+        .result-screen {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            display: none;
+        }
+
+        .result-screen.show { display: block; }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50%       { transform: translateY(-16px); }
+        }
+
+        .result-icon { font-size: 4rem; margin-bottom: 1rem; animation: bounce 1s ease; }
+
+        .result-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--noir);
+            margin-bottom: 0.8rem;
+        }
+
+        .result-score {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--basque-rouge);
+            margin-bottom: 0.8rem;
+        }
+
+        .result-message {
+            color: var(--gris);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .stars { font-size: 1.8rem; margin-bottom: 1.5rem; }
+
+        /* ── Explication ── */
+        .explanation {
+            background: rgba(0, 105, 92, 0.04);
+            border-radius: var(--radius-sm);
+            padding: 1.4rem;
+            margin-top: 1.2rem;
+            border-left: 4px solid var(--basque-vert);
+        }
+
+        .explanation h4 {
+            color: var(--basque-vert);
+            font-family: 'Playfair Display', serif;
+            font-size: 0.98rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .explanation ol { margin: 0; padding-left: 1.4rem; }
+
+        .explanation li {
+            margin-bottom: 0.5rem;
+            color: var(--gris);
+            font-size: 0.87rem;
+            line-height: 1.6;
+        }
+
+        /* ── Badge niveau ── */
+        .level-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.3rem 0.85rem;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+
+        .level-badge.easy   { background: rgba(0, 105, 92, 0.1);   color: var(--basque-vert); }
+        .level-badge.medium { background: rgba(212, 168, 83, 0.15); color: #8a6a1a; }
+        .level-badge.hard   { background: rgba(214, 48, 49, 0.1);   color: var(--basque-rouge); }
+
+        /* ── Écran d'introduction ── */
+        .intro-screen {
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .intro-icon { font-size: 3.5rem; margin-bottom: 1.2rem; }
+
+        .intro-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7rem;
+            color: var(--noir);
+            margin-bottom: 1rem;
+        }
+
+        .intro-text {
+            color: var(--gris);
+            max-width: 580px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+            font-size: 0.94rem;
+        }
+
+        .intro-features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+
+        .intro-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gris);
+            font-size: 0.88rem;
+            font-weight: 500;
+        }
+
+        .intro-feature .icon { font-size: 1.3em; }
+
+        /* ── Contenu quiz (visible/caché par JS) ── */
+        .quiz-content { display: none; }
+        .quiz-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* ── Carte conseil bas de page ── */
+        .tip-card {
+            margin-top: 1.2rem;
+            padding: 1.1rem 1.5rem;
+            text-align: center;
+        }
+
+        .tip-card p {
+            color: var(--gris);
+            font-size: 0.88rem;
+        }
+
+        /* ── Toast ── */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--noir);
+            color: white;
+            padding: 0.9rem 1.8rem;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 0.88rem;
+            z-index: 1100;
+            transition: transform 0.38s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: var(--ombre-forte);
+        }
+
+        .toast.show { transform: translateX(-50%) translateY(0); }
+        .toast.success { border-left: 4px solid var(--vert-clair); }
+        .toast.error   { border-left: 4px solid var(--basque-rouge); }
+
+        /* ── Drop zone (zone de dépôt) ── */
+        .drop-zone {
+            background: var(--creme);
+            border: 2px dashed var(--gris-clair);
+            border-radius: var(--radius-sm);
+            padding: 1.2rem;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .drop-zone.drag-over { border-color: var(--basque-vert); background: rgba(0, 105, 92, 0.05); }
+        .drop-zone.correct   { border-color: var(--basque-vert); background: rgba(0, 105, 92, 0.07); }
+        .drop-zone.incorrect { border-color: var(--basque-rouge); background: rgba(214, 48, 49, 0.05); }
+
+        .drop-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            color: var(--gris);
+            font-style: italic;
+            font-size: 0.88rem;
+        }
+
+        .drop-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: white;
+            padding: 0.85rem 1.1rem;
+            border-radius: var(--radius-sm);
+            cursor: grab;
+            transition: var(--transition);
+            border: 1.5px solid var(--gris-clair);
+        }
+
+        .drop-item:hover { border-color: var(--basque-rouge); transform: translateX(4px); }
+
+        .drop-item.correct   { border-color: var(--basque-vert);  background: rgba(0, 105, 92, 0.05); }
+        .drop-item.incorrect { border-color: var(--basque-rouge); background: rgba(214, 48, 49, 0.05); }
+
+        .drop-item .number {
+            width: 30px;
+            height: 30px;
+            background: var(--basque-rouge);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .drop-item.correct .number  { background: var(--basque-vert); }
+        .drop-item .content         { flex: 1; color: var(--noir); font-size: 0.87rem; }
+        .drop-item .drag-handle     { color: var(--gris-clair); font-size: 1.2em; }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .quiz-wrapper       { padding: 4rem 1rem 3rem; }
+            .scenario-tabs      { gap: 0.5rem; }
+            .tab-btn            { padding: 0.45rem 0.9rem; font-size: 0.78rem; }
+            .quiz-card          { padding: 1.2rem; }
+            .scenario-header    { flex-wrap: wrap; gap: 0.7rem; }
+            .options-grid       { grid-template-columns: 1fr; }
+            .intro-features     { gap: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-wrapper">
+
+        <!-- ── EN-TÊTE ── -->
+        <header class="quiz-page-header">
+            <div class="logo-badge">🚗 Quiz interactif</div>
+            <h1>Les <em>bons réflexes</em> sur la route</h1>
+            <p class="subtitle">Apprenez à réagir correctement en cas d'urgence</p>
+        </header>
+
+        <!-- ── SCORE ── -->
+        <div class="score-board">
+            <div class="score-item success">
+                <div class="label">Scénarios réussis</div>
+                <div class="value" id="score-success">0</div>
+            </div>
+            <div class="score-item warning">
+                <div class="label">Tentatives</div>
+                <div class="value" id="score-total">0</div>
+            </div>
+        </div>
+
+        <!-- ── ONGLETS SCÉNARIOS ── -->
+        <div class="scenario-tabs">
+            <button class="tab-btn active" data-scenario="panne">
+                <span class="icon">🔧</span>
+                <span>Panne</span>
+            </button>
+            <button class="tab-btn" data-scenario="accident-leger">
+                <span class="icon">💫</span>
+                <span>Accident léger</span>
+            </button>
+            <button class="tab-btn" data-scenario="accident-grave">
+                <span class="icon">🚑</span>
+                <span>Accident grave</span>
+            </button>
+        </div>
+
+        <!-- ── ÉCRAN D'INTRODUCTION ── -->
+        <div class="quiz-card intro-screen" id="intro-screen">
+            <div class="intro-icon">🎯</div>
+            <h2 class="intro-title">Remettez les étapes dans l'ordre&nbsp;!</h2>
+            <p class="intro-text">
+                Vous allez devoir classer les différentes actions dans le bon ordre pour chaque situation d'urgence.
+                Cliquez sur les étapes pour les placer dans la bonne case, puis validez votre réponse.
+            </p>
+            <div class="intro-features">
+                <div class="intro-feature">
+                    <span class="icon">🧠</span>
+                    <span>Mémorisation active</span>
+                </div>
+                <div class="intro-feature">
+                    <span class="icon">🔄</span>
+                    <span>3 scénarios différents</span>
+                </div>
+                <div class="intro-feature">
+                    <span class="icon">📊</span>
+                    <span>Suivi de progression</span>
+                </div>
+            </div>
+            <button class="btn btn-primary" onclick="startQuiz()">
+                Commencer le quiz
+                <span>→</span>
+            </button>
+        </div>
+
+        <!-- ── CONTENU QUIZ ── -->
+        <div class="quiz-card" id="quiz-container" style="display:none;">
+
+            <!-- SCÉNARIO 1 : PANNE -->
+            <div class="quiz-content" id="scenario-panne">
+                <div class="scenario-header">
+                    <span class="scenario-icon">🔧</span>
+                    <div class="scenario-title">
+                        <h2>Panne sur la route</h2>
+                        <p>Remettez dans l'ordre les bons réflexes à avoir</p>
+                    </div>
+                    <span class="level-badge easy">Facile</span>
+                </div>
+                <div class="progress-bar"><div class="progress-fill" id="progress-panne"></div></div>
+                <div class="timer" id="timer-panne">⏱️&nbsp;<span class="timer-value">30s</span></div>
+                <p class="question-text"><span>Question 1/3 :</span> Classez les étapes dans le bon ordre en cliquant dessus</p>
+                <div class="answer-slots" id="slots-panne"></div>
+                <div class="options-grid" id="options-panne"></div>
+                <div class="feedback" id="feedback-panne">
+                    <div class="feedback-header"><span class="feedback-icon"></span><span class="feedback-title"></span></div>
+                    <p class="feedback-text"></p>
+                </div>
+                <div class="explanation" id="explanation-panne" style="display:none;">
+                    <h4>📚 L'ordre correct est :</h4>
+                    <ol id="correct-order-panne"></ol>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-primary" id="validate-panne" onclick="validateAnswer('panne')" disabled>✓ Valider ma réponse</button>
+                    <button class="btn btn-secondary" id="next-panne" onclick="nextQuestion('panne')" style="display:none;">Question suivante →</button>
+                </div>
+            </div>
+
+            <!-- SCÉNARIO 2 : ACCIDENT LÉGER -->
+            <div class="quiz-content" id="scenario-accident-leger">
+                <div class="scenario-header">
+                    <span class="scenario-icon">💫</span>
+                    <div class="scenario-title">
+                        <h2>Accident léger (sans blessé)</h2>
+                        <p>Remettez dans l'ordre les bons réflexes à avoir</p>
+                    </div>
+                    <span class="level-badge medium">Moyen</span>
+                </div>
+                <div class="progress-bar"><div class="progress-fill" id="progress-accident-leger"></div></div>
+                <div class="timer" id="timer-accident-leger">⏱️&nbsp;<span class="timer-value">45s</span></div>
+                <p class="question-text"><span>Question 1/3 :</span> Classez les étapes dans le bon ordre en cliquant dessus</p>
+                <div class="answer-slots" id="slots-accident-leger"></div>
+                <div class="options-grid" id="options-accident-leger"></div>
+                <div class="feedback" id="feedback-accident-leger">
+                    <div class="feedback-header"><span class="feedback-icon"></span><span class="feedback-title"></span></div>
+                    <p class="feedback-text"></p>
+                </div>
+                <div class="explanation" id="explanation-accident-leger" style="display:none;">
+                    <h4>📚 L'ordre correct est :</h4>
+                    <ol id="correct-order-accident-leger"></ol>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-primary" id="validate-accident-leger" onclick="validateAnswer('accident-leger')" disabled>✓ Valider ma réponse</button>
+                    <button class="btn btn-secondary" id="next-accident-leger" onclick="nextQuestion('accident-leger')" style="display:none;">Question suivante →</button>
+                </div>
+            </div>
+
+            <!-- SCÉNARIO 3 : ACCIDENT GRAVE -->
+            <div class="quiz-content" id="scenario-accident-grave">
+                <div class="scenario-header">
+                    <span class="scenario-icon">🚑</span>
+                    <div class="scenario-title">
+                        <h2>Accident avec blessé(s)</h2>
+                        <p>Remettez dans l'ordre les bons réflexes à avoir</p>
+                    </div>
+                    <span class="level-badge hard">Difficile</span>
+                </div>
+                <div class="progress-bar"><div class="progress-fill" id="progress-accident-grave"></div></div>
+                <div class="timer" id="timer-accident-grave">⏱️&nbsp;<span class="timer-value">60s</span></div>
+                <p class="question-text"><span>Question 1/3 :</span> Classez les étapes dans le bon ordre en cliquant dessus</p>
+                <div class="answer-slots" id="slots-accident-grave"></div>
+                <div class="options-grid" id="options-accident-grave"></div>
+                <div class="feedback" id="feedback-accident-grave">
+                    <div class="feedback-header"><span class="feedback-icon"></span><span class="feedback-title"></span></div>
+                    <p class="feedback-text"></p>
+                </div>
+                <div class="explanation" id="explanation-accident-grave" style="display:none;">
+                    <h4>📚 L'ordre correct est :</h4>
+                    <ol id="correct-order-accident-grave"></ol>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-primary" id="validate-accident-grave" onclick="validateAnswer('accident-grave')" disabled>✓ Valider ma réponse</button>
+                    <button class="btn btn-secondary" id="next-accident-grave" onclick="nextQuestion('accident-grave')" style="display:none;">Question suivante →</button>
+                </div>
+            </div>
+
+            <!-- ÉCRAN RÉSULTAT -->
+            <div class="result-screen" id="result-screen">
+                <div class="result-icon" id="result-icon">🏆</div>
+                <h2 class="result-title" id="result-title">Félicitations !</h2>
+                <div class="stars" id="result-stars">⭐⭐⭐</div>
+                <div class="result-score" id="result-score">3/3</div>
+                <p class="result-message" id="result-message">Vous maîtrisez parfaitement les bons réflexes sur la route !</p>
+                <button class="btn btn-success" onclick="restartQuiz()">🔄 Recommencer le quiz</button>
+            </div>
+        </div>
+
+        <!-- ── CONSEIL BAS DE PAGE ── -->
+        <div class="quiz-card tip-card">
+            <p>💡 <strong>Conseil :</strong> Imaginez-vous dans la situation pour mieux mémoriser l'ordre des actions.</p>
+        </div>
+
+    </div><!-- /.quiz-wrapper -->
+
+    <!-- ── TOAST ── -->
+    <div class="toast" id="toast">
+        <span class="toast-icon"></span>
+        <span class="toast-text"></span>
+    </div>
+
+    <script>
+        // ── DONNÉES DU QUIZ (inchangées) ──
+        const quizData = {
+            'panne': {
+                questions: [
+                    {
+                        id: 1,
+                        steps: [
+                            { id: 'p1-1', text: 'Allumer vos feux de détresse (warnings)', icon: '🚨' },
+                            { id: 'p1-2', text: 'Enfiler votre gilet réfléchissant', icon: '🦺' },
+                            { id: 'p1-3', text: 'Sortir du véhicule par la droite', icon: '🚪' },
+                            { id: 'p1-4', text: 'Placer le triangle de signalisation à 30m derrière', icon: '⚠️' },
+                            { id: 'p1-5', text: 'Contacter votre assistance ou un dépanneur', icon: '📞' }
+                        ],
+                        correctOrder: ['p1-1','p1-2','p1-3','p1-4','p1-5'],
+                        feedback: {
+                            correct: 'Parfait ! Vous avez bien sécurisé les lieux avant de demander de l\'aide.',
+                            incorrect: 'Pas tout à fait. La sécurité commence par signaler votre présence aux autres usagers.'
+                        },
+                        explanation: 'En cas de panne, la priorité est de prévenir les autres véhicules de votre présence (warnings), puis de vous protéger (gilet), sortir en sécurité, signaliser (triangle), et enfin demander de l\'aide.'
+                    },
+                    {
+                        id: 2,
+                        steps: [
+                            { id: 'p2-1', text: 'Tenir les occupants à l\'abri derrière la glissière', icon: '🛡️' },
+                            { id: 'p2-2', text: 'Ne pas rester dans le véhicule sur autoroute', icon: '⚠️' },
+                            { id: 'p2-3', text: 'Attendre l\'arrivée du remorqueur', icon: '🚛' },
+                            { id: 'p2-4', text: 'Rester calme et patient', icon: '😌' },
+                            { id: 'p2-5', text: 'Informez vos proches de votre situation', icon: '📱' }
+                        ],
+                        correctOrder: ['p2-2','p2-1','p2-4','p2-5','p2-3'],
+                        feedback: {
+                            correct: 'Excellent ! Vous savez comment attendre en toute sécurité.',
+                            incorrect: 'L\'ordre n\'est pas optimal. La sécurité personnelle prime avant tout sur autoroute.'
+                        },
+                        explanation: 'Sur autoroute, sortez immédiatement du véhicule, mettez-vous à l\'abri, restez calme, prévenez vos proches, puis attendez le remorquage.'
+                    },
+                    {
+                        id: 3,
+                        steps: [
+                            { id: 'p3-1', text: 'Vérifier que le véhicule est stable', icon: '🔒' },
+                            { id: 'p3-2', text: 'Couper le contact du véhicule', icon: '🔑' },
+                            { id: 'p3-3', text: 'Identifier la nature de la panne', icon: '🔍' },
+                            { id: 'p3-4', text: 'Évaluer si vous pouvez effectuer une réparation', icon: '🔧' },
+                            { id: 'p3-5', text: 'Faire appel à un professionnel si nécessaire', icon: '👨‍🔧' }
+                        ],
+                        correctOrder: ['p3-1','p3-2','p3-3','p3-4','p3-5'],
+                        feedback: {
+                            correct: 'Très bien ! Vous adoptez la bonne méthodologie.',
+                            incorrect: 'Réfléchissez à la logique : sécurité d\'abord, puis diagnostic, puis action.'
+                        },
+                        explanation: 'Assurez-vous d\'abord que le véhicule ne va pas bouger, coupez le contact, analysez le problème, évaluez vos capacités, et faites appel à un professionnel si besoin.'
+                    }
+                ],
+                time: 30
+            },
+            'accident-leger': {
+                questions: [
+                    {
+                        id: 1,
+                        steps: [
+                            { id: 'al1-1', text: 'Arrêter immédiatement les moteurs', icon: '🔑' },
+                            { id: 'al1-2', text: 'Allumer les feux de détresse', icon: '🚨' },
+                            { id: 'al1-3', text: 'Enfiler le gilet réfléchissant', icon: '🦺' },
+                            { id: 'al1-4', text: 'Placer le triangle si nécessaire', icon: '⚠️' },
+                            { id: 'al1-5', text: 'Vérifier l\'état des conducteurs', icon: '👥' }
+                        ],
+                        correctOrder: ['al1-2','al1-3','al1-1','al1-4','al1-5'],
+                        feedback: {
+                            correct: 'Parfait ! Vous avez bien sécurisé la scène d\'un accident léger.',
+                            incorrect: 'La sécurisation commence par signaliser l\'accident, puis se protéger.'
+                        },
+                        explanation: 'D\'abord, signalez l\'accident (warnings) pour éviter un suraccident, puis enfilez le gilet, arrêtez les moteurs (risque d\'incendie), posez le triangle, et vérifiez l\'état des personnes.'
+                    },
+                    {
+                        id: 2,
+                        steps: [
+                            { id: 'al2-1', text: 'Remplir le constat amiable', icon: '📋' },
+                            { id: 'al2-2', text: 'Échanger les informations (nom, adresse, téléphone)', icon: '📝' },
+                            { id: 'al2-3', text: 'Noter les coordonnées d\'assurance', icon: '🏢' },
+                            { id: 'al2-4', text: 'Recueillir les témoignages éventuels', icon: '👁️' },
+                            { id: 'al2-5', text: 'Photographier les dégâts', icon: '📷' }
+                        ],
+                        correctOrder: ['al2-2','al2-3','al2-5','al2-4','al2-1'],
+                        feedback: {
+                            correct: 'Excellent ! Vous connaissez parfaitement les démarches après un accident léger.',
+                            incorrect: 'L\'ordre est important : d\'abord identifier les parties, puis constater les dégâts.'
+                        },
+                        explanation: 'Commencez par identifier les conducteurs, notez les assurances, documentez les dégâts (photos), recueillez les témoins, puis remplissez le constat amiable ensemble.'
+                    },
+                    {
+                        id: 3,
+                        steps: [
+                            { id: 'al3-1', text: 'Ne pas quitter les lieux', icon: '🚫' },
+                            { id: 'al3-2', text: 'Ne pas déplacer les véhicules', icon: '🚗' },
+                            { id: 'al3-3', text: 'Déclarer le sinistre sous 5 jours', icon: '📅' },
+                            { id: 'al3-4', text: 'Contacter son assureur', icon: '📞' },
+                            { id: 'al3-5', text: 'Préserver les preuves de l\'accident', icon: '🔍' }
+                        ],
+                        correctOrder: ['al3-1','al3-2','al3-5','al3-3','al3-4'],
+                        feedback: {
+                            correct: 'Très bien ! Vous savez que la première règle est de NE JAMAIS fuir.',
+                            incorrect: 'Ne jamais quitter les lieux est la règle absolue. La fuite est un délit.'
+                        },
+                        explanation: 'Règle numéro 1 : ne quittez jamais les lieux. Ne déplacez pas les véhicules, conservez les preuves, puis déclarez le sinistre dans les 5 jours.'
+                    }
+                ],
+                time: 45
+            },
+            'accident-grave': {
+                questions: [
+                    {
+                        id: 1,
+                        steps: [
+                            { id: 'ag1-1', text: 'Alerter les secours (15, 18 ou 112)', icon: '📞' },
+                            { id: 'ag1-2', text: 'Sécuriser les lieux de l\'accident', icon: '🚨' },
+                            { id: 'ag1-3', text: 'Ne pas déplacer les victimes', icon: '⛔' },
+                            { id: 'ag1-4', text: 'Vérifier la conscience des victimes', icon: '👁️' },
+                            { id: 'ag1-5', text: 'Pratiquer les gestes de premier secours', icon: '🩹' }
+                        ],
+                        correctOrder: ['ag1-2','ag1-1','ag1-3','ag1-4','ag1-5'],
+                        feedback: {
+                            correct: 'Parfait ! La priorité est de sécuriser avant d\'agir sur les victimes.',
+                            incorrect: 'La sécurisation des lieux doit toujours précéder l\'intervention sur les victimes.'
+                        },
+                        explanation: 'Sécurisez d\'abord les lieux, alertez immédiatement les secours, ne déplacez JAMAIS les victimes, évaluez leur état, puis prodiguez les premiers secours si vous le pouvez.'
+                    },
+                    {
+                        id: 2,
+                        steps: [
+                            { id: 'ag2-1', text: 'Donner la localisation précise', icon: '📍' },
+                            { id: 'ag2-2', text: 'Préciser le nombre de victimes', icon: '👥' },
+                            { id: 'ag2-3', text: 'Décrire la nature des blessures', icon: '🩸' },
+                            { id: 'ag2-4', text: 'Rester en ligne avec les secours', icon: '📱' },
+                            { id: 'ag2-5', text: 'Donner son numéro de téléphone', icon: '📲' }
+                        ],
+                        correctOrder: ['ag2-5','ag2-1','ag2-2','ag2-3','ag2-4'],
+                        feedback: {
+                            correct: 'Excellent ! Vous savez donner une alerte efficace.',
+                            incorrect: 'Donnez d\'abord votre numéro pour qu\'ils puissent vous recontacter.'
+                        },
+                        explanation: 'Ordre d\'une alerte efficace : donnez votre numéro, décrivez la localisation, annoncez le nombre de victimes, décrivez les blessures, et restez disponible au téléphone.'
+                    },
+                    {
+                        id: 3,
+                        steps: [
+                            { id: 'ag3-1', text: 'Parler calmement à la victime', icon: '🗣️' },
+                            { id: 'ag3-2', text: 'Vérifier si la victime respire', icon: '💨' },
+                            { id: 'ag3-3', text: 'La placer en Position Latérale de Sécurité (PLS)', icon: '🛌' },
+                            { id: 'ag3-4', text: 'Ne rien donner à manger ou à boire', icon: '🚫' },
+                            { id: 'ag3-5', text: 'La couvrir pour éviter l\'hypothermie', icon: '🧥' }
+                        ],
+                        correctOrder: ['ag3-1','ag3-2','ag3-3','ag3-4','ag3-5'],
+                        feedback: {
+                            correct: 'Très bien ! Vous connaissez les gestes qui sauvent.',
+                            incorrect: 'La communication avec la victime est la première action à accomplir.'
+                        },
+                        explanation: 'Parlez à la victime pour la rassurer et évaluer sa conscience, vérifiez sa respiration, si elle respire mais est inconsciente : PLS, ne donnez rien par la bouche, et couvrez-la.'
+                    }
+                ],
+                time: 60
+            }
+        };
+
+        // ── ÉTAT ──
+        let currentScenario = 'panne';
+        let currentQuestion = {};
+        let currentQuestionIndex = 0;
+        let selectedAnswers = [];
+        let score = { success: 0, total: 0 };
+        let timer = null;
+        let timeLeft = 30;
+        let completedQuestions = { 'panne': 0, 'accident-leger': 0, 'accident-grave': 0 };
+        let questionsAnswered  = { 'panne': 0, 'accident-leger': 0, 'accident-grave': 0 };
+
+        // ── DÉMARRAGE ──
+        function startQuiz() {
+            document.getElementById('intro-screen').style.display = 'none';
+            document.getElementById('quiz-container').style.display = 'block';
+            loadScenario('panne');
+        }
+
+        // ── ONGLETS ──
+        document.querySelectorAll('.tab-btn').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                document.querySelectorAll('.quiz-content').forEach(c => c.classList.remove('active'));
+                document.getElementById('result-screen').classList.remove('show');
+                loadScenario(tab.dataset.scenario);
+            });
+        });
+
+        function loadScenario(scenario) {
+            currentScenario = scenario;
+            const data = quizData[scenario];
+            const qIndex = questionsAnswered[scenario] % data.questions.length;
+            currentQuestionIndex = qIndex;
+            currentQuestion = data.questions[qIndex];
+            selectedAnswers = [];
+            timeLeft = data.time;
+
+            const progress = (questionsAnswered[scenario] / data.questions.length) * 100;
+            document.getElementById(`progress-${scenario}`).style.width = `${progress}%`;
+
+            const timerEl = document.getElementById(`timer-${scenario}`);
+            timerEl.querySelector('.timer-value').textContent = `${timeLeft}s`;
+            timerEl.classList.remove('warning','danger');
+
+            document.querySelectorAll('.quiz-content').forEach(c => c.classList.remove('active'));
+            document.getElementById(`scenario-${scenario}`).classList.add('active');
+
+            const questionText = document.querySelector(`#scenario-${scenario} .question-text`);
+            questionText.innerHTML = `<span>Question ${questionsAnswered[scenario] + 1}/${data.questions.length} :</span> Classez les étapes dans le bon ordre en cliquant dessus`;
+
+            document.getElementById(`feedback-${scenario}`).classList.remove('show');
+            document.getElementById(`explanation-${scenario}`).style.display = 'none';
+            document.getElementById(`next-${scenario}`).style.display = 'none';
+            document.getElementById(`validate-${scenario}`).style.display = 'inline-flex';
+            document.getElementById(`validate-${scenario}`).disabled = true;
+
+            createSlots(scenario);
+            createOptions(scenario);
+
+            if (timer) clearInterval(timer);
+            timer = setInterval(() => {
+                timeLeft--;
+                const tEl = document.getElementById(`timer-${scenario}`);
+                tEl.querySelector('.timer-value').textContent = `${timeLeft}s`;
+                if (timeLeft <= 10)      tEl.classList.add('danger');
+                else if (timeLeft <= 20) tEl.classList.add('warning');
+                if (timeLeft <= 0) { clearInterval(timer); autoValidate(scenario); }
+            }, 1000);
+        }
+
+        function createSlots(scenario) {
+            const slotsContainer = document.getElementById(`slots-${scenario}`);
+            slotsContainer.innerHTML = '';
+            currentQuestion.steps.forEach((step, index) => {
+                const slot = document.createElement('div');
+                slot.className = 'answer-slot';
+                slot.dataset.position = index;
+                slot.innerHTML = `
+                    <div class="slot-number">${index + 1}</div>
+                    <div class="slot-content">Position ${index + 1}</div>
+                `;
+                slot.addEventListener('click', () => removeFromSlot(scenario, index));
+                slotsContainer.appendChild(slot);
+            });
+        }
+
+        function createOptions(scenario) {
+            const optionsContainer = document.getElementById(`options-${scenario}`);
+            optionsContainer.innerHTML = '';
+            const shuffled = [...currentQuestion.steps].sort(() => Math.random() - 0.5);
+            shuffled.forEach(step => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.dataset.id = step.id;
+                btn.innerHTML = `<span class="opt-icon">${step.icon}</span><span>${step.text}</span>`;
+                btn.addEventListener('click', () => selectOption(scenario, step.id));
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function selectOption(scenario, stepId) {
+            if (selectedAnswers.length >= currentQuestion.steps.length) return;
+            const step = currentQuestion.steps.find(s => s.id === stepId);
+            if (!step) return;
+            const emptySlotIndex = selectedAnswers.length;
+            selectedAnswers.push(stepId);
+
+            const slot = document.querySelector(`#slots-${scenario} .answer-slot[data-position="${emptySlotIndex}"]`);
+            slot.classList.add('filled');
+            slot.innerHTML = `
+                <div class="slot-number">${emptySlotIndex + 1}</div>
+                <div class="slot-content">
+                    <span style="margin-right:8px;">${step.icon}</span>${step.text}
+                </div>
+            `;
+
+            const optionBtn = document.querySelector(`#options-${scenario} .option-btn[data-id="${stepId}"]`);
+            optionBtn.classList.add('selected');
+            optionBtn.disabled = true;
+
+            if (selectedAnswers.length === currentQuestion.steps.length) {
+                document.getElementById(`validate-${scenario}`).disabled = false;
+            }
+        }
+
+        function removeFromSlot(scenario, position) {
+            if (position >= selectedAnswers.length) return;
+            selectedAnswers.splice(position, 1);
+            createSlots(scenario);
+            selectedAnswers.forEach((stepId, index) => {
+                const step = currentQuestion.steps.find(s => s.id === stepId);
+                const slot = document.querySelector(`#slots-${scenario} .answer-slot[data-position="${index}"]`);
+                slot.classList.add('filled');
+                slot.innerHTML = `
+                    <div class="slot-number">${index + 1}</div>
+                    <div class="slot-content"><span style="margin-right:8px;">${step.icon}</span>${step.text}</div>
+                `;
+            });
+            document.querySelectorAll(`#options-${scenario} .option-btn`).forEach(btn => {
+                btn.disabled = false;
+                btn.classList.remove('selected');
+            });
+            selectedAnswers.forEach(id => {
+                const btn = document.querySelector(`#options-${scenario} .option-btn[data-id="${id}"]`);
+                btn.classList.add('selected');
+                btn.disabled = true;
+            });
+            document.getElementById(`validate-${scenario}`).disabled = true;
+        }
+
+        function validateAnswer(scenario) {
+            clearInterval(timer);
+            const isCorrect = arraysEqual(selectedAnswers, currentQuestion.correctOrder);
+            const feedback = document.getElementById(`feedback-${scenario}`);
+            score.total++;
+            if (isCorrect) { score.success++; showToast('✓ Bonne réponse !', 'success'); }
+            else            { showToast('✗ Réponse incorrecte', 'error'); }
+            updateScore();
+
+            feedback.className = `feedback show ${isCorrect ? 'success' : 'error'}`;
+            feedback.querySelector('.feedback-icon').textContent  = isCorrect ? '✓' : '✗';
+            feedback.querySelector('.feedback-title').textContent = isCorrect ? 'Bravo !' : 'Pas tout à fait…';
+            feedback.querySelector('.feedback-text').textContent  = currentQuestion.feedback[isCorrect ? 'correct' : 'incorrect'];
+
+            // Coloration des slots
+            document.querySelectorAll(`#slots-${scenario} .answer-slot`).forEach((slot, index) => {
+                const num = slot.querySelector('.slot-number');
+                if (selectedAnswers[index] === currentQuestion.correctOrder[index]) {
+                    num.style.background = 'var(--basque-vert)';
+                    num.style.borderColor = 'var(--basque-vert)';
+                    num.style.color = 'white';
+                    num.textContent = '✓';
+                } else {
+                    num.style.background = 'var(--basque-rouge)';
+                    num.style.borderColor = 'var(--basque-rouge)';
+                    num.style.color = 'white';
+                    num.textContent = '✗';
+                }
+            });
+
+            // Explication
+            const explanation = document.getElementById(`explanation-${scenario}`);
+            const correctOrderList = document.getElementById(`correct-order-${scenario}`);
+            explanation.style.display = 'block';
+            correctOrderList.innerHTML = '';
+            currentQuestion.correctOrder.forEach((id, index) => {
+                const step = currentQuestion.steps.find(s => s.id === id);
+                const li = document.createElement('li');
+                li.innerHTML = `<strong>${index + 1}.</strong> ${step.icon} ${step.text}`;
+                correctOrderList.appendChild(li);
+            });
+
+            completedQuestions[scenario]++;
+            const progress = (completedQuestions[scenario] / quizData[scenario].questions.length) * 100;
+            document.getElementById(`progress-${scenario}`).style.width = `${progress}%`;
+
+            document.getElementById(`validate-${scenario}`).style.display = 'none';
+            const nextBtn = document.getElementById(`next-${scenario}`);
+            nextBtn.style.display = 'inline-flex';
+            if (completedQuestions[currentScenario] >= quizData[currentScenario].questions.length) {
+                nextBtn.textContent = 'Voir les résultats 🎯';
+            }
+        }
+
+        function autoValidate(scenario) {
+            if (selectedAnswers.length < currentQuestion.steps.length) {
+                currentQuestion.steps.filter(s => !selectedAnswers.includes(s.id)).forEach(step => {
+                    selectedAnswers.push(step.id);
+                });
+            }
+            validateAnswer(scenario);
+        }
+
+        function nextQuestion(scenario) {
+            questionsAnswered[scenario]++;
+            if (questionsAnswered[scenario] >= quizData[scenario].questions.length) {
+                questionsAnswered[scenario] = 0;
+                completedQuestions[scenario] = 0;
+                showResult();
+            } else {
+                loadScenario(scenario);
+            }
+        }
+
+        function showResult() {
+            document.querySelectorAll('.quiz-content').forEach(c => c.classList.remove('active'));
+            const resultScreen = document.getElementById('result-screen');
+            const currentSuccess = completedQuestions[currentScenario];
+            const total = quizData[currentScenario].questions.length;
+            document.getElementById('result-icon').textContent  = currentSuccess === total ? '🏆' : currentSuccess >= 2 ? '🌟' : '💪';
+            document.getElementById('result-title').textContent = currentSuccess === total ? 'Excellent !' : currentSuccess >= 2 ? 'Bien joué !' : 'Continuez !';
+            document.getElementById('result-score').textContent = `${currentSuccess}/${total}`;
+            document.getElementById('result-stars').textContent = '⭐'.repeat(currentSuccess) + '☆'.repeat(total - currentSuccess);
+            document.getElementById('result-message').textContent = currentSuccess === total
+                ? 'Vous maîtrisez parfaitement les bons réflexes pour cette situation !'
+                : currentSuccess >= 2 ? 'Vous avez de bonnes bases, révisez les points à améliorer.'
+                : 'Entraînez-vous encore pour maîtriser cette situation.';
+            resultScreen.classList.add('show');
+        }
+
+        function restartQuiz() {
+            completedQuestions = { 'panne': 0, 'accident-leger': 0, 'accident-grave': 0 };
+            questionsAnswered  = { 'panne': 0, 'accident-leger': 0, 'accident-grave': 0 };
+            score = { success: 0, total: 0 };
+            updateScore();
+            document.querySelectorAll('.quiz-content').forEach(c => c.classList.remove('active'));
+            document.getElementById('result-screen').classList.remove('show');
+            document.getElementById('intro-screen').style.display = 'block';
+            document.getElementById('quiz-container').style.display = 'none';
+            document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+            document.querySelector('.tab-btn[data-scenario="panne"]').classList.add('active');
+        }
+
+        function updateScore() {
+            document.getElementById('score-success').textContent = score.success;
+            document.getElementById('score-total').textContent   = score.total;
+        }
+
+        function arraysEqual(a, b) {
+            return a.length === b.length && a.every((v, i) => v === b[i]);
+        }
+
+        function showToast(message, type) {
+            const toast = document.getElementById('toast');
+            toast.querySelector('.toast-text').textContent = message;
+            toast.querySelector('.toast-icon').textContent = type === 'success' ? '✓' : '✗';
+            toast.className = `toast show ${type}`;
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+    </script>
+</body>
+</html>
