@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DEK5H3Z9DR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-DEK5H3Z9DR');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premiers réflexes en cas de panne ou d'accident — Blog Auto-École Marti | Bayonne</title>
+    <link rel="icon" type="image/png" href="../favicon.ico.png">
+    <meta name="description" content="Panne, accident léger ou grave : découvrez les bons réflexes à adopter sur la route. Conseils pratiques de l'auto-école Marti à Bayonne.">
+    <meta name="keywords" content="réflexes accident conduite, que faire en cas de panne, accident de la route, constat amiable, permis de conduire, auto-école Bayonne">
+    <meta property="og:title" content="Premiers réflexes en cas de panne ou d'accident — Auto-École Marti">
+    <meta property="og:description" content="Panne, accident léger ou grave : les bons réflexes à avoir sur la route. Auto-école Marti à Bayonne.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Auto-École Marti">
+    <link rel="canonical" href="https://autoecolemarti.fr/blog/reflexes-urgence-conduite.html">
+    <link rel="stylesheet" href="../css/fonts.css">
+    <link rel="stylesheet" href="../css/blog-article.css">
+    <style>
+        :root {
+            --article-accent-pill: rgba(180,40,40,0.12);
+            --article-hero-gradient: linear-gradient(135deg, #fdf3f0 0%, #f5d9d1 50%, #eabfb4 100%);
+            --article-hero-glow: rgba(180,40,40,0.1);
+            --cta-gradient: linear-gradient(135deg, var(--basque-rouge) 0%, var(--rouge-sombre) 100%);
+            --cta-btn-color: var(--basque-rouge);
+        }
+        /* Grille récapitulatif 3 colonnes */
+        .reflexes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.2rem;
+            margin: 1.5rem 0 2rem;
+        }
+        .reflexe-card {
+            background: white;
+            border: 1px solid var(--gris-clair);
+            border-radius: var(--radius-sm);
+            padding: 1.4rem;
+        }
+        .reflexe-card.panne  { border-top: 3px solid var(--basque-vert); }
+        .reflexe-card.leger  { border-top: 3px solid #e8a020; }
+        .reflexe-card.grave  { border-top: 3px solid var(--basque-rouge); }
+        .reflexe-card h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 0.9rem;
+        }
+        .reflexe-card.panne h4 { color: var(--basque-vert); }
+        .reflexe-card.leger h4 { color: #e8a020; }
+        .reflexe-card.grave h4 { color: var(--basque-rouge); }
+        .reflexe-card ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .reflexe-card ul li {
+            font-size: 0.88rem;
+            padding: 0.25rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.4rem;
+        }
+        .reflexe-card ul li::before { content: "✓"; font-weight: 700; flex-shrink: 0; }
+        .reflexe-card.panne ul li::before { color: var(--basque-vert); }
+        .reflexe-card.leger ul li::before { color: #e8a020; }
+        .reflexe-card.grave ul li::before { color: var(--basque-rouge); }
+        /* Numéros de téléphone urgences */
+        .urgences-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.8rem;
+            margin: 1.2rem 0 1.8rem;
+        }
+        .urgence-card {
+            background: white;
+            border: 1px solid var(--gris-clair);
+            border-radius: var(--radius-sm);
+            padding: 1rem;
+            text-align: center;
+        }
+        .urgence-card .numero {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1;
+            color: var(--basque-rouge);
+            margin-bottom: 0.3rem;
+        }
+        .urgence-card p {
+            font-size: 0.82rem;
+            color: var(--gris);
+            margin: 0;
+            font-weight: 500;
+        }
+        @media (max-width: 768px) {
+            .reflexes-grid { grid-template-columns: 1fr; }
+            .urgences-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════════════════════════════ -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../index.html" class="logo">AUTO-ÉCOLE MARTI<span>.</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="../index.html#formations">Formations</a></li>
+            <li><a href="../index.html#histoire">Notre histoire</a></li>
+            <li><a href="../index.html#avis">Avis</a></li>
+            <li><a href="index.html" class="active">Blog</a></li>
+            <li><a href="../index.html#contact">Contact</a></li>
+            <li><a href="mailto:autoecole.marti@gmail.com" class="nav-cta">S'inscrire</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════════
+     ARTICLE HERO
+══════════════════════════════════════════════════════════════ -->
+<div class="article-hero">
+    <div class="article-hero-inner">
+        <nav class="article-breadcrumb" aria-label="Fil d'ariane">
+            <a href="../index.html">Accueil</a>
+            <span>›</span>
+            <a href="index.html">Blog</a>
+            <span>›</span>
+            <span>Réflexes en cas de panne ou d'accident</span>
+        </nav>
+        <div class="article-hero-meta">
+            <span class="article-cat-pill">🚨 Sécurité routière</span>
+            <span class="article-reading-pill">⏱ 6 min de lecture</span>
+        </div>
+        <h1>Panne ou accident sur la route :<br><em>les bons réflexes</em><br>à adopter</h1>
+        <p class="article-date-pub">Publié le 25 mars 2026 · Par l'équipe Auto-École Marti</p>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CONTENU DE L'ARTICLE
+══════════════════════════════════════════════════════════════ -->
+<div class="back-to-blog">
+    <a href="index.html" class="back-link">← Retour au blog</a>
+</div>
+
+<article class="article-wrap">
+
+    <div class="article-intro">
+        <p>Être confronté à une panne ou un accident sur la route peut arriver à tout conducteur, novice ou expérimenté. Savoir comment réagir correctement peut faire toute la différence, tant pour votre sécurité que pour celle des autres usagers.</p>
+        <p>Pendant votre formation au <strong>permis B</strong>, ces situations sont évoquées — mais il est important de bien les mémoriser pour agir sereinement le jour où vous en aurez besoin.</p>
+    </div>
+
+    <h2>Pourquoi connaître ces réflexes est essentiel</h2>
+
+    <p>Même les conducteurs les plus prudents peuvent un jour se retrouver face à une situation d'urgence sur la route. Une panne mécanique, un accident léger ou un choc plus grave : chaque scénario exige une réaction appropriée.</p>
+
+    <p>Les statistiques sont éloquentes : chaque année en France, plus de <strong>130 000 accidents corporels</strong> sont enregistrés sur les routes. Être préparé et connaître les bons gestes peut non seulement vous protéger, mais aussi sauver des vies.</p>
+
+    <div class="callout callout-info">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">
+            <strong>Conseil de nos moniteurs</strong>
+            <p>Prenez quelques minutes pour relire cet article et mémoriser les étapes clés. En situation réelle, c'est souvent le stress qui prend le dessus. Avoir ces réflexes bien ancrés vous permettra d'agir automatiquement, même sous pression.</p>
+        </div>
+    </div>
+
+    <h2>🔧 En cas de panne sur le bord de la route</h2>
+
+    <p>Une panne peut survenir à tout moment, sans prévenir. Qu'il s'agisse d'un problème mécanique, d'un pneu crevé ou d'une batterie à plat, voici la conduite à tenir.</p>
+
+    <h3>1. Garez-vous en toute sécurité</h3>
+
+    <p>Dès les premiers signes de défaillance, conservez votre calme et engagez-vous progressivement vers le bord de la chaussée. Si possible, atteignez une zone sécurisée : aire de repos, bande d'arrêt d'urgence ou parking.</p>
+
+    <ul>
+        <li><strong>Allumez vos feux de détresse (warnings)</strong> dès que vous constatez la panne, pour signaler votre véhicule aux autres usagers.</li>
+        <li><strong>Enfilez le gilet réfléchissant</strong> avant de quitter votre véhicule, conformément à la réglementation.</li>
+        <li><strong>Placez le triangle de signalisation</strong> à au moins 30 mètres derrière votre véhicule, sur le bord de la route.</li>
+    </ul>
+
+    <div class="callout callout-warning">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body">
+            <strong>À retenir</strong>
+            <p>En agglomération, le triangle n'est pas obligatoire si la vitesse est limitée à 50 km/h. Sur autoroute ou route nationale, son absence est sanctionnable d'une amende de <strong>135 €</strong> et d'un retrait de points.</p>
+        </div>
+    </div>
+
+    <h3>2. Faites appel aux secours si nécessaire</h3>
+
+    <p>Si la panne survient dans une zone dangereuse (autoroute, tunnel) ou si vous ne pouvez pas effectuer les réparations vous-même, contactez :</p>
+
+    <ul>
+        <li><strong>Le 112</strong> : numéro d'urgence européen, joignable partout en Europe.</li>
+        <li><strong>Le 17</strong> : police ou gendarmerie pour signaler votre position.</li>
+        <li><strong>Votre assurance</strong> : la plupart des contrats incluent une assistance dépannage 24h/24.</li>
+        <li><strong>Un garagiste</strong> : si vous préférez être dépanné par un professionnel de confiance.</li>
+    </ul>
+
+    <h3>3. En attendant les secours</h3>
+
+    <p>Restez à l'intérieur du véhicule si vous êtes sur une voie rapide ou si les conditions météo sont défavorables. Cela vous protège des autres véhicules. Si vous êtes en sécurité relative, sortez par la droite pour vous mettre à l'abri derrière la glissière de sécurité.</p>
+
+    <div class="callout callout-success">
+        <div class="callout-icon">✅</div>
+        <div class="callout-body">
+            <strong>Prévention</strong>
+            <p>Pour éviter les pannes surprises, effectuez régulièrement l'entretien de votre véhicule : niveau d'huile, état des pneus, charge de la batterie. Un véhicule bien entretenu est un véhicule sûr.</p>
+        </div>
+    </div>
+
+    <h2>💫 En cas d'accident léger (sans blessé)</h2>
+
+    <p>Un accrochage, un choc contre un autre véhicule ou un obstacle... L'accident léger implique qu'aucune personne n'est physiquement blessée. Même dans ce cas, certaines démarches sont obligatoires.</p>
+
+    <h3>1. Arrêtez-vous et sécurisez les lieux</h3>
+
+    <p>Ne quittez jamais les lieux d'un accident, même mineur. Immobilisez votre véhicule en activant le frein de parking, puis allumez vos feux de détresse.</p>
+
+    <ul>
+        <li><strong>Enfilez votre gilet réfléchissant</strong> avant de descendre du véhicule.</li>
+        <li><strong>Installez le triangle de signalisation</strong> si la visibilité est réduite ou si l'accident gêne la circulation.</li>
+        <li><strong>Ne déplacez pas les véhicules</strong> impliqués tant que les constatations n'ont pas été faites, sauf si cela est nécessaire pour dégager la voie.</li>
+    </ul>
+
+    <h3>2. Échangez les informations avec l'autre partie</h3>
+
+    <p>Il est fondamental de recueillir les informations suivantes de manière précise et complète :</p>
+
+    <ul>
+        <li>Nom, prénom et coordonnées complètes (téléphone, adresse).</li>
+        <li>Numéro de permis de conduire et catégorie.</li>
+        <li>Numéro d'immatriculation du véhicule.</li>
+        <li>Nom de l'assureur et numéro de contrat.</li>
+    </ul>
+
+    <div class="callout callout-info">
+        <div class="callout-icon">📋</div>
+        <div class="callout-body">
+            <strong>Le constat amiable</strong>
+            <p>Remplissez un <strong>constat amiable d'accident</strong> (disponible chez votre assureur ou en téléchargement). Ce document est indispensable pour déclarer le sinistre. Soyez précis dans vos descriptions et n'omettez aucun détail, même mineur. Si les deux parties ne sont pas d'accord sur les circonstances, notez-le sur le constat.</p>
+        </div>
+    </div>
+
+    <h3>3. Déclarez le sinistre à votre assureur</h3>
+
+    <p>Que vous soyez responsable ou non, vous devez déclarer le sinistre à votre assureur dans un délai de <strong>5 jours ouvrés</strong>. Cette déclaration peut se faire en ligne, par téléphone ou depuis l'application de votre assureur.</p>
+
+    <div class="callout callout-success">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">
+            <strong>Bon à savoir</strong>
+            <p>Si vous n'êtes pas responsable de l'accident, c'est l'assureur du responsable qui prendra en charge les réparations. Si le responsable n'est pas assuré ou est inconnu, vous pouvez faire valoir vos droits auprès du <strong>Fonds de Garantie des Assurances Obligées</strong> (FGAO).</p>
+        </div>
+    </div>
+
+    <h2>🚑 En cas d'accident grave avec blessé(s)</h2>
+
+    <p>C'est la situation que tout conducteur craint le plus. Un accident impliquant des blessés nécessite une réaction rapide et efficace. Chaque seconde compte pour préserver la vie des victimes.</p>
+
+    <div class="callout callout-warning">
+        <div class="callout-icon">🚨</div>
+        <div class="callout-body">
+            <strong>Rappel vital</strong>
+            <p><strong>Ne jamais déplacer une personne blessée</strong>, sauf si elle est en danger immédiat (incendie, risque d'explosion). Un mouvement inapproprié peut aggraver des lésions de la colonne vertébrale et provoquer des séquelles irréversibles.</p>
+        </div>
+    </div>
+
+    <h3>1. Sécurisez les lieux et alertez les secours</h3>
+
+    <p>Mettez en place les dispositifs de sécurité puis alertez les secours rapidement :</p>
+
+    <div class="urgences-grid">
+        <div class="urgence-card">
+            <div class="numero">15</div>
+            <p>SAMU — urgence médicale</p>
+        </div>
+        <div class="urgence-card">
+            <div class="numero">18</div>
+            <p>Pompiers — dégagement, incendie</p>
+        </div>
+        <div class="urgence-card">
+            <div class="numero">17</div>
+            <p>Police / Gendarmerie</p>
+        </div>
+        <div class="urgence-card">
+            <div class="numero">112</div>
+            <p>Numéro européen d'urgence</p>
+        </div>
+    </div>
+
+    <h3>2. Portez secours aux victimes</h3>
+
+    <p>En attendant l'arrivée des secours, apportez les premiers soins si vous en êtes capable :</p>
+
+    <ul>
+        <li><strong>Parlez aux victimes</strong> pour les rassurer et évaluer leur état de conscience.</li>
+        <li><strong>En l'absence de réponse</strong>, placez la victime en position latérale de sécurité (PLS) si elle respire mais est inconsciente.</li>
+        <li><strong>En cas d'arrêt cardiaque</strong>, pratiquez un massage cardiaque (100 à 120 compressions par minute) si vous êtes formé.</li>
+        <li><strong>Coupez le moteur</strong> des véhicules impliqués pour éviter tout risque d'incendie.</li>
+        <li><strong>Ne donnez ni nourriture ni eau</strong> à une personne blessée, même si elle se plaint de soif.</li>
+    </ul>
+
+    <div class="callout callout-info">
+        <div class="callout-icon">📋</div>
+        <div class="callout-body">
+            <strong>Ce qu'il faut dire lors de l'appel aux secours</strong>
+            <p>Soyez précis et calme : numéro de route et sens de circulation, points de repère (ville, borne kilométrique), nombre de véhicules impliqués et de victimes, nature des blessures observées.</p>
+        </div>
+    </div>
+
+    <h3>3. Collaborez avec les autorités</h3>
+
+    <p>Une fois les secours présents, votre rôle est de faciliter le travail des intervenants :</p>
+
+    <ul>
+        <li><strong>Récupérez les coordonnées</strong> de tous les témoins de l'accident.</li>
+        <li><strong>Collaborez avec les forces de l'ordre</strong> pour établir les circonstances exactes.</li>
+        <li><strong>Ne quittez pas les lieux</strong> avant d'y être autorisé par les autorités.</li>
+        <li><strong>Déclarez l'accident</strong> à votre assureur dans les délais impartis.</li>
+    </ul>
+
+    <div class="callout callout-warning">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body">
+            <strong>Obligations légales</strong>
+            <p>Quitter les lieux d'un accident avec blessé est un <strong>délit pénal</strong> passible de sanctions graves : jusqu'à 3 ans d'emprisonnement et 75 000 € d'amende, ainsi qu'une annulation du permis. Même si vous n'êtes pas responsable, restez sur place.</p>
+        </div>
+    </div>
+
+    <h2>Récapitulatif : les bons réflexes selon la situation</h2>
+
+    <div class="reflexes-grid">
+        <div class="reflexe-card panne">
+            <h4>🔧 Panne sur la route</h4>
+            <ul>
+                <li>Warnings allumés</li>
+                <li>Gilet + triangle de sécurité</li>
+                <li>Contacter l'assistance</li>
+                <li>Rester à l'abri du véhicule</li>
+            </ul>
+        </div>
+        <div class="reflexe-card leger">
+            <h4>💫 Accident léger</h4>
+            <ul>
+                <li>Arrêt sécurisé</li>
+                <li>Gilet + triangle de sécurité</li>
+                <li>Constat amiable</li>
+                <li>Déclaration assureur sous 5 j.</li>
+            </ul>
+        </div>
+        <div class="reflexe-card grave">
+            <h4>🚑 Accident avec blessé</h4>
+            <ul>
+                <li>Appel immédiat 15 / 18 / 112</li>
+                <li>Ne pas déplacer les blessés</li>
+                <li>Premiers soins si formé</li>
+                <li>Attendre les secours sur place</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <div class="callout callout-success">
+        <div class="callout-icon">✅</div>
+        <div class="callout-body">
+            <strong>Conclusion</strong>
+            <p>Face à une panne ou un accident, la clé est de <strong>garder votre calme</strong> et d'agir méthodiquement. Ces réflexes doivent devenir des automatismes, intégrés dès votre formation au permis. Chez <strong>Auto-École Marti</strong>, nous intégrons ces situations d'urgence dans notre formation pour que nos élèves soient prêts à affronter toutes les circonstances sur la route.</p>
+        </div>
+    </div>
+
+    <div class="callout callout-info" style="margin-top: 1.5rem;">
+        <div class="callout-icon">🎓</div>
+        <div class="callout-body">
+            <strong>Pensez à vous former aux premiers secours</strong>
+            <p>La formation aux gestes de premiers secours (Gestes Qui Sauvent — GQS) est obligatoire pour passer le permis de conduire. Cette formation de 2 heures vous apprend à porter secours efficacement. N'hésitez pas à nous demander des informations lors de votre inscription.</p>
+        </div>
+    </div>
+
+</article>
+
+<!-- ══════════════════════════════════════════════════════════════
+     ARTICLES CONNEXES
+══════════════════════════════════════════════════════════════ -->
+<div class="related-wrap">
+    <div class="related-inner">
+        <h2>Articles connexes</h2>
+        <div class="related-grid">
+            <a href="comment-reussir-son-permis-conduire.html" class="related-card">
+                <div class="related-card-icon">✅</div>
+                <div class="related-card-body">
+                    <small>Conseils pratiques</small>
+                    <p>Réussir son permis B : le guide complet</p>
+                </div>
+            </a>
+            <a href="boite-automatique-ou-manuelle.html" class="related-card">
+                <div class="related-card-icon">🔄</div>
+                <div class="related-card-body">
+                    <small>Conduite</small>
+                    <p>Boîte automatique ou manuelle : laquelle choisir ?</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CTA BANNER
+══════════════════════════════════════════════════════════════ -->
+<div class="cta-banner">
+    <h2>Prêt à vous former en toute sécurité ?</h2>
+    <p>Nos moniteurs vous préparent à toutes les situations sur la route, des gestes de premiers secours aux situations d'urgence.</p>
+    <a href="mailto:autoecole.marti@gmail.com" class="btn">S'inscrire chez Marti →</a>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════════ -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="logo">MARTI<span>.</span></div>
+                <p>Auto-école de confiance à Bayonne depuis 1962. Formations permis B, conduite accompagnée et boîte automatique.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Formations</h4>
+                <ul>
+                    <li><a href="../formules/permis-b-manuel.html">Permis B</a></li>
+                    <li><a href="../formules/conduite-accompagnee.html">Conduite accompagnée</a></li>
+                    <li><a href="../formules/permis-b-automatique.html">Boîte automatique</a></li>
+                    <li><a href="../index.html#offres">Offres spéciales</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="../index.html">Accueil</a></li>
+                    <li><a href="../index.html#histoire">Notre histoire</a></li>
+                    <li><a href="../index.html#avis">Avis</a></li>
+                    <li><a href="index.html">Blog</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:0559591260">05 59 59 12 60</a></li>
+                    <li><a href="tel:0622008209">06 22 00 82 09</a></li>
+                    <li><a href="mailto:autoecole.marti@gmail.com">autoecole.marti@gmail.com</a></li>
+                    <li><a href="../index.html#contact">13 rue Marengo, Bayonne</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 Auto-école Marti — Bayonne. Tous droits réservés.</span>
+            <span>SIRET : 382 930 188 00018 · APE : 8500Z</span>
+            <a href="../mentions-legales.html" style="color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.85rem;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Règlement intérieur &amp; mentions légales</a>
+        </div>
+    </div>
+</footer>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Premiers réflexes à avoir en cas de panne ou d'accident",
+    "description": "Panne, accident léger ou grave : les bons réflexes à adopter sur la route. Conseils pratiques de l'auto-école Marti à Bayonne.",
+    "datePublished": "2026-03-25",
+    "author": { "@type": "Organization", "name": "Auto-École Marti" },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Auto-École Marti",
+        "url": "https://autoecolemarti.fr"
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://autoecolemarti.fr/blog/reflexes-urgence-conduite.html"
+    }
+}
+</script>
+
+</body>
+</html>
