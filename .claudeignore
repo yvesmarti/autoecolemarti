@@ -1,0 +1,38 @@
+# Claude Code ignore file for Auto-École Marti
+# This file helps prevent timeouts by excluding large/binary files and system directories
+
+# SVG road signs database (100+ files, data only)
+quizz/panneaux/
+panneaux_data.js
+
+# Font files (binary, not modified during development)
+fonts/
+
+# System & IDE files
+.git/
+.gitignore
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node/build artifacts (if ever used)
+node_modules/
+dist/
+build/
+.DS_Store
+
+# Log files
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.bak
+.cache/
+
+# Environment files (if any)
+.env
+.env.local
+.env.*.local
