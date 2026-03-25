@@ -1061,5 +1061,34 @@
     }
 
 </script>
+
+<!-- ── Bulle FAQ flottante ── -->
+<div id="faqBubble" style="position:fixed;bottom:24px;right:24px;z-index:999;display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
+  <div id="faqTooltip" style="background:#0a0a0a;color:white;border-radius:12px;padding:12px 16px;font-family:'DM Sans',sans-serif;white-space:nowrap;opacity:0;transform:translateY(8px);transition:all .25s;pointer-events:none;">
+    <strong style="display:block;font-size:12px;color:#d4a853;margin-bottom:3px;">Des questions ?</strong>
+    <span style="font-size:11px;color:rgba(255,255,255,0.65);">Toutes les réponses dans notre FAQ →</span>
+  </div>
+  <a href="faq.html" id="faqBtn"
+     style="width:56px;height:56px;border-radius:50%;background:#d63031;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(214,48,49,0.4);transition:all .25s;"
+     aria-label="Consulter la FAQ">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+    </svg>
+  </a>
+</div>
+<script>
+  (function(){
+    const faqBtn = document.getElementById('faqBtn');
+    const tip = document.getElementById('faqTooltip');
+    let t;
+    function show(){ tip.style.opacity='1'; tip.style.transform='translateY(0)'; tip.style.pointerEvents='auto'; }
+    function hide(){ tip.style.opacity='0'; tip.style.transform='translateY(8px)'; tip.style.pointerEvents='none'; }
+    faqBtn.addEventListener('mouseenter', show);
+    faqBtn.addEventListener('mouseleave', hide);
+    faqBtn.addEventListener('click', function(e){
+      if(window.innerWidth < 768){ e.preventDefault(); if(tip.style.opacity==='1'){ window.location.href='faq.html'; } else { show(); clearTimeout(t); t=setTimeout(function(){ window.location.href='faq.html'; },600); } }
+    });
+  })();
+</script>
 </body>
 </html>
