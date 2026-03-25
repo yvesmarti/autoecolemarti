@@ -3,691 +3,644 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz – Les bons réflexes à avoir | Auto-École Marti</title>
-
-    <!-- Polices identiques au blog -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- CSS externe du blog (variables, nav, boutons, footer…) -->
-    <link rel="stylesheet" href="blog-index.css">
-
+    <title>Quiz - Les bons réflexes à avoir | Auto-École Marti</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* ═══════════════════════════════════════
-           PAGE QUIZ — styles spécifiques
-           Hérite des variables de blog-index.css
-        ═══════════════════════════════════════ */
-
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
-            background: var(--blanc);
-            color: var(--noir);
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             min-height: 100vh;
+            color: #fff;
         }
-
-        /* ── Conteneur centré ── */
-        .quiz-wrapper {
-            max-width: 860px;
+        .container {
+            max-width: 900px;
             margin: 0 auto;
-            padding: 5rem 1.5rem 4rem;
+            padding: 30px 20px;
         }
-
-        /* ── En-tête de la page ── */
-        .quiz-page-header {
+        header {
             text-align: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 40px;
         }
-
         .logo-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(0, 105, 92, 0.08);
-            color: var(--basque-vert);
-            padding: 0.45rem 1.1rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            margin-bottom: 1.2rem;
+            display: inline-block;
+            background: linear-gradient(135deg, #e94560, #ff6b6b);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            animation: pulse 2s infinite;
         }
-
-        .quiz-page-header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            line-height: 1.15;
-            color: var(--noir);
-            margin-bottom: 0.7rem;
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
-
-        .quiz-page-header h1 em {
-            font-style: italic;
-            color: var(--basque-rouge);
+        h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #fff, #e0e0e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-
         .subtitle {
-            color: var(--gris);
-            font-size: 1rem;
+            color: #a0aec0;
+            font-size: 1.1em;
         }
 
-        /* ── Tableau de score ── */
+        /* SCORE BOARD */
         .score-board {
             display: flex;
             justify-content: center;
-            gap: 1.2rem;
-            margin-bottom: 2rem;
+            gap: 30px;
+            margin-bottom: 30px;
             flex-wrap: wrap;
         }
-
         .score-item {
-            background: white;
-            border: 1px solid var(--gris-clair);
-            padding: 1rem 2rem;
-            border-radius: var(--radius-sm);
+            background: rgba(255,255,255,0.1);
+            padding: 15px 30px;
+            border-radius: 15px;
             text-align: center;
-            box-shadow: var(--ombre);
-            min-width: 140px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
         }
-
         .score-item .label {
-            font-size: 0.73rem;
-            color: var(--gris);
+            font-size: 0.85em;
+            color: #a0aec0;
             text-transform: uppercase;
-            letter-spacing: 0.12em;
-            font-weight: 700;
-            margin-bottom: 0.3rem;
+            letter-spacing: 1px;
         }
-
         .score-item .value {
-            font-size: 2rem;
+            font-size: 2em;
             font-weight: 800;
-            color: var(--noir);
-            line-height: 1;
         }
+        .score-item.success .value { color: #48bb78; }
+        .score-item.warning .value { color: #f6ad55; }
 
-        .score-item.success .value { color: var(--vert-clair); }
-        .score-item.warning .value  { color: var(--or); }
-
-        /* ── Onglets scénarios (style filtre-btn du blog) ── */
+        /* SCENARIO TABS */
         .scenario-tabs {
             display: flex;
-            gap: 0.7rem;
-            margin-bottom: 1.5rem;
+            gap: 10px;
+            margin-bottom: 25px;
             flex-wrap: wrap;
             justify-content: center;
         }
-
         .tab-btn {
-            padding: 0.5rem 1.2rem;
-            border-radius: 50px;
-            font-size: 0.82rem;
-            font-weight: 600;
+            padding: 12px 25px;
+            border: 2px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+            border-radius: 10px;
             cursor: pointer;
-            border: 2px solid var(--gris-clair);
-            background: white;
-            color: var(--gris);
-            transition: var(--transition);
-            font-family: 'DM Sans', sans-serif;
-            letter-spacing: 0.02em;
-            display: inline-flex;
+            font-family: inherit;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
             align-items: center;
-            gap: 0.4rem;
+            gap: 8px;
         }
-
         .tab-btn:hover {
-            border-color: var(--basque-rouge);
-            color: var(--basque-rouge);
-            background: rgba(214, 48, 49, 0.04);
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.4);
         }
-
         .tab-btn.active {
-            border-color: var(--basque-rouge);
-            color: var(--basque-rouge);
-            background: rgba(214, 48, 49, 0.06);
+            background: linear-gradient(135deg, #e94560, #ff6b6b);
+            border-color: transparent;
+            transform: scale(1.02);
+        }
+        .tab-btn .icon {
+            font-size: 1.3em;
         }
 
-        .tab-btn .icon { font-size: 1em; }
-
-        /* ── Carte quiz ── */
+        /* QUIZ CARD */
         .quiz-card {
-            background: white;
-            border-radius: var(--radius);
-            padding: 2rem;
-            border: 1px solid var(--gris-clair);
-            box-shadow: var(--ombre);
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
         }
-
-        /* ── En-tête scénario ── */
         .scenario-header {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.2rem;
-            border-bottom: 1px solid var(--gris-clair);
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-
-        .scenario-icon { font-size: 2.5rem; }
-
-        .scenario-title { flex: 1; }
-
+        .scenario-icon {
+            font-size: 3em;
+        }
+        .scenario-title {
+            flex: 1;
+        }
         .scenario-title h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.35rem;
-            color: var(--noir);
-            margin-bottom: 0.2rem;
+            font-size: 1.5em;
+            margin-bottom: 5px;
         }
-
-        .scenario-title p { color: var(--gris); font-size: 0.87rem; }
-
-        /* ── Barre de progression ── */
+        .scenario-title p {
+            color: #a0aec0;
+            font-size: 0.9em;
+        }
         .progress-bar {
-            background: var(--gris-clair);
-            height: 5px;
-            border-radius: 3px;
+            background: rgba(255,255,255,0.1);
+            height: 8px;
+            border-radius: 4px;
             overflow: hidden;
-            margin-bottom: 1.5rem;
+            margin-bottom: 25px;
         }
-
         .progress-fill {
-            background: linear-gradient(90deg, var(--basque-vert), var(--vert-clair));
+            background: linear-gradient(90deg, #48bb78, #38a169);
             height: 100%;
-            border-radius: 3px;
+            border-radius: 4px;
             transition: width 0.5s ease;
             width: 0%;
         }
-
-        /* ── Timer ── */
-        .timer {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            color: var(--gris);
-            font-size: 0.88rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-
-        @keyframes blink { 50% { opacity: 0.4; } }
-
-        .timer.warning .timer-value { color: #b7860b; animation: blink 0.7s infinite; }
-        .timer.danger  .timer-value { color: var(--basque-rouge); animation: blink 0.35s infinite; }
-
-        /* ── Question ── */
         .question-text {
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.2em;
+            margin-bottom: 25px;
             text-align: center;
-            color: var(--gris);
+            color: #fff;
         }
-
-        .question-text span { color: var(--basque-rouge); font-weight: 700; }
-
-        /* ── Slots de réponse ── */
-        .answer-slots {
-            display: flex;
-            flex-direction: column;
-            gap: 0.55rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .answer-slot {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            background: var(--creme);
-            padding: 0.9rem 1.2rem;
-            border-radius: var(--radius-sm);
-            border: 2px solid transparent;
-            min-height: 58px;
-            transition: var(--transition);
-            cursor: default;
-        }
-
-        .answer-slot.highlight {
-            border-color: var(--basque-rouge);
-            background: rgba(214, 48, 49, 0.04);
-        }
-
-        .answer-slot.filled {
-            border-color: var(--basque-vert);
-            background: rgba(0, 105, 92, 0.05);
-            cursor: pointer;
-        }
-
-        .answer-slot .slot-number {
-            width: 30px;
-            height: 30px;
-            border: 2px solid var(--gris-clair);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .question-text span {
+            color: #e94560;
             font-weight: 700;
-            color: var(--gris);
-            font-size: 0.85rem;
-            flex-shrink: 0;
         }
 
-        .answer-slot.filled .slot-number {
-            background: var(--basque-vert);
-            border-color: var(--basque-vert);
-            color: white;
-        }
-
-        .answer-slot .slot-content {
-            flex: 1;
-            color: var(--gris);
-            font-size: 0.88rem;
-        }
-
-        .answer-slot.filled .slot-content { color: var(--noir); font-weight: 500; }
-
-        /* ── Options ── */
-        .options-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-            gap: 0.6rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .option-btn {
-            background: white;
-            border: 1.5px solid var(--gris-clair);
-            padding: 0.9rem 1.1rem;
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            transition: var(--transition);
-            text-align: left;
-            color: var(--noir);
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.88rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-        }
-
-        .option-btn:hover:not(:disabled) {
-            border-color: var(--basque-rouge);
-            background: rgba(214, 48, 49, 0.03);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(214, 48, 49, 0.1);
-        }
-
-        .option-btn.selected {
-            background: rgba(214, 48, 49, 0.06);
-            border-color: var(--basque-rouge);
-            color: var(--basque-rouge);
-        }
-
-        .option-btn:disabled { cursor: default; opacity: 0.45; }
-        .option-btn .opt-icon { font-size: 1.15em; flex-shrink: 0; margin-top: 1px; }
-
-        /* ── Feedback ── */
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(-8px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        .feedback {
-            padding: 1.1rem 1.4rem;
-            border-radius: var(--radius-sm);
-            margin-bottom: 1.5rem;
-            display: none;
-            animation: slideIn 0.35s ease;
-        }
-
-        .feedback.show { display: block; }
-
-        .feedback.success {
-            background: rgba(0, 105, 92, 0.06);
-            border: 1px solid var(--basque-vert);
-        }
-
-        .feedback.error {
-            background: rgba(214, 48, 49, 0.06);
-            border: 1px solid var(--basque-rouge);
-        }
-
-        .feedback-header {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 0.4rem;
-            font-weight: 700;
-            font-size: 0.95rem;
-        }
-
-        .feedback.success .feedback-header { color: var(--basque-vert); }
-        .feedback.error   .feedback-header { color: var(--basque-rouge); }
-        .feedback-text { color: var(--gris); line-height: 1.7; font-size: 0.88rem; }
-
-        /* ── Boutons (override blog pour le quiz) ── */
-        .btn-container {
-            display: flex;
-            gap: 0.8rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 0.5rem;
-        }
-
-        /* Redéfinition locale pour éviter les conflits avec .btn du blog */
-        .btn {
-            padding: 0.85rem 1.8rem;
-            border-radius: 50px;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.92rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-        }
-
-        .btn-primary {
-            background: var(--basque-rouge);
-            color: white;
-            box-shadow: 0 4px 20px rgba(214, 48, 49, 0.25);
-        }
-
-        .btn-primary:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 28px rgba(214, 48, 49, 0.35);
-        }
-
-        .btn-primary:disabled {
-            opacity: 0.35;
-            cursor: default;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .btn-secondary {
-            background: white;
-            color: var(--noir);
-            border: 2px solid var(--gris-clair);
-        }
-
-        .btn-secondary:hover { border-color: var(--noir); transform: translateY(-2px); }
-
-        .btn-success {
-            background: var(--basque-vert);
-            color: white;
-            box-shadow: 0 4px 20px rgba(0, 105, 92, 0.25);
-        }
-
-        .btn-success:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 28px rgba(0, 105, 92, 0.35);
-        }
-
-        /* ── Écran résultat ── */
-        .result-screen {
-            text-align: center;
-            padding: 3rem 1.5rem;
-            display: none;
-        }
-
-        .result-screen.show { display: block; }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50%       { transform: translateY(-16px); }
-        }
-
-        .result-icon { font-size: 4rem; margin-bottom: 1rem; animation: bounce 1s ease; }
-
-        .result-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: var(--noir);
-            margin-bottom: 0.8rem;
-        }
-
-        .result-score {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--basque-rouge);
-            margin-bottom: 0.8rem;
-        }
-
-        .result-message {
-            color: var(--gris);
-            font-size: 1rem;
-            margin-bottom: 2rem;
-            max-width: 480px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.7;
-        }
-
-        .stars { font-size: 1.8rem; margin-bottom: 1.5rem; }
-
-        /* ── Explication ── */
-        .explanation {
-            background: rgba(0, 105, 92, 0.04);
-            border-radius: var(--radius-sm);
-            padding: 1.4rem;
-            margin-top: 1.2rem;
-            border-left: 4px solid var(--basque-vert);
-        }
-
-        .explanation h4 {
-            color: var(--basque-vert);
-            font-family: 'Playfair Display', serif;
-            font-size: 0.98rem;
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .explanation ol { margin: 0; padding-left: 1.4rem; }
-
-        .explanation li {
-            margin-bottom: 0.5rem;
-            color: var(--gris);
-            font-size: 0.87rem;
-            line-height: 1.6;
-        }
-
-        /* ── Badge niveau ── */
-        .level-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-            padding: 0.3rem 0.85rem;
-            border-radius: 50px;
-            font-size: 0.72rem;
-            font-weight: 700;
-            letter-spacing: 0.07em;
-            text-transform: uppercase;
-            flex-shrink: 0;
-        }
-
-        .level-badge.easy   { background: rgba(0, 105, 92, 0.1);   color: var(--basque-vert); }
-        .level-badge.medium { background: rgba(212, 168, 83, 0.15); color: #8a6a1a; }
-        .level-badge.hard   { background: rgba(214, 48, 49, 0.1);   color: var(--basque-rouge); }
-
-        /* ── Écran d'introduction ── */
-        .intro-screen {
-            text-align: center;
-            padding: 3rem 2rem;
-        }
-
-        .intro-icon { font-size: 3.5rem; margin-bottom: 1.2rem; }
-
-        .intro-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.7rem;
-            color: var(--noir);
-            margin-bottom: 1rem;
-        }
-
-        .intro-text {
-            color: var(--gris);
-            max-width: 580px;
-            margin: 0 auto 2rem;
-            line-height: 1.8;
-            font-size: 0.94rem;
-        }
-
-        .intro-features {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-bottom: 2.5rem;
-        }
-
-        .intro-feature {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--gris);
-            font-size: 0.88rem;
-            font-weight: 500;
-        }
-
-        .intro-feature .icon { font-size: 1.3em; }
-
-        /* ── Contenu quiz (visible/caché par JS) ── */
-        .quiz-content { display: none; }
-        .quiz-content.active {
-            display: block;
-            animation: fadeIn 0.4s ease;
-        }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        /* ── Carte conseil bas de page ── */
-        .tip-card {
-            margin-top: 1.2rem;
-            padding: 1.1rem 1.5rem;
-            text-align: center;
-        }
-
-        .tip-card p {
-            color: var(--gris);
-            font-size: 0.88rem;
-        }
-
-        /* ── Toast ── */
-        .toast {
-            position: fixed;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: var(--noir);
-            color: white;
-            padding: 0.9rem 1.8rem;
-            border-radius: var(--radius-sm);
-            font-weight: 600;
-            font-size: 0.88rem;
-            z-index: 1100;
-            transition: transform 0.38s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            box-shadow: var(--ombre-forte);
-        }
-
-        .toast.show { transform: translateX(-50%) translateY(0); }
-        .toast.success { border-left: 4px solid var(--vert-clair); }
-        .toast.error   { border-left: 4px solid var(--basque-rouge); }
-
-        /* ── Drop zone (zone de dépôt) ── */
+        /* DRAG DROP AREA */
         .drop-zone {
-            background: var(--creme);
-            border: 2px dashed var(--gris-clair);
-            border-radius: var(--radius-sm);
-            padding: 1.2rem;
-            min-height: 200px;
+            background: rgba(0,0,0,0.3);
+            border: 2px dashed rgba(255,255,255,0.3);
+            border-radius: 15px;
+            padding: 20px;
+            min-height: 300px;
             display: flex;
             flex-direction: column;
-            gap: 0.6rem;
-            margin-bottom: 1.5rem;
-            transition: var(--transition);
+            gap: 10px;
+            margin-bottom: 25px;
+            transition: all 0.3s;
         }
-
-        .drop-zone.drag-over { border-color: var(--basque-vert); background: rgba(0, 105, 92, 0.05); }
-        .drop-zone.correct   { border-color: var(--basque-vert); background: rgba(0, 105, 92, 0.07); }
-        .drop-zone.incorrect { border-color: var(--basque-rouge); background: rgba(214, 48, 49, 0.05); }
-
+        .drop-zone.drag-over {
+            border-color: #48bb78;
+            background: rgba(72, 187, 120, 0.1);
+        }
+        .drop-zone.correct {
+            border-color: #48bb78;
+            background: rgba(72, 187, 120, 0.15);
+        }
+        .drop-zone.incorrect {
+            border-color: #e94560;
+            background: rgba(233, 69, 96, 0.15);
+        }
         .drop-placeholder {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
-            color: var(--gris);
+            padding: 40px;
+            color: #666;
             font-style: italic;
-            font-size: 0.88rem;
         }
-
         .drop-item {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            background: white;
-            padding: 0.85rem 1.1rem;
-            border-radius: var(--radius-sm);
+            gap: 15px;
+            background: rgba(255,255,255,0.1);
+            padding: 15px 20px;
+            border-radius: 12px;
             cursor: grab;
-            transition: var(--transition);
-            border: 1.5px solid var(--gris-clair);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            user-select: none;
         }
-
-        .drop-item:hover { border-color: var(--basque-rouge); transform: translateX(4px); }
-
-        .drop-item.correct   { border-color: var(--basque-vert);  background: rgba(0, 105, 92, 0.05); }
-        .drop-item.incorrect { border-color: var(--basque-rouge); background: rgba(214, 48, 49, 0.05); }
-
+        .drop-item:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateX(5px);
+        }
+        .drop-item.dragging {
+            opacity: 0.5;
+            cursor: grabbing;
+        }
+        .drop-item.placed {
+            background: rgba(255,255,255,0.1);
+            cursor: default;
+        }
+        .drop-item.correct {
+            border-color: #48bb78;
+            background: rgba(72, 187, 120, 0.2);
+        }
+        .drop-item.incorrect {
+            border-color: #e94560;
+            background: rgba(233, 69, 96, 0.2);
+        }
         .drop-item .number {
-            width: 30px;
-            height: 30px;
-            background: var(--basque-rouge);
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #e94560, #ff6b6b);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 0.85rem;
+            font-size: 1.1em;
+            flex-shrink: 0;
+        }
+        .drop-item.correct .number {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+        }
+        .drop-item.incorrect .number {
+            background: linear-gradient(135deg, #e94560, #ff6b6b);
+        }
+        .drop-item .content {
+            flex: 1;
+        }
+        .drop-item .drag-handle {
+            color: #666;
+            font-size: 1.5em;
+        }
+
+        /* ANSWER SLOTS */
+        .answer-slots {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        .answer-slot {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255,255,255,0.05);
+            padding: 15px 20px;
+            border-radius: 12px;
+            border: 2px solid rgba(255,255,255,0.2);
+            min-height: 70px;
+            transition: all 0.3s;
+        }
+        .answer-slot.highlight {
+            border-color: #e94560;
+            background: rgba(233, 69, 96, 0.1);
+        }
+        .answer-slot.filled {
+            border-color: #48bb78;
+            background: rgba(72, 187, 120, 0.1);
+        }
+        .answer-slot .slot-number {
+            width: 35px;
+            height: 35px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #a0aec0;
+            flex-shrink: 0;
+        }
+        .answer-slot.filled .slot-number {
+            background: #48bb78;
+            border-color: #48bb78;
             color: white;
+        }
+        .answer-slot .slot-content {
+            flex: 1;
+            color: #a0aec0;
+        }
+        .answer-slot.filled .slot-content {
+            color: #fff;
+        }
+
+        /* OPTIONS */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        .option-btn {
+            background: rgba(255,255,255,0.08);
+            border: 2px solid rgba(255,255,255,0.15);
+            padding: 15px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+            color: #fff;
+            font-family: inherit;
+            font-size: 0.95em;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .option-btn:hover:not(:disabled) {
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(255,255,255,0.4);
+            transform: translateY(-2px);
+        }
+        .option-btn.selected {
+            background: rgba(233, 69, 96, 0.3);
+            border-color: #e94560;
+        }
+        .option-btn:disabled {
+            cursor: default;
+            opacity: 0.5;
+        }
+        .option-btn .opt-icon {
+            font-size: 1.3em;
             flex-shrink: 0;
         }
 
-        .drop-item.correct .number  { background: var(--basque-vert); }
-        .drop-item .content         { flex: 1; color: var(--noir); font-size: 0.87rem; }
-        .drop-item .drag-handle     { color: var(--gris-clair); font-size: 1.2em; }
+        /* FEEDBACK */
+        .feedback {
+            padding: 20px 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            display: none;
+            animation: slideIn 0.4s ease;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .feedback.show { display: block; }
+        .feedback.success {
+            background: linear-gradient(135deg, rgba(72, 187, 120, 0.2), rgba(56, 161, 105, 0.2));
+            border: 1px solid #48bb78;
+        }
+        .feedback.error {
+            background: linear-gradient(135deg, rgba(233, 69, 96, 0.2), rgba(197, 48, 72, 0.2));
+            border: 1px solid #e94560;
+        }
+        .feedback-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+        .feedback.success .feedback-header { color: #48bb78; }
+        .feedback.error .feedback-header { color: #e94560; }
+        .feedback-text {
+            color: #e0e0e0;
+            line-height: 1.7;
+        }
 
-        /* ── Responsive ── */
+        /* BUTTONS */
+        .btn-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-family: inherit;
+            font-size: 1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #e94560, #ff6b6b);
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.4);
+        }
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: default;
+            transform: none;
+            box-shadow: none;
+        }
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        .btn-success {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+        }
+        .btn-success:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(72, 187, 120, 0.4);
+        }
+
+        /* RESULT SCREEN */
+        .result-screen {
+            text-align: center;
+            padding: 40px 20px;
+            display: none;
+        }
+        .result-screen.show { display: block; }
+        .result-icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+            animation: bounce 1s ease;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .result-title {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        .result-score {
+            font-size: 3em;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+        .result-message {
+            color: #a0aec0;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .stars {
+            font-size: 2.5em;
+            margin-bottom: 25px;
+        }
+
+        /* EXPLANATION */
+        .explanation {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+            border-left: 4px solid #3498db;
+        }
+        .explanation h4 {
+            color: #3498db;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .explanation ol {
+            margin: 0;
+            padding-left: 25px;
+        }
+        .explanation li {
+            margin-bottom: 10px;
+            color: #d0d0d0;
+        }
+
+        /* TIMER */
+        .timer {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #a0aec0;
+            font-size: 1em;
+            margin-bottom: 15px;
+        }
+        .timer-icon {
+            font-size: 1.2em;
+        }
+        .timer.warning .timer-value {
+            color: #f6ad55;
+            animation: blink 0.5s infinite;
+        }
+        .timer.danger .timer-value {
+            color: #e94560;
+            animation: blink 0.3s infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0.5; }
+        }
+
+        /* QUIZ CONTENT */
+        .quiz-content {
+            display: none;
+        }
+        .quiz-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            .quiz-wrapper       { padding: 4rem 1rem 3rem; }
-            .scenario-tabs      { gap: 0.5rem; }
-            .tab-btn            { padding: 0.45rem 0.9rem; font-size: 0.78rem; }
-            .quiz-card          { padding: 1.2rem; }
-            .scenario-header    { flex-wrap: wrap; gap: 0.7rem; }
-            .options-grid       { grid-template-columns: 1fr; }
-            .intro-features     { gap: 1.2rem; }
+            h1 { font-size: 1.6em; }
+            .scenario-tabs { gap: 8px; }
+            .tab-btn {
+                padding: 10px 15px;
+                font-size: 0.85em;
+            }
+            .quiz-card { padding: 20px; }
+            .drop-item { padding: 12px 15px; }
+            .option-btn { padding: 12px 15px; }
+        }
+
+        /* TOAST */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(0,0,0,0.9);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            z-index: 1000;
+            transition: transform 0.4s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+        .toast.success {
+            border-left: 4px solid #48bb78;
+        }
+        .toast.error {
+            border-left: 4px solid #e94560;
+        }
+
+        /* LEVEL BADGE */
+        .level-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+        .level-badge.easy { background: rgba(72, 187, 120, 0.3); color: #48bb78; }
+        .level-badge.medium { background: rgba(246, 173, 85, 0.3); color: #f6ad55; }
+        .level-badge.hard { background: rgba(233, 69, 96, 0.3); color: #e94560; }
+
+        /* INTRO SCREEN */
+        .intro-screen {
+            text-align: center;
+            padding: 50px 30px;
+        }
+        .intro-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+        .intro-title {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        .intro-text {
+            color: #a0aec0;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+        .intro-features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        .intro-feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #d0d0d0;
+        }
+        .intro-feature .icon {
+            font-size: 1.5em;
         }
     </style>
 </head>
 <body>
-
-    <div class="quiz-wrapper">
-
-        <!-- ── EN-TÊTE ── -->
-        <header class="quiz-page-header">
-            <div class="logo-badge">🚗 Quiz interactif</div>
-            <h1>Les <em>bons réflexes</em> sur la route</h1>
+    <div class="container">
+        <header>
+            <div class="logo-badge">🚗 Quiz Interactif</div>
+            <h1>Les Bons Réflexes sur la Route</h1>
             <p class="subtitle">Apprenez à réagir correctement en cas d'urgence</p>
         </header>
 
-        <!-- ── SCORE ── -->
+        <!-- SCORE BOARD -->
         <div class="score-board">
             <div class="score-item success">
                 <div class="label">Scénarios réussis</div>
@@ -699,7 +652,7 @@
             </div>
         </div>
 
-        <!-- ── ONGLETS SCÉNARIOS ── -->
+        <!-- SCENARIO TABS -->
         <div class="scenario-tabs">
             <button class="tab-btn active" data-scenario="panne">
                 <span class="icon">🔧</span>
@@ -715,10 +668,10 @@
             </button>
         </div>
 
-        <!-- ── ÉCRAN D'INTRODUCTION ── -->
+        <!-- INTRO SCREEN -->
         <div class="quiz-card intro-screen" id="intro-screen">
             <div class="intro-icon">🎯</div>
-            <h2 class="intro-title">Remettez les étapes dans l'ordre&nbsp;!</h2>
+            <h2 class="intro-title">Remettez les étapes dans l'ordre !</h2>
             <p class="intro-text">
                 Vous allez devoir classer les différentes actions dans le bon ordre pour chaque situation d'urgence.
                 Cliquez sur les étapes pour les placer dans la bonne case, puis validez votre réponse.
@@ -743,10 +696,9 @@
             </button>
         </div>
 
-        <!-- ── CONTENU QUIZ ── -->
-        <div class="quiz-card" id="quiz-container" style="display:none;">
-
-            <!-- SCÉNARIO 1 : PANNE -->
+        <!-- QUIZ CONTENT -->
+        <div class="quiz-card" id="quiz-container" style="display: none;">
+            <!-- SCENARIO 1: PANNE -->
             <div class="quiz-content" id="scenario-panne">
                 <div class="scenario-header">
                     <span class="scenario-icon">🔧</span>
@@ -756,26 +708,48 @@
                     </div>
                     <span class="level-badge easy">Facile</span>
                 </div>
-                <div class="progress-bar"><div class="progress-fill" id="progress-panne"></div></div>
-                <div class="timer" id="timer-panne">⏱️&nbsp;<span class="timer-value">30s</span></div>
-                <p class="question-text"><span>Question 1/3 :</span> Classez les étapes dans le bon ordre en cliquant dessus</p>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-panne"></div>
+                </div>
+
+                <div class="timer" id="timer-panne">
+                    <span class="timer-icon">⏱️</span>
+                    <span class="timer-value">30s</span>
+                </div>
+
+                <p class="question-text">
+                    <span>Question 1/3 :</span> Classez les étapes dans le bon ordre en cliquant dessus
+                </p>
+
                 <div class="answer-slots" id="slots-panne"></div>
+
                 <div class="options-grid" id="options-panne"></div>
+
                 <div class="feedback" id="feedback-panne">
-                    <div class="feedback-header"><span class="feedback-icon"></span><span class="feedback-title"></span></div>
+                    <div class="feedback-header">
+                        <span class="feedback-icon"></span>
+                        <span class="feedback-title"></span>
+                    </div>
                     <p class="feedback-text"></p>
                 </div>
-                <div class="explanation" id="explanation-panne" style="display:none;">
+
+                <div class="explanation" id="explanation-panne" style="display: none;">
                     <h4>📚 L'ordre correct est :</h4>
                     <ol id="correct-order-panne"></ol>
                 </div>
+
                 <div class="btn-container">
-                    <button class="btn btn-primary" id="validate-panne" onclick="validateAnswer('panne')" disabled>✓ Valider ma réponse</button>
-                    <button class="btn btn-secondary" id="next-panne" onclick="nextQuestion('panne')" style="display:none;">Question suivante →</button>
+                    <button class="btn btn-primary" id="validate-panne" onclick="validateAnswer('panne')" disabled>
+                        ✓ Valider ma réponse
+                    </button>
+                    <button class="btn btn-secondary" id="next-panne" onclick="nextQuestion('panne')" style="display: none;">
+                        Question suivante →
+                    </button>
                 </div>
             </div>
 
-            <!-- SCÉNARIO 2 : ACCIDENT LÉGER -->
+            <!-- SCENARIO 2: ACCIDENT LEGER -->
             <div class="quiz-content" id="scenario-accident-leger">
                 <div class="scenario-header">
                     <span class="scenario-icon">💫</span>
@@ -785,26 +759,48 @@
                     </div>
                     <span class="level-badge medium">Moyen</span>
                 </div>
-                <div class="progress-bar"><div class="progress-fill" id="progress-accident-leger"></div></div>
-                <div class="timer" id="timer-accident-leger">⏱️&nbsp;<span class="timer-value">45s</span></div>
-                <p class="question-text"><span>Question 1/3 :</span> Classez les étapes dans le bon ordre en cliquant dessus</p>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-accident-leger"></div>
+                </div>
+
+                <div class="timer" id="timer-accident-leger">
+                    <span class="timer-icon">⏱️</span>
+                    <span class="timer-value">45s</span>
+                </div>
+
+                <p class="question-text">
+                    <span>Question 1/3 :</span> Classez les étapes dans le bon ordre en cliquant dessus
+                </p>
+
                 <div class="answer-slots" id="slots-accident-leger"></div>
+
                 <div class="options-grid" id="options-accident-leger"></div>
+
                 <div class="feedback" id="feedback-accident-leger">
-                    <div class="feedback-header"><span class="feedback-icon"></span><span class="feedback-title"></span></div>
+                    <div class="feedback-header">
+                        <span class="feedback-icon"></span>
+                        <span class="feedback-title"></span>
+                    </div>
                     <p class="feedback-text"></p>
                 </div>
-                <div class="explanation" id="explanation-accident-leger" style="display:none;">
+
+                <div class="explanation" id="explanation-accident-leger" style="display: none;">
                     <h4>📚 L'ordre correct est :</h4>
                     <ol id="correct-order-accident-leger"></ol>
                 </div>
+
                 <div class="btn-container">
-                    <button class="btn btn-primary" id="validate-accident-leger" onclick="validateAnswer('accident-leger')" disabled>✓ Valider ma réponse</button>
-                    <button class="btn btn-secondary" id="next-accident-leger" onclick="nextQuestion('accident-leger')" style="display:none;">Question suivante →</button>
+                    <button class="btn btn-primary" id="validate-accident-leger" onclick="validateAnswer('accident-leger')" disabled>
+                        ✓ Valider ma réponse
+                    </button>
+                    <button class="btn btn-secondary" id="next-accident-leger" onclick="nextQuestion('accident-leger')" style="display: none;">
+                        Question suivante →
+                    </button>
                 </div>
             </div>
 
-            <!-- SCÉNARIO 3 : ACCIDENT GRAVE -->
+            <!-- SCENARIO 3: ACCIDENT GRAVE -->
             <div class="quiz-content" id="scenario-accident-grave">
                 <div class="scenario-header">
                     <span class="scenario-icon">🚑</span>
@@ -814,51 +810,78 @@
                     </div>
                     <span class="level-badge hard">Difficile</span>
                 </div>
-                <div class="progress-bar"><div class="progress-fill" id="progress-accident-grave"></div></div>
-                <div class="timer" id="timer-accident-grave">⏱️&nbsp;<span class="timer-value">60s</span></div>
-                <p class="question-text"><span>Question 1/3 :</span> Classez les étapes dans le bon ordre en cliquant dessus</p>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-accident-grave"></div>
+                </div>
+
+                <div class="timer" id="timer-accident-grave">
+                    <span class="timer-icon">⏱️</span>
+                    <span class="timer-value">60s</span>
+                </div>
+
+                <p class="question-text">
+                    <span>Question 1/3 :</span> Classez les étapes dans le bon ordre en cliquant dessus
+                </p>
+
                 <div class="answer-slots" id="slots-accident-grave"></div>
+
                 <div class="options-grid" id="options-accident-grave"></div>
+
                 <div class="feedback" id="feedback-accident-grave">
-                    <div class="feedback-header"><span class="feedback-icon"></span><span class="feedback-title"></span></div>
+                    <div class="feedback-header">
+                        <span class="feedback-icon"></span>
+                        <span class="feedback-title"></span>
+                    </div>
                     <p class="feedback-text"></p>
                 </div>
-                <div class="explanation" id="explanation-accident-grave" style="display:none;">
+
+                <div class="explanation" id="explanation-accident-grave" style="display: none;">
                     <h4>📚 L'ordre correct est :</h4>
                     <ol id="correct-order-accident-grave"></ol>
                 </div>
+
                 <div class="btn-container">
-                    <button class="btn btn-primary" id="validate-accident-grave" onclick="validateAnswer('accident-grave')" disabled>✓ Valider ma réponse</button>
-                    <button class="btn btn-secondary" id="next-accident-grave" onclick="nextQuestion('accident-grave')" style="display:none;">Question suivante →</button>
+                    <button class="btn btn-primary" id="validate-accident-grave" onclick="validateAnswer('accident-grave')" disabled>
+                        ✓ Valider ma réponse
+                    </button>
+                    <button class="btn btn-secondary" id="next-accident-grave" onclick="nextQuestion('accident-grave')" style="display: none;">
+                        Question suivante →
+                    </button>
                 </div>
             </div>
 
-            <!-- ÉCRAN RÉSULTAT -->
+            <!-- RESULT SCREEN -->
             <div class="result-screen" id="result-screen">
                 <div class="result-icon" id="result-icon">🏆</div>
                 <h2 class="result-title" id="result-title">Félicitations !</h2>
                 <div class="stars" id="result-stars">⭐⭐⭐</div>
                 <div class="result-score" id="result-score">3/3</div>
-                <p class="result-message" id="result-message">Vous maîtrisez parfaitement les bons réflexes sur la route !</p>
-                <button class="btn btn-success" onclick="restartQuiz()">🔄 Recommencer le quiz</button>
+                <p class="result-message" id="result-message">
+                    Vous maîtrisez parfaitement les bons réflexes sur la route !
+                </p>
+                <button class="btn btn-success" onclick="restartQuiz()">
+                    🔄 Recommencer le quiz
+                </button>
             </div>
         </div>
 
-        <!-- ── CONSEIL BAS DE PAGE ── -->
-        <div class="quiz-card tip-card">
-            <p>💡 <strong>Conseil :</strong> Imaginez-vous dans la situation pour mieux mémoriser l'ordre des actions.</p>
+        <!-- LEGEND -->
+        <div class="quiz-card" style="margin-top: 20px; text-align: center;">
+            <p style="color: #a0aec0; font-size: 0.9em;">
+                💡 <strong>Conseil :</strong> Imaginez-vous dans la situation pour mieux mémoriser l'ordre des actions.
+            </p>
         </div>
+    </div>
 
-    </div><!-- /.quiz-wrapper -->
-
-    <!-- ── TOAST ── -->
+    <!-- TOAST -->
     <div class="toast" id="toast">
         <span class="toast-icon"></span>
         <span class="toast-text"></span>
     </div>
 
     <script>
-        // ── DONNÉES DU QUIZ (inchangées) ──
+        // Quiz Data
         const quizData = {
             'panne': {
                 questions: [
@@ -871,7 +894,7 @@
                             { id: 'p1-4', text: 'Placer le triangle de signalisation à 30m derrière', icon: '⚠️' },
                             { id: 'p1-5', text: 'Contacter votre assistance ou un dépanneur', icon: '📞' }
                         ],
-                        correctOrder: ['p1-1','p1-2','p1-3','p1-4','p1-5'],
+                        correctOrder: ['p1-1', 'p1-2', 'p1-3', 'p1-4', 'p1-5'],
                         feedback: {
                             correct: 'Parfait ! Vous avez bien sécurisé les lieux avant de demander de l\'aide.',
                             incorrect: 'Pas tout à fait. La sécurité commence par signaler votre présence aux autres usagers.'
@@ -887,12 +910,12 @@
                             { id: 'p2-4', text: 'Rester calme et patient', icon: '😌' },
                             { id: 'p2-5', text: 'Informez vos proches de votre situation', icon: '📱' }
                         ],
-                        correctOrder: ['p2-2','p2-1','p2-4','p2-5','p2-3'],
+                        correctOrder: ['p2-2', 'p2-1', 'p2-4', 'p2-5', 'p2-3'],
                         feedback: {
-                            correct: 'Excellent ! Vous savez comment attendre en toute sécurité.',
+                            correct: 'Excellent ! Vous savez comment attendre en toute sécurité en attendant les secours.',
                             incorrect: 'L\'ordre n\'est pas optimal. La sécurité personnelle prime avant tout sur autoroute.'
                         },
-                        explanation: 'Sur autoroute, sortez immédiatement du véhicule, mettez-vous à l\'abri, restez calme, prévenez vos proches, puis attendez le remorquage.'
+                        explanation: 'Sur autoroute, sortez immédiatement du véhicule (dangereux d\'y rester), mettez-vous à l\'abri, restez calme, prévenez vos proches, puis attendez le remorquage.'
                     },
                     {
                         id: 3,
@@ -903,12 +926,12 @@
                             { id: 'p3-4', text: 'Évaluer si vous pouvez effectuer une réparation', icon: '🔧' },
                             { id: 'p3-5', text: 'Faire appel à un professionnel si nécessaire', icon: '👨‍🔧' }
                         ],
-                        correctOrder: ['p3-1','p3-2','p3-3','p3-4','p3-5'],
+                        correctOrder: ['p3-1', 'p3-2', 'p3-3', 'p3-4', 'p3-5'],
                         feedback: {
-                            correct: 'Très bien ! Vous adoptez la bonne méthodologie.',
+                            correct: 'Très bien ! Vous adoptez la bonne méthodologie pour gérer une panne.',
                             incorrect: 'Réfléchissez à la logique : sécurité d\'abord, puis diagnostic, puis action.'
                         },
-                        explanation: 'Assurez-vous d\'abord que le véhicule ne va pas bouger, coupez le contact, analysez le problème, évaluez vos capacités, et faites appel à un professionnel si besoin.'
+                        explanation: 'Assurez-vous d\'abord que le véhicule ne va pas bouger (frein à main), coupez le contact pour éviter tout risque, analysez le problème, évaluez vos capacités, et faites appel à un professionnel si besoin.'
                     }
                 ],
                 time: 30
@@ -924,7 +947,7 @@
                             { id: 'al1-4', text: 'Placer le triangle si nécessaire', icon: '⚠️' },
                             { id: 'al1-5', text: 'Vérifier l\'état des conducteurs', icon: '👥' }
                         ],
-                        correctOrder: ['al1-2','al1-3','al1-1','al1-4','al1-5'],
+                        correctOrder: ['al1-2', 'al1-3', 'al1-1', 'al1-4', 'al1-5'],
                         feedback: {
                             correct: 'Parfait ! Vous avez bien sécurisé la scène d\'un accident léger.',
                             incorrect: 'La sécurisation commence par signaliser l\'accident, puis se protéger.'
@@ -940,12 +963,12 @@
                             { id: 'al2-4', text: 'Recueillir les témoignages éventuels', icon: '👁️' },
                             { id: 'al2-5', text: 'Photographier les dégâts', icon: '📷' }
                         ],
-                        correctOrder: ['al2-2','al2-3','al2-5','al2-4','al2-1'],
+                        correctOrder: ['al2-2', 'al2-3', 'al2-5', 'al2-4', 'al2-1'],
                         feedback: {
                             correct: 'Excellent ! Vous connaissez parfaitement les démarches après un accident léger.',
                             incorrect: 'L\'ordre est important : d\'abord identifier les parties, puis constater les dégâts.'
                         },
-                        explanation: 'Commencez par identifier les conducteurs, notez les assurances, documentez les dégâts (photos), recueillez les témoins, puis remplissez le constat amiable ensemble.'
+                        explanation: 'Commencez par identifier les conducteurs (échange de coordonnées), notez les assurances, documentez les dégâts (photos), recueillez les témoins, puis remplissez le constat amiable ensemble.'
                     },
                     {
                         id: 3,
@@ -954,14 +977,14 @@
                             { id: 'al3-2', text: 'Ne pas déplacer les véhicules', icon: '🚗' },
                             { id: 'al3-3', text: 'Déclarer le sinistre sous 5 jours', icon: '📅' },
                             { id: 'al3-4', text: 'Contacter son assureur', icon: '📞' },
-                            { id: 'al3-5', text: 'Préserver les preuves de l\'accident', icon: '🔍' }
+                            { id: 'al3-5', text: 'Preserver les preuves de l\'accident', icon: '🔍' }
                         ],
-                        correctOrder: ['al3-1','al3-2','al3-5','al3-3','al3-4'],
+                        correctOrder: ['al3-1', 'al3-2', 'al3-5', 'al3-3', 'al3-4'],
                         feedback: {
                             correct: 'Très bien ! Vous savez que la première règle est de NE JAMAIS fuir.',
                             incorrect: 'Ne jamais quitter les lieux est la règle absolue. La fuite est un délit.'
                         },
-                        explanation: 'Règle numéro 1 : ne quittez jamais les lieux. Ne déplacez pas les véhicules, conservez les preuves, puis déclarez le sinistre dans les 5 jours.'
+                        explanation: 'Règle numéro 1 : ne quittez jamais les lieux, même si vous n\'êtes pas responsable. Ne déplacez pas les véhicules (constatations), conservez les preuves, puis déclarez le sinistre dans les 5 jours.'
                     }
                 ],
                 time: 45
@@ -977,12 +1000,12 @@
                             { id: 'ag1-4', text: 'Vérifier la conscience des victimes', icon: '👁️' },
                             { id: 'ag1-5', text: 'Pratiquer les gestes de premier secours', icon: '🩹' }
                         ],
-                        correctOrder: ['ag1-2','ag1-1','ag1-3','ag1-4','ag1-5'],
+                        correctOrder: ['ag1-2', 'ag1-1', 'ag1-3', 'ag1-4', 'ag1-5'],
                         feedback: {
                             correct: 'Parfait ! La priorité est de sécuriser avant d\'agir sur les victimes.',
                             incorrect: 'La sécurisation des lieux doit toujours précéder l\'intervention sur les victimes.'
                         },
-                        explanation: 'Sécurisez d\'abord les lieux, alertez immédiatement les secours, ne déplacez JAMAIS les victimes, évaluez leur état, puis prodiguez les premiers secours si vous le pouvez.'
+                        explanation: 'Sécurisez d\'abord les lieux pour éviter un suraccident, alertez immédiatement les secours, ne déplacez JAMAIS les victimes (risque de lésions cervicales), évaluez leur état, puis prodiguez les premiers secours si vous le pouvez.'
                     },
                     {
                         id: 2,
@@ -993,12 +1016,12 @@
                             { id: 'ag2-4', text: 'Rester en ligne avec les secours', icon: '📱' },
                             { id: 'ag2-5', text: 'Donner son numéro de téléphone', icon: '📲' }
                         ],
-                        correctOrder: ['ag2-5','ag2-1','ag2-2','ag2-3','ag2-4'],
+                        correctOrder: ['ag2-5', 'ag2-1', 'ag2-2', 'ag2-3', 'ag2-4'],
                         feedback: {
-                            correct: 'Excellent ! Vous savez donner une alerte efficace.',
+                            correct: 'Excellent ! Vous savez donner une alerte efficace aux secours.',
                             incorrect: 'Donnez d\'abord votre numéro pour qu\'ils puissent vous recontacter.'
                         },
-                        explanation: 'Ordre d\'une alerte efficace : donnez votre numéro, décrivez la localisation, annoncez le nombre de victimes, décrivez les blessures, et restez disponible au téléphone.'
+                        explanation: 'L\'ordre d\'une alerte efficace : donnez votre numéro (pour rappel), décrivez précisément la localisation (route, km, repères), annoncez le nombre de victimes, décrivez les blessures observées, et restez disponible au téléphone.'
                     },
                     {
                         id: 3,
@@ -1009,19 +1032,19 @@
                             { id: 'ag3-4', text: 'Ne rien donner à manger ou à boire', icon: '🚫' },
                             { id: 'ag3-5', text: 'La couvrir pour éviter l\'hypothermie', icon: '🧥' }
                         ],
-                        correctOrder: ['ag3-1','ag3-2','ag3-3','ag3-4','ag3-5'],
+                        correctOrder: ['ag3-1', 'ag3-2', 'ag3-3', 'ag3-4', 'ag3-5'],
                         feedback: {
                             correct: 'Très bien ! Vous connaissez les gestes qui sauvent.',
                             incorrect: 'La communication avec la victime est la première action à accomplir.'
                         },
-                        explanation: 'Parlez à la victime pour la rassurer et évaluer sa conscience, vérifiez sa respiration, si elle respire mais est inconsciente : PLS, ne donnez rien par la bouche, et couvrez-la.'
+                        explanation: 'Parlez à la victime pour la rassurer et évaluer sa conscience, vérifiez sa respiration, si elle respire mais est inconsciente : PLS, ne donnez rien par la bouche (risque de fausse route), et couvrez-la pour maintenir sa température corporelle.'
                     }
                 ],
                 time: 60
             }
         };
 
-        // ── ÉTAT ──
+        // State
         let currentScenario = 'panne';
         let currentQuestion = {};
         let currentQuestionIndex = 0;
@@ -1030,71 +1053,95 @@
         let timer = null;
         let timeLeft = 30;
         let completedQuestions = { 'panne': 0, 'accident-leger': 0, 'accident-grave': 0 };
-        let questionsAnswered  = { 'panne': 0, 'accident-leger': 0, 'accident-grave': 0 };
+        let questionsAnswered = { 'panne': 0, 'accident-leger': 0, 'accident-grave': 0 };
 
-        // ── DÉMARRAGE ──
+        // Initialize
         function startQuiz() {
             document.getElementById('intro-screen').style.display = 'none';
             document.getElementById('quiz-container').style.display = 'block';
             loadScenario('panne');
         }
 
-        // ── ONGLETS ──
+        // Tab switching
         document.querySelectorAll('.tab-btn').forEach(tab => {
             tab.addEventListener('click', () => {
                 document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
                 tab.classList.add('active');
+                const scenario = tab.dataset.scenario;
+
+                // Hide all scenarios
                 document.querySelectorAll('.quiz-content').forEach(c => c.classList.remove('active'));
                 document.getElementById('result-screen').classList.remove('show');
-                loadScenario(tab.dataset.scenario);
+
+                loadScenario(scenario);
             });
         });
 
         function loadScenario(scenario) {
             currentScenario = scenario;
             const data = quizData[scenario];
+
+            // Use questionsAnswered to determine which question to show
             const qIndex = questionsAnswered[scenario] % data.questions.length;
             currentQuestionIndex = qIndex;
             currentQuestion = data.questions[qIndex];
             selectedAnswers = [];
             timeLeft = data.time;
 
+            // Update progress based on questions answered (not completed, which includes validated)
             const progress = (questionsAnswered[scenario] / data.questions.length) * 100;
             document.getElementById(`progress-${scenario}`).style.width = `${progress}%`;
 
+            // Update timer
             const timerEl = document.getElementById(`timer-${scenario}`);
             timerEl.querySelector('.timer-value').textContent = `${timeLeft}s`;
-            timerEl.classList.remove('warning','danger');
+            timerEl.classList.remove('warning', 'danger');
 
+            // Show scenario
             document.querySelectorAll('.quiz-content').forEach(c => c.classList.remove('active'));
             document.getElementById(`scenario-${scenario}`).classList.add('active');
 
+            // Update question number
             const questionText = document.querySelector(`#scenario-${scenario} .question-text`);
             questionText.innerHTML = `<span>Question ${questionsAnswered[scenario] + 1}/${data.questions.length} :</span> Classez les étapes dans le bon ordre en cliquant dessus`;
 
+            // Hide feedback and next button
             document.getElementById(`feedback-${scenario}`).classList.remove('show');
             document.getElementById(`explanation-${scenario}`).style.display = 'none';
             document.getElementById(`next-${scenario}`).style.display = 'none';
             document.getElementById(`validate-${scenario}`).style.display = 'inline-flex';
             document.getElementById(`validate-${scenario}`).disabled = true;
 
+            // Create slots
             createSlots(scenario);
+
+            // Create options
             createOptions(scenario);
 
+            // Start timer
             if (timer) clearInterval(timer);
             timer = setInterval(() => {
                 timeLeft--;
-                const tEl = document.getElementById(`timer-${scenario}`);
-                tEl.querySelector('.timer-value').textContent = `${timeLeft}s`;
-                if (timeLeft <= 10)      tEl.classList.add('danger');
-                else if (timeLeft <= 20) tEl.classList.add('warning');
-                if (timeLeft <= 0) { clearInterval(timer); autoValidate(scenario); }
+                const timerEl = document.getElementById(`timer-${scenario}`);
+                timerEl.querySelector('.timer-value').textContent = `${timeLeft}s`;
+
+                if (timeLeft <= 10) {
+                    timerEl.classList.add('danger');
+                } else if (timeLeft <= 20) {
+                    timerEl.classList.add('warning');
+                }
+
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    autoValidate(scenario);
+                }
             }, 1000);
         }
 
         function createSlots(scenario) {
             const slotsContainer = document.getElementById(`slots-${scenario}`);
             slotsContainer.innerHTML = '';
+
             currentQuestion.steps.forEach((step, index) => {
                 const slot = document.createElement('div');
                 slot.className = 'answer-slot';
@@ -1111,12 +1158,18 @@
         function createOptions(scenario) {
             const optionsContainer = document.getElementById(`options-${scenario}`);
             optionsContainer.innerHTML = '';
+
+            // Shuffle options
             const shuffled = [...currentQuestion.steps].sort(() => Math.random() - 0.5);
+
             shuffled.forEach(step => {
                 const btn = document.createElement('button');
                 btn.className = 'option-btn';
                 btn.dataset.id = step.id;
-                btn.innerHTML = `<span class="opt-icon">${step.icon}</span><span>${step.text}</span>`;
+                btn.innerHTML = `
+                    <span class="opt-icon">${step.icon}</span>
+                    <span>${step.text}</span>
+                `;
                 btn.addEventListener('click', () => selectOption(scenario, step.id));
                 optionsContainer.appendChild(btn);
             });
@@ -1124,24 +1177,34 @@
 
         function selectOption(scenario, stepId) {
             if (selectedAnswers.length >= currentQuestion.steps.length) return;
+
             const step = currentQuestion.steps.find(s => s.id === stepId);
             if (!step) return;
+
+            // Find first empty slot
             const emptySlotIndex = selectedAnswers.length;
+            if (emptySlotIndex >= currentQuestion.steps.length) return;
+
+            // Add to answers
             selectedAnswers.push(stepId);
 
+            // Update slot
             const slot = document.querySelector(`#slots-${scenario} .answer-slot[data-position="${emptySlotIndex}"]`);
             slot.classList.add('filled');
             slot.innerHTML = `
                 <div class="slot-number">${emptySlotIndex + 1}</div>
                 <div class="slot-content">
-                    <span style="margin-right:8px;">${step.icon}</span>${step.text}
+                    <span style="margin-right: 10px;">${step.icon}</span>
+                    ${step.text}
                 </div>
             `;
 
+            // Disable option
             const optionBtn = document.querySelector(`#options-${scenario} .option-btn[data-id="${stepId}"]`);
             optionBtn.classList.add('selected');
             optionBtn.disabled = true;
 
+            // Check if all filled
             if (selectedAnswers.length === currentQuestion.steps.length) {
                 document.getElementById(`validate-${scenario}`).disabled = false;
             }
@@ -1149,64 +1212,86 @@
 
         function removeFromSlot(scenario, position) {
             if (position >= selectedAnswers.length) return;
+
+            const removedId = selectedAnswers[position];
             selectedAnswers.splice(position, 1);
+
+            // Update slots
             createSlots(scenario);
+
+            // Re-fill with current answers
             selectedAnswers.forEach((stepId, index) => {
                 const step = currentQuestion.steps.find(s => s.id === stepId);
                 const slot = document.querySelector(`#slots-${scenario} .answer-slot[data-position="${index}"]`);
                 slot.classList.add('filled');
                 slot.innerHTML = `
                     <div class="slot-number">${index + 1}</div>
-                    <div class="slot-content"><span style="margin-right:8px;">${step.icon}</span>${step.text}</div>
+                    <div class="slot-content">
+                        <span style="margin-right: 10px;">${step.icon}</span>
+                        ${step.text}
+                    </div>
                 `;
             });
+
+            // Re-enable all options and re-disable selected
             document.querySelectorAll(`#options-${scenario} .option-btn`).forEach(btn => {
                 btn.disabled = false;
                 btn.classList.remove('selected');
             });
             selectedAnswers.forEach(id => {
-                const btn = document.querySelector(`#options-${scenario} .option-btn[data-id="${id}"]`);
-                btn.classList.add('selected');
-                btn.disabled = true;
+                document.querySelector(`#options-${scenario} .option-btn[data-id="${id}"]`).classList.add('selected');
+                document.querySelector(`#options-${scenario} .option-btn[data-id="${id}"]`).disabled = true;
             });
+
             document.getElementById(`validate-${scenario}`).disabled = true;
         }
 
         function validateAnswer(scenario) {
             clearInterval(timer);
+
             const isCorrect = arraysEqual(selectedAnswers, currentQuestion.correctOrder);
             const feedback = document.getElementById(`feedback-${scenario}`);
+            const feedbackIcon = feedback.querySelector('.feedback-icon');
+            const feedbackTitle = feedback.querySelector('.feedback-title');
+            const feedbackText = feedback.querySelector('.feedback-text');
+
+            // Update score
             score.total++;
-            if (isCorrect) { score.success++; showToast('✓ Bonne réponse !', 'success'); }
-            else            { showToast('✗ Réponse incorrecte', 'error'); }
+            if (isCorrect) {
+                score.success++;
+                showToast('✓ Bonne réponse !', 'success');
+            } else {
+                showToast('✗ Réponse incorrecte', 'error');
+            }
             updateScore();
 
+            // Show feedback
             feedback.className = `feedback show ${isCorrect ? 'success' : 'error'}`;
-            feedback.querySelector('.feedback-icon').textContent  = isCorrect ? '✓' : '✗';
-            feedback.querySelector('.feedback-title').textContent = isCorrect ? 'Bravo !' : 'Pas tout à fait…';
-            feedback.querySelector('.feedback-text').textContent  = currentQuestion.feedback[isCorrect ? 'correct' : 'incorrect'];
+            feedbackIcon.textContent = isCorrect ? '✓' : '✗';
+            feedbackTitle.textContent = isCorrect ? 'Bravo !' : 'Pas tout à fait...';
+            feedbackText.textContent = currentQuestion.feedback[isCorrect ? 'correct' : 'incorrect'];
 
-            // Coloration des slots
-            document.querySelectorAll(`#slots-${scenario} .answer-slot`).forEach((slot, index) => {
-                const num = slot.querySelector('.slot-number');
-                if (selectedAnswers[index] === currentQuestion.correctOrder[index]) {
-                    num.style.background = 'var(--basque-vert)';
-                    num.style.borderColor = 'var(--basque-vert)';
-                    num.style.color = 'white';
-                    num.textContent = '✓';
+            // Highlight correct answers
+            const slots = document.querySelectorAll(`#slots-${scenario} .answer-slot`);
+            slots.forEach((slot, index) => {
+                const stepId = selectedAnswers[index];
+                const correctId = currentQuestion.correctOrder[index];
+
+                if (stepId === correctId) {
+                    slot.querySelector('.slot-number').style.background = 'linear-gradient(135deg, #48bb78, #38a169)';
+                    slot.querySelector('.slot-number').textContent = '✓';
                 } else {
-                    num.style.background = 'var(--basque-rouge)';
-                    num.style.borderColor = 'var(--basque-rouge)';
-                    num.style.color = 'white';
-                    num.textContent = '✗';
+                    slot.querySelector('.slot-number').style.background = 'linear-gradient(135deg, #e94560, #ff6b6b)';
+                    slot.querySelector('.slot-number').textContent = '✗';
                 }
             });
 
-            // Explication
+            // Show explanation
             const explanation = document.getElementById(`explanation-${scenario}`);
             const correctOrderList = document.getElementById(`correct-order-${scenario}`);
             explanation.style.display = 'block';
             correctOrderList.innerHTML = '';
+
             currentQuestion.correctOrder.forEach((id, index) => {
                 const step = currentQuestion.steps.find(s => s.id === id);
                 const li = document.createElement('li');
@@ -1214,13 +1299,21 @@
                 correctOrderList.appendChild(li);
             });
 
+            // Increment completed questions
             completedQuestions[scenario]++;
+
+            // Update progress bar to show completion
             const progress = (completedQuestions[scenario] / quizData[scenario].questions.length) * 100;
             document.getElementById(`progress-${scenario}`).style.width = `${progress}%`;
 
-            document.getElementById(`validate-${scenario}`).style.display = 'none';
+            // Show next or result
+            const validateBtn = document.getElementById(`validate-${scenario}`);
             const nextBtn = document.getElementById(`next-${scenario}`);
+
+            validateBtn.style.display = 'none';
             nextBtn.style.display = 'inline-flex';
+
+            // Check if all scenarios completed
             if (completedQuestions[currentScenario] >= quizData[currentScenario].questions.length) {
                 nextBtn.textContent = 'Voir les résultats 🎯';
             }
@@ -1228,7 +1321,9 @@
 
         function autoValidate(scenario) {
             if (selectedAnswers.length < currentQuestion.steps.length) {
-                currentQuestion.steps.filter(s => !selectedAnswers.includes(s.id)).forEach(step => {
+                // Fill remaining with random or skip
+                const remaining = currentQuestion.steps.filter(s => !selectedAnswers.includes(s.id));
+                remaining.forEach(step => {
                     selectedAnswers.push(step.id);
                 });
             }
@@ -1236,10 +1331,16 @@
         }
 
         function nextQuestion(scenario) {
+            const data = quizData[scenario];
+
+            // Increment questions answered
             questionsAnswered[scenario]++;
-            if (questionsAnswered[scenario] >= quizData[scenario].questions.length) {
+
+            if (questionsAnswered[scenario] >= data.questions.length) {
+                // Reset for this scenario to allow replay
                 questionsAnswered[scenario] = 0;
                 completedQuestions[scenario] = 0;
+                // Show result for this scenario
                 showResult();
             } else {
                 loadScenario(scenario);
@@ -1247,41 +1348,57 @@
         }
 
         function showResult() {
+            // Hide current scenario
             document.querySelectorAll('.quiz-content').forEach(c => c.classList.remove('active'));
+
             const resultScreen = document.getElementById('result-screen');
+            const totalQuestions = quizData['panne'].questions.length +
+                                  quizData['accident-leger'].questions.length +
+                                  quizData['accident-grave'].questions.length;
+
+            const totalSuccess = completedQuestions['panne'] +
+                                 completedQuestions['accident-leger'] +
+                                 completedQuestions['accident-grave'];
+
+            // This is simplified - just showing current scenario result
             const currentSuccess = completedQuestions[currentScenario];
-            const total = quizData[currentScenario].questions.length;
-            document.getElementById('result-icon').textContent  = currentSuccess === total ? '🏆' : currentSuccess >= 2 ? '🌟' : '💪';
-            document.getElementById('result-title').textContent = currentSuccess === total ? 'Excellent !' : currentSuccess >= 2 ? 'Bien joué !' : 'Continuez !';
-            document.getElementById('result-score').textContent = `${currentSuccess}/${total}`;
-            document.getElementById('result-stars').textContent = '⭐'.repeat(currentSuccess) + '☆'.repeat(total - currentSuccess);
-            document.getElementById('result-message').textContent = currentSuccess === total
-                ? 'Vous maîtrisez parfaitement les bons réflexes pour cette situation !'
-                : currentSuccess >= 2 ? 'Vous avez de bonnes bases, révisez les points à améliorer.'
-                : 'Entraînez-vous encore pour maîtriser cette situation.';
+
+            document.getElementById('result-icon').textContent = currentSuccess === 3 ? '🏆' : currentSuccess >= 2 ? '🌟' : '💪';
+            document.getElementById('result-title').textContent = currentSuccess === 3 ? 'Excellent !' : currentSuccess >= 2 ? 'Bien joué !' : 'Continuez !';
+            document.getElementById('result-score').textContent = `${currentSuccess}/${quizData[currentScenario].questions.length}`;
+            document.getElementById('result-stars').textContent = '⭐'.repeat(currentSuccess) + '☆'.repeat(quizData[currentScenario].questions.length - currentSuccess);
+            document.getElementById('result-message').textContent = currentSuccess === 3 ?
+                'Vous maîtrisez parfaitement les bons réflexes pour cette situation !' :
+                currentSuccess >= 2 ?
+                'Vous avez de bonnes bases, révisez les points à améliorer.' :
+                'Entraînez-vous encore pour maîtriser cette situation.';
+
             resultScreen.classList.add('show');
         }
 
         function restartQuiz() {
             completedQuestions = { 'panne': 0, 'accident-leger': 0, 'accident-grave': 0 };
-            questionsAnswered  = { 'panne': 0, 'accident-leger': 0, 'accident-grave': 0 };
+            questionsAnswered = { 'panne': 0, 'accident-leger': 0, 'accident-grave': 0 };
             score = { success: 0, total: 0 };
             updateScore();
+
             document.querySelectorAll('.quiz-content').forEach(c => c.classList.remove('active'));
             document.getElementById('result-screen').classList.remove('show');
             document.getElementById('intro-screen').style.display = 'block';
             document.getElementById('quiz-container').style.display = 'none';
+
             document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
             document.querySelector('.tab-btn[data-scenario="panne"]').classList.add('active');
         }
 
         function updateScore() {
             document.getElementById('score-success').textContent = score.success;
-            document.getElementById('score-total').textContent   = score.total;
+            document.getElementById('score-total').textContent = score.total;
         }
 
         function arraysEqual(a, b) {
-            return a.length === b.length && a.every((v, i) => v === b[i]);
+            if (a.length !== b.length) return false;
+            return a.every((val, index) => val === b[index]);
         }
 
         function showToast(message, type) {
@@ -1289,7 +1406,10 @@
             toast.querySelector('.toast-text').textContent = message;
             toast.querySelector('.toast-icon').textContent = type === 'success' ? '✓' : '✗';
             toast.className = `toast show ${type}`;
-            setTimeout(() => toast.classList.remove('show'), 2500);
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
         }
     </script>
 </body>
