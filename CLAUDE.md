@@ -189,6 +189,49 @@ Fluid type scale uses `clamp()`:
 
 ---
 
+## Claude Code Integration & .claudeignore
+
+**⚠️ Important for future debugging:** This project uses a `.claudeignore` file to optimize Claude Code performance.
+
+### Why .claudeignore?
+
+The following large/binary files are **intentionally ignored** to prevent timeouts and context bloat:
+
+| Ignored Path | Size | Reason | Impact |
+|---|---|---|---|
+| `quizz/panneaux/` | 2.7 MB (294 SVG files) | Data files, never modified during development | Claude can't see these files |
+| `fonts/` | 540 KB (WOFF2 binaries) | Binary assets, not touched during dev | Claude can't inspect these files |
+| `quizz/panneaux_data.js` | 51 KB | Large static data file | Claude can't read this file |
+
+**Total excluded:** ~3.3 MB (80% reduction in context size)
+
+### What This Means
+
+- ✅ Claude **CAN still modify** `quizz/quizz_panneaux.html` (the quiz page itself)
+- ✅ Claude **CAN modify** CSS and HTML related to the quiz
+- ❌ Claude **CANNOT see** the individual SVG files in `quizz/panneaux/`
+- ❌ Claude **CANNOT inspect** the font files in `fonts/`
+- ❌ Claude **CANNOT read** the full panneaux_data.js file
+
+### If Claude Says "File Not Found"
+
+If Claude responds with "I can't see that file" or "file not found", it's likely because:
+1. The file is in `quizz/panneaux/` — this is expected and normal
+2. The file is in `fonts/` — this is expected and normal
+3. You need to describe the change differently (e.g., modify the HTML instead of the asset)
+
+**This is not a bug — it's intentional to keep performance fast.**
+
+### When to Update .claudeignore
+
+If you add new large directories or binary files, update `.claudeignore` to exclude them. Never exclude:
+- HTML, CSS, JS files (core code)
+- CLAUDE.md, STYLE_GUIDE.md (documentation)
+- robots.txt, sitemap.xml, CNAME (SEO config)
+- Configuration files and documentation
+
+---
+
 ## Owner Preferences
 
 - Basque cultural identity is central to the brand (colors: red, teal/green)
