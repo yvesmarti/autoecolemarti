@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DEK5H3Z9DR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DEK5H3Z9DR');
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FAQ — Permis de conduire à Bayonne | Auto-École Marti</title>
   <meta name="description" content="Toutes les réponses à vos questions sur le permis B, la conduite accompagnée, les tarifs et le financement. Auto-École Marti, Bayonne depuis 1962." />
   <link rel="canonical" href="https://autoecolemarti.fr/faq.html" />
+  <link rel="icon" type="image/png" href="favicon.ico.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <!-- JSON-LD FAQ Schema -->
   <script type="application/ld+json">
@@ -63,341 +72,468 @@
   </script>
 
   <style>
-    /* ── Variables ────────────────────────────────────────── */
+    /* ═══════════════════════════════════════
+       RESET & VARIABLES (alignées sur index.css)
+    ═══════════════════════════════════════ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
     :root {
-      --bg: #0c0c0c;
-      --bg-card: #141414;
-      --bg-card-hover: #1a1a1a;
-      --border: rgba(255,255,255,0.08);
-      --border-hover: rgba(212,175,55,0.4);
-      --text: #f0ede6;
-      --text-muted: #888;
-      --gold: #d4af37;
-      --gold-light: #e8cc6a;
-      --radius: 10px;
-      --font-display: 'Instrument Serif', Georgia, serif;
-      --font-body: 'DM Sans', sans-serif;
-      --nav-h: 68px;
+      --noir: #0a0a0a;
+      --blanc: #fafaf8;
+      --creme: #f5f0e8;
+      --gris: #6b7280;
+      --gris-clair: #e5e5e5;
+      --basque-rouge: #d63031;
+      --rouge-sombre: #922b21;
+      --basque-vert: #00695c;
+      --or: #d4a853;
+      --ombre: 0 4px 30px rgba(0,0,0,0.08);
+      --ombre-forte: 0 20px 60px rgba(0,0,0,0.12);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
-    /* ── Reset ────────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; font-size: 16px; }
     body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font-body);
-      font-size: 16px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
+      font-family: 'DM Sans', sans-serif;
+      background: var(--blanc);
+      color: var(--noir);
+      line-height: 1.7;
+      overflow-x: hidden;
     }
     a { color: inherit; text-decoration: none; }
 
-    /* ── Nav ──────────────────────────────────────────────── */
+    /* ═══════════════════════════════════════
+       NAVBAR
+    ═══════════════════════════════════════ */
     .nav {
       position: sticky;
       top: 0;
-      z-index: 100;
-      height: var(--nav-h);
+      z-index: 1000;
+      padding: 1rem 2rem;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 1px 30px rgba(0,0,0,0.06);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 32px;
-      background: rgba(12,12,12,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
     }
     .nav-logo {
-      font-family: var(--font-body);
-      font-weight: 600;
-      font-size: 15px;
-      letter-spacing: 0.06em;
-      color: var(--text);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--noir);
+      text-decoration: none;
+      letter-spacing: -0.02em;
     }
+    .nav-logo span { color: var(--basque-rouge); }
     .nav-links {
       display: flex;
-      gap: 28px;
+      gap: 2rem;
       list-style: none;
+      align-items: center;
     }
     .nav-links a {
-      font-size: 14px;
-      color: var(--text-muted);
-      transition: color .2s;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--noir);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: var(--transition);
+      position: relative;
     }
-    .nav-links a:hover { color: var(--text); }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--basque-rouge);
+      transition: var(--transition);
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links .nav-cta {
+      background: var(--basque-rouge);
+      color: white !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+    .nav-links .nav-cta::after { display: none !important; }
+    .nav-links .nav-cta:hover { background: var(--rouge-sombre); }
 
-    /* ── Breadcrumb ───────────────────────────────────────── */
+    /* ═══════════════════════════════════════
+       BREADCRUMB
+    ═══════════════════════════════════════ */
     .breadcrumb {
-      padding: 14px 32px;
-      font-size: 13px;
-      color: var(--text-muted);
-      border-bottom: 1px solid var(--border);
+      padding: 12px 2rem;
+      font-size: 0.82rem;
+      color: var(--gris);
+      background: var(--blanc);
+      border-bottom: 1px solid var(--gris-clair);
+      max-width: 100%;
     }
-    .breadcrumb a { color: var(--text-muted); transition: color .2s; }
-    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb a { color: var(--gris); transition: color .2s; }
+    .breadcrumb a:hover { color: var(--basque-rouge); }
     .breadcrumb span { margin: 0 6px; }
 
-    /* ── Hero ─────────────────────────────────────────────── */
+    /* ═══════════════════════════════════════
+       HERO (style page-hero du site)
+    ═══════════════════════════════════════ */
     .hero {
+      padding: 80px 2rem 60px;
+      background: linear-gradient(135deg, var(--basque-vert) 0%, #003d35 100%);
+      color: white;
       text-align: center;
-      padding: 72px 32px 56px;
-      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
     .hero-label {
       display: inline-block;
-      font-size: 12px;
-      font-weight: 500;
+      font-size: 0.75rem;
+      font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 20px;
+      background: var(--or);
+      color: var(--noir);
+      padding: 0.3rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 1.2rem;
+      position: relative;
     }
     .hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 400;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
       line-height: 1.15;
-      margin-bottom: 16px;
+      margin-bottom: 1rem;
+      position: relative;
     }
     .hero h1 em {
       font-style: italic;
-      color: var(--gold-light);
+      color: var(--or);
     }
     .hero p {
-      max-width: 560px;
+      max-width: 580px;
       margin: 0 auto;
-      color: var(--text-muted);
-      font-size: 15px;
+      color: rgba(255,255,255,0.75);
+      font-size: 1.05rem;
+      position: relative;
     }
 
-    /* ── Main layout ──────────────────────────────────────── */
+    /* ═══════════════════════════════════════
+       FAQ LAYOUT
+    ═══════════════════════════════════════ */
     .faq-wrap {
       max-width: 820px;
       margin: 0 auto;
-      padding: 64px 32px 96px;
+      padding: 64px 2rem 96px;
     }
 
-    /* ── Category ─────────────────────────────────────────── */
+    /* ═══════════════════════════════════════
+       CATÉGORIE
+    ═══════════════════════════════════════ */
     .faq-category {
       margin-bottom: 52px;
     }
     .faq-category-title {
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.16em;
+      gap: 10px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 20px;
+      color: var(--basque-rouge);
+      margin-bottom: 16px;
       padding-bottom: 14px;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 2px solid var(--gris-clair);
     }
     .faq-category-title .cat-icon {
-      font-size: 16px;
-      opacity: 0.9;
+      font-size: 1rem;
     }
 
-    /* ── Accordion item ───────────────────────────────────── */
+    /* ═══════════════════════════════════════
+       ACCORDÉON
+    ═══════════════════════════════════════ */
     .faq-item {
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
+      background: white;
+      border: 1px solid var(--gris-clair);
+      border-radius: var(--radius-sm);
       margin-bottom: 8px;
       overflow: hidden;
-      transition: border-color .25s;
+      transition: border-color .25s, box-shadow .25s;
     }
-    .faq-item.open,
     .faq-item:hover {
-      border-color: var(--border-hover);
+      border-color: rgba(214,48,49,0.25);
+      box-shadow: var(--ombre);
+    }
+    .faq-item.open {
+      border-color: rgba(214,48,49,0.35);
+      box-shadow: var(--ombre);
     }
 
     .faq-question {
       width: 100%;
-      background: var(--bg-card);
+      background: white;
       border: none;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      padding: 20px 24px;
+      padding: 18px 22px;
       text-align: left;
-      color: var(--text);
-      font-family: var(--font-body);
-      font-size: 15px;
-      font-weight: 500;
+      color: var(--noir);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.97rem;
+      font-weight: 600;
       transition: background .2s;
     }
-    .faq-question:hover { background: var(--bg-card-hover); }
-    .faq-item.open .faq-question { background: var(--bg-card-hover); }
+    .faq-question:hover { background: #fdfcfa; }
+    .faq-item.open .faq-question { background: #fdfcfa; }
 
     .faq-icon {
       flex-shrink: 0;
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
-      border: 1px solid var(--border-hover);
+      border: 2px solid var(--basque-rouge);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 14px;
-      color: var(--gold);
+      font-weight: 700;
+      color: var(--basque-rouge);
       transition: transform .3s;
+      line-height: 1;
     }
     .faq-item.open .faq-icon { transform: rotate(45deg); }
 
     .faq-answer {
       display: none;
-      background: var(--bg-card);
-      border-top: 1px solid var(--border);
-      padding: 0 24px;
+      background: var(--creme);
+      border-top: 1px solid var(--gris-clair);
     }
     .faq-item.open .faq-answer { display: block; }
+
     .faq-answer-inner {
-      padding: 18px 0 22px;
-      font-size: 14.5px;
-      color: rgba(240,237,230,0.78);
-      line-height: 1.7;
+      padding: 20px 22px 24px;
+      font-size: 0.92rem;
+      color: var(--noir);
+      line-height: 1.75;
     }
     .faq-answer-inner p + p { margin-top: 10px; }
 
-    /* ── Inline links ─────────────────────────────────────── */
+    /* Liens dans les réponses */
     .faq-answer-inner a {
-      color: var(--gold-light);
-      border-bottom: 1px solid rgba(212,175,55,0.3);
-      transition: border-color .2s, color .2s;
+      color: var(--basque-rouge);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(214,48,49,0.25);
+      transition: border-color .2s;
     }
     .faq-answer-inner a:hover {
-      color: var(--gold);
-      border-color: var(--gold);
+      border-color: var(--basque-rouge);
     }
 
-    /* ── Highlight box ────────────────────────────────────── */
+    /* Encart "bon à savoir" */
     .faq-answer-inner .tip {
       margin-top: 14px;
       padding: 12px 16px;
-      background: rgba(212,175,55,0.06);
-      border-left: 3px solid var(--gold);
-      border-radius: 4px;
-      font-size: 13.5px;
-      color: var(--text-muted);
+      background: rgba(0,105,92,0.06);
+      border-left: 3px solid var(--basque-vert);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.88rem;
+      color: var(--gris);
     }
-    .faq-answer-inner .tip strong { color: var(--gold-light); }
+    .faq-answer-inner .tip strong { color: var(--basque-vert); }
 
-    /* ── Tarif pill ───────────────────────────────────────── */
+    /* Pill tarif */
     .pill {
       display: inline-block;
       padding: 2px 10px;
-      background: rgba(212,175,55,0.12);
-      border: 1px solid rgba(212,175,55,0.25);
-      border-radius: 100px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--gold-light);
-      margin: 0 2px;
+      background: rgba(214,48,49,0.08);
+      border: 1px solid rgba(214,48,49,0.2);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--basque-rouge);
+      margin: 0 1px;
     }
 
-    /* ── CTA ──────────────────────────────────────────────── */
+    /* ═══════════════════════════════════════
+       CTA BANDEAU
+    ═══════════════════════════════════════ */
     .cta-band {
-      background: var(--bg-card);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+      background: linear-gradient(135deg, var(--basque-rouge) 0%, var(--rouge-sombre) 100%);
+      color: white;
       text-align: center;
-      padding: 56px 32px;
+      padding: 5rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-band::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
     .cta-band h2 {
-      font-family: var(--font-display);
-      font-size: 1.8rem;
-      font-weight: 400;
-      margin-bottom: 12px;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      position: relative;
     }
-    .cta-band h2 em { font-style: italic; color: var(--gold-light); }
+    .cta-band h2 em { font-style: italic; color: var(--or); }
     .cta-band p {
-      color: var(--text-muted);
-      font-size: 15px;
-      margin-bottom: 28px;
+      color: rgba(255,255,255,0.82);
+      font-size: 1rem;
+      max-width: 520px;
+      margin: 0 auto 2rem;
+      position: relative;
     }
     .btn-cta {
-      display: inline-block;
-      padding: 13px 28px;
-      background: var(--gold);
-      color: #0c0c0c;
-      font-weight: 600;
-      font-size: 14px;
-      border-radius: 6px;
-      transition: background .2s, transform .15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      background: white;
+      color: var(--basque-rouge);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: var(--transition);
+      position: relative;
     }
-    .btn-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
     .btn-ghost {
-      display: inline-block;
-      padding: 13px 28px;
-      border: 1px solid var(--border-hover);
-      color: var(--text-muted);
-      font-size: 14px;
-      border-radius: 6px;
-      margin-left: 12px;
-      transition: border-color .2s, color .2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      border: 2px solid rgba(255,255,255,0.5);
+      color: white;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 50px;
+      margin-left: 1rem;
+      text-decoration: none;
+      transition: var(--transition);
+      position: relative;
     }
-    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+    .btn-ghost:hover { border-color: white; background: rgba(255,255,255,0.1); }
 
-    /* ── Footer ───────────────────────────────────────────── */
+    /* ═══════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════ */
     footer {
-      padding: 48px 32px 32px;
+      background: var(--noir);
+      color: white;
+      padding: 4rem 2rem 2rem;
       display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr 1fr;
-      gap: 32px;
-      border-top: 1px solid var(--border);
+      grid-template-columns: 1.8fr 1fr 1fr 1fr;
+      gap: 3rem;
+      max-width: 100%;
+    }
+    .footer-inner-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr 1fr;
+      gap: 3rem;
     }
     .footer-brand .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
       font-weight: 700;
-      font-size: 18px;
-      letter-spacing: 0.04em;
-      margin-bottom: 10px;
+      color: white;
+      margin-bottom: 1rem;
+      display: block;
+      text-decoration: none;
     }
+    .footer-brand .logo span { color: var(--basque-rouge); }
     .footer-brand p {
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.6;
+      color: rgba(255,255,255,0.45);
+      font-size: 0.88rem;
+      line-height: 1.7;
     }
     .footer-col h4 {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
+      font-size: 0.75rem;
+      font-weight: 700;
       text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 14px;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 1.2rem;
     }
     .footer-col ul { list-style: none; }
-    .footer-col li { margin-bottom: 8px; }
-    .footer-col a { font-size: 13px; color: var(--text-muted); transition: color .2s; }
-    .footer-col a:hover { color: var(--text); }
+    .footer-col li { margin-bottom: 0.6rem; }
+    .footer-col a {
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color .2s;
+    }
+    .footer-col a:hover { color: white; }
     .footer-bottom {
-      padding: 20px 32px;
-      border-top: 1px solid var(--border);
+      background: var(--noir);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 1.5rem 2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: 12px;
-      color: var(--text-muted);
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 0.5rem;
     }
-    .footer-bottom a { color: var(--text-muted); transition: color .2s; }
-    .footer-bottom a:hover { color: var(--text); }
+    .footer-bottom a { color: rgba(255,255,255,0.3); transition: color .2s; }
+    .footer-bottom a:hover { color: rgba(255,255,255,0.7); }
 
-    /* ── Responsive ───────────────────────────────────────── */
+    /* ═══════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════ */
     @media (max-width: 768px) {
-      .nav { padding: 0 16px; }
-      .nav-links { display: none; }
-      .breadcrumb { padding: 12px 16px; }
-      .hero { padding: 48px 16px 36px; }
-      .faq-wrap { padding: 40px 16px 64px; }
-      .cta-band { padding: 40px 16px; }
-      .btn-ghost { margin: 10px 0 0; display: block; }
-      footer { grid-template-columns: 1fr 1fr; padding: 32px 16px 24px; }
+      .nav { padding: 0.6rem 1rem; }
+      .nav-inner { gap: 0; }
+      .nav-links {
+        gap: 1rem;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding-bottom: 0;
+      }
+      .nav-links::-webkit-scrollbar { display: none; }
+      .nav-links li { flex-shrink: 0; }
+      .nav-links a { font-size: 0.82rem; }
+      .hero { padding: 60px 1.2rem 40px; }
+      .faq-wrap { padding: 40px 1.2rem 64px; }
+      .cta-band { padding: 3.5rem 1.2rem; }
+      .btn-ghost { margin: 0.8rem 0 0; display: block; }
+      .footer-inner-grid { grid-template-columns: 1fr 1fr; }
       .footer-brand { grid-column: 1 / -1; }
-      .footer-bottom { padding: 16px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .footer-inner-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -405,14 +541,16 @@
 
   <!-- ── Navigation ─────────────────────────────────────── -->
   <nav class="nav">
-    <a href="https://autoecolemarti.fr/index.html" class="nav-logo">AUTO-ÉCOLE MARTI.</a>
-    <ul class="nav-links">
-      <li><a href="https://autoecolemarti.fr/index.html#formations">Formations</a></li>
-      <li><a href="https://autoecolemarti.fr/index.html#histoire">Notre histoire</a></li>
-      <li><a href="https://autoecolemarti.fr/blog/index.html">Blog</a></li>
-      <li><a href="https://autoecolemarti.fr/index.html#contact">Contact</a></li>
-      <li><a href="mailto:autoecole.marti@gmail.com">S'inscrire</a></li>
-    </ul>
+    <div class="nav-inner">
+      <a href="https://autoecolemarti.fr/index.html" class="nav-logo">AUTO-ÉCOLE MARTI<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="https://autoecolemarti.fr/index.html#formations">Formations</a></li>
+        <li><a href="https://autoecolemarti.fr/index.html#histoire">Notre histoire</a></li>
+        <li><a href="https://autoecolemarti.fr/blog/index.html">Blog</a></li>
+        <li><a href="https://autoecolemarti.fr/faq.html">FAQ</a></li>
+        <li><a href="https://autoecolemarti.fr/index.html#contact" class="nav-cta">Nous contacter</a></li>
+      </ul>
+    </div>
   </nav>
 
   <!-- ── Breadcrumb ─────────────────────────────────────── -->
@@ -515,7 +653,7 @@
         <div class="faq-answer" role="region">
           <div class="faq-answer-inner">
             <p>L'inscription en conduite accompagnée est possible dès <strong>15 ans révolus</strong>. L'épreuve théorique (code) peut même être passée dès cet âge dans le cadre de l'AAC.</p>
-            <p>Plus l'élève démarre tôt, plus il accumule d'expérience avant l'examen. C'est l'un des grands avantages de la formule.</p>
+            <p>Plus l'élève démarre tôt, plus il accumule de l'expérience avant l'examen. C'est l'un des grands avantages de la formule.</p>
             <div class="tip"><strong>Votre enfant a 15 ans ?</strong> C'est le bon moment pour prendre contact avec nous et ouvrir son dossier. <a href="tel:0559591260">05 59 59 12 60</a></div>
           </div>
         </div>
@@ -581,30 +719,12 @@
 
       <div class="faq-item">
         <button class="faq-question" aria-expanded="false">
-          Comment financer son permis de conduire ?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer" role="region">
-          <div class="faq-answer-inner">
-            <p>Plusieurs dispositifs peuvent vous aider à financer tout ou partie de votre permis :</p>
-            <p>
-              — <strong>CPF (Compte Personnel de Formation)</strong> : si vous êtes salarié ou demandeur d'emploi, vous pouvez utiliser vos droits CPF pour financer le permis B. À consulter sur <a href="https://www.moncompteformation.gouv.fr" target="_blank" rel="noopener">moncompteformation.gouv.fr</a>.<br>
-              — <strong>Permis à 1 € par jour</strong> : prêt aidé destiné aux jeunes de 15 à 25 ans, remboursable sur 1 à 3 ans. À monter avec votre banque.<br>
-              — <strong>Aide régionale ou locale</strong> : certaines collectivités proposent des aides spécifiques. Renseignez-vous auprès de votre mairie ou de la Région Nouvelle-Aquitaine.
-            </p>
-            <div class="tip"><strong>Chez nous :</strong> le paiement en plusieurs fois est disponible. Contactez-nous pour en connaître les modalités.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
           Peut-on payer en plusieurs fois ?
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-answer" role="region">
           <div class="faq-answer-inner">
-            <p>Oui, l'auto-école Marti propose le <strong>paiement en plusieurs fois</strong> pour toutes les formules. Renseignez-vous directement auprès de nous pour connaître les conditions.</p>
+            <p>Oui, l'auto-école Marti propose le <strong>paiement en plusieurs fois</strong> pour toutes les formules. Vous pouvez aussi payer vos heures de conduite au fur et à mesure. Renseignez-vous directement auprès de nous pour connaître les conditions.</p>
             <p>Appelez-nous au <a href="tel:0559591260">05 59 59 12 60</a> ou passez directement à l'accueil au 13 rue Marengo, Bayonne.</p>
           </div>
         </div>
@@ -695,35 +815,37 @@
 
   <!-- ── Footer ─────────────────────────────────────────── -->
   <footer>
-    <div class="footer-brand">
-      <div class="logo">MARTI.</div>
-      <p>Auto-école de confiance à Bayonne depuis 1962.<br>Formations permis B, conduite accompagnée et boîte automatique.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Formations</h4>
-      <ul>
-        <li><a href="https://autoecolemarti.fr/formules/permis-b-manuel.html">Permis B</a></li>
-        <li><a href="https://autoecolemarti.fr/formules/conduite-accompagnee.html">Conduite accompagnée</a></li>
-        <li><a href="https://autoecolemarti.fr/formules/permis-b-automatique.html">Boîte automatique</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Navigation</h4>
-      <ul>
-        <li><a href="https://autoecolemarti.fr/index.html">Accueil</a></li>
-        <li><a href="https://autoecolemarti.fr/blog/index.html">Blog</a></li>
-        <li><a href="https://autoecolemarti.fr/faq.html">FAQ</a></li>
-        <li><a href="https://autoecolemarti.fr/index.html#contact">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul>
-        <li><a href="tel:0559591260">05 59 59 12 60</a></li>
-        <li><a href="tel:0622008209">06 22 00 82 09</a></li>
-        <li><a href="mailto:autoecole.marti@gmail.com">autoecole.marti@gmail.com</a></li>
-        <li><a href="https://autoecolemarti.fr/index.html#contact">13 rue Marengo, Bayonne</a></li>
-      </ul>
+    <div class="footer-inner-grid">
+      <div class="footer-brand">
+        <a href="https://autoecolemarti.fr/index.html" class="logo">AUTO-ÉCOLE MARTI<span>.</span></a>
+        <p>Auto-école de confiance à Bayonne depuis 1962.<br>Formations permis B, conduite accompagnée et boîte automatique.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Formations</h4>
+        <ul>
+          <li><a href="https://autoecolemarti.fr/formules/permis-b-manuel.html">Permis B</a></li>
+          <li><a href="https://autoecolemarti.fr/formules/conduite-accompagnee.html">Conduite accompagnée</a></li>
+          <li><a href="https://autoecolemarti.fr/formules/permis-b-automatique.html">Boîte automatique</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="https://autoecolemarti.fr/index.html">Accueil</a></li>
+          <li><a href="https://autoecolemarti.fr/blog/index.html">Blog</a></li>
+          <li><a href="https://autoecolemarti.fr/faq.html">FAQ</a></li>
+          <li><a href="https://autoecolemarti.fr/index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:0559591260">05 59 59 12 60</a></li>
+          <li><a href="tel:0622008209">06 22 00 82 09</a></li>
+          <li><a href="mailto:autoecole.marti@gmail.com">autoecole.marti@gmail.com</a></li>
+          <li><a href="https://autoecolemarti.fr/index.html#contact">13 rue Marengo, Bayonne</a></li>
+        </ul>
+      </div>
     </div>
   </footer>
   <div class="footer-bottom">
@@ -738,13 +860,13 @@
         const item = btn.closest('.faq-item');
         const isOpen = item.classList.contains('open');
 
-        // Close all
+        // Ferme tous les items ouverts
         document.querySelectorAll('.faq-item.open').forEach(i => {
           i.classList.remove('open');
           i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
         });
 
-        // Toggle clicked
+        // Ouvre le cliqué si il était fermé
         if (!isOpen) {
           item.classList.add('open');
           btn.setAttribute('aria-expanded', 'true');
