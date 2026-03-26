@@ -90,12 +90,16 @@ function filePathToUrl(filePath) {
     .replace(/index\.html$/, '') // index.html → /
     .replace(/\.html$/, ''); // Enlever extension
 
-  // Ajouter slash final si pas fichier
+  // Ajouter slash final si pas vide
   if (url && !url.endsWith('/')) {
     url += '/';
   }
 
-  return `${SITE_URL}${url === '/' ? '' : url}`.replace(/\/$/, '') || SITE_URL;
+  // Construire l'URL finale
+  if (url === '/' || !url) {
+    return SITE_URL; // Accueil = domaine seul
+  }
+  return `${SITE_URL}/${url}`.replace(/\/$/, ''); // Ajouter / entre domaine et chemin
 }
 
 /**
