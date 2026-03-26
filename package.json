@@ -1,0 +1,22 @@
+{
+  "name": "autoecolemarti",
+  "version": "1.0.0",
+  "description": "Site web auto-école Marti",
+  "main": "index.html",
+  "scripts": {
+    "sitemap": "node scripts/generate-sitemap.js"
+  },
+  "keywords": [
+    "auto-école",
+    "permis",
+    "code",
+    "conduite",
+    "Bayonne"
+  ],
+  "author": "Yves Marti",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yvesmarti/autoecolemarti"
+  }
+}
