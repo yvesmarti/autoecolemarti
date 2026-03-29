@@ -369,7 +369,7 @@
       <div class="bw-container">
 
         <div class="bw-header">
-            <h2>🚗 Barème des Infractions 2026</h2>
+            <h2>Barème des Infractions 2026</h2>
             <p>Consultez les amendes et retraits de points pour chaque infraction</p>
         </div>
 
@@ -483,7 +483,7 @@
 
             <div class="bw-card delit" data-bwcat="vitesse">
                 <div class="bw-card-header" onclick="bwToggle(this)">
-                    <span class="bw-card-title">Grand excès de vitesse ≥ 50 km/h (DÉLIT)</span>
+                    <span class="bw-card-title">Grand excès de vitesse ≥ 50 km/h</span>
                     <div style="display:flex;align-items:center;gap:10px">
                         <span class="bw-badge badge-delit">DÉLIT</span>
                         <span class="bw-toggle-icon">▼</span>
@@ -523,7 +523,7 @@
 
             <div class="bw-card alcool" data-bwcat="alcool">
                 <div class="bw-card-header" onclick="bwToggle(this)">
-                    <span class="bw-card-title">Alcoolémie ≥ 0,8 g/L ou état d'ivresse (DÉLIT)</span>
+                    <span class="bw-card-title">Alcoolémie ≥ 0,8 g/L ou état d'ivresse</span>
                     <div style="display:flex;align-items:center;gap:10px">
                         <span class="bw-badge badge-delit">DÉLIT</span>
                         <span class="bw-toggle-icon">▼</span>
@@ -542,7 +542,7 @@
 
             <div class="bw-card alcool" data-bwcat="alcool">
                 <div class="bw-card-header" onclick="bwToggle(this)">
-                    <span class="bw-card-title">Stupéfiants au volant (DÉLIT)</span>
+                    <span class="bw-card-title">Stupéfiants au volant</span>
                     <div style="display:flex;align-items:center;gap:10px">
                         <span class="bw-badge badge-delit">DÉLIT</span>
                         <span class="bw-toggle-icon">▼</span>
@@ -562,7 +562,7 @@
 
             <div class="bw-card alcool" data-bwcat="alcool">
                 <div class="bw-card-header" onclick="bwToggle(this)">
-                    <span class="bw-card-title">Refus de se soumettre aux vérifications (DÉLIT)</span>
+                    <span class="bw-card-title">Refus de se soumettre aux vérifications</span>
                     <div style="display:flex;align-items:center;gap:10px">
                         <span class="bw-badge badge-delit">DÉLIT</span>
                         <span class="bw-toggle-icon">▼</span>
@@ -703,7 +703,7 @@
 
             <div class="bw-card delit" data-bwcat="securite">
                 <div class="bw-card-header" onclick="bwToggle(this)">
-                    <span class="bw-card-title">Conduite sans assurance (DÉLIT)</span>
+                    <span class="bw-card-title">Conduite sans assurance</span>
                     <div style="display:flex;align-items:center;gap:10px">
                         <span class="bw-badge badge-delit">DÉLIT</span>
                         <span class="bw-toggle-icon">▼</span>
@@ -722,7 +722,7 @@
 
             <div class="bw-card delit" data-bwcat="securite">
                 <div class="bw-card-header" onclick="bwToggle(this)">
-                    <span class="bw-card-title">Conduite sans permis (DÉLIT)</span>
+                    <span class="bw-card-title">Conduite sans permis</span>
                     <div style="display:flex;align-items:center;gap:10px">
                         <span class="bw-badge badge-delit">DÉLIT</span>
                         <span class="bw-toggle-icon">▼</span>
@@ -964,24 +964,30 @@
 <!-- ══════════════════════════════════════════════════════════════
      SCRIPTS
 ══════════════════════════════════════════════════════════════ -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script>
     // ── Scroll reveal navbar ──
     window.addEventListener('scroll', () => {
         document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
     });
 
+    // ── Dépliage d'une carte ──
     function bwToggle(header) {
         const body = header.nextElementSibling;
         const icon = header.querySelector('.bw-toggle-icon');
+        if (!body || !icon) return;
         const isExpanded = body.classList.contains('expanded');
         body.classList.toggle('expanded', !isExpanded);
         icon.classList.toggle('rotated', !isExpanded);
     }
 
+    // ── Filtrage par catégorie ──
     function bwFilter(btn, category) {
-        // Boutons actifs
         document.querySelectorAll('.bw-filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        // Filtrage des cartes
         document.querySelectorAll('.bw-card').forEach(card => {
-            const show = category === 'all' || card.
+            const show = category === 'all' || card.getAttribute('data-bwcat') === category;
+            card.style.display = show ? '' : 'none';
+        });
+    }
+</script>
