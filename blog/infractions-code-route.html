@@ -39,215 +39,264 @@
 
         /* ── Outil interactif (styles scoped sous .bareme-widget) ───── */
         .bareme-widget {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'DM Sans', sans-serif;
             margin: 2.5rem 0;
         }
         .bareme-widget .bw-container {
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+            border-radius: var(--radius);
+            box-shadow: var(--ombre-forte);
             overflow: hidden;
             border: 1px solid var(--gris-clair);
         }
+
+        /* En-tête — même logique que .calculator-header, thème rouge article */
         .bareme-widget .bw-header {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background: linear-gradient(135deg, var(--basque-rouge) 0%, #a81c1c 100%);
             color: white;
-            padding: 24px 30px;
+            padding: 1.4rem 1.8rem;
             text-align: center;
         }
         .bareme-widget .bw-header h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            margin-bottom: 6px;
+            margin: 0 0 0.3rem;
             letter-spacing: -0.02em;
             border-bottom: none;
             padding-bottom: 0;
             color: white;
-            margin-top: 0;
         }
         .bareme-widget .bw-header p {
-            opacity: 0.9;
-            font-size: 0.95rem;
-            margin-bottom: 0;
+            opacity: 0.88;
+            font-size: 0.88rem;
+            margin: 0;
             color: white;
         }
+
+        /* Alerte nouveauté */
         .bareme-widget .bw-alert {
-            background: rgba(214,48,49,0.08);
+            background: rgba(214,48,49,0.06);
             border-left: 4px solid var(--basque-rouge);
-            padding: 16px 24px;
+            padding: 14px 20px;
             color: #7a1010;
-            font-size: 0.92rem;
+            font-size: 0.9rem;
+            font-family: 'DM Sans', sans-serif;
         }
         .bareme-widget .bw-alert strong { color: var(--basque-rouge); }
+
+        /* Filtres */
         .bareme-widget .bw-filters {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            padding: 18px 24px;
-            background: #f8f9fa;
-            border-bottom: 1px solid #e9ecef;
+            gap: 8px;
+            padding: 16px 20px;
+            background: var(--creme);
+            border-bottom: 1px solid var(--gris-clair);
             justify-content: center;
         }
         .bareme-widget .bw-filter-btn {
-            padding: 10px 18px;
-            border: none;
-            border-radius: 25px;
+            padding: 8px 18px;
+            border: 1.5px solid var(--gris-clair);
+            border-radius: 50px;
             background: white;
-            color: #2a5298;
+            color: var(--noir);
             cursor: pointer;
             font-weight: 600;
-            font-size: 0.88rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+            font-size: 0.85rem;
+            transition: var(--transition);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
             font-family: 'DM Sans', sans-serif;
         }
         .bareme-widget .bw-filter-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+            border-color: var(--basque-rouge);
+            color: var(--basque-rouge);
+            box-shadow: 0 4px 12px rgba(214,48,49,0.12);
         }
         .bareme-widget .bw-filter-btn.active {
-            background: #2a5298;
+            background: var(--basque-rouge);
+            border-color: var(--basque-rouge);
             color: white;
+            box-shadow: 0 4px 12px rgba(214,48,49,0.25);
         }
+
+        /* Liste des cartes */
         .bareme-widget .bw-content {
-            padding: 24px;
+            padding: 20px;
+            background: var(--blanc);
         }
         .bareme-widget .bw-card {
             background: white;
-            border-radius: 12px;
-            margin-bottom: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            border-radius: var(--radius-sm);
+            margin-bottom: 12px;
+            box-shadow: var(--ombre);
             overflow: hidden;
-            transition: transform 0.3s ease;
-            border-left: 5px solid;
+            transition: transform var(--transition);
+            border-left: 4px solid;
+            border: 1px solid var(--gris-clair);
+            border-left-width: 4px;
         }
-        .bareme-widget .bw-card:hover { transform: translateX(4px); }
-        .bareme-widget .bw-card.vitesse  { border-left-color: #e74c3c; }
-        .bareme-widget .bw-card.alcool   { border-left-color: #9b59b6; }
-        .bareme-widget .bw-card.telephone{ border-left-color: #f39c12; }
-        .bareme-widget .bw-card.securite { border-left-color: #27ae60; }
-        .bareme-widget .bw-card.stationnement { border-left-color: #34495e; }
-        .bareme-widget .bw-card.delit    { border-left-color: #c0392b; }
+        .bareme-widget .bw-card:hover { transform: translateX(3px); }
+        .bareme-widget .bw-card.vitesse       { border-left-color: var(--rouge-doux); }
+        .bareme-widget .bw-card.alcool        { border-left-color: #9b59b6; }
+        .bareme-widget .bw-card.telephone     { border-left-color: var(--or); }
+        .bareme-widget .bw-card.securite      { border-left-color: var(--vert-clair); }
+        .bareme-widget .bw-card.stationnement { border-left-color: var(--gris); }
+        .bareme-widget .bw-card.delit         { border-left-color: var(--rouge-sombre); }
+
+        /* En-tête de chaque carte */
         .bareme-widget .bw-card-header {
-            padding: 18px 20px;
-            background: #f8f9fa;
+            padding: 16px 18px;
+            background: white;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 10px;
         }
+        .bareme-widget .bw-card-header:hover { background: rgba(214,48,49,0.03); }
         .bareme-widget .bw-card-title {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 700;
-            color: #2c3e50;
+            color: var(--noir);
+            font-family: 'DM Sans', sans-serif;
         }
+
+        /* Badges classe */
         .bareme-widget .bw-badge {
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.78rem;
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-size: 0.75rem;
             font-weight: 700;
             color: white;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
-        .bareme-widget .badge-3e   { background: #f39c12; }
-        .bareme-widget .badge-4e   { background: #e67e22; }
-        .bareme-widget .badge-5e   { background: #c0392b; }
-        .bareme-widget .badge-delit{ background: #8e44ad; }
+        .bareme-widget .badge-3e    { background: var(--or); }
+        .bareme-widget .badge-4e    { background: #e67e22; }
+        .bareme-widget .badge-5e    { background: var(--rouge); }
+        .bareme-widget .badge-delit { background: #8e44ad; }
+
+        /* Corps déplié */
         .bareme-widget .bw-card-body {
-            padding: 20px;
+            padding: 18px;
             display: none;
             background: white;
+            border-top: 1px solid var(--gris-clair);
         }
         .bareme-widget .bw-card-body.expanded {
             display: block;
-            animation: bwSlideDown 0.3s ease;
+            animation: bwSlideDown 0.28s ease;
         }
         @keyframes bwSlideDown {
-            from { opacity: 0; transform: translateY(-8px); }
+            from { opacity: 0; transform: translateY(-6px); }
             to   { opacity: 1; transform: translateY(0); }
         }
         .bareme-widget .bw-card-body p {
-            font-size: 0.92rem;
-            color: #555;
+            font-size: 0.9rem;
+            color: var(--gris);
             margin-bottom: 12px;
+            font-family: 'DM Sans', sans-serif;
         }
+
+        /* Grille sanctions */
         .bareme-widget .bw-sanctions {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-            gap: 12px;
-            margin-top: 12px;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
         }
         .bareme-widget .bw-sanction-item {
-            background: #f8f9fa;
-            padding: 14px;
-            border-radius: 10px;
+            background: var(--creme);
+            padding: 12px 10px;
+            border-radius: var(--radius-sm);
             text-align: center;
+            border: 1px solid rgba(0,0,0,0.04);
         }
         .bareme-widget .bw-sanction-label {
-            font-size: 0.8rem;
-            color: #7f8c8d;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--gris);
             margin-bottom: 4px;
+            font-weight: 500;
         }
         .bareme-widget .bw-sanction-value {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #2c3e50;
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--noir);
+            line-height: 1.2;
         }
-        .bareme-widget .bw-sanction-value.points { color: #e74c3c; }
-        .bareme-widget .bw-sanction-value.amende { color: #c0392b; }
+        .bareme-widget .bw-sanction-value.points { color: var(--basque-rouge); }
+        .bareme-widget .bw-sanction-value.amende  { color: var(--rouge-sombre); }
+
+        /* Notes contextuelles */
         .bareme-widget .bw-note {
-            border-radius: 8px;
-            padding: 12px 14px;
+            border-radius: var(--radius-sm);
+            padding: 10px 14px;
             margin-top: 12px;
-            font-size: 0.88rem;
+            font-size: 0.86rem;
+            font-family: 'DM Sans', sans-serif;
         }
         .bareme-widget .bw-note.warning {
-            background: #fff3cd;
-            border: 1px solid #ffc107;
-            color: #856404;
+            background: rgba(212,168,83,0.1);
+            border-left: 3px solid var(--or);
+            color: #7a5a10;
         }
         .bareme-widget .bw-note.danger {
-            background: #f8d7da;
-            border: 1px solid #dc3545;
-            color: #721c24;
+            background: rgba(214,48,49,0.06);
+            border-left: 3px solid var(--basque-rouge);
+            color: #7a1010;
         }
+
+        /* Icône toggle */
         .bareme-widget .bw-toggle-icon {
-            font-size: 1.2em;
-            transition: transform 0.3s ease;
-            color: #7f8c8d;
+            font-size: 1rem;
+            transition: transform 0.28s ease;
+            color: var(--gris);
+            flex-shrink: 0;
         }
         .bareme-widget .bw-toggle-icon.rotated { transform: rotate(180deg); }
+
+        /* Légende */
         .bareme-widget .bw-legend {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
             justify-content: center;
-            padding: 18px 24px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
+            padding: 16px 20px;
+            background: var(--creme);
+            border-top: 1px solid var(--gris-clair);
         }
         .bareme-widget .bw-legend-item {
             display: flex;
             align-items: center;
-            gap: 7px;
-            font-size: 0.83rem;
-            color: #555;
+            gap: 6px;
+            font-size: 0.82rem;
+            color: var(--gris);
+            font-family: 'DM Sans', sans-serif;
         }
         .bareme-widget .bw-legend-dot {
-            width: 16px; height: 16px;
-            border-radius: 4px;
+            width: 12px; height: 12px;
+            border-radius: 3px;
             flex-shrink: 0;
         }
+
+        /* Source */
         .bareme-widget .bw-source {
-            padding: 14px 24px;
+            padding: 12px 20px;
             text-align: center;
-            font-size: 0.78rem;
-            color: #9b9b9b;
-            border-top: 1px solid #e9ecef;
+            font-size: 0.76rem;
+            color: var(--gris);
+            border-top: 1px solid var(--gris-clair);
+            background: white;
+            font-family: 'DM Sans', sans-serif;
         }
+
         @media (max-width: 600px) {
-            .bareme-widget .bw-content { padding: 14px; }
-            .bareme-widget .bw-filters { padding: 14px; gap: 8px; }
+            .bareme-widget .bw-content  { padding: 12px; }
+            .bareme-widget .bw-filters  { padding: 12px; gap: 6px; }
             .bareme-widget .bw-sanctions { grid-template-columns: 1fr 1fr; }
         }
     </style>
@@ -266,7 +315,7 @@
             <li><a href="../index.html#avis">Avis</a></li>
             <li><a href="index.html" class="active">Blog</a></li>
             <li><a href="../index.html#contact">Contact</a></li>
-            <li><a href="mailto:autoecole.marti@gmail.com" class="nav-cta">S'inscrire</a></li>
+            <li><a href="/cdn-cgi/l/email-protection#87e6f2f3e8e2e4e8ebe2a9eae6f5f3eec7e0eae6eeeba9e4e8ea" class="nav-cta">S'inscrire</a></li>
         </ul>
     </div>
 </nav>
@@ -862,7 +911,7 @@
 <div class="cta-banner">
     <h2>Prêt à passer votre permis à Bayonne ?</h2>
     <p>Rejoignez l'auto-école Marti pour une formation complète et personnalisée, du code de la route à l'examen pratique.</p>
-    <a href="mailto:autoecole.marti@gmail.com" class="btn">Nous contacter →</a>
+    <a href="/cdn-cgi/l/email-protection#1c7d696873797f73707932717d6e68755c7b717d7570327f7371" class="btn">Nous contacter →</a>
 </div>
 
 <!-- ══════════════════════════════════════════════════════════════
@@ -899,7 +948,7 @@
                 <ul>
                     <li><a href="tel:0559591260">05 59 59 12 60</a></li>
                     <li><a href="tel:0622008209">06 22 00 82 09</a></li>
-                    <li><a href="mailto:autoecole.marti@gmail.com">autoecole.marti@gmail.com</a></li>
+                    <li><a href="/cdn-cgi/l/email-protection#86e7f3f2e9e3e5e9eae3a8ebe7f4f2efc6e1ebe7efeaa8e5e9eb"><span class="__cf_email__" data-cfemail="f6978382999395999a93d89b9784829fb6919b979f9ad895999b">[email&#160;protected]</span></a></li>
                     <li><a href="../index.html#contact">13 rue Marengo, Bayonne</a></li>
                 </ul>
             </div>
@@ -915,7 +964,7 @@
 <!-- ══════════════════════════════════════════════════════════════
      SCRIPTS
 ══════════════════════════════════════════════════════════════ -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // ── Scroll reveal navbar ──
     window.addEventListener('scroll', () => {
         document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
@@ -935,17 +984,4 @@
         btn.classList.add('active');
         // Filtrage des cartes
         document.querySelectorAll('.bw-card').forEach(card => {
-            const show = category === 'all' || card.dataset.bwcat === category;
-            card.style.display = show ? 'block' : 'none';
-        });
-    }
-
-    // Ouvre la première carte au chargement
-    document.addEventListener('DOMContentLoaded', function () {
-        const first = document.querySelector('.bw-card-header');
-        if (first) bwToggle(first);
-    });
-</script>
-
-</body>
-</html>
+            const show = category === 'all' || card.
