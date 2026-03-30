@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Sanctions du Code de la Route - Auto-École Marti</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="blog-article.css">
+    <style>
+        /* ── Surcharge de thème : rouge basque pour ce quiz ── */
+        :root {
+            --article-accent: var(--basque-rouge);
+            --article-accent-bg: rgba(214,48,49,0.06);
+            --article-accent-pill: rgba(214,48,49,0.10);
+            --article-hero-gradient: linear-gradient(135deg, #fff5f5 0%, #ffe0e0 50%, #ffd0d0 100%);
+            --article-hero-glow: rgba(214,48,49,0.10);
+            --cta-gradient: linear-gradient(135deg, var(--basque-rouge) 0%, var(--rouge-sombre) 100%);
+            --cta-btn-color: var(--basque-rouge);
+        }
+
+        /* ── Conteneur quiz intégré dans l'article ── */
+        .quiz-wrap {
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--ombre-forte);
+            border: 1px solid var(--gris-clair);
+            overflow: hidden;
+            margin: 2.5rem 0;
+        }
+
+        /* ── En-tête du quiz ── */
+        .quiz-header {
+            background: var(--basque-rouge);
+            color: white;
+            padding: 1.6rem 2rem;
+            text-align: center;
+        }
+        .quiz-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+            font-weight: 700;
+            color: white;
+            margin: 0 0 0.4rem;
+            border: none;
+            padding: 0;
+        }
+        .quiz-header p {
+            opacity: 0.88;
+            font-size: 0.92rem;
+            margin: 0;
+            color: white;
+        }
+
+        /* ── Onglets ── */
+        .quiz-tabs {
+            display: flex;
+            background: var(--creme);
+            border-bottom: 2px solid var(--gris-clair);
+        }
+        .quiz-tab {
+            flex: 1;
+            padding: 1.1rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.88rem;
+            color: var(--gris);
+            transition: var(--transition);
+            border: none;
+            background: none;
+            font-family: 'DM Sans', sans-serif;
+            letter-spacing: 0.02em;
+        }
+        .quiz-tab:hover { background: rgba(214,48,49,0.05); color: var(--basque-rouge); }
+        .quiz-tab.active {
+            background: white;
+            color: var(--basque-rouge);
+            border-bottom: 3px solid var(--basque-rouge);
+            margin-bottom: -2px;
+        }
+        .quiz-tab-icon { font-size: 1.3rem; display: block; margin-bottom: 4px; }
+
+        /* ── Contenu des onglets ── */
+        .quiz-content { padding: 2rem; display: none; }
+        .quiz-content.active { display: block; }
+
+        /* ── Intro / welcome ── */
+        .quiz-intro {
+            background: var(--article-accent-bg);
+            border-left: 4px solid var(--basque-rouge);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 1.8rem;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--noir);
+        }
+        .quiz-intro strong { color: var(--basque-rouge); font-weight: 700; }
+
+        /* ── Barre de progression ── */
+        .quiz-progress-bar {
+            background: var(--gris-clair);
+            height: 6px;
+            border-radius: 3px;
+            margin-bottom: 1.8rem;
+            overflow: hidden;
+        }
+        .quiz-progress-fill {
+            background: linear-gradient(90deg, var(--vert-clair) 0%, var(--vert) 100%);
+            height: 100%;
+            transition: width 0.5s ease;
+            border-radius: 3px;
+        }
+
+        /* ── Question ── */
+        .question-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--basque-rouge);
+            margin-bottom: 0.6rem;
+        }
+        .question-text {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--noir);
+            line-height: 1.6;
+            margin-bottom: 1.4rem;
+        }
+
+        /* ── Options ── */
+        .quiz-options { display: flex; flex-direction: column; gap: 10px; }
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0.9rem 1.2rem;
+            background: var(--creme);
+            border: 2px solid var(--gris-clair);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            color: var(--noir);
+        }
+        .quiz-option:hover {
+            border-color: var(--basque-rouge);
+            background: rgba(214,48,49,0.05);
+        }
+        .quiz-option.correct {
+            border-color: var(--vert-clair);
+            background: rgba(39,174,96,0.08);
+        }
+        .quiz-option.incorrect {
+            border-color: var(--basque-rouge);
+            background: rgba(214,48,49,0.07);
+        }
+        .option-badge {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid var(--gris-clair);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.82rem;
+            color: var(--gris);
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+        .quiz-option.correct .option-badge {
+            background: var(--vert-clair);
+            border-color: var(--vert-clair);
+            color: white;
+        }
+        .quiz-option.incorrect .option-badge {
+            background: var(--basque-rouge);
+            border-color: var(--basque-rouge);
+            color: white;
+        }
+
+        /* ── Explication ── */
+        .quiz-explanation {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem 1.2rem;
+            background: rgba(212,168,83,0.10);
+            border-left: 4px solid var(--or);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            color: var(--noir);
+        }
+        .quiz-explanation.show { display: block; }
+        .quiz-explanation strong {
+            display: block;
+            color: #8a6a1a;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.4rem;
+        }
+
+        /* ── Boutons ── */
+        .quiz-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 1.8rem;
+            justify-content: center;
+        }
+        .quiz-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.8rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            transition: var(--transition);
+        }
+        .quiz-btn-primary {
+            background: var(--basque-rouge);
+            color: white;
+        }
+        .quiz-btn-primary:hover {
+            background: var(--rouge-sombre);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(214,48,49,0.3);
+        }
+        .quiz-btn-secondary {
+            background: var(--creme);
+            color: var(--gris);
+            border: 1.5px solid var(--gris-clair);
+        }
+        .quiz-btn-secondary:hover { background: var(--gris-clair); }
+
+        /* ── Résultats ── */
+        .quiz-results {
+            display: none;
+            text-align: center;
+            padding: 2.5rem 1rem;
+        }
+        .quiz-results.show { display: block; }
+        .score-ring {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+        .score-ring.excellent { background: linear-gradient(135deg, var(--vert-clair), var(--vert)); color: white; }
+        .score-ring.good      { background: linear-gradient(135deg, #f6ad55, #ed8936); color: white; }
+        .score-ring.retry     { background: linear-gradient(135deg, var(--rouge-doux), var(--basque-rouge)); color: white; }
+        .score-ring .pct   { font-size: 2.6rem; line-height: 1; }
+        .score-ring .frac  { font-size: 0.85rem; opacity: 0.85; }
+
+        .quiz-results h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--noir);
+            margin-bottom: 0.6rem;
+        }
+        .quiz-results p {
+            color: var(--gris);
+            font-size: 0.97rem;
+            margin-bottom: 1.8rem;
+        }
+        .result-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .result-stat-card {
+            background: var(--creme);
+            border-radius: var(--radius-sm);
+            padding: 1rem;
+            border: 1px solid var(--gris-clair);
+        }
+        .result-stat-card .num {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--noir);
+            line-height: 1.1;
+        }
+        .result-stat-card .lbl {
+            font-size: 0.78rem;
+            color: var(--gris);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ── Légende classes de contraventions ── */
+        .quiz-legend {
+            background: var(--creme);
+            border-radius: var(--radius-sm);
+            padding: 1.4rem 1.6rem;
+            margin-top: 2rem;
+            border: 1px solid var(--gris-clair);
+        }
+        .quiz-legend h3 {
+            font-size: 0.88rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: var(--gris);
+            margin-bottom: 1rem;
+        }
+        .quiz-legend h3::before { display: none; }
+        .legend-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: var(--noir);
+        }
+        .legend-dot {
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .legend-dot.c1 { background: var(--basque-rouge); }
+        .legend-dot.c2 { background: #ed8936; }
+        .legend-dot.c3 { background: #ecc94b; }
+        .legend-dot.c4 { background: var(--vert-clair); }
+
+        /* ── Responsive ── */
+        @media (max-width: 600px) {
+            .quiz-content { padding: 1.2rem; }
+            .quiz-tabs { flex-direction: column; }
+            .quiz-tab.active { border-bottom: none; border-left: 3px solid var(--basque-rouge); }
+            .result-stats-grid { grid-template-columns: 1fr; }
+            .quiz-header { padding: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════════
+         HERO ARTICLE
+    ═══════════════════════════════════════ -->
+    <section class="article-hero">
+        <div class="article-hero-inner">
+            <nav class="article-breadcrumb">
+                <a href="/index.html">Accueil</a>
+                <span>›</span>
+                <a href="/blog.html">Blog</a>
+                <span>›</span>
+                <span>Quiz Sanctions</span>
+            </nav>
+            <div class="article-hero-meta">
+                <span class="article-cat-pill">🎓 Entraînement</span>
+                <span class="article-reading-pill">⏱ ~10 min par quiz</span>
+            </div>
+            <h1>Sanctions du code de la route : <em>testez vos connaissances</em></h1>
+            <p class="article-date-pub">Mis à jour — Mars 2026 · Auto-École Marti, Bayonne</p>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         CONTENU ARTICLE
+    ═══════════════════════════════════════ -->
+    <main class="article-wrap">
+
+        <div class="article-intro">
+            Connaître les sanctions encourues est essentiel pour adopter une conduite responsable. Ce quiz interactif couvre deux grandes catégories d'infractions : celles qui <strong>retirent des points</strong> sur le permis, et celles qui n'entraînent que des <strong>amendes financières</strong>. Les questions sont mélangées à chaque session.
+        </div>
+
+        <!-- ═══════ QUIZ ═══════ -->
+        <div class="quiz-wrap">
+
+            <div class="quiz-header">
+                <h2>Quiz — Sanctions du Code de la Route</h2>
+                <p>Choisissez un thème et répondez aux questions</p>
+            </div>
+
+            <div class="quiz-tabs">
+                <button class="quiz-tab active" onclick="switchTab('points')">
+                    <span class="quiz-tab-icon">⚠️</span>
+                    Perte de points
+                </button>
+                <button class="quiz-tab" onclick="switchTab('amendes')">
+                    <span class="quiz-tab-icon">💰</span>
+                    Amendes seules
+                </button>
+            </div>
+
+            <!-- Onglet 1 : Points -->
+            <div id="points" class="quiz-content active">
+                <div class="quiz-intro">
+                    <strong>Infractions avec retrait de points.</strong> Ces questions portent sur les infractions entraînant une perte de points sur le permis de conduire.
+                </div>
+                <div class="quiz-progress-bar">
+                    <div class="quiz-progress-fill" id="progress-points" style="width:0%"></div>
+                </div>
+                <div id="questions-points"></div>
+                <div class="quiz-buttons">
+                    <button class="quiz-btn quiz-btn-primary" id="next-points" onclick="nextQuestion('points')" style="display:none">Question suivante →</button>
+                    <button class="quiz-btn quiz-btn-secondary" id="restart-points" onclick="restartQuiz('points')" style="display:none">↺ Recommencer</button>
+                </div>
+                <div id="results-points" class="quiz-results"></div>
+            </div>
+
+            <!-- Onglet 2 : Amendes -->
+            <div id="amendes" class="quiz-content">
+                <div class="quiz-intro">
+                    <strong>Infractions avec amendes uniquement.</strong> Ces questions portent sur les contraventions sans retrait de points — uniquement des sanctions financières.
+                </div>
+                <div class="quiz-progress-bar">
+                    <div class="quiz-progress-fill" id="progress-amendes" style="width:0%"></div>
+                </div>
+                <div id="questions-amendes"></div>
+                <div class="quiz-buttons">
+                    <button class="quiz-btn quiz-btn-primary" id="next-amendes" onclick="nextQuestion('amendes')" style="display:none">Question suivante →</button>
+                    <button class="quiz-btn quiz-btn-secondary" id="restart-amendes" onclick="restartQuiz('amendes')" style="display:none">↺ Recommencer</button>
+                </div>
+                <div id="results-amendes" class="quiz-results"></div>
+
+                <div class="quiz-legend">
+                    <h3>📚 Rappel — Classes de contraventions</h3>
+                    <div class="legend-row"><div class="legend-dot c1"></div><span><strong>Classe 1 :</strong> amende max. 38 € (ex : oubli du certificat d'immatriculation)</span></div>
+                    <div class="legend-row"><div class="legend-dot c2"></div><span><strong>Classe 2 :</strong> amende max. 150 € (ex : usage du téléphone au volant)</span></div>
+                    <div class="legend-row"><div class="legend-dot c3"></div><span><strong>Classe 3 :</strong> amende max. 450 € (ex : petits excès de vitesse)</span></div>
+                    <div class="legend-row"><div class="legend-dot c4"></div><span><strong>Classe 4 :</strong> amende max. 750 € (ex : stationnement dangereux)</span></div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /quiz-wrap -->
+
+    </main>
+
+    <!-- ═══════════════════════════════════════
+         CTA
+    ═══════════════════════════════════════ -->
+    <section class="cta-banner">
+        <h2>Prêt(e) à passer votre permis ?</h2>
+        <p>L'Auto-École Marti vous accompagne à Bayonne avec des formules adaptées à votre rythme.</p>
+        <a href="/index.html#contact" class="btn">Nous contacter →</a>
+    </section>
+
+    <script>
+        const questionsPoints = [
+            { question: "Combien de points perd-on pour un excès de vitesse entre 20 et 30 km/h au-dessus de la limite autorisée ?", options: ["1 point", "2 points", "3 points", "4 points"], correct: 1, explanation: "Un excès de vitesse entre 20 et 30 km/h entraîne un retrait de 2 points sur le permis de conduire." },
+            { question: "Quelle est la sanction en points pour usage du téléphone au volant ?", options: ["1 point", "2 points", "3 points", "4 points"], correct: 2, explanation: "L'usage d'un téléphone tenu en main en conduisant entraîne un retrait de 3 points." },
+            { question: "Combien de points sont retirés pour un refus de priorité à un véhicule ?", options: ["2 points", "3 points", "4 points", "6 points"], correct: 2, explanation: "Le refus de priorité est sanctionné par un retrait de 4 points sur le permis." },
+            { question: "Que risque-t-on en brûlant un feu rouge ?", options: ["2 points", "3 points", "4 points", "6 points"], correct: 2, explanation: "Ne pas s'arrêter à un feu rouge entraîne un retrait de 4 points et une contravention de 4ème classe." },
+            { question: "Quelle est la perte de points pour conduite avec un taux d'alcool entre 0,5 et 0,8 g/litre de sang ?", options: ["3 points", "4 points", "6 points", "8 points"], correct: 2, explanation: "Pour un taux d'alcool entre 0,5 et 0,8 g/l (soit 0,25 à 0,4 mg/l d'air expiré), la sanction est de 6 points retirés." },
+            { question: "Combien de points perd-on pour un dépassement dangereux ?", options: ["1 point", "2 points", "3 points", "4 points"], correct: 2, explanation: "Un dépassement dangereux entraîne un retrait de 3 points sur le permis de conduire." },
+            { question: "Quelle est la sanction en points pour ne pas avoir attaché sa ceinture de sécurité ?", options: ["1 point", "2 points", "3 points", "4 points"], correct: 2, explanation: "La conduite sans ceinture de sécurité entraîne un retrait de 3 points." },
+            { question: "Que risque un conducteur pour un excès de vitesse de 40 à 50 km/h ?", options: ["3 points", "4 points", "5 points", "6 points"], correct: 1, explanation: "Un excès de vitesse entre 40 et 50 km/h entraîne un retrait de 4 points." },
+            { question: "Combien de points perd-on pour circulation en sens interdit ?", options: ["2 points", "3 points", "4 points", "6 points"], correct: 2, explanation: "La circulation en sens interdit est sanctionnée par un retrait de 4 points." },
+            { question: "Quelle est la perte de points pour conduite sous l'emprise de stupéfiants ?", options: ["3 points", "4 points", "6 points", "8 points"], correct: 2, explanation: "La conduite après usage de stupéfiants entraîne un retrait de 6 points et constitue un délit." },
+            { question: "Que risque-t-on pour non-respect d'un stop ?", options: ["2 points", "3 points", "4 points", "6 points"], correct: 2, explanation: "Le non-respect de l'arrêt au stop entraîne un retrait de 4 points." },
+            { question: "Combien de points sont retirés pour refus d'obtempérer à un agent ?", options: ["3 points", "4 points", "6 points", "8 points"], correct: 2, explanation: "Le refus d'obtempérer constitue un délit et entraîne un retrait de 6 points." },
+            { question: "Quelle sanction en points pour circulation sur la bande d'arrêt d'urgence ?", options: ["1 point", "2 points", "3 points", "4 points"], correct: 2, explanation: "La circulation sur la bande d'arrêt d'urgence entraîne un retrait de 3 points." },
+            { question: "Que risque-t-on pour franchissement de ligne continue ?", options: ["1 point", "2 points", "3 points", "4 points"], correct: 2, explanation: "Le franchissement de ligne continue entraîne un retrait de 3 points." },
+            { question: "Combien de points pour ne pas céder le passage à un piéton ?", options: ["2 points", "4 points", "6 points", "8 points"], correct: 2, explanation: "Le non-respect de l'obligation de céder le passage au piéton sur chaussée entraîne un retrait de 6 points." },
+            { question: "Quelle est la perte de points pour usage d'oreillette en conduisant ?", options: ["1 point", "2 points", "3 points", "4 points"], correct: 2, explanation: "Le port à l'oreille d'un dispositif émettant du son (oreillette, casque) entraîne un retrait de 3 points." },
+            { question: "Que risque un conducteur pour un excès de vitesse de 50 km/h ou plus ?", options: ["4 points", "6 points", "8 points", "12 points"], correct: 1, explanation: "Un excès de vitesse de 50 km/h ou plus constitue un délit passible de 6 points retirés." },
+            { question: "Combien de points perd-on pour non-respect des distances de sécurité ?", options: ["1 point", "2 points", "3 points", "4 points"], correct: 2, explanation: "Le non-respect des distances de sécurité entraîne un retrait de 3 points." },
+            { question: "Quelle sanction en points pour conduite sans casque à moto ?", options: ["1 point", "2 points", "3 points", "4 points"], correct: 2, explanation: "La conduite à moto sans casque entraîne un retrait de 3 points." },
+            { question: "Que risque-t-on pour ne pas dégager immédiatement un passage à niveau ?", options: ["3 points", "4 points", "6 points", "8 points"], correct: 2, explanation: "Ne pas dégager immédiatement la voie ferrée à l'approche d'un train entraîne un retrait de 6 points." }
+        ];
+
+        const questionsAmendes = [
+            { question: "Quelle est l'amende maximale pour un stationnement dangereux ?", options: ["38 €", "150 €", "450 €", "750 €"], correct: 2, explanation: "Le stationnement dangereux est une contravention de 4ème classe avec une amende maximale de 750 €." },
+            { question: "Que risque-t-on pour un stationnement gênant ?", options: ["Amende de 35 €", "Amende de 75 €", "Amende de 135 €", "Amende de 200 €"], correct: 1, explanation: "Le stationnement gênant sur la voie publique est sanctionné par une amende de 75 €." },
+            { question: "Quelle est l'amende pour un excès de vitesse inférieur à 5 km/h (depuis 2024) ?", options: ["68 €", "135 €", "200 €", "500 €"], correct: 1, explanation: "Depuis le 1er janvier 2024, les excès de vitesse inférieurs à 5 km/h ne font plus perdre de points, mais restent sanctionnés par une amende de 135 €." },
+            { question: "Combien coûte un stationnement sur un emplacement réservé aux handicapés ?", options: ["75 €", "135 €", "200 €", "500 €"], correct: 1, explanation: "Stationner sur un emplacement réservé aux personnes handicapées est sanctionné par une amende de 135 €." },
+            { question: "Quelle est l'amende pour oubli de ticket de parking ?", options: ["17 €", "35 €", "50 €", "100 €"], correct: 0, explanation: "L'oubli du ticket de parking est généralement sanctionné par une amende de 17 €." },
+            { question: "Que risque-t-on pour un stationnement irrégulier près d'un passage piéton ?", options: ["35 €", "75 €", "135 €", "200 €"], correct: 2, explanation: "Un stationnement à moins de 5 mètres d'un passage piéton est sanctionné par une amende de 135 €." },
+            { question: "Quelle est l'amende pour circulation sans certificat d'immatriculation ?", options: ["11 €", "38 €", "135 €", "750 €"], correct: 1, explanation: "Circuler sans porter sur soi le certificat d'immatriculation est sanctionné par une contravention de 1ère classe de 38 €." },
+            { question: "Que risque-t-on pour un arrêt ou stationnement devant une bouche d'incendie ?", options: ["35 €", "75 €", "135 €", "200 €"], correct: 2, explanation: "Stationner devant une bouche d'incendie est interdit et sanctionné par une amende de 135 €." },
+            { question: "Quelle est l'amende pour utilisation de la voie de bus ?", options: ["35 €", "135 €", "200 €", "500 €"], correct: 1, explanation: "Circuler ou stationner sur une voie réservée aux bus est sanctionné par une amende de 135 €." },
+            { question: "Que risque-t-on pour un véhicule avec éclairage défectueux ?", options: ["38 €", "135 €", "450 €", "750 €"], correct: 1, explanation: "Un éclairage défectueux ou insuffisant est sanctionné par une contravention de 4ème classe soit 135 €." },
+            { question: "Quelle est l'amende pour dépôt sauvage d'un véhicule ?", options: ["75 €", "150 €", "500 €", "1500 €"], correct: 2, explanation: "Le dépôt sauvage d'un véhicule hors d'usage constitue une contravention de 4ème classe pouvant aller jusqu'à 500 €." },
+            { question: "Que risque-t-on pour un stationnement en double file ?", options: ["35 €", "75 €", "135 €", "200 €"], correct: 2, explanation: "Le stationnement en double file est sanctionné par une amende de 135 €." },
+            { question: "Quelle est l'amende pour circulation sur la bande d'urgence sans motif légitime ?", options: ["135 €", "200 €", "450 €", "750 €"], correct: 1, explanation: "Circuler sur la bande d'arrêt d'urgence sans motif légitime entraîne une amende de 200 €." },
+            { question: "Que risque-t-on pour un excès de vitesse entre 5 et 20 km/h ?", options: ["68 €", "135 €", "300 €", "500 €"], correct: 1, explanation: "Un excès de vitesse entre 5 et 20 km/h entraîne une amende de 135 € et 1 point retiré." },
+            { question: "Quelle est l'amende pour non-respect de la distance minimale de chargement ?", options: ["35 €", "75 €", "135 €", "200 €"], correct: 0, explanation: "Le non-respect de la distance minimale de chargement est sanctionné par une contravention de 1ère ou 2ème classe (35 € ou 75 € selon le cas)." },
+            { question: "Que risque-t-on pour un véhicule dont le contrôle technique est périmé ?", options: ["68 €", "135 €", "450 €", "750 €"], correct: 1, explanation: "Circuler avec un contrôle technique périmé est sanctionné par une amende de 135 € et une possible immobilisation du véhicule." },
+            { question: "Quelle est l'amende pour usage incorrect des warnings ?", options: ["35 €", "75 €", "135 €", "200 €"], correct: 2, explanation: "L'utilisation incorrecte des warning (clignotants d'urgence) sur la voie publique est sanctionnée par une amende de 135 €." },
+            { question: "Que risque-t-on pour un stationnement sur un emplacement réservé aux taxis ?", options: ["35 €", "75 €", "150 €", "200 €"], correct: 1, explanation: "Stationner sur un emplacement réservé à l'arrêt ou au stationnement des taxis est sanctionné par une amende de 75 €." },
+            { question: "Quelle est l'amende pour un véhicule circulant avec des gaz d'échappement excessifs ?", options: ["38 €", "135 €", "450 €", "750 €"], correct: 1, explanation: "Un véhicule émettant des gaz ou fumées excessives est sanctionné par une contravention de 4ème classe de 135 €." },
+            { question: "Que risque-t-on pour usage du téléphone au volant sans dispositif mains-libres ?", options: ["68 €", "135 €", "300 €", "500 €"], correct: 1, explanation: "L'usage du téléphone au volant sans kit mains-libres entraîne une amende de 135 € et 3 points retirés." }
+        ];
+
+        let currentQ = { points: 0, amendes: 0 };
+        let scores    = { points: 0, amendes: 0 };
+        let answered  = { points: [], amendes: [] };
+        let shuffled  = { points: [], amendes: [] };
+        let initialized = { points: false, amendes: false };
+
+        function shuffleArray(arr) {
+            const a = [...arr];
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+        }
+
+        function switchTab(tab) {
+            document.querySelectorAll('.quiz-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.quiz-content').forEach(c => c.classList.remove('active'));
+            const idx = tab === 'points' ? 0 : 1;
+            document.querySelectorAll('.quiz-tab')[idx].classList.add('active');
+            document.getElementById(tab).classList.add('active');
+            if (!initialized[tab]) { initQuiz(tab); initialized[tab] = true; }
+        }
+
+        function initQuiz(tab) {
+            const src = tab === 'points' ? questionsPoints : questionsAmendes;
+            shuffled[tab]  = shuffleArray(src);
+            currentQ[tab]  = 0;
+            scores[tab]    = 0;
+            answered[tab]  = new Array(shuffled[tab].length).fill(false);
+            displayQuestion(tab);
+        }
+
+        function displayQuestion(tab) {
+            const q = shuffled[tab][currentQ[tab]];
+            const letters = ['A', 'B', 'C', 'D'];
+            document.getElementById(`restart-${tab}`).style.display = 'none';
+            document.getElementById(`results-${tab}`).classList.remove('show');
+
+            document.getElementById(`questions-${tab}`).innerHTML = `
+                <div class="question-label">Question ${currentQ[tab] + 1} / ${shuffled[tab].length}</div>
+                <div class="question-text">${q.question}</div>
+                <div class="quiz-options">
+                    ${q.options.map((opt, i) => `
+                        <div class="quiz-option" onclick="selectOption(${i}, '${tab}')">
+                            <div class="option-badge">${letters[i]}</div>
+                            <span>${opt}</span>
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="quiz-explanation" id="explanation-${tab}">
+                    <strong>📖 Explication</strong>
+                    ${q.explanation}
+                </div>
+            `;
+            const pct = (currentQ[tab] / shuffled[tab].length) * 100;
+            document.getElementById(`progress-${tab}`).style.width = `${pct}%`;
+        }
+
+        function selectOption(index, tab) {
+            if (answered[tab][currentQ[tab]]) return;
+            const q = shuffled[tab][currentQ[tab]];
+            const options = document.querySelectorAll(`#questions-${tab} .quiz-option`);
+
+            options.forEach((opt, i) => {
+                opt.style.pointerEvents = 'none';
+                if (i === q.correct) opt.classList.add('correct');
+                else if (i === index) opt.classList.add('incorrect');
+            });
+
+            document.getElementById(`explanation-${tab}`).classList.add('show');
+            answered[tab][currentQ[tab]] = true;
+            if (index === q.correct) scores[tab]++;
+
+            if (currentQ[tab] < shuffled[tab].length - 1) {
+                document.getElementById(`next-${tab}`).style.display = 'inline-flex';
+            } else {
+                showResults(tab);
+            }
+        }
+
+        function nextQuestion(tab) {
+            currentQ[tab]++;
+            document.getElementById(`next-${tab}`).style.display = 'none';
+            displayQuestion(tab);
+        }
+
+        function showResults(tab) {
+            const total = shuffled[tab].length;
+            const score = scores[tab];
+            const pct = Math.round((score / total) * 100);
+            let cls = 'retry', msg = 'Continuez à réviser, vous y êtes presque !';
+            if (pct >= 80)      { cls = 'excellent'; msg = 'Excellent ! Vous maîtrisez parfaitement ce sujet !'; }
+            else if (pct >= 60) { cls = 'good';      msg = 'Bien joué ! Une révision supplémentaire et vous serez au top !'; }
+
+            document.getElementById(`questions-${tab}`).innerHTML = '';
+            document.getElementById(`next-${tab}`).style.display = 'none';
+            document.getElementById(`restart-${tab}`).style.display = 'inline-flex';
+            document.getElementById(`progress-${tab}`).style.width = '100%';
+
+            const res = document.getElementById(`results-${tab}`);
+            res.innerHTML = `
+                <div class="score-ring ${cls}">
+                    <div class="pct">${pct}%</div>
+                    <div class="frac">${score}/${total}</div>
+                </div>
+                <h3>Quiz terminé !</h3>
+                <p>${msg}</p>
+                <div class="result-stats-grid">
+                    <div class="result-stat-card"><div class="num">${score}</div><div class="lbl">Bonnes réponses</div></div>
+                    <div class="result-stat-card"><div class="num">${total - score}</div><div class="lbl">Mauvaises réponses</div></div>
+                    <div class="result-stat-card"><div class="num">${pct}%</div><div class="lbl">Score final</div></div>
+                </div>
+            `;
+            res.classList.add('show');
+        }
+
+        function restartQuiz(tab) {
+            document.getElementById(`results-${tab}`).classList.remove('show');
+            document.getElementById(`restart-${tab}`).style.display = 'none';
+            initQuiz(tab);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initialized.points = true;
+            initQuiz('points');
+        });
+    </script>
+</body>
+</html>
