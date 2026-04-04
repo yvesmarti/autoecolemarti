@@ -86,6 +86,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://autoecolemarti.fr/formules</loc>
+    <lastmod>2026-04-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://autoecolemarti.fr/formules/conduite-accompagnee</loc>
     <lastmod>2026-04-04</lastmod>
     <priority>0.8</priority>
@@ -102,11 +107,6 @@
   </url>
   <url>
     <loc>https://autoecolemarti.fr/formules/permis-b-manuel</loc>
-    <lastmod>2026-04-04</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://autoecolemarti.fr/formules/quelle-formation</loc>
     <lastmod>2026-04-04</lastmod>
     <priority>0.8</priority>
   </url>
