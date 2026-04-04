@@ -555,5 +555,32 @@
     document.getElementById('pdfLightbox').addEventListener('click', e => { if (e.target.id === 'pdfLightbox') closeLightbox(); });
 </script>
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "item": "https://autoecolemarti.fr"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Formations",
+            "item": "https://autoecolemarti.fr/formules/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Permis B Boîte Manuelle",
+            "item": "https://autoecolemarti.fr/formules/permis-b-manuel"
+        }
+    ]
+}
+</script>
 </body>
 </html>
