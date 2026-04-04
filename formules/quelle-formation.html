@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quelle formation choisir ? — Auto-École Marti Bayonne</title>
+    <meta name="description" content="Répondez à 3 questions et découvrez la formation permis B faite pour vous : conduite accompagnée, boîte automatique ou permis traditionnel.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+    <style>
+/* ═══════════════════════════════════════
+   RESET & VARIABLES
+═══════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --noir: #0a0a0a;
+    --blanc: #fafaf8;
+    --creme: #f5f0e8;
+    --rouge: #c0392b;
+    --rouge-doux: #e74c3c;
+    --rouge-sombre: #922b21;
+    --vert: #1a5c38;
+    --vert-clair: #27ae60;
+    --gris: #6b7280;
+    --gris-clair: #e5e5e5;
+    --basque-rouge: #d63031;
+    --basque-vert: #00695c;
+    --or: #d4a853;
+    --ombre: 0 4px 30px rgba(0,0,0,0.08);
+    --ombre-forte: 0 20px 60px rgba(0,0,0,0.12);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--blanc);
+    color: var(--noir);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+/* ═══════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════ */
+nav {
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    padding: 1rem 2rem; transition: var(--transition); background: transparent;
+}
+nav.scrolled {
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 1px 30px rgba(0,0,0,0.06); padding: 0.6rem 2rem;
+}
+nav .nav-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+}
+nav .logo {
+    font-family: 'Playfair Display', serif; font-size: 1.5rem;
+    font-weight: 700; color: var(--noir); text-decoration: none; letter-spacing: -0.02em;
+}
+nav .logo span { color: var(--basque-rouge); }
+nav .nav-links {
+    display: flex; gap: 2rem; list-style: none; align-items: center;
+}
+nav .nav-links a {
+    text-decoration: none; color: var(--noir); font-size: 0.9rem;
+    font-weight: 500; letter-spacing: 0.02em; transition: var(--transition);
+    position: relative;
+}
+nav .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0;
+    width: 0; height: 2px; background: var(--basque-rouge); transition: var(--transition);
+}
+nav .nav-links a:hover::after { width: 100%; }
+nav .nav-links a.active { color: var(--basque-rouge); }
+nav .nav-links a.active::after { width: 100%; }
+nav .nav-cta {
+    background: var(--basque-rouge); color: white !important;
+    padding: 0.6rem 1.4rem; border-radius: 50px;
+    font-weight: 600; font-size: 0.85rem; transition: var(--transition);
+}
+nav .nav-cta::after { display: none !important; }
+nav .nav-cta:hover { background: var(--rouge-sombre); transform: translateY(-1px); }
+
+/* ═══════════════════════════════════════
+   PAGE HERO
+═══════════════════════════════════════ */
+.page-hero {
+    min-height: 44vh;
+    display: flex; align-items: flex-end;
+    background: linear-gradient(135deg, #fdfcfa 0%, #f0ebe0 50%, #e8dfd0 100%);
+    position: relative; overflow: hidden;
+    padding: 7rem 2rem 5rem;
+    text-align: center;
+}
+.page-hero::before {
+    content: ''; position: absolute; top: -20%; right: -10%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(214,48,49,0.06) 0%, transparent 70%);
+    border-radius: 50%;
+}
+.page-hero::after {
+    content: ''; position: absolute; bottom: -10%; left: -5%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0,105,92,0.05) 0%, transparent 70%);
+    border-radius: 50%;
+}
+.page-hero-inner {
+    max-width: 680px; margin: 0 auto;
+    position: relative; z-index: 2;
+}
+.page-hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(0,105,92,0.08); color: var(--basque-vert);
+    padding: 0.5rem 1rem; border-radius: 50px;
+    font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em;
+    margin-bottom: 1.5rem;
+}
+.page-hero-badge::before {
+    content: ''; width: 8px; height: 8px; background: var(--basque-vert);
+    border-radius: 50%; animation: pulse 2s infinite;
+}
+.page-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+    font-weight: 700; line-height: 1.15;
+    letter-spacing: -0.03em; margin-bottom: 1rem;
+}
+.page-hero h1 em { font-style: italic; color: var(--basque-rouge); }
+.page-hero p {
+    font-size: 1.05rem; color: var(--gris);
+    max-width: 500px; margin: 0 auto;
+}
+
+/* ═══════════════════════════════════════
+   QUIZ SECTION
+═══════════════════════════════════════ */
+.quiz-section {
+    background: var(--blanc);
+    padding: 0 2rem 6rem;
+}
+
+.quiz-wrapper {
+    max-width: 640px;
+    margin: 0 auto;
+    transform: translateY(-48px);
+}
+
+/* Progress */
+.quiz-progress {
+    margin-bottom: 1.5rem;
+    opacity: 0; transition: opacity 0.4s ease;
+}
+.quiz-progress.visible { opacity: 1; }
+.quiz-progress-bar {
+    height: 5px; background: var(--gris-clair);
+    border-radius: 50px; overflow: hidden; margin-bottom: 0.6rem;
+}
+.quiz-progress-fill {
+    height: 100%; background: linear-gradient(90deg, var(--basque-rouge), var(--rouge-doux));
+    border-radius: 50px;
+    transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    width: 0%;
+}
+.quiz-step-text {
+    font-size: 0.8rem; color: var(--gris);
+    font-weight: 500; text-align: right;
+}
+
+/* Card base */
+.quiz-card {
+    background: white; border-radius: var(--radius);
+    padding: 3rem 2.5rem;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Question header */
+.quiz-q-tag {
+    font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.15em;
+    color: var(--basque-rouge); margin-bottom: 0.6rem;
+}
+.quiz-q-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.35rem, 2.5vw, 1.9rem);
+    font-weight: 700; line-height: 1.25;
+    letter-spacing: -0.02em; margin-bottom: 0.5rem;
+}
+.quiz-q-sub {
+    font-size: 0.9rem; color: var(--gris); margin-bottom: 2rem;
+}
+
+/* Options */
+.quiz-options-2 {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+}
+.quiz-options-1 {
+    display: flex; flex-direction: column; gap: 0.85rem;
+}
+
+.quiz-opt {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1.2rem 1.4rem;
+    border: 2px solid var(--gris-clair);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: var(--transition);
+    background: white; text-align: left;
+    font-family: 'DM Sans', sans-serif;
+    width: 100%;
+}
+.quiz-opt:hover {
+    border-color: var(--basque-rouge);
+    background: rgba(214,48,49,0.025);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(214,48,49,0.12);
+}
+.quiz-opt-icon {
+    font-size: 2rem; flex-shrink: 0; line-height: 1;
+}
+.quiz-opt-body { flex: 1; }
+.quiz-opt-label {
+    font-weight: 700; font-size: 0.95rem; color: var(--noir);
+}
+.quiz-opt-desc {
+    font-size: 0.8rem; color: var(--gris); margin-top: 0.1rem;
+}
+.quiz-opt-arrow {
+    color: var(--gris-clair); font-size: 1rem;
+    transition: var(--transition); flex-shrink: 0;
+}
+.quiz-opt:hover .quiz-opt-arrow {
+    color: var(--basque-rouge); transform: translateX(3px);
+}
+
+/* Back button */
+.quiz-back-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: none; border: none;
+    color: var(--gris); font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem; cursor: pointer;
+    padding: 0.5rem 0; margin-top: 1.8rem;
+    transition: var(--transition);
+}
+.quiz-back-btn:hover { color: var(--noir); }
+
+/* ═══════════════════════════════════════
+   RESULT CARD
+═══════════════════════════════════════ */
+.result-card {
+    background: white; border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.result-header {
+    padding: 2.8rem 2.5rem;
+    position: relative; overflow: hidden;
+}
+.result-header.rouge {
+    background: linear-gradient(135deg, var(--basque-rouge) 0%, var(--rouge-sombre) 100%);
+    color: white;
+}
+.result-header.vert {
+    background: linear-gradient(135deg, var(--basque-vert) 0%, #004d40 100%);
+    color: white;
+}
+.result-header.navy {
+    background: linear-gradient(135deg, #1e2a4a 0%, #0d1b35 100%);
+    color: white;
+}
+.result-header::after {
+    content: '';
+    position: absolute; bottom: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 50%;
+}
+.result-tag-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(4px);
+    padding: 0.3rem 0.9rem;
+    border-radius: 50px; font-size: 0.75rem;
+    font-weight: 700; letter-spacing: 0.08em;
+    margin-bottom: 1.4rem;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+.result-big-icon {
+    font-size: 2.8rem; display: block; margin-bottom: 0.8rem;
+}
+.result-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700; line-height: 1.1;
+    margin-bottom: 0.3rem;
+}
+.result-subtitle-text {
+    opacity: 0.65; font-size: 0.88rem; margin-bottom: 1.4rem;
+    font-weight: 500; letter-spacing: 0.03em;
+}
+.result-price-display {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2rem; font-weight: 700; line-height: 1;
+}
+.result-price-note {
+    opacity: 0.55; font-size: 0.78rem; margin-top: 0.3rem;
+}
+
+.result-body { padding: 2.5rem; }
+
+.result-desc-text {
+    color: var(--gris); font-size: 0.95rem; line-height: 1.7;
+    margin-bottom: 1.8rem;
+}
+
+.result-feats {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 0.7rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--creme);
+    border-radius: var(--radius-sm);
+}
+.result-feats li {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-size: 0.9rem; color: var(--noir);
+}
+.result-feats li::before {
+    content: '✓'; color: var(--basque-vert);
+    font-weight: 700; flex-shrink: 0;
+}
+
+.result-ctas { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.result-btn-primary {
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 1rem 2rem; border-radius: 50px;
+    background: var(--basque-rouge); color: white;
+    font-weight: 700; font-size: 0.95rem;
+    text-decoration: none; transition: var(--transition);
+    border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
+}
+.result-btn-primary:hover {
+    background: var(--rouge-sombre); transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(214,48,49,0.35);
+}
+
+.result-btn-secondary {
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 1rem 2rem; border-radius: 50px;
+    border: 2px solid var(--gris-clair); color: var(--noir);
+    font-weight: 600; font-size: 0.9rem;
+    text-decoration: none; transition: var(--transition);
+}
+.result-btn-secondary:hover { border-color: var(--noir); }
+
+.result-other-fmts {
+    margin-top: 2rem; padding-top: 2rem;
+    border-top: 1px solid var(--gris-clair);
+}
+.result-other-fmts h4 {
+    font-size: 0.8rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--gris); margin-bottom: 0.8rem;
+}
+.other-fmts-row {
+    display: flex; gap: 0.75rem; flex-wrap: wrap;
+}
+.other-fmt-pill {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.4rem 0.9rem; border-radius: 50px;
+    border: 1.5px solid var(--gris-clair);
+    font-size: 0.82rem; font-weight: 600; color: var(--noir);
+    text-decoration: none; transition: var(--transition);
+}
+.other-fmt-pill:hover {
+    border-color: var(--basque-rouge); color: var(--basque-rouge);
+}
+
+.restart-wrap {
+    text-align: center; margin-top: 1.5rem;
+}
+.restart-btn {
+    background: none; border: none;
+    color: var(--gris); font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem; cursor: pointer;
+    text-decoration: underline; transition: var(--transition);
+    padding: 0.4rem;
+}
+.restart-btn:hover { color: var(--noir); }
+
+/* ═══════════════════════════════════════
+   SCREEN MANAGEMENT
+═══════════════════════════════════════ */
+.quiz-screen { display: none; }
+.quiz-screen.active { display: block; }
+
+/* ═══════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════ */
+@keyframes slideFromRight {
+    from { opacity: 0; transform: translateX(40px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideFromLeft {
+    from { opacity: 0; transform: translateX(-40px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes resultIn {
+    from { opacity: 0; transform: scale(0.96) translateY(24px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.4; }
+}
+
+.anim-right  { animation: slideFromRight 0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
+.anim-left   { animation: slideFromLeft  0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
+.anim-result { animation: resultIn 0.5s  cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
+
+.fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* ═══════════════════════════════════════
+   CTA BANNER
+═══════════════════════════════════════ */
+.cta-banner {
+    background: linear-gradient(135deg, var(--basque-rouge) 0%, var(--rouge-sombre) 100%);
+    color: white; text-align: center; padding: 5rem 2rem;
+    position: relative; overflow: hidden;
+}
+.cta-banner::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.cta-banner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 700;
+    margin-bottom: 1rem; position: relative;
+}
+.cta-banner p {
+    font-size: 1.1rem; opacity: 0.85; margin-bottom: 2rem;
+    max-width: 500px; margin-left: auto; margin-right: auto; position: relative;
+}
+.cta-banner .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 1rem 2rem; border-radius: 50px; font-size: 0.95rem;
+    font-weight: 700; text-decoration: none; transition: var(--transition);
+    background: white; color: var(--basque-rouge); position: relative;
+}
+.cta-banner .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+footer { background: var(--noir); color: white; padding: 4rem 2rem 2rem; }
+.footer-inner { max-width: 1200px; margin: 0 auto; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+.footer-brand .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: white; margin-bottom: 1rem; display: block; text-decoration: none; }
+.footer-brand .logo span { color: var(--basque-rouge); }
+.footer-brand p { color: rgba(255,255,255,0.5); font-size: 0.88rem; line-height: 1.7; }
+.footer-col h4 { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.2rem; color: rgba(255,255,255,0.4); }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 0.6rem; }
+.footer-col ul a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; transition: var(--transition); }
+.footer-col ul a:hover { color: white; }
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.82rem; color: rgba(255,255,255,0.35);
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media (max-width: 768px) {
+    nav { padding: 0.6rem 1rem; }
+    nav.scrolled { padding: 0.4rem 1rem; }
+    .nav-inner { flex-direction: column; align-items: stretch; gap: 0; }
+    nav .logo {
+        white-space: nowrap; font-size: 1.2rem;
+        overflow: hidden; max-height: 2.5rem; opacity: 1;
+        padding-bottom: 0.35rem;
+        transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.35s ease;
+    }
+    nav.scrolled .logo { max-height: 0; opacity: 0; padding-bottom: 0; pointer-events: none; }
+    .nav-links {
+        display: flex !important; flex-direction: row;
+        gap: 1rem; overflow-x: auto; flex-wrap: nowrap;
+        padding-bottom: 0; width: 100%;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; -ms-overflow-style: none;
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links li { flex-shrink: 0; }
+    .nav-links a { font-size: 0.82rem; }
+
+    .quiz-options-2 { grid-template-columns: 1fr; }
+    .quiz-card { padding: 2rem 1.5rem; }
+    .result-header { padding: 2rem 1.5rem; }
+    .result-body { padding: 2rem 1.5rem; }
+
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+}
+@media (max-width: 480px) {
+    .footer-top { grid-template-columns: 1fr; }
+    .other-fmts-row { flex-direction: column; }
+    .other-fmt-pill { justify-content: center; }
+}
+    </style>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav id="nav">
+    <div class="nav-inner">
+        <a href="https://autoecolemarti.fr" class="logo">AUTO-ÉCOLE <span>MARTI.</span></a>
+        <ul class="nav-links">
+            <li><a href="https://autoecolemarti.fr/#formations">Formations</a></li>
+            <li><a href="https://autoecolemarti.fr/#histoire">Notre histoire</a></li>
+            <li><a href="https://autoecolemarti.fr/#avis">Avis</a></li>
+            <li><a href="https://autoecolemarti.fr/blog/index.html">Blog</a></li>
+            <li><a href="https://autoecolemarti.fr/#contact">Contact</a></li>
+            <li><a href="mailto:autoecole.marti@gmail.com" class="nav-cta">S'inscrire</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ═══ PAGE HERO ═══ -->
+<header class="page-hero">
+    <div class="page-hero-inner" style="animation: fadeInUp 0.8s ease-out both;">
+        <div class="page-hero-badge">Trouver ma formation</div>
+        <h1>Quelle formation est<br>faite pour <em>vous</em> ?</h1>
+        <p>Répondez à 3 questions et découvrez la formule qui correspond à votre profil, votre âge et vos objectifs.</p>
+    </div>
+</header>
+
+<!-- ═══ QUIZ ═══ -->
+<section class="quiz-section">
+    <div class="quiz-wrapper">
+
+        <!-- Barre de progression -->
+        <div class="quiz-progress" id="progressBar">
+            <div class="quiz-progress-bar">
+                <div class="quiz-progress-fill" id="progressFill"></div>
+            </div>
+            <div class="quiz-step-text" id="stepText">Question 1 sur 3</div>
+        </div>
+
+        <!-- ── QUESTION 1 : Âge ── -->
+        <div class="quiz-screen active" id="screen-q1">
+            <div class="quiz-card anim-right">
+                <div class="quiz-q-tag">Question 1 / 3</div>
+                <div class="quiz-q-text">Quel est votre âge ?</div>
+                <div class="quiz-q-sub">Certaines formations sont accessibles dès 15 ans — et c'est un vrai avantage.</div>
+                <div class="quiz-options-2">
+                    <button class="quiz-opt" onclick="goTo('screen-q2', 'right')">
+                        <span class="quiz-opt-icon">🎓</span>
+                        <span class="quiz-opt-body">
+                            <span class="quiz-opt-label">15 à 17 ans</span>
+                            <span class="quiz-opt-desc">Je veux commencer tôt</span>
+                        </span>
+                        <span class="quiz-opt-arrow">→</span>
+                    </button>
+                    <button class="quiz-opt" onclick="goTo('screen-q2b', 'right')">
+                        <span class="quiz-opt-icon">🚗</span>
+                        <span class="quiz-opt-body">
+                            <span class="quiz-opt-label">18 ans ou plus</span>
+                            <span class="quiz-opt-desc">Je passe le permis maintenant</span>
+                        </span>
+                        <span class="quiz-opt-arrow">→</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── QUESTION 2A : si 15-17 ans → confirme AAC ── -->
+        <div class="quiz-screen" id="screen-q2">
+            <div class="quiz-card">
+                <div class="quiz-q-tag">Question 2 / 3</div>
+                <div class="quiz-q-text">Avez-vous un accompagnateur disponible ?</div>
+                <div class="quiz-q-sub">La conduite accompagnée requiert un proche titulaire du permis depuis au moins 5 ans.</div>
+                <div class="quiz-options-1">
+                    <button class="quiz-opt" onclick="goTo('screen-q3a', 'right')">
+                        <span class="quiz-opt-icon">✅</span>
+                        <span class="quiz-opt-body">
+                            <span class="quiz-opt-label">Oui, j'ai un parent ou proche disponible</span>
+                            <span class="quiz-opt-desc">Il conduit depuis au moins 5 ans</span>
+                        </span>
+                        <span class="quiz-opt-arrow">→</span>
+                    </button>
+                    <button class="quiz-opt" onclick="goTo('screen-q3a-nocomp', 'right')">
+                        <span class="quiz-opt-icon">🤷</span>
+                        <span class="quiz-opt-body">
+                            <span class="quiz-opt-label">Non, pas d'accompagnateur disponible</span>
+                            <span class="quiz-opt-desc">Ou je ne suis pas sûr</span>
+                        </span>
+                        <span class="quiz-opt-arrow">→</span>
+                    </button>
+                </div>
+                <button class="quiz-back-btn" onclick="goBack('screen-q1')">← Retour</button>
+            </div>
+        </div>
+
+        <!-- ── QUESTION 3A : confiance (jeune, avec accompagnateur) → AAC ── -->
+        <div class="quiz-screen" id="screen-q3a">
+            <div class="quiz-card">
+                <div class="quiz-q-tag">Question 3 / 3</div>
+                <div class="quiz-q-text">Quelle est votre priorité principale ?</div>
+                <div class="quiz-q-sub">Cela nous aide à confirmer la meilleure formule pour vous.</div>
+                <div class="quiz-options-1">
+                    <button class="quiz-opt" onclick="showResult('aac')">
+                        <span class="quiz-opt-icon">📈</span>
+                        <span class="quiz-opt-body">
+                            <span class="quiz-opt-label">Maximiser mes chances de réussite</span>
+                            <span class="quiz-opt-desc">Plus de pratique = meilleur taux de succès</span>
+                        </span>
+                        <span class="quiz-opt-arrow">→</span>
+                    </button>
+                    <button class="quiz-opt" onclick="showResult('aac')">
+                        <span class="quiz-opt-icon">💰</span>
+                        <span class="quiz-opt-body">
+                            <span class="quiz-opt-label">Réduire le coût global de mon permis</span>
+                            <span class="quiz-opt-desc">La conduite accompagnée optimise la dépense</span>
+                        </span>
+                        <span class="quiz-opt-arrow">→</span>
+                    </button>
+                    <button class="quiz-opt" onclick="showResult('aac')">
+                        <span class="quiz-opt-icon">🏁</span>
+                        <span class="quiz-opt-body">
+                            <span class="quiz-opt-label">Obtenir mon permis le plus tôt possible</span>
+                            <span class="quiz-opt-desc">Commencer à 15 ans, passer l'examen à 17½</span>
+                        </span>
+                        <span class="quiz-opt-arrow">→</span>
+                    </button>
+                </div>
+                <button class="quiz-back-btn" onclick="goBack('screen-q2')">← Retour</button>
+            </div>
+        </div>
+
+        <!-- ── QUESTION 3A bis : jeune sans accompagnateur ── -->
+        <div class="quiz-screen" id="screen-q3a-nocomp">
+            <div class="quiz-card">
+                <div class="quiz-q-tag">Question 3 / 3</div>
+                <div class="quiz-q-text">Comment abordez-vous la conduite ?</div>
+                <div class="quiz-q-sub">Être honnête sur ce point vous orientera vers la formule la plus adaptée.</div>
+                <div class="quiz-options-1">
+                    <button class="quiz-opt" onclick="showResult('bva')">
+                        <span class="quiz-opt-icon">😰</span>
+                        <span class="quiz-opt-body">
+                            <span class="quiz-opt-label">Avec un peu d'appréhension</span>
+                            <span class="quiz-opt-desc">Je préfère me concentrer sur la route, pas sur la boîte</span>
+                        </span>
+                        <span class="quiz-opt-arrow">→</span>
+                    </button>
+                    <button class="quiz-opt" onclick="showResult('manuel')">
+                        <span class="quiz-opt-icon">💪</span>
+                        <span class="quiz-opt-body">
+                            <span class="quiz-opt-label">Avec confiance et envie</span>
+                            <span class="quiz-opt-desc">Je veux maîtriser complètement le véhicule</span>
+                        </span>
+                        <span class="quiz-opt-arrow">→</span>
+                    </button>
+                </div>
+                <button class="quiz-back-btn" onclick="goBack('screen-q2')">← Retour</button>
+            </div>
+        </div>
+
+        <!-- ── QUESTION 2B : si 18+ ── -->
+        <div class="quiz-screen" id="screen-q2b">
+            <div class="quiz-card">
+                <div class="quiz-q-tag">Question 2 / 3</div>
+                <div class="quiz-q-text">Comment vous sentez-vous à l'idée de conduire ?</div>
+                <div class="quiz-q-sub">Il n'y a pas de mauvaise réponse — soyez honnête avec vous-même.</div>
+                <div class="quiz-options-1">
+                    <button class="quiz-opt" onclick="goTo('screen-q3b-anxious', 'right')">
+                        <span class="quiz-opt-icon">😰</span>
+                        <span class="quiz-opt-body">
+                            <span class="quiz-opt-label">Un peu anxieux ou peu confiant</span>
+                            <span class="quiz-opt-desc">Je veux une approche douce et progressive</span>
+                        </span>
+                        <span class="quiz-opt-arrow">→</span>
+                    </button>
+                    <button class="quiz-opt" onclick="goTo('screen-q3b-confident', 'right')">
+                        <span class="quiz-opt-icon">😊</span>
+                        <span class="quiz-opt-body">
+                            <span class="quiz-opt-label">Curieux et motivé</span>
+                            <span class="quiz-opt-desc">Je suis prêt à me lancer pleinement</span>
+                        </span>
+                        <span class="quiz-opt-arrow">→</span>
+                    </button>
+                    <button class="quiz-opt" onclick="goTo('screen-q3b-anxious', 'right')">
+                        <span class="quiz-opt-icon">✌️</span>
+                        <span class="quiz-opt-body">
+                            <span class="quiz-opt-label">Je veux la solution la plus simple</span>
+                            <span class="quiz-opt-desc">Moins de choses à gérer simultanément</span>
+                        </span>
+                        <span class="quiz-opt-arrow">→</span>
+                    </button>
+                </div>
+                <button class="quiz-back-btn" onclick="goBack('screen-q1')">← Retour</button>
+            </div>
+        </div>
+
+        <!-- ── QUESTION 3B : si anxieux → oriente BVA ── -->
+        <div class="quiz-screen" id="screen-q3b-anxious">
+            <div class="quiz-card">
+                <div class="quiz-q-tag">Question 3 / 3</div>
+                <div class="quiz-q-text">Qu'est-ce qui vous freine le plus en conduite ?</div>
+                <div class="quiz-q-sub">On affine votre profil pour vous proposer la formule la plus adaptée.</div>
+                <div class="quiz-options-1">
+                    <button class="quiz-opt" onclick="showResult('bva')">
+                        <span class="quiz-opt-icon">⚙️</span>
+                        <span class="quiz-opt-body">
+                            <span class="quiz-opt-label">Gérer la boîte manuelle me stresse</span>
+                            <span class="quiz-opt-desc">Les vitesses, l'embrayage, c'est trop à la fois</span>
+                        </span>
+                        <span class="quiz-opt-arrow">→</span>
+                    </button>
+                    <button class="quiz-opt" onclick="showResult('bva')">
+                        <span class="quiz-opt-icon">🚦</span>
+                        <span class="quiz-opt-body">
+                            <span class="quiz-opt-label">Tout gérer en même temps</span>
+                            <span class="quiz-opt-desc">Observation, code, conduite... je veux simplifier</span>
+                        </span>
+                        <span class="quiz-opt-arrow">→</span>
+                    </button>
+                    <button class="quiz-opt" onclick="showResult('bva')">
+                        <span class="quiz-opt-icon">💰</span>
+                        <span class="quiz-opt-body">
+                            <span class="quiz-opt-label">Le budget : je veux la formule la moins chère</span>
+                            <span class="quiz-opt-desc">Moins d'heures minimums, tarif plus accessible</span>
+                        </span>
+                        <span class="quiz-opt-arrow">→</span>
+                    </button>
+                </div>
+                <button class="quiz-back-btn" onclick="goBack('screen-q2b')">← Retour</button>
+            </div>
+        </div>
+
+        <!-- ── QUESTION 3B : si confiant → oriente Manuel ── -->
+        <div class="quiz-screen" id="screen-q3b-confident">
+            <div class="quiz-card">
+                <div class="quiz-q-tag">Question 3 / 3</div>
+                <div class="quiz-q-text">Quelle est votre priorité pour votre permis ?</div>
+                <div class="quiz-q-sub">Dernière question avant votre recommandation personnalisée.</div>
+                <div class="quiz-options-1">
+                    <button class="quiz-opt" onclick="showResult('manuel')">
+                        <span class="quiz-opt-icon">🏆</span>
+                        <span class="quiz-opt-body">
+                            <span class="quiz-opt-label">Maîtriser pleinement mon véhicule</span>
+                            <span class="quiz-opt-desc">Boîte manuelle incluse, valable sur tous les véhicules</span>
+                        </span>
+                        <span class="quiz-opt-arrow">→</span>
+                    </button>
+                    <button class="quiz-opt" onclick="showResult('manuel')">
+                        <span class="quiz-opt-icon">🌍</span>
+                        <span class="quiz-opt-body">
+                            <span class="quiz-opt-label">Un permis reconnu partout, sans restriction</span>
+                            <span class="quiz-opt-desc">Voiture de location, véhicule de société, tout terrain</span>
+                        </span>
+                        <span class="quiz-opt-arrow">→</span>
+                    </button>
+                    <button class="quiz-opt" onclick="showResult('bva')">
+                        <span class="quiz-opt-icon">⚡</span>
+                        <span class="quiz-opt-body">
+                            <span class="quiz-opt-label">Décrocher mon permis rapidement</span>
+                            <span class="quiz-opt-desc">Moins d'heures à valider, parcours plus court</span>
+                        </span>
+                        <span class="quiz-opt-arrow">→</span>
+                    </button>
+                </div>
+                <button class="quiz-back-btn" onclick="goBack('screen-q2b')">← Retour</button>
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             RÉSULTATS
+        ═══════════════════════════════════════ -->
+
+        <!-- Résultat : Conduite Accompagnée (AAC) -->
+        <div class="quiz-screen" id="screen-result-aac">
+            <div class="result-card anim-result">
+                <div class="result-header vert">
+                    <div class="result-tag-badge">✦ La formule idéale pour vous</div>
+                    <span class="result-big-icon">🎓</span>
+                    <div class="result-name">Conduite Accompagnée</div>
+                    <div class="result-subtitle-text">Permis B — AAC · Dès 15 ans</div>
+                    <div class="result-price-display">1 629€</div>
+                    <div class="result-price-note">TTC · 46€/h de conduite</div>
+                </div>
+                <div class="result-body">
+                    <p class="result-desc-text">La formule idéale pour démarrer tôt et maximiser vos chances. En accumulant des heures de pratique avec un proche, vous arriverez à l'examen avec beaucoup plus d'aisance — et votre assurance sera souvent moins chère.</p>
+                    <ul class="result-feats">
+                        <li>Accessible dès 15 ans (examen à 17½)</li>
+                        <li>Frais dossier + Pack code inclus</li>
+                        <li>1 évaluation de départ en circulation</li>
+                        <li>20 heures de conduite avec un moniteur</li>
+                        <li>1 RDV préalable + 2 RDV pédagogiques</li>
+                        <li>Accompagnement complet à l'examen</li>
+                    </ul>
+                    <div class="result-ctas">
+                        <a href="https://autoecolemarti.fr/formules/conduite-accompagnee.html" class="result-btn-primary">En savoir plus sur l'AAC →</a>
+                        <a href="mailto:autoecole.marti@gmail.com?subject=Inscription%20Conduite%20Accompagnée" class="result-btn-secondary">✉ Demander mon inscription</a>
+                    </div>
+                    <div class="result-other-fmts">
+                        <h4>Voir aussi</h4>
+                        <div class="other-fmts-row">
+                            <a href="https://autoecolemarti.fr/formules/permis-b-automatique.html" class="other-fmt-pill">🚗 Permis Automatique — 967€</a>
+                            <a href="https://autoecolemarti.fr/formules/permis-b-manuel.html" class="other-fmt-pill">⚙️ Permis Traditionnel — 1 261€</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="restart-wrap">
+                <button class="restart-btn" onclick="restart()">↺ Recommencer le questionnaire</button>
+            </div>
+        </div>
+
+        <!-- Résultat : Permis Automatique (BVA) -->
+        <div class="quiz-screen" id="screen-result-bva">
+            <div class="result-card anim-result">
+                <div class="result-header rouge">
+                    <div class="result-tag-badge">★ La formule la plus populaire</div>
+                    <span class="result-big-icon">🚗</span>
+                    <div class="result-name">Boîte Automatique</div>
+                    <div class="result-subtitle-text">Permis B — BVA · La formule accessible</div>
+                    <div class="result-price-display">967€</div>
+                    <div class="result-price-note">TTC · 48€/h · 13h minimum</div>
+                </div>
+                <div class="result-body">
+                    <p class="result-desc-text">Sans boîte de vitesses à gérer, vous pouvez vous concentrer entièrement sur la route, les autres usagers et les situations de conduite. Une progression plus rapide, moins de stress — et le tarif le plus accessible de nos formules. À noter : ce permis est valable uniquement sur les véhicules à boîte automatique.</p>
+                    <ul class="result-feats">
+                        <li>La formule au tarif le plus accessible (967€)</li>
+                        <li>Frais dossier + Pack code inclus</li>
+                        <li>1 évaluation de départ en circulation</li>
+                        <li>13 heures de conduite (moins d'heures requises)</li>
+                        <li>Progression plus rapide pour les profils anxieux</li>
+                        <li>Accompagnement complet à l'examen</li>
+                    </ul>
+                    <div class="result-ctas">
+                        <a href="https://autoecolemarti.fr/formules/permis-b-automatique.html" class="result-btn-primary">Découvrir la formule automatique →</a>
+                        <a href="mailto:autoecole.marti@gmail.com?subject=Inscription%20Permis%20Automatique" class="result-btn-secondary">✉ Demander mon inscription</a>
+                    </div>
+                    <div class="result-other-fmts">
+                        <h4>Voir aussi</h4>
+                        <div class="other-fmts-row">
+                            <a href="https://autoecolemarti.fr/formules/permis-b-manuel.html" class="other-fmt-pill">⚙️ Permis Traditionnel — 1 261€</a>
+                            <a href="https://autoecolemarti.fr/formules/conduite-accompagnee.html" class="other-fmt-pill">🎓 Conduite Accompagnée — 1 629€</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="restart-wrap">
+                <button class="restart-btn" onclick="restart()">↺ Recommencer le questionnaire</button>
+            </div>
+        </div>
+
+        <!-- Résultat : Permis Manuel (Traditionnel) -->
+        <div class="quiz-screen" id="screen-result-manuel">
+            <div class="result-card anim-result">
+                <div class="result-header navy">
+                    <div class="result-tag-badge">✦ Le permis complet</div>
+                    <span class="result-big-icon">⚙️</span>
+                    <div class="result-name">Permis B Traditionnel</div>
+                    <div class="result-subtitle-text">Permis B — Boîte manuelle · Valable partout</div>
+                    <div class="result-price-display">1 261€</div>
+                    <div class="result-price-note">TTC · 46€/h · 20h minimum</div>
+                </div>
+                <div class="result-body">
+                    <p class="result-desc-text">Le permis B sans restriction. Boîte manuelle maîtrisée, vous pourrez conduire n'importe quel véhicule : voiture de location, véhicule de société, ou simplement le choix d'un modèle que vous aimez. Le choix des conducteurs qui veulent une maîtrise totale.</p>
+                    <ul class="result-feats">
+                        <li>Permis valable sur tous les véhicules (manuel &amp; auto)</li>
+                        <li>Frais dossier + Pack code inclus</li>
+                        <li>1 évaluation de départ en circulation</li>
+                        <li>20 heures de conduite avec un moniteur</li>
+                        <li>Aucune restriction sur le type de véhicule</li>
+                        <li>Accompagnement complet à l'examen</li>
+                    </ul>
+                    <div class="result-ctas">
+                        <a href="https://autoecolemarti.fr/formules/permis-b-manuel.html" class="result-btn-primary">Découvrir le permis traditionnel →</a>
+                        <a href="mailto:autoecole.marti@gmail.com?subject=Inscription%20Permis%20B%20Manuel" class="result-btn-secondary">✉ Demander mon inscription</a>
+                    </div>
+                    <div class="result-other-fmts">
+                        <h4>Voir aussi</h4>
+                        <div class="other-fmts-row">
+                            <a href="https://autoecolemarti.fr/formules/permis-b-automatique.html" class="other-fmt-pill">🚗 Permis Automatique — 967€</a>
+                            <a href="https://autoecolemarti.fr/formules/conduite-accompagnee.html" class="other-fmt-pill">🎓 Conduite Accompagnée — 1 629€</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="restart-wrap">
+                <button class="restart-btn" onclick="restart()">↺ Recommencer le questionnaire</button>
+            </div>
+        </div>
+
+    </div><!-- /quiz-wrapper -->
+</section>
+
+<!-- ═══ CTA BANNER ═══ -->
+<div class="cta-banner fade-in">
+    <h2>Une question avant de vous lancer ?</h2>
+    <p>Notre équipe vous répond sous 24h pour vous aider à choisir et à constituer votre dossier.</p>
+    <a href="https://autoecolemarti.fr/#contact" class="btn">Nous contacter →</a>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="https://autoecolemarti.fr" class="logo">AUTO-ÉCOLE <span>MARTI.</span></a>
+                <p>Auto-école de confiance à Bayonne depuis 1962. Formations permis B, conduite accompagnée et boîte automatique.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Formations</h4>
+                <ul>
+                    <li><a href="https://autoecolemarti.fr/formules/permis-b-manuel.html">Permis B</a></li>
+                    <li><a href="https://autoecolemarti.fr/formules/conduite-accompagnee.html">Conduite accompagnée</a></li>
+                    <li><a href="https://autoecolemarti.fr/formules/permis-b-automatique.html">Boîte automatique</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="https://autoecolemarti.fr">Accueil</a></li>
+                    <li><a href="https://autoecolemarti.fr/#histoire">Notre histoire</a></li>
+                    <li><a href="https://autoecolemarti.fr/#avis">Avis</a></li>
+                    <li><a href="https://autoecolemarti.fr/blog/index.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:0559591260">05 59 59 12 60</a></li>
+                    <li><a href="tel:0622008209">06 22 00 82 09</a></li>
+                    <li><a href="mailto:autoecole.marti@gmail.com">autoecole.marti@gmail.com</a></li>
+                    <li><a href="https://autoecolemarti.fr/#contact">13 rue Marengo, Bayonne</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Auto-école Marti — Bayonne. Tous droits réservés. · SIRET : 382 930 188 00018</span>
+            <a href="https://autoecolemarti.fr/mentions-legales.html" style="color: inherit;">Mentions légales</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+// ═══════════════════════════════════════
+//  QUIZ LOGIC
+// ═══════════════════════════════════════
+
+const TOTAL_QUESTIONS = 3;
+let history = []; // pour le bouton "retour"
+let currentStep = 1;
+
+// Mapping écran → numéro d'étape
+const stepMap = {
+    'screen-q1': 1,
+    'screen-q2': 2,
+    'screen-q2b': 2,
+    'screen-q3a': 3,
+    'screen-q3a-nocomp': 3,
+    'screen-q3b-anxious': 3,
+    'screen-q3b-confident': 3,
+};
+
+function updateProgress(screenId) {
+    const step = stepMap[screenId] || currentStep;
+    const pct = ((step - 1) / TOTAL_QUESTIONS) * 100;
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('stepText').textContent = `Question ${step} sur ${TOTAL_QUESTIONS}`;
+    document.getElementById('progressBar').classList.add('visible');
+}
+
+function showScreen(id) {
+    document.querySelectorAll('.quiz-screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+}
+
+function goTo(targetId, dir) {
+    const current = document.querySelector('.quiz-screen.active');
+    history.push(current.id);
+
+    showScreen(targetId);
+    const card = document.querySelector(`#${targetId} .quiz-card`);
+    if (card) {
+        card.classList.remove('anim-right', 'anim-left');
+        void card.offsetWidth; // reflow pour relancer l'animation
+        card.classList.add(dir === 'right' ? 'anim-right' : 'anim-left');
+    }
+    updateProgress(targetId);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function goBack(targetId) {
+    if (history.length > 0) history.pop();
+    showScreen(targetId);
+    const card = document.querySelector(`#${targetId} .quiz-card`);
+    if (card) {
+        card.classList.remove('anim-right', 'anim-left');
+        void card.offsetWidth;
+        card.classList.add('anim-left');
+    }
+    updateProgress(targetId);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showResult(type) {
+    // Masquer la barre de progression
+    document.getElementById('progressBar').style.opacity = '0';
+
+    const ids = {
+        'aac': 'screen-result-aac',
+        'bva': 'screen-result-bva',
+        'manuel': 'screen-result-manuel'
+    };
+    const targetId = ids[type];
+
+    showScreen(targetId);
+
+    // Relancer l'animation
+    const card = document.querySelector(`#${targetId} .result-card`);
+    if (card) {
+        card.classList.remove('anim-result');
+        void card.offsetWidth;
+        card.classList.add('anim-result');
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function restart() {
+    history = [];
+    currentStep = 1;
+    document.getElementById('progressBar').style.opacity = '1';
+    document.getElementById('progressFill').style.width = '0%';
+    document.getElementById('stepText').textContent = 'Question 1 sur 3';
+    showScreen('screen-q1');
+    document.getElementById('progressBar').classList.remove('visible');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ═══════════════════════════════════════
+//  NAVBAR SCROLL
+// ═══════════════════════════════════════
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// ═══════════════════════════════════════
+//  FADE-IN ON SCROLL
+// ═══════════════════════════════════════
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.15 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
