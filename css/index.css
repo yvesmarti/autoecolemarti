@@ -269,6 +269,35 @@ section { padding: 6rem 2rem; }
 .formation-card.featured .formation-cta { background: var(--or); color: var(--noir); border-color: var(--or); }
 .formation-card.featured .formation-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 15px rgba(212,168,83,0.4); }
 .tarif-note { text-align: center; margin-top: 2rem; font-size: 0.85rem; color: var(--gris); }
+/* Guide CTA — choisir sa formule */
+.guide-cta {
+    margin-top: 2.5rem;
+    border: 2px dashed rgba(214,48,49,0.25);
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, rgba(214,48,49,0.04) 0%, rgba(0,105,92,0.04) 100%);
+    padding: 1.5rem 2rem;
+}
+.guide-cta-inner {
+    display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap;
+}
+.guide-cta-icon { font-size: 2rem; flex-shrink: 0; }
+.guide-cta-text {
+    flex: 1; min-width: 200px;
+    display: flex; flex-direction: column; gap: 0.2rem;
+}
+.guide-cta-text strong { font-size: 1rem; color: var(--noir); }
+.guide-cta-text span { font-size: 0.88rem; color: var(--gris); }
+.guide-cta-btn {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: var(--basque-rouge); color: white;
+    padding: 0.75rem 1.5rem; border-radius: 50px;
+    font-size: 0.9rem; font-weight: 700; text-decoration: none;
+    white-space: nowrap; flex-shrink: 0;
+    box-shadow: 0 4px 20px rgba(214,48,49,0.3);
+    transition: var(--transition);
+}
+.guide-cta-btn:hover { background: #b02020; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(214,48,49,0.4); }
+
 .tarif-heure {
     text-align: center; margin-top: 2.5rem; padding: 1.5rem;
     background: var(--creme); border-radius: var(--radius); font-size: 1.05rem;
