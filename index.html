@@ -9,6 +9,8 @@
       gtag('js', new Date());
       gtag('config', 'G-DEK5H3Z9DR');
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>emailjs.init("zOB8cgDsJRWpfpIUX");</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auto École MARTI Bayonne — Permis B depuis 1962</title>
@@ -833,23 +835,9 @@
                     <p class="form-subtitle">Nous vous répondrons sous 24h.</p>
                     
                     <form
-                        action="https://formsubmit.co/autoecole.marti@gmail.com"
-                        method="POST"
                         id="contactForm"
                         onsubmit="return validateForm()"
                     >
-                        <!-- FormSubmit config -->
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_next" value="https://autoecolemarti.fr/merci.html">
-                        <input type="hidden" name="_subject" value="Nouveau message depuis le site Auto-école Marti">
-                        <!-- Honeypot FormSubmit -->
-                        <input type="text" name="_honey" style="display:none !important" tabindex="-1" autocomplete="off">
-                        <!-- Honeypot custom -->
-                        <div style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
-                            <label for="website_url">Ne pas remplir</label>
-                            <input type="text" name="website_url" id="website_url" tabindex="-1" autocomplete="off">
-                        </div>
-
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="prenom">Prénom *</label>
@@ -1093,45 +1081,44 @@
         startAuto();
     })();
 
-    // ── Formulaire : validation anti-spam ──
-    window._formLoadTime = Date.now();
-
+    // ── Formulaire : validation + EmailJS ──
     function validateForm() {
-        const feedback = document.getElementById('formFeedback');
-        
-        // 1. Honeypot custom → si rempli = bot (on fait semblant que ça marche)
-        const honeypot = document.getElementById('website_url');
-        if (honeypot && honeypot.value !== '') {
-            feedback.textContent = '✅ Message envoyé avec succès !';
-            feedback.className = 'form-feedback show success';
-            return false; // bloque l'envoi réel
-        }
-        
-        // 2. Question anti-spam (3 + 4 = 7)
-        const captchaInput = document.getElementById('captcha');
-        const answer = captchaInput.value.trim();
-        if (answer !== '7') {
-            feedback.textContent = '❌ Mauvaise réponse à la question anti-spam. Indice : faites l\'addition !';
-            feedback.className = 'form-feedback show error';
-            captchaInput.focus();
-            return false;
-        }
+      const captcha = document.getElementById('captcha').value.trim();
+      const websiteUrl = document.getElementById('website_url') ? document.getElementById('website_url').value : '';
+      const feedback = document.getElementById('formFeedback');
+      const btn = document.getElementById('submitBtn');
 
-        // 3. Anti-bot timing (< 3 secondes = bot)
-        const now = Date.now();
-        if (window._formLoadTime && (now - window._formLoadTime) < 3000) {
-            feedback.textContent = '✅ Message envoyé avec succès !';
-            feedback.className = 'form-feedback show success';
-            return false; // trop rapide = bot
-        }
+      if (websiteUrl) return false;
+      if (captcha !== '7') {
+        feedback.textContent = "Réponse anti-spam incorrecte.";
+        feedback.style.color = "red";
+        return false;
+      }
 
-        // 4. Tout OK → envoi réel vers FormSubmit
-        const btn = document.getElementById('submitBtn');
-        btn.disabled = true;
-        btn.textContent = 'Envoi en cours...';
-        feedback.textContent = '';
-        feedback.className = 'form-feedback';
-        return true;
+      btn.disabled = true;
+      btn.textContent = "Envoi en cours…";
+
+      const templateParams = {
+        Prénom: document.getElementById('prenom').value,
+        Nom: document.getElementById('nom').value,
+        Email: document.getElementById('email').value,
+        Téléphone: document.getElementById('tel').value,
+        Sujet: document.getElementById('sujet').value,
+        Message: document.getElementById('message').value,
+      };
+
+      emailjs.send("service_34w2ils", "template_1y9okps", templateParams)
+        .then(() => {
+          window.location.href = "https://autoecolemarti.fr/merci.html";
+        })
+        .catch(() => {
+          feedback.textContent = "Une erreur est survenue. Veuillez réessayer.";
+          feedback.style.color = "red";
+          btn.disabled = false;
+          btn.textContent = "Envoyer le message →";
+        });
+
+      return false;
     }
 
 </script>
