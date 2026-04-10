@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="../css/blog-index.css">
 </head>
 <body>
+<a href="#main-content" class="skip-link">Aller au contenu principal</a>
 
 <!-- ══════════════════════════════════════════════════════════════
      NAVBAR
@@ -43,6 +44,7 @@
     </div>
 </nav>
 
+<main id="main-content">
 <!-- ══════════════════════════════════════════════════════════════
      HERO BLOG
 ══════════════════════════════════════════════════════════════ -->
@@ -316,8 +318,8 @@
                 </div>
             </article>
 
-            <!-- ── ARTICLE 7 ── -->
-            <article class="article-card fade-in" data-category="conseils-pratiques">
+            <!-- ── ARTICLE 7 (à venir) ── -->
+            <article class="article-card fade-in" data-category="conseils-pratiques" style="opacity: 0.5; pointer-events: none;">
                 <div class="article-thumb conseils" aria-hidden="true">🧠</div>
                 <div class="article-body">
                     <div class="article-meta">
@@ -328,7 +330,7 @@
                     <p class="article-excerpt">Stress, oublis, mauvais réflexes… Nos moniteurs partagent les erreurs les plus fréquentes le jour J et comment les éviter pour aborder l'examen avec confiance.</p>
                     <div class="article-footer">
                         <span class="article-reading">⏱ 4 min de lecture</span>
-                        <a href="#" class="article-link">Bientôt disponible</a>
+                        <span class="article-link" style="opacity: 0.7; cursor: default;">Bientôt disponible</span>
                     </div>
                 </div>
             </article>
@@ -369,6 +371,8 @@
     <p>Inscrivez-vous dès maintenant ou passez nous voir au bureau. Votre permis commence ici.</p>
     <a href="mailto:autoecole.marti@gmail.com" class="btn">Contactez-nous →</a>
 </div>
+
+</main>
 
 <!-- ══════════════════════════════════════════════════════════════
      FOOTER
@@ -412,7 +416,7 @@
         <div class="footer-bottom">
             <span>© 2025 Auto-école Marti — Bayonne. Tous droits réservés.</span>
             <span>SIRET : 382 930 188 00018 · APE : 8500Z</span>
-            <a href="../mentions-legales.html" style="color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.85rem;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Règlement intérieur &amp; mentions légales</a>
+            <a href="../mentions-legales.html" class="footer-legal-link">Règlement intérieur &amp; mentions légales</a>
         </div>
     </div>
 </footer>

@@ -18,13 +18,13 @@
       --creme:     #f5f0e8;
       --surface:   #ffffff;
       --border:    #e5e5e5;
-      --accent:    #c0392b;
+      --accent:    #d63031;
       --accent-h:  #922b21;
       --accent2:   #00695c;
       --gold:      #d4a853;
       --green:     #1a5c38;
       --green-bg:  #eaf4ee;
-      --red:       #c0392b;
+      --red:       #d63031;
       --red-bg:    #fdf0ef;
       --text:      #0a0a0a;
       --muted:     #6b7280;
@@ -453,9 +453,31 @@
       .answers-grid { grid-template-columns: 1fr; }
       .sign-wrapper { width: 140px; height: 140px; }
     }
+
+    /* Accessibility */
+    .skip-link {
+        position: absolute; left: -9999px; top: auto;
+        width: 1px; height: 1px; overflow: hidden;
+        z-index: 10000;
+    }
+    .skip-link:focus {
+        position: fixed; top: 0; left: 0;
+        width: auto; height: auto;
+        padding: 1rem 2rem;
+        background: var(--accent, #d63031); color: #fff;
+        font-family: 'DM Sans', sans-serif;
+        font-weight: 700; font-size: 1rem;
+        text-decoration: none;
+        z-index: 10000;
+    }
+    :focus-visible {
+        outline: 3px solid var(--accent, #d63031);
+        outline-offset: 2px;
+    }
   </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Aller au contenu principal</a>
 
 <nav id="navbar">
   <div class="nav-inner">
@@ -471,6 +493,7 @@
   </div>
 </nav>
 
+<main id="main-content">
 <div class="container">
 
   <!-- FILTRE CATÉGORIE -->
@@ -951,6 +974,8 @@ window.addEventListener('scroll', () => {
   navEl.classList.toggle('scrolled', window.scrollY > 50);
 });
 </script>
+
+</main>
 
 <footer>
   <div class="footer-inner">
