@@ -26,6 +26,27 @@
 
 html { scroll-behavior: smooth; font-size: 16px; }
 
+/* Accessibility */
+.skip-link {
+    position: absolute; left: -9999px; top: auto;
+    width: 1px; height: 1px; overflow: hidden;
+    z-index: 10000;
+}
+.skip-link:focus {
+    position: fixed; top: 0; left: 0;
+    width: auto; height: auto;
+    padding: 1rem 2rem;
+    background: var(--basque-rouge); color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700; font-size: 1rem;
+    text-decoration: none;
+    z-index: 10000;
+}
+:focus-visible {
+    outline: 3px solid var(--basque-rouge);
+    outline-offset: 2px;
+}
+
 body {
     font-family: 'DM Sans', sans-serif;
     background: var(--blanc);
@@ -325,6 +346,11 @@ footer { background: var(--noir); color: white; padding: 4rem 2rem 2rem; }
     display: flex; justify-content: space-between; align-items: center;
     font-size: 0.82rem; color: rgba(255,255,255,0.35);
 }
+.footer-legal-link {
+    color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.85rem;
+    transition: color 0.2s;
+}
+.footer-legal-link:hover, .footer-legal-link:focus { color: white; }
 
 /* ═══════════════════════════════════════
    ANIMATIONS
