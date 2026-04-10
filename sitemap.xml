@@ -2,127 +2,137 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://autoecolemarti.fr</loc>
-    <lastmod>2026-04-09</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://autoecolemarti.fr/blog</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://autoecolemarti.fr/blog/aac-apprentissage-anticipe-conduite</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://autoecolemarti.fr/blog/boite-automatique-ou-manuelle</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://autoecolemarti.fr/blog/comment-reussir-son-permis-conduire</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://autoecolemarti.fr/blog/conduite-supervisee</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://autoecolemarti.fr/blog/dangers-alcool</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://autoecolemarti.fr/blog/distances-securite</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://autoecolemarti.fr/blog/infractions-code-route</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://autoecolemarti.fr/blog/questions-pieges-code-route</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://autoecolemarti.fr/blog/quiz-sanctions</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://autoecolemarti.fr/blog/reflexes-quiz</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://autoecolemarti.fr/blog/reflexes-urgence-conduite</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://autoecolemarti.fr/blog/regles-permis-probatoire</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://autoecolemarti.fr/blog/reussir-code-route-premier-coup</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://autoecolemarti.fr/blog/simulateur-ecoconduite</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://autoecolemarti.fr/faq</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://autoecolemarti.fr/formules</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://autoecolemarti.fr/formules/conduite-accompagnee</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://autoecolemarti.fr/formules/exemple</loc>
+    <lastmod>2026-03-20</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://autoecolemarti.fr/formules/permis-b-automatique</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://autoecolemarti.fr/formules/permis-b-manuel</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://autoecolemarti.fr/mentions-legales</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://autoecolemarti.fr/merci</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://autoecolemarti.fr/quizz/panneaux/temp</loc>
+    <lastmod>2026-03-22</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://autoecolemarti.fr/quizz/quizz_panneaux</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://autoecolemarti.fr/reservation</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <priority>0.8</priority>
   </url>
 </urlset>
