@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preload" href="fonts/DMSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DEK5H3Z9DR"></script>
     <script>
@@ -9,9 +13,6 @@
       gtag('js', new Date());
       gtag('config', 'G-DEK5H3Z9DR');
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script>emailjs.init("zOB8cgDsJRWpfpIUX");</script>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auto École MARTI Bayonne — Permis B depuis 1962</title>
     <link rel="icon" type="image/png" href="favicon.ico.png">
@@ -174,13 +175,14 @@
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
+<a href="#main-content" class="skip-link">Aller au contenu principal</a>
 
 <!-- ══════════════════════════════════════════════════════════════
      NAVBAR
 ══════════════════════════════════════════════════════════════ -->
 <nav id="navbar">
     <div class="nav-inner">
-        <a href="#" class="logo">AUTO-ÉCOLE MARTI<span>.</span></a>
+        <a href="/" class="logo">AUTO-ÉCOLE MARTI<span>.</span></a>
         <ul class="nav-links" id="navLinks">
             <li><a href="#formations">Formations</a></li>
             <li><a href="#histoire">Notre histoire</a></li>
@@ -189,12 +191,13 @@
             <li><a href="blog/index.html">Blog</a></li>
             <li><a href="mailto:autoecole.marti@gmail.com" class="nav-cta">S'inscrire</a></li>
         </ul>
-        <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Ouvrir le menu de navigation" aria-expanded="false">
+        <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu de navigation" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
     </div>
 </nav>
 
+<main id="main-content">
 <!-- ══════════════════════════════════════════════════════════════
      HERO
 ══════════════════════════════════════════════════════════════ -->
@@ -348,7 +351,7 @@
         <p class="tarif-note">* Tarifs TTC à compter du 09/03/2026. Cliquez sur « En savoir plus » pour accéder à la page détaillée de chaque formule.</p>
 
         <div class="dossier-trigger-wrap fade-in">
-            <button class="dossier-trigger-btn" onclick="openDossier()">
+            <button class="dossier-trigger-btn" id="dossierTrigger">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
                 Préparer son dossier — consulter les pièces à fournir
             </button>
@@ -359,9 +362,9 @@
 <!-- ══════════════════════════════════════════════════════════════
      LIGHTBOX — PIÈCES À FOURNIR
 ══════════════════════════════════════════════════════════════ -->
-<div class="dossier-overlay" id="dossierOverlay" onclick="closeDossierOutside(event)">
+<div class="dossier-overlay" id="dossierOverlay">
     <div class="dossier-modal" role="dialog" aria-modal="true" aria-labelledby="dossierTitle">
-        <button class="dossier-modal-close" onclick="closeDossier()" aria-label="Fermer">✕</button>
+        <button class="dossier-modal-close" id="dossierClose" aria-label="Fermer">✕</button>
         <div class="dossier-modal-header">
             <div class="dossier-modal-tag">Constitution du dossier</div>
             <h2 id="dossierTitle">Pièces <em>à fournir</em></h2>
@@ -914,6 +917,8 @@
     <a href="mailto:autoecole.marti@gmail.com" class="btn">Contactez-nous →</a>
 </div>
 
+</main>
+
 <!-- ══════════════════════════════════════════════════════════════
      FOOTER
 ══════════════════════════════════════════════════════════════ -->
@@ -953,9 +958,9 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <span>© 2025 Auto-école Marti — Bayonne. Tous droits réservés.</span>
+            <span>© 2026 Auto-école Marti — Bayonne. Tous droits réservés.</span>
             <span>SIRET : 382 930 188 00018 · APE : 8500Z</span>
-            <a href="mentions-legales.html" style="color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.85rem;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Règlement intérieur &amp; mentions légales</a>
+            <a href="mentions-legales.html" class="footer-legal-link">Règlement intérieur &amp; mentions légales</a>
         </div>
     </div>
 </footer>
@@ -974,6 +979,7 @@
         links.classList.toggle('active');
         hamburger.setAttribute('aria-expanded', links.classList.contains('active'));
     }
+    document.getElementById('hamburger').addEventListener('click', toggleNav);
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             document.getElementById('navLinks').classList.remove('active');
@@ -989,9 +995,11 @@
         document.getElementById('dossierOverlay').classList.remove('open');
         document.body.style.overflow = '';
     }
-    function closeDossierOutside(e) {
-        if (e.target === document.getElementById('dossierOverlay')) closeDossier();
-    }
+    document.getElementById('dossierTrigger').addEventListener('click', openDossier);
+    document.getElementById('dossierClose').addEventListener('click', closeDossier);
+    document.getElementById('dossierOverlay').addEventListener('click', function(e) {
+        if (e.target === this) closeDossier();
+    });
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') closeDossier();
     });
@@ -1151,5 +1159,7 @@
     });
   })();
 </script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" onload="emailjs.init('zOB8cgDsJRWpfpIUX')"></script>
 </body>
 </html>
