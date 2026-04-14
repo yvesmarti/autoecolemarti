@@ -474,6 +474,49 @@
         outline: 3px solid var(--accent, #d63031);
         outline-offset: 2px;
     }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: linear-gradient(135deg, #d63031 0%, #a01f22 100%);
+      color: white;
+      text-align: center;
+      padding: 3rem 2rem;
+      margin-top: 2rem;
+      border-radius: var(--radius);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-banner h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .cta-banner p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-banner .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: var(--transition, all 0.4s);
+      background: white;
+      color: #d63031;
+    }
+    .cta-banner .btn-action:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
   </style>
 </head>
 <body>
@@ -537,6 +580,13 @@
     </div>
     <div class="results-message" id="results-message"></div>
     <button class="btn-restart" onclick="startQuiz()">Recommencer le quiz</button>
+
+    <!-- CTA Banner -->
+    <div class="cta-banner" style="margin-top: 3rem;">
+      <h3>Vous connaissez vos panneaux ! 🎯</h3>
+      <p>Êtes-vous prêt pour le Code de la route ? Découvrez nos formations et préparez-vous à réussir.</p>
+      <a href="../formules/index.html" class="btn-action">Voir nos formations →</a>
+    </div>
   </div>
 
 </div>
