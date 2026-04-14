@@ -77,10 +77,54 @@
         .cle-card .num { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--basque-rouge); margin-bottom: 0.3rem; }
         .cle-card p { font-size: 0.9rem; font-weight: 600; margin: 0; color: var(--noir); }
         .cle-card small { font-size: 0.8rem; color: var(--gris); }
+        .inline-cta {
+            background: linear-gradient(135deg, #fff5f5 0%, #fce4e4 60%);
+            border: 1.5px solid rgba(214,48,49,0.2);
+            border-radius: var(--radius);
+            padding: 2rem 2.4rem;
+            margin: 2.5rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .inline-cta-text p {
+            margin: 0 0 0.25rem;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--noir);
+        }
+        .inline-cta-text small {
+            font-size: 0.85rem;
+            color: var(--gris);
+        }
+        .inline-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 1.8rem;
+            background: var(--basque-rouge);
+            color: white !important;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: var(--transition);
+            white-space: nowrap;
+            box-shadow: 0 4px 20px rgba(214,48,49,0.3);
+            flex-shrink: 0;
+        }
+        .inline-cta-btn:hover {
+            background: var(--rouge-sombre);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(214,48,49,0.4);
+        }
         @media (max-width: 768px) {
             .cles-grid { grid-template-columns: 1fr; }
             .exam-table { font-size: 0.82rem; }
             .exam-table th, .exam-table td { padding: 0.6rem 0.8rem; }
+            .inline-cta { flex-direction: column; align-items: flex-start; padding: 1.5rem; }
         }
     </style>
 </head>
@@ -389,6 +433,14 @@
 
     <p>À l'auto-école MARTI à Bayonne, les élèves bénéficient de séries de code commentées, de conseils pédagogiques adaptés à leurs besoins et d'un suivi régulier de leur progression. Une approche globale qui maximise concrètement les chances de réussir du premier coup.</p>
 
+    <div class="inline-cta">
+        <div class="inline-cta-text">
+            <p>Prêt à vous lancer avec un accompagnement professionnel ?</p>
+            <small>Découvrez toutes les formations disponibles chez Auto-École Marti à Bayonne</small>
+        </div>
+        <a href="../formules/" class="inline-cta-btn">Voir nos formules →</a>
+    </div>
+
     <hr class="section-divider">
 
     <h2>Conclusion : la réussite est à votre portée</h2>
@@ -470,7 +522,7 @@
 <div class="cta-banner">
     <h2>Prêt à préparer votre code ?</h2>
     <p>Rejoignez l'auto-école Marti à Bayonne et bénéficiez d'un accompagnement personnalisé pour réussir du premier coup.</p>
-    <a href="mailto:autoecole.marti@gmail.com" class="btn">S'inscrire chez Marti →</a>
+    <a href="../formules/" class="btn">Découvrir nos formations →</a>
 </div>
 
 </main>
