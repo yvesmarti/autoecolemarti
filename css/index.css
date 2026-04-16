@@ -515,6 +515,18 @@ section { padding: 6rem 2rem; }
 @media (max-width: 768px) {
     .avis-slide { grid-template-columns: 1fr; }
 }
+.avis-google-cta {
+    text-align: center; margin-top: 2.5rem; padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+.avis-google-cta p { color: rgba(255,255,255,0.55); margin-bottom: 1.2rem; font-size: 0.95rem; }
+.btn-google-review {
+    display: inline-block; padding: 0.8rem 1.8rem;
+    border: 2px solid var(--or); color: var(--or);
+    text-decoration: none; border-radius: 50px;
+    font-weight: 600; font-size: 0.9rem; transition: var(--transition);
+}
+.btn-google-review:hover { background: var(--or); color: var(--noir); transform: translateY(-2px); }
 .avis-card {
     background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
     border-radius: var(--radius); padding: 2rem; transition: var(--transition);
