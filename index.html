@@ -1153,6 +1153,7 @@
   (function(){
     const faqBtn = document.getElementById('faqBtn');
     const tip = document.getElementById('faqTooltip');
+    const bubble = document.getElementById('faqBubble');
     let t;
     function show(){ tip.style.opacity='1'; tip.style.transform='translateY(0)'; tip.style.pointerEvents='auto'; }
     function hide(){ tip.style.opacity='0'; tip.style.transform='translateY(8px)'; tip.style.pointerEvents='none'; }
@@ -1161,6 +1162,18 @@
     faqBtn.addEventListener('click', function(e){
       if(window.innerWidth < 768){ e.preventDefault(); if(tip.style.opacity==='1'){ window.location.href='faq.html'; } else { show(); clearTimeout(t); t=setTimeout(function(){ window.location.href='faq.html'; },600); } }
     });
+    function adjustFaqPosition(){
+      var banner = document.getElementById('tarteaucitronAlertBig');
+      var h = (banner && banner.offsetHeight > 0) ? banner.offsetHeight : 0;
+      bubble.style.bottom = (h > 0 ? h + 16 : 24) + 'px';
+    }
+    adjustFaqPosition();
+    setTimeout(adjustFaqPosition, 800);
+    if(window.MutationObserver){
+      new MutationObserver(adjustFaqPosition).observe(document.body, {
+        childList: true, subtree: false, attributes: true, attributeFilter: ['class']
+      });
+    }
   })();
 </script>
 

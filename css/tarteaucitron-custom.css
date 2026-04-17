@@ -144,7 +144,8 @@
 /* Pastille roue de réglages (icône bas-droite) */
 #tarteaucitronIcon {
     bottom: 16px !important;
-    right: 16px !important;
+    left: 16px !important;
+    right: auto !important;
 }
 
 #tarteaucitronIcon #tarteaucitronManager {
