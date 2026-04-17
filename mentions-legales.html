@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DEK5H3Z9DR"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-DEK5H3Z9DR');
-  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mentions légales & Règlement intérieur — Auto-École Marti | Bayonne</title>
@@ -438,6 +429,11 @@
         outline-offset: 2px;
     }
   </style>
+    <link rel="stylesheet" href="/vendor/tarteaucitron/tarteaucitron.css">
+    <link rel="stylesheet" href="/css/tarteaucitron-custom.css">
+    <script src="/vendor/tarteaucitron/tarteaucitron.js"></script>
+    <script src="/vendor/tarteaucitron/lang/tarteaucitron.fr.js"></script>
+    <script src="/scripts/consent.js"></script>
 </head>
 <body>
 <a href="#main-content" class="skip-link">Aller au contenu principal</a>
@@ -521,7 +517,7 @@
       <span class="article-title">Dossier administratif</span>
     </div>
     <p>L'élève s'engage à fournir tous les documents demandés pour son inscription dans les meilleurs délais. Tout retard de traitement du dossier résultant d'un document manquant ne pourra être reproché à l'auto-école.</p>
-    <p>Sauf avis contraire exprimé explicitement, l'élève donne son consentement à l'utilisation de ses données personnelles par l'auto-école Marti dans l'exercice de son activité professionnelle. Ces données ne seront utilisées à aucune autre finalité.</p>
+    <p>Les données personnelles fournies lors de l'inscription sont traitées sur la base de l'exécution du contrat de formation (RGPD art. 6.1.b). Elles sont conservées pendant la durée de la formation puis archivées selon les obligations légales. Pour toute demande (accès, rectification, effacement) : <a href="mailto:autoecole.marti@gmail.com">autoecole.marti@gmail.com</a>.</p>
     <p>Pour tout changement le concernant (état civil, adresse, numéro de téléphone, adresse email), l'élève doit en avertir le secrétariat.</p>
     <p>Le dossier est la propriété de l'élève. Il lui sera restitué, après solde de tout compte, sur demande écrite et sans frais supplémentaires.</p>
   </div>
@@ -790,8 +786,74 @@
 
   <section id="cookies">
     <h3>Cookies</h3>
-    <p>Le site peut utiliser des cookies techniques strictement nécessaires au bon fonctionnement (session, sécurité du formulaire de contact). Aucun cookie publicitaire ou de traçage tiers n'est déposé sans votre consentement.</p>
-    <p>Vous pouvez à tout moment désactiver les cookies depuis les paramètres de votre navigateur.</p>
+    <p>Ce site utilise <strong>tarteaucitron.js</strong>, un gestionnaire de consentement auto-hébergé, pour vous permettre de contrôler les cookies déposés sur votre terminal. Aucun cookie de traçage n'est activé sans votre accord préalable.</p>
+
+    <h4>Cookies soumis à consentement</h4>
+    <table style="width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.92em;">
+      <thead>
+        <tr style="background:#f5f0e8;">
+          <th style="padding:8px 12px;text-align:left;border:1px solid #e5e5e5;">Service</th>
+          <th style="padding:8px 12px;text-align:left;border:1px solid #e5e5e5;">Cookies</th>
+          <th style="padding:8px 12px;text-align:left;border:1px solid #e5e5e5;">Durée</th>
+          <th style="padding:8px 12px;text-align:left;border:1px solid #e5e5e5;">Éditeur</th>
+          <th style="padding:8px 12px;text-align:left;border:1px solid #e5e5e5;">Finalité</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding:8px 12px;border:1px solid #e5e5e5;">Google Analytics 4</td>
+          <td style="padding:8px 12px;border:1px solid #e5e5e5;"><code>_ga</code>, <code>_ga_*</code></td>
+          <td style="padding:8px 12px;border:1px solid #e5e5e5;">13 mois</td>
+          <td style="padding:8px 12px;border:1px solid #e5e5e5;">Google Ireland Ltd</td>
+          <td style="padding:8px 12px;border:1px solid #e5e5e5;">Mesure d'audience anonymisée</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4>Cookies strictement nécessaires</h4>
+    <p>Le cookie de consentement tarteaucitron (<code>tarteaucitron</code>) est déposé pour mémoriser vos choix. Il ne relève pas de la réglementation sur les cookies publicitaires et est exempt de consentement.</p>
+
+    <p><button onclick="tarteaucitron.userInterface.openPanel(); return false;" style="background:none;border:none;color:#d63031;text-decoration:underline;cursor:pointer;font-size:inherit;padding:0;">Gérer mes préférences cookies →</button></p>
+    <p>Vous pouvez également modifier vos paramètres via l'icône de gestion des cookies présente en bas de chaque page du site.</p>
+  </section>
+
+  <section id="retractation">
+    <h3>Droit de rétractation</h3>
+    <p>Conformément aux articles L.221-18 et suivants du Code de la consommation, vous disposez d'un délai de <strong>14 jours calendaires</strong> pour exercer votre droit de rétractation à compter de la conclusion du contrat, sans avoir à justifier de motifs ni à payer de pénalités.</p>
+    <p><strong>Exception :</strong> Conformément à l'article L.221-28 du Code de la consommation, le droit de rétractation ne peut être exercé pour les contrats de prestation de services pleinement exécutés avant la fin du délai de rétractation, et dont l'exécution a commencé après accord préalable exprès du consommateur et renoncement exprès à son droit de rétractation.</p>
+
+    <h4>Comment exercer votre droit de rétractation</h4>
+    <p>Vous pouvez notifier votre décision de rétractation :</p>
+    <ul>
+      <li>Par email à : <a href="mailto:autoecole.marti@gmail.com">autoecole.marti@gmail.com</a></li>
+      <li>Par courrier à : Auto-École Marti, 13 rue Marengo, 64100 Bayonne</li>
+    </ul>
+    <p>En utilisant le formulaire ci-dessous ou par toute autre déclaration dénuée d'ambiguïté exprimant votre volonté de vous rétracter.</p>
+
+    <details style="margin:1rem 0;padding:1rem;background:#f5f0e8;border-radius:10px;">
+      <summary style="cursor:pointer;font-weight:600;">Formulaire de rétractation (cliquer pour afficher)</summary>
+      <div style="margin-top:1rem;">
+        <p>À l'attention de l'Auto-École Marti, 13 rue Marengo, 64100 Bayonne :<br>
+        <em>autoecole.marti@gmail.com</em></p>
+        <p>Je vous notifie par la présente ma rétractation du contrat portant sur la prestation de services suivante : [désignation de la formation]</p>
+        <p>Commandé le : ___________</p>
+        <p>Nom du consommateur : ___________</p>
+        <p>Adresse du consommateur : ___________</p>
+        <p>Signature (uniquement si formulaire papier) : ___________</p>
+        <p>Date : ___________</p>
+      </div>
+    </details>
+
+    <p>En cas de rétractation valide, l'Auto-École Marti s'engage à rembourser l'intégralité des sommes versées dans un délai de <strong>14 jours</strong> à compter de la réception de votre notification, par le même moyen de paiement que celui utilisé lors de la transaction initiale.</p>
+  </section>
+
+  <section id="mediateur">
+    <h3>Médiation de la consommation</h3>
+    <p>Conformément à l'article L.612-1 du Code de la consommation, en cas de litige non résolu dans le cadre du service après-vente de l'Auto-École Marti, vous pouvez recourir à un médiateur de la consommation agréé.</p>
+    <p>L'Auto-École Marti adhère au dispositif de médiation de : <strong>[Médiateur agréé CECMC à désigner — ex. CM2C ou médiateur du syndicat professionnel compétent]</strong></p>
+    <p>La médiation est gratuite pour le consommateur. La saisine du médiateur doit être effectuée dans un délai inférieur à un an à compter de la date de votre réclamation écrite auprès de l'auto-école.</p>
+    <p>Vous pouvez également recourir à la plateforme européenne de règlement en ligne des litiges (RLL) : <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr</a></p>
+    <p style="background:#fff3cd;border-left:4px solid #d4a853;padding:10px 14px;border-radius:0 10px 10px 0;font-size:0.9em;"><strong>Note :</strong> L'auto-école doit désigner un médiateur agréé par la Commission d'Évaluation et de Contrôle de la Médiation de la Consommation (CECMC). Rapprochez-vous de votre syndicat professionnel ou expert-comptable pour identifier le médiateur approprié à votre secteur.</p>
   </section>
 
   <section id="responsabilite">
