@@ -9,7 +9,7 @@ tarteaucitron.init({
     "closePopup": false,
     "showIcon": true,
     "iconSrc": "",
-    "iconPosition": "BottomRight",
+    "iconPosition": "BottomLeft",
     "adblocker": false,
     "DenyAllCta": true,
     "AcceptAllCta": true,
