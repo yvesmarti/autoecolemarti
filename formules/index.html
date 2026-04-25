@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <link rel="preload" href="../fonts/playfair-display-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prix Permis de Conduire à Bayonne — Nos Formations | Auto-École Marti</title>
     <meta name="description" content="Quel est le prix du permis de conduire à Bayonne ? Boîte automatique dès 967€, permis B manuel à partir de 1 261€, conduite accompagnée (AAC) à 1 629€. Trouvez votre formation avec Auto-École Marti.">
@@ -549,11 +550,13 @@ footer { background: var(--noir); color: white; padding: 4rem 2rem 2rem; }
     outline-offset: 2px;
 }
     </style>
-    <link rel="stylesheet" href="/vendor/tarteaucitron/tarteaucitron.css">
-    <link rel="stylesheet" href="/css/tarteaucitron-custom.css">
-    <script src="/vendor/tarteaucitron/tarteaucitron.js"></script>
-    <script src="/vendor/tarteaucitron/lang/tarteaucitron.fr.js"></script>
-    <script src="/scripts/consent.js"></script>
+    <link rel="stylesheet" href="/vendor/tarteaucitron/tarteaucitron.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="/vendor/tarteaucitron/tarteaucitron.css"></noscript>
+    <link rel="stylesheet" href="/css/tarteaucitron-custom.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="/css/tarteaucitron-custom.css"></noscript>
+    <script defer src="/vendor/tarteaucitron/tarteaucitron.js"></script>
+    <script defer src="/vendor/tarteaucitron/lang/tarteaucitron.fr.js"></script>
+    <script defer src="/scripts/consent.js"></script>
 </head>
 <body>
 <a href="#main-content" class="skip-link">Aller au contenu principal</a>
