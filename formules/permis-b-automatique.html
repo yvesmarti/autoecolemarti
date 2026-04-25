@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <link rel="preload" href="../fonts/playfair-display-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Permis Rapide à Bayonne — Boîte Automatique | Auto-École Marti</title>
     <link rel="icon" type="image/png" href="../favicon.ico.png">
@@ -260,11 +261,13 @@
     outline-offset: 2px;
 }
     </style>
-    <link rel="stylesheet" href="/vendor/tarteaucitron/tarteaucitron.css">
-    <link rel="stylesheet" href="/css/tarteaucitron-custom.css">
-    <script src="/vendor/tarteaucitron/tarteaucitron.js"></script>
-    <script src="/vendor/tarteaucitron/lang/tarteaucitron.fr.js"></script>
-    <script src="/scripts/consent.js"></script>
+    <link rel="stylesheet" href="/vendor/tarteaucitron/tarteaucitron.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="/vendor/tarteaucitron/tarteaucitron.css"></noscript>
+    <link rel="stylesheet" href="/css/tarteaucitron-custom.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="/css/tarteaucitron-custom.css"></noscript>
+    <script defer src="/vendor/tarteaucitron/tarteaucitron.js"></script>
+    <script defer src="/vendor/tarteaucitron/lang/tarteaucitron.fr.js"></script>
+    <script defer src="/scripts/consent.js"></script>
 </head>
 <body>
 <a href="#main-content" class="skip-link">Aller au contenu principal</a>
