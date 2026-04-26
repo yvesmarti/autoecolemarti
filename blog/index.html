@@ -36,7 +36,7 @@
             <li><a href="../index.html#avis">Avis</a></li>
             <li><a href="index.html" class="active">Blog</a></li>
             <li><a href="../index.html#contact">Contact</a></li>
-            <li><a href="mailto:autoecole.marti@gmail.com" class="nav-cta">S'inscrire</a></li>
+            <li><a data-email="&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#46;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" class="nav-cta">S'inscrire</a></li>
         </ul>
     </div>
 </nav>
@@ -383,7 +383,7 @@
 <div class="cta-banner">
     <h2>Prêt à prendre le volant ?</h2>
     <p>Inscrivez-vous dès maintenant ou passez nous voir au bureau. Votre permis commence ici.</p>
-    <a href="mailto:autoecole.marti@gmail.com" class="btn">Contactez-nous →</a>
+    <a data-email="&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#46;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" class="btn">Contactez-nous →</a>
 </div>
 
 </main>
@@ -422,7 +422,7 @@
                 <ul>
                     <li><a href="tel:0559591260">05 59 59 12 60</a></li>
                     <li><a href="tel:0622008209">06 22 00 82 09</a></li>
-                    <li><a href="mailto:autoecole.marti@gmail.com">autoecole.marti@gmail.com</a></li>
+                    <li><a data-email="&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#46;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" data-show-email="true">&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#46;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></li>
                     <li><a href="../index.html#contact">13 rue Marengo, Bayonne</a></li>
                 </ul>
             </div>
@@ -495,6 +495,14 @@
         "url": "https://autoecolemarti.fr"
     }
 }
+</script>
+<script>
+document.querySelectorAll('[data-email]').forEach(function(el){
+  var e=el.dataset.email,s=el.dataset.subject,h='mailto:'+e;
+  if(s)h+='?subject='+s;
+  el.href=h;
+  if(el.dataset.showEmail)el.textContent=e;
+});
 </script>
 </body>
 </html>
