@@ -331,7 +331,8 @@ section { padding: 6rem 2rem; }
    PRÉPARER SON DOSSIER
 ═══════════════════════════════════════ */
 .dossier-trigger-wrap {
-    text-align: center; margin-top: 2rem;
+    display: flex; flex-wrap: wrap; justify-content: center;
+    align-items: center; gap: 1rem; margin-top: 2rem;
 }
 .dossier-trigger-btn {
     display: inline-flex; align-items: center; gap: 0.6rem;
@@ -345,6 +346,18 @@ section { padding: 6rem 2rem; }
     background: var(--basque-vert); color: #fff;
 }
 .dossier-trigger-btn svg { flex-shrink: 0; }
+.faq-trigger-btn {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.85rem 1.8rem; border-radius: 50px;
+    background: transparent; border: 2px solid var(--basque-rouge);
+    color: var(--basque-rouge); font-family: inherit; font-size: 0.95rem;
+    font-weight: 600; cursor: pointer; transition: var(--transition);
+    text-decoration: none;
+}
+.faq-trigger-btn:hover {
+    background: var(--basque-rouge); color: #fff;
+}
+.faq-trigger-btn svg { flex-shrink: 0; }
 
 /* Lightbox overlay */
 .dossier-overlay {
