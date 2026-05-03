@@ -1,7 +1,6 @@
 # 🚗 Auto-École Marti — Bayonne
 
 [![Site web](https://img.shields.io/badge/Site%20web-autoecolemarti.fr-d63031?style=for-the-badge)](https://autoecolemarti.fr)
-[![Réserver](https://img.shields.io/badge/R%C3%A9server-en%20ligne-00695c?style=for-the-badge)](https://autoecolemarti.fr/reservation.html)
 
 > *L'auto-école de confiance du Pays Basque depuis 1962.*
 
@@ -74,7 +73,6 @@ Zone d'intervention : **Bayonne · Anglet · Biarritz · Saint-Jean-de-Luz** et 
 | Page | Lien |
 |---|---|
 | 🏠 Site principal | [autoecolemarti.fr](https://autoecolemarti.fr) |
-| 📅 Réservation en ligne | [autoecolemarti.fr/reservation.html](https://autoecolemarti.fr/reservation.html) |
 | 📖 Blog | [autoecolemarti.fr/blog/](https://autoecolemarti.fr/blog/) |
 | ⚖️ Mentions légales | [autoecolemarti.fr/mentions-legales.html](https://autoecolemarti.fr/mentions-legales.html) |
 
