@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Les angles morts – Auto-École Marti</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --rouge: #c0392b;
+      --rouge-light: #e8d5d3;
+      --cream: #faf8f5;
+      --dark: #1a1a1a;
+      --grey: #6b6b6b;
+      --border: #e2ddd8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--dark);
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    header .logo-text {
+      font-family: 'Playfair Display', serif;
+      color: #fff;
+      font-size: 1.1rem;
+      letter-spacing: 0.02em;
+    }
+    header .logo-text span {
+      color: var(--rouge);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--dark);
+      color: #fff;
+      padding: 72px 40px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      right: -60px; top: -60px;
+      width: 340px; height: 340px;
+      border-radius: 50%;
+      background: var(--rouge);
+      opacity: 0.08;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      left: 30%; bottom: -80px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: var(--rouge);
+      opacity: 0.06;
+    }
+    .hero-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: var(--rouge);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .hero-intro {
+      color: #c8c4be;
+      font-size: 1.05rem;
+      font-style: italic;
+      max-width: 580px;
+      line-height: 1.7;
+    }
+
+    /* ── ARTICLE BODY ── */
+    .article-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 60px 40px 80px;
+    }
+
+    /* sections */
+    .section { margin-bottom: 52px; }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.55rem;
+      color: var(--dark);
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--rouge);
+      display: inline-block;
+    }
+
+    h3 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--rouge);
+      margin: 28px 0 10px;
+    }
+
+    p { margin-bottom: 16px; color: #2e2e2e; }
+
+    /* callout quote */
+    .callout {
+      border-left: 4px solid var(--rouge);
+      background: #fff;
+      padding: 20px 24px;
+      margin: 28px 0;
+      border-radius: 0 6px 6px 0;
+    }
+    .callout p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.08rem;
+      color: var(--dark);
+      margin: 0;
+    }
+
+    /* highlight box */
+    .highlight-box {
+      background: var(--dark);
+      color: #fff;
+      border-radius: 8px;
+      padding: 28px 32px;
+      margin: 28px 0;
+    }
+    .highlight-box p { color: #d8d4ce; margin: 0; }
+    .highlight-box strong { color: #fff; }
+
+    /* bullet lists */
+    ul.styled {
+      list-style: none;
+      padding: 0;
+      margin: 12px 0 20px;
+    }
+    ul.styled li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      color: #2e2e2e;
+    }
+    ul.styled li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--rouge);
+      margin-top: 8px;
+    }
+
+    /* numbered steps */
+    ol.steps {
+      list-style: none;
+      padding: 0;
+      counter-reset: steps;
+      margin: 16px 0 20px;
+    }
+    ol.steps li {
+      counter-increment: steps;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+    ol.steps li::before {
+      content: counter(steps);
+      flex-shrink: 0;
+      width: 32px; height: 32px;
+      background: var(--rouge);
+      color: #fff;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+    ol.steps li p { margin: 0; padding-top: 4px; }
+
+    /* angles morts cards grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .card-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--rouge);
+      margin-bottom: 8px;
+    }
+    .card p { font-size: 0.9rem; margin: 0; color: #444; line-height: 1.55; }
+
+    /* tip cards */
+    .tips-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .tip {
+      display: flex;
+      gap: 16px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px 20px;
+    }
+    .tip-num {
+      flex-shrink: 0;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--rouge-light);
+      line-height: 1;
+      min-width: 30px;
+    }
+    .tip p { margin: 0; font-size: 0.93rem; color: #333; line-height: 1.6; }
+    .tip strong { color: var(--dark); }
+
+    /* final summary strip */
+    .summary {
+      background: var(--rouge);
+      color: #fff;
+      border-radius: 10px;
+      padding: 36px 40px;
+      margin-top: 56px;
+      text-align: center;
+    }
+    .summary .rule {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+    .summary p { color: rgba(255,255,255,0.85); font-size: 0.95rem; margin: 0; }
+
+    /* responsive */
+    @media (max-width: 600px) {
+      .hero { padding: 48px 24px 40px; }
+      .article-wrap { padding: 40px 24px 60px; }
+      .cards-grid { grid-template-columns: 1fr; }
+      header { padding: 14px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo-text">Auto-École <span>Marti</span></div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Sécurité routière</div>
+    <h1>Les angles morts : savoir les identifier, les contrôler et éviter les dangers</h1>
+    <p class="hero-intro">« J'ai bien regardé dans mes rétros, je n'ai rien vu. » Pourtant, une voiture, une moto ou un vélo était bien là. Où était-il caché ? Dans l'angle mort.</p>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="article-wrap">
+
+  <!-- Pourquoi dangereux -->
+  <div class="section">
+    <h2>Pourquoi les angles morts sont-ils si dangereux ?</h2>
+    <p>Un angle mort est une zone que le conducteur ne voit ni directement par les fenêtres, ni dans ses rétroviseurs. Un autre véhicule peut donc s'y trouver, complètement invisible, sans que vous en ayez conscience.</p>
+
+    <ul class="styled">
+      <li>Ne pas voir une voiture qui arrive au moment de changer de file peut provoquer une collision latérale.</li>
+      <li>Un cycliste ou une moto longeant votre véhicule en ville peut disparaître totalement de votre champ de vision juste à côté de vous.</li>
+      <li>Même les petites voitures en cachent d'autres. La différence de taille amplifie simplement le phénomène, ce qui rend les poids lourds particulièrement concernés.</li>
+    </ul>
+
+    <div class="highlight-box">
+      <p>Partir du principe que <strong>« je n'ai rien vu, donc il n'y a personne »</strong> est un faux raisonnement.<br>La bonne attitude, c'est : <strong>« je ne vois rien, je vérifie donc qu'il n'y a vraiment personne ».</strong></p>
+    </div>
+  </div>
+
+  <!-- Où se cachent -->
+  <div class="section">
+    <h2>Où se cachent les angles morts ?</h2>
+    <p>Chaque véhicule en possède. Voici les principaux, que vous devez apprendre à connaître.</p>
+
+    <h3>Sur une voiture</h3>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-label">Arrière gauche</div>
+        <p>Situé environ au niveau de la portière arrière, sur la voie de gauche. Une voiture qui arrive derrière peut s'y cacher.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Arrière droit</div>
+        <p>Le même, côté passager. C'est souvent celui qu'on oublie le plus.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Avant immédiat</div>
+        <p>Juste devant le capot. Vous ne voyez pas un très jeune enfant ou un objet bas. Soyez-y attentif en manœuvre.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Arrière direct</div>
+        <p>La zone directement derrière votre véhicule, que le rétroviseur intérieur ne montre pas totalement.</p>
+      </div>
+    </div>
+
+    <h3>Sur un deux-roues, camion ou bus</h3>
+    <p>Les poids lourds et bus possèdent des angles morts bien plus étendus : sur les côtés, à l'avant et à l'arrière. Même avec des rétroviseurs multiples, une voiture entière peut disparaître. En tant que conducteur, gardez toujours à l'esprit que vous pourriez être dans l'angle mort d'un camion, et évitez d'y rester.</p>
+  </div>
+
+  <!-- Comment vérifier -->
+  <div class="section">
+    <h2>Comment vérifier efficacement ses angles morts ?</h2>
+    <p>La méthode est simple, mais demande une coordination précise. C'est ce que l'on appelle le contrôle <strong>« rétro + angle mort »</strong>.</p>
+
+    <h3>La règle d'or en trois temps</h3>
+    <ol class="steps">
+      <li><p>Je regarde d'abord mon <strong>rétroviseur intérieur</strong> : il donne une vision globale de ce qui arrive derrière.</p></li>
+      <li><p>Je regarde le <strong>rétroviseur extérieur</strong> correspondant au côté où je veux me déporter : il montre la voie adjacente, mais pas tout.</p></li>
+      <li><p>Je <strong>tourne légèrement la tête</strong> par-dessus mon épaule, en jetant un coup d'œil direct dans l'angle mort. Pas besoin de vous contorsionner : un bref regard latéral suffit, sans perdre de vue la route devant vous.</p></li>
+    </ol>
+
+    <div class="callout">
+      <p>Le piège : fixer trop longtemps ce coup d'œil. Vous devez le garder moins d'une seconde. Tournez la tête, enregistrez l'information, revenez face à la route.</p>
+    </div>
+
+    <h3>Quand faire ce contrôle ?</h3>
+    <p>Immédiatement avant de déplacer votre véhicule latéralement :</p>
+    <ul class="styled">
+      <li>Avant de changer de file</li>
+      <li>Avant de doubler</li>
+      <li>Avant de s'insérer sur une voie rapide</li>
+      <li>Avant d'ouvrir votre portière (contrôle « à la hollandaise »)</li>
+      <li>Avant de tourner à un croisement lorsque vous longez une piste cyclable</li>
+    </ul>
+  </div>
+
+  <!-- Le jour du permis -->
+  <div class="section">
+    <h2>Le contrôle des angles morts le jour du permis</h2>
+    <p>Le jour de l'examen, l'inspecteur évalue votre capacité à anticiper les dangers. Le contrôle des angles morts est un point clé. Il s'attend à des gestes visibles, mais pas exagérés :</p>
+    <ul class="styled">
+      <li>Votre mouvement de tête doit être franc : on doit voir que vous vérifiez vraiment, pas simplement un coup d'œil furtif.</li>
+      <li>Pensez à voix haute si cela vous aide : <em>« Je vérifie l'angle mort gauche, personne, je me rabats. »</em></li>
+      <li><strong>Erreur éliminatoire classique :</strong> s'engager sur une voie sans avoir regardé l'angle mort alors qu'un véhicule arrive. Soyez rigoureux, même si cela vous paraît une formalité sur une route vide.</li>
+    </ul>
+  </div>
+
+  <!-- Erreurs -->
+  <div class="section">
+    <h2>Les erreurs à ne pas commettre (même après le permis)</h2>
+    <ul class="styled">
+      <li><strong>Se fier aveuglément aux détecteurs d'angle mort :</strong> ces dispositifs sont une aide, mais ne remplacent pas votre regard. Un clignotant allumé ne vous dispense jamais de tourner la tête.</li>
+      <li><strong>Regarder l'angle mort trop tôt :</strong> si vous vérifiez 5 secondes avant de changer de file, un véhicule a largement le temps d'arriver. Le contrôle doit être le dernier geste avant de bouger.</li>
+      <li><strong>Négliger l'angle mort droit :</strong> c'est le plus éloigné de vous, et celui qu'on a tendance à moins surveiller. Or, une moto peut parfaitement y remonter.</li>
+      <li><strong>Tenir pour acquis qu'il n'y a personne :</strong> sur un trajet quotidien, on tombe vite dans la routine. Un jour, il y a quelqu'un. Gardez le réflexe à chaque fois.</li>
+    </ul>
+  </div>
+
+  <!-- 5 conseils -->
+  <div class="section">
+    <h2>5 conseils pour ne plus jamais être piégé</h2>
+    <div class="tips-list">
+      <div class="tip">
+        <div class="tip-num">01</div>
+        <p><strong>Adoptez un bon réglage de vos rétroviseurs.</strong> Les rétroviseurs extérieurs ne doivent pas refléter les flancs de votre propre voiture. Réglez-les vers l'extérieur pour réduire la taille de l'angle mort. Votre voiture doit apparaître à peine, juste un filet de carrosserie en repère.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">02</div>
+        <p><strong>Ne restez jamais dans l'angle mort d'un autre véhicule.</strong> Si vous êtes à sa hauteur et que vous ne voyez pas le visage du conducteur dans son rétroviseur, il ne vous voit pas non plus. Accélérez ou ralentissez pour être visible.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">03</div>
+        <p><strong>Soyez particulièrement vigilant avec les cyclistes et trottinettes.</strong> En ville, ils peuvent surgir vite et se glisser dans des espaces très étroits. Un coup d'œil systématique avant de tourner à droite est vital.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">04</div>
+        <p><strong>Pratiquez l'ouverture de portière « à la hollandaise ».</strong> Lorsque vous vous garez le long d'une piste cyclable, ouvrez votre portière avec la main opposée. Ce geste oblige votre corps à pivoter et vous amène naturellement à vérifier l'angle mort arrière.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-num">05</div>
+        <p><strong>Faites-en un automatisme, même à l'arrêt.</strong> Dans les bouchons, avant de vous décaler, prenez l'habitude de vérifier. Plus vous le faites, plus cela devient un réflexe qui vous sauvera un jour.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary">
+    <div class="rule">Cligno — rétro — coup d'œil — je bouge.</div>
+    <p>Le contrôle de l'angle mort n'est pas une option, c'est un geste de sécurité fondamental. Il ne prend qu'une seconde, mais peut éviter une vie de regrets. Que vous soyez en apprentissage ou conducteur aguerri, gardez ce réflexe à chaque changement de direction latérale.</p>
+  </div>
+
+</div>
+</body>
+</html>
