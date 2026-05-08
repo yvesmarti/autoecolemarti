@@ -1,916 +1,422 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fatigue au volant : détecter les signes et réagir — Auto-École Marti | Bayonne</title>
-  <meta name="description" content="La fatigue est la première cause d'accidents mortels sur autoroute. Apprenez à reconnaître les signaux d'alarme, à comprendre les risques et à adopter le bon réflexe." />
-  <meta name="keywords" content="fatigue au volant, somnolence conduite, micro-sieste conduite, sécurité routière, code de la route, auto-école Marti, Bayonne" />
-  <meta property="og:title" content="Fatigue au volant : détecter les signes et réagir — Auto-École Marti" />
-  <meta property="og:description" content="La fatigue est la première cause d'accidents mortels sur autoroute. Apprenez à reconnaître les signaux d'alarme." />
-  <meta property="og:type" content="article" />
-  <meta property="og:site_name" content="Auto-École Marti" />
-  <link rel="canonical" href="https://autoecolemarti.fr/blog/fatigue-volant.html" />
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
-  <style>
-    /* ── Variables & reset ─────────────────────────────────── */
-    :root {
-      --rouge:        #c0392b;
-      --rouge-hover:  #a93226;
-      --rouge-light:  #fdf3f2;
-      --rouge-border: #f5c6c2;
-      --text:         #1a1a1a;
-      --text-muted:   #666;
-      --text-light:   #999;
-      --bg:           #ffffff;
-      --bg-cream:     #faf9f7;
-      --bg-warm:      #f5f3ef;
-      --border:       #e8e4dc;
-      --font-display: 'Playfair Display', Georgia, serif;
-      --font-body:    'DM Sans', system-ui, sans-serif;
-      --max-w:        780px;
-      --radius:       8px;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { font-size: 16px; scroll-behavior: smooth; }
-
-    body {
-      font-family: var(--font-body);
-      color: var(--text);
-      background: var(--bg);
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ── Navigation ────────────────────────────────────────── */
-    .site-nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-      padding: 0 clamp(1rem, 4vw, 2.5rem);
-    }
-
-    .nav-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 60px;
-      gap: 1.5rem;
-    }
-
-    .nav-logo {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: var(--text);
-      text-decoration: none;
-      white-space: nowrap;
-    }
-    .nav-logo span { color: var(--rouge); }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-      list-style: none;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      text-decoration: none;
-      padding: 0.35rem 0.7rem;
-      border-radius: 4px;
-      transition: color 0.15s, background 0.15s;
-    }
-    .nav-links a:hover { color: var(--text); background: var(--bg-warm); }
-
-    .nav-cta {
-      font-size: 0.82rem !important;
-      font-weight: 600 !important;
-      color: var(--rouge) !important;
-      border: 1.5px solid var(--rouge) !important;
-      padding: 0.35rem 0.9rem !important;
-      border-radius: 20px !important;
-    }
-    .nav-cta:hover { background: var(--rouge) !important; color: #fff !important; }
-
-    /* ── Breadcrumb ────────────────────────────────────────── */
-    .breadcrumb {
-      background: var(--bg-cream);
-      border-bottom: 1px solid var(--border);
-      padding: 0.7rem clamp(1rem, 4vw, 2.5rem);
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .breadcrumb-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      flex-wrap: wrap;
-    }
-
-    .breadcrumb a {
-      color: var(--text-muted);
-      text-decoration: none;
-    }
-    .breadcrumb a:hover { color: var(--rouge); text-decoration: underline; }
-    .breadcrumb .sep { color: var(--text-light); }
-    .breadcrumb .current { color: var(--text); }
-
-    /* ── Article layout ────────────────────────────────────── */
-    .article-wrap {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 3rem clamp(1rem, 4vw, 2rem) 5rem;
-    }
-
-    /* ── Article header ────────────────────────────────────── */
-    .article-badges {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      margin-bottom: 1.25rem;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      padding: 0.3rem 0.75rem;
-      border-radius: 20px;
-      border: 1.5px solid;
-    }
-
-    .badge-type {
-      color: var(--rouge);
-      border-color: var(--rouge-border);
-      background: var(--rouge-light);
-    }
-
-    .badge-category {
-      color: var(--text-muted);
-      border-color: var(--border);
-      background: var(--bg-cream);
-    }
-
-    .article-title {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 5vw, 2.8rem);
-      font-weight: 700;
-      line-height: 1.2;
-      color: var(--text);
-      margin-bottom: 1rem;
-    }
-
-    .article-title em {
-      color: var(--rouge);
-      font-style: italic;
-    }
-
-    .article-meta {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-bottom: 1.5rem;
-    }
-
-    .article-meta .sep { color: var(--border); }
-
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      text-decoration: none;
-      margin-bottom: 2.5rem;
-      padding: 0.4rem 0;
-      border-bottom: 1px solid transparent;
-      transition: color 0.15s, border-color 0.15s;
-    }
-    .back-link:hover { color: var(--rouge); border-color: var(--rouge); }
-
-    /* ── Article content ───────────────────────────────────── */
-    .article-intro {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: #333;
-      margin-bottom: 2.5rem;
-      padding-bottom: 2.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .article-body h2 {
-      font-family: var(--font-display);
-      font-size: 1.55rem;
-      font-weight: 700;
-      color: var(--text);
-      margin: 2.5rem 0 1rem;
-      line-height: 1.3;
-    }
-
-    .article-body h3 {
-      font-family: var(--font-display);
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: var(--text);
-      margin: 1.75rem 0 0.75rem;
-    }
-
-    .article-body p {
-      margin-bottom: 1.1rem;
-      font-size: 1rem;
-      color: #2a2a2a;
-    }
-
-    .article-body ul,
-    .article-body ol {
-      margin: 1rem 0 1.25rem 0;
-      padding-left: 0;
-      list-style: none;
-    }
-
-    .article-body li {
-      position: relative;
-      padding-left: 1.5rem;
-      margin-bottom: 0.65rem;
-      font-size: 1rem;
-      color: #2a2a2a;
-    }
-
-    .article-body ul li::before {
-      content: '·';
-      position: absolute;
-      left: 0.4rem;
-      color: var(--rouge);
-      font-size: 1.3rem;
-      line-height: 1.4;
-      font-weight: 700;
-    }
-
-    .article-body ol {
-      counter-reset: li-counter;
-    }
-    .article-body ol li::before {
-      counter-increment: li-counter;
-      content: counter(li-counter) '.';
-      position: absolute;
-      left: 0;
-      color: var(--rouge);
-      font-weight: 600;
-      font-size: 0.85rem;
-    }
-
-    .article-body strong { font-weight: 600; color: var(--text); }
-
-    .article-body hr {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 2rem 0;
-    }
-
-    /* ── Callout boxes ─────────────────────────────────────── */
-    .callout {
-      border-radius: var(--radius);
-      padding: 1.25rem 1.5rem;
-      margin: 1.75rem 0;
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-    }
-
-    .callout-icon {
-      font-size: 1.4rem;
-      line-height: 1;
-      flex-shrink: 0;
-      margin-top: 0.1rem;
-    }
-
-    .callout-body { flex: 1; }
-    .callout-body p { margin-bottom: 0; }
-    .callout-body strong { display: block; margin-bottom: 0.3rem; }
-
-    .callout-danger {
-      background: var(--rouge-light);
-      border-left: 3px solid var(--rouge);
-      color: #7a1a14;
-    }
-
-    .callout-warning {
-      background: #fffbef;
-      border-left: 3px solid #e8a000;
-      color: #5a3e00;
-    }
-
-    .callout-info {
-      background: #f0f6ff;
-      border-left: 3px solid #3a7fd5;
-      color: #1a3a6a;
-    }
-
-    .callout-success {
-      background: #f0faf4;
-      border-left: 3px solid #2e9e5b;
-      color: #1a4a2e;
-    }
-
-    /* ── Stats bloc ────────────────────────────────────────── */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 1rem;
-      margin: 1.75rem 0;
-    }
-
-    .stat-card {
-      text-align: center;
-      padding: 1.25rem 1rem;
-      background: var(--bg-cream);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-    }
-
-    .stat-number {
-      font-family: var(--font-display);
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--rouge);
-      line-height: 1;
-      margin-bottom: 0.4rem;
-    }
-
-    .stat-label {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      line-height: 1.4;
-    }
-
-    /* ── Steps ─────────────────────────────────────────────── */
-    .steps {
-      margin: 1.5rem 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .step {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 1rem 1.25rem;
-      background: var(--bg-cream);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      transition: border-color 0.15s;
-    }
-    .step:hover { border-color: var(--rouge-border); }
-
-    .step-num {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: var(--rouge);
-      color: #fff;
-      font-size: 0.8rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 0.1rem;
-    }
-
-    .step-text { font-size: 0.95rem; }
-
-    /* ── Summary box ───────────────────────────────────────── */
-    .summary-box {
-      background: var(--rouge-light);
-      border: 1px solid var(--rouge-border);
-      border-radius: var(--radius);
-      padding: 1.5rem 1.75rem;
-      margin: 2.5rem 0;
-    }
-
-    .summary-box h3 {
-      font-family: var(--font-display);
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--rouge);
-      margin: 0 0 0.9rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .summary-box p {
-      font-size: 0.95rem;
-      color: #5a1510;
-      margin-bottom: 0;
-    }
-
-    /* ── Separator ─────────────────────────────────────────── */
-    .section-divider {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin: 2.5rem 0;
-      color: var(--text-light);
-      font-size: 0.8rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-    .section-divider::before,
-    .section-divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    /* ── Related articles ──────────────────────────────────── */
-    .related-section {
-      margin-top: 3rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .related-section h2 {
-      font-family: var(--font-display);
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-    }
-
-    .related-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 0.75rem;
-    }
-
-    .related-card {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.9rem 1rem;
-      background: var(--bg-cream);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      text-decoration: none;
-      color: var(--text);
-      font-size: 0.88rem;
-      font-weight: 500;
-      transition: border-color 0.15s, box-shadow 0.15s;
-    }
-    .related-card:hover {
-      border-color: var(--rouge-border);
-      box-shadow: 0 2px 8px rgba(192, 57, 43, 0.08);
-    }
-
-    .related-card .rc-icon {
-      font-size: 1.4rem;
-      flex-shrink: 0;
-    }
-
-    .related-card .rc-label {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text-light);
-      display: block;
-      margin-bottom: 0.15rem;
-    }
-
-    /* ── CTA section ───────────────────────────────────────── */
-    .cta-section {
-      background: var(--bg-warm);
-      border-top: 1px solid var(--border);
-      padding: 3.5rem clamp(1rem, 4vw, 2.5rem);
-      text-align: center;
-      margin-top: 4rem;
-    }
-
-    .cta-section h2 {
-      font-family: var(--font-display);
-      font-size: 1.7rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-
-    .cta-section p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 0.75rem 2rem;
-      border-radius: 30px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.15s;
-    }
-
-    .btn-primary {
-      background: var(--rouge);
-      color: #fff;
-    }
-    .btn-primary:hover { background: var(--rouge-hover); transform: translateY(-1px); }
-
-    /* ── Footer ────────────────────────────────────────────── */
-    .site-footer {
-      background: #1a1a1a;
-      color: #ccc;
-      padding: 3rem clamp(1rem, 4vw, 2.5rem) 2rem;
-      font-size: 0.85rem;
-    }
-
-    .footer-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .footer-brand .logo {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      color: #fff;
-      margin-bottom: 0.6rem;
-    }
-
-    .footer-brand .logo span { color: var(--rouge); }
-
-    .footer-brand p { line-height: 1.6; color: #999; }
-
-    .footer-col h4 {
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #fff;
-      margin-bottom: 0.9rem;
-    }
-
-    .footer-col ul { list-style: none; }
-    .footer-col li { margin-bottom: 0.4rem; }
-    .footer-col a { color: #999; text-decoration: none; }
-    .footer-col a:hover { color: #fff; }
-
-    .footer-bottom {
-      border-top: 1px solid #333;
-      padding-top: 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      color: #666;
-      font-size: 0.78rem;
-    }
-
-    .footer-bottom a { color: #888; text-decoration: none; }
-    .footer-bottom a:hover { color: #ccc; }
-
-    /* ── Responsive ────────────────────────────────────────── */
-    @media (max-width: 700px) {
-      .nav-links { display: none; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-      .stats-grid { grid-template-columns: 1fr 1fr; }
-    }
-
-    @media (max-width: 450px) {
-      .footer-grid { grid-template-columns: 1fr; }
-    }
-
-    /* ── Skip link ─────────────────────────────────────────── */
-    .skip-link {
-      position: absolute;
-      left: -9999px;
-      top: 0;
-      padding: 0.5rem 1rem;
-      background: var(--rouge);
-      color: #fff;
-      font-weight: 600;
-      z-index: 9999;
-    }
-    .skip-link:focus { left: 0; }
-  </style>
+    <meta charset="UTF-8">
+    <link rel="preload" href="../fonts/playfair-display-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fatigue au volant : détecter les signes et réagir — Auto-École Marti | Bayonne</title>
+    <link rel="icon" type="image/png" href="../favicon.ico.png">
+    <meta name="description" content="La fatigue est la première cause d'accidents mortels sur autoroute. Apprenez à reconnaître les signaux d'alarme, comprendre les risques et adopter le bon réflexe.">
+    <meta name="keywords" content="fatigue au volant, somnolence conduite, micro-sieste conduite, sécurité routière, code de la route, auto-école Marti, Bayonne">
+    <meta property="og:title" content="Fatigue au volant : détecter les signes et réagir — Auto-École Marti">
+    <meta property="og:description" content="La fatigue est la première cause d'accidents mortels sur autoroute. Apprenez à reconnaître les signaux d'alarme.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Auto-École Marti">
+    <link rel="canonical" href="https://autoecolemarti.fr/blog/fatigue-volant">
+    <link rel="stylesheet" href="../css/fonts.css">
+    <link rel="stylesheet" href="../css/blog-article.css">
+    <style>
+        :root {
+            --article-accent:       #b86a08;
+            --article-accent-bg:    rgba(184,106,8,0.06);
+            --article-accent-pill:  rgba(184,106,8,0.13);
+            --article-hero-gradient: linear-gradient(135deg, #fff9f0 0%, #fde8c5 50%, #f9d09a 100%);
+            --article-hero-glow:    rgba(184,106,8,0.12);
+            --cta-gradient:         linear-gradient(135deg, #b86a08 0%, #7a4505 100%);
+            --cta-btn-color:        #b86a08;
+        }
+
+        /* ── Stats chiffres clés ── */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+            margin: 1.75rem 0;
+        }
+        .stat-card {
+            text-align: center;
+            padding: 1.4rem 1rem;
+            background: var(--creme);
+            border: 1px solid var(--gris-clair);
+            border-radius: var(--radius-sm);
+        }
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--article-accent);
+            line-height: 1;
+            margin-bottom: 0.4rem;
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--gris);
+            line-height: 1.4;
+        }
+
+        /* ── Encadré résumé ── */
+        .summary-box {
+            background: var(--article-accent-bg);
+            border: 1px solid var(--article-accent-pill);
+            border-left: 4px solid var(--article-accent);
+            border-radius: var(--radius-sm);
+            padding: 1.5rem 1.75rem;
+            margin: 2.5rem 0;
+        }
+        .summary-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--article-accent);
+            margin: 0 0 0.9rem;
+        }
+        .summary-box h3::before { display: none; }
+        .summary-box p {
+            font-size: 0.95rem;
+            color: var(--noir);
+            margin-bottom: 0;
+        }
+    </style>
+    <link rel="stylesheet" href="/vendor/tarteaucitron/tarteaucitron.css">
+    <link rel="stylesheet" href="/css/tarteaucitron-custom.css">
+    <script defer src="/vendor/tarteaucitron/tarteaucitron.js"></script>
+    <script defer src="/vendor/tarteaucitron/lang/tarteaucitron.fr.js"></script>
+    <script defer src="/scripts/consent.js"></script>
 </head>
-
 <body>
-  <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+<a href="#main-content" class="skip-link">Aller au contenu principal</a>
 
-  <!-- ── Navigation ── -->
-  <nav class="site-nav" aria-label="Navigation principale">
+<!-- ══════════════════════════════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════════════════════════════ -->
+<nav id="navbar">
     <div class="nav-inner">
-      <a href="https://autoecolemarti.fr/index.html" class="nav-logo">AUTO-ÉCOLE <span>MARTI.</span></a>
-      <ul class="nav-links">
-        <li><a href="https://autoecolemarti.fr/index.html#formations">Formations</a></li>
-        <li><a href="https://autoecolemarti.fr/index.html#histoire">Notre histoire</a></li>
-        <li><a href="https://autoecolemarti.fr/index.html#avis">Avis</a></li>
-        <li><a href="https://autoecolemarti.fr/blog/index.html">Blog</a></li>
-        <li><a href="https://autoecolemarti.fr/index.html#contact">Contact</a></li>
-        <li><a href="mailto:autoecole.marti@gmail.com" class="nav-cta">S'inscrire</a></li>
-      </ul>
+        <a href="../index.html" class="logo">AUTO-ÉCOLE MARTI<span>.</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="../index.html#formations">Formations</a></li>
+            <li><a href="../index.html#histoire">Notre histoire</a></li>
+            <li><a href="../index.html#avis">Avis</a></li>
+            <li><a href="index.html" class="active">Blog</a></li>
+            <li><a href="../index.html#contact">Contact</a></li>
+            <li><a data-email="&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#46;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" class="nav-cta">S'inscrire</a></li>
+        </ul>
     </div>
-  </nav>
+</nav>
 
-  <!-- ── Breadcrumb ── -->
-  <div class="breadcrumb" aria-label="Fil d'Ariane">
-    <div class="breadcrumb-inner">
-      <a href="https://autoecolemarti.fr/index.html">Accueil</a>
-      <span class="sep">›</span>
-      <a href="https://autoecolemarti.fr/blog/index.html">Blog</a>
-      <span class="sep">›</span>
-      <span class="current">Conseils pratiques</span>
+<main id="main-content">
+
+<!-- ══════════════════════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════════════════════ -->
+<div class="article-hero">
+    <div class="article-hero-inner">
+        <nav class="article-breadcrumb" aria-label="Fil d'ariane">
+            <a href="../index.html">Accueil</a>
+            <span>›</span>
+            <a href="index.html">Blog</a>
+            <span>›</span>
+            <span>Conseils pratiques</span>
+        </nav>
+        <div class="article-hero-meta">
+            <span class="article-cat-pill">😴 Conseils pratiques</span>
+            <span class="article-reading-pill">⏱ 8 min de lecture</span>
+        </div>
+        <h1>La fatigue au <em>volant</em></h1>
+        <p class="article-date-pub">Publié le 8 mai 2026 · Par l'équipe Auto-École Marti</p>
     </div>
-  </div>
+</div>
 
-  <!-- ── Article ── -->
-  <main id="main-content">
-    <div class="article-wrap">
+<!-- ══════════════════════════════════════════════════════════════
+     CONTENU
+══════════════════════════════════════════════════════════════ -->
+<div class="back-to-blog">
+    <a href="index.html" class="back-link">← Retour au blog</a>
+</div>
 
-      <!-- En-tête -->
-      <div class="article-badges">
-        <span class="badge badge-type">😴 Conseils pratiques</span>
-        <span class="badge badge-category">⏱ 8 min de lecture</span>
-      </div>
+<div class="article-wrap">
 
-      <h1 class="article-title">La fatigue au <em>volant</em></h1>
-
-      <div class="article-meta">
-        <span>Publié le 8 mai 2026</span>
-        <span class="sep">·</span>
-        <span>Par l'équipe Auto-École Marti</span>
-      </div>
-
-      <a href="https://autoecolemarti.fr/blog/index.html" class="back-link">← Retour au blog</a>
-
-      <!-- Intro -->
-      <p class="article-intro">
+    <p class="article-intro">
         On parle souvent des dangers de l'alcool ou de la vitesse au volant. Mais saviez-vous que
         <strong>la fatigue est la première cause d'accidents mortels sur autoroute ?</strong>
         Un simple bâillement, une paupière lourde, et c'est la capacité à conduire qui s'effondre.
         Pourtant, la somnolence est souvent sous-estimée, voire ignorée, par de nombreux conducteurs.
-      </p>
+    </p>
 
-      <!-- Corps de l'article -->
-      <div class="article-body">
+    <h2>Pourquoi la fatigue est-elle si dangereuse au volant ?</h2>
 
-        <h2>Pourquoi la fatigue est-elle si dangereuse au volant ?</h2>
+    <p>Conduire est une activité qui demande une attention de chaque instant. Le cerveau analyse en permanence les informations visuelles, évalue les distances, anticipe les réactions des autres usagers et commande les gestes précis pour diriger le véhicule. La fatigue altère l'ensemble de ces fonctions.</p>
 
-        <p>Conduire est une activité qui demande une attention de chaque instant. Le cerveau analyse en permanence les informations visuelles, évalue les distances, anticipe les réactions des autres usagers et commande les gestes précis pour diriger le véhicule. La fatigue altère l'ensemble de ces fonctions.</p>
+    <p>Plus précisément, elle provoque :</p>
 
-        <p>Plus précisément, elle provoque :</p>
+    <ul>
+        <li><strong>Des micro-sommeils :</strong> des endormissements involontaires qui ne durent que 1 à 4 secondes. À 130 km/h, vous parcourez l'équivalent d'un terrain de football les yeux fermés.</li>
+        <li><strong>Un temps de réaction allongé :</strong> en cas de freinage d'urgence, ce retard peut faire toute la différence entre un évitement et une collision.</li>
+        <li><strong>Une mauvaise prise de décision :</strong> la fatigue rend le conducteur moins apte à évaluer correctement une situation et peut le pousser à prendre des risques inconsidérés.</li>
+    </ul>
 
-        <ul>
-          <li><strong>Des micro-sommeils :</strong> des endormissements involontaires qui ne durent que 1 à 4 secondes. À 130 km/h, vous parcourez l'équivalent d'un terrain de football les yeux fermés.</li>
-          <li><strong>Un temps de réaction allongé :</strong> en cas de freinage d'urgence, ce retard peut faire toute la différence entre un évitement et une collision.</li>
-          <li><strong>Une mauvaise prise de décision :</strong> la fatigue rend le conducteur moins apte à évaluer correctement une situation et peut le pousser à prendre des risques inconsidérés.</li>
-        </ul>
-
-        <div class="callout callout-danger">
-          <span class="callout-icon">⚠️</span>
-          <div class="callout-body">
+    <div class="callout callout-danger">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body">
             <p>Le plus vicieux, c'est que <strong>l'on ne s'endort pas d'un coup sans prévenir</strong>. Le corps envoie toujours des signaux. Il faut simplement apprendre à les écouter.</p>
-          </div>
         </div>
+    </div>
 
-        <div class="stats-grid">
-          <div class="stat-card">
+    <div class="stats-grid">
+        <div class="stat-card">
             <div class="stat-number">1<sup style="font-size:1rem">ère</sup></div>
             <div class="stat-label">cause d'accidents mortels sur autoroute</div>
-          </div>
-          <div class="stat-card">
+        </div>
+        <div class="stat-card">
             <div class="stat-number">×3</div>
             <div class="stat-label">risque d'accident avec moins de 6h de sommeil</div>
-          </div>
-          <div class="stat-card">
+        </div>
+        <div class="stat-card">
             <div class="stat-number">55 m</div>
             <div class="stat-label">parcourus les yeux fermés en 1,5 seconde à 130 km/h</div>
-          </div>
         </div>
+    </div>
 
-        <h2>Les signes qui ne trompent pas : apprenez à les reconnaître</h2>
+    <h2>Les signes qui ne trompent pas</h2>
 
-        <p>Souvent, on se dit <em>« je tiens le coup, je suis presque arrivé »</em>. C'est exactement le genre de phrase qui doit vous alerter. Voici les signaux d'alarme à repérer, chez vous comme chez vos passagers :</p>
+    <p>Souvent, on se dit <em>« je tiens le coup, je suis presque arrivé »</em>. C'est exactement le genre de phrase qui doit vous alerter. Voici les signaux d'alarme à repérer, chez vous comme chez vos passagers :</p>
 
-        <ul>
-          <li><strong>Des bâillements répétés :</strong> c'est le signal le plus évident, mais on a tendance à le banaliser.</li>
-          <li><strong>Les yeux qui piquent, une vue qui se trouble :</strong> vous clignez plus souvent des yeux, votre regard devient fixe, vous avez du mal à garder les yeux ouverts.</li>
-          <li><strong>Des difficultés à maintenir une trajectoire stable :</strong> vous zigzaguez, vous mordez la ligne blanche ou l'accotement.</li>
-          <li><strong>Des changements de vitesse involontaires :</strong> vous ralentissez ou accélérez sans vous en rendre compte.</li>
-          <li><strong>Le besoin de changer de position sans cesse :</strong> vous vous tortillez sur votre siège, cherchez une meilleure posture.</li>
-          <li><strong>Des « absences » :</strong> vous ne vous souvenez pas des derniers kilomètres parcourus, vous ratez une sortie ou un panneau que vous cherchiez.</li>
-          <li><strong>L'irritabilité et les tensions :</strong> vous supportez mal la conduite des autres, vous êtes nerveux.</li>
-        </ul>
+    <ul>
+        <li><strong>Des bâillements répétés :</strong> c'est le signal le plus évident, mais on a tendance à le banaliser.</li>
+        <li><strong>Les yeux qui piquent, une vue qui se trouble :</strong> vous clignez plus souvent des yeux, votre regard devient fixe, vous avez du mal à garder les yeux ouverts.</li>
+        <li><strong>Des difficultés à maintenir une trajectoire stable :</strong> vous zigzaguez, vous mordez la ligne blanche ou l'accotement.</li>
+        <li><strong>Des changements de vitesse involontaires :</strong> vous ralentissez ou accélérez sans vous en rendre compte.</li>
+        <li><strong>Le besoin de changer de position sans cesse :</strong> vous vous tortillez sur votre siège, cherchez une meilleure posture.</li>
+        <li><strong>Des « absences » :</strong> vous ne vous souvenez pas des derniers kilomètres parcourus, vous ratez une sortie ou un panneau que vous cherchiez.</li>
+        <li><strong>L'irritabilité et les tensions :</strong> vous supportez mal la conduite des autres, vous êtes nerveux.</li>
+    </ul>
 
-        <div class="callout callout-danger">
-          <span class="callout-icon">🚨</span>
-          <div class="callout-body">
+    <div class="callout callout-danger">
+        <div class="callout-icon">🚨</div>
+        <div class="callout-body">
             <p>Si vous constatez <strong>UN SEUL de ces signes</strong>, votre attention est déjà altérée. N'attendez pas le deuxième pour agir.</p>
-          </div>
         </div>
+    </div>
 
-        <h2>Les causes de la fatigue : des pièges à connaître</h2>
+    <h2>Les causes de la fatigue : des pièges à connaître</h2>
 
-        <p>Certains moments et situations augmentent significativement les risques :</p>
+    <p>Certains moments et situations augmentent significativement les risques :</p>
 
-        <ul>
-          <li><strong>La conduite de nuit :</strong> entre 2h et 5h du matin, le corps est biologiquement programmé pour dormir. De même, le creux méridien (entre 13h et 15h) est un moment à risque.</li>
-          <li><strong>Un repas trop copieux :</strong> la digestion mobilise de l'énergie et favorise la somnolence, surtout s'il est accompagné d'un verre d'alcool, même à faible dose.</li>
-          <li><strong>Un manque chronique de sommeil :</strong> une nuit de moins de 6 heures multiplie par 3 le risque d'accident. L'effet s'accumule sur plusieurs jours.</li>
-          <li><strong>Les longs trajets monotones :</strong> l'autoroute, en ligne droite, sans variation, provoque une fatigue visuelle et attentionnelle intense.</li>
-          <li><strong>Certains médicaments :</strong> lisez bien les notices. Un pictogramme de niveau 2 (orange) ou 3 (rouge) peut vous interdire de conduire.</li>
-        </ul>
+    <ul>
+        <li><strong>La conduite de nuit :</strong> entre 2h et 5h du matin, le corps est biologiquement programmé pour dormir. De même, le creux méridien (entre 13h et 15h) est un moment à risque.</li>
+        <li><strong>Un repas trop copieux :</strong> la digestion mobilise de l'énergie et favorise la somnolence, surtout s'il est accompagné d'un verre d'alcool, même à faible dose.</li>
+        <li><strong>Un manque chronique de sommeil :</strong> une nuit de moins de 6 heures multiplie par 3 le risque d'accident. L'effet s'accumule sur plusieurs jours.</li>
+        <li><strong>Les longs trajets monotones :</strong> l'autoroute, en ligne droite, sans variation, provoque une fatigue visuelle et attentionnelle intense.</li>
+        <li><strong>Certains médicaments :</strong> lisez bien les notices. Un pictogramme de niveau 2 (orange) ou 3 (rouge) peut vous interdire de conduire.</li>
+    </ul>
 
-        <div class="callout callout-warning">
-          <span class="callout-icon">💊</span>
-          <div class="callout-body">
+    <div class="callout callout-warning">
+        <div class="callout-icon">💊</div>
+        <div class="callout-body">
             <strong>Attention aux médicaments</strong>
             <p>Antihistaminiques, anxiolytiques, somnifères… De nombreux médicaments courants affectent la vigilance. Consultez toujours la notice avant de prendre le volant.</p>
-          </div>
         </div>
+    </div>
 
-        <h2>Comment réagir quand la fatigue se fait sentir ?</h2>
+    <h2>Comment réagir quand la fatigue se fait sentir ?</h2>
 
-        <p>Vous commencez à bâiller, votre nuque se raidit ? <strong>Arrêtez-vous immédiatement.</strong> Ce n'est pas une suggestion, c'est une obligation de sécurité.</p>
+    <p>Vous commencez à bâiller, votre nuque se raidit ? <strong>Arrêtez-vous immédiatement.</strong> Ce n'est pas une suggestion, c'est une obligation de sécurité.</p>
 
-        <div class="callout callout-info">
-          <span class="callout-icon">❌</span>
-          <div class="callout-body">
+    <div class="callout callout-info">
+        <div class="callout-icon">❌</div>
+        <div class="callout-body">
             <strong>Les « astuces » qui ne fonctionnent pas</strong>
             <p>Ouvrir la fenêtre, monter le son de la radio ou boire un café ne font que <strong>masquer les symptômes pendant quelques minutes</strong>, sans jamais supprimer la cause. Elles donnent un faux sentiment d'alerte, ce qui est encore plus dangereux.</p>
-          </div>
         </div>
-
-        <h3>La seule action efficace : la micro-sieste</h3>
-
-        <div class="steps">
-          <div class="step">
-            <div class="step-num">1</div>
-            <div class="step-text">Trouvez une aire de repos, une station-service ou un endroit sécurisé.</div>
-          </div>
-          <div class="step">
-            <div class="step-num">2</div>
-            <div class="step-text">Garez-vous à l'ombre si possible. Coupez le contact, inclinez votre siège.</div>
-          </div>
-          <div class="step">
-            <div class="step-num">3</div>
-            <div class="step-text">Programmez une alarme de <strong>15 à 20 minutes</strong>, pas plus. Une sieste plus longue pourrait vous plonger dans un sommeil profond.</div>
-          </div>
-          <div class="step">
-            <div class="step-num">4</div>
-            <div class="step-text">Fermez les yeux et détendez-vous. Même sans endormissement profond, cet arrêt de stimulation visuelle est déjà une récupération.</div>
-          </div>
-          <div class="step">
-            <div class="step-num">5</div>
-            <div class="step-text">Au réveil, sortez du véhicule, marchez quelques minutes, étirez-vous. Buvez un grand verre d'eau. Puis repartez.</div>
-          </div>
-        </div>
-
-        <div class="callout callout-success">
-          <span class="callout-icon">✅</span>
-          <div class="callout-body">
-            <p>Cette pause doit être un <strong>réflexe, pas une option</strong>. Une aire de repos, c'est 15 minutes perdues. Un accident, c'est parfois une vie entière.</p>
-          </div>
-        </div>
-
-        <h2>Mieux vaut prévenir : nos conseils avant de prendre la route</h2>
-
-        <p>Anticiper, c'est le meilleur moyen d'éviter la fatigue au volant. Quelques règles d'or :</p>
-
-        <ul>
-          <li><strong>Dormez suffisamment la veille :</strong> partir reposé n'est pas un luxe. Partir « tôt pour éviter les bouchons » sans avoir dormi revient à prendre la route en état de fatigue.</li>
-          <li><strong>Organisez votre trajet :</strong> prévoyez une pause d'au moins 15 à 20 minutes <strong>toutes les 2 heures</strong>. C'est une obligation légale, mais surtout une nécessité physiologique. Repérez les aires de repos sur votre itinéraire.</li>
-          <li><strong>Évitez les heures à risque :</strong> si possible, évitez de prendre la route entre 2h et 5h du matin, ou en début d'après-midi.</li>
-          <li><strong>Mangez léger :</strong> privilégiez un repas équilibré mais pas trop copieux. Évitez l'alcool, même une bière.</li>
-          <li><strong>Partagez le volant :</strong> si vous voyagez à plusieurs, relayez-vous régulièrement. Un passager attentif peut également vous signaler vos premiers signes de baisse d'attention.</li>
-          <li><strong>Ne comptez pas sur les aides à la conduite :</strong> un détecteur de franchissement de ligne peut vous alerter, mais il ne remplace pas votre vigilance.</li>
-        </ul>
-
-        <hr />
-
-        <!-- Résumé -->
-        <div class="summary-box">
-          <h3>✅ En résumé : une promesse pour votre permis et pour la vie</h3>
-          <p>Devenir un bon conducteur, ce n'est pas seulement savoir passer les vitesses ou se garer en créneau. C'est aussi <strong>savoir s'écouter et protéger sa vigilance</strong>. En apprenant à détecter les signes de fatigue et en adoptant le réflexe de la micro-sieste, vous mettez toutes les chances de votre côté pour arriver en vie — et en forme. <br><br>La prochaine fois que vous prendrez le volant, faites-vous une promesse : <strong>à chaque bâillement, une pause.</strong> C'est aussi simple que ça.</p>
-        </div>
-
-      </div><!-- /.article-body -->
-
-      <!-- Articles connexes -->
-      <div class="related-section">
-        <h2>Articles &amp; outils connexes</h2>
-        <div class="related-grid">
-          <a href="https://autoecolemarti.fr/blog/dangers-alcool.html" class="related-card">
-            <span class="rc-icon">🍷</span>
-            <div>
-              <span class="rc-label">Outil pédagogique</span>
-              Alcool au volant : effets, risques et réglementation
-            </div>
-          </a>
-          <a href="https://autoecolemarti.fr/blog/reflexes-urgence-conduite.html" class="related-card">
-            <span class="rc-icon">🚨</span>
-            <div>
-              <span class="rc-label">Conseils pratiques</span>
-              Premiers réflexes en cas de panne ou d'accident
-            </div>
-          </a>
-          <a href="https://autoecolemarti.fr/blog/index.html" class="related-card">
-            <span class="rc-icon">📚</span>
-            <div>
-              <span class="rc-label">Blog</span>
-              Tous nos articles pédagogiques
-            </div>
-          </a>
-        </div>
-      </div>
-
-    </div><!-- /.article-wrap -->
-
-    <!-- CTA -->
-    <section class="cta-section">
-      <h2>Prêt à passer votre permis ?</h2>
-      <p>Rejoignez l'auto-école Marti à Bayonne et bénéficiez d'une formation complète depuis 1962.</p>
-      <a href="mailto:autoecole.marti@gmail.com" class="btn btn-primary">Nous contacter →</a>
-    </section>
-  </main>
-
-  <!-- ── Footer ── -->
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="logo">AUTO-ÉCOLE <span>MARTI.</span></div>
-          <p>Auto-école de confiance à Bayonne depuis 1962. Formations permis B, conduite accompagnée et boîte automatique.</p>
-        </div>
-        <div class="footer-col">
-          <h4>Formations</h4>
-          <ul>
-            <li><a href="https://autoecolemarti.fr/formules/permis-b-manuel.html">Permis B</a></li>
-            <li><a href="https://autoecolemarti.fr/formules/conduite-accompagnee.html">Conduite accompagnée</a></li>
-            <li><a href="https://autoecolemarti.fr/formules/permis-b-automatique.html">Boîte automatique</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Navigation</h4>
-          <ul>
-            <li><a href="https://autoecolemarti.fr/index.html">Accueil</a></li>
-            <li><a href="https://autoecolemarti.fr/index.html#histoire">Notre histoire</a></li>
-            <li><a href="https://autoecolemarti.fr/index.html#avis">Avis</a></li>
-            <li><a href="https://autoecolemarti.fr/blog/index.html">Blog</a></li>
-            <li><a href="https://autoecolemarti.fr/index.html#contact">Contact</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Contact</h4>
-          <ul>
-            <li><a href="tel:0559591260">05 59 59 12 60</a></li>
-            <li><a href="tel:0622008209">06 22 00 82 09</a></li>
-            <li><a href="mailto:autoecole.marti@gmail.com">autoecole.marti@gmail.com</a></li>
-            <li><a href="https://autoecolemarti.fr/index.html#contact">13 rue Marengo, Bayonne</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© 2026 Auto-école Marti — Bayonne. Tous droits réservés. SIRET : 382 930 188 00018 · APE : 8500Z</span>
-        <a href="https://autoecolemarti.fr/mentions-legales.html">Règlement intérieur &amp; mentions légales</a>
-      </div>
     </div>
-  </footer>
+
+    <h3>La seule action efficace : la micro-sieste</h3>
+
+    <div class="steps">
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <p>Trouvez une aire de repos, une station-service ou un endroit sécurisé.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <p>Garez-vous à l'ombre si possible. Coupez le contact, inclinez votre siège.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <p>Programmez une alarme de <strong>15 à 20 minutes</strong>, pas plus. Une sieste plus longue pourrait vous plonger dans un sommeil profond.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <p>Fermez les yeux et détendez-vous. Même sans endormissement profond, cet arrêt de stimulation visuelle est déjà une récupération.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">5</div>
+            <div class="step-content">
+                <p>Au réveil, sortez du véhicule, marchez quelques minutes, étirez-vous. Buvez un grand verre d'eau. Puis repartez.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="callout callout-success">
+        <div class="callout-icon">✅</div>
+        <div class="callout-body">
+            <p>Cette pause doit être un <strong>réflexe, pas une option</strong>. Une aire de repos, c'est 15 minutes perdues. Un accident, c'est parfois une vie entière.</p>
+        </div>
+    </div>
+
+    <h2>Mieux vaut prévenir : nos conseils avant de prendre la route</h2>
+
+    <p>Anticiper, c'est le meilleur moyen d'éviter la fatigue au volant. Quelques règles d'or :</p>
+
+    <ul>
+        <li><strong>Dormez suffisamment la veille :</strong> partir reposé n'est pas un luxe. Partir « tôt pour éviter les bouchons » sans avoir dormi revient à prendre la route en état de fatigue.</li>
+        <li><strong>Organisez votre trajet :</strong> prévoyez une pause d'au moins 15 à 20 minutes <strong>toutes les 2 heures</strong>. C'est une obligation légale, mais surtout une nécessité physiologique. Repérez les aires de repos sur votre itinéraire.</li>
+        <li><strong>Évitez les heures à risque :</strong> si possible, évitez de prendre la route entre 2h et 5h du matin, ou en début d'après-midi.</li>
+        <li><strong>Mangez léger :</strong> privilégiez un repas équilibré mais pas trop copieux. Évitez l'alcool, même une bière.</li>
+        <li><strong>Partagez le volant :</strong> si vous voyagez à plusieurs, relayez-vous régulièrement. Un passager attentif peut également vous signaler vos premiers signes de baisse d'attention.</li>
+        <li><strong>Ne comptez pas sur les aides à la conduite :</strong> un détecteur de franchissement de ligne peut vous alerter, mais il ne remplace pas votre vigilance.</li>
+    </ul>
+
+    <hr class="section-divider">
+
+    <div class="summary-box">
+        <h3>✅ En résumé : une promesse pour votre permis et pour la vie</h3>
+        <p>Devenir un bon conducteur, ce n'est pas seulement savoir passer les vitesses ou se garer en créneau. C'est aussi <strong>savoir s'écouter et protéger sa vigilance</strong>. En apprenant à détecter les signes de fatigue et en adoptant le réflexe de la micro-sieste, vous mettez toutes les chances de votre côté pour arriver en vie — et en forme. La prochaine fois que vous prendrez le volant, faites-vous une promesse : <strong>à chaque bâillement, une pause.</strong></p>
+    </div>
+
+</div><!-- /.article-wrap -->
+
+<!-- ══════════════════════════════════════════════════════════════
+     ARTICLES CONNEXES
+══════════════════════════════════════════════════════════════ -->
+<div class="related-wrap">
+    <div class="related-inner">
+        <h2>Articles connexes</h2>
+        <div class="related-grid">
+            <a href="dangers-alcool.html" class="related-card">
+                <div class="related-card-icon">🍷</div>
+                <div class="related-card-body">
+                    <small>Outil pédagogique</small>
+                    <p>Alcool au volant : effets, risques et réglementation</p>
+                </div>
+            </a>
+            <a href="reflexes-urgence-conduite.html" class="related-card">
+                <div class="related-card-icon">🚨</div>
+                <div class="related-card-body">
+                    <small>Conseils pratiques</small>
+                    <p>Premiers réflexes en cas de panne ou d'accident</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CTA BANNER
+══════════════════════════════════════════════════════════════ -->
+<div class="cta-banner">
+    <h2>Prêt à passer votre permis ?</h2>
+    <p>Rejoignez l'auto-école Marti à Bayonne et bénéficiez d'une formation complète depuis 1962.</p>
+    <a data-email="&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#46;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" class="btn">Nous contacter →</a>
+</div>
+
+</main>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════════ -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="logo">MARTI<span>.</span></div>
+                <p>Auto-école de confiance à Bayonne depuis 1962. Formations permis B, conduite accompagnée et boîte automatique.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Formations</h4>
+                <ul>
+                    <li><a href="../formules/permis-b-manuel.html">Permis B</a></li>
+                    <li><a href="../formules/conduite-accompagnee.html">Conduite accompagnée</a></li>
+                    <li><a href="../formules/permis-b-automatique.html">Boîte automatique</a></li>
+                    <li><a href="../index.html#offres">Offres spéciales</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="../index.html">Accueil</a></li>
+                    <li><a href="../index.html#histoire">Notre histoire</a></li>
+                    <li><a href="../index.html#avis">Avis</a></li>
+                    <li><a href="index.html">Blog</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:0559591260">05 59 59 12 60</a></li>
+                    <li><a href="tel:0622008209">06 22 00 82 09</a></li>
+                    <li><a data-email="&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#46;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" data-show-email="true">autoecole.marti@gmail.com</a></li>
+                    <li><a href="../index.html#contact">13 rue Marengo, Bayonne</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Auto-École Marti — Bayonne. Tous droits réservés.</span>
+            <span>SIRET : 382 930 188 00018 · APE : 8500Z</span>
+            <a href="../mentions-legales.html" class="footer-legal-link">Règlement intérieur &amp; mentions légales</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+</script>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Fatigue au volant : détecter les signes et réagir",
+    "description": "La fatigue est la première cause d'accidents mortels sur autoroute. Apprenez à reconnaître les signaux d'alarme, comprendre les risques et adopter le bon réflexe.",
+    "datePublished": "2026-05-08",
+    "url": "https://autoecolemarti.fr/blog/fatigue-volant",
+    "author": { "@type": "Organization", "name": "Auto-École Marti" },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Auto-École Marti",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "13 rue Marengo",
+            "addressLocality": "Bayonne",
+            "postalCode": "64100",
+            "addressCountry": "FR"
+        },
+        "telephone": "05 59 59 12 60"
+    }
+}
+</script>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://autoecolemarti.fr" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://autoecolemarti.fr/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Fatigue au volant : détecter les signes et réagir", "item": "https://autoecolemarti.fr/blog/fatigue-volant" }
+    ]
+}
+</script>
 
 </body>
 </html>
