@@ -100,6 +100,51 @@
         @media (max-width: 600px) {
             .comparison-grid { grid-template-columns: 1fr; }
         }
+
+        /* CTA formules grid */
+        .cta-formules-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+        .cta-formule-card {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 14px;
+            padding: 1.5rem 1.2rem;
+            text-decoration: none;
+            color: white;
+            transition: background 0.3s, transform 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 0.4rem;
+        }
+        .cta-formule-card:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-4px);
+        }
+        .cta-formule-icon { font-size: 2rem; margin-bottom: 0.3rem; }
+        .cta-formule-name { font-weight: 700; font-size: 1rem; }
+        .cta-formule-detail { font-size: 0.82rem; opacity: 0.8; }
+        .cta-formule-prix {
+            font-weight: 700; font-size: 0.95rem;
+            color: #d4a853;
+            margin-top: 0.3rem;
+        }
+        .cta-formule-link {
+            margin-top: 0.8rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            opacity: 0.9;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+        @media (max-width: 768px) {
+            .cta-formules-grid { grid-template-columns: 1fr; }
+        }
     </style>
     <link rel="stylesheet" href="/vendor/tarteaucitron/tarteaucitron.css">
     <link rel="stylesheet" href="/css/tarteaucitron-custom.css">
@@ -192,6 +237,15 @@
         <div class="callout-body">
             <strong>Avantage AAC</strong>
             <p>La conduite accompagnée réduit la durée du permis probatoire et accélère la récupération de points. C'est l'un des intérêts majeurs de cette formation.</p>
+        </div>
+    </div>
+
+    <!-- CTA Contextuel AAC -->
+    <div class="callout callout-success" style="background-color: #eaf4ee; border-left-color: #00695c; margin: 2.5rem 0;">
+        <div class="callout-body">
+            <strong style="color: #00695c;">Commencez dès 15 ans et réduisez votre période probatoire</strong>
+            <p style="margin: 0.5rem 0 0;">Notre formule de conduite accompagnée (AAC) vous permet de passer de 3 ans à <strong>seulement 2 ans</strong> de permis probatoire — et de récupérer vos points plus vite.</p>
+            <a href="../formules/conduite-accompagnee.html" style="display: inline-block; margin-top: 1rem; color: #00695c; font-weight: 700; text-decoration: none; border-bottom: 2px solid #00695c; padding-bottom: 2px;">Découvrir la formule AAC — 1 629 € TTC →</a>
         </div>
     </div>
 
@@ -576,9 +630,31 @@
      CTA BANNER
 ══════════════════════════════════════════════════════════════ -->
 <div class="cta-banner">
-    <h2>Avez-vous des questions sur les règles ?</h2>
-    <p>Nos moniteurs expérimentés vous expliqueront toutes les règles de circulation en détail et vous préparont à passer votre permis en confiance.</p>
-    <a href="../formules/index.html" class="btn">Découvrir nos formations →</a>
+    <h2>Prêt à commencer votre formation à Bayonne ?</h2>
+    <p>Choisissez la formule adaptée à votre profil et mettez toutes les chances de votre côté dès le départ — avec l'auto-école Marti, partenaire de confiance depuis 1962.</p>
+    <div class="cta-formules-grid">
+        <a href="../formules/conduite-accompagnee.html" class="cta-formule-card">
+            <div class="cta-formule-icon">🤝</div>
+            <div class="cta-formule-name">Conduite accompagnée</div>
+            <div class="cta-formule-detail">Dès 15 ans · 2 ans de probatoire seulement</div>
+            <div class="cta-formule-prix">1 629 € TTC</div>
+            <span class="cta-formule-link">Voir la formule →</span>
+        </a>
+        <a href="../formules/permis-b-manuel.html" class="cta-formule-card">
+            <div class="cta-formule-icon">🚗</div>
+            <div class="cta-formule-name">Permis B Manuel</div>
+            <div class="cta-formule-detail">Formation classique · Boîte manuelle</div>
+            <div class="cta-formule-prix">Découvrir les tarifs</div>
+            <span class="cta-formule-link">Voir la formule →</span>
+        </a>
+        <a href="../formules/permis-b-automatique.html" class="cta-formule-card">
+            <div class="cta-formule-icon">⚙️</div>
+            <div class="cta-formule-name">Permis B Automatique</div>
+            <div class="cta-formule-detail">Boîte automatique · Conduite facilitée</div>
+            <div class="cta-formule-prix">Découvrir les tarifs</div>
+            <span class="cta-formule-link">Voir la formule →</span>
+        </a>
+    </div>
 </div>
 
 </main>
