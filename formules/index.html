@@ -153,13 +153,14 @@ nav .nav-cta:hover { background: var(--rouge-sombre); transform: translateY(-1px
     font-size: 1.05rem; color: var(--gris);
     max-width: 500px; margin: 0 auto;
 }
+.page-hero p strong { white-space: nowrap; }
 
 /* ═══════════════════════════════════════
    QUIZ SECTION
 ═══════════════════════════════════════ */
 .quiz-section {
     background: var(--blanc);
-    padding: 0 2rem 6rem;
+    padding: 0 2rem 2rem;
 }
 
 .quiz-wrapper {
@@ -167,6 +168,153 @@ nav .nav-cta:hover { background: var(--rouge-sombre); transform: translateY(-1px
     margin: 0 auto;
     transform: translateY(-48px);
 }
+
+/* Intro au-dessus du quiz */
+.quiz-intro {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.7s ease-out both;
+}
+.quiz-intro-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(214,48,49,0.08); color: var(--basque-rouge);
+    padding: 0.45rem 1rem; border-radius: 50px;
+    font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 0.9rem;
+}
+.quiz-intro-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+    font-weight: 700; line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: var(--noir);
+}
+.quiz-intro-text em {
+    font-style: italic; color: var(--basque-rouge);
+}
+
+/* ═══════════════════════════════════════
+   SHORTCUTS (3 cartes raccourcis)
+═══════════════════════════════════════ */
+.shortcuts-section {
+    background: var(--blanc);
+    padding: 1rem 2rem 6rem;
+}
+.shortcuts-inner {
+    max-width: 1100px; margin: 0 auto;
+}
+.shortcuts-divider {
+    display: flex; align-items: center; gap: 1.2rem;
+    max-width: 640px; margin: 0 auto 3rem;
+    color: var(--gris);
+    font-size: 0.85rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+}
+.shortcuts-divider::before,
+.shortcuts-divider::after {
+    content: ''; flex: 1; height: 1px;
+    background: var(--gris-clair);
+}
+.shortcuts-header {
+    text-align: center; margin-bottom: 2.5rem;
+}
+.shortcuts-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.7rem, 3vw, 2.2rem);
+    font-weight: 700; line-height: 1.2;
+    letter-spacing: -0.02em; margin-bottom: 0.6rem;
+}
+.shortcuts-header h2 em {
+    font-style: italic; color: var(--basque-rouge);
+}
+.shortcuts-header p {
+    color: var(--gris); font-size: 0.98rem;
+    max-width: 520px; margin: 0 auto;
+}
+.shortcuts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+.shortcut-card {
+    position: relative;
+    background: white;
+    border: 1px solid var(--gris-clair);
+    border-radius: var(--radius);
+    padding: 2rem 1.8rem;
+    text-decoration: none;
+    color: var(--noir);
+    display: flex; flex-direction: column;
+    transition: var(--transition);
+    overflow: hidden;
+}
+.shortcut-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 4px;
+    background: var(--basque-rouge);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.shortcut-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    border-color: transparent;
+}
+.shortcut-card:hover::before { transform: scaleX(1); }
+
+.shortcut-card.is-vert::before { background: var(--basque-vert); }
+.shortcut-card.is-navy::before { background: #1e2a4a; }
+.shortcut-card.is-rouge::before { background: var(--basque-rouge); }
+
+.shortcut-icon {
+    font-size: 2.2rem; line-height: 1;
+    margin-bottom: 1.2rem;
+}
+.shortcut-tag {
+    font-size: 0.72rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--gris); margin-bottom: 0.5rem;
+}
+.shortcut-card.is-vert .shortcut-tag { color: var(--basque-vert); }
+.shortcut-card.is-navy .shortcut-tag { color: #1e2a4a; }
+.shortcut-card.is-rouge .shortcut-tag { color: var(--basque-rouge); }
+
+.shortcut-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.45rem; font-weight: 700;
+    line-height: 1.2; letter-spacing: -0.02em;
+    margin-bottom: 0.4rem;
+}
+.shortcut-desc {
+    font-size: 0.88rem; color: var(--gris);
+    margin-bottom: 1.4rem; flex: 1;
+}
+.shortcut-price-row {
+    display: flex; align-items: baseline; gap: 0.5rem;
+    margin-bottom: 1.4rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--gris-clair);
+}
+.shortcut-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem; font-weight: 700;
+    line-height: 1; white-space: nowrap;
+}
+.shortcut-price-note {
+    font-size: 0.78rem; color: var(--gris);
+    font-weight: 500;
+}
+.shortcut-cta {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-weight: 700; font-size: 0.9rem;
+    color: var(--basque-rouge);
+    transition: var(--transition);
+}
+.shortcut-card.is-vert .shortcut-cta { color: var(--basque-vert); }
+.shortcut-card.is-navy .shortcut-cta { color: #1e2a4a; }
+.shortcut-card:hover .shortcut-cta-arrow { transform: translateX(4px); }
+.shortcut-cta-arrow { transition: transform 0.3s ease; }
 
 /* Progress */
 .quiz-progress {
@@ -530,6 +678,11 @@ footer { background: var(--noir); color: white; padding: 4rem 2rem 2rem; }
     .result-header { padding: 2rem 1.5rem; }
     .result-body { padding: 2rem 1.5rem; }
 
+    .shortcuts-section { padding: 0 1.2rem 4rem; }
+    .shortcuts-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+    .shortcuts-divider { margin-bottom: 2rem; font-size: 0.75rem; }
+    .shortcut-card { padding: 1.8rem 1.6rem; }
+
     .footer-top { grid-template-columns: 1fr 1fr; }
     .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
 }
@@ -591,13 +744,19 @@ footer { background: var(--noir); color: white; padding: 4rem 2rem 2rem; }
     <div class="page-hero-inner" style="animation: fadeInUp 0.8s ease-out both;">
         <div class="page-hero-badge">Tarifs &amp; Formations à Bayonne</div>
         <h1>Quel est le prix du permis<br>de conduire à <em>Bayonne</em> ?</h1>
-        <p>Boîte automatique dès <strong>967€</strong>, permis B manuel à partir de <strong>1 261€</strong>, conduite accompagnée dès <strong>1 629€</strong>. Répondez à 3 questions pour trouver la formule faite pour vous.</p>
+        <p>Boîte automatique dès <strong>967&nbsp;€</strong>, permis B manuel à partir de <strong>1&nbsp;261&nbsp;€</strong>, conduite accompagnée dès <strong>1&nbsp;629&nbsp;€</strong>. Répondez à 3 questions pour trouver la formule faite pour vous.</p>
     </div>
 </header>
 
 <!-- ═══ QUIZ ═══ -->
 <section class="quiz-section">
     <div class="quiz-wrapper">
+
+        <!-- Intro -->
+        <div class="quiz-intro">
+            <div class="quiz-intro-tag">🧭 Outil interactif</div>
+            <div class="quiz-intro-text">Un peu perdu ? <em>Laissez-vous guider&nbsp;!</em></div>
+        </div>
 
         <!-- Barre de progression -->
         <div class="quiz-progress" id="progressBar">
@@ -956,6 +1115,59 @@ footer { background: var(--noir); color: white; padding: 4rem 2rem 2rem; }
         </div>
 
     </div><!-- /quiz-wrapper -->
+</section>
+
+<!-- ═══ RACCOURCIS — 3 FORMULES ═══ -->
+<section class="shortcuts-section">
+    <div class="shortcuts-inner">
+        <div class="shortcuts-divider">ou accédez directement à</div>
+
+        <div class="shortcuts-header fade-in">
+            <h2>Nos <em>3 formules</em> en un coup d'œil</h2>
+            <p>Vous savez déjà ce que vous voulez ? Choisissez votre formation et découvrez le détail de la formule.</p>
+        </div>
+
+        <div class="shortcuts-grid">
+            <!-- Permis B Automatique -->
+            <a href="https://autoecolemarti.fr/formules/permis-b-automatique.html" class="shortcut-card is-rouge fade-in">
+                <span class="shortcut-icon">🚗</span>
+                <div class="shortcut-tag">Boîte automatique</div>
+                <div class="shortcut-title">Permis B — BVA</div>
+                <p class="shortcut-desc">La formule la plus accessible. Idéale pour se concentrer sur la route, sans gérer la boîte.</p>
+                <div class="shortcut-price-row">
+                    <span class="shortcut-price">967&nbsp;€</span>
+                    <span class="shortcut-price-note">TTC · 13h minimum</span>
+                </div>
+                <span class="shortcut-cta">Découvrir la formule <span class="shortcut-cta-arrow">→</span></span>
+            </a>
+
+            <!-- Permis B Manuel -->
+            <a href="https://autoecolemarti.fr/formules/permis-b-manuel.html" class="shortcut-card is-navy fade-in">
+                <span class="shortcut-icon">⚙️</span>
+                <div class="shortcut-tag">Boîte manuelle</div>
+                <div class="shortcut-title">Permis B — Traditionnel</div>
+                <p class="shortcut-desc">Le permis complet, sans restriction. Valable sur tous les véhicules, manuels comme automatiques.</p>
+                <div class="shortcut-price-row">
+                    <span class="shortcut-price">1&nbsp;261&nbsp;€</span>
+                    <span class="shortcut-price-note">TTC · 20h minimum</span>
+                </div>
+                <span class="shortcut-cta">Découvrir la formule <span class="shortcut-cta-arrow">→</span></span>
+            </a>
+
+            <!-- Conduite Accompagnée (AAC) -->
+            <a href="https://autoecolemarti.fr/formules/conduite-accompagnee.html" class="shortcut-card is-vert fade-in">
+                <span class="shortcut-icon">🎓</span>
+                <div class="shortcut-tag">Conduite accompagnée</div>
+                <div class="shortcut-title">Permis B — AAC</div>
+                <p class="shortcut-desc">Commencez dès 15 ans avec un proche. Plus de pratique, meilleur taux de réussite à l'examen.</p>
+                <div class="shortcut-price-row">
+                    <span class="shortcut-price">1&nbsp;629&nbsp;€</span>
+                    <span class="shortcut-price-note">TTC · Dès 15 ans</span>
+                </div>
+                <span class="shortcut-cta">Découvrir la formule <span class="shortcut-cta-arrow">→</span></span>
+            </a>
+        </div>
+    </div>
 </section>
 
 <!-- ═══ CTA BANNER ═══ -->
