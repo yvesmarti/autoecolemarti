@@ -105,6 +105,46 @@ nav .nav-cta:hover { background: var(--rouge-sombre); transform: translateY(-1px
 }
 .hamburger span { width: 24px; height: 2px; background: var(--noir); transition: var(--transition); }
 
+/* ── Sous-menu Formations ── */
+.nav-dropdown { position: relative; }
+.nav-dropdown > a { display: inline-flex; align-items: center; gap: 0.25rem; }
+.nav-caret { font-size: 0.7em; transition: transform 0.25s ease; opacity: 0.7; }
+.nav-dropdown:hover .nav-caret,
+.nav-dropdown:focus-within .nav-caret { transform: rotate(-180deg); }
+.nav-dropdown-menu {
+    position: absolute; top: calc(100% + 0.6rem); left: -1rem;
+    min-width: 260px; padding: 0.5rem;
+    background: rgba(255,255,255,0.98);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.04);
+    list-style: none; margin: 0;
+    opacity: 0; visibility: hidden; transform: translateY(-6px);
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0s linear 0.22s;
+    z-index: 1002;
+}
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu {
+    opacity: 1; visibility: visible; transform: translateY(0);
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0s;
+}
+/* Petit "pont" invisible pour éviter que le menu se ferme entre le lien et le panneau */
+.nav-dropdown-menu::before {
+    content: ''; position: absolute; top: -0.6rem; left: 0; right: 0; height: 0.6rem;
+}
+.nav-dropdown-menu li { display: block; }
+.nav-dropdown-menu a {
+    display: block; padding: 0.7rem 0.9rem; border-radius: 8px;
+    font-size: 0.9rem; font-weight: 500; color: var(--noir);
+    text-decoration: none; line-height: 1.3;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+.nav-dropdown-menu a::after { display: none; } /* neutralise le soulignement animé hérité */
+.nav-dropdown-menu a:hover,
+.nav-dropdown-menu a:focus-visible {
+    background: rgba(214,48,49,0.07); color: var(--basque-rouge); outline: none;
+}
+
 /* ═══════════════════════════════════════
    HERO
 ═══════════════════════════════════════ */
@@ -744,6 +784,10 @@ footer { background: var(--noir); color: white; padding: 4rem 2rem 2rem; }
     .nav-links a { font-size: 0.82rem; }
     /* Masque le bouton hamburger — le menu est affiché directement */
     .hamburger { display: none !important; }
+    /* Dropdown : sur mobile, on cache le panneau (les liens restent dans le DOM
+       pour le crawl) et le lien parent fonctionne comme une ancre simple. */
+    .nav-dropdown-menu { display: none; }
+    .nav-caret { display: none; }
     .avantages-grid { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
     .info-cards { grid-template-columns: 1fr 1fr; }
     /* Adresse (1) et Téléphone (3) côte à côte en ligne 1 */

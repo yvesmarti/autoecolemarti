@@ -16,6 +16,18 @@ const SITE_URL = 'https://autoecolemarti.fr';
 const OUTPUT_FILE = 'sitemap.xml';
 const PAGES_DIR = '.'; // racine du site
 
+// Pages noindex / sans valeur SEO — exclues du sitemap
+const EXCLUDED_FILES = new Set([
+  'merci.html',
+  'mentions-legales.html',
+  'reservation.html',
+]);
+
+// Fragments de chemin exclus (sous-arborescences techniques)
+const EXCLUDED_PATH_FRAGMENTS = [
+  '/quizz/panneaux/', // pages temporaires éventuelles dans ce dossier
+];
+
 /**
  * Obtenir la date de dernière modif d'un fichier
  * Priorité: 1) git log, 2) fs.stat
@@ -60,7 +72,10 @@ function findHtmlFiles(dir, fileList = []) {
         findHtmlFiles(filePath, fileList);
       }
     } else if (file.endsWith('.html') && file !== '404.html') {
-      // Inclure les fichiers HTML sauf 404
+      // Exclure les pages noindex / sans valeur SEO
+      const normalized = filePath.replace(/\\/g, '/');
+      if (EXCLUDED_FILES.has(file)) return;
+      if (EXCLUDED_PATH_FRAGMENTS.some(f => normalized.includes(f))) return;
       fileList.push(filePath);
     }
   });
@@ -72,12 +87,16 @@ function findHtmlFiles(dir, fileList = []) {
  * Extraire la priorité basée sur le chemin
  */
 function getPriority(filePath) {
-  const normalizedPath = filePath.replace(/\\/g, '/');
-  
-  if (normalizedPath === './index.html') return '1.0';      // Accueil
-  if (normalizedPath.includes('/blog/')) return '0.7';      // Articles blog
-  if (normalizedPath.includes('/reservation') || normalizedPath.includes('/contact')) return '0.9';
-  return '0.8';
+  // path.join('.', 'foo') → 'foo' (le './' est supprimé). On normalise au cas où.
+  const p = filePath.replace(/\\/g, '/').replace(/^\.\//, '');
+
+  if (p === 'index.html') return '1.0';            // Accueil
+  if (p === 'faq.html') return '0.9';              // FAQ (intent informatif fort)
+  if (p.startsWith('formules/')) return '0.9';     // Pages formations (intent commercial)
+  if (p === 'blog/index.html') return '0.8';       // Hub blog
+  if (p.startsWith('blog/')) return '0.7';         // Articles de blog
+  if (p.startsWith('quizz/')) return '0.8';        // Outil pédagogique
+  return '0.5';
 }
 
 /**
