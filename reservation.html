@@ -765,9 +765,20 @@
                 flex-wrap: wrap;
                 justify-content: center;
             }
+            .site-nav { padding: 0.6rem 1rem; }
+            .site-nav .nav-inner { flex-direction: column; align-items: stretch; gap: 0; }
+            .site-nav .logo { padding-bottom: 0.35rem; }
             .site-nav .nav-links {
-                display: none;
+                display: flex !important; flex-direction: row;
+                gap: 1rem; overflow-x: auto; flex-wrap: nowrap;
+                justify-content: center;
+                padding-bottom: 0; width: 100%;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none; -ms-overflow-style: none;
             }
+            .site-nav .nav-links::-webkit-scrollbar { display: none; }
+            .site-nav .nav-links li { flex-shrink: 0; }
+            .site-nav .nav-links a { font-size: 0.82rem; }
         }
 
         .loading-spinner {
