@@ -341,11 +341,11 @@ section { padding: 6rem 2rem; }
     box-shadow: 0 2px 12px rgba(10,10,10,0.06);
 }
 .guide-cta-inner {
-    display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+    display: flex; align-items: center; gap: 1.5rem; flex-direction: column; text-align: center;
 }
 .guide-cta-icon { font-size: 2.8rem; flex-shrink: 0; }
 .guide-cta-text {
-    flex: 1; min-width: 200px;
+    min-width: 200px;
     display: flex; flex-direction: column; gap: 0.3rem;
 }
 .guide-cta-text strong { font-size: 1.1rem; color: var(--noir); }
