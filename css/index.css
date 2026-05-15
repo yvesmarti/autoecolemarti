@@ -331,25 +331,25 @@ section { padding: 6rem 2rem; }
 .formation-cta:hover { border-color: var(--basque-rouge); color: var(--basque-rouge); }
 .formation-card.featured .formation-cta { background: var(--or); color: var(--noir); border-color: var(--or); }
 .formation-card.featured .formation-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 15px rgba(212,168,83,0.4); }
-.tarif-note { text-align: center; margin-top: 2rem; font-size: 0.85rem; color: var(--gris); }
+.tarif-note { text-align: center; margin-top: 1rem; font-size: 0.8rem; color: var(--gris); }
 /* Guide CTA — choisir sa formule */
 .guide-cta {
     margin-top: 2.5rem;
-    border: 2px dashed rgba(214,48,49,0.25);
     border-radius: var(--radius);
-    background: linear-gradient(135deg, rgba(214,48,49,0.04) 0%, rgba(0,105,92,0.04) 100%);
-    padding: 1.5rem 2rem;
+    background: var(--creme);
+    padding: 1.8rem 2rem;
+    box-shadow: 0 2px 12px rgba(10,10,10,0.06);
 }
 .guide-cta-inner {
-    display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap;
+    display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
 }
-.guide-cta-icon { font-size: 2rem; flex-shrink: 0; }
+.guide-cta-icon { font-size: 2.8rem; flex-shrink: 0; }
 .guide-cta-text {
     flex: 1; min-width: 200px;
-    display: flex; flex-direction: column; gap: 0.2rem;
+    display: flex; flex-direction: column; gap: 0.3rem;
 }
-.guide-cta-text strong { font-size: 1rem; color: var(--noir); }
-.guide-cta-text span { font-size: 0.88rem; color: var(--gris); }
+.guide-cta-text strong { font-size: 1.1rem; color: var(--noir); }
+.guide-cta-text span { font-size: 0.9rem; color: var(--gris); }
 .guide-cta-btn {
     display: inline-flex; align-items: center; gap: 0.4rem;
     background: var(--basque-rouge); color: white;
@@ -362,41 +362,50 @@ section { padding: 6rem 2rem; }
 .guide-cta-btn:hover { background: #b02020; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(214,48,49,0.4); }
 
 .tarif-heure {
-    text-align: center; margin-top: 2.5rem; padding: 1.5rem;
-    background: var(--creme); border-radius: var(--radius); font-size: 1.05rem;
+    text-align: center; margin-top: 1.5rem; padding: 1.8rem 2rem;
+    background: var(--creme); border-radius: var(--radius);
+    box-shadow: 0 2px 12px rgba(10,10,10,0.06);
 }
-.tarif-heure strong { color: var(--basque-rouge); font-size: 1.2rem; }
+.tarif-heure-label {
+    font-size: 1rem; font-weight: 600; color: var(--noir); margin-bottom: 1rem;
+}
+.tarif-heure-badges {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+}
+.tarif-badge {
+    display: flex; flex-direction: column; align-items: center;
+    background: white; border-radius: 12px; padding: 1rem 1.8rem;
+    flex: 1; min-width: 140px; max-width: 220px;
+    box-shadow: 0 2px 8px rgba(10,10,10,0.06);
+}
+.tarif-prix { font-size: 1.4rem; font-weight: 700; color: var(--basque-rouge); }
+.tarif-type { font-size: 0.85rem; color: var(--gris); margin-top: 0.25rem; }
 
 /* ═══════════════════════════════════════
    PRÉPARER SON DOSSIER
 ═══════════════════════════════════════ */
 .dossier-trigger-wrap {
-    display: flex; flex-wrap: wrap; justify-content: center;
-    align-items: center; gap: 1rem; margin-top: 2rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem;
 }
 .dossier-trigger-btn {
-    display: inline-flex; align-items: center; gap: 0.6rem;
-    padding: 0.85rem 1.8rem; border-radius: 50px;
-    background: transparent; border: 2px solid var(--basque-vert);
-    color: var(--basque-vert); font-family: inherit; font-size: 0.95rem;
+    display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+    padding: 1.5rem; border-radius: var(--radius); text-align: center;
+    background: white; border: 2px solid var(--basque-vert);
+    color: var(--basque-vert); font-family: inherit; font-size: 0.9rem;
     font-weight: 600; cursor: pointer; transition: var(--transition);
-    text-decoration: none;
+    text-decoration: none; box-shadow: 0 2px 12px rgba(10,10,10,0.06);
 }
-.dossier-trigger-btn:hover {
-    background: var(--basque-vert); color: #fff;
-}
+.dossier-trigger-btn:hover { background: var(--basque-vert); color: #fff; }
 .dossier-trigger-btn svg { flex-shrink: 0; }
 .faq-trigger-btn {
-    display: inline-flex; align-items: center; gap: 0.6rem;
-    padding: 0.85rem 1.8rem; border-radius: 50px;
-    background: transparent; border: 2px solid var(--basque-rouge);
-    color: var(--basque-rouge); font-family: inherit; font-size: 0.95rem;
+    display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+    padding: 1.5rem; border-radius: var(--radius); text-align: center;
+    background: white; border: 2px solid var(--basque-rouge);
+    color: var(--basque-rouge); font-family: inherit; font-size: 0.9rem;
     font-weight: 600; cursor: pointer; transition: var(--transition);
-    text-decoration: none;
+    text-decoration: none; box-shadow: 0 2px 12px rgba(10,10,10,0.06);
 }
-.faq-trigger-btn:hover {
-    background: var(--basque-rouge); color: #fff;
-}
+.faq-trigger-btn:hover { background: var(--basque-rouge); color: #fff; }
 .faq-trigger-btn svg { flex-shrink: 0; }
 
 /* Lightbox overlay */
@@ -803,4 +812,7 @@ footer { background: var(--noir); color: white; padding: 4rem 2rem 2rem; }
     .footer-top { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
     section { padding: 4rem 1.2rem; }
+    .dossier-trigger-wrap { grid-template-columns: 1fr; }
+    .tarif-heure-badges { flex-direction: column; align-items: center; }
+    .tarif-badge { max-width: 100%; width: 100%; }
 }
