@@ -159,14 +159,13 @@ nav .nav-cta:hover { background: var(--rouge-sombre); transform: translateY(-1px
    QUIZ SECTION
 ═══════════════════════════════════════ */
 .quiz-section {
-    background: var(--blanc);
-    padding: 0 2rem 2rem;
+    background: var(--creme);
+    padding: 6rem 2rem 6rem;
 }
 
 .quiz-wrapper {
     max-width: 640px;
     margin: 0 auto;
-    transform: translateY(-16px);
 }
 
 /* Intro au-dessus du quiz */
@@ -192,7 +191,7 @@ nav .nav-cta:hover { background: var(--rouge-sombre); transform: translateY(-1px
 ═══════════════════════════════════════ */
 .shortcuts-section {
     background: var(--blanc);
-    padding: 1rem 2rem 6rem;
+    padding: 5rem 2rem 5rem;
 }
 .shortcuts-inner {
     max-width: 1100px; margin: 0 auto;
@@ -739,13 +738,65 @@ footer { background: var(--noir); color: white; padding: 4rem 2rem 2rem; }
     </div>
 </header>
 
+<!-- ═══ RACCOURCIS — 3 FORMULES ═══ -->
+<section class="shortcuts-section">
+    <div class="shortcuts-inner">
+
+        <div class="shortcuts-header fade-in">
+            <h2>Nos <em>3 formules</em> en un coup d'œil</h2>
+            <p>Choisissez votre formation et découvrez le détail complet de la formule.</p>
+        </div>
+
+        <div class="shortcuts-grid">
+            <!-- Permis B Automatique -->
+            <a href="https://autoecolemarti.fr/formules/permis-b-automatique.html" class="shortcut-card is-rouge fade-in">
+                <span class="shortcut-icon">🚗</span>
+                <div class="shortcut-tag">Boîte automatique</div>
+                <div class="shortcut-title">Permis B — BVA</div>
+                <p class="shortcut-desc">La formule la plus accessible. Idéale pour se concentrer sur la route, sans gérer la boîte.</p>
+                <div class="shortcut-price-row">
+                    <span class="shortcut-price">967&nbsp;€</span>
+                    <span class="shortcut-price-note">TTC · 13h minimum</span>
+                </div>
+                <span class="shortcut-cta">Découvrir la formule <span class="shortcut-cta-arrow">→</span></span>
+            </a>
+
+            <!-- Permis B Manuel -->
+            <a href="https://autoecolemarti.fr/formules/permis-b-manuel.html" class="shortcut-card is-navy fade-in">
+                <span class="shortcut-icon">⚙️</span>
+                <div class="shortcut-tag">Boîte manuelle</div>
+                <div class="shortcut-title">Permis B — Traditionnel</div>
+                <p class="shortcut-desc">Le permis complet, sans restriction. Valable sur tous les véhicules, manuels comme automatiques.</p>
+                <div class="shortcut-price-row">
+                    <span class="shortcut-price">1&nbsp;261&nbsp;€</span>
+                    <span class="shortcut-price-note">TTC · 20h minimum</span>
+                </div>
+                <span class="shortcut-cta">Découvrir la formule <span class="shortcut-cta-arrow">→</span></span>
+            </a>
+
+            <!-- Conduite Accompagnée (AAC) -->
+            <a href="https://autoecolemarti.fr/formules/conduite-accompagnee.html" class="shortcut-card is-vert fade-in">
+                <span class="shortcut-icon">🎓</span>
+                <div class="shortcut-tag">Conduite accompagnée</div>
+                <div class="shortcut-title">Permis B — AAC</div>
+                <p class="shortcut-desc">Commencez dès 15 ans avec un proche. Plus de pratique, meilleur taux de réussite à l'examen.</p>
+                <div class="shortcut-price-row">
+                    <span class="shortcut-price">1&nbsp;629&nbsp;€</span>
+                    <span class="shortcut-price-note">TTC · Dès 15 ans</span>
+                </div>
+                <span class="shortcut-cta">Découvrir la formule <span class="shortcut-cta-arrow">→</span></span>
+            </a>
+        </div>
+    </div>
+</section>
+
 <!-- ═══ QUIZ ═══ -->
-<section class="quiz-section">
+<section class="quiz-section" id="guide">
     <div class="quiz-wrapper">
 
         <!-- Intro -->
         <div class="quiz-intro">
-            <div class="quiz-intro-text">Un peu perdu ? <em>Laissez-vous guider&nbsp;!</em></div>
+            <div class="quiz-intro-text">Vous hésitez ? <em>Laissez-vous guider&nbsp;!</em></div>
         </div>
 
         <!-- Barre de progression -->
@@ -1107,59 +1158,6 @@ footer { background: var(--noir); color: white; padding: 4rem 2rem 2rem; }
     </div><!-- /quiz-wrapper -->
 </section>
 
-<!-- ═══ RACCOURCIS — 3 FORMULES ═══ -->
-<section class="shortcuts-section">
-    <div class="shortcuts-inner">
-        <div class="shortcuts-divider">ou accédez directement à</div>
-
-        <div class="shortcuts-header fade-in">
-            <h2>Nos <em>3 formules</em> en un coup d'œil</h2>
-            <p>Vous savez déjà ce que vous voulez ? Choisissez votre formation et découvrez le détail de la formule.</p>
-        </div>
-
-        <div class="shortcuts-grid">
-            <!-- Permis B Automatique -->
-            <a href="https://autoecolemarti.fr/formules/permis-b-automatique.html" class="shortcut-card is-rouge fade-in">
-                <span class="shortcut-icon">🚗</span>
-                <div class="shortcut-tag">Boîte automatique</div>
-                <div class="shortcut-title">Permis B — BVA</div>
-                <p class="shortcut-desc">La formule la plus accessible. Idéale pour se concentrer sur la route, sans gérer la boîte.</p>
-                <div class="shortcut-price-row">
-                    <span class="shortcut-price">967&nbsp;€</span>
-                    <span class="shortcut-price-note">TTC · 13h minimum</span>
-                </div>
-                <span class="shortcut-cta">Découvrir la formule <span class="shortcut-cta-arrow">→</span></span>
-            </a>
-
-            <!-- Permis B Manuel -->
-            <a href="https://autoecolemarti.fr/formules/permis-b-manuel.html" class="shortcut-card is-navy fade-in">
-                <span class="shortcut-icon">⚙️</span>
-                <div class="shortcut-tag">Boîte manuelle</div>
-                <div class="shortcut-title">Permis B — Traditionnel</div>
-                <p class="shortcut-desc">Le permis complet, sans restriction. Valable sur tous les véhicules, manuels comme automatiques.</p>
-                <div class="shortcut-price-row">
-                    <span class="shortcut-price">1&nbsp;261&nbsp;€</span>
-                    <span class="shortcut-price-note">TTC · 20h minimum</span>
-                </div>
-                <span class="shortcut-cta">Découvrir la formule <span class="shortcut-cta-arrow">→</span></span>
-            </a>
-
-            <!-- Conduite Accompagnée (AAC) -->
-            <a href="https://autoecolemarti.fr/formules/conduite-accompagnee.html" class="shortcut-card is-vert fade-in">
-                <span class="shortcut-icon">🎓</span>
-                <div class="shortcut-tag">Conduite accompagnée</div>
-                <div class="shortcut-title">Permis B — AAC</div>
-                <p class="shortcut-desc">Commencez dès 15 ans avec un proche. Plus de pratique, meilleur taux de réussite à l'examen.</p>
-                <div class="shortcut-price-row">
-                    <span class="shortcut-price">1&nbsp;629&nbsp;€</span>
-                    <span class="shortcut-price-note">TTC · Dès 15 ans</span>
-                </div>
-                <span class="shortcut-cta">Découvrir la formule <span class="shortcut-cta-arrow">→</span></span>
-            </a>
-        </div>
-    </div>
-</section>
-
 <!-- ═══ CTA BANNER ═══ -->
 <div class="cta-banner fade-in">
     <h2>Une question avant de vous lancer ?</h2>
@@ -1229,6 +1227,14 @@ const stepMap = {
     'screen-q3b-confident': 3,
 };
 
+function scrollToGuide() {
+    const guide = document.getElementById('guide');
+    if (!guide) return;
+    const navH = 80;
+    const top = guide.getBoundingClientRect().top + window.scrollY - navH;
+    window.scrollTo({ top, behavior: 'smooth' });
+}
+
 function updateProgress(screenId) {
     const step = stepMap[screenId] || currentStep;
     const pct = ((step - 1) / TOTAL_QUESTIONS) * 100;
@@ -1254,7 +1260,7 @@ function goTo(targetId, dir) {
         card.classList.add(dir === 'right' ? 'anim-right' : 'anim-left');
     }
     updateProgress(targetId);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Pas de scroll entre les questions — la hauteur est fixe
 }
 
 function goBack(targetId) {
@@ -1267,7 +1273,7 @@ function goBack(targetId) {
         card.classList.add('anim-left');
     }
     updateProgress(targetId);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Pas de scroll entre les questions — la hauteur est fixe
 }
 
 function showResult(type) {
@@ -1291,7 +1297,7 @@ function showResult(type) {
         card.classList.add('anim-result');
     }
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollToGuide();
 }
 
 function restart() {
@@ -1302,8 +1308,53 @@ function restart() {
     document.getElementById('stepText').textContent = 'Question 1 sur 3';
     showScreen('screen-q1');
     document.getElementById('progressBar').classList.remove('visible');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollToGuide();
 }
+
+// ═══════════════════════════════════════
+//  CALIBRATION HAUTEUR (évite les sauts de page entre questions)
+// ═══════════════════════════════════════
+(function calibrateQuizHeight() {
+    const wrapper = document.querySelector('.quiz-wrapper');
+    if (!wrapper) return;
+
+    const qIds = [
+        'screen-q1', 'screen-q2', 'screen-q2b',
+        'screen-q3a', 'screen-q3a-nocomp',
+        'screen-q3b-anxious', 'screen-q3b-confident'
+    ];
+    const activeScreen = document.querySelector('.quiz-screen.active');
+    let maxH = 0;
+
+    // Mesure chaque écran question individuellement
+    qIds.forEach(id => {
+        const s = document.getElementById(id);
+        if (!s) return;
+        // Masquer tous les écrans, puis afficher uniquement celui-ci (invisible)
+        document.querySelectorAll('.quiz-screen').forEach(sc => { sc.style.display = 'none'; });
+        s.style.display = 'block';
+        s.style.visibility = 'hidden';
+        maxH = Math.max(maxH, s.offsetHeight);
+        s.style.display = 'none';
+        s.style.visibility = '';
+    });
+
+    // Restaurer l'état CSS (laisser les classes .active gérer l'affichage)
+    document.querySelectorAll('.quiz-screen').forEach(s => {
+        s.style.display = '';
+        s.style.visibility = '';
+    });
+
+    // Inclure la hauteur des éléments fixes au-dessus des écrans
+    const introEl = wrapper.querySelector('.quiz-intro');
+    const progressEl = wrapper.querySelector('.quiz-progress');
+    const extra = (introEl ? introEl.offsetHeight + 20 : 0)
+                + (progressEl ? progressEl.offsetHeight + 24 : 0);
+
+    if (maxH > 0) {
+        wrapper.style.minHeight = (maxH + extra) + 'px';
+    }
+})();
 
 // ═══════════════════════════════════════
 //  NAVBAR SCROLL
