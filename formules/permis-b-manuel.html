@@ -86,6 +86,55 @@
         nav .nav-cta { background: var(--basque-rouge); color: white !important; padding: 0.6rem 1.4rem; border-radius: 50px; font-weight: 600; font-size: 0.85rem; transition: var(--transition); }
         nav .nav-cta:hover { background: var(--rouge-sombre); transform: translateY(-1px); }
 
+        /* DROPDOWN */
+        .nav-dropdown { position: relative; }
+        .nav-dropdown > a { display: inline-flex; align-items: center; gap: 0.25rem; }
+        .nav-caret { font-size: 0.7em; transition: transform 0.25s ease; opacity: 0.7; }
+        .nav-dropdown:hover .nav-caret,
+        .nav-dropdown:focus-within .nav-caret { transform: rotate(-180deg); }
+        .nav-dropdown-menu {
+            position: absolute; top: calc(100% + 0.6rem); left: -1rem;
+            min-width: 260px; padding: 0.5rem;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-radius: var(--radius-sm);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.04);
+            list-style: none; margin: 0;
+            opacity: 0; visibility: hidden; transform: translateY(-6px);
+            transition: opacity 0.22s ease, transform 0.22s ease, visibility 0s linear 0.22s;
+            z-index: 1002;
+        }
+        .nav-dropdown:hover .nav-dropdown-menu,
+        .nav-dropdown:focus-within .nav-dropdown-menu {
+            opacity: 1; visibility: visible; transform: translateY(0);
+            transition: opacity 0.22s ease, transform 0.22s ease, visibility 0s;
+        }
+        .nav-dropdown-menu::before { content: ''; position: absolute; top: -0.6rem; left: 0; right: 0; height: 0.6rem; }
+        .nav-dropdown-menu li { display: block; }
+        .nav-dropdown-menu a {
+            display: block; padding: 0.7rem 0.9rem; border-radius: 8px;
+            font-size: 0.9rem; font-weight: 500; color: var(--noir);
+            text-decoration: none; line-height: 1.3;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+        .nav-dropdown-menu a:hover,
+        .nav-dropdown-menu a:focus-visible { background: rgba(214,48,49,0.07); color: var(--basque-rouge); outline: none; }
+        /* HAMBURGER */
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; background: none; border: none; padding: 0; }
+        .hamburger span { width: 24px; height: 2px; background: var(--noir); transition: var(--transition); }
+        @media (max-width: 768px) {
+            nav { padding: 0.6rem 1rem; }
+            .nav-inner { flex-direction: column; align-items: stretch; gap: 0; }
+            nav .logo { white-space: nowrap; font-size: 1.2rem; overflow: hidden; max-height: 2.5rem; opacity: 1; padding-bottom: 0.35rem; transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.35s ease; }
+            .nav-links { display: flex !important; flex-direction: row; gap: 1rem; overflow-x: auto; flex-wrap: nowrap; justify-content: center; padding-bottom: 0; width: 100%; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; }
+            .nav-links::-webkit-scrollbar { display: none; }
+            .nav-links li { flex-shrink: 0; }
+            .nav-links a { font-size: 0.82rem; }
+            .hamburger { display: none !important; }
+            .nav-dropdown-menu { display: none; }
+            .nav-caret { display: none; }
+        }
+
         /* HERO */
         .page-hero {
             padding: 120px 2rem 60px;
@@ -289,15 +338,26 @@
 <a href="#main-content" class="skip-link">Aller au contenu principal</a>
 
 <!-- NAVBAR -->
-<nav>
+<nav id="navbar">
     <div class="nav-inner">
         <a href="../index.html" class="logo">AUTO-ÉCOLE MARTI<span>.</span></a>
-        <ul class="nav-links">
-            <li><a href="../index.html#formations">Formations</a></li>
-            <li><a href="../index.html#tarifs">Tarifs</a></li>
+        <ul class="nav-links" id="navLinks">
+            <li class="nav-dropdown">
+                <a href="../index.html#formations" aria-haspopup="true" aria-expanded="false">Formations <span class="nav-caret" aria-hidden="true">▾</span></a>
+                <ul class="nav-dropdown-menu" role="menu">
+                    <li role="none"><a role="menuitem" href="../formules/">Toutes nos formules &amp; tarifs</a></li>
+                    <li role="none"><a role="menuitem" href="../formules/permis-b-manuel.html">Permis B — Boîte manuelle</a></li>
+                    <li role="none"><a role="menuitem" href="../formules/permis-b-automatique.html">Permis B — Boîte automatique</a></li>
+                    <li role="none"><a role="menuitem" href="../formules/conduite-accompagnee.html">Conduite accompagnée (AAC)</a></li>
+                </ul>
+            </li>
+            <li><a href="../faq.html">FAQ</a></li>
             <li><a href="../blog/index.html">Blog</a></li>
             <li><a href="../index.html#contact" class="nav-cta">Nous contacter</a></li>
         </ul>
+        <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu de navigation" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
     </div>
 </nav>
 
