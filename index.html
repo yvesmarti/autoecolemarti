@@ -1056,16 +1056,38 @@
     });
 
     // ── Mobile nav toggle ──
+    const navLinksEl = document.getElementById('navLinks');
+    const hamburgerEl = document.getElementById('hamburger');
     function toggleNav() {
-        const links = document.getElementById('navLinks');
-        const hamburger = document.getElementById('hamburger');
-        links.classList.toggle('active');
-        hamburger.setAttribute('aria-expanded', links.classList.contains('active'));
+        navLinksEl.classList.toggle('active');
+        hamburgerEl.setAttribute('aria-expanded', navLinksEl.classList.contains('active'));
     }
-    document.getElementById('hamburger').addEventListener('click', toggleNav);
+    hamburgerEl.addEventListener('click', toggleNav);
+
+    // ── Sous-menu Formations : accordéon sur mobile ──
+    const navDropdown = document.querySelector('.nav-dropdown');
+    const navDropdownLink = navDropdown ? navDropdown.querySelector(':scope > a') : null;
+    if (navDropdownLink) {
+        navDropdownLink.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                const open = navDropdown.classList.toggle('open');
+                navDropdownLink.setAttribute('aria-expanded', open);
+            }
+        });
+    }
+
+    // ── Fermer le menu mobile au clic sur un lien ──
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
-            document.getElementById('navLinks').classList.remove('active');
+            // Le lien parent "Formations" pilote l'accordéon : ne pas fermer le menu
+            if (link === navDropdownLink && window.innerWidth <= 768) return;
+            navLinksEl.classList.remove('active');
+            hamburgerEl.setAttribute('aria-expanded', 'false');
+            if (navDropdown) {
+                navDropdown.classList.remove('open');
+                navDropdownLink.setAttribute('aria-expanded', 'false');
+            }
         });
     });
 

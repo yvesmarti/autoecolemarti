@@ -1,0 +1,77 @@
+/* ══════════════════════════════════════════════════════════════
+   nav-mobile.css — Menu hamburger mobile partagé
+   Inclus sur toutes les pages SAUF l'accueil (index.html gère sa
+   navbar via css/index.css). À charger APRÈS le <style> inline de
+   chaque page pour neutraliser les anciennes règles de scroll
+   horizontal (d'où les !important ciblés).
+   ══════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+    .nav-inner {
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 0 !important;
+        position: relative !important;
+    }
+
+    /* Bouton hamburger (présent dans le markup ou injecté par nav.js) */
+    .hamburger {
+        display: flex !important;
+        flex-direction: column; gap: 5px;
+        cursor: pointer; background: none; border: none; padding: 0;
+        z-index: 1001;
+    }
+    .hamburger span {
+        display: block; width: 24px; height: 2px;
+        background: var(--noir, #0a0a0a);
+        transition: transform .3s ease, opacity .3s ease;
+        transform-origin: center;
+    }
+    .hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Panneau déroulant : caché par défaut, ouvert via .active */
+    .nav-links {
+        position: absolute !important; top: 100% !important;
+        left: 0 !important; right: 0 !important; width: auto !important;
+        flex-direction: column !important; align-items: stretch !important;
+        justify-content: flex-start !important; gap: 0 !important;
+        overflow: hidden !important; overflow-x: hidden !important;
+        background: rgba(255,255,255,0.98);
+        backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 0 1.2rem; max-height: 0; opacity: 0; visibility: hidden;
+        transition: max-height .32s ease, opacity .25s ease, padding .32s ease, visibility 0s linear .32s;
+    }
+    .nav-links.active {
+        max-height: 85vh; overflow-y: auto !important;
+        opacity: 1; visibility: visible; padding: 0.25rem 1.2rem 1.2rem;
+        transition: max-height .32s ease, opacity .25s ease, padding .32s ease, visibility 0s;
+    }
+    .nav-links li { width: 100%; flex-shrink: 1 !important; }
+    .nav-links > li > a {
+        display: block; padding: 0.95rem 0.25rem; font-size: 1rem !important;
+        border-bottom: 1px solid var(--gris-clair, #e5e5e5);
+    }
+    .nav-links a::after { display: none !important; }
+    .nav-links .nav-cta { margin-top: 1rem; text-align: center; border-bottom: none; }
+
+    /* Sous-menu « Formations » en accordéon (si présent) */
+    .nav-dropdown > a { justify-content: space-between; }
+    .nav-caret { display: inline-block !important; }
+    .nav-dropdown.open .nav-caret { transform: rotate(-180deg); }
+    .nav-dropdown-menu {
+        position: static !important; display: block !important;
+        opacity: 1 !important; visibility: visible !important; transform: none !important;
+        box-shadow: none !important; background: transparent !important;
+        backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+        min-width: 0 !important; padding: 0 !important; border-radius: 0 !important;
+        max-height: 0; overflow: hidden; transition: max-height .3s ease;
+    }
+    .nav-dropdown.open .nav-dropdown-menu { max-height: 420px; }
+    .nav-dropdown-menu a { padding-left: 1rem !important; font-size: 0.9rem !important; }
+}
+@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+    .nav-links, .nav-dropdown-menu, .hamburger span, .nav-caret { transition: none !important; }
+}
