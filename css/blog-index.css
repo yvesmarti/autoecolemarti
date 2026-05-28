@@ -170,11 +170,43 @@ section { padding: 6rem 2rem; }
 }
 
 /* ═══════════════════════════════════════
+   RECHERCHE
+═══════════════════════════════════════ */
+.blog-search {
+    background: var(--blanc);
+    max-width: 1200px; margin: 0 auto;
+    padding: 2.5rem 2rem 0;
+    display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+}
+.blog-search-field {
+    position: relative; width: 100%; max-width: 460px;
+}
+.blog-search-icon {
+    position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
+    color: var(--gris); pointer-events: none;
+}
+.blog-search input {
+    width: 100%; box-sizing: border-box;
+    padding: 0.8rem 1.1rem 0.8rem 2.8rem;
+    border: 2px solid var(--gris-clair); border-radius: 50px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+    color: var(--noir); background: white; transition: var(--transition);
+}
+.blog-search input::placeholder { color: var(--gris); }
+.blog-search input:focus {
+    outline: none; border-color: var(--basque-rouge);
+    box-shadow: 0 0 0 3px rgba(214,48,49,0.12);
+}
+.blog-count {
+    font-size: 0.85rem; color: var(--gris); margin: 0; min-height: 1.2em;
+}
+
+/* ═══════════════════════════════════════
    FILTRES / CATÉGORIES
 ═══════════════════════════════════════ */
 .filtres {
     background: var(--blanc);
-    padding: 2.5rem 2rem 0;
+    padding: 1.5rem 2rem 0;
 }
 .filtres-inner {
     max-width: 1200px; margin: 0 auto;

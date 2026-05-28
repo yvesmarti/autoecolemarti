@@ -103,7 +103,14 @@ nav .nav-cta:hover { background: var(--rouge-sombre); transform: translateY(-1px
     display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001;
     background: none; border: none; padding: 0;
 }
-.hamburger span { width: 24px; height: 2px; background: var(--noir); transition: var(--transition); }
+.hamburger span { width: 24px; height: 2px; background: var(--noir); transition: var(--transition); transform-origin: center; }
+/* Animation barres → croix quand le menu est ouvert */
+.hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+@media (prefers-reduced-motion: reduce) {
+    .hamburger span, .nav-links, .nav-dropdown-menu, .nav-caret { transition: none !important; }
+}
 
 /* ── Sous-menu Formations ── */
 .nav-dropdown { position: relative; }
@@ -763,41 +770,52 @@ footer { background: var(--noir); color: white; padding: 4rem 2rem 2rem; }
     .footer-top { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 768px) {
-    /* ── Mobile nav : logo ligne 1, liens ligne 2 ── */
-    nav { padding: 0.6rem 1rem; }
-    nav.scrolled { padding: 0.4rem 1rem; }
+    /* ── Mobile nav : logo + hamburger sur une ligne, menu déroulant ── */
+    nav { padding: 0.7rem 1rem; }
+    nav.scrolled { padding: 0.55rem 1rem; }
     .nav-inner {
-        flex-direction: column; align-items: stretch; gap: 0;
+        flex-direction: row; align-items: center; justify-content: space-between;
     }
-    /* Logo : 1re ligne, se masque au scroll */
-    nav .logo {
-        white-space: nowrap; font-size: 1.2rem;
-        overflow: hidden; max-height: 2.5rem; opacity: 1;
-        padding-bottom: 0.35rem;
-        transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.35s ease;
-    }
-    nav.scrolled .logo {
-        max-height: 0; opacity: 0; padding-bottom: 0;
-        pointer-events: none;
-    }
-    /* Liens : 2e ligne, toujours visibles, défilables horizontalement */
+    nav .logo { white-space: nowrap; font-size: 1.2rem; }
+    .hamburger { display: flex; }
+    /* Panneau déroulant : caché par défaut, affiché via .active */
     .nav-links {
-        display: flex !important; flex-direction: row;
-        gap: 1rem; overflow-x: auto; flex-wrap: nowrap;
-        justify-content: center;
-        padding-bottom: 0; width: 100%;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none; -ms-overflow-style: none;
+        position: absolute; top: 100%; left: 0; right: 0;
+        flex-direction: column; align-items: stretch; gap: 0;
+        background: rgba(255,255,255,0.98);
+        backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 0.25rem 1.2rem 1.2rem;
+        max-height: 0; overflow: hidden; opacity: 0; visibility: hidden;
+        transition: max-height 0.32s ease, opacity 0.25s ease, visibility 0s linear 0.32s;
     }
-    .nav-links::-webkit-scrollbar { display: none; }
-    .nav-links li { flex-shrink: 0; }
-    .nav-links a { font-size: 0.82rem; }
-    /* Masque le bouton hamburger — le menu est affiché directement */
-    .hamburger { display: none !important; }
-    /* Dropdown : sur mobile, on cache le panneau (les liens restent dans le DOM
-       pour le crawl) et le lien parent fonctionne comme une ancre simple. */
-    .nav-dropdown-menu { display: none; }
-    .nav-caret { display: none; }
+    .nav-links.active {
+        max-height: 85vh; overflow-y: auto; opacity: 1; visibility: visible;
+        transition: max-height 0.32s ease, opacity 0.25s ease, visibility 0s;
+    }
+    .nav-links li { width: 100%; }
+    .nav-links > li > a {
+        display: block; padding: 0.95rem 0.25rem; font-size: 1rem;
+        border-bottom: 1px solid var(--gris-clair);
+    }
+    .nav-links a::after { display: none; }
+    .nav-links .nav-cta {
+        margin-top: 1rem; text-align: center; border-bottom: none;
+    }
+    /* Sous-menu Formations : accordéon */
+    .nav-dropdown > a { justify-content: space-between; }
+    .nav-caret { display: inline-block; }
+    .nav-dropdown.open .nav-caret { transform: rotate(-180deg); }
+    .nav-dropdown-menu {
+        position: static; opacity: 1; visibility: visible; transform: none;
+        box-shadow: none; background: transparent;
+        backdrop-filter: none; -webkit-backdrop-filter: none;
+        min-width: 0; padding: 0; border-radius: 0;
+        max-height: 0; overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+    .nav-dropdown.open .nav-dropdown-menu { max-height: 420px; }
+    .nav-dropdown-menu a { padding-left: 1rem; font-size: 0.9rem; }
     .avantages-grid { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
     .info-cards { grid-template-columns: 1fr 1fr; }
     /* Adresse (1) et Téléphone (3) côte à côte en ligne 1 */

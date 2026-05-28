@@ -569,3 +569,83 @@ footer { background: var(--noir); color: white; padding: 4rem 2rem 2rem; }
     .result-stat .stat-value { font-size: 1.2rem; }
     .radio-group { flex-direction: column; gap: 0.4rem; border-radius: 1.5rem; }
 }
+
+/* ═══════════════════════════════════════
+   SOMMAIRE (table des matières) — desktop large uniquement
+═══════════════════════════════════════ */
+.article-toc {
+    display: none; /* masqué par défaut : mobile + tablette */
+    position: fixed; top: 110px; left: max(16px, calc(50% - 640px));
+    width: 220px; max-height: calc(100vh - 150px); overflow-y: auto;
+    padding: 0.5rem 0.75rem; z-index: 50;
+    font-family: 'DM Sans', sans-serif;
+}
+@media (min-width: 1280px) { .article-toc { display: block; } }
+.article-toc-title {
+    font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--gris); margin: 0 0 0.75rem;
+}
+.article-toc ul { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--gris-clair); }
+.article-toc li { margin: 0; }
+.article-toc a {
+    display: block; padding: 0.4rem 0 0.4rem 0.9rem; margin-left: -2px;
+    border-left: 2px solid transparent;
+    font-size: 0.85rem; line-height: 1.35; color: var(--gris);
+    text-decoration: none; transition: color 0.2s ease, border-color 0.2s ease;
+}
+.article-toc a:hover { color: var(--article-accent, var(--basque-rouge)); }
+.article-toc a.active {
+    color: var(--article-accent, var(--basque-rouge)); font-weight: 600;
+    border-left-color: var(--article-accent, var(--basque-rouge));
+}
+
+/* ═══════════════════════════════════════
+   BOUTON RETOUR EN HAUT
+═══════════════════════════════════════ */
+.back-to-top {
+    position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 900;
+    width: 46px; height: 46px; border-radius: 50%; border: none; cursor: pointer;
+    background: var(--article-accent, var(--basque-rouge)); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+    opacity: 0; visibility: hidden; transform: translateY(12px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
+}
+.back-to-top.visible {
+    opacity: 1; visibility: visible; transform: translateY(0);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s;
+}
+.back-to-top:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,0.24); }
+
+/* ═══════════════════════════════════════
+   BARRE DE PARTAGE
+═══════════════════════════════════════ */
+.article-share-wrap { max-width: 780px; margin: 0 auto; padding: 2rem; }
+.article-share {
+    display: flex; align-items: center; flex-wrap: wrap; gap: 0.6rem;
+    padding-top: 1.8rem; border-top: 1px solid var(--gris-clair);
+    position: relative;
+}
+.article-share-label { font-size: 0.9rem; font-weight: 600; color: var(--gris); margin-right: 0.3rem; }
+.share-btn {
+    width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--gris-clair);
+    background: #fff; color: var(--gris); cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    text-decoration: none; transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.share-btn:hover { transform: translateY(-2px); color: #fff; }
+.share-fb:hover { background: #1877f2; border-color: #1877f2; }
+.share-x:hover { background: #000; border-color: #000; }
+.share-li:hover { background: #0a66c2; border-color: #0a66c2; }
+.share-wa:hover { background: #25d366; border-color: #25d366; }
+.share-copy:hover { background: var(--article-accent, var(--basque-rouge)); border-color: var(--article-accent, var(--basque-rouge)); }
+.share-copy.copied { background: var(--basque-vert); border-color: var(--basque-vert); color: #fff; }
+/* Petit feedback « Lien copié ! » */
+.article-share[data-copied]::after {
+    content: attr(data-copied); position: absolute; right: 0; top: 0;
+    background: var(--basque-vert); color: #fff; font-size: 0.75rem; font-weight: 600;
+    padding: 0.3rem 0.7rem; border-radius: 50px;
+}
+@media (prefers-reduced-motion: reduce) {
+    .back-to-top, .share-btn, .article-toc a { transition: none !important; }
+}
