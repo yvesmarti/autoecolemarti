@@ -5,6 +5,10 @@
    chaque page pour neutraliser les anciennes règles de scroll
    horizontal (d'où les !important ciblés).
    ══════════════════════════════════════════════════════════════ */
+
+/* Hamburger masqué sur desktop (qu'il soit dans le markup ou injecté par nav.js) */
+.hamburger { display: none; }
+
 @media (max-width: 768px) {
     .nav-inner {
         flex-direction: row !important;
