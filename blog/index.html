@@ -54,6 +54,17 @@
 </div>
 
 <!-- ══════════════════════════════════════════════════════════════
+     RECHERCHE
+══════════════════════════════════════════════════════════════ -->
+<div class="blog-search">
+    <div class="blog-search-field">
+        <svg class="blog-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="search" id="blogSearch" placeholder="Rechercher un article…" aria-label="Rechercher un article" autocomplete="off">
+    </div>
+    <p id="blogCount" class="blog-count" role="status" aria-live="polite"></p>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
      FILTRES CATÉGORIES
 ══════════════════════════════════════════════════════════════ -->
 <div class="filtres">
@@ -532,37 +543,70 @@
     const articleCards = document.querySelectorAll('.article-card');
     const grid = document.querySelector('.articles-grid');
 
-    // Créer un message "aucun article" caché
+    const searchInput = document.getElementById('blogSearch');
+    const countEl = document.getElementById('blogCount');
+    let currentFilter = 'tous';
+
+    // Normalise (minuscules, sans accents) pour une recherche tolérante
+    const norm = s => (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+    // Créer un message "aucun résultat" caché
     const noResult = document.createElement('p');
-    noResult.textContent = 'Aucun article dans cette catégorie pour l\'instant — revenez bientôt !';
+    noResult.textContent = 'Aucun article ne correspond — essayez un autre mot-clé ou une autre catégorie.';
     noResult.style.cssText = 'display:none; text-align:center; color:var(--gris); padding:3rem 0; grid-column:1/-1; font-size:1rem;';
     grid.appendChild(noResult);
 
+    function applyFilters() {
+        const q = norm(searchInput ? searchInput.value.trim() : '');
+        let visibleCount = 0;
+
+        articleCards.forEach(card => {
+            const catOk = currentFilter === 'tous' || card.dataset.category === currentFilter;
+            let textOk = true;
+            if (q) {
+                const title = card.querySelector('.article-title');
+                const excerpt = card.querySelector('.article-excerpt');
+                const hay = norm((title ? title.textContent : '') + ' ' + (excerpt ? excerpt.textContent : ''));
+                textOk = hay.includes(q);
+            }
+            const match = catOk && textOk;
+            card.style.display = match ? '' : 'none';
+            if (match) visibleCount++;
+        });
+
+        // Réajuster la carte featured si elle est visible
+        const featured = document.querySelector('.article-card.featured');
+        if (featured && featured.style.display !== 'none') {
+            featured.style.gridColumn = '1 / -1';
+            featured.style.flexDirection = '';
+        }
+
+        noResult.style.display = visibleCount === 0 ? 'block' : 'none';
+        if (countEl) {
+            countEl.textContent = visibleCount === 0
+                ? 'Aucun article trouvé'
+                : visibleCount + (visibleCount > 1 ? ' articles' : ' article');
+        }
+    }
+
     filtresBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Mettre à jour les boutons actifs
             filtresBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-
-            const filter = btn.dataset.filter;
-            let visibleCount = 0;
-
-            articleCards.forEach(card => {
-                const match = filter === 'tous' || card.dataset.category === filter;
-                card.style.display = match ? '' : 'none';
-                if (match) visibleCount++;
-            });
-
-            // Réajuster la carte featured si elle est visible
-            const featured = document.querySelector('.article-card.featured');
-            if (featured && featured.style.display !== 'none') {
-                featured.style.gridColumn = '1 / -1';
-                featured.style.flexDirection = '';
-            }
-
-            noResult.style.display = visibleCount === 0 ? 'block' : 'none';
+            currentFilter = btn.dataset.filter;
+            applyFilters();
         });
     });
+
+    if (searchInput) {
+        let debounce;
+        searchInput.addEventListener('input', () => {
+            clearTimeout(debounce);
+            debounce = setTimeout(applyFilters, 120);
+        });
+    }
+
+    applyFilters(); // compteur initial
 </script>
 
 <script type="application/ld+json">
