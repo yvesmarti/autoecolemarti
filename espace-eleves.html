@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preload" href="fonts/playfair-display-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espace Élèves — Vos Ressources | Auto-École Marti Bayonne</title>
+    <link rel="icon" type="image/png" href="favicon.ico.png">
+    <meta name="description" content="Après votre inscription à l'auto-école Marti, retrouvez toutes vos ressources pédagogiques : plateforme de code, application mobile, documents et contacts.">
+    <meta property="og:title" content="Espace Élèves — Vos Ressources | Auto-École Marti">
+    <meta property="og:description" content="Plateforme de code, application mobile, documents PDF et contacts — toutes les ressources pour les élèves inscrits à l'auto-école Marti, Bayonne.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://autoecolemarti.fr/espace-eleves.html">
+    <meta property="og:site_name" content="Auto-École Marti">
+    <link rel="canonical" href="https://autoecolemarti.fr/espace-eleves.html">
+    <link rel="stylesheet" href="css/fonts.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://autoecolemarti.fr"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Espace Élèves",
+          "item": "https://autoecolemarti.fr/espace-eleves.html"
+        }
+      ]
+    }
+    </script>
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --noir: #0a0a0a;
+            --blanc: #fafaf8;
+            --creme: #f5f0e8;
+            --rouge: #c0392b;
+            --rouge-doux: #e74c3c;
+            --rouge-sombre: #922b21;
+            --vert: #1a5c38;
+            --vert-clair: #27ae60;
+            --gris: #6b7280;
+            --gris-clair: #e5e5e5;
+            --basque-rouge: #d63031;
+            --basque-vert: #00695c;
+            --or: #d4a853;
+            --ombre: 0 4px 30px rgba(0,0,0,0.08);
+            --ombre-forte: 0 20px 60px rgba(0,0,0,0.12);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --page-accent: #00695c;
+            --page-accent-dark: #0d3b24;
+        }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--blanc); color: var(--noir); line-height: 1.7; overflow-x: hidden; }
+
+        /* NAVBAR */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 1rem 2rem; background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 1px 30px rgba(0,0,0,0.06);
+        }
+        nav .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        nav .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--noir); text-decoration: none; letter-spacing: -0.02em; }
+        nav .logo span { color: var(--basque-rouge); }
+        nav .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+        nav .nav-links a { text-decoration: none; color: var(--noir); font-size: 0.9rem; font-weight: 500; letter-spacing: 0.02em; transition: var(--transition); }
+        nav .nav-links a:hover { color: var(--page-accent); }
+        nav .nav-cta { background: var(--basque-rouge) !important; color: white !important; padding: 0.6rem 1.4rem; border-radius: 50px; font-weight: 600; font-size: 0.85rem; transition: var(--transition); }
+        nav .nav-cta:hover { background: var(--rouge-sombre) !important; transform: translateY(-1px); color: white !important; }
+
+        /* DROPDOWN */
+        .nav-dropdown { position: relative; }
+        .nav-dropdown > a { display: inline-flex; align-items: center; gap: 0.25rem; }
+        .nav-caret { font-size: 0.7em; transition: transform 0.25s ease; opacity: 0.7; }
+        .nav-dropdown:hover .nav-caret,
+        .nav-dropdown:focus-within .nav-caret { transform: rotate(-180deg); }
+        .nav-dropdown-menu {
+            position: absolute; top: calc(100% + 0.6rem); left: -1rem;
+            min-width: 260px; padding: 0.5rem;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-radius: var(--radius-sm);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.04);
+            list-style: none; margin: 0;
+            opacity: 0; visibility: hidden; transform: translateY(-6px);
+            transition: opacity 0.22s ease, transform 0.22s ease, visibility 0s linear 0.22s;
+            z-index: 1002;
+        }
+        .nav-dropdown:hover .nav-dropdown-menu,
+        .nav-dropdown:focus-within .nav-dropdown-menu {
+            opacity: 1; visibility: visible; transform: translateY(0);
+            transition: opacity 0.22s ease, transform 0.22s ease, visibility 0s;
+        }
+        .nav-dropdown-menu::before { content: ''; position: absolute; top: -0.6rem; left: 0; right: 0; height: 0.6rem; }
+        .nav-dropdown-menu li { display: block; }
+        .nav-dropdown-menu a {
+            display: block; padding: 0.7rem 0.9rem; border-radius: 8px;
+            font-size: 0.9rem; font-weight: 500; color: var(--noir);
+            text-decoration: none; line-height: 1.3;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+        .nav-dropdown-menu a:hover,
+        .nav-dropdown-menu a:focus-visible { background: rgba(214,48,49,0.07); color: var(--basque-rouge); outline: none; }
+
+        /* HAMBURGER */
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; background: none; border: none; padding: 0; }
+        .hamburger span { width: 24px; height: 2px; background: var(--noir); transition: var(--transition); }
+        @media (max-width: 768px) {
+            nav { padding: 0.6rem 1rem; }
+            .nav-inner { flex-direction: column; align-items: stretch; gap: 0; }
+            nav .logo { white-space: nowrap; font-size: 1.2rem; overflow: hidden; padding-bottom: 0.35rem; }
+            .nav-links { display: flex !important; flex-direction: row; gap: 1rem; overflow-x: auto; flex-wrap: nowrap; justify-content: center; padding-bottom: 0; width: 100%; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; }
+            .nav-links::-webkit-scrollbar { display: none; }
+            .nav-links li { flex-shrink: 0; }
+            .nav-links a { font-size: 0.82rem; }
+            .hamburger { display: none !important; }
+            .nav-dropdown-menu { display: none; }
+            .nav-caret { display: none; }
+        }
+
+        /* HERO */
+        .page-hero {
+            padding: 120px 2rem 70px;
+            background: linear-gradient(135deg, #0d3b24 0%, #1a5c38 60%, #27ae60 100%);
+            color: white;
+            text-align: center;
+        }
+        .page-hero .breadcrumb { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-bottom: 1.5rem; }
+        .page-hero .breadcrumb a { color: rgba(255,255,255,0.5); text-decoration: none; }
+        .page-hero .breadcrumb a:hover { color: white; }
+        .page-hero .badge {
+            display: inline-block; background: var(--or); color: var(--noir);
+            padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700;
+            letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.2rem;
+        }
+        .page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; line-height: 1.15; margin-bottom: 1rem; }
+        .page-hero h1 em { font-style: italic; color: var(--or); }
+        .page-hero .subtitle { font-size: 1.1rem; color: rgba(255,255,255,0.75); max-width: 600px; margin: 0 auto; }
+
+        /* CONTAINER & LAYOUT */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        section { padding: 5rem 2rem; }
+        .section-tag { display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--page-accent); margin-bottom: 0.8rem; }
+        h2.section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.4rem); margin-bottom: 0.8rem; line-height: 1.2; }
+        h2.section-title em { font-style: italic; color: var(--page-accent); }
+        .section-intro { color: var(--gris); font-size: 1rem; max-width: 650px; margin-bottom: 2.5rem; }
+
+        /* ÉTAPES */
+        .etapes { background: var(--creme); }
+        .etapes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 1rem; }
+        .etape-card {
+            background: white; border-radius: var(--radius); padding: 2rem 1.5rem;
+            text-align: center; position: relative; transition: var(--transition);
+        }
+        .etape-card:hover { transform: translateY(-4px); box-shadow: var(--ombre-forte); }
+        .etape-num {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 44px; height: 44px; border-radius: 50%;
+            background: var(--page-accent); color: white;
+            font-weight: 700; font-size: 1.1rem; margin-bottom: 1rem;
+        }
+        .etape-icon { font-size: 1.8rem; margin-bottom: 0.8rem; display: block; }
+        .etape-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .etape-card p { font-size: 0.88rem; color: var(--gris); }
+        .etape-connector {
+            position: absolute; top: 3.5rem; right: -0.75rem;
+            width: 1.5rem; height: 2px; background: var(--gris-clair);
+        }
+        .etape-card:last-child .etape-connector { display: none; }
+
+        /* RESSOURCES */
+        .ressources { background: var(--blanc); }
+        .callout-info {
+            background: rgba(0,105,92,0.07); border-left: 4px solid var(--page-accent);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            padding: 1.2rem 1.5rem; margin-bottom: 3rem;
+            display: flex; align-items: flex-start; gap: 0.8rem;
+        }
+        .callout-info .callout-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.1rem; }
+        .callout-info p { font-size: 0.92rem; color: var(--noir); margin: 0; }
+        .callout-info a { color: var(--page-accent); font-weight: 600; text-decoration: none; }
+        .callout-info a:hover { text-decoration: underline; }
+
+        .ressources-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        .ressource-card {
+            background: var(--creme); border-radius: var(--radius); padding: 2rem;
+            transition: var(--transition); display: flex; flex-direction: column;
+        }
+        .ressource-card:hover { transform: translateY(-4px); box-shadow: var(--ombre-forte); }
+        .ressource-card.highlight { background: var(--page-accent-dark); color: white; }
+        .ressource-card .card-icon { font-size: 2.2rem; margin-bottom: 1.2rem; }
+        .ressource-card .card-tag {
+            font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--page-accent); margin-bottom: 0.5rem;
+        }
+        .ressource-card.highlight .card-tag { color: rgba(255,255,255,0.55); }
+        .ressource-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.6rem; }
+        .ressource-card p { font-size: 0.9rem; color: var(--gris); margin-bottom: 1.5rem; flex: 1; }
+        .ressource-card.highlight p { color: rgba(255,255,255,0.75); }
+        .ressource-card .card-actions { display: flex; flex-direction: column; gap: 0.75rem; margin-top: auto; }
+
+        .access-note {
+            display: inline-flex; align-items: center; gap: 0.4rem; align-self: flex-start;
+            font-size: 0.8rem; color: var(--gris);
+            background: white; border-radius: 50px; padding: 0.4rem 0.9rem;
+            border: 1px solid var(--gris-clair);
+        }
+        .access-note::before { content: '🔑'; font-size: 0.8rem; }
+
+        .store-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+        .btn-store {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: var(--noir); color: white;
+            padding: 0.6rem 1.1rem; border-radius: 10px; font-weight: 600; font-size: 0.82rem;
+            text-decoration: none; transition: var(--transition);
+        }
+        .btn-store:hover { background: #333; transform: translateY(-1px); }
+        .btn-store .store-icon { font-size: 1rem; }
+
+        .pdf-links { display: flex; flex-direction: column; gap: 0.5rem; }
+        .pdf-link {
+            display: flex; align-items: center; gap: 0.6rem;
+            font-size: 0.88rem; color: var(--noir); text-decoration: none;
+            padding: 0.75rem 1rem; background: white; border-radius: var(--radius-sm);
+            border: 1px solid var(--gris-clair); transition: var(--transition);
+        }
+        .pdf-link:hover { border-color: var(--page-accent); color: var(--page-accent); transform: translateX(4px); }
+        .pdf-link .pdf-name { font-weight: 600; flex: 1; }
+        .pdf-link .pdf-badge { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gris); background: var(--gris-clair); border-radius: 4px; padding: 0.1rem 0.4rem; flex-shrink: 0; }
+
+        .contact-info { display: flex; flex-direction: column; gap: 0.65rem; margin-bottom: 1.5rem; }
+        .contact-line { display: flex; align-items: center; gap: 0.7rem; font-size: 0.92rem; }
+        .contact-line a { color: rgba(255,255,255,0.9); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+        .contact-line a:hover { color: white; }
+        .contact-line .ci-label { color: rgba(255,255,255,0.85); }
+
+        .btn-ressource {
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+            padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 600; font-size: 0.9rem;
+            text-decoration: none; transition: var(--transition); text-align: center;
+        }
+        .btn-ressource.btn-white { background: white; color: var(--page-accent-dark); }
+        .btn-ressource.btn-white:hover { background: var(--creme); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, var(--page-accent) 0%, var(--page-accent-dark) 100%);
+            color: white; text-align: center; padding: 5rem 2rem;
+        }
+        .cta-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 1rem; }
+        .cta-section p { font-size: 1rem; opacity: 0.85; max-width: 500px; margin: 0 auto 2.5rem; }
+        .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .btn-cta-white { background: white; color: var(--page-accent); padding: 0.9rem 2rem; border-radius: 50px; font-weight: 700; font-size: 0.95rem; text-decoration: none; transition: var(--transition); }
+        .btn-cta-white:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+        .btn-cta-outline { border: 2px solid rgba(255,255,255,0.6); color: white; padding: 0.9rem 2rem; border-radius: 50px; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: var(--transition); }
+        .btn-cta-outline:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+        /* FOOTER */
+        footer { background: var(--noir); color: rgba(255,255,255,0.7); padding: 3rem 2rem; text-align: center; font-size: 0.85rem; }
+        footer .logo-footer { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: white; margin-bottom: 0.8rem; }
+        footer .logo-footer span { color: var(--basque-rouge); }
+        footer p { margin-bottom: 0.4rem; }
+        footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+        footer a:hover { color: white; }
+        footer .footer-links { display: flex; gap: 1.5rem; justify-content: center; margin: 1.2rem 0; flex-wrap: wrap; }
+
+        /* ANIMATIONS */
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* ACCESSIBILITY */
+        .skip-link { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; z-index: 10000; }
+        .skip-link:focus { position: fixed; top: 0; left: 0; width: auto; height: auto; padding: 1rem 2rem; background: var(--basque-rouge); color: #fff; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 1rem; text-decoration: none; z-index: 10000; }
+        :focus-visible { outline: 3px solid var(--basque-rouge); outline-offset: 2px; }
+
+        @media (max-width: 768px) {
+            .etapes-grid { grid-template-columns: 1fr; }
+            .etape-connector { display: none; }
+            .ressources-grid { grid-template-columns: 1fr; }
+            section { padding: 3.5rem 1.2rem; }
+            .page-hero { padding: 100px 1.5rem 50px; }
+        }
+    </style>
+    <link rel="stylesheet" href="/vendor/tarteaucitron/tarteaucitron.css">
+    <link rel="stylesheet" href="/css/tarteaucitron-custom.css">
+    <script defer src="/vendor/tarteaucitron/tarteaucitron.js"></script>
+    <script defer src="/vendor/tarteaucitron/lang/tarteaucitron.fr.js"></script>
+    <script defer src="/scripts/consent.js"></script>
+    <link rel="stylesheet" href="/css/nav-mobile.css">
+    <script src="/scripts/nav.js" defer></script>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="index.html" class="logo">AUTO-ÉCOLE MARTI<span>.</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li class="nav-dropdown">
+                <a href="index.html#formations" aria-haspopup="true" aria-expanded="false">Formations <span class="nav-caret" aria-hidden="true">▾</span></a>
+                <ul class="nav-dropdown-menu" role="menu">
+                    <li role="none"><a role="menuitem" href="formules/">Toutes nos formules &amp; tarifs</a></li>
+                    <li role="none"><a role="menuitem" href="formules/permis-b-manuel.html">Permis B — Boîte manuelle</a></li>
+                    <li role="none"><a role="menuitem" href="formules/permis-b-automatique.html">Permis B — Boîte automatique</a></li>
+                    <li role="none"><a role="menuitem" href="formules/conduite-accompagnee.html">Conduite accompagnée (AAC)</a></li>
+                </ul>
+            </li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="blog/index.html">Blog</a></li>
+            <li><a href="reservation.html" class="nav-cta">S'inscrire</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu de navigation" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<main id="main-content">
+
+<!-- HERO -->
+<div class="page-hero">
+    <p class="breadcrumb"><a href="index.html">Accueil</a> / Espace Élèves</p>
+    <div class="badge">Pour nos élèves inscrits</div>
+    <h1>Votre espace<br><em>après inscription</em></h1>
+    <p class="subtitle">Plateforme de code, application mobile, documents pédagogiques — tout ce dont vous avez besoin pour réussir votre permis, réuni en un seul endroit.</p>
+</div>
+
+<!-- ÉTAPES -->
+<section class="etapes">
+    <div class="container">
+        <div class="section-tag fade-in">Votre parcours</div>
+        <h2 class="section-title fade-in">Du premier jour à <em>votre permis</em></h2>
+        <p class="section-intro fade-in">Voici comment accéder à vos ressources après votre inscription à l'auto-école Marti.</p>
+        <div class="etapes-grid">
+            <div class="etape-card fade-in">
+                <div class="etape-num">1</div>
+                <span class="etape-icon" aria-hidden="true">📝</span>
+                <h3>Inscription validée</h3>
+                <p>Votre dossier est ouvert à l'auto-école. Pièces fournies, contrat signé — vous faites officiellement partie de l'auto-école Marti.</p>
+                <div class="etape-connector" aria-hidden="true"></div>
+            </div>
+            <div class="etape-card fade-in">
+                <div class="etape-num">2</div>
+                <span class="etape-icon" aria-hidden="true">🔑</span>
+                <h3>Remise de vos accès</h3>
+                <p>Vos identifiants pour la plateforme de code et le lien vers l'application mobile vous sont communiqués directement en auto-école.</p>
+                <div class="etape-connector" aria-hidden="true"></div>
+            </div>
+            <div class="etape-card fade-in">
+                <div class="etape-num">3</div>
+                <span class="etape-icon" aria-hidden="true">🚀</span>
+                <h3>Commencez à réviser</h3>
+                <p>Connectez-vous à votre espace personnel, téléchargez vos documents et commencez la révision du code à votre rythme, où vous voulez.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- RESSOURCES -->
+<section class="ressources">
+    <div class="container">
+        <div class="section-tag fade-in">Vos ressources pédagogiques</div>
+        <h2 class="section-title fade-in">Tout ce qu'il vous faut pour <em>réussir</em></h2>
+
+        <div class="callout-info fade-in" role="note">
+            <span class="callout-icon" aria-hidden="true">ℹ️</span>
+            <p>Ces ressources sont accessibles aux élèves inscrits à l'auto-école Marti. Vos accès personnels vous sont remis lors de votre inscription. Vous n'avez pas encore vos accès ? <a href="index.html#contact">Contactez-nous.</a></p>
+        </div>
+
+        <div class="ressources-grid">
+
+            <!-- Plateforme code -->
+            <div class="ressource-card fade-in">
+                <div class="card-icon" aria-hidden="true">💻</div>
+                <div class="card-tag">Code de la route</div>
+                <h3>Plateforme de révision en ligne</h3>
+                <p>Accédez à votre espace personnel : séries d'entraînement officielles, statistiques de progression, fiches mémo et tests blancs. Révisez depuis n'importe quel appareil connecté.</p>
+                <div class="card-actions">
+                    <span class="access-note">Identifiants remis à l'inscription</span>
+                </div>
+            </div>
+
+            <!-- App mobile -->
+            <div class="ressource-card fade-in">
+                <div class="card-icon" aria-hidden="true">📱</div>
+                <div class="card-tag">Application mobile</div>
+                <h3>Révisez où vous voulez</h3>
+                <p>L'application recommandée par votre auto-école vous permet de réviser le code en déplacement, hors connexion. Disponible sur iOS et Android — lien transmis lors de votre inscription.</p>
+                <div class="card-actions">
+                    <div class="store-btns">
+                        <a href="#" class="btn-store" aria-label="Télécharger sur l'App Store">
+                            <span class="store-icon" aria-hidden="true">🍎</span> App Store
+                        </a>
+                        <a href="#" class="btn-store" aria-label="Télécharger sur Google Play">
+                            <span class="store-icon" aria-hidden="true">▶</span> Google Play
+                        </a>
+                    </div>
+                    <span class="access-note">Liens communiqués à l'inscription</span>
+                </div>
+            </div>
+
+            <!-- Documents PDF -->
+            <div class="ressource-card fade-in">
+                <div class="card-icon" aria-hidden="true">📄</div>
+                <div class="card-tag">Documents &amp; livrets</div>
+                <h3>Vos plaquettes pédagogiques</h3>
+                <p>Téléchargez les livrets correspondant à votre formule. Ces documents détaillent le programme complet, les tarifs en vigueur et les étapes de votre parcours.</p>
+                <div class="card-actions">
+                    <div class="pdf-links">
+                        <a href="plaquettes/Plaquette_AAC.pdf" class="pdf-link" target="_blank" rel="noopener" aria-label="Télécharger la plaquette Conduite accompagnée (PDF)">
+                            <span aria-hidden="true">📄</span>
+                            <span class="pdf-name">Conduite accompagnée (AAC)</span>
+                            <span class="pdf-badge">PDF</span>
+                        </a>
+                        <a href="plaquettes/Plaquette_Permis_B_Manuel.pdf" class="pdf-link" target="_blank" rel="noopener" aria-label="Télécharger la plaquette Permis B boîte manuelle (PDF)">
+                            <span aria-hidden="true">📄</span>
+                            <span class="pdf-name">Permis B — Boîte manuelle</span>
+                            <span class="pdf-badge">PDF</span>
+                        </a>
+                        <a href="plaquettes/Plaquette_Permis_B_BVA.pdf" class="pdf-link" target="_blank" rel="noopener" aria-label="Télécharger la plaquette Permis B boîte automatique (PDF)">
+                            <span aria-hidden="true">📄</span>
+                            <span class="pdf-name">Permis B — Boîte automatique</span>
+                            <span class="pdf-badge">PDF</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contacts -->
+            <div class="ressource-card highlight fade-in">
+                <div class="card-icon" aria-hidden="true">📞</div>
+                <div class="card-tag">Votre auto-école</div>
+                <h3>Contacts &amp; suivi</h3>
+                <p>Une question sur votre formation, votre planning ou votre dossier ? Contactez directement l'équipe Marti — nous sommes là pour vous accompagner à chaque étape.</p>
+                <div class="contact-info">
+                    <div class="contact-line">
+                        <span aria-hidden="true">📞</span>
+                        <a href="tel:0559591260" class="ci-label">05 59 59 12 60</a>
+                    </div>
+                    <div class="contact-line">
+                        <span aria-hidden="true">📱</span>
+                        <a href="tel:0622008209" class="ci-label">06 22 00 82 09</a>
+                    </div>
+                    <div class="contact-line">
+                        <span aria-hidden="true">✉️</span>
+                        <a data-email="&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#46;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" data-show-email="true" href="#" class="ci-label">Chargement…</a>
+                    </div>
+                    <div class="contact-line">
+                        <span aria-hidden="true">📍</span>
+                        <span class="ci-label">13 rue Marengo — 64100 Bayonne</span>
+                    </div>
+                </div>
+                <div class="card-actions">
+                    <a href="reservation.html" class="btn-ressource btn-white">Prendre rendez-vous →</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <h2>Pas encore inscrit ?</h2>
+    <p>Rejoignez l'auto-école Marti et accédez à toutes ces ressources dès votre inscription. Choisissez votre formule et démarrez votre parcours.</p>
+    <div class="cta-btns">
+        <a href="formules/" class="btn-cta-white">Découvrir nos formules →</a>
+        <a href="reservation.html" class="btn-cta-outline">S'inscrire en ligne</a>
+    </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+    <div class="logo-footer">MARTI<span>.</span></div>
+    <p>13 rue Marengo — 64100 Bayonne</p>
+    <p>Agrément n°E02 064 064 10</p>
+    <div class="footer-links">
+        <a href="index.html">Accueil</a>
+        <a href="formules/">Nos formules</a>
+        <a href="faq.html">FAQ</a>
+        <a href="blog/index.html">Blog</a>
+        <a href="mentions-legales.html">Mentions légales</a>
+    </div>
+    <p style="margin-top:1rem; font-size:0.78rem; opacity:0.4;">© 2026 Auto-École Marti — Bayonne depuis 1962</p>
+</footer>
+
+<script>
+    // Navbar scroll effect
+    const nav = document.getElementById('navbar');
+    if (nav) {
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+        });
+    }
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Email obfuscation
+    document.querySelectorAll('[data-email]').forEach(function(el) {
+        var h = 'mailto:' + el.dataset.email;
+        if (el.dataset.subject) h += '?subject=' + el.dataset.subject;
+        el.href = h;
+        if (el.dataset.showEmail === 'true') el.textContent = el.dataset.email;
+    });
+</script>
+</body>
+</html>
