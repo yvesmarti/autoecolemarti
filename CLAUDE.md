@@ -31,6 +31,7 @@
 ├── favicon.ico.png               # Brand icon (PNG version)
 ├── STYLE_GUIDE.md                # Design system documentation
 ├── CLAUDE.md                     # This file
+├── ROADMAP.md                    # Backlog des développements futurs souhaités
 ├── README.md                     # GitHub repository README
 ├── package.json                  # Node.js config: `npm run sitemap`
 │
@@ -511,3 +512,10 @@ If you add new large directories or binary files, update `.claudeignore` to excl
 - Educational content is a priority (21 blog articles, interactive quiz, eco-driving simulator)
 - Mobile-first responsive design
 - CNIL/RGPD compliant: tarteaucitron manages all cookie consent (GA loaded only after consent)
+
+---
+
+## Développements futurs
+
+Voir `ROADMAP.md` à la racine du projet pour la liste des idées et fonctionnalités à implémenter.
+Ce fichier doit être consulté en début de session avant tout nouveau développement.
