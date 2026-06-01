@@ -94,6 +94,7 @@ function getPriority(filePath) {
   if (p === 'faq.html') return '0.9';              // FAQ (intent informatif fort)
   if (p.startsWith('formules/')) return '0.9';     // Pages formations (intent commercial)
   if (p === 'blog/index.html') return '0.8';       // Hub blog
+  if (p === 'espace-eleves.html') return '0.8';   // Espace élèves
   if (p.startsWith('blog/')) return '0.7';         // Articles de blog
   if (p.startsWith('quizz/')) return '0.8';        // Outil pédagogique
   return '0.5';
