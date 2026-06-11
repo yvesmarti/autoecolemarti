@@ -7,26 +7,62 @@
 
 ## Priorité haute (à faire bientôt)
 
-*(vide pour l'instant)*
+### SEO — Contenu local Anglet / Biarritz
+- Créer un article ou une page locale « Passer son permis quand on habite Anglet ou Biarritz »
+  (point de RDV à Anglet, accès BAB) — mailler depuis l'article BAB existant
+  (`blog/conduire-sur-le-bab-guide-complet.html`) et la homepage.
+- L'école accueille réellement des élèves d'Anglet et Biarritz (validé par Yves, juin 2026).
+
+### SEO — Actions hors-site (à faire par Yves)
+- **Google Business Profile** : ajouter des photos (locaux, véhicules, équipe), publier des posts
+  réguliers, répondre aux avis. Continuer à solliciter les avis (lien g.page déjà en footer).
+- **Google Search Console** : vérifier la propriété du domaine, soumettre `sitemap.xml`,
+  surveiller la couverture d'indexation et les requêtes.
+- **Annuaires locaux** : inscrire l'école avec un NAP identique au site (PagesJaunes,
+  Vroomvroom.fr, annuaires Bayonne / Pays basque).
+- **Backlinks locaux** : partenaires, presse locale, associations.
 
 ---
 
 ## Priorité moyenne (à faire quand possible)
 
-*(vide pour l'instant)*
+### SEO — Fraîcheur du contenu
+- Mettre à jour 2-3 anciens articles de blog par trimestre (tarifs, réglementation) ;
+  le champ `dateModified` des schémas BlogPosting valorise ces mises à jour.
+- Envisager un auteur nommé (moniteur) sur les articles pour le signal E-E-A-T.
+
+### Images réelles
+- Le site n'a aucune photo : ajouter des images des locaux, véhicules et de l'équipe
+  (hero homepage, pages formules, couvertures blog) avec `alt`, `loading="lazy"` et WebP.
+- Remplacer à terme `og-image.png` (visuel typographique généré) par une vraie photo de marque.
 
 ---
 
 ## Idées / Réflexions (pas encore priorisées)
 
-*(vide pour l'instant)*
+- Minification CSS (~105 KB non minifiés) — nécessiterait un step de build, faible priorité
+  pour un site déjà léger.
+- CPF / permis accéléré / permis moto : **non proposés** par l'école (confirmé juin 2026) —
+  ne pas créer de contenu sur ces sujets.
 
 ---
 
 ## Développements réalisés
 
+### Optimisations SEO techniques — juin 2026
+- Image OG de marque (`og-image.png`, 1200×630) + balises `og:image`, `og:locale` et
+  Twitter Cards sur toutes les pages indexables ; `og:url` ajouté aux articles qui n'en avaient pas.
+- Page `404.html` personnalisée (noindex, design du site, liens de secours).
+- `espace-eleves.html` : canonical sans `.html`, réintégrée au sitemap, liens footer ajoutés
+  (index, FAQ, blog, formules) — page désorphelinée.
+- `dateModified` + `<time datetime>` sur les 21 articles de blog (BreadcrumbList ajouté à
+  l'article tarifs + hub blog ; les autres pages en avaient déjà).
+- Schéma `Course` enrichi sur les 3 pages formules (`telephone`, `category: Paid`,
+  `inLanguage`, `hasCourseInstance` avec lieu et volume horaire).
+- `defer` sur le script Supabase de `reservation.html` (init déplacée au `DOMContentLoaded`).
+
 ### Page "Espace Élèves" (`espace-eleves.html`) — juin 2026
 - Page publique de ressources post-inscription
 - 4 cartes : plateforme code, application mobile, documents PDF, contacts
 - Liens vers la plateforme et l'app à compléter quand Yves fournit les URLs
-- Lien dans la navigation à ajouter ultérieurement
+- ~~Lien dans la navigation à ajouter ultérieurement~~ → liens footer ajoutés (juin 2026)
