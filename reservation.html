@@ -12,7 +12,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://autoecolemarti.fr/reservation">
     <meta property="og:site_name" content="Auto-École Marti">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="icon" type="image/png" href="favicon.ico.png">
     <style>
@@ -1123,7 +1123,9 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 
 // Crée le "client" Supabase = l'objet qui permet de parler à ta base de données
 // On l'appelle "db" (et pas "supabase") pour éviter un conflit avec la librairie
-const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+// La librairie est chargée avec defer : on initialise le client au DOMContentLoaded,
+// une fois le script CDN exécuté (les scripts defer s'exécutent avant cet événement)
+let db;
 
 // ============================================================
 // VARIABLES GLOBALES
@@ -1140,6 +1142,7 @@ let creneauxCache = [];            // Cache des créneaux chargés
 // INITIALISATION AU CHARGEMENT DE LA PAGE
 // ============================================================
 document.addEventListener('DOMContentLoaded', async () => {
+    db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
     await testConnection();
     await loadMoniteurs();
     updateWeekLabel();

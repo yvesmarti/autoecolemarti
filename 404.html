@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page introuvable — Auto-École Marti | Bayonne</title>
+  <meta name="description" content="La page que vous cherchez n'existe pas ou a été déplacée. Retrouvez nos formations, notre blog et notre FAQ — Auto-École Marti, Bayonne.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="icon" type="image/png" href="/favicon.ico.png">
+  <link rel="stylesheet" href="/css/fonts.css">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --noir: #0a0a0a;
+      --blanc: #fafaf8;
+      --creme: #f5f0e8;
+      --gris: #6b7280;
+      --gris-clair: #e5e5e5;
+      --basque-rouge: #d63031;
+      --rouge-sombre: #922b21;
+      --basque-vert: #00695c;
+      --or: #d4a853;
+      --ombre: 0 4px 30px rgba(0,0,0,0.08);
+      --radius: 16px;
+      --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--blanc);
+      color: var(--noir);
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 1rem 2rem;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 1px 30px rgba(0,0,0,0.06);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--basque-rouge); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a { font-size: 0.9rem; font-weight: 500; transition: var(--transition); }
+    .nav-links a:hover { color: var(--basque-rouge); }
+    .nav-links .nav-cta {
+      background: var(--basque-rouge);
+      color: white;
+      padding: 0.6rem 1.4rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+    .nav-links .nav-cta:hover { background: var(--rouge-sombre); color: white; }
+    @media (max-width: 768px) { .nav-links li:not(:last-child) { display: none; } }
+
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    .error-code {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(6rem, 18vw, 11rem);
+      font-weight: 700;
+      line-height: 1;
+      color: var(--creme);
+      -webkit-text-stroke: 2px var(--basque-rouge);
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      margin: 1rem 0 0.8rem;
+    }
+    h1 em { color: var(--basque-vert); }
+    .error-text {
+      color: var(--gris);
+      max-width: 480px;
+      margin: 0 auto 2.2rem;
+    }
+    .error-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .btn-primary {
+      background: var(--basque-rouge);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      box-shadow: 0 4px 20px rgba(214,48,49,0.3);
+      transition: var(--transition);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(214,48,49,0.4); }
+    .btn-secondary {
+      border: 2px solid var(--gris-clair);
+      padding: calc(1rem - 2px) 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    .btn-secondary:hover { border-color: var(--noir); transform: translateY(-2px); }
+
+    footer {
+      border-top: 1px solid var(--gris-clair);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--gris);
+    }
+    footer a { color: var(--basque-rouge); }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">AUTO-ÉCOLE MARTI<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="/formules/">Formations</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/faq.html">FAQ</a></li>
+        <li><a href="/#contact" class="nav-cta">Nous contacter</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <div>
+      <div class="error-code">404</div>
+      <h1>Cette page a pris <em>un sens interdit.</em></h1>
+      <p class="error-text">La page que vous cherchez n'existe pas ou a été déplacée. Pas de panique : reprenez la bonne direction avec l'un des liens ci-dessous.</p>
+      <div class="error-links">
+        <a href="/" class="btn-primary">Retour à l'accueil</a>
+        <a href="/formules/" class="btn-secondary">Nos formules &amp; tarifs</a>
+        <a href="/blog/" class="btn-secondary">Le blog</a>
+        <a href="/faq.html" class="btn-secondary">FAQ</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    Auto-École Marti — 13 rue Marengo, 64100 Bayonne · <a href="tel:0559591260">05 59 59 12 60</a>
+  </footer>
+
+</body>
+</html>
