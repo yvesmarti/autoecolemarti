@@ -63,6 +63,35 @@
             .piege-table { font-size: 0.82rem; }
             .piege-table th, .piege-table td { padding: 0.6rem 0.8rem; }
         }
+        .inline-cta {
+            background: linear-gradient(135deg, #fff5f5 0%, #fce4e4 60%);
+            border: 1.5px solid rgba(214,48,49,0.2);
+            border-radius: var(--radius);
+            padding: 2rem 2.4rem;
+            margin: 2.5rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .inline-cta-text p { margin: 0 0 0.25rem; font-weight: 700; font-size: 1rem; color: var(--noir); }
+        .inline-cta-text small { font-size: 0.85rem; color: var(--gris); }
+        .inline-cta-btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.9rem 1.8rem; background: var(--basque-rouge);
+            color: white !important; border-radius: 50px;
+            font-weight: 700; font-size: 0.9rem; text-decoration: none;
+            transition: var(--transition); white-space: nowrap;
+            box-shadow: 0 4px 20px rgba(214,48,49,0.3); flex-shrink: 0;
+        }
+        .inline-cta-btn:hover {
+            background: var(--rouge-sombre); transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(214,48,49,0.4);
+        }
+        @media (max-width: 768px) {
+            .inline-cta { flex-direction: column; align-items: flex-start; padding: 1.5rem; }
+        }
     </style>
     <link rel="stylesheet" href="/vendor/tarteaucitron/tarteaucitron.css">
     <link rel="stylesheet" href="/css/tarteaucitron-custom.css">
@@ -461,6 +490,14 @@
             </tr>
         </tbody>
     </table>
+
+    <div class="inline-cta">
+        <div class="inline-cta-text">
+            <p>Vous vous reconnaissez dans certaines de ces erreurs ?</p>
+            <small>À l'auto-école Marti, vous préparez le code avec un suivi personnalisé pour déjouer tous les pièges</small>
+        </div>
+        <a href="../formules/" class="inline-cta-btn">Voir nos formules →</a>
+    </div>
 
     <h2>Comment s'entraîner efficacement aux pièges</h2>
 
