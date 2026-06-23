@@ -275,6 +275,212 @@
         @media (max-width: 768px) {
             .outil-wrap { padding: 2rem 1.2rem 4rem; }
         }
+
+        /* ── CTA TEMPS DE RÉACTION ── */
+        .reaction-cta-wrap {
+            margin-top: 28px;
+            background: linear-gradient(135deg, rgba(109,40,217,0.05) 0%, rgba(109,40,217,0.09) 100%);
+            border: 1px solid rgba(109,40,217,0.18);
+            border-left: 4px solid var(--article-accent);
+            border-radius: var(--radius);
+            padding: 22px 26px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .reaction-cta-text {
+            flex: 1;
+            font-size: 0.9rem;
+            color: var(--gris);
+            line-height: 1.6;
+            min-width: 200px;
+        }
+        .reaction-cta-text strong {
+            color: var(--noir);
+            display: block;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+        .btn-reaction-test {
+            flex-shrink: 0;
+            background: var(--article-accent);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 22px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 16px rgba(109,40,217,0.28);
+        }
+        .btn-reaction-test:hover {
+            background: #5b21b6;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(109,40,217,0.38);
+        }
+        @media (max-width: 560px) {
+            .reaction-cta-wrap { flex-direction: column; text-align: center; }
+        }
+
+        /* ── LIGHTBOX TEMPS DE RÉACTION ── */
+        .reaction-lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 9000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: lbFadeIn .22s ease;
+        }
+        .reaction-lightbox[hidden] { display: none !important; }
+        @keyframes lbFadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .reaction-lightbox-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(10,10,10,0.72);
+            cursor: pointer;
+        }
+        .reaction-lightbox-card {
+            position: relative;
+            background: white;
+            border-radius: 20px;
+            max-width: 540px;
+            width: 100%;
+            overflow: hidden;
+            box-shadow: 0 28px 70px rgba(0,0,0,0.35);
+            animation: lbSlideUp .28s cubic-bezier(0.25,0.46,0.45,0.94);
+        }
+        @keyframes lbSlideUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+        .reaction-lightbox-close {
+            position: absolute;
+            top: 14px; right: 14px; z-index: 10;
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255,255,255,0.22);
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: background .2s;
+        }
+        .reaction-lightbox-close:hover { background: rgba(255,255,255,0.4); }
+
+        /* ── GAME WIDGET ── */
+        .rg-header {
+            background: linear-gradient(135deg, #6d28d9, #4c1d95);
+            color: white;
+            padding: 26px 24px 20px;
+            text-align: center;
+        }
+        .rg-header h2 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.25rem; font-weight: 700;
+            margin-bottom: 5px; color: white;
+        }
+        .rg-header p { font-size: 0.88rem; opacity: 0.88; font-weight: 300; }
+
+        .rg-game-area {
+            padding: 26px 20px;
+            min-height: 250px;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            cursor: pointer; user-select: none;
+            transition: background-color .2s;
+            position: relative;
+        }
+        .rg-game-area.rg-waiting { background: #fff5f5; }
+        .rg-game-area.rg-ready   { background: #f0fff4; }
+        .rg-game-area.rg-result  { background: #f5f0ff; }
+        .rg-game-area.rg-fault   { background: #fffaf0; }
+
+        .rg-traffic-light {
+            width: 76px; height: 136px;
+            background: #2d3748;
+            border-radius: 38px;
+            padding: 12px;
+            display: flex; flex-direction: column;
+            gap: 10px; justify-content: center; align-items: center;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+        }
+        .rg-light {
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            background: #4a5568;
+            transition: background-color .1s, box-shadow .1s;
+        }
+        .rg-light.rg-red.on   { background: #e53e3e; box-shadow: 0 0 18px rgba(229,62,62,.65); }
+        .rg-light.rg-green.on { background: #38a169; box-shadow: 0 0 18px rgba(56,161,105,.65); }
+
+        .rg-status-text {
+            font-size: 1.1rem; font-weight: 600;
+            color: var(--noir); margin-bottom: 6px; text-align: center;
+        }
+        .rg-instruction {
+            font-size: 0.85rem; color: var(--gris);
+            text-align: center; max-width: 360px; line-height: 1.55;
+        }
+
+        .rg-results { display: none; width: 100%; text-align: center; padding: 0 10px; }
+        .rg-results.visible { display: block; }
+
+        .rg-time-display {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.6rem; font-weight: 700;
+            color: var(--article-accent); line-height: 1; margin: 8px 0 2px;
+        }
+        .rg-time-unit { font-family: 'DM Sans', sans-serif; font-size: 0.95rem; color: var(--gris); }
+
+        .rg-dist-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 10px; margin-top: 14px;
+        }
+        .rg-dist-card {
+            background: white; border-radius: 10px;
+            padding: 11px 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            border-top: 3px solid var(--article-accent);
+            text-align: center;
+        }
+        .rg-dist-card .rg-speed-label {
+            font-size: 0.7rem; color: var(--gris); font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;
+        }
+        .rg-dist-card .rg-dist-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem; font-weight: 700; color: var(--noir);
+        }
+        .rg-dist-card .rg-dist-unit { font-size: 0.78rem; color: var(--gris); }
+        .rg-replay-sub { font-size: 0.78rem; color: var(--gris); margin-top: 8px; }
+
+        .btn-rg {
+            display: inline-block;
+            background: var(--article-accent); color: white;
+            border: none; border-radius: 50px;
+            padding: 12px 28px;
+            font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 600;
+            cursor: pointer; transition: var(--transition); margin-top: 16px;
+            box-shadow: 0 4px 14px rgba(109,40,217,.3);
+        }
+        .btn-rg:hover { background: #5b21b6; transform: translateY(-1px); }
+        .btn-rg:active { transform: scale(0.98); }
+
+        .rg-footer-note {
+            font-size: 0.78rem; color: var(--gris);
+            padding: 14px 20px;
+            border-top: 1px solid #ebebeb;
+            text-align: center; line-height: 1.55;
+            background: var(--creme);
+        }
+        @media (max-width: 480px) {
+            .rg-dist-grid { grid-template-columns: 1fr; gap: 8px; }
+            .rg-time-display { font-size: 2rem; }
+        }
     </style>
     <link rel="stylesheet" href="/vendor/tarteaucitron/tarteaucitron.css">
     <link rel="stylesheet" href="/css/tarteaucitron-custom.css">
@@ -422,6 +628,14 @@
         <strong>Comment lire ces chiffres ?</strong> La distance totale d'arrêt se décompose en deux phases : le temps de réaction (environ 1 seconde, pendant lequel le véhicule continue sur sa lancée) et la phase de freinage effective. Sur route mouillée, l'adhérence est réduite de plus de moitié — d'où l'importance d'accroître la distance de sécurité. Calculs basés sur les normes du Code de la route français, en conditions idéales de conduite.
     </div>
 
+    <div class="reaction-cta-wrap">
+        <div class="reaction-cta-text">
+            <strong>Et votre temps de réaction à vous ?</strong>
+            Le calculateur utilise 1 seconde — la moyenne. En réalité, la fatigue, les distractions ou un manque de concentration peuvent facilement le doubler.
+        </div>
+        <button class="btn-reaction-test" onclick="openReactionTest()">⚡ Tester mon temps de réaction</button>
+    </div>
+
 </div>
 
 <!-- ══════════════════════════════════════════════════════════════
@@ -431,6 +645,59 @@
     <h2>Vous maîtrisez les distances de sécurité ?</h2>
     <p>Mettez vos connaissances en pratique lors d'une leçon chez Marti. Nos moniteurs expérimentés vous apprendront à conduire en toute sécurité.</p>
     <a href="../formules/index.html" class="btn">Découvrir nos formations →</a>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     LIGHTBOX — TEST TEMPS DE RÉACTION
+══════════════════════════════════════════════════════════════ -->
+<div id="reactionLightbox" class="reaction-lightbox" role="dialog" aria-modal="true" aria-labelledby="rg-title" hidden>
+    <div class="reaction-lightbox-backdrop" onclick="closeReactionTest()"></div>
+    <div class="reaction-lightbox-card">
+        <button class="reaction-lightbox-close" onclick="closeReactionTest()" aria-label="Fermer">✕</button>
+
+        <div class="rg-header">
+            <h2 id="rg-title">Testez votre temps de réaction</h2>
+            <p>À quelle distance auriez-vous roulé les yeux fermés ?</p>
+        </div>
+
+        <div id="rg-gameArea" class="rg-game-area rg-waiting">
+            <div class="rg-traffic-light">
+                <div class="rg-light rg-red on" id="rg-lightRed"></div>
+                <div class="rg-light rg-green"  id="rg-lightGreen"></div>
+            </div>
+            <div id="rg-statusText"  class="rg-status-text">Prêt ?</div>
+            <div id="rg-instruction" class="rg-instruction">Appuyez sur le bouton ou touchez cette zone pour commencer. Attendez le feu vert, puis réagissez le plus vite possible !</div>
+
+            <div id="rg-results" class="rg-results">
+                <div class="rg-time-display">
+                    <span id="rg-timeValue">0</span> <span class="rg-time-unit">ms</span>
+                </div>
+                <p style="color:var(--gris);font-size:0.82rem;margin-top:2px;">Votre temps de réaction</p>
+                <div class="rg-dist-grid">
+                    <div class="rg-dist-card">
+                        <div class="rg-speed-label">Autoroute</div>
+                        <div class="rg-dist-value"><span id="rg-dist130">0</span> <span class="rg-dist-unit">m</span></div>
+                    </div>
+                    <div class="rg-dist-card">
+                        <div class="rg-speed-label">Route</div>
+                        <div class="rg-dist-value"><span id="rg-dist90">0</span> <span class="rg-dist-unit">m</span></div>
+                    </div>
+                    <div class="rg-dist-card">
+                        <div class="rg-speed-label">Ville</div>
+                        <div class="rg-dist-value"><span id="rg-dist50">0</span> <span class="rg-dist-unit">m</span></div>
+                    </div>
+                </div>
+                <p class="rg-replay-sub">Distance parcourue sans freiner pendant votre temps de réaction.</p>
+            </div>
+
+            <button id="rg-actionBtn" class="btn-rg">Commencer</button>
+        </div>
+
+        <div class="rg-footer-note">
+            💡 <strong>Le saviez-vous ?</strong> À 130 km/h, 1 seconde de réaction = 36 m parcourus sans freiner.<br>
+            Source : Sécurité Routière — temps de réaction moyen observé entre 1 et 2 secondes.
+        </div>
+    </div>
 </div>
 
 </main>
@@ -649,6 +916,130 @@ document.querySelectorAll('[data-email]').forEach(function(el){
   el.href=h;
   if(el.dataset.showEmail)el.textContent=e;
 });
+</script>
+
+<script>
+// ── Lightbox test temps de réaction ──
+(function () {
+    var SPEED_130 = 130 / 3.6;
+    var SPEED_90  = 90  / 3.6;
+    var SPEED_50  = 50  / 3.6;
+
+    var state       = 'idle';
+    var timeoutId   = null;
+    var canInteract = true;
+    var startTime   = 0;
+
+    function $(id) { return document.getElementById(id); }
+
+    function setLight(color) {
+        $('rg-lightRed').classList.toggle('on', color === 'red');
+        $('rg-lightGreen').classList.toggle('on', color === 'green');
+    }
+
+    function fmtDist(m) { return m < 10 ? m.toFixed(1) : String(Math.round(m)); }
+
+    function resetGame() {
+        if (timeoutId) { clearTimeout(timeoutId); timeoutId = null; }
+        state = 'idle'; canInteract = true;
+        $('rg-gameArea').className     = 'rg-game-area rg-waiting';
+        setLight('red');
+        $('rg-statusText').textContent  = 'Prêt ?';
+        $('rg-instruction').textContent = 'Appuyez sur le bouton ou touchez cette zone pour commencer. Attendez le feu vert, puis réagissez le plus vite possible !';
+        $('rg-results').classList.remove('visible');
+        $('rg-actionBtn').textContent       = 'Commencer';
+        $('rg-actionBtn').style.visibility = 'visible';
+    }
+
+    function startSeq() {
+        if (!canInteract) return;
+        canInteract = false;
+        state = 'waiting';
+        $('rg-gameArea').className     = 'rg-game-area rg-waiting';
+        setLight('red');
+        $('rg-statusText').textContent  = 'Attendez le vert…';
+        $('rg-instruction').textContent = 'Dès que le feu passe au vert, cliquez ou appuyez !';
+        $('rg-results').classList.remove('visible');
+        $('rg-actionBtn').style.visibility = 'hidden';
+
+        var delay = Math.random() * 6500 + 1500;
+        timeoutId = setTimeout(function () {
+            state = 'ready';
+            setLight('green');
+            $('rg-gameArea').className     = 'rg-game-area rg-ready';
+            $('rg-statusText').textContent  = 'VERT !';
+            $('rg-instruction').textContent = 'Cliquez ou appuyez maintenant !';
+            startTime = performance.now();
+        }, delay);
+    }
+
+    function handleTrigger() {
+        if (state === 'idle') { startSeq(); return; }
+
+        if (state === 'waiting') {
+            clearTimeout(timeoutId);
+            state = 'fault';
+            $('rg-gameArea').className     = 'rg-game-area rg-fault';
+            setLight('red');
+            $('rg-statusText').textContent  = 'Trop tôt !';
+            $('rg-instruction').textContent = 'Vous avez appuyé avant le feu vert. Restez concentré(e) et attendez bien le changement.';
+            $('rg-actionBtn').textContent   = 'Recommencer';
+            $('rg-actionBtn').style.visibility = 'visible';
+            canInteract = true;
+            return;
+        }
+
+        if (state === 'ready') {
+            var ms  = performance.now() - startTime;
+            var sec = ms / 1000;
+            state = 'result';
+            $('rg-gameArea').className     = 'rg-game-area rg-result';
+            $('rg-statusText').textContent  = 'Résultat';
+            $('rg-instruction').textContent = 'Voici ce que vous auriez parcouru sans freiner.';
+            $('rg-actionBtn').textContent   = 'Rejouer';
+            $('rg-actionBtn').style.visibility = 'visible';
+            $('rg-timeValue').textContent   = String(Math.round(ms));
+            $('rg-dist130').textContent     = fmtDist(SPEED_130 * sec);
+            $('rg-dist90').textContent      = fmtDist(SPEED_90  * sec);
+            $('rg-dist50').textContent      = fmtDist(SPEED_50  * sec);
+            $('rg-results').classList.add('visible');
+            canInteract = true;
+            return;
+        }
+
+        if (state === 'fault' || state === 'result') { startSeq(); }
+    }
+
+    $('rg-actionBtn').addEventListener('click', function (e) { e.stopPropagation(); handleTrigger(); });
+    $('rg-gameArea').addEventListener('mousedown', function (e) { if (e.target !== $('rg-actionBtn')) handleTrigger(); });
+    $('rg-gameArea').addEventListener('touchstart', function (e) {
+        if (e.target === $('rg-actionBtn')) return;
+        e.preventDefault();
+        handleTrigger();
+    }, { passive: false });
+
+    document.addEventListener('keydown', function (e) {
+        var lb = $('reactionLightbox');
+        if (!lb || lb.hidden) return;
+        if (e.code === 'Space' || e.code === 'Enter') { e.preventDefault(); handleTrigger(); }
+        if (e.key === 'Escape') closeReactionTest();
+    });
+
+    window.openReactionTest = function () {
+        var lb = $('reactionLightbox');
+        lb.hidden = false;
+        document.body.style.overflow = 'hidden';
+        resetGame();
+    };
+
+    window.closeReactionTest = function () {
+        var lb = $('reactionLightbox');
+        lb.hidden = true;
+        document.body.style.overflow = '';
+        if (timeoutId) { clearTimeout(timeoutId); timeoutId = null; }
+        state = 'idle'; canInteract = true;
+    };
+})();
 </script>
 </body>
 </html>
