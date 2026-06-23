@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testez votre temps de réaction — Auto-école</title>
+    <style>
+        :root {
+            --bg-color: #f0f4f8;
+            --card-bg: #ffffff;
+            --text-main: #1a202c;
+            --text-secondary: #4a5568;
+            --accent: #2b6cb0;
+            --accent-hover: #2c5282;
+            --danger: #e53e3e;
+            --success: #38a169;
+            --warning: #d69e2e;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            max-width: 600px;
+            width: 100%;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            color: white;
+            padding: 30px 20px;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .game-area {
+            padding: 40px 20px;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.2s ease;
+            position: relative;
+        }
+
+        .game-area.waiting {
+            background-color: #fff5f5;
+        }
+
+        .game-area.ready {
+            background-color: #f0fff4;
+        }
+
+        .game-area.result {
+            background-color: #ebf8ff;
+        }
+
+        .game-area.fault {
+            background-color: #fffaf0;
+        }
+
+        .traffic-light {
+            width: 100px;
+            height: 180px;
+            background: #2d3748;
+            border-radius: 50px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            transition: transform 0.1s ease;
+        }
+
+        .light {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: #4a5568;
+            transition: background-color 0.1s, box-shadow 0.1s;
+        }
+
+        .light.red.on {
+            background-color: #e53e3e;
+            box-shadow: 0 0 20px rgba(229, 62, 62, 0.6);
+        }
+
+        .light.yellow.on {
+            background-color: #d69e2e;
+            box-shadow: 0 0 20px rgba(214, 158, 46, 0.6);
+        }
+
+        .light.green.on {
+            background-color: #38a169;
+            box-shadow: 0 0 20px rgba(56, 161, 105, 0.6);
+        }
+
+        .status-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .instruction-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            max-width: 400px;
+        }
+
+        .results {
+            display: none;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .results.visible {
+            display: block;
+        }
+
+        .reaction-time {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 10px 0;
+            line-height: 1;
+        }
+
+        .reaction-time .unit {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .distance-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .distance-card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--accent);
+        }
+
+        .distance-card.speed {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .distance-card.value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .distance-card .unit-small {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 14px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            margin-top: 20px;
+            font-family: inherit;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .footer-note {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            padding: 20px;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 10px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 480px) {
+            .distance-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            .header h1 {
+                font-size: 1.25rem;
+            }
+            .reaction-time {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>🚗 Testez votre temps de réaction</h1>
+            <p>À quelle distance auriez-vous roulé les yeux fermés ?</p>
+        </div>
+
+        <div id="gameArea" class="game-area waiting">
+            <div class="traffic-light" id="trafficLight">
+                <div class="light red on" id="lightRed"></div>
+                <div class="light yellow" id="lightYellow"></div>
+                <div class="light green" id="lightGreen"></div>
+            </div>
+
+            <div id="statusText" class="status-text">Prêt ?</div>
+            <div id="instructionText" class="instruction-text">
+                Appuyez sur le bouton ci-dessous ou touchez cette zone pour commencer. Attendez le feu vert, puis cliquez ou appuyez le plus vite possible !
+            </div>
+
+            <div id="results" class="results">
+                <div class="reaction-time">
+                    <span id="timeValue">0</span> <span class="unit">ms</span>
+                </div>
+                <p style="color: var(--text-secondary); margin-bottom: 5px;">Temps de réaction</p>
+
+                <div class="distance-grid">
+                    <div class="distance-card">
+                        <div class="speed">Autoroute</div>
+                        <div class="value"><span id="dist130">0</span> <span class="unit-small">m</span></div>
+                    </div>
+                    <div class="distance-card">
+                        <div class="speed">Route</div>
+                        <div class="value"><span id="dist90">0</span> <span class="unit-small">m</span></div>
+                    </div>
+                    <div class="distance-card">
+                        <div class="speed">Ville</div>
+                        <div class="value"><span id="dist50">0</span> <span class="unit-small">m</span></div>
+                    </div>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 15px;">
+                    C'est la distance que vous auriez parcourue sans freiner.
+                </p>
+            </div>
+
+            <button id="actionBtn" class="btn">Commencer</button>
+        </div>
+
+        <div class="footer-note">
+            💡 <strong>Le saviez-vous ?</strong> À 130 km/h, 1 seconde de temps de réaction = 36 mètres parcourus. <br>
+            Source : sécurité routière, temps de réaction moyen observé entre 1 et 2 secondes.
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const gameArea = document.getElementById('gameArea');
+            const statusText = document.getElementById('statusText');
+            const instructionText = document.getElementById('instructionText');
+            const actionBtn = document.getElementById('actionBtn');
+            const results = document.getElementById('results');
+            const lightRed = document.getElementById('lightRed');
+            const lightGreen = document.getElementById('lightGreen');
+            const timeValue = document.getElementById('timeValue');
+            const dist130 = document.getElementById('dist130');
+            const dist90 = document.getElementById('dist90');
+            const dist50 = document.getElementById('dist50');
+
+            let state = 'idle'; // idle, waiting, ready, result, fault
+            let startTime = 0;
+            let timeoutId = null;
+            let canInteract = true;
+
+            // Conversion des vitesses en m/s
+            const SPEED_130 = 130 * 1000 / 3600; // ~36.11 m/s
+            const SPEED_90 = 90 * 1000 / 3600;   // 25 m/s
+            const SPEED_50 = 50 * 1000 / 3600;   // ~13.89 m/s
+
+            function resetLights() {
+                lightRed.classList.remove('on');
+                lightGreen.classList.remove('on');
+            }
+
+            function setLight(color) {
+                resetLights();
+                if (color === 'red') lightRed.classList.add('on');
+                if (color === 'green') lightGreen.classList.add('on');
+            }
+
+            function formatDistance(meters) {
+                if (meters < 10) return meters.toFixed(1);
+                return Math.round(meters).toString();
+            }
+
+            function startSequence() {
+                if (!canInteract) return;
+                canInteract = false;
+                state = 'waiting';
+                results.classList.remove('visible');
+                gameArea.className = 'game-area waiting';
+                setLight('red');
+                statusText.textContent = 'Attendez le vert...';
+                instructionText.textContent = 'Dès que le feu passe au vert, cliquez ou appuyez !';
+                actionBtn.textContent = '...';
+                actionBtn.style.visibility = 'hidden';
+
+                // Délai aléatoire entre 1.5 et 8 secondes (évite les extrêmes trop rapides ou trop longs)
+                const delay = Math.random() * 6500 + 1500; // 1500ms à 8000ms
+                
+                timeoutId = setTimeout(() => {
+                    state = 'ready';
+                    setLight('green');
+                    gameArea.className = 'game-area ready';
+                    statusText.textContent = 'VERT !';
+                    instructionText.textContent = 'Cliquez ou appuyez maintenant !';
+                    startTime = performance.now();
+                }, delay);
+            }
+
+            function handleTrigger() {
+                if (state === 'idle') {
+                    startSequence();
+                    return;
+                }
+
+                if (state === 'waiting') {
+                    // Trop tôt !
+                    clearTimeout(timeoutId);
+                    state = 'fault';
+                    gameArea.className = 'game-area fault';
+                    setLight('red');
+                    statusText.textContent = 'Trop tôt !';
+                    instructionText.textContent = 'Vous avez appuyé avant le feu vert. Essayez de rester concentré(e) et attendez bien le changement.';
+                    actionBtn.textContent = 'Recommencer';
+                    actionBtn.style.visibility = 'visible';
+                    canInteract = true;
+                    return;
+                }
+
+                if (state === 'ready') {
+                    const endTime = performance.now();
+                    const reactionMs = endTime - startTime;
+                    const reactionSec = reactionMs / 1000;
+
+                    state = 'result';
+                    gameArea.className = 'game-area result';
+                    statusText.textContent = 'Résultat';
+                    instructionText.textContent = 'Voici ce que vous auriez parcouru sans freiner.';
+                    actionBtn.textContent = 'Rejouer';
+                    actionBtn.style.visibility = 'visible';
+
+                    timeValue.textContent = Math.round(reactionMs);
+                    dist130.textContent = formatDistance(SPEED_130 * reactionSec);
+                    dist90.textContent = formatDistance(SPEED_90 * reactionSec);
+                    dist50.textContent = formatDistance(SPEED_50 * reactionSec);
+
+                    results.classList.add('visible');
+                    canInteract = true;
+                    return;
+                }
+
+                if (state === 'fault' || state === 'result') {
+                    // Relancer
+                    startSequence();
+                }
+            }
+
+            // Gestionnaires d'événements
+            actionBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                handleTrigger();
+            });
+
+            gameArea.addEventListener('mousedown', (e) => {
+                if (e.target === actionBtn) return;
+                handleTrigger();
+            });
+
+            gameArea.addEventListener('touchstart', (e) => {
+                if (e.target === actionBtn) return;
+                e.preventDefault(); // Empêche le double déclenchement
+                handleTrigger();
+            });
+
+            document.addEventListener('keydown', (e) => {
+                // Espace, Entrée, ou n'importe quelle touche pour déclencher
+                if (e.code === 'Space' || e.code === 'Enter' || e.code === 'KeyF') {
+                    e.preventDefault();
+                    handleTrigger();
+                }
+            });
+
+        })();
+    </script>
+
+</body>
+</html>
