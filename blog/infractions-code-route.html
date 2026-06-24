@@ -348,7 +348,7 @@
             <li><a href="../index.html#formations">Formations</a></li>
             <li><a href="index.html" class="active">Blog</a></li>
             <li><a href="../index.html#contact">Contact</a></li>
-            <li><a href="/cdn-cgi/l/email-protection#87e6f2f3e8e2e4e8ebe2a9eae6f5f3eec7e0eae6eeeba9e4e8ea" class="nav-cta">S'inscrire</a></li>
+            <li><a data-email="&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#46;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" class="nav-cta">S'inscrire</a></li>
         </ul>
     </div>
 </nav>
@@ -959,7 +959,7 @@
 <div class="cta-banner">
     <h2>Prêt à passer votre permis à Bayonne ?</h2>
     <p>Rejoignez l'auto-école Marti pour une formation complète et personnalisée, du code de la route à l'examen pratique.</p>
-    <a href="/cdn-cgi/l/email-protection#1c7d696873797f73707932717d6e68755c7b717d7570327f7371" class="btn">Nous contacter →</a>
+    <a data-email="&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#46;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" class="btn">Nous contacter →</a>
 </div>
 
 </main>
@@ -988,6 +988,7 @@
                 <ul>
                     <li><a href="../index.html">Accueil</a></li>
                     <li><a href="index.html">Blog</a></li>
+                    <li><a href="../espace-eleves.html">Espace élèves</a></li>
                     <li><a href="../index.html#contact">Contact</a></li>
                 </ul>
             </div>
@@ -996,7 +997,7 @@
                 <ul>
                     <li><a href="tel:0559591260">05 59 59 12 60</a></li>
                     <li><a href="tel:0622008209">06 22 00 82 09</a></li>
-                    <li><a href="/cdn-cgi/l/email-protection#86e7f3f2e9e3e5e9eae3a8ebe7f4f2efc6e1ebe7efeaa8e5e9eb"><span class="__cf_email__" data-cfemail="f6978382999395999a93d89b9784829fb6919b979f9ad895999b">[email&#160;protected]</span></a></li>
+                    <li><a data-email="&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#46;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" data-show-email="true">&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#46;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></li>
                     <li><a href="../index.html#contact">13 rue Marengo, Bayonne</a></li>
                 </ul>
             </div>
@@ -1012,7 +1013,14 @@
 <!-- ══════════════════════════════════════════════════════════════
      SCRIPTS
 ══════════════════════════════════════════════════════════════ -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script>
+    document.querySelectorAll('[data-email]').forEach(function(el){
+        var h='mailto:'+el.dataset.email;
+        if(el.dataset.subject)h+='?subject='+encodeURIComponent(el.dataset.subject);
+        el.href=h;
+        if(el.dataset.showEmail)el.textContent=el.dataset.email;
+    });
+</script>
 <script>
     // ── Scroll reveal navbar ──
     window.addEventListener('scroll', () => {
