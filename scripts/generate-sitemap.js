@@ -97,6 +97,7 @@ function getPriority(filePath) {
   if (p === 'espace-eleves.html') return '0.8';   // Espace élèves
   if (p.startsWith('blog/')) return '0.7';         // Articles de blog
   if (p.startsWith('quizz/')) return '0.8';        // Outil pédagogique
+  if (p === 'auto-ecole-anglet.html' || p === 'auto-ecole-biarritz.html') return '0.8'; // Pages locales (SEO local)
   return '0.5';
 }
 
