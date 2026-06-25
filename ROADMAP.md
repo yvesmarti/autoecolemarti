@@ -7,12 +7,6 @@
 
 ## Priorité haute (à faire bientôt)
 
-### SEO — Contenu local Anglet / Biarritz
-- Créer un article ou une page locale « Passer son permis quand on habite Anglet ou Biarritz »
-  (point de RDV à Anglet, accès BAB) — mailler depuis l'article BAB existant
-  (`blog/conduire-sur-le-bab-guide-complet.html`) et la homepage.
-- L'école accueille réellement des élèves d'Anglet et Biarritz (validé par Yves, juin 2026).
-
 ### SEO — Actions hors-site (à faire par Yves)
 - **Google Business Profile** : ajouter des photos (locaux, véhicules, équipe), publier des posts
   réguliers, répondre aux avis. Continuer à solliciter les avis (lien g.page déjà en footer).
@@ -48,6 +42,12 @@
 ---
 
 ## Développements réalisés
+
+### Pages locales Anglet & Biarritz (SEO local) — juin 2026
+- Création de `auto-ecole-anglet.html` et `auto-ecole-biarritz.html` : pages d'atterrissage
+  locales (schémas `DrivingSchool` + `BreadcrumbList` + `FAQPage`, contenu différencié, mini-FAQ).
+- Maillage : liens contextuels depuis l'article BAB, liens footer de la homepage, liens croisés
+  entre les deux pages ; ajout à `llms.txt` et règle de priorité 0.8 dans `generate-sitemap.js`.
 
 ### Optimisations SEO techniques — juin 2026
 - Image OG de marque (`og-image.png`, 1200×630) + balises `og:image`, `og:locale` et

@@ -24,6 +24,8 @@
 ├── merci.html                    # Thank-you page after booking (6s countdown redirect)
 ├── mentions-legales.html         # Legal notices (uses Inter font, not DM Sans)
 ├── espace-eleves.html            # Student resources page (post-enrollment: code platform, app, PDFs, contacts)
+├── auto-ecole-anglet.html        # Local SEO landing page — Anglet (RDV Place Quintaou); self-contained inline CSS
+├── auto-ecole-biarritz.html      # Local SEO landing page — Biarritz (départ Anglet/Bayonne au choix); self-contained inline CSS
 ├── 404.html                      # Custom 404 page (noindex, standalone inline CSS, links to key pages)
 ├── og-image.png                  # Social sharing image 1200×630 (og:image + twitter:image on all indexable pages)
 ├── robots.txt                    # SEO directives
@@ -316,6 +318,14 @@ Fluid type scale uses `clamp()`:
 - Canonical URL without `.html`: `https://autoecolemarti.fr/espace-eleves`
 - Sitemap priority: 0.8
 
+### Pages locales SEO (`auto-ecole-anglet.html`, `auto-ecole-biarritz.html`)
+- Landing pages locales **auto-contenues** (CSS inline, calquées sur les pages `formules/`), ciblant
+  « auto-école / permis Anglet » et « auto-école / permis Biarritz ».
+- Hero vert + sections : atout local, « conduire à … », formules (3 cartes), mini-FAQ (`<details>`, sans JS), CTA.
+- JSON-LD : `DrivingSchool`/`LocalBusiness` (`areaServed` recentré sur la ville), `BreadcrumbList`, `FAQPage`.
+- Faits : adresse Bayonne (13 rue Marengo), RDV Place Quintaou (Anglet) ; Biarritz = départ Anglet **ou** Bayonne au choix ; tarifs identiques. **Aucun lien vers `reservation.html`.**
+- Maillées depuis l'article BAB (`blog/conduire-sur-le-bab-guide-complet.html`), le footer de la homepage, et entre elles. Canonical sans `.html`. Sitemap priority 0.8.
+
 ---
 
 ## Technical Stack
@@ -451,6 +461,7 @@ npm run sitemap
 - Homepage: 1.0
 - Formules + FAQ: 0.9
 - Blog hub + Quiz + Espace élèves: 0.8
+- Pages locales (auto-ecole-anglet, auto-ecole-biarritz): 0.8
 - Blog articles: 0.7
 
 **Excluded from sitemap**: `merci.html`, `mentions-legales.html`, `reservation.html`, `404.html`, `quizz/panneaux/*`
