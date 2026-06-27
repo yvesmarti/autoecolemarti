@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="application-name" content="Auto-École Marti">
+    <link rel="preload" href="fonts/playfair-display-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devis instantané — Estimez le prix de votre permis | Auto-École Marti</title>
+    <meta name="description" content="Estimez en quelques clics le coût de votre permis de conduire à Bayonne : choisissez votre formule, ajustez vos heures et obtenez une estimation immédiate. Auto-École Marti.">
+    <!-- Page de démonstration : non indexée et non promue pour le moment -->
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://autoecolemarti.fr/devis">
+    <meta property="og:title" content="Devis instantané — Auto-École Marti Bayonne">
+    <meta property="og:description" content="Estimez le coût de votre permis de conduire à Bayonne en quelques clics.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://autoecolemarti.fr/devis">
+    <meta property="og:site_name" content="Auto-École Marti">
+    <meta property="og:locale" content="fr_FR">
+    <link rel="icon" type="image/png" href="favicon.ico.png">
+    <link rel="apple-touch-icon" href="/favicon.ico.png">
+    <link rel="stylesheet" href="css/fonts.css">
+    <style>
+/* ═══════════════════════════════════════
+   RESET & VARIABLES
+═══════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --noir: #0a0a0a;
+    --blanc: #fafaf8;
+    --creme: #f5f0e8;
+    --rouge: #c0392b;
+    --rouge-doux: #e74c3c;
+    --rouge-sombre: #922b21;
+    --vert: #1a5c38;
+    --vert-clair: #27ae60;
+    --gris: #6b7280;
+    --gris-clair: #e5e5e5;
+    --basque-rouge: #d63031;
+    --basque-vert: #00695c;
+    --or: #d4a853;
+    --ombre: 0 4px 30px rgba(0,0,0,0.08);
+    --ombre-forte: 0 20px 60px rgba(0,0,0,0.12);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--blanc);
+    color: var(--noir);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+/* ═══════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════ */
+nav {
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    padding: 1rem 2rem; transition: var(--transition); background: transparent;
+}
+nav.scrolled {
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 1px 30px rgba(0,0,0,0.06); padding: 0.6rem 2rem;
+}
+nav .nav-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+}
+nav .logo {
+    font-family: 'Playfair Display', serif; font-size: 1.5rem;
+    font-weight: 700; color: var(--noir); text-decoration: none; letter-spacing: -0.02em;
+}
+nav .logo span { color: var(--basque-rouge); }
+nav .nav-links {
+    display: flex; gap: 2rem; list-style: none; align-items: center;
+}
+nav .nav-links a {
+    text-decoration: none; color: var(--noir); font-size: 0.9rem;
+    font-weight: 500; letter-spacing: 0.02em; transition: var(--transition);
+    position: relative;
+}
+nav .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0;
+    width: 0; height: 2px; background: var(--basque-rouge); transition: var(--transition);
+}
+nav .nav-links a:hover::after { width: 100%; }
+nav .nav-cta {
+    background: var(--basque-rouge); color: white !important;
+    padding: 0.6rem 1.4rem; border-radius: 50px;
+    font-weight: 600; font-size: 0.85rem; transition: var(--transition);
+}
+nav .nav-cta::after { display: none !important; }
+nav .nav-cta:hover { background: var(--rouge-sombre); transform: translateY(-1px); }
+
+/* ═══════════════════════════════════════
+   PAGE HERO
+═══════════════════════════════════════ */
+.page-hero {
+    min-height: 40vh;
+    display: flex; align-items: flex-end;
+    background: linear-gradient(135deg, #fdfcfa 0%, #f0ebe0 50%, #e8dfd0 100%);
+    position: relative; overflow: hidden;
+    padding: 7rem 2rem 4rem;
+    text-align: center;
+}
+.page-hero::before {
+    content: ''; position: absolute; top: -20%; right: -10%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(214,48,49,0.06) 0%, transparent 70%);
+    border-radius: 50%;
+}
+.page-hero::after {
+    content: ''; position: absolute; bottom: -10%; left: -5%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0,105,92,0.05) 0%, transparent 70%);
+    border-radius: 50%;
+}
+.page-hero-inner { max-width: 680px; margin: 0 auto; position: relative; z-index: 2; }
+.page-hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(0,105,92,0.08); color: var(--basque-vert);
+    padding: 0.5rem 1rem; border-radius: 50px;
+    font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em;
+    margin-bottom: 1.5rem;
+}
+.page-hero-badge::before {
+    content: ''; width: 8px; height: 8px; background: var(--basque-vert);
+    border-radius: 50%; animation: pulse 2s infinite;
+}
+.page-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+    font-weight: 700; line-height: 1.15;
+    letter-spacing: -0.03em; margin-bottom: 1rem;
+}
+.page-hero h1 em { font-style: italic; color: var(--basque-rouge); }
+.page-hero p { font-size: 1.05rem; color: var(--gris); max-width: 520px; margin: 0 auto; }
+
+/* ═══════════════════════════════════════
+   DEVIS SECTION
+═══════════════════════════════════════ */
+.devis-section { background: var(--creme); padding: 4rem 2rem 6rem; }
+.devis-grid {
+    max-width: 1080px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 0.9fr; gap: 2rem;
+    align-items: start;
+}
+
+/* Carte de configuration (gauche) */
+.devis-config {
+    background: white; border-radius: var(--radius);
+    padding: 2.5rem 2.2rem;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+.devis-block { margin-bottom: 2.2rem; }
+.devis-block:last-child { margin-bottom: 0; }
+.devis-step-label {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--basque-rouge); margin-bottom: 0.3rem;
+}
+.devis-step-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--basque-rouge); color: white; font-size: 0.72rem;
+}
+.devis-block h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em;
+    margin-bottom: 1.1rem;
+}
+
+/* Choix de formule */
+.formule-choices { display: flex; flex-direction: column; gap: 0.75rem; }
+.formule-opt {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1.1rem 1.3rem;
+    border: 2px solid var(--gris-clair); border-radius: var(--radius-sm);
+    cursor: pointer; transition: var(--transition);
+    background: white; text-align: left; width: 100%;
+    font-family: 'DM Sans', sans-serif;
+}
+.formule-opt:hover {
+    border-color: var(--basque-rouge); background: rgba(214,48,49,0.025);
+    transform: translateY(-2px);
+}
+.formule-opt[aria-pressed="true"] {
+    border-color: var(--basque-rouge); background: rgba(214,48,49,0.05);
+    box-shadow: 0 6px 24px rgba(214,48,49,0.12);
+}
+.formule-opt-icon { font-size: 1.8rem; flex-shrink: 0; line-height: 1; }
+.formule-opt-body { flex: 1; }
+.formule-opt-label { font-weight: 700; font-size: 0.95rem; }
+.formule-opt-sub { font-size: 0.8rem; color: var(--gris); margin-top: 0.1rem; }
+.formule-opt-price {
+    font-family: 'Playfair Display', serif; font-weight: 700;
+    font-size: 1.15rem; white-space: nowrap;
+}
+
+/* Stepper heures */
+.stepper { display: flex; align-items: center; gap: 1rem; }
+.stepper-btn {
+    width: 46px; height: 46px; border-radius: 50%;
+    border: 2px solid var(--gris-clair); background: white;
+    font-size: 1.4rem; font-weight: 700; color: var(--noir);
+    cursor: pointer; transition: var(--transition); line-height: 1;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-family: 'DM Sans', sans-serif;
+}
+.stepper-btn:hover:not(:disabled) {
+    border-color: var(--basque-rouge); color: var(--basque-rouge);
+}
+.stepper-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.stepper-value {
+    flex: 1; text-align: center;
+    font-family: 'Playfair Display', serif; font-weight: 700;
+    font-size: 1.6rem; line-height: 1.1;
+}
+.stepper-value small { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.78rem; color: var(--gris); font-weight: 500; }
+.stepper-hint { font-size: 0.8rem; color: var(--gris); margin-top: 0.8rem; }
+
+/* Options (toggles) */
+.options-list { display: flex; flex-direction: column; gap: 0.7rem; }
+.option-toggle {
+    display: flex; align-items: center; gap: 0.9rem;
+    padding: 0.9rem 1.1rem;
+    border: 2px solid var(--gris-clair); border-radius: var(--radius-sm);
+    cursor: pointer; transition: var(--transition); background: white;
+}
+.option-toggle:hover { border-color: var(--basque-vert); }
+.option-toggle input { position: absolute; opacity: 0; pointer-events: none; }
+.option-toggle .check {
+    width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
+    border: 2px solid var(--gris-clair); transition: var(--transition);
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 0.8rem;
+}
+.option-toggle input:checked + .check {
+    background: var(--basque-vert); border-color: var(--basque-vert);
+}
+.option-toggle input:checked + .check::after { content: '✓'; }
+.option-toggle:has(input:checked) { border-color: var(--basque-vert); background: rgba(0,105,92,0.04); }
+.option-body { flex: 1; }
+.option-label { font-weight: 600; font-size: 0.9rem; }
+.option-detail { font-size: 0.78rem; color: var(--gris); margin-top: 0.05rem; }
+.option-price { font-weight: 700; font-size: 0.9rem; white-space: nowrap; color: var(--basque-vert); }
+
+/* ═══════════════════════════════════════
+   PANNEAU RÉSULTAT (droite)
+═══════════════════════════════════════ */
+.devis-result {
+    background: white; border-radius: var(--radius); overflow: hidden;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.05);
+    position: sticky; top: 90px;
+}
+.devis-result-header {
+    background: linear-gradient(135deg, #1e2a4a 0%, #0d1b35 100%);
+    color: white; padding: 2rem 2rem 1.8rem; position: relative; overflow: hidden;
+}
+.devis-result-header::after {
+    content: ''; position: absolute; bottom: -40px; right: -40px;
+    width: 180px; height: 180px; background: rgba(255,255,255,0.04); border-radius: 50%;
+}
+.devis-result-tag {
+    display: inline-block; background: rgba(255,255,255,0.18);
+    padding: 0.3rem 0.9rem; border-radius: 50px; font-size: 0.72rem;
+    font-weight: 700; letter-spacing: 0.08em; margin-bottom: 1rem;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+.devis-result-formule {
+    font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700;
+    line-height: 1.15; position: relative;
+}
+.devis-result-sub { opacity: 0.6; font-size: 0.82rem; margin-top: 0.2rem; position: relative; }
+.devis-result-total-label { opacity: 0.6; font-size: 0.78rem; margin-top: 1.4rem; position: relative; }
+.devis-result-total {
+    font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700;
+    line-height: 1; position: relative;
+}
+
+.devis-result-body { padding: 1.8rem 2rem 2rem; }
+.tarif-lines { margin-bottom: 1.4rem; }
+.tarif-line {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 1rem; padding: 0.7rem 0; border-bottom: 1px dashed var(--gris-clair);
+}
+.tarif-line:last-child { border-bottom: none; }
+.tarif-line .label { font-size: 0.9rem; }
+.tarif-line .detail { font-size: 0.78rem; color: var(--gris); margin-top: 0.1rem; }
+.tarif-line .price { font-weight: 600; font-size: 0.9rem; white-space: nowrap; }
+.tarif-line.is-extra .label { color: var(--basque-vert); font-weight: 600; }
+.tarif-line.is-extra .price { color: var(--basque-vert); }
+
+.devis-disclaimer {
+    display: flex; gap: 0.6rem; align-items: flex-start;
+    background: rgba(212,168,83,0.12); border-left: 3px solid var(--or);
+    border-radius: var(--radius-sm); padding: 0.85rem 1rem;
+    font-size: 0.8rem; color: #6b5a2e; margin-bottom: 1.5rem;
+}
+
+.devis-ctas { display: flex; flex-direction: column; gap: 0.75rem; }
+.btn-primary {
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 1rem 2rem; border-radius: 50px;
+    background: var(--basque-rouge); color: white;
+    font-weight: 700; font-size: 0.95rem; text-decoration: none;
+    transition: var(--transition); border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+}
+.btn-primary:hover {
+    background: var(--rouge-sombre); transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(214,48,49,0.35);
+}
+.btn-secondary {
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 1rem 2rem; border-radius: 50px;
+    border: 2px solid var(--gris-clair); color: var(--noir);
+    font-weight: 600; font-size: 0.9rem; text-decoration: none;
+    transition: var(--transition);
+}
+.btn-secondary:hover { border-color: var(--noir); }
+
+/* ═══════════════════════════════════════
+   CTA BANNER
+═══════════════════════════════════════ */
+.cta-banner {
+    background: linear-gradient(135deg, var(--basque-rouge) 0%, var(--rouge-sombre) 100%);
+    color: white; text-align: center; padding: 5rem 2rem;
+    position: relative; overflow: hidden;
+}
+.cta-banner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 700;
+    margin-bottom: 1rem; position: relative;
+}
+.cta-banner p {
+    font-size: 1.1rem; opacity: 0.85; margin-bottom: 2rem;
+    max-width: 500px; margin-left: auto; margin-right: auto; position: relative;
+}
+.cta-banner .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 1rem 2rem; border-radius: 50px; font-size: 0.95rem;
+    font-weight: 700; text-decoration: none; transition: var(--transition);
+    background: white; color: var(--basque-rouge); position: relative;
+}
+.cta-banner .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+footer { background: var(--noir); color: white; padding: 4rem 2rem 2rem; }
+.footer-inner { max-width: 1200px; margin: 0 auto; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+.footer-brand .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: white; margin-bottom: 1rem; display: block; text-decoration: none; }
+.footer-brand .logo span { color: var(--basque-rouge); }
+.footer-brand p { color: rgba(255,255,255,0.5); font-size: 0.88rem; line-height: 1.7; }
+.footer-col h4 { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.2rem; color: rgba(255,255,255,0.4); }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 0.6rem; }
+.footer-col ul a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; transition: var(--transition); }
+.footer-col ul a:hover { color: white; }
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.82rem; color: rgba(255,255,255,0.35);
+}
+
+/* ═══════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════ */
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media (max-width: 900px) {
+    .devis-grid { grid-template-columns: 1fr; }
+    .devis-result { position: static; }
+}
+@media (max-width: 768px) {
+    nav { padding: 0.6rem 1rem; }
+    nav.scrolled { padding: 0.4rem 1rem; }
+    .nav-inner { flex-direction: column; align-items: stretch; gap: 0; }
+    nav .logo {
+        white-space: nowrap; font-size: 1.2rem;
+        overflow: hidden; max-height: 2.5rem; opacity: 1; padding-bottom: 0.35rem;
+        transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.35s ease;
+    }
+    nav.scrolled .logo { max-height: 0; opacity: 0; padding-bottom: 0; pointer-events: none; }
+    .nav-links {
+        display: flex !important; flex-direction: row;
+        gap: 1rem; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 0; width: 100%;
+        -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none;
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links li { flex-shrink: 0; }
+    .nav-links a { font-size: 0.82rem; }
+
+    .devis-section { padding: 3rem 1.2rem 4rem; }
+    .devis-config { padding: 2rem 1.5rem; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+}
+@media (max-width: 480px) {
+    .footer-top { grid-template-columns: 1fr; }
+}
+
+/* Accessibility */
+.skip-link { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; z-index: 10000; }
+.skip-link:focus {
+    position: fixed; top: 0; left: 0; width: auto; height: auto; padding: 1rem 2rem;
+    background: var(--basque-rouge); color: #fff; font-family: 'DM Sans', sans-serif;
+    font-weight: 700; font-size: 1rem; text-decoration: none; z-index: 10000;
+}
+:focus-visible { outline: 3px solid var(--basque-rouge); outline-offset: 2px; }
+    </style>
+    <link rel="stylesheet" href="/vendor/tarteaucitron/tarteaucitron.css">
+    <link rel="stylesheet" href="/css/tarteaucitron-custom.css">
+    <script defer src="/vendor/tarteaucitron/tarteaucitron.js"></script>
+    <script defer src="/vendor/tarteaucitron/lang/tarteaucitron.fr.js"></script>
+    <script defer src="/scripts/consent.js"></script>
+    <link rel="stylesheet" href="/css/nav-mobile.css">
+    <script src="/scripts/nav.js" defer></script>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="https://autoecolemarti.fr" class="logo">AUTO-ÉCOLE <span>MARTI.</span></a>
+        <ul class="nav-links">
+            <li><a href="https://autoecolemarti.fr/#formations">Formations</a></li>
+            <li><a href="https://autoecolemarti.fr/blog/index.html">Blog</a></li>
+            <li><a href="https://autoecolemarti.fr/#contact">Contact</a></li>
+            <li><a data-email="&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#46;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" class="nav-cta">S'inscrire</a></li>
+        </ul>
+    </div>
+</nav>
+
+<main id="main-content">
+
+<!-- ═══ PAGE HERO ═══ -->
+<header class="page-hero">
+    <div class="page-hero-inner" style="animation: fadeInUp 0.8s ease-out both;">
+        <div class="page-hero-badge">Estimation immédiate · sans engagement</div>
+        <h1>Estimez le prix de<br>votre <em>permis</em> en 1 minute</h1>
+        <p>Choisissez votre formule, ajustez vos heures de conduite et obtenez aussitôt une estimation personnalisée. Aucune coordonnée requise.</p>
+    </div>
+</header>
+
+<!-- ═══ DEVIS ═══ -->
+<section class="devis-section">
+    <div class="devis-grid">
+
+        <!-- ── Configuration ── -->
+        <div class="devis-config">
+
+            <!-- Étape 1 : formule -->
+            <div class="devis-block">
+                <div class="devis-step-label"><span class="devis-step-num">1</span> Votre formule</div>
+                <h2>Quelle formation visez-vous&nbsp;?</h2>
+                <div class="formule-choices" id="formule-choices"><!-- généré par JS --></div>
+            </div>
+
+            <!-- Étape 2 : heures supplémentaires -->
+            <div class="devis-block">
+                <div class="devis-step-label"><span class="devis-step-num">2</span> Vos heures de conduite</div>
+                <h2>Heures supplémentaires estimées</h2>
+                <div class="stepper">
+                    <button type="button" class="stepper-btn" id="h-minus" aria-label="Retirer une heure">−</button>
+                    <div class="stepper-value"><span id="h-value">0</span> h<small id="h-base-note"></small></div>
+                    <button type="button" class="stepper-btn" id="h-plus" aria-label="Ajouter une heure">+</button>
+                </div>
+                <p class="stepper-hint">Le forfait inclut déjà le minimum légal. Beaucoup d'élèves ajoutent quelques heures selon leur progression — ajustez selon votre estimation.</p>
+            </div>
+
+            <!-- Étape 3 : options -->
+            <div class="devis-block">
+                <div class="devis-step-label"><span class="devis-step-num">3</span> Options (facultatif)</div>
+                <h2>Compléments éventuels</h2>
+                <div class="options-list" id="options-list"><!-- généré par JS --></div>
+            </div>
+
+        </div>
+
+        <!-- ── Résultat ── -->
+        <aside class="devis-result" aria-live="polite">
+            <div class="devis-result-header">
+                <span class="devis-result-tag">✦ Votre estimation</span>
+                <div class="devis-result-formule" id="r-formule">—</div>
+                <div class="devis-result-sub" id="r-sub">—</div>
+                <div class="devis-result-total-label">Total estimé TTC</div>
+                <div class="devis-result-total" id="r-total">—</div>
+            </div>
+            <div class="devis-result-body">
+                <div class="tarif-lines" id="r-lines"><!-- généré par JS --></div>
+                <div class="devis-disclaimer">
+                    <span>⚠️</span>
+                    <span id="r-disclaimer"></span>
+                </div>
+                <div class="devis-ctas">
+                    <a id="r-cta-email"
+                       data-email="&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#46;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;"
+                       class="btn-primary">✉ Recevoir un devis précis</a>
+                    <a href="https://autoecolemarti.fr/formules/" class="btn-secondary">Voir le détail des formules →</a>
+                </div>
+            </div>
+        </aside>
+
+    </div>
+</section>
+
+<!-- ═══ CTA BANNER ═══ -->
+<div class="cta-banner">
+    <h2>Une question avant de vous lancer&nbsp;?</h2>
+    <p>Notre équipe vous répond sous 24h pour affiner votre devis et constituer votre dossier.</p>
+    <a href="https://autoecolemarti.fr/#contact" class="btn">Nous contacter →</a>
+</div>
+
+</main>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="https://autoecolemarti.fr" class="logo">AUTO-ÉCOLE <span>MARTI.</span></a>
+                <p>Auto-école de confiance à Bayonne depuis 1962. Formations permis B, conduite accompagnée et boîte automatique.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Formations</h4>
+                <ul>
+                    <li><a href="https://autoecolemarti.fr/formules/permis-b-manuel.html">Permis B</a></li>
+                    <li><a href="https://autoecolemarti.fr/formules/conduite-accompagnee.html">Conduite accompagnée</a></li>
+                    <li><a href="https://autoecolemarti.fr/formules/permis-b-automatique.html">Boîte automatique</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="https://autoecolemarti.fr">Accueil</a></li>
+                    <li><a href="https://autoecolemarti.fr/blog/index.html">Blog</a></li>
+                    <li><a href="https://autoecolemarti.fr/espace-eleves.html">Espace élèves</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:0559591260">05 59 59 12 60</a></li>
+                    <li><a href="tel:0622008209">06 22 00 82 09</a></li>
+                    <li><a data-email="&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#46;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" data-show-email="true">&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#46;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></li>
+                    <li><a href="https://autoecolemarti.fr/#contact">13 rue Marengo, Bayonne</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Auto-école Marti — Bayonne. Tous droits réservés. · SIRET : 382 930 188 00018</span>
+            <a href="https://autoecolemarti.fr/mentions-legales.html" style="color: inherit;">Mentions légales</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════
+//  ⚙️  CHIFFRES PROVISOIRES — À METTRE À JOUR PAR YVES
+//  ───────────────────────────────────────────────────────────────────
+//  Toute la tarification du devis vit dans cet objet. Pour ajuster un prix,
+//  une formule ou une option, modifiez UNIQUEMENT les valeurs ci-dessous —
+//  le reste du script s'adapte automatiquement.
+//
+//  Règles :
+//   • « base »        = total TTC affiché du forfait (doit = somme des « lignes »).
+//   • « hIncluses »   = heures de conduite déjà comprises dans le forfait.
+//   • « prixHeureSup »= prix d'UNE heure de conduite supplémentaire.
+//   • « lignes »      = détail affiché dans le récapitulatif (label + prix, detail optionnel).
+//   • « options »     = compléments cochables, ajoutés au total s'ils sont sélectionnés.
+//  (Tarifs relevés sur le site au 09/03/2026 — à confirmer/actualiser.)
+// ═══════════════════════════════════════════════════════════════════════
+const DEVIS_CONFIG = {
+    maxHeuresSup: 20,           // borne haute du sélecteur d'heures supplémentaires
+    disclaimer: "Estimation indicative et non contractuelle, basée sur des tarifs provisoires. Le devis définitif vous est remis après une évaluation de départ.",
+
+    formules: {
+        bva: {
+            nom: "Boîte automatique",
+            sousTitre: "Permis B — BVA · dès 18 ans",
+            icone: "🚗",
+            base: 967,
+            hIncluses: 13,
+            prixHeureSup: 48,
+            sujetEmail: "Devis%20Permis%20Automatique%20(BVA)",
+            lignes: [
+                { label: "Frais de dossier & inscription", prix: 200 },
+                { label: "Pack code de la route", prix: 50 },
+                { label: "Évaluation de départ", prix: 45 },
+                { label: "13 h de conduite incluses", detail: "Soit 48 €/h", prix: 624 },
+                { label: "Présentation à l'examen", prix: 48 },
+            ],
+        },
+        manuel: {
+            nom: "Permis traditionnel",
+            sousTitre: "Permis B — boîte manuelle · valable partout",
+            icone: "⚙️",
+            base: 1261,
+            hIncluses: 20,
+            prixHeureSup: 46,
+            sujetEmail: "Devis%20Permis%20B%20Manuel",
+            lignes: [
+                { label: "Frais de dossier & inscription", prix: 200 },
+                { label: "Pack code de la route", prix: 50 },
+                { label: "Évaluation de départ", prix: 45 },
+                { label: "20 h de conduite incluses", detail: "Soit 46 €/h", prix: 920 },
+                { label: "Présentation à l'examen", prix: 46 },
+            ],
+        },
+        aac: {
+            nom: "Conduite accompagnée",
+            sousTitre: "Permis B — AAC · dès 15 ans",
+            icone: "🎓",
+            base: 1629,
+            hIncluses: 20,
+            prixHeureSup: 46,
+            sujetEmail: "Devis%20Conduite%20Accompagnée%20(AAC)",
+            lignes: [
+                { label: "Frais de dossier & inscription", prix: 200 },
+                { label: "Pack code de la route", prix: 50 },
+                { label: "Évaluation de départ", prix: 45 },
+                { label: "20 h de conduite incluses", detail: "Soit 46 €/h", prix: 920 },
+                { label: "RDV préalable + 2 RDV pédagogiques", prix: 368 },
+                { label: "Présentation à l'examen", prix: 46 },
+            ],
+        },
+    },
+
+    // Ordre d'affichage des formules
+    ordre: ["bva", "manuel", "aac"],
+
+    // Compléments facultatifs (cochables)
+    options: [
+        { id: "examenSup",   label: "Présentation supplémentaire à l'examen", detail: "En cas de 2ᵉ passage", prix: 46 },
+        { id: "conduiteNuit", label: "Module conduite de nuit", detail: "2 h en conditions réelles", prix: 92 },
+    ],
+};
+
+// ═══════════════════════════════════════
+//  ÉTAT & RENDU
+// ═══════════════════════════════════════
+const EMAIL = "autoecole.marti@gmail.com";
+const euro = (n) => n.toLocaleString('fr-FR') + ' €';
+
+const state = {
+    formule: DEVIS_CONFIG.ordre[0],
+    heuresSup: 0,
+    options: new Set(),
+};
+
+// — Construire les cartes de formule —
+function buildFormules() {
+    const wrap = document.getElementById('formule-choices');
+    wrap.innerHTML = DEVIS_CONFIG.ordre.map(key => {
+        const f = DEVIS_CONFIG.formules[key];
+        return `<button type="button" class="formule-opt" data-formule="${key}" aria-pressed="false">
+            <span class="formule-opt-icon">${f.icone}</span>
+            <span class="formule-opt-body">
+                <span class="formule-opt-label">${f.nom}</span>
+                <span class="formule-opt-sub">${f.sousTitre}</span>
+            </span>
+            <span class="formule-opt-price">${euro(f.base)}</span>
+        </button>`;
+    }).join('');
+    wrap.querySelectorAll('.formule-opt').forEach(btn => {
+        btn.addEventListener('click', () => {
+            state.formule = btn.dataset.formule;
+            state.heuresSup = 0; // on repart de zéro heure sup à chaque changement de formule
+            render();
+        });
+    });
+}
+
+// — Construire les options —
+function buildOptions() {
+    const wrap = document.getElementById('options-list');
+    wrap.innerHTML = DEVIS_CONFIG.options.map(o => `
+        <label class="option-toggle">
+            <input type="checkbox" data-option="${o.id}">
+            <span class="check"></span>
+            <span class="option-body">
+                <span class="option-label">${o.label}</span>
+                <span class="option-detail">${o.detail || ''}</span>
+            </span>
+            <span class="option-price">+ ${euro(o.prix)}</span>
+        </label>`).join('');
+    wrap.querySelectorAll('input[data-option]').forEach(cb => {
+        cb.addEventListener('change', () => {
+            if (cb.checked) state.options.add(cb.dataset.option);
+            else state.options.delete(cb.dataset.option);
+            render();
+        });
+    });
+}
+
+// — Calcul + affichage —
+function render() {
+    const f = DEVIS_CONFIG.formules[state.formule];
+
+    // Cartes formule : état sélectionné
+    document.querySelectorAll('.formule-opt').forEach(btn => {
+        btn.setAttribute('aria-pressed', String(btn.dataset.formule === state.formule));
+    });
+
+    // Stepper
+    document.getElementById('h-value').textContent = state.heuresSup;
+    document.getElementById('h-base-note').textContent = `${f.hIncluses} h déjà incluses · ${euro(f.prixHeureSup)}/h`;
+    document.getElementById('h-minus').disabled = state.heuresSup <= 0;
+    document.getElementById('h-plus').disabled = state.heuresSup >= DEVIS_CONFIG.maxHeuresSup;
+
+    // Lignes du récapitulatif
+    let lines = f.lignes.map(l => lineHTML(l.label, l.prix, l.detail)).join('');
+
+    let total = f.base;
+
+    if (state.heuresSup > 0) {
+        const coutSup = state.heuresSup * f.prixHeureSup;
+        total += coutSup;
+        lines += lineHTML(`${state.heuresSup} h de conduite supplémentaires`, coutSup, `Soit ${euro(f.prixHeureSup)}/h`, true);
+    }
+
+    DEVIS_CONFIG.options.forEach(o => {
+        if (state.options.has(o.id)) {
+            total += o.prix;
+            lines += lineHTML(o.label, o.prix, null, true);
+        }
+    });
+
+    document.getElementById('r-lines').innerHTML = lines;
+    document.getElementById('r-formule').textContent = f.nom;
+    document.getElementById('r-sub').textContent = f.sousTitre;
+    document.getElementById('r-total').textContent = euro(total);
+    document.getElementById('r-disclaimer').textContent = DEVIS_CONFIG.disclaimer;
+
+    // Mise à jour du lien email avec un récapitulatif pré-rempli
+    updateEmailCta(f, total);
+}
+
+function lineHTML(label, prix, detail, extra) {
+    return `<div class="tarif-line${extra ? ' is-extra' : ''}">
+        <div><div class="label">${label}</div>${detail ? `<div class="detail">${detail}</div>` : ''}</div>
+        <div class="price">${euro(prix)}</div>
+    </div>`;
+}
+
+function updateEmailCta(f, total) {
+    const cta = document.getElementById('r-cta-email');
+    const optsTxt = DEVIS_CONFIG.options
+        .filter(o => state.options.has(o.id))
+        .map(o => '- ' + o.label).join('\n');
+    const corps =
+        `Bonjour,\n\nJe souhaite recevoir un devis précis pour la formule suivante :\n\n` +
+        `Formule : ${f.nom}\n` +
+        `Heures supplémentaires estimées : ${state.heuresSup} h\n` +
+        (optsTxt ? `Options :\n${optsTxt}\n` : '') +
+        `Estimation obtenue sur le site : ${total.toLocaleString('fr-FR')} € TTC\n\n` +
+        `Merci de me recontacter.\n`;
+    cta.href = `mailto:${EMAIL}?subject=${f.sujetEmail}&body=${encodeURIComponent(corps)}`;
+}
+
+// — Stepper events —
+document.getElementById('h-minus').addEventListener('click', () => {
+    if (state.heuresSup > 0) { state.heuresSup--; render(); }
+});
+document.getElementById('h-plus').addEventListener('click', () => {
+    if (state.heuresSup < DEVIS_CONFIG.maxHeuresSup) { state.heuresSup++; render(); }
+});
+
+// — Init —
+buildFormules();
+buildOptions();
+render();
+
+// ═══════════════════════════════════════
+//  NAVBAR SCROLL
+// ═══════════════════════════════════════
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+</script>
+<script>
+// Décodage des emails obfusqués (liens sans devis pré-rempli : nav + footer)
+document.querySelectorAll('[data-email]').forEach(function(el){
+  if (el.id === 'r-cta-email') return; // géré dynamiquement par le devis
+  var e=el.dataset.email,s=el.dataset.subject,h='mailto:'+e;
+  if(s)h+='?subject='+s;
+  el.href=h;
+  if(el.dataset.showEmail)el.textContent=e;
+});
+</script>
+</body>
+</html>
