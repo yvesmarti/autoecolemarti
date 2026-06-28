@@ -252,6 +252,13 @@ nav .nav-cta:hover { background: var(--rouge-sombre); transform: translateY(-1px
 .option-label { font-weight: 600; font-size: 0.9rem; }
 .option-detail { font-size: 0.78rem; color: var(--gris); margin-top: 0.05rem; }
 .option-price { font-weight: 700; font-size: 0.9rem; white-space: nowrap; color: var(--basque-vert); }
+.option-price--reduction { color: var(--basque-rouge); }
+.option-toggle:has(input:checked) .option-price--reduction { color: var(--basque-rouge); }
+
+/* Stepper heures déjà réalisées (réduction transfert) */
+.transfert-hours { margin-top: 1rem; padding: 1.1rem 1.2rem; background: var(--creme); border-radius: var(--radius-sm); }
+.transfert-hours[hidden] { display: none; }
+.transfert-hours-label { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.8rem; }
 
 /* ═══════════════════════════════════════
    PANNEAU RÉSULTAT (droite)
@@ -299,6 +306,8 @@ nav .nav-cta:hover { background: var(--rouge-sombre); transform: translateY(-1px
 .tarif-line .price { font-weight: 600; font-size: 0.9rem; white-space: nowrap; }
 .tarif-line.is-extra .label { color: var(--basque-vert); font-weight: 600; }
 .tarif-line.is-extra .price { color: var(--basque-vert); }
+.tarif-line.is-reduction .label { color: var(--basque-rouge); font-weight: 600; }
+.tarif-line.is-reduction .price { color: var(--basque-rouge); }
 
 .devis-disclaimer {
     display: flex; gap: 0.6rem; align-items: flex-start;
@@ -485,9 +494,48 @@ footer { background: var(--noir); color: white; padding: 4rem 2rem 2rem; }
                 <p class="stepper-hint">Le forfait inclut déjà le minimum légal. Beaucoup d'élèves ajoutent quelques heures selon leur progression — ajustez selon votre estimation.</p>
             </div>
 
-            <!-- Étape 3 : options -->
+            <!-- Étape 3 : situation de l'élève (réductions) -->
             <div class="devis-block">
-                <div class="devis-step-label"><span class="devis-step-num">3</span> Options (facultatif)</div>
+                <div class="devis-step-label"><span class="devis-step-num">3</span> Votre situation</div>
+                <h2>Avez-vous déjà commencé&nbsp;?</h2>
+                <div class="options-list">
+                    <!-- Déjà le code -->
+                    <label class="option-toggle">
+                        <input type="checkbox" id="opt-deja-code">
+                        <span class="check"></span>
+                        <span class="option-body">
+                            <span class="option-label">J'ai déjà le code de la route</span>
+                            <span class="option-detail">On ne facture pas le pack code</span>
+                        </span>
+                        <span class="option-price option-price--reduction" id="deja-code-price"></span>
+                    </label>
+
+                    <!-- Vient d'une autre auto-école -->
+                    <label class="option-toggle">
+                        <input type="checkbox" id="opt-autre-ecole">
+                        <span class="check"></span>
+                        <span class="option-body">
+                            <span class="option-label">Je viens d'une autre auto-école</span>
+                            <span class="option-detail">J'ai déjà fait des heures de conduite</span>
+                        </span>
+                    </label>
+                </div>
+
+                <!-- Stepper heures déjà réalisées (révélé si « autre auto-école ») -->
+                <div class="transfert-hours" id="transfert-hours" hidden>
+                    <p class="transfert-hours-label">Heures de conduite déjà réalisées</p>
+                    <div class="stepper">
+                        <button type="button" class="stepper-btn" id="ha-minus" aria-label="Retirer une heure déjà réalisée">−</button>
+                        <div class="stepper-value"><span id="ha-value">0</span> h<small id="ha-cap-note"></small></div>
+                        <button type="button" class="stepper-btn" id="ha-plus" aria-label="Ajouter une heure déjà réalisée">+</button>
+                    </div>
+                    <p class="stepper-hint">Ces heures sont déduites du devis. Le total reste plafonné au minimum légal de la formule (au-delà, les heures ne sont pas déductibles).</p>
+                </div>
+            </div>
+
+            <!-- Étape 4 : options -->
+            <div class="devis-block">
+                <div class="devis-step-label"><span class="devis-step-num">4</span> Options (facultatif)</div>
                 <h2>Compléments éventuels</h2>
                 <div class="options-list" id="options-list"><!-- généré par JS --></div>
             </div>
@@ -585,6 +633,13 @@ footer { background: var(--noir); color: white; padding: 4rem 2rem 2rem; }
 //   • « prixHeureSup »= prix d'UNE heure de conduite supplémentaire.
 //   • « lignes »      = détail affiché dans le récapitulatif (label + prix, detail optionnel).
 //   • « options »     = compléments cochables, ajoutés au total s'ils sont sélectionnés.
+//
+//  Réductions :
+//   • « J'ai déjà le code »   = retire la ligne marquée « id: "code" » (son prix
+//                               est déduit du total — modifiez ce prix pour ajuster).
+//   • « Vient d'une autre auto-école » = déduit (heures déjà faites × prixHeureSup),
+//                               PLAFONNÉ à « hIncluses » (= minimum légal de la formule :
+//                               13 h en boîte auto, 20 h en manuelle/AAC).
 //  (Tarifs relevés sur le site au 09/03/2026 — à confirmer/actualiser.)
 // ═══════════════════════════════════════════════════════════════════════
 const DEVIS_CONFIG = {
@@ -602,7 +657,7 @@ const DEVIS_CONFIG = {
             sujetEmail: "Devis%20Permis%20Automatique%20(BVA)",
             lignes: [
                 { label: "Frais de dossier & inscription", prix: 200 },
-                { label: "Pack code de la route", prix: 50 },
+                { id: "code", label: "Pack code de la route", prix: 50 },
                 { label: "Évaluation de départ", prix: 45 },
                 { label: "13 h de conduite incluses", detail: "Soit 48 €/h", prix: 624 },
                 { label: "Présentation à l'examen", prix: 48 },
@@ -618,7 +673,7 @@ const DEVIS_CONFIG = {
             sujetEmail: "Devis%20Permis%20B%20Manuel",
             lignes: [
                 { label: "Frais de dossier & inscription", prix: 200 },
-                { label: "Pack code de la route", prix: 50 },
+                { id: "code", label: "Pack code de la route", prix: 50 },
                 { label: "Évaluation de départ", prix: 45 },
                 { label: "20 h de conduite incluses", detail: "Soit 46 €/h", prix: 920 },
                 { label: "Présentation à l'examen", prix: 46 },
@@ -634,7 +689,7 @@ const DEVIS_CONFIG = {
             sujetEmail: "Devis%20Conduite%20Accompagnée%20(AAC)",
             lignes: [
                 { label: "Frais de dossier & inscription", prix: 200 },
-                { label: "Pack code de la route", prix: 50 },
+                { id: "code", label: "Pack code de la route", prix: 50 },
                 { label: "Évaluation de départ", prix: 45 },
                 { label: "20 h de conduite incluses", detail: "Soit 46 €/h", prix: 920 },
                 { label: "RDV préalable + 2 RDV pédagogiques", prix: 368 },
@@ -649,7 +704,6 @@ const DEVIS_CONFIG = {
     // Compléments facultatifs (cochables)
     options: [
         { id: "examenSup",   label: "Présentation supplémentaire à l'examen", detail: "En cas de 2ᵉ passage", prix: 46 },
-        { id: "conduiteNuit", label: "Module conduite de nuit", detail: "2 h en conditions réelles", prix: 92 },
     ],
 };
 
@@ -663,7 +717,16 @@ const state = {
     formule: DEVIS_CONFIG.ordre[0],
     heuresSup: 0,
     options: new Set(),
+    dejaCode: false,        // « J'ai déjà le code » → déduit la ligne code
+    vientAutreEcole: false, // « Je viens d'une autre auto-école »
+    heuresAcquises: 0,      // heures de conduite déjà réalisées ailleurs (plafonnées à hIncluses)
 };
+
+// Prix de la ligne « code » d'une formule (source unique du montant déduit)
+function prixCode(f) {
+    const ligne = f.lignes.find(l => l.id === 'code');
+    return ligne ? ligne.prix : 0;
+}
 
 // — Construire les cartes de formule —
 function buildFormules() {
@@ -683,6 +746,9 @@ function buildFormules() {
         btn.addEventListener('click', () => {
             state.formule = btn.dataset.formule;
             state.heuresSup = 0; // on repart de zéro heure sup à chaque changement de formule
+            // Replafonner les heures déjà réalisées au minimum légal de la nouvelle formule
+            const max = DEVIS_CONFIG.formules[state.formule].hIncluses;
+            if (state.heuresAcquises > max) state.heuresAcquises = max;
             render();
         });
     });
@@ -719,11 +785,21 @@ function render() {
         btn.setAttribute('aria-pressed', String(btn.dataset.formule === state.formule));
     });
 
-    // Stepper
+    // Stepper heures supplémentaires
     document.getElementById('h-value').textContent = state.heuresSup;
     document.getElementById('h-base-note').textContent = `${f.hIncluses} h déjà incluses · ${euro(f.prixHeureSup)}/h`;
     document.getElementById('h-minus').disabled = state.heuresSup <= 0;
     document.getElementById('h-plus').disabled = state.heuresSup >= DEVIS_CONFIG.maxHeuresSup;
+
+    // Section « Votre situation »
+    document.getElementById('deja-code-price').textContent = '− ' + euro(prixCode(f));
+    document.getElementById('opt-deja-code').checked = state.dejaCode;
+    document.getElementById('opt-autre-ecole').checked = state.vientAutreEcole;
+    document.getElementById('transfert-hours').hidden = !state.vientAutreEcole;
+    document.getElementById('ha-value').textContent = state.heuresAcquises;
+    document.getElementById('ha-cap-note').textContent = `max ${f.hIncluses} h · ${euro(f.prixHeureSup)}/h`;
+    document.getElementById('ha-minus').disabled = state.heuresAcquises <= 0;
+    document.getElementById('ha-plus').disabled = state.heuresAcquises >= f.hIncluses;
 
     // Lignes du récapitulatif
     let lines = f.lignes.map(l => lineHTML(l.label, l.prix, l.detail)).join('');
@@ -733,15 +809,29 @@ function render() {
     if (state.heuresSup > 0) {
         const coutSup = state.heuresSup * f.prixHeureSup;
         total += coutSup;
-        lines += lineHTML(`${state.heuresSup} h de conduite supplémentaires`, coutSup, `Soit ${euro(f.prixHeureSup)}/h`, true);
+        lines += lineHTML(`${state.heuresSup} h de conduite supplémentaires`, coutSup, `Soit ${euro(f.prixHeureSup)}/h`, 'extra');
     }
 
     DEVIS_CONFIG.options.forEach(o => {
         if (state.options.has(o.id)) {
             total += o.prix;
-            lines += lineHTML(o.label, o.prix, null, true);
+            lines += lineHTML(o.label, o.prix, null, 'extra');
         }
     });
+
+    // Réductions
+    if (state.dejaCode) {
+        const r = prixCode(f);
+        total -= r;
+        lines += lineHTML('Code déjà acquis', r, 'Pack code non facturé', 'reduction');
+    }
+    if (state.vientAutreEcole && state.heuresAcquises > 0) {
+        const deduc = state.heuresAcquises * f.prixHeureSup;
+        total -= deduc;
+        lines += lineHTML(`${state.heuresAcquises} h déjà réalisées (autre auto-école)`, deduc, `Soit ${euro(f.prixHeureSup)}/h`, 'reduction');
+    }
+
+    total = Math.max(0, total); // garde-fou
 
     document.getElementById('r-lines').innerHTML = lines;
     document.getElementById('r-formule').textContent = f.nom;
@@ -753,10 +843,13 @@ function render() {
     updateEmailCta(f, total);
 }
 
-function lineHTML(label, prix, detail, extra) {
-    return `<div class="tarif-line${extra ? ' is-extra' : ''}">
+function lineHTML(label, prix, detail, kind) {
+    // kind : 'extra' (complément, vert) | 'reduction' (déduction, prix négatif) | undefined
+    const cls = kind === 'extra' ? ' is-extra' : kind === 'reduction' ? ' is-reduction' : '';
+    const prixTxt = kind === 'reduction' ? '− ' + euro(prix) : euro(prix);
+    return `<div class="tarif-line${cls}">
         <div><div class="label">${label}</div>${detail ? `<div class="detail">${detail}</div>` : ''}</div>
-        <div class="price">${euro(prix)}</div>
+        <div class="price">${prixTxt}</div>
     </div>`;
 }
 
@@ -769,18 +862,43 @@ function updateEmailCta(f, total) {
         `Bonjour,\n\nJe souhaite recevoir un devis précis pour la formule suivante :\n\n` +
         `Formule : ${f.nom}\n` +
         `Heures supplémentaires estimées : ${state.heuresSup} h\n` +
+        (state.dejaCode ? `J'ai déjà le code de la route : oui\n` : '') +
+        (state.vientAutreEcole && state.heuresAcquises > 0
+            ? `Heures déjà réalisées dans une autre auto-école : ${state.heuresAcquises} h\n` : '') +
         (optsTxt ? `Options :\n${optsTxt}\n` : '') +
         `Estimation obtenue sur le site : ${total.toLocaleString('fr-FR')} € TTC\n\n` +
         `Merci de me recontacter.\n`;
     cta.href = `mailto:${EMAIL}?subject=${f.sujetEmail}&body=${encodeURIComponent(corps)}`;
 }
 
-// — Stepper events —
+// — Stepper events (heures supplémentaires) —
 document.getElementById('h-minus').addEventListener('click', () => {
     if (state.heuresSup > 0) { state.heuresSup--; render(); }
 });
 document.getElementById('h-plus').addEventListener('click', () => {
     if (state.heuresSup < DEVIS_CONFIG.maxHeuresSup) { state.heuresSup++; render(); }
+});
+
+// — Réductions : « J'ai déjà le code » —
+document.getElementById('opt-deja-code').addEventListener('change', (e) => {
+    state.dejaCode = e.target.checked;
+    render();
+});
+
+// — Réductions : « Je viens d'une autre auto-école » —
+document.getElementById('opt-autre-ecole').addEventListener('change', (e) => {
+    state.vientAutreEcole = e.target.checked;
+    if (!state.vientAutreEcole) state.heuresAcquises = 0; // on remet à zéro si décoché
+    render();
+});
+
+// — Stepper heures déjà réalisées (plafonné au minimum légal de la formule) —
+document.getElementById('ha-minus').addEventListener('click', () => {
+    if (state.heuresAcquises > 0) { state.heuresAcquises--; render(); }
+});
+document.getElementById('ha-plus').addEventListener('click', () => {
+    const max = DEVIS_CONFIG.formules[state.formule].hIncluses;
+    if (state.heuresAcquises < max) { state.heuresAcquises++; render(); }
 });
 
 // — Init —
