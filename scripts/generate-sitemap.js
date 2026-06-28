@@ -21,6 +21,7 @@ const EXCLUDED_FILES = new Set([
   'merci.html',
   'mentions-legales.html',
   'reservation.html',
+  'devis.html',
 ]);
 
 // Fragments de chemin exclus (sous-arborescences techniques)
