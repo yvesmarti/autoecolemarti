@@ -20,6 +20,13 @@
     document.head.appendChild(s);
   }
 
+  function injectCss(href) {
+    var l = document.createElement('link');
+    l.rel = 'stylesheet';
+    l.href = href;
+    document.head.appendChild(l);
+  }
+
   function flush() {
     ready = true;
     while (queue.length) {
@@ -32,6 +39,10 @@
     if (ready) { flush(); return; }
     if (started) return;
     started = true;
+    // Le CSS du bandeau n'est utile qu'au moment de l'affichage : on l'injecte ici
+    // (vendor puis override de marque) plutôt qu'en render-blocking dans le <head>.
+    injectCss('/vendor/tarteaucitron/tarteaucitron.css');
+    injectCss('/css/tarteaucitron-custom.css');
     inject('/vendor/tarteaucitron/tarteaucitron.js', function () {
       inject('/vendor/tarteaucitron/lang/tarteaucitron.fr.js', function () {
         inject('/scripts/consent.js', flush);

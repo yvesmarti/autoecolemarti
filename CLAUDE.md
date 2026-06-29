@@ -418,12 +418,12 @@ const interval = setInterval(() => {
 All pages include the tarteaucitron cookie consent banner for CNIL compliance.
 
 ### Files involved
-- `/scripts/load-consent.js` — **Lazy-loader chargé sur chaque page** : injecte la lib RGPD à l'inactivité (`requestIdleCallback`) ou à la 1re interaction (scroll/clic/touch), au lieu de bloquer le chargement initial. Expose `window.loadConsent(cb)` pour les déclencheurs explicites (ex. bouton « Gérer mes cookies » des mentions légales).
+- `/scripts/load-consent.js` — **Lazy-loader chargé sur chaque page** : injecte la lib RGPD **et son CSS** à l'inactivité (`requestIdleCallback`) ou à la 1re interaction (scroll/clic/touch), au lieu de bloquer le chargement initial. Expose `window.loadConsent(cb)` pour les déclencheurs explicites (ex. bouton « Gérer mes cookies » des mentions légales).
+- `/vendor/tarteaucitron/tarteaucitron.css` + `/css/tarteaucitron-custom.css` — Feuilles de style du bandeau, **injectées par load-consent.js** au moment du lazy-load (vendor puis override de marque). **Plus jamais** en `<link>` render-blocking dans le `<head>` : elles ne servent qu'à l'affichage différé du bandeau.
 - `/vendor/tarteaucitron/tarteaucitron.js` — Main library (injectée par load-consent.js)
 - `/vendor/tarteaucitron/tarteaucitron.services.js` — Service definitions (Google Analytics, etc.) — chargée à la volée par tarteaucitron au besoin, jamais en statique
 - `/vendor/tarteaucitron/lang/tarteaucitron.fr.js` — French translations
 - `/scripts/consent.js` — Project initialization (loads after tarteaucitron.js)
-- `/css/tarteaucitron-custom.css` — Overrides to match Basque brand (red buttons, DM Sans font)
 
 ### Configuration (consent.js)
 ```javascript
@@ -441,13 +441,11 @@ tarteaucitron.user.analyticsUa = 'G-DEK5H3Z9DR';
 ```
 
 ### Adding the banner to new pages
-Include the CSS in `<head>` and the lazy-loader before `</head>` :
+Inclure **uniquement** le lazy-loader dans le `<head>` :
 ```html
-<link rel="stylesheet" href="/vendor/tarteaucitron/tarteaucitron.css">
-<link rel="stylesheet" href="/css/tarteaucitron-custom.css">
 <script defer src="/scripts/load-consent.js"></script>
 ```
-`load-consent.js` se charge d'injecter `tarteaucitron.js` → `lang/tarteaucitron.fr.js` → `consent.js` dans le bon ordre, de façon différée. **Ne plus** inclure ces trois scripts en direct dans le `<head>` (cela bloquerait le rendu).
+`load-consent.js` se charge d'injecter, de façon différée et dans le bon ordre, les feuilles de style (`tarteaucitron.css` → `tarteaucitron-custom.css`) puis `tarteaucitron.js` → `lang/tarteaucitron.fr.js` → `consent.js`. **Ne plus** inclure ces scripts **ni les `<link>` CSS** en direct dans le `<head>` (cela bloquerait le rendu).
 
 ---
 

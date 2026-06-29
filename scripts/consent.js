@@ -17,7 +17,7 @@ tarteaucitron.init({
     "handleBrowserDNTRequest": false,
     "removeCredit": false,
     "moreInfoLink": true,
-    "useExternalCss": false,
+    "useExternalCss": true,
     "useExternalJs": false,
     "readmoreLink": "/mentions-legales.html#cookies",
     "mandatory": true,
