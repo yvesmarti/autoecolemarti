@@ -434,9 +434,7 @@
   </style>
     <link rel="stylesheet" href="/vendor/tarteaucitron/tarteaucitron.css">
     <link rel="stylesheet" href="/css/tarteaucitron-custom.css">
-    <script defer src="/vendor/tarteaucitron/tarteaucitron.js"></script>
-    <script defer src="/vendor/tarteaucitron/lang/tarteaucitron.fr.js"></script>
-    <script defer src="/scripts/consent.js"></script>
+    <script defer src="/scripts/load-consent.js"></script>
     <link rel="stylesheet" href="/css/nav-mobile.css">
     <script src="/scripts/nav.js" defer></script>
 </head>
@@ -818,7 +816,7 @@
     <h4>Cookies strictement nécessaires</h4>
     <p>Le cookie de consentement tarteaucitron (<code>tarteaucitron</code>) est déposé pour mémoriser vos choix. Il ne relève pas de la réglementation sur les cookies publicitaires et est exempt de consentement.</p>
 
-    <p><button onclick="tarteaucitron.userInterface.openPanel(); return false;" style="background:none;border:none;color:#d63031;text-decoration:underline;cursor:pointer;font-size:inherit;padding:0;">Gérer mes préférences cookies →</button></p>
+    <p><button onclick="(window.loadConsent||function(c){c&&c();})(function(){tarteaucitron.userInterface.openPanel();}); return false;" style="background:none;border:none;color:#d63031;text-decoration:underline;cursor:pointer;font-size:inherit;padding:0;">Gérer mes préférences cookies →</button></p>
     <p>Vous pouvez également modifier vos paramètres via l'icône de gestion des cookies présente en bas de chaque page du site.</p>
   </section>
 
@@ -879,13 +877,6 @@
   <div style="margin-top:0.8rem;"><a href="/">← Retour à l'accueil</a></div>
 </footer>
 
-<script>
-document.querySelectorAll('[data-email]').forEach(function(el){
-  var e=el.dataset.email,s=el.dataset.subject,h='mailto:'+e;
-  if(s)h+='?subject='+s;
-  el.href=h;
-  if(el.dataset.showEmail)el.textContent=e;
-});
-</script>
+<script defer src="/scripts/email-decoder.js"></script>
 </body>
 </html>

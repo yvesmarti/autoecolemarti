@@ -96,6 +96,10 @@
 ├── scripts/
 │   ├── generate-sitemap.js       # Node.js sitemap generator (189 lines, `npm run sitemap`)
 │   ├── consent.js                # tarteaucitron RGPD init (29 lines)
+│   ├── load-consent.js           # Lazy-loader: injecte tarteaucitron.js → fr.js → consent.js à l'inactivité/1re interaction; expose window.loadConsent(cb)
+│   ├── email-decoder.js          # Décodeur partagé des liens email obfusqués (mutualise le bloc inline)
+│   ├── nav.js                    # Menu hamburger mobile partagé (toutes pages sauf index.html)
+│   ├── article.js                # Logique partagée des articles blog (TOC, bouton scroll-to-top…)
 │   └── add_tarteaucitron.py      # Python batch script — adds cookie banner to HTML files
 │
 ├── vendor/
@@ -414,8 +418,9 @@ const interval = setInterval(() => {
 All pages include the tarteaucitron cookie consent banner for CNIL compliance.
 
 ### Files involved
-- `/vendor/tarteaucitron/tarteaucitron.js` — Main library
-- `/vendor/tarteaucitron/tarteaucitron.services.js` — Service definitions (Google Analytics, etc.)
+- `/scripts/load-consent.js` — **Lazy-loader chargé sur chaque page** : injecte la lib RGPD à l'inactivité (`requestIdleCallback`) ou à la 1re interaction (scroll/clic/touch), au lieu de bloquer le chargement initial. Expose `window.loadConsent(cb)` pour les déclencheurs explicites (ex. bouton « Gérer mes cookies » des mentions légales).
+- `/vendor/tarteaucitron/tarteaucitron.js` — Main library (injectée par load-consent.js)
+- `/vendor/tarteaucitron/tarteaucitron.services.js` — Service definitions (Google Analytics, etc.) — chargée à la volée par tarteaucitron au besoin, jamais en statique
 - `/vendor/tarteaucitron/lang/tarteaucitron.fr.js` — French translations
 - `/scripts/consent.js` — Project initialization (loads after tarteaucitron.js)
 - `/css/tarteaucitron-custom.css` — Overrides to match Basque brand (red buttons, DM Sans font)
@@ -436,15 +441,13 @@ tarteaucitron.user.analyticsUa = 'G-DEK5H3Z9DR';
 ```
 
 ### Adding the banner to new pages
-Include these scripts before `</head>`:
+Include the CSS in `<head>` and the lazy-loader before `</head>` :
 ```html
+<link rel="stylesheet" href="/vendor/tarteaucitron/tarteaucitron.css">
 <link rel="stylesheet" href="/css/tarteaucitron-custom.css">
-<script src="/vendor/tarteaucitron/tarteaucitron.js"></script>
-<script src="/vendor/tarteaucitron/lang/tarteaucitron.fr.js"></script>
-<script src="/vendor/tarteaucitron/tarteaucitron.services.js"></script>
-<script src="/scripts/consent.js"></script>
+<script defer src="/scripts/load-consent.js"></script>
 ```
-Or run `python3 scripts/add_tarteaucitron.py` to add it in batch to all HTML files.
+`load-consent.js` se charge d'injecter `tarteaucitron.js` → `lang/tarteaucitron.fr.js` → `consent.js` dans le bon ordre, de façon différée. **Ne plus** inclure ces trois scripts en direct dans le `<head>` (cela bloquerait le rendu).
 
 ---
 
