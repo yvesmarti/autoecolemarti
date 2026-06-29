@@ -306,9 +306,7 @@
     </style>
     <link rel="stylesheet" href="/vendor/tarteaucitron/tarteaucitron.css">
     <link rel="stylesheet" href="/css/tarteaucitron-custom.css">
-    <script defer src="/vendor/tarteaucitron/tarteaucitron.js"></script>
-    <script defer src="/vendor/tarteaucitron/lang/tarteaucitron.fr.js"></script>
-    <script defer src="/scripts/consent.js"></script>
+    <script defer src="/scripts/load-consent.js"></script>
     <link rel="stylesheet" href="/css/nav-mobile.css">
     <script src="/scripts/nav.js" defer></script>
 </head>
@@ -483,13 +481,6 @@
     <p style="margin-top:1rem; font-size:0.78rem; opacity:0.4;">© 2026 Auto-École Marti — Bayonne depuis 1962</p>
 </footer>
 
-<script>
-  document.querySelectorAll('[data-email]').forEach(function(el){
-    var h='mailto:'+el.dataset.email;
-    if(el.dataset.subject)h+='?subject='+encodeURIComponent(el.dataset.subject);
-    el.href=h;
-    if(el.dataset.showEmail)el.textContent=el.dataset.email;
-  });
-</script>
+<script defer src="/scripts/email-decoder.js"></script>
 </body>
 </html>

@@ -72,7 +72,7 @@
       }
     }
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -354,9 +354,7 @@
     </style>
     <link rel="stylesheet" href="/vendor/tarteaucitron/tarteaucitron.css">
     <link rel="stylesheet" href="/css/tarteaucitron-custom.css">
-    <script defer src="/vendor/tarteaucitron/tarteaucitron.js"></script>
-    <script defer src="/vendor/tarteaucitron/lang/tarteaucitron.fr.js"></script>
-    <script defer src="/scripts/consent.js"></script>
+    <script defer src="/scripts/load-consent.js"></script>
     <link rel="stylesheet" href="/css/nav-mobile.css">
     <script src="/scripts/nav.js" defer></script>
 </head>
@@ -661,7 +659,23 @@
 </div>
 
 <script>
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    let pdfLibPromise = null;
+    function ensurePdfJs() {
+      if (window.pdfjsLib) return Promise.resolve();
+      if (!pdfLibPromise) {
+        pdfLibPromise = new Promise(function (resolve, reject) {
+          var s = document.createElement('script');
+          s.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+          s.onload = function () {
+            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+            resolve();
+          };
+          s.onerror = reject;
+          document.head.appendChild(s);
+        });
+      }
+      return pdfLibPromise;
+    }
     const PDF_FILE = '../plaquettes/Plaquette_Permis_B_BVA.pdf';
     const PDF_TITLE = 'Plaquette_Permis_B_BVA.pdf';
     let pdfDoc = null, currentPage = 1, scale = 1.2;
@@ -671,6 +685,7 @@
         document.body.style.overflow = 'hidden';
         if (!pdfDoc) {
             try {
+                await ensurePdfJs();
                 pdfDoc = await pdfjsLib.getDocument(PDF_FILE).promise;
                 document.getElementById('pdf-total-pages').textContent = pdfDoc.numPages;
                 renderPage(1);
@@ -748,13 +763,6 @@
     ]
 }
 </script>
-<script>
-  document.querySelectorAll('[data-email]').forEach(function(el){
-    var h='mailto:'+el.dataset.email;
-    if(el.dataset.subject)h+='?subject='+encodeURIComponent(el.dataset.subject);
-    el.href=h;
-    if(el.dataset.showEmail)el.textContent=el.dataset.email;
-  });
-</script>
+<script defer src="/scripts/email-decoder.js"></script>
 </body>
 </html>

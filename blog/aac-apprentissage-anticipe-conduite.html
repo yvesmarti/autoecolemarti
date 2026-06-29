@@ -29,9 +29,7 @@
     <link rel="stylesheet" href="../css/blog-article.css">
     <link rel="stylesheet" href="/vendor/tarteaucitron/tarteaucitron.css">
     <link rel="stylesheet" href="/css/tarteaucitron-custom.css">
-    <script defer src="/vendor/tarteaucitron/tarteaucitron.js"></script>
-    <script defer src="/vendor/tarteaucitron/lang/tarteaucitron.fr.js"></script>
-    <script defer src="/scripts/consent.js"></script>
+    <script defer src="/scripts/load-consent.js"></script>
     <!-- JSON-LD BlogPosting Schema -->
     <script type="application/ld+json">
 {
@@ -452,13 +450,6 @@
     ]
 }
 </script>
-<script>
-document.querySelectorAll('[data-email]').forEach(function(el){
-  var e=el.dataset.email,s=el.dataset.subject,h='mailto:'+e;
-  if(s)h+='?subject='+s;
-  el.href=h;
-  if(el.dataset.showEmail)el.textContent=e;
-});
-</script>
+<script defer src="/scripts/email-decoder.js"></script>
 </body>
 </html>

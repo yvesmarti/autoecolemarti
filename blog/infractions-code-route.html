@@ -307,9 +307,7 @@
     </style>
     <link rel="stylesheet" href="/vendor/tarteaucitron/tarteaucitron.css">
     <link rel="stylesheet" href="/css/tarteaucitron-custom.css">
-    <script defer src="/vendor/tarteaucitron/tarteaucitron.js"></script>
-    <script defer src="/vendor/tarteaucitron/lang/tarteaucitron.fr.js"></script>
-    <script defer src="/scripts/consent.js"></script>
+    <script defer src="/scripts/load-consent.js"></script>
     <!-- JSON-LD BlogPosting Schema -->
     <script type="application/ld+json">
 {
@@ -1013,14 +1011,7 @@
 <!-- ══════════════════════════════════════════════════════════════
      SCRIPTS
 ══════════════════════════════════════════════════════════════ -->
-<script>
-    document.querySelectorAll('[data-email]').forEach(function(el){
-        var h='mailto:'+el.dataset.email;
-        if(el.dataset.subject)h+='?subject='+encodeURIComponent(el.dataset.subject);
-        el.href=h;
-        if(el.dataset.showEmail)el.textContent=el.dataset.email;
-    });
-</script>
+<script defer src="/scripts/email-decoder.js"></script>
 <script>
     // ── Scroll reveal navbar ──
     window.addEventListener('scroll', () => {

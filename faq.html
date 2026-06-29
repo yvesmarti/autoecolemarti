@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="application-name" content="Auto-École Marti">
+  <link rel="preload" href="fonts/dm-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/playfair-display-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Auto-École Marti — FAQ Permis de conduire à Bayonne</title>
   <meta name="description" content="Toutes les réponses à vos questions sur le permis B, la conduite accompagnée, les tarifs et le financement. Auto-École Marti, Bayonne depuis 1962." />
@@ -633,9 +635,7 @@
   </style>
     <link rel="stylesheet" href="/vendor/tarteaucitron/tarteaucitron.css">
     <link rel="stylesheet" href="/css/tarteaucitron-custom.css">
-    <script defer src="/vendor/tarteaucitron/tarteaucitron.js"></script>
-    <script defer src="/vendor/tarteaucitron/lang/tarteaucitron.fr.js"></script>
-    <script defer src="/scripts/consent.js"></script>
+    <script defer src="/scripts/load-consent.js"></script>
     <link rel="stylesheet" href="/css/nav-mobile.css">
     <script src="/scripts/nav.js" defer></script>
 </head>
@@ -992,13 +992,6 @@
     });
   </script>
 
-<script>
-document.querySelectorAll('[data-email]').forEach(function(el){
-  var e=el.dataset.email,s=el.dataset.subject,h='mailto:'+e;
-  if(s)h+='?subject='+s;
-  el.href=h;
-  if(el.dataset.showEmail)el.textContent=e;
-});
-</script>
+<script defer src="/scripts/email-decoder.js"></script>
 </body>
 </html>

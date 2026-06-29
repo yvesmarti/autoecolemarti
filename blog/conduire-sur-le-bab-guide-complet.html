@@ -371,14 +371,7 @@
   </footer>
 
 
-<script>
-document.querySelectorAll('[data-email]').forEach(function(el){
-    var e=el.dataset.email,s=el.dataset.subject,h='mailto:'+e;
-    if(s)h+='?subject='+s;
-    el.href=h;
-    if(el.dataset.showEmail)el.textContent=e;
-});
-</script>
+<script defer src="/scripts/email-decoder.js"></script>
 
 <script type="application/ld+json">
 {

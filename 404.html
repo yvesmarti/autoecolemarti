@@ -171,14 +171,7 @@
     Auto-École Marti — 13 rue Marengo, 64100 Bayonne · <a href="tel:0559591260">05 59 59 12 60</a>
   </footer>
 
-  <script>
-    document.querySelectorAll('[data-email]').forEach(function(el){
-      var h='mailto:'+el.dataset.email;
-      if(el.dataset.subject)h+='?subject='+encodeURIComponent(el.dataset.subject);
-      el.href=h;
-      if(el.dataset.showEmail)el.textContent=el.dataset.email;
-    });
-  </script>
+  <script defer src="/scripts/email-decoder.js"></script>
 
 </body>
 </html>
