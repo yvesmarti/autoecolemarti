@@ -557,6 +557,7 @@ section { padding: 6rem 2rem; }
 .avis-track {
     display: flex; flex-wrap: nowrap;
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    list-style: none; margin: 0; padding: 0;
 }
 .avis-slide {
     display: grid; grid-template-columns: repeat(3, 1fr);
@@ -599,6 +600,7 @@ section { padding: 6rem 2rem; }
 .avis-card {
     background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
     border-radius: var(--radius); padding: 2rem; transition: var(--transition);
+    list-style: none; margin: 0;
 }
 .avis-card:hover { background: rgba(255,255,255,0.08); transform: translateY(-4px); }
 .avis-stars { color: var(--or); font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: 2px; }

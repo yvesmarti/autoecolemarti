@@ -461,6 +461,25 @@
       font-weight: 500;
     }
 
+    .quiz-intro {
+      text-align: center;
+    }
+    .quiz-intro h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+    }
+    .quiz-intro p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
     @media (max-width: 520px) {
       .answers-grid { grid-template-columns: 1fr; }
       .sign-wrapper { width: 140px; height: 140px; }
@@ -550,6 +569,11 @@
 
 <main id="main-content">
 <div class="container">
+
+  <div class="quiz-intro">
+    <h1>Quiz panneaux de signalisation</h1>
+    <p>Entraînez-vous sur plus de 200 panneaux de signalisation officiels français — danger, priorité, interdiction, obligation, indication — avec ce quiz interactif gratuit proposé par l'auto-école Marti à Bayonne. Idéal pour réviser le code de la route avant l'examen.</p>
+  </div>
 
   <!-- FILTRE CATÉGORIE -->
   <div class="filter-label">Filtrer par famille</div>
@@ -1064,7 +1088,7 @@ window.addEventListener('scroll', () => {
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2025 Auto-école Marti — Bayonne. Tous droits réservés.</span>
+      <span>© 2026 Auto-École Marti — Bayonne. Tous droits réservés.</span>
       <a href="../mentions-legales.html" style="color:rgba(255,255,255,0.4);text-decoration:none;font-size:0.8rem;">Mentions légales</a>
     </div>
   </div>
