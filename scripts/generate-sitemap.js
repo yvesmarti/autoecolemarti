@@ -106,22 +106,19 @@ function getPriority(filePath) {
  * Convertir le chemin fichier en URL
  */
 function filePathToUrl(filePath) {
-  let url = filePath
+  // Les URLs doivent correspondre exactement aux balises canonical des pages :
+  // - index de dossier → slash final ('blog/index.html' → '/blog/')
+  // - page simple → sans extension ni slash ('faq.html' → '/faq')
+  const url = filePath
     .replace(/\\/g, '/') // Windows → Unix
     .replace(/^\.\// , '') // Enlever ./
-    .replace(/index\.html$/, '') // index.html → /
+    .replace(/index\.html$/, '') // index de dossier → 'blog/', racine → ''
     .replace(/\.html$/, ''); // Enlever extension
 
-  // Ajouter slash final si pas vide
-  if (url && !url.endsWith('/')) {
-    url += '/';
+  if (!url) {
+    return `${SITE_URL}/`; // Accueil (canonical avec slash final)
   }
-
-  // Construire l'URL finale
-  if (url === '/' || !url) {
-    return SITE_URL; // Accueil = domaine seul
-  }
-  return `${SITE_URL}/${url}`.replace(/\/$/, ''); // Ajouter / entre domaine et chemin
+  return `${SITE_URL}/${url}`;
 }
 
 /**
