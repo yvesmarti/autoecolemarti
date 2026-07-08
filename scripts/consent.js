@@ -1,5 +1,5 @@
 tarteaucitron.init({
-    "privacyUrl": "/mentions-legales.html#cookies",
+    "privacyUrl": "/mentions-legales#cookies",
     "hashtag": "#tarteaucitron",
     "cookieName": "tarteaucitron",
     "orientation": "bottom",
@@ -19,7 +19,7 @@ tarteaucitron.init({
     "moreInfoLink": true,
     "useExternalCss": true,
     "useExternalJs": false,
-    "readmoreLink": "/mentions-legales.html#cookies",
+    "readmoreLink": "/mentions-legales#cookies",
     "mandatory": true,
     "mandatoryCta": true,
     "googleConsentMode": true

@@ -428,7 +428,7 @@ All pages include the tarteaucitron cookie consent banner for CNIL compliance.
 ### Configuration (consent.js)
 ```javascript
 tarteaucitron.init({
-  "privacyUrl": "/mentions-legales.html#cookies",
+  "privacyUrl": "/mentions-legales#cookies",
   "hashtag": "#tarteaucitron",
   "cookieName": "tarteaucitron",
   "highPrivacy": true,       // CNIL strict mode
@@ -478,6 +478,7 @@ npm run sitemap
 - **Blog hero heights**: `52vh` (shorter than homepage at `88vh`)
 - **formules/index.html** uses **inline CSS** (no external stylesheet) — this is an intentional exception
 - **Email links** always use `data-email` HTML entity obfuscation + JS decoding (no raw `mailto:` in HTML)
+- **Internal links use clean (extensionless) URLs** matching the canonicals/sitemap — never link to `*.html`. Use root-relative paths: `/` (homepage), `/faq`, `/formules/`, `/formules/conduite-accompagnee`, `/blog/`, `/blog/<slug>`, `/quizz/quizz_panneaux`, `/mentions-legales`, etc. Full absolute URLs (JSON-LD `@id`/`url`, JS redirects) also stay extensionless (`https://autoecolemarti.fr/blog/<slug>`). This consolidates SEO signals — GitHub Pages serves `<page>.html` at `/<page>` without redirect, so the canonical form must be the only one linked.
 - **JSON-LD schemas** in use: `FAQPage` (faq.html), `BreadcrumbList` (formules, articles, blog hub), `BlogPosting` with `datePublished` + `dateModified` (articles), `Course` with `hasCourseInstance` (formules detail), `CollectionPage` (blog hub), `LocalBusiness`/`DrivingSchool` + `Review`/`AggregateRating` (homepage)
 - **Social meta on every indexable page**: `og:image` → `/og-image.png` (1200×630), `og:locale=fr_FR`, `og:url` matching the canonical, plus Twitter Cards (`summary_large_image`). Add them to any new page.
 - **Article dates**: visible publication date is wrapped in `<time datetime="YYYY-MM-DD">`; update `dateModified` in both JSON-LD blocks when meaningfully editing an article
