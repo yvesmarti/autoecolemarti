@@ -328,7 +328,7 @@ Fluid type scale uses `clamp()`:
 - Hero vert + sections : atout local, « conduire à … », formules (3 cartes), mini-FAQ (`<details>`, sans JS), CTA.
 - JSON-LD : `DrivingSchool`/`LocalBusiness` (`areaServed` recentré sur la ville), `BreadcrumbList`, `FAQPage`.
 - Faits : adresse Bayonne (13 rue Marengo), RDV Place Quintaou (Anglet) ; Biarritz = départ Anglet **ou** Bayonne au choix ; tarifs identiques. **Aucun lien vers `reservation.html`.**
-- Maillées depuis l'article BAB (`blog/conduire-sur-le-bab-guide-complet.html`), le footer de la homepage, et entre elles. Canonical sans `.html`. Sitemap priority 0.8.
+- Maillées depuis l'article BAB (`blog/conduire-sur-le-bab-guide-complet.html`), les footers des pages principales (homepage, FAQ, blog hub, formules hub + 3 pages détail, espace élèves), la FAQ « Où se déroulent les leçons ? » (lien Quintaou → Anglet), et entre elles. Canonical sans `.html`. Sitemap priority 0.8.
 
 ---
 
