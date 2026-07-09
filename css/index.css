@@ -652,12 +652,12 @@ section { padding: 6rem 2rem; }
     display: flex; align-items: center; justify-content: center;
     font-size: 1.1rem; flex-shrink: 0;
 }
-.contact-detail-text h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.15rem; }
+.contact-detail-text h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.15rem; }
 .contact-detail-text p { font-size: 0.88rem; color: var(--gris); }
 .contact-detail-text a { color: var(--basque-rouge); text-decoration: none; font-weight: 500; }
 .contact-detail-text a:hover { text-decoration: underline; }
 .contact-horaires { background: var(--creme); border-radius: var(--radius); padding: 1.5rem; }
-.contact-horaires h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.8rem; }
+.contact-horaires h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.8rem; }
 .horaire-row { display: flex; justify-content: space-between; padding: 0.4rem 0; font-size: 0.88rem; }
 .horaire-row .jour { color: var(--gris); }
 .horaire-row .heure { font-weight: 600; }
@@ -732,7 +732,7 @@ footer { background: var(--noir); color: white; padding: 4rem 2rem 2rem; }
 .footer-brand .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: white; margin-bottom: 1rem; display: block; }
 .footer-brand .logo span { color: var(--basque-rouge); }
 .footer-brand p { color: rgba(255,255,255,0.5); font-size: 0.88rem; line-height: 1.7; }
-.footer-col h4 { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.2rem; color: rgba(255,255,255,0.4); }
+.footer-col h3 { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.2rem; color: rgba(255,255,255,0.4); }
 .footer-col ul { list-style: none; }
 .footer-col ul li { margin-bottom: 0.6rem; }
 .footer-col ul a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; transition: var(--transition); }

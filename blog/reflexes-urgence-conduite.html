@@ -53,14 +53,15 @@
         .reflexe-card.panne  { border-top: 3px solid var(--basque-vert); }
         .reflexe-card.leger  { border-top: 3px solid #e8a020; }
         .reflexe-card.grave  { border-top: 3px solid var(--basque-rouge); }
-        .reflexe-card h4 {
+        .reflexe-card h3 {
             font-size: 0.95rem;
             font-weight: 700;
-            margin-bottom: 0.9rem;
+            margin: 0 0 0.9rem;
         }
-        .reflexe-card.panne h4 { color: var(--basque-vert); }
-        .reflexe-card.leger h4 { color: #e8a020; }
-        .reflexe-card.grave h4 { color: var(--basque-rouge); }
+        .reflexe-card h3::before { display: none; }
+        .reflexe-card.panne h3 { color: var(--basque-vert); }
+        .reflexe-card.leger h3 { color: #e8a020; }
+        .reflexe-card.grave h3 { color: var(--basque-rouge); }
         .reflexe-card ul {
             list-style: none;
             margin: 0;
@@ -377,7 +378,7 @@
 
     <div class="reflexes-grid">
         <div class="reflexe-card panne">
-            <h4>🔧 Panne sur la route</h4>
+            <h3>🔧 Panne sur la route</h3>
             <ul>
                 <li>Warnings allumés</li>
                 <li>Gilet + triangle de sécurité</li>
@@ -386,7 +387,7 @@
             </ul>
         </div>
         <div class="reflexe-card leger">
-            <h4>💫 Accident léger</h4>
+            <h3>💫 Accident léger</h3>
             <ul>
                 <li>Arrêt sécurisé</li>
                 <li>Gilet + triangle de sécurité</li>
@@ -395,7 +396,7 @@
             </ul>
         </div>
         <div class="reflexe-card grave">
-            <h4>🚑 Accident avec blessé</h4>
+            <h3>🚑 Accident avec blessé</h3>
             <ul>
                 <li>Appel immédiat 15 / 18 / 112</li>
                 <li>Ne pas déplacer les blessés</li>
@@ -481,7 +482,7 @@
                 <p>Auto-école de confiance à Bayonne depuis 1962. Formations permis B, conduite accompagnée et boîte automatique.</p>
             </div>
             <div class="footer-col">
-                <h4>Formations</h4>
+                <h3>Formations</h3>
                 <ul>
                     <li><a href="/formules/permis-b-manuel">Permis B</a></li>
                     <li><a href="/formules/conduite-accompagnee">Conduite accompagnée</a></li>
@@ -490,7 +491,7 @@
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Navigation</h4>
+                <h3>Navigation</h3>
                 <ul>
                     <li><a href="/">Accueil</a></li>
                     <li><a href="/blog/">Blog</a></li>
@@ -499,7 +500,7 @@
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Contact</h4>
+                <h3>Contact</h3>
                 <ul>
                     <li><a href="tel:0559591260">05 59 59 12 60</a></li>
                     <li><a href="tel:0622008209">06 22 00 82 09</a></li>

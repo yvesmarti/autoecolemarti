@@ -45,12 +45,13 @@
         }
         .comparaison-card.auto { border-top: 3px solid var(--basque-vert); }
         .comparaison-card.manuelle { border-top: 3px solid var(--basque-rouge); }
-        .comparaison-card h4 {
-            font-size: 1rem; font-weight: 700; margin-bottom: 1rem;
+        .comparaison-card h3 {
+            font-size: 1rem; font-weight: 700; margin: 0 0 1rem;
             display: flex; align-items: center; gap: 0.5rem;
         }
-        .comparaison-card.auto h4 { color: var(--basque-vert); }
-        .comparaison-card.manuelle h4 { color: var(--basque-rouge); }
+        .comparaison-card h3::before { display: none; }
+        .comparaison-card.auto h3 { color: var(--basque-vert); }
+        .comparaison-card.manuelle h3 { color: var(--basque-rouge); }
         .comparaison-card ul { margin-bottom: 0; }
         .comparaison-card ul li::before { color: inherit; }
         .comparaison-card.auto ul li::before { color: var(--basque-vert); }
@@ -168,7 +169,7 @@
 
     <div class="comparaison-grid">
         <div class="comparaison-card manuelle">
-            <h4>🕹️ Boîte manuelle</h4>
+            <h3>🕹️ Boîte manuelle</h3>
             <ul>
                 <li><strong>Pédale d'embrayage</strong> à gérer</li>
                 <li><strong>Levier de vitesses</strong> à manipuler</li>
@@ -177,7 +178,7 @@
             </ul>
         </div>
         <div class="comparaison-card auto">
-            <h4>⚙️ Boîte automatique</h4>
+            <h3>⚙️ Boîte automatique</h3>
             <ul>
                 <li>Passage des vitesses <strong>géré par le véhicule</strong></li>
                 <li>Seulement <strong>accélérateur et frein</strong></li>
@@ -291,7 +292,7 @@
 
     <div class="comparaison-grid">
         <div class="comparaison-card auto">
-            <h4>⚙️ Choisir la boîte automatique si…</h4>
+            <h3>⚙️ Choisir la boîte automatique si…</h3>
             <ul>
                 <li>Vous souhaitez un <strong>apprentissage plus simple</strong></li>
                 <li>Vous êtes stressé par la gestion de l'embrayage</li>
@@ -300,7 +301,7 @@
             </ul>
         </div>
         <div class="comparaison-card manuelle">
-            <h4>🕹️ Choisir la boîte manuelle si…</h4>
+            <h3>🕹️ Choisir la boîte manuelle si…</h3>
             <ul>
                 <li>Vous voulez <strong>conduire n'importe quelle voiture</strong></li>
                 <li>Vous pensez louer ou emprunter des véhicules</li>
@@ -380,7 +381,7 @@
                 <p>Auto-école de confiance à Bayonne depuis 1962. Formations permis B, conduite accompagnée et boîte automatique.</p>
             </div>
             <div class="footer-col">
-                <h4>Formations</h4>
+                <h3>Formations</h3>
                 <ul>
                     <li><a href="/formules/permis-b-manuel">Permis B</a></li>
                     <li><a href="/formules/conduite-accompagnee">Conduite accompagnée</a></li>
@@ -389,7 +390,7 @@
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Navigation</h4>
+                <h3>Navigation</h3>
                 <ul>
                     <li><a href="/">Accueil</a></li>
                     <li><a href="/blog/">Blog</a></li>
@@ -398,7 +399,7 @@
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Contact</h4>
+                <h3>Contact</h3>
                 <ul>
                     <li><a href="tel:0559591260">05 59 59 12 60</a></li>
                     <li><a href="tel:0622008209">06 22 00 82 09</a></li>

@@ -364,11 +364,12 @@
             padding: 18px 22px;
             margin-bottom: 22px;
         }
-        .explanation h4 {
+        .explanation h3 {
             color: #fff;
-            margin-bottom: 12px;
+            margin: 0 0 12px;
             font-size: 0.95rem;
         }
+        .explanation h3::before { display: none; }
         .explanation ol { margin: 0; padding-left: 22px; }
         .explanation li { margin-bottom: 8px; color: #d0d0d0; font-size: 0.9rem; }
 
@@ -639,7 +640,7 @@
                     <p class="feedback-text"></p>
                 </div>
                 <div class="explanation" id="explanation-panne" style="display: none;">
-                    <h4>📚 L'ordre correct est :</h4>
+                    <h3>📚 L'ordre correct est :</h3>
                     <ol id="correct-order-panne"></ol>
                 </div>
                 <div class="btn-container">
@@ -674,7 +675,7 @@
                     <p class="feedback-text"></p>
                 </div>
                 <div class="explanation" id="explanation-accident-leger" style="display: none;">
-                    <h4>📚 L'ordre correct est :</h4>
+                    <h3>📚 L'ordre correct est :</h3>
                     <ol id="correct-order-accident-leger"></ol>
                 </div>
                 <div class="btn-container">
@@ -709,7 +710,7 @@
                     <p class="feedback-text"></p>
                 </div>
                 <div class="explanation" id="explanation-accident-grave" style="display: none;">
-                    <h4>📚 L'ordre correct est :</h4>
+                    <h3>📚 L'ordre correct est :</h3>
                     <ol id="correct-order-accident-grave"></ol>
                 </div>
                 <div class="btn-container">
@@ -784,7 +785,7 @@
                 <p>Auto-école de confiance à Bayonne depuis 1962. Formations permis B, conduite accompagnée et boîte automatique.</p>
             </div>
             <div class="footer-col">
-                <h4>Formations</h4>
+                <h3>Formations</h3>
                 <ul>
                     <li><a href="/formules/permis-b-manuel">Permis B</a></li>
                     <li><a href="/formules/conduite-accompagnee">Conduite accompagnée</a></li>
@@ -793,7 +794,7 @@
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Navigation</h4>
+                <h3>Navigation</h3>
                 <ul>
                     <li><a href="/">Accueil</a></li>
                     <li><a href="/blog/">Blog</a></li>
@@ -802,7 +803,7 @@
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Contact</h4>
+                <h3>Contact</h3>
                 <ul>
                     <li><a href="tel:0559591260">05 59 59 12 60</a></li>
                     <li><a href="tel:0622008209">06 22 00 82 09</a></li>
