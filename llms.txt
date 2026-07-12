@@ -112,36 +112,35 @@ Fondée en 1962, l'auto-école Marti est l'une des plus anciennes et des mieux n
 ## Pages du site
 
 - [Accueil](https://autoecolemarti.fr/): Présentation générale, tarifs, avis clients
-- [FAQ](https://autoecolemarti.fr/faq.html): Réponses aux questions fréquentes sur le permis B, les tarifs et la conduite accompagnée
-- [Permis B boîte manuelle](https://autoecolemarti.fr/formules/permis-b-manuel.html): Détail du forfait, programme, conditions
-- [Permis B boîte automatique](https://autoecolemarti.fr/formules/permis-b-automatique.html): Forfait le moins cher de l'école, dès 967 €
-- [Conduite accompagnée (AAC)](https://autoecolemarti.fr/formules/conduite-accompagnee.html): Formation dès 15 ans, 1 629 € TTC
+- [FAQ](https://autoecolemarti.fr/faq): Réponses aux questions fréquentes sur le permis B, les tarifs et la conduite accompagnée
+- [Permis B boîte manuelle](https://autoecolemarti.fr/formules/permis-b-manuel): Détail du forfait, programme, conditions
+- [Permis B boîte automatique](https://autoecolemarti.fr/formules/permis-b-automatique): Forfait le moins cher de l'école, dès 967 €
+- [Conduite accompagnée (AAC)](https://autoecolemarti.fr/formules/conduite-accompagnee): Formation dès 15 ans, 1 629 € TTC
 - [Choisir sa formule](https://autoecolemarti.fr/formules/): Quiz interactif pour trouver la formation adaptée à son profil
 - [Auto-école à Anglet](https://autoecolemarti.fr/auto-ecole-anglet): Permis et conduite pour les habitants d'Anglet, point de RDV Place Quintaou
 - [Auto-école à Biarritz](https://autoecolemarti.fr/auto-ecole-biarritz): Permis et conduite pour les habitants de Biarritz, départ Anglet ou Bayonne
 - [Blog conseils conduite](https://autoecolemarti.fr/blog/): Articles pédagogiques sur le code de la route, la conduite, la réglementation
-- [Quiz panneaux de signalisation](https://autoecolemarti.fr/quizz/quizz_panneaux.html): Outil interactif pour réviser les panneaux (200+ signes officiels)
-- [Réserver un cours](https://autoecolemarti.fr/reservation.html): Formulaire de réservation en ligne
+- [Quiz panneaux de signalisation](https://autoecolemarti.fr/quizz/quizz_panneaux): Outil interactif pour réviser les panneaux (200+ signes officiels)
 
-## Articles de blog (21 articles)
+## Articles de blog (20 articles)
 
-- [Conduite accompagnée (AAC) : tout ce qu'il faut savoir](https://autoecolemarti.fr/blog/aac-apprentissage-anticipe-conduite.html)
-- [Les angles morts : comment les maîtriser ?](https://autoecolemarti.fr/blog/angles-morts.html)
-- [Auto-école en ligne ou auto-école Marti : comment choisir ?](https://autoecolemarti.fr/blog/auto-ecole-en-ligne-ou-marti.html)
-- [Boîte automatique ou manuelle : comment choisir ?](https://autoecolemarti.fr/blog/boite-automatique-ou-manuelle.html)
-- [Combien coûte le permis de conduire à Bayonne ?](https://autoecolemarti.fr/blog/combien-coute-permis-conduire-bayonne.html)
-- [Comment réussir son permis de conduire ?](https://autoecolemarti.fr/blog/comment-reussir-son-permis-conduire.html)
-- [Conduire sur le BAB : guide complet](https://autoecolemarti.fr/blog/conduire-sur-le-bab-guide-complet.html)
-- [La conduite supervisée : tout savoir](https://autoecolemarti.fr/blog/conduite-supervisee.html)
-- [Les dangers de l'alcool au volant](https://autoecolemarti.fr/blog/dangers-alcool.html)
-- [Les distances de sécurité](https://autoecolemarti.fr/blog/distances-securite.html)
-- [La fatigue au volant](https://autoecolemarti.fr/blog/fatigue-volant.html)
-- [Infractions et code de la route : le guide](https://autoecolemarti.fr/blog/infractions-code-route.html)
-- [Passer le permis après 30, 40 ou 50 ans](https://autoecolemarti.fr/blog/permis-apres-30-40-50-ans.html)
-- [Questions pièges du code de la route](https://autoecolemarti.fr/blog/questions-pieges-code-route.html)
-- [Quiz sur les sanctions routières](https://autoecolemarti.fr/blog/quiz-sanctions.html)
-- [Quiz réflexes de conduite](https://autoecolemarti.fr/blog/reflexes-quiz.html)
-- [Réflexes d'urgence en conduite](https://autoecolemarti.fr/blog/reflexes-urgence-conduite.html)
-- [Règles du permis probatoire](https://autoecolemarti.fr/blog/regles-permis-probatoire.html)
-- [Réussir le code de la route du premier coup](https://autoecolemarti.fr/blog/reussir-code-route-premier-coup.html)
-- [Simulateur d'écoconduite](https://autoecolemarti.fr/blog/simulateur-ecoconduite.html)
+- [Conduite accompagnée (AAC) : tout ce qu'il faut savoir](https://autoecolemarti.fr/blog/aac-apprentissage-anticipe-conduite)
+- [Les angles morts : comment les maîtriser ?](https://autoecolemarti.fr/blog/angles-morts)
+- [Auto-école en ligne ou auto-école Marti : comment choisir ?](https://autoecolemarti.fr/blog/auto-ecole-en-ligne-ou-marti)
+- [Boîte automatique ou manuelle : comment choisir ?](https://autoecolemarti.fr/blog/boite-automatique-ou-manuelle)
+- [Combien coûte le permis de conduire à Bayonne ?](https://autoecolemarti.fr/blog/combien-coute-permis-conduire-bayonne)
+- [Comment réussir son permis de conduire ?](https://autoecolemarti.fr/blog/comment-reussir-son-permis-conduire)
+- [Conduire sur le BAB : guide complet](https://autoecolemarti.fr/blog/conduire-sur-le-bab-guide-complet)
+- [La conduite supervisée : tout savoir](https://autoecolemarti.fr/blog/conduite-supervisee)
+- [Les dangers de l'alcool au volant](https://autoecolemarti.fr/blog/dangers-alcool)
+- [Les distances de sécurité](https://autoecolemarti.fr/blog/distances-securite)
+- [La fatigue au volant](https://autoecolemarti.fr/blog/fatigue-volant)
+- [Infractions et code de la route : le guide](https://autoecolemarti.fr/blog/infractions-code-route)
+- [Passer le permis après 30, 40 ou 50 ans](https://autoecolemarti.fr/blog/permis-apres-30-40-50-ans)
+- [Questions pièges du code de la route](https://autoecolemarti.fr/blog/questions-pieges-code-route)
+- [Quiz sur les sanctions routières](https://autoecolemarti.fr/blog/quiz-sanctions)
+- [Quiz réflexes de conduite](https://autoecolemarti.fr/blog/reflexes-quiz)
+- [Réflexes d'urgence en conduite](https://autoecolemarti.fr/blog/reflexes-urgence-conduite)
+- [Règles du permis probatoire](https://autoecolemarti.fr/blog/regles-permis-probatoire)
+- [Réussir le code de la route du premier coup](https://autoecolemarti.fr/blog/reussir-code-route-premier-coup)
+- [Simulateur d'écoconduite](https://autoecolemarti.fr/blog/simulateur-ecoconduite)

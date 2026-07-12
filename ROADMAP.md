@@ -38,6 +38,24 @@
   pour un site déjà léger.
 - CPF / permis accéléré / permis moto : **non proposés** par l'école (confirmé juin 2026) —
   ne pas créer de contenu sur ces sujets.
+- **Externaliser le CSS inline commun** (reset + `:root` + navbar dupliqués dans faq,
+  formules/*, pages locales, devis…) vers une feuille partagée cacheable : HTML de 60-75 Ko
+  par page aujourd'hui, pas de cache navigateur inter-pages. Principal levier de perf restant.
+- **Différenciation anti-cannibalisation** : « prix du permis à Bayonne » est visé à la fois
+  par `formules/index.html` (transactionnel) et `blog/combien-coute-permis-conduire-bayonne.html`
+  (informationnel) ; idem « conduite accompagnée » entre la page formule AAC et 2 articles.
+  Si les positions Google se cannibalisent, différencier davantage les angles et renforcer
+  le maillage article → page formule.
+
+## Décisions actées (audit SEO — juillet 2026)
+
+- **Balisage avis conservé tel quel** : `AggregateRating`/`Review` en JSON-LD sur la homepage
+  et les pages Anglet/Biarritz. Noté : Google ignore généralement les avis « self-serving »
+  hébergés sur le site de l'entreprise (guidelines 2019+) ; les avis Google Business restent
+  la référence. Décision Yves : ne pas y toucher.
+- **`reservation.html` et `devis.html` volontairement orphelines** (aucun lien entrant,
+  noindex, hors sitemap) : pages pas encore lancées. Le jour du lancement : les lier depuis
+  la nav/footer/CTA et retirer le noindex si indexation souhaitée.
 
 ---
 
