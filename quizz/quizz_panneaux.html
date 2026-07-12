@@ -24,6 +24,33 @@
   <link rel="icon" type="image/png" href="../favicon.ico.png">
   <link rel="apple-touch-icon" href="/favicon.ico.png">
   <link rel="stylesheet" href="../css/fonts.css">
+  <script defer src="/scripts/load-consent.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["Quiz", "LearningResource"],
+    "name": "Quiz panneaux de signalisation routière",
+    "description": "Quiz interactif gratuit pour réviser plus de 200 panneaux de signalisation officiels français.",
+    "url": "https://autoecolemarti.fr/quizz/quizz_panneaux",
+    "inLanguage": "fr",
+    "learningResourceType": "Quiz",
+    "provider": {
+      "@type": "DrivingSchool",
+      "name": "Auto-École Marti",
+      "url": "https://autoecolemarti.fr"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://autoecolemarti.fr" },
+      { "@type": "ListItem", "position": 2, "name": "Quiz panneaux de signalisation", "item": "https://autoecolemarti.fr/quizz/quizz_panneaux" }
+    ]
+  }
+  </script>
   <style>
     :root {
       --bg:        #fafaf8;
@@ -599,7 +626,7 @@
   <div class="question-card" id="question-card">
     <div class="question-title">Quel est ce panneau ?</div>
     <div class="sign-wrapper">
-      <img id="sign-img" src="" alt="Panneau de signalisation" />
+      <img id="sign-img" src="" alt="Panneau de signalisation" width="180" height="180" />
     </div>
     <div class="sign-code" id="sign-code"></div>
     <div class="answers-grid" id="answers-grid"></div>

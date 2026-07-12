@@ -60,7 +60,7 @@
 │   ├── permis-b-manuel.html      # Manual transmission license
 │   └── permis-b-automatique.html # Automatic transmission license
 │
-├── blog/                         # 21 articles total
+├── blog/                         # 20 articles + index
 │   ├── index.html                # Blog hub with category filters
 │   ├── aac-apprentissage-anticipe-conduite.html
 │   ├── angles-morts.html
@@ -260,13 +260,13 @@ Fluid type scale uses `clamp()`:
 - Booking CTA
 - FAQs
 
-### Blog (`blog/index.html` + 21 articles)
+### Blog (`blog/index.html` + 20 articles)
 - Blog hub has featured article + 20 cards with category filters
 - **Category filters**: Code de la route, Conduite, AAC, Tarifs & financement, Réglementation, Conseils pratiques, Outils pédagogiques
 - Each article has: category-colored hero gradient, breadcrumbs, reading time, callout boxes, related articles, CTA banner
 - Hero height: `52vh` (vs. `88vh` on homepage)
 
-**Blog articles list (21 total):**
+**Blog articles list (20 total):**
 | File | Topic | Category |
 |------|-------|----------|
 | `aac-apprentissage-anticipe-conduite.html` | AAC overview | Conduite accompagnée |
@@ -479,9 +479,11 @@ npm run sitemap
 - **formules/index.html** uses **inline CSS** (no external stylesheet) — this is an intentional exception
 - **Email links** always use `data-email` HTML entity obfuscation + JS decoding (no raw `mailto:` in HTML)
 - **Internal links use clean (extensionless) URLs** matching the canonicals/sitemap — never link to `*.html`. Use root-relative paths: `/` (homepage), `/faq`, `/formules/`, `/formules/conduite-accompagnee`, `/blog/`, `/blog/<slug>`, `/quizz/quizz_panneaux`, `/mentions-legales`, etc. Full absolute URLs (JSON-LD `@id`/`url`, JS redirects) also stay extensionless (`https://autoecolemarti.fr/blog/<slug>`). This consolidates SEO signals — GitHub Pages serves `<page>.html` at `/<page>` without redirect, so the canonical form must be the only one linked.
-- **JSON-LD schemas** in use: `FAQPage` (faq.html), `BreadcrumbList` (formules, articles, blog hub), `BlogPosting` with `datePublished` + `dateModified` (articles), `Course` with `hasCourseInstance` (formules detail), `CollectionPage` (blog hub), `LocalBusiness`/`DrivingSchool` + `Review`/`AggregateRating` (homepage)
-- **Social meta on every indexable page**: `og:image` → `/og-image.png` (1200×630), `og:locale=fr_FR`, `og:url` matching the canonical, plus Twitter Cards (`summary_large_image`). Add them to any new page.
-- **Article dates**: visible publication date is wrapped in `<time datetime="YYYY-MM-DD">`; update `dateModified` in both JSON-LD blocks when meaningfully editing an article
+- **JSON-LD schemas** in use: `FAQPage` + `BreadcrumbList` (faq.html), `BreadcrumbList` (formules, articles, blog hub, quiz), `BlogPosting` with `datePublished` + `dateModified` + `mainEntityOfPage` (articles — exactly ONE article-type block per page, in the `<head>`), `Course` with `hasCourseInstance` (formules detail), `ItemList` (formules hub), `CollectionPage` (blog hub), `Quiz`/`LearningResource` (quizz), `LocalBusiness`/`DrivingSchool` + `Review`/`AggregateRating` + `sameAs` (homepage). Phone in JSON-LD is always E.164: `+33559591260`.
+- **Social meta on every indexable page**: `og:image` → `/og-image.png` (1200×630), `og:locale=fr_FR`, `og:url` matching the canonical, plus Twitter Cards (`summary_large_image`). Add them to any new page. Blog articles also carry `og:type=article` + `article:published_time`/`article:modified_time` (kept in sync with the JSON-LD dates).
+- **Noindex pages have NO canonical**: `merci`, `devis`, `reservation`, `mentions-legales` carry `noindex, nofollow` and deliberately no `<link rel="canonical">` (conflicting signals); `404.html` is `noindex, follow`.
+- **Font preloads**: pages preload `dm-sans-latin-400-normal.woff2` + `playfair-display-latin-400-normal.woff2` (body + heading fonts) in the `<head>`.
+- **Article dates**: visible publication date is wrapped in `<time datetime="YYYY-MM-DD">`; update `dateModified` in the JSON-LD block AND `article:modified_time` when meaningfully editing an article
 - **Navbar dropdown**: Formations menu has a hover dropdown with ARIA attributes (`aria-haspopup`, `aria-expanded`)
 - **Design reference**: always check `STYLE_GUIDE.md` for detailed component specs
 
@@ -538,7 +540,7 @@ If you add new large directories or binary files, update `.claudeignore` to excl
 - Clean, modern aesthetic with serif headings for elegance
 - Self-hosted assets only — no external CDN dependencies (except PDF.js CDN worker for formules pages)
 - SEO-optimized: sitemap auto-generated, canonical URLs, meta tags + JSON-LD schema on every page
-- Educational content is a priority (21 blog articles, interactive quiz, eco-driving simulator)
+- Educational content is a priority (20 blog articles, interactive quiz, eco-driving simulator)
 - Mobile-first responsive design
 - CNIL/RGPD compliant: tarteaucitron manages all cookie consent (GA loaded only after consent)
 
