@@ -1017,10 +1017,36 @@
         <div class="hero-badge" style="background:rgba(255,255,255,0.15); color:white;">📚 Le blog Marti</div>
         <h2>Réviser le code, éviter les pièges, prendre confiance avant même votre première leçon.</h2>
         <p>Nos guides gratuits et notre quiz de signalisation.</p>
-        <div class="blog-cta-links">
-            <a href="/blog/reussir-code-route-premier-coup" class="blog-cta-link">🚦 Réussir son code du premier coup</a>
-            <a href="/quizz/quizz_panneaux" class="blog-cta-link">🪧 Quiz : les panneaux de signalisation</a>
-            <a href="/blog/boite-automatique-ou-manuelle" class="blog-cta-link">⚙️ Boîte automatique ou manuelle ?</a>
+        <div class="blog-carousel" role="region" aria-label="Articles du blog" aria-roledescription="carousel">
+            <div class="blog-track-wrap">
+                <div class="blog-track" id="blogTrack">
+                    <div class="blog-slide">
+                        <a href="/blog/reussir-code-route-premier-coup" class="blog-cta-link">🚦 Réussir son code du premier coup <span class="blog-cta-arrow">→</span></a>
+                        <a href="/quizz/quizz_panneaux" class="blog-cta-link">🚸 Quiz : les panneaux de signalisation <span class="blog-cta-arrow">→</span></a>
+                        <a href="/blog/boite-automatique-ou-manuelle" class="blog-cta-link">🔄 Boîte automatique ou manuelle ? <span class="blog-cta-arrow">→</span></a>
+                    </div>
+                    <div class="blog-slide">
+                        <a href="/blog/combien-coute-permis-conduire-bayonne" class="blog-cta-link">💰 Combien coûte le permis à Bayonne ? <span class="blog-cta-arrow">→</span></a>
+                        <a href="/blog/aac-apprentissage-anticipe-conduite" class="blog-cta-link">🤝 AAC : conduire dès 15 ans <span class="blog-cta-arrow">→</span></a>
+                        <a href="/blog/permis-apres-30-40-50-ans" class="blog-cta-link">🧑 Reprendre la route après 30, 40, 50 ans <span class="blog-cta-arrow">→</span></a>
+                    </div>
+                    <div class="blog-slide">
+                        <a href="/blog/dangers-alcool" class="blog-cta-link">🍺 Alcool au volant : risques et sanctions <span class="blog-cta-arrow">→</span></a>
+                        <a href="/blog/infractions-code-route" class="blog-cta-link">⚖️ Infractions : le barème complet <span class="blog-cta-arrow">→</span></a>
+                        <a href="/blog/regles-permis-probatoire" class="blog-cta-link">📋 Permis probatoire : règles et points <span class="blog-cta-arrow">→</span></a>
+                    </div>
+                    <div class="blog-slide">
+                        <a href="/blog/distances-securite" class="blog-cta-link">📏 Calculez votre distance de sécurité <span class="blog-cta-arrow">→</span></a>
+                        <a href="/blog/simulateur-ecoconduite" class="blog-cta-link">🌿 Simulateur d'éco-conduite <span class="blog-cta-arrow">→</span></a>
+                        <a href="/blog/comment-reussir-son-permis-conduire" class="blog-cta-link">✅ Réussir son permis B : le guide complet <span class="blog-cta-arrow">→</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="blog-nav">
+                <button class="blog-nav-btn" id="blogPrev" aria-label="Articles précédents">&#8249;</button>
+                <div class="blog-dots" id="blogDots"></div>
+                <button class="blog-nav-btn" id="blogNext" aria-label="Articles suivants">&#8250;</button>
+            </div>
         </div>
         <a href="/blog/" class="btn" style="background:white; color:var(--basque-rouge); font-weight:700;">Voir tous les articles →</a>
     </div>
@@ -1207,6 +1233,74 @@
 
         // Pause au survol
         const carousel = track.closest('.avis-carousel');
+        if (carousel) {
+            carousel.addEventListener('mouseenter', stopAuto);
+            carousel.addEventListener('mouseleave', startAuto);
+        }
+
+        // Swipe tactile
+        let startX = 0;
+        track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; stopAuto(); }, { passive: true });
+        track.addEventListener('touchend', e => {
+            const diff = startX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) goTo(diff > 0 ? Math.min(current + 1, total - 1) : Math.max(current - 1, 0));
+            startAuto();
+        });
+
+        goTo(0);
+        startAuto();
+    })();
+
+    // ── Carrousel blog ──
+    (function () {
+        const track = document.getElementById('blogTrack');
+        const dotsWrap = document.getElementById('blogDots');
+        const btnPrev = document.getElementById('blogPrev');
+        const btnNext = document.getElementById('blogNext');
+        const slides = track ? track.querySelectorAll('.blog-slide') : [];
+        const total = slides.length;
+        let current = 0;
+
+        if (!track || total === 0) return;
+
+        // Créer les dots
+        for (let i = 0; i < total; i++) {
+            const dot = document.createElement('button');
+            dot.className = 'blog-dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', 'Écran ' + (i + 1));
+            dot.addEventListener('click', () => goTo(i));
+            dotsWrap.appendChild(dot);
+        }
+
+        let autoTimer = null;
+
+        function goTo(n) {
+            current = n;
+            track.style.transform = 'translateX(-' + (current * 100) + '%)';
+            dotsWrap.querySelectorAll('.blog-dot').forEach((d, i) =>
+                d.classList.toggle('active', i === current));
+            btnPrev.disabled = current === 0;
+            btnNext.disabled = current === total - 1;
+        }
+
+        function nextAuto() {
+            goTo(current < total - 1 ? current + 1 : 0);
+        }
+
+        function startAuto() {
+            stopAuto();
+            autoTimer = setInterval(nextAuto, 7000);
+        }
+
+        function stopAuto() {
+            if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+        }
+
+        btnPrev.addEventListener('click', () => { if (current > 0) { goTo(current - 1); startAuto(); } });
+        btnNext.addEventListener('click', () => { if (current < total - 1) { goTo(current + 1); startAuto(); } });
+
+        // Pause au survol
+        const carousel = track.closest('.blog-carousel');
         if (carousel) {
             carousel.addEventListener('mouseenter', stopAuto);
             carousel.addEventListener('mouseleave', startAuto);

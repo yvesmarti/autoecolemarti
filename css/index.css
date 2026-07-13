@@ -838,16 +838,42 @@ footer { background: var(--noir); color: white; padding: 4rem 2rem 2rem; }
 }
 
 .blog-cta .container { max-width: 900px; }
-.blog-cta-links {
-    display: flex; flex-direction: column; gap: 0.7rem;
-    margin: 1.8rem auto; max-width: 480px;
+.blog-carousel { position: relative; margin: 1.8rem auto 0; }
+.blog-track-wrap { overflow: hidden; }
+.blog-track {
+    display: flex; flex-wrap: nowrap;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.blog-slide {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem; min-width: 100%; box-sizing: border-box;
 }
 .blog-cta-link {
-    display: flex; align-items: center; gap: 0.7rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 0.6rem;
     background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
     border-radius: 12px; padding: 0.9rem 1.1rem; color: white;
-    font-size: 0.92rem; font-weight: 600; text-decoration: none;
+    font-size: 0.88rem; font-weight: 600; text-decoration: none;
     transition: var(--transition);
 }
-.blog-cta-link:hover { background: rgba(255,255,255,0.18); }
-@media (max-width: 768px) { .blog-cta .container { max-width: 100%; } }
+.blog-cta-link:hover { background: rgba(255,255,255,0.18); transform: translateY(-2px); }
+.blog-cta-arrow { opacity: 0.7; flex-shrink: 0; }
+.blog-nav { display: flex; align-items: center; justify-content: center; gap: 1.2rem; margin-top: 1.5rem; }
+.blog-nav-btn {
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    color: white; width: 40px; height: 40px; border-radius: 50%;
+    font-size: 1.4rem; line-height: 1; cursor: pointer;
+    transition: var(--transition); display: flex; align-items: center; justify-content: center;
+}
+.blog-nav-btn:hover { background: var(--or); border-color: var(--or); color: var(--noir); }
+.blog-nav-btn:disabled { opacity: 0.3; cursor: default; }
+.blog-dots { display: flex; gap: 0.5rem; align-items: center; }
+.blog-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(255,255,255,0.3); cursor: pointer;
+    transition: var(--transition); border: none; padding: 0;
+}
+.blog-dot.active { background: var(--or); transform: scale(1.3); }
+@media (max-width: 768px) {
+    .blog-cta .container { max-width: 100%; }
+    .blog-slide { grid-template-columns: 1fr; gap: 0.6rem; }
+}
