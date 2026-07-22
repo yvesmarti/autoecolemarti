@@ -38,9 +38,14 @@
   pour un site déjà léger.
 - CPF / permis accéléré / permis moto : **non proposés** par l'école (confirmé juin 2026) —
   ne pas créer de contenu sur ces sujets.
-- **Externaliser le CSS inline commun** (reset + `:root` + navbar dupliqués dans faq,
-  formules/*, pages locales, devis…) vers une feuille partagée cacheable : HTML de 60-75 Ko
-  par page aujourd'hui, pas de cache navigateur inter-pages. Principal levier de perf restant.
+- ~~**Externaliser le CSS inline commun** vers une feuille partagée cacheable~~ → **fait en
+  version ciblée** (juillet 2026, voir « Développements réalisés »). Bilan mesuré : le « shell »
+  n'était pas dupliqué à l'identique (3 resets, `:root` de 6 à 20 variables, 3+ navbars, 5 footers,
+  et `reservation`/`mentions-legales` sur des systèmes de design séparés). La mutualisation a donc
+  été limitée à la famille génuinement quasi-identique (6 pages formules détail + pages locales) via
+  `css/base.css`. Gain perf mesuré ≈ **neutre** (les pages chargeaient déjà `fonts.css` + `nav-mobile.css`
+  en externe ; le gros du CSS inline est spécifique-page) — bénéfice réel = **maintenabilité** (navbar/
+  footer/reset édités à un seul endroit). Pas d'extension aux autres pages prévue (design distinct).
 - **Différenciation anti-cannibalisation** : « prix du permis à Bayonne » est visé à la fois
   par `formules/index.html` (transactionnel) et `blog/combien-coute-permis-conduire-bayonne.html`
   (informationnel) ; idem « conduite accompagnée » entre la page formule AAC et 2 articles.
@@ -60,6 +65,18 @@
 ---
 
 ## Développements réalisés
+
+### Mutualisation du shell CSS (`css/base.css`) — juillet 2026
+- Création de `css/base.css` (reset, `:root` cœur, navbar desktop + dropdown + hamburger, footer,
+  skip-link/`:focus-visible`) extrait à l'identique du canonique Anglet.
+- 6 pages migrées (retrait du shell inline, ajout du `<link>`, conservation inline du spécifique-page
+  + variables `:root` propres + overrides d'accent nav) : `auto-ecole-anglet`, `auto-ecole-biarritz`,
+  `espace-eleves`, `formules/conduite-accompagnee`, `formules/permis-b-manuel`, `formules/permis-b-automatique`.
+  ~649 lignes de CSS dupliqué supprimées, centralisées dans une feuille de ~120 lignes.
+- Ordre de chargement conservé : `fonts.css` → `base.css` → `<style>` inline → `nav-mobile.css` → `nav.js`.
+- Non-régression visuelle vérifiée au pixel près (captures desktop 1280 + mobile 390, avant/après) :
+  rendu identique sur les 6 pages, hors artefact de capture headless sur le menu déroulant survolé.
+- Documentation `css/nav-mobile.css` (existante mais non répertoriée) ajoutée à CLAUDE.md au passage.
 
 ### Pages locales Anglet & Biarritz (SEO local) — juin 2026
 - Création de `auto-ecole-anglet.html` et `auto-ecole-biarritz.html` : pages d'atterrissage

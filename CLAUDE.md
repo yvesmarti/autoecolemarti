@@ -42,6 +42,8 @@
 ├── css/
 │   ├── fonts.css                 # Self-hosted font declarations (@font-face) — DM Sans, Playfair, Inter
 │   ├── fonts-legal.css           # Font declarations for legal page only (Inter + DM Serif Display)
+│   ├── base.css                  # Shell commun partagé (reset, :root cœur, navbar desktop + dropdown + hamburger, footer, skip-link/focus) — chargé par les pages formules/* et pages locales
+│   ├── nav-mobile.css            # Menu hamburger mobile partagé (toutes pages sauf index.html) — à charger APRÈS le <style> inline
 │   ├── index.css                 # Global styles: navbar, hero, cards, footer
 │   ├── blog-index.css            # Blog listing: hero, filters, article cards
 │   ├── blog-article.css          # Blog article: hero, breadcrumbs, content, CTAs
@@ -477,6 +479,7 @@ npm run sitemap
 - **Featured pricing card**: navy `#1e2a4a` + gold `#d4a853` accents + "POPULAIRE" badge
 - **Blog hero heights**: `52vh` (shorter than homepage at `88vh`)
 - **formules/index.html** uses **inline CSS** (no external stylesheet) — this is an intentional exception
+- **Shell CSS partagé (`css/base.css`)** : les 6 pages de la famille « formules détail + pages locales » (`auto-ecole-anglet`, `auto-ecole-biarritz`, `espace-eleves`, `formules/conduite-accompagnee`, `formules/permis-b-manuel`, `formules/permis-b-automatique`) chargent `css/base.css` (reset, `:root` cœur, navbar desktop, footer, skip-link/focus) et ne gardent en `<style>` inline que le **spécifique page** (hero, sections, cartes, boutons) + leurs **variables `:root` propres** (`--vert`, `--page-accent`, `--aac`…) + d'éventuels **overrides d'accent nav** (ex. `nav .nav-links a:hover` en `--aac`/`--page-accent`). Ordre impératif : `fonts.css` → `base.css` → `<style>` inline → `nav-mobile.css`. Les autres pages (`index`, `faq`, `404`, `merci`, `reservation`, `mentions-legales`, `formules/index`, quiz, blog) restent **volontairement autonomes** (systèmes de design distincts) — ne pas leur imposer `base.css`.
 - **Email links** always use `data-email` HTML entity obfuscation + JS decoding (no raw `mailto:` in HTML)
 - **Internal links use clean (extensionless) URLs** matching the canonicals/sitemap — never link to `*.html`. Use root-relative paths: `/` (homepage), `/faq`, `/formules/`, `/formules/conduite-accompagnee`, `/blog/`, `/blog/<slug>`, `/quizz/quizz_panneaux`, `/mentions-legales`, etc. Full absolute URLs (JSON-LD `@id`/`url`, JS redirects) also stay extensionless (`https://autoecolemarti.fr/blog/<slug>`). This consolidates SEO signals — Cloudflare Pages **308-redirects** `/<page>.html` → `/<page>` (permanent), so linking the clean form directly avoids a needless redirect hop and keeps all link equity on the canonical URL.
 - **JSON-LD schemas** in use: `FAQPage` + `BreadcrumbList` (faq.html), `BreadcrumbList` (formules, articles, blog hub, quiz), `BlogPosting` with `datePublished` + `dateModified` + `mainEntityOfPage` (articles — exactly ONE article-type block per page, in the `<head>`), `Course` with `hasCourseInstance` (formules detail), `ItemList` (formules hub), `CollectionPage` (blog hub), `Quiz`/`LearningResource` (quizz), `LocalBusiness`/`DrivingSchool` + `Review`/`AggregateRating` + `sameAs` (homepage). Phone in JSON-LD is always E.164: `+33559591260`.
