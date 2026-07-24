@@ -30,6 +30,7 @@
     {
       "@context": "https://schema.org",
       "@type": ["LocalBusiness", "EducationalOrganization", "DrivingSchool"],
+      "@id": "https://autoecolemarti.fr/#business",
       "name": "Auto-École Marti",
       "logo": {
         "@type": "ImageObject",
@@ -37,6 +38,10 @@
       },
       "image": "https://autoecolemarti.fr/favicon.ico.png",
       "url": "https://autoecolemarti.fr",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://autoecolemarti.fr"
+      },
       "foundingDate": "1962",
       "description": "Située en plein cœur du Petit Bayonne, l'auto-école Marti est une véritable institution locale. Créée en 1962 par M. Marti grand-père, elle a accompagné des centaines d'élèves conducteurs au fil des décennies. Forte de cette expérience unique, notre équipe pédagogique met son savoir-faire au service de votre réussite. Du code à la conduite, nous vous guidons avec patience et professionnalisme.",
       "telephone": "+33559591260",
@@ -193,8 +198,12 @@
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
+      "@id": "https://autoecolemarti.fr/#website",
       "name": "Auto-École Marti",
-      "url": "https://autoecolemarti.fr"
+      "url": "https://autoecolemarti.fr",
+      "publisher": {
+        "@id": "https://autoecolemarti.fr/#business"
+      }
     }
     </script>
     <link rel="stylesheet" href="css/fonts.css">
