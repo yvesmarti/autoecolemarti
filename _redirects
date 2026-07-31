@@ -1,0 +1,40 @@
+# _redirects — Cloudflare Pages
+# Généré le 2026-07-31 — 35 règles de redirection 301
+# Canonicalise les URLs .html vers leur équivalent sans extension
+# (résout la cannibalisation SEO entre /page.html et /page)
+# Note : /index.html (racine) et /404.html sont volontairement exclus
+/auto-ecole-anglet.html /auto-ecole-anglet 301
+/auto-ecole-biarritz.html /auto-ecole-biarritz 301
+/blog/aac-apprentissage-anticipe-conduite.html /blog/aac-apprentissage-anticipe-conduite 301
+/blog/angles-morts.html /blog/angles-morts 301
+/blog/auto-ecole-en-ligne-ou-marti.html /blog/auto-ecole-en-ligne-ou-marti 301
+/blog/boite-automatique-ou-manuelle.html /blog/boite-automatique-ou-manuelle 301
+/blog/combien-coute-permis-conduire-bayonne.html /blog/combien-coute-permis-conduire-bayonne 301
+/blog/comment-reussir-son-permis-conduire.html /blog/comment-reussir-son-permis-conduire 301
+/blog/conduire-sur-le-bab-guide-complet.html /blog/conduire-sur-le-bab-guide-complet 301
+/blog/conduite-supervisee.html /blog/conduite-supervisee 301
+/blog/dangers-alcool.html /blog/dangers-alcool 301
+/blog/distances-securite.html /blog/distances-securite 301
+/blog/fatigue-volant.html /blog/fatigue-volant 301
+/blog/index.html /blog/ 301
+/blog/infractions-code-route.html /blog/infractions-code-route 301
+/blog/permis-apres-30-40-50-ans.html /blog/permis-apres-30-40-50-ans 301
+/blog/permis-lyceen-etudiant-bayonne.html /blog/permis-lyceen-etudiant-bayonne 301
+/blog/questions-pieges-code-route.html /blog/questions-pieges-code-route 301
+/blog/quiz-sanctions.html /blog/quiz-sanctions 301
+/blog/reflexes-quiz.html /blog/reflexes-quiz 301
+/blog/reflexes-urgence-conduite.html /blog/reflexes-urgence-conduite 301
+/blog/regles-permis-probatoire.html /blog/regles-permis-probatoire 301
+/blog/reussir-code-route-premier-coup.html /blog/reussir-code-route-premier-coup 301
+/blog/simulateur-ecoconduite.html /blog/simulateur-ecoconduite 301
+/devis.html /devis 301
+/espace-eleves.html /espace-eleves 301
+/faq.html /faq 301
+/formules/conduite-accompagnee.html /formules/conduite-accompagnee 301
+/formules/index.html /formules/ 301
+/formules/permis-b-automatique.html /formules/permis-b-automatique 301
+/formules/permis-b-manuel.html /formules/permis-b-manuel 301
+/mentions-legales.html /mentions-legales 301
+/merci.html /merci 301
+/quizz/quizz_panneaux.html /quizz/quizz_panneaux 301
+/reservation.html /reservation 301
