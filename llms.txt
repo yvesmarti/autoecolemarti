@@ -122,7 +122,7 @@ Fondée en 1962, l'auto-école Marti est l'une des plus anciennes et des mieux n
 - [Blog conseils conduite](https://autoecolemarti.fr/blog/): Articles pédagogiques sur le code de la route, la conduite, la réglementation
 - [Quiz panneaux de signalisation](https://autoecolemarti.fr/quizz/quizz_panneaux): Outil interactif pour réviser les panneaux (200+ signes officiels)
 
-## Articles de blog (20 articles)
+## Articles de blog (21 articles)
 
 - [Conduite accompagnée (AAC) : tout ce qu'il faut savoir](https://autoecolemarti.fr/blog/aac-apprentissage-anticipe-conduite)
 - [Les angles morts : comment les maîtriser ?](https://autoecolemarti.fr/blog/angles-morts)
