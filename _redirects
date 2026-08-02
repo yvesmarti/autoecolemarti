@@ -1,9 +1,10 @@
 # _redirects — Cloudflare Pages
-# Généré le 2026-07-31 — 36 règles de redirection 301
+# Généré le 2026-08-02 — 37 règles de redirection 301
 # Canonicalise les URLs .html vers leur équivalent sans extension
 # (résout la cannibalisation SEO entre /page.html et /page)
 # Note : /404.html est volontairement exclu
 /auto-ecole-anglet.html /auto-ecole-anglet 301
+/auto-ecole-bayonne.html /auto-ecole-bayonne 301
 /auto-ecole-biarritz.html /auto-ecole-biarritz 301
 /blog/aac-apprentissage-anticipe-conduite.html /blog/aac-apprentissage-anticipe-conduite 301
 /blog/angles-morts.html /blog/angles-morts 301

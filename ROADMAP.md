@@ -9,7 +9,7 @@
 
 ### Changement de grille tarifaire (prévu — date à confirmer)
 - **Procédure complète dans `TARIFS.md`** (racine du dépôt) : grille en vigueur, inventaire
-  ligne à ligne des ~200 occurrences de prix réparties sur 18 fichiers, checklist par fichier,
+  ligne à ligne des ~200 occurrences de prix réparties sur 19 fichiers, checklist par fichier,
   pièges de formats, greps de vérification. Le jour J, il suffit de demander à Claude :
   *« Mets à jour les tarifs du site selon TARIFS.md — voici la nouvelle grille : … »*
 - **À faire par Yves en parallèle** : régénérer les 3 plaquettes PDF
@@ -75,6 +75,27 @@
 ---
 
 ## Développements réalisés
+
+### Page locale Bayonne (SEO local) — août 2026
+- Création de `auto-ecole-bayonne.html` sur le gabarit Anglet/Biarritz (`css/base.css` + `<style>`
+  spécifique-page, JSON-LD `DrivingSchool` + `BreadcrumbList` + `FAQPage`, mini-FAQ `<details>`).
+- **Angle volontairement décalé pour éviter la cannibalisation avec la homepage**, qui possède déjà
+  le head term (`<title>` « … Permis B à Bayonne, Anglet, Biarritz » et `<h1>` « Auto-école à Bayonne
+  — votre permis depuis 1962 », priority 1.0). Décision Yves : **ne pas toucher à la home**, et
+  positionner la page locale sur la **longue traîne de proximité** — `<h1>` « Auto-école à *Bayonne
+  centre* », nouvelle section **quartiers desservis** (Grand Bayonne, Petit Bayonne, Saint-Esprit,
+  Mousserolles, Marracq, Polo-Beyris, Sainte-Croix, Les Arènes), accès au bureau du 13 rue Marengo
+  et horaires d'accueil. Cible : « auto-école Petit Bayonne », « auto-école Bayonne centre »,
+  « auto-école rue Marengo » — requêtes qu'aucune page ne couvrait.
+- JSON-LD enrichi de `hasMap` + `openingHoursSpecification` (justifiés par l'angle accès/horaires),
+  `areaServed` avec Bayonne en tête, `@id` mutualisé `…/#business`, pas de `mainEntityOfPage`
+  (réservé à la home). FAQ visible **strictement identique** au `FAQPage` — le décalage constaté
+  sur Anglet/Biarritz n'a pas été reproduit.
+- Maillage complet : 8 footers, liens croisés depuis Anglet et Biarritz, liens contextuels depuis
+  l'article BAB et l'article lycéen/étudiant, réponse FAQ « Où se déroulent les leçons ? »,
+  `llms.txt`, règle `_redirects` 301, priorité 0.8 dans `generate-sitemap.js`, `TARIFS.md` §2/§3.
+- Reste ouvert : à surveiller dans Search Console — si la home et la page locale se disputent
+  « auto-école Bayonne », c'est la home qui doit gagner.
 
 ### Mutualisation du shell CSS (`css/base.css`) — juillet 2026
 - Création de `css/base.css` (reset, `:root` cœur, navbar desktop + dropdown + hamburger, footer,

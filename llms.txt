@@ -39,10 +39,11 @@ La conduite supervisée s'adresse aux élèves ayant terminé leur formation et 
 - **Horaires d'accueil** : Lundi au Samedi, 9h00–12h00 et 14h00–18h00. Dimanche fermé.
 - **Zone desservie** : Bayonne, Anglet, Biarritz, Saint-Jean-de-Luz et Pays Basque intérieur
 
-## Secteurs desservis — Anglet & Biarritz
+## Secteurs desservis — Bayonne, Anglet & Biarritz
 
-L'auto-école accueille les habitants des communes voisines, avec des pages dédiées :
+L'auto-école accueille les habitants de Bayonne et des communes voisines, avec des pages dédiées :
 
+- **Auto-école à Bayonne** : bureau au 13 rue Marengo, en plein Petit Bayonne ; accueil, inscription et suivi de formation sur place, pour tous les quartiers (Grand Bayonne, Saint-Esprit, Mousserolles, Marracq, Polo-Beyris, Sainte-Croix, Les Arènes). https://autoecolemarti.fr/auto-ecole-bayonne
 - **Auto-école à Anglet** : point de rendez-vous conduite à la Place Quintaou, en plein Anglet ; accès direct aux routes d'examen du BAB. https://autoecolemarti.fr/auto-ecole-anglet
 - **Auto-école à Biarritz** : élèves biarrots accueillis de longue date ; leçons au départ d'Anglet (Place Quintaou) ou de Bayonne, au choix. https://autoecolemarti.fr/auto-ecole-biarritz
 
@@ -117,6 +118,7 @@ Fondée en 1962, l'auto-école Marti est l'une des plus anciennes et des mieux n
 - [Permis B boîte automatique](https://autoecolemarti.fr/formules/permis-b-automatique): Forfait le moins cher de l'école, dès 967 €
 - [Conduite accompagnée (AAC)](https://autoecolemarti.fr/formules/conduite-accompagnee): Formation dès 15 ans, 1 629 € TTC
 - [Choisir sa formule](https://autoecolemarti.fr/formules/): Quiz interactif pour trouver la formation adaptée à son profil
+- [Auto-école à Bayonne](https://autoecolemarti.fr/auto-ecole-bayonne): Bureau 13 rue Marengo (Petit Bayonne) — accès, horaires et quartiers desservis
 - [Auto-école à Anglet](https://autoecolemarti.fr/auto-ecole-anglet): Permis et conduite pour les habitants d'Anglet, point de RDV Place Quintaou
 - [Auto-école à Biarritz](https://autoecolemarti.fr/auto-ecole-biarritz): Permis et conduite pour les habitants de Biarritz, départ Anglet ou Bayonne
 - [Blog conseils conduite](https://autoecolemarti.fr/blog/): Articles pédagogiques sur le code de la route, la conduite, la réglementation
