@@ -26,6 +26,7 @@
 ├── mentions-legales.html         # Legal notices (uses Inter font, not DM Sans)
 ├── espace-eleves.html            # Student resources page (post-enrollment: code platform, app, PDFs, contacts)
 ├── auto-ecole-anglet.html        # Local SEO landing page — Anglet (RDV Place Quintaou); self-contained inline CSS
+├── auto-ecole-bayonne.html       # Local SEO landing page — Bayonne (angle quartiers + accès au bureau); self-contained inline CSS
 ├── auto-ecole-biarritz.html      # Local SEO landing page — Biarritz (départ Anglet/Bayonne au choix); self-contained inline CSS
 ├── 404.html                      # Custom 404 page (noindex, standalone inline CSS, links to key pages)
 ├── og-image.png                  # Social sharing image 1200×630 (og:image + twitter:image on all indexable pages)
@@ -327,13 +328,22 @@ Fluid type scale uses `clamp()`:
 - Canonical URL without `.html`: `https://autoecolemarti.fr/espace-eleves`
 - Sitemap priority: 0.8
 
-### Pages locales SEO (`auto-ecole-anglet.html`, `auto-ecole-biarritz.html`)
+### Pages locales SEO (`auto-ecole-anglet.html`, `auto-ecole-bayonne.html`, `auto-ecole-biarritz.html`)
 - Landing pages locales **auto-contenues** (CSS inline, calquées sur les pages `formules/`), ciblant
-  « auto-école / permis Anglet » et « auto-école / permis Biarritz ».
+  « auto-école / permis Anglet », « auto-école Bayonne centre » et « auto-école / permis Biarritz ».
 - Hero vert + sections : atout local, « conduire à … », formules (3 cartes), mini-FAQ (`<details>`, sans JS), CTA.
 - JSON-LD : `DrivingSchool`/`LocalBusiness` (`areaServed` recentré sur la ville), `BreadcrumbList`, `FAQPage`.
 - Faits : adresse Bayonne (13 rue Marengo), RDV Place Quintaou (Anglet) ; Biarritz = départ Anglet **ou** Bayonne au choix ; tarifs identiques. **Aucun lien vers `reservation.html`.**
-- Maillées depuis l'article BAB (`blog/conduire-sur-le-bab-guide-complet.html`), les footers des pages principales (homepage, FAQ, blog hub, formules hub + 3 pages détail, espace élèves), la FAQ « Où se déroulent les leçons ? » (lien Quintaou → Anglet), et entre elles. Canonical sans `.html`. Sitemap priority 0.8.
+- Maillées depuis l'article BAB (`blog/conduire-sur-le-bab-guide-complet.html`), les footers des pages principales (homepage, FAQ, blog hub, formules hub + 3 pages détail, espace élèves), la FAQ « Où se déroulent les leçons ? » (bureau Marengo → Bayonne, Quintaou → Anglet), et entre elles. Canonical sans `.html`. Sitemap priority 0.8.
+- **⚠️ `auto-ecole-bayonne.html` — angle volontairement décalé (anti-cannibalisation)** : la homepage
+  possède déjà le head term (`<title>` « … Permis B à Bayonne, Anglet, Biarritz », `<h1>` « Auto-école
+  à Bayonne — votre permis depuis 1962 »). La page locale vise donc la **longue traîne de proximité** :
+  `<h1>` « Auto-école à *Bayonne centre* », section **quartiers desservis** (Grand Bayonne, Petit
+  Bayonne, Saint-Esprit, Mousserolles, Marracq, Polo-Beyris, Sainte-Croix, Les Arènes), accès au
+  bureau et horaires d'accueil. **Ne jamais lui redonner le H1 ni les formules d'accroche de la home**
+  (« élue meilleure auto-école de Bayonne », « auto école pas chère à Bayonne », « Une institution du
+  Petit Bayonne »). Elle ajoute `hasMap` + `openingHoursSpecification` à son JSON-LD (justifiés par
+  l'angle accès/horaires) et sa FAQ visible est **strictement identique** au `FAQPage`.
 
 ---
 
@@ -468,7 +478,7 @@ npm run sitemap
 - Homepage: 1.0
 - Formules + FAQ: 0.9
 - Blog hub + Quiz + Espace élèves: 0.8
-- Pages locales (auto-ecole-anglet, auto-ecole-biarritz): 0.8
+- Pages locales (auto-ecole-anglet, auto-ecole-bayonne, auto-ecole-biarritz): 0.8
 - Blog articles: 0.7
 
 **Excluded from sitemap**: `merci.html`, `mentions-legales.html`, `reservation.html`, `404.html`, `quizz/panneaux/*`
@@ -477,7 +487,7 @@ npm run sitemap
 
 ## Key Conventions
 
-- **⚠️ Tarifs — `TARIFS.md` fait autorité** : les prix sont écrits en dur dans **18 fichiers**
+- **⚠️ Tarifs — `TARIFS.md` fait autorité** : les prix sont écrits en dur dans **19 fichiers**
   (contenu visible, `<meta>`, JSON-LD `Offer`/`Course`, `DEVIS_CONFIG` de `devis.html`) sous
   9 formats différents (`967€`, `967&nbsp;€`, `"967"`, `1261€` sans espace, `920,00 €`…).
   **Lire `TARIFS.md` avant toute modification de prix** (inventaire ligne à ligne, checklist,
@@ -489,12 +499,12 @@ npm run sitemap
 - **Featured pricing card**: navy `#1e2a4a` + gold `#d4a853` accents + "POPULAIRE" badge
 - **Blog hero heights**: `52vh` (shorter than homepage at `88vh`)
 - **formules/index.html** uses **inline CSS** (no external stylesheet) — this is an intentional exception
-- **Shell CSS partagé (`css/base.css`)** : les 6 pages de la famille « formules détail + pages locales » (`auto-ecole-anglet`, `auto-ecole-biarritz`, `espace-eleves`, `formules/conduite-accompagnee`, `formules/permis-b-manuel`, `formules/permis-b-automatique`) chargent `css/base.css` (reset, `:root` cœur, navbar desktop, footer, skip-link/focus) et ne gardent en `<style>` inline que le **spécifique page** (hero, sections, cartes, boutons) + leurs **variables `:root` propres** (`--vert`, `--page-accent`, `--aac`…) + d'éventuels **overrides d'accent nav** (ex. `nav .nav-links a:hover` en `--aac`/`--page-accent`). Ordre impératif : `fonts.css` → `base.css` → `<style>` inline → `nav-mobile.css`. Les autres pages (`index`, `faq`, `404`, `merci`, `reservation`, `mentions-legales`, `formules/index`, quiz, blog) restent **volontairement autonomes** (systèmes de design distincts) — ne pas leur imposer `base.css`.
+- **Shell CSS partagé (`css/base.css`)** : les 7 pages de la famille « formules détail + pages locales » (`auto-ecole-anglet`, `auto-ecole-bayonne`, `auto-ecole-biarritz`, `espace-eleves`, `formules/conduite-accompagnee`, `formules/permis-b-manuel`, `formules/permis-b-automatique`) chargent `css/base.css` (reset, `:root` cœur, navbar desktop, footer, skip-link/focus) et ne gardent en `<style>` inline que le **spécifique page** (hero, sections, cartes, boutons) + leurs **variables `:root` propres** (`--vert`, `--page-accent`, `--aac`…) + d'éventuels **overrides d'accent nav** (ex. `nav .nav-links a:hover` en `--aac`/`--page-accent`). Ordre impératif : `fonts.css` → `base.css` → `<style>` inline → `nav-mobile.css`. Les autres pages (`index`, `faq`, `404`, `merci`, `reservation`, `mentions-legales`, `formules/index`, quiz, blog) restent **volontairement autonomes** (systèmes de design distincts) — ne pas leur imposer `base.css`.
 - **Email links** always use `data-email` HTML entity obfuscation + JS decoding (no raw `mailto:` in HTML)
 - **Internal links use clean (extensionless) URLs** matching the canonicals/sitemap — never link to `*.html`. Use root-relative paths: `/` (homepage), `/faq`, `/formules/`, `/formules/conduite-accompagnee`, `/blog/`, `/blog/<slug>`, `/quizz/quizz_panneaux`, `/mentions-legales`, etc. Full absolute URLs (JSON-LD `@id`/`url`, JS redirects) also stay extensionless (`https://autoecolemarti.fr/blog/<slug>`). This consolidates SEO signals — Cloudflare Pages **308-redirects** `/<page>.html` → `/<page>` (permanent), so linking the clean form directly avoids a needless redirect hop and keeps all link equity on the canonical URL. Le fichier `_redirects` (301) couvre les mêmes paires au cas où (indépendant du mécanisme natif).
 - **JSON-LD schemas** in use: `FAQPage` + `BreadcrumbList` (faq.html), `BreadcrumbList` (formules, articles, blog hub, quiz), `BlogPosting` with `datePublished` + `dateModified` + `mainEntityOfPage` (articles — exactly ONE article-type block per page, in the `<head>`), `Course` with `hasCourseInstance` (formules detail), `ItemList` (formules hub), `CollectionPage` (blog hub), `Quiz`/`LearningResource` (quizz), `LocalBusiness`/`DrivingSchool` + `Review`/`AggregateRating` + `sameAs` (homepage). Phone in JSON-LD is always E.164: `+33559591260`.
 - **`mainEntityOfPage` se place au niveau du `BlogPosting`** — jamais dans `publisher` — avec `@id` = URL canonique de l'article (identique à `BlogPosting.url` et au `<link rel="canonical">`). Format : `"mainEntityOfPage": { "@type": "WebPage", "@id": "https://autoecolemarti.fr/blog/<slug>" }`.
-- **Graphe d'entité — `@id` unique `https://autoecolemarti.fr/#business`** : toute référence à l'auto-école porte cet identifiant, ce qui la consolide en **une seule entité** aux yeux des moteurs. Concerné : les 3 blocs `LocalBusiness`/`DrivingSchool` (`index.html`, `auto-ecole-anglet`, `auto-ecole-biarritz` — leur `url` vaut `https://autoecolemarti.fr`, l'URL de l'entité, pas celle de la page), les `publisher`/`author` des 21 articles + du hub blog, et les `provider` des 3 pages formules détail + du quiz. Seule la home porte le `mainEntityOfPage` de l'entité ; les pages locales n'en déclarent pas. Le bloc `WebSite` de la home porte `@id: …/#website` + `publisher: { "@id": …/#business" }`.
+- **Graphe d'entité — `@id` unique `https://autoecolemarti.fr/#business`** : toute référence à l'auto-école porte cet identifiant, ce qui la consolide en **une seule entité** aux yeux des moteurs. Concerné : les 4 blocs `LocalBusiness`/`DrivingSchool` (`index.html`, `auto-ecole-anglet`, `auto-ecole-bayonne`, `auto-ecole-biarritz` — leur `url` vaut `https://autoecolemarti.fr`, l'URL de l'entité, pas celle de la page), les `publisher`/`author` des 21 articles + du hub blog, et les `provider` des 3 pages formules détail + du quiz. Seule la home porte le `mainEntityOfPage` de l'entité ; les pages locales n'en déclarent pas. Le bloc `WebSite` de la home porte `@id: …/#website` + `publisher: { "@id": …/#business" }`.
 - **Social meta on every indexable page**: `og:image` → `/og-image.png` (1200×630), `og:locale=fr_FR`, `og:url` matching the canonical, plus Twitter Cards (`summary_large_image`). Add them to any new page. Blog articles also carry `og:type=article` + `article:published_time`/`article:modified_time` (kept in sync with the JSON-LD dates).
 - **Noindex pages have NO canonical**: `merci`, `devis`, `reservation`, `mentions-legales` carry `noindex, nofollow` and deliberately no `<link rel="canonical">` (conflicting signals); `404.html` is `noindex, follow`.
 - **Font preloads**: pages preload `dm-sans-latin-400-normal.woff2` + `playfair-display-latin-400-normal.woff2` (body + heading fonts) in the `<head>`.

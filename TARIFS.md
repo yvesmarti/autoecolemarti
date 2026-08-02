@@ -2,7 +2,7 @@
 
 > **À quoi sert ce fichier ?**
 > Les prix de l'auto-école ne sont stockés nulle part de façon centralisée : ils sont écrits
-> en dur dans **18 fichiers**, sous **9 formats d'écriture différents**, à la fois dans le
+> en dur dans **19 fichiers**, sous **9 formats d'écriture différents**, à la fois dans le
 > contenu visible, les balises `<meta>`, les schémas JSON-LD et une configuration JavaScript.
 > Ce fichier recense **toutes** les occurrences pour qu'aucune ne soit oubliée lors d'un
 > changement de grille.
@@ -92,6 +92,10 @@ texte exact) et le **format d'écriture** — c'est le format qui piège les rec
 | `auto-ecole-anglet.html` | 107 | `967 €` | JSON-LD FAQPage |
 | `auto-ecole-anglet.html` | 273, 306, 343 | `967 €` | bloc tarifs / carte formule / FAQ visible |
 | `auto-ecole-biarritz.html` | 12, 15, 27, 72, 107, 273, 306, 343 | idem Anglet | structure strictement parallèle |
+| `auto-ecole-bayonne.html` | 12, 15, 27 | `967 €` | meta / og / twitter description |
+| `auto-ecole-bayonne.html` | 87 | `"price": "967"` | JSON-LD OfferCatalog |
+| `auto-ecole-bayonne.html` | 132 | `967 €` | JSON-LD FAQPage |
+| `auto-ecole-bayonne.html` | 303, 374, 419 | `967 €` | bloc tarifs / carte formule / FAQ visible |
 | `blog/combien-coute-permis-conduire-bayonne.html` | 12, 15, 29, 112 | `967€` | meta ×3 + JSON-LD BlogPosting `description` |
 | `blog/combien-coute-permis-conduire-bayonne.html` | 219 | `967 €` | tableau comparatif |
 | `blog/combien-coute-permis-conduire-bayonne.html` | 300, 325 | `967€` | carte article liée / titre CTA final |
@@ -126,6 +130,8 @@ texte exact) et le **format d'écriture** — c'est le format qui piège les rec
 | `auto-ecole-anglet.html` | 73 | `"price": "1261"` | JSON-LD OfferCatalog |
 | `auto-ecole-anglet.html` | 107, 312, 343 | `1 261 €` | JSON-LD FAQPage / carte formule / FAQ visible |
 | `auto-ecole-biarritz.html` | 73, 107, 312, 343 | idem Anglet | — |
+| `auto-ecole-bayonne.html` | 88 | `"price": "1261"` | JSON-LD OfferCatalog |
+| `auto-ecole-bayonne.html` | 132, 380, 419 | `1 261 €` | JSON-LD FAQPage / carte formule / FAQ visible |
 | `blog/combien-coute-permis-conduire-bayonne.html` | 12, 15, 29, 112 | `1 261€` | meta ×3 + JSON-LD |
 | `blog/combien-coute-permis-conduire-bayonne.html` | 225 | `1 261 €` | tableau comparatif |
 | `blog/combien-coute-permis-conduire-bayonne.html` | 250 | `1 261€` | comparaison narrative (⚠️ voisine d'un exemple fictif « 1 000€ », §6) |
@@ -158,6 +164,8 @@ texte exact) et le **format d'écriture** — c'est le format qui piège les rec
 | `auto-ecole-anglet.html` | 74 | `"price": "1629"` | JSON-LD OfferCatalog |
 | `auto-ecole-anglet.html` | 107, 318, 343 | `1 629 €` | JSON-LD FAQPage / carte formule / FAQ visible |
 | `auto-ecole-biarritz.html` | 74, 107, 318, 343 | idem Anglet | — |
+| `auto-ecole-bayonne.html` | 89 | `"price": "1629"` | JSON-LD OfferCatalog |
+| `auto-ecole-bayonne.html` | 132, 386, 419 | `1 629 €` | JSON-LD FAQPage / carte formule / FAQ visible |
 | `blog/combien-coute-permis-conduire-bayonne.html` | 12, 15, 29, 112 | `1 629€` | meta ×3 + JSON-LD |
 | `blog/combien-coute-permis-conduire-bayonne.html` | 231, 314, 403 | `1 629 €` / `1 629€` | tableau / carte liée / JSON-LD FAQPage |
 | `blog/permis-lyceen-etudiant-bayonne.html` | 268 | `1 629 €` | tableau budget |
@@ -192,6 +200,7 @@ ne concerner que l'un des trois. Vérifier le contexte de chaque ligne avant de 
 | `faq.html` | 744, 776 | `46 €/h` | réponse visible + encart « tip » |
 | `auto-ecole-anglet.html` | 107 | `46 €` | JSON-LD FAQPage |
 | `auto-ecole-biarritz.html` | 107 | `46 €` | JSON-LD FAQPage |
+| `auto-ecole-bayonne.html` | 132, 419 | `46 €` | JSON-LD FAQPage + FAQ visible (⚠️ les 2, contrairement à Anglet/Biarritz) |
 | `blog/combien-coute-permis-conduire-bayonne.html` | 241 | `46 €/h` | callout heures supplémentaires |
 | `blog/combien-coute-permis-conduire-bayonne.html` | 411 | `46€/h` | JSON-LD FAQPage |
 | `blog/permis-lyceen-etudiant-bayonne.html` | 274, 321 | `46 €` | note tableau / FAQ visible |
@@ -214,6 +223,7 @@ ne concerner que l'un des trois. Vérifier le contexte de chaque ligne avant de 
 | `faq.html` | 744, 776 | `48 €/h` | réponse visible + encart « tip » |
 | `auto-ecole-anglet.html` | 107 | `48 €` | JSON-LD FAQPage |
 | `auto-ecole-biarritz.html` | 107 | `48 €` | JSON-LD FAQPage |
+| `auto-ecole-bayonne.html` | 132, 419 | `48 €` | JSON-LD FAQPage + FAQ visible (⚠️ les 2, contrairement à Anglet/Biarritz) |
 | `blog/combien-coute-permis-conduire-bayonne.html` | 241, 411 | `48 €/h` / `48€/h` | callout / JSON-LD FAQPage |
 | `blog/permis-lyceen-etudiant-bayonne.html` | 274, 321, 461 | `48 €` | note tableau / FAQ visible / JSON-LD |
 | `llms.txt` | 15, 54 | `48 €/heure` | grille / FAQ |
@@ -297,6 +307,7 @@ change (ils sont adossés au minimum légal).
 | `formules/conduite-accompagnee.html` | 579 | mention de pied de page |
 | `auto-ecole-anglet.html` | 302 | sous-titre du bloc formules |
 | `auto-ecole-biarritz.html` | 302 | sous-titre du bloc formules |
+| `auto-ecole-bayonne.html` | 370 | sous-titre du bloc formules |
 | `devis.html` | 639 | commentaire « (Tarifs relevés sur le site au 09/03/2026 — à confirmer/actualiser.) » |
 
 ❗ **Absente de `llms.txt` et `README.md`** — à y **ajouter** lors de la prochaine mise à jour.
@@ -309,6 +320,7 @@ change (ils sont adossés au minimum légal).
 | `formules/permis-b-*.html`, `conduite-accompagnee.html` | 412 / 376 / 407 | bouton « 📄 Consulter la plaquette tarifaire PDF » |
 | `faq.html` | 119, 884 | « paiement en plusieurs fois pour toutes les formules » |
 | `auto-ecole-anglet/biarritz.html` | 273 | « Paiement en plusieurs fois possible. » |
+| `auto-ecole-bayonne.html` | 303 | « Paiement en plusieurs fois possible. » |
 | `blog/combien-coute-permis-conduire-bayonne.html` | 263-265 | section « Le paiement en plusieurs fois chez Marti » |
 | `index.html` | 138 · `auto-ecole-*.html` | 42 | `"priceRange": "€€"` (indicateur de gamme JSON-LD, pas un montant) |
 | `index.html` | 939 | `<option value="Renseignement tarifs">` du formulaire de contact |
@@ -320,7 +332,7 @@ change (ils sont adossés au minimum légal).
 ## §3 — Checklist par fichier
 
 Ordre de travail recommandé, du plus structurant au plus périphérique.
-**18 fichiers**, à cocher au fur et à mesure.
+**19 fichiers**, à cocher au fur et à mesure.
 
 - [ ] **1. `devis.html`** — objet `DEVIS_CONFIG` l. 641-704 : `base`, `hIncluses`,
       `prixHeureSup`, tableau `lignes` des 3 formules, `options[0].prix`.
@@ -345,20 +357,24 @@ Ordre de travail recommandé, du plus structurant au plus périphérique.
       bloc 273, sous-titre 302, cartes 306/312/318, FAQ visible 343.
 - [ ] **9. `auto-ecole-biarritz.html`** — mêmes lignes qu'Anglet (12/15/27, 72-74, 107, 273,
       302, 306/312/318, 343).
-- [ ] **10. `blog/combien-coute-permis-conduire-bayonne.html`** — meta 12/15/29,
+- [ ] **10. `auto-ecole-bayonne.html`** — meta 12/15/27, OfferCatalog 87-89, FAQPage 132,
+      bloc 303, sous-titre 370, cartes 374/380/386, FAQ visible 419.
+      ⚠️ Contrairement à Anglet/Biarritz, la FAQ **visible** porte aussi les 46 €/48 €
+      (l. 419) : elle doit rester rigoureusement identique au JSON-LD (l. 132).
+- [ ] **11. `blog/combien-coute-permis-conduire-bayonne.html`** — meta 12/15/29,
       JSON-LD BlogPosting 112, tableau 219/225/231, callout 241, comparaison 250,
       cartes liées 300/307/314, CTA 325, JSON-LD FAQPage 403/411.
       Penser à `dateModified` + `article:modified_time`.
-- [ ] **11. `blog/permis-lyceen-etudiant-bayonne.html`** — tableau 258/263/268, note 274,
+- [ ] **12. `blog/permis-lyceen-etudiant-bayonne.html`** — tableau 258/263/268, note 274,
       FAQ visible 321/333, JSON-LD FAQPage 461/485. + dates.
-- [ ] **12. `blog/regles-permis-probatoire.html`** — CTA 328 et 720 (AAC uniquement). + dates.
-- [ ] **13. `blog/auto-ecole-en-ligne-ou-marti.html`** — ⚠️ l. 270, format **`1261€`**. + dates.
-- [ ] **14. `blog/index.html`** — extrait de carte l. 473.
-- [ ] **15. `llms.txt`** — 3, 11-15, 49, 54, 59-60, 117-118. **Y ajouter la date d'effet.**
-- [ ] **16. `README.md`** — 18 (heure de conduite), 26-28 (tableau formations).
+- [ ] **13. `blog/regles-permis-probatoire.html`** — CTA 328 et 720 (AAC uniquement). + dates.
+- [ ] **14. `blog/auto-ecole-en-ligne-ou-marti.html`** — ⚠️ l. 270, format **`1261€`**. + dates.
+- [ ] **15. `blog/index.html`** — extrait de carte l. 473.
+- [ ] **16. `llms.txt`** — 3, 11-15, 50, 55, 61, 118-119. **Y ajouter la date d'effet.**
+- [ ] **17. `README.md`** — 18 (heure de conduite), 26-28 (tableau formations).
       **Y ajouter la date d'effet**, et envisager d'y indiquer aussi le 48 €/h BVA.
-- [ ] **17. `CLAUDE.md`** — l. 62 (mention du prix AAC dans l'arborescence).
-- [ ] **18. `TARIFS.md`** (ce fichier) — §1, §2 et la date de vérification en tête.
+- [ ] **18. `CLAUDE.md`** — l. 62 (mention du prix AAC dans l'arborescence).
+- [ ] **19. `TARIFS.md`** (ce fichier) — §1, §2 et la date de vérification en tête.
 
 ---
 
