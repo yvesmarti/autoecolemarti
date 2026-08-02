@@ -38,6 +38,7 @@
 ├── STYLE_GUIDE.md                # Design system documentation
 ├── CLAUDE.md                     # This file
 ├── ROADMAP.md                    # Backlog des développements futurs souhaités
+├── TARIFS.md                     # Référentiel des tarifs — recense TOUTES les occurrences de prix du site
 ├── README.md                     # GitHub repository README
 ├── package.json                  # Node.js config: `npm run sitemap`
 │
@@ -59,7 +60,7 @@
 │
 ├── formules/                     # Course/pricing pages
 │   ├── index.html                # Hub interactif: quiz 3 étapes → recommandation personnalisée
-│   ├── conduite-accompagnee.html # AAC supervised driving, age 15+, €1,629 TTC
+│   ├── conduite-accompagnee.html # AAC supervised driving, age 15+, 1 629 € TTC
 │   ├── permis-b-manuel.html      # Manual transmission license
 │   └── permis-b-automatique.html # Automatic transmission license
 │
@@ -476,6 +477,12 @@ npm run sitemap
 
 ## Key Conventions
 
+- **⚠️ Tarifs — `TARIFS.md` fait autorité** : les prix sont écrits en dur dans **18 fichiers**
+  (contenu visible, `<meta>`, JSON-LD `Offer`/`Course`, `DEVIS_CONFIG` de `devis.html`) sous
+  9 formats différents (`967€`, `967&nbsp;€`, `"967"`, `1261€` sans espace, `920,00 €`…).
+  **Lire `TARIFS.md` avant toute modification de prix** (inventaire ligne à ligne, checklist,
+  pièges, montants à ne pas toucher : amendes, prix concurrents, tarifs d'État), **et le mettre
+  à jour après**. Ne jamais faire un rechercher/remplacer naïf sur un montant.
 - **All fonts self-hosted** — never use Google Fonts CDN (RGPD compliance)
 - **Blog article hero backgrounds** use per-category CSS variables (`--article-accent`, `--article-hero-gradient`)
 - **Callout boxes** in articles are color-coded: `.callout-info` (green), `.callout-warning` (gold), `.callout-success` (light green), `.callout-danger` (red), left 4px border
