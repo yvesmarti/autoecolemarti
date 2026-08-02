@@ -7,6 +7,16 @@
 
 ## Priorité haute (à faire bientôt)
 
+### Changement de grille tarifaire (prévu — date à confirmer)
+- **Procédure complète dans `TARIFS.md`** (racine du dépôt) : grille en vigueur, inventaire
+  ligne à ligne des ~200 occurrences de prix réparties sur 18 fichiers, checklist par fichier,
+  pièges de formats, greps de vérification. Le jour J, il suffit de demander à Claude :
+  *« Mets à jour les tarifs du site selon TARIFS.md — voici la nouvelle grille : … »*
+- **À faire par Yves en parallèle** : régénérer les 3 plaquettes PDF
+  (`plaquettes/Plaquette_AAC.pdf`, `Plaquette_Permis_B_Manuel.pdf`, `Plaquette_Permis_B_BVA.pdf`)
+  — elles contiennent la grille et Claude ne peut pas les modifier.
+- **Décider de la nouvelle date d'effet** (l'actuelle, `09/03/2026`, est affichée à 12 endroits).
+
 ### SEO — Actions hors-site (à faire par Yves)
 - **Google Business Profile** : ajouter des photos (locaux, véhicules, équipe), publier des posts
   réguliers, répondre aux avis. Continuer à solliciter les avis (lien g.page déjà en footer).
