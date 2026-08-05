@@ -10,15 +10,22 @@
 > **Au moment de changer les tarifs**, il suffit de demander :
 > *« Mets à jour les tarifs du site selon TARIFS.md — voici la nouvelle grille : … »*
 >
+> 📌 **Pour la bascule du 31/08/2026, la grille est déjà écrite ici** : il suffira de demander
+> *« Applique la grille du §1 bis de TARIFS.md »* — nouveaux montants (§1 bis), correspondances
+> format par format (§1 ter), ordre d'exécution (§3, §7) et contrôles (§8) sont prêts.
+>
 > ⚠️ **Ce fichier doit être mis à jour EN MÊME TEMPS que les tarifs** (§7, étape 1), sinon il
 > devient faux et perd tout intérêt.
 
-- **Dernière vérification de l'inventaire** : 2 août 2026
-- **Grille en vigueur documentée ci-dessous** : celle affichée « à compter du 09/03/2026 »
+- **Dernière vérification de l'inventaire** : 5 août 2026
+- **Grille en vigueur sur le site** : celle affichée « à compter du 09/03/2026 » (§1)
+- **Prochaine grille** : **31/08/2026** — figée au **§1 bis**, correspondances au **§1 ter**.
+  ⚠️ **Non encore appliquée au site.** Aucun fichier HTML/JS/MD n'a été modifié : ce document
+  est la feuille de route de la bascule, à dérouler fin août.
 
 ---
 
-## §1 — Grille en vigueur (source de vérité)
+## §1 — Grille en vigueur jusqu'au 30/08/2026 (source de vérité actuelle)
 
 | Identifiant | Poste | BVA (automatique) | Manuelle | AAC |
 |---|---|---|---|---|
@@ -40,7 +47,7 @@ Valeurs dérivées affichées telles quelles sur le site :
 | `SESSION_RDV` | 138,00 €/session | `RDV_PEDAGO` ÷ 2 |
 | `RDV_AGREGE` | 368,00 € | `RDV_PREALABLE` + `RDV_PEDAGO` (utilisé par `devis.html` uniquement) |
 | `EXAMEN_SUP` | 46,00 € | Option « 2ᵉ passage » de l'estimateur de devis |
-| `DATE_EFFET` | 09/03/2026 | Date d'entrée en vigueur affichée (12 occurrences, §2.11) |
+| `DATE_EFFET` | 09/03/2026 | Date d'entrée en vigueur affichée (13 occurrences, §2.11) |
 
 ### Invariants à revérifier après toute modification
 
@@ -56,12 +63,126 @@ Session pédago    : 276 ÷ 2     = 138 €  ✓
 
 ---
 
+## §1 bis — Grille à appliquer le 31/08/2026 (cible)
+
+> Établie d'après le tableau fourni par Yves le 05/08/2026 (3 tableaux : manuelle, BVA, AAC).
+> **Nouveauté structurante : l'évaluation de départ et l'accompagnement à l'examen ne sont plus
+> uniformes** — ils sont désormais facturés au tarif horaire de la formule.
+
+| Identifiant | Poste | BVA (automatique) | Manuelle | AAC |
+|---|---|---|---|---|
+| `TOTAL_*` | **Total TTC du forfait** | **1 085 €** | **1 375 €** | **1 775 €** |
+| `DOSSIER` | Frais administratifs + dossier complet | 200,00 € | 200,00 € | 200,00 € |
+| `CODE` | Pack code (salle + internet illimités + livre) | 75,00 € | 75,00 € | 75,00 € |
+| `EVAL` | Évaluation de départ | **54,00 €** | **50,00 €** | **50,00 €** |
+| `H_INCLUSES` | Heures de conduite incluses | 13 h | 20 h | 20 h |
+| `CONDUITE_*` | Montant de la conduite incluse | 702,00 € | 1 000,00 € | 1 000,00 € |
+| `RDV_PREALABLE` | RDV préalable 2 h (accompagnateur) | — | — | 100,00 € |
+| `RDV_PEDAGO` | 2 RDV pédagogiques (2 × 3 h) | — | — | 300,00 € |
+| `EXAMEN` | Accompagnement / présentation examen | 54,00 € | 50,00 € | 50,00 € |
+| `HEURE_SUP` | **Heure de conduite supplémentaire** | **54 €/h** | **50 €/h** | **50 €/h** |
+
+Valeurs dérivées :
+
+| Identifiant | Valeur | Origine |
+|---|---|---|
+| `SESSION_RDV` | 150,00 €/session | `RDV_PEDAGO` ÷ 2 |
+| `RDV_AGREGE` | 400,00 € | `RDV_PREALABLE` + `RDV_PEDAGO` (`devis.html` uniquement) |
+| `EXAMEN_SUP` | **54 € (BVA) / 50 € (manuelle, AAC)** | option « 2ᵉ passage » du devis — ⚠️ **devient différencié** |
+| `DATE_EFFET` | **31/08/2026** | remplace 09/03/2026 dans les 13 emplacements du §2.11 |
+
+### Invariants de la nouvelle grille
+
+```
+BVA      : 200 + 75 + 54 + 702  + 54              = 1 085  ✓
+Manuelle : 200 + 75 + 50 + 1000 + 50              = 1 375  ✓
+AAC      : 200 + 75 + 50 + 1000 + 100 + 300 + 50  = 1 775  ✓
+Conduite BVA      : 13 h × 54 € = 702 €   ✓
+Conduite Man./AAC : 20 h × 50 € = 1 000 € ✓
+RDV préalable     :  2 h × 50 € = 100 €   ✓
+RDV pédagogiques  :  6 h × 50 € = 300 €   ✓
+RDV agrégé devis  : 100 + 300   = 400 €   ✓
+Session pédago    : 300 ÷ 2     = 150 €   ✓
+```
+
+### Écarts par rapport à la grille actuelle
+
+| Formule | Ancien | Nouveau | Écart |
+|---|---|---|---|
+| Boîte automatique | 967 € | 1 085 € | **+118 € (+12,2 %)** |
+| Boîte manuelle | 1 261 € | 1 375 € | **+114 € (+9,0 %)** |
+| Conduite accompagnée | 1 629 € | 1 775 € | **+146 € (+9,0 %)** |
+| Heure supplémentaire manuelle / AAC | 46 €/h | 50 €/h | +4 € (+8,7 %) |
+| Heure supplémentaire BVA | 48 €/h | 54 €/h | +6 € (+12,5 %) |
+| Pack code | 50 € | 75 € | +25 € (+50 %) |
+
+### Décisions actées avec Yves (05/08/2026)
+
+1. **Heure supplémentaire hors forfait** : elle s'aligne sur le tarif horaire du forfait —
+   **50 €/h** en manuelle et AAC, **54 €/h** en BVA. (Le tableau source ne donnait que la
+   composition du forfait ; point confirmé explicitement.)
+2. **`devis.html`, option « Présentation supplémentaire à l'examen »** : elle passe **par
+   formule** (54 € BVA / 50 € manuelle & AAC). Aujourd'hui la clé `options` est **globale** →
+   c'est la **seule modification de code** de toute la bascule (voir §3, entrée 1).
+3. **Mention affichée** : « Tarifs TTC à compter du **31/08/2026** » (et non 01/09).
+4. **`blog/combien-coute-permis-conduire-bayonne.html:250`** — l'exemple fictif de concurrent
+   « un forfait à 1 000€ incluant seulement 15h » **doit être changé** (→ 1 100 €) : 1 000 €
+   devient la ligne « 20 h de conduite » réelle de Marti, la collision serait illisible.
+5. **`blog/auto-ecole-en-ligne-ou-marti.html:259`** — le texte reproche aux auto-écoles en ligne
+   des heures sup « souvent 40€ à 50€ de l'heure », soit exactement le futur tarif manuelle
+   Marti. **Décision : ne pas modifier.** Point de vigilance assumé, signalé ici pour mémoire —
+   pas une action de la checklist.
+
+### Ce qui ne change pas
+
+- Les **volumes horaires** (13 h BVA, 20 h manuelle/AAC) et les 2 h + 6 h de RDV AAC → §2.10
+  n'a pas à être touché.
+- Les **frais de dossier** restent à 200,00 € sur les trois formules.
+- Les **libellés** du tableau source correspondent au contenu déjà affiché (« Pack code » a
+  déjà pour détail « Accès salle + internet illimités (Prépacode) + livre de code »).
+  Harmonisation optionnelle : le tableau dit « Frais administratifs + dossier **complet** »
+  là où le site dit « Frais administratifs + dossier » (BVA, manuelle) et « Frais
+  administratifs » (AAC).
+
+---
+
+## §1 ter — Table de correspondance ancien → nouveau (tous formats)
+
+C'est le tableau opérationnel de la bascule : chaque montant, dans **chacun des formats sous
+lesquels il est écrit** (§4, piège 1), avec sa cible. Aucun remplacement ne doit être fait
+sans passer par cette table.
+
+| Ancien | Nouveau | Formats à traiter |
+|---|---|---|
+| `967` | `1 085` | `967€`→`1 085€` · `967 €`→`1 085 €` · `967&nbsp;€`→`1&nbsp;085&nbsp;€` · `"price": "967"`→`"1085"` · `base: 967`→`base: 1085` · `**967 €**`→`**1 085 €**` |
+| `1 261` / `1261` | `1 375` | `1 261€` · `1 261 €` · `1&nbsp;261&nbsp;€` · `"1261"` · `base: 1261` · `**1 261 €**` · ⚠️ `1261€` **sans espace** (`blog/auto-ecole-en-ligne-ou-marti.html:270`) |
+| `1 629` / `1629` | `1 775` | `1 629€` · `1 629 €` · `1&nbsp;629&nbsp;€` · `1 629 € TTC` · `"1629"` · `base: 1629` · `**1 629 €**` |
+| `46 €/h` `46€/h` `46 €/heure` `"46"` | `50 €/h` `50€/h` `50 €/heure` `"50"` | heure supplémentaire manuelle + AAC (§2.4) |
+| `48 €/h` `48€/h` `48 €/heure` `"48"` | `54 €/h` `54€/h` `54 €/heure` `"54"` | heure supplémentaire BVA (§2.5) |
+| `46,00 €` / `prix: 46` | `50,00 €` / `prix: 50` | **accompagnement examen** manuelle + AAC |
+| `48,00 €` / `prix: 48` | `54,00 €` / `prix: 54` | **accompagnement examen** BVA |
+| `45,00 €` / `prix: 45` | `54,00 €` **(BVA)** · `50,00 €` **(manuelle, AAC)** | ⚠️ **évaluation de départ — plus de cible unique** |
+| `50,00 €` / `prix: 50` | `75,00 €` / `prix: 75` | **pack code**, les 3 formules — ⚠️ à traiter **avant** tout autre `50`, cf. §4 piège 8 |
+| `624,00 €` / `prix: 624` | `702,00 €` / `prix: 702` | conduite incluse BVA |
+| `920,00 €` / `prix: 920` | `1 000,00 €` / `prix: 1000` | conduite incluse manuelle + AAC |
+| `92,00 €` | `100,00 €` | RDV préalable AAC |
+| `276,00 €` | `300,00 €` | 2 RDV pédagogiques AAC |
+| `138,00 €` | `150,00 €` | détail « soit …/session » (AAC) |
+| `prix: 368` | `prix: 400` | RDV agrégé `devis.html:691` |
+| `Soit 48 €/h` / `Soit 46 €/h` (détail devis) | `Soit 54 €/h` / `Soit 50 €/h` | `devis.html`, champ `detail` des lignes conduite |
+| `09/03/2026` | `31/08/2026` | 13 occurrences (§2.11) **+ à ajouter** dans `llms.txt` et `README.md` |
+
+---
+
 ## §2 — Inventaire par tarif
 
 Chaque ligne donne le fichier, la ligne **au 02/08/2026** (les numéros bougent : se fier au
 texte exact) et le **format d'écriture** — c'est le format qui piège les rechercher/remplacer.
 
-### 2.1 — `TOTAL_BVA` = 967 €
+### 2.1 — `TOTAL_BVA` = 967 €  →  **1 085 €** au 31/08/2026
+
+⚠️ Ce montant **passe de 3 à 4 chiffres** : chaque occurrence doit adopter le séparateur de
+milliers déjà employé par 1 261 / 1 629 dans le même fichier (§4, piège 9).
 
 | Fichier | Ligne | Format écrit | Contexte |
 |---|---|---|---|
@@ -108,7 +229,7 @@ texte exact) et le **format d'écriture** — c'est le format qui piège les rec
 | `README.md` | 26 | `**967 €**` | tableau des formations |
 | `devis.html` | 650 | `base: 967,` | `DEVIS_CONFIG.formules.bva` |
 
-### 2.2 — `TOTAL_MANUEL` = 1 261 €
+### 2.2 — `TOTAL_MANUEL` = 1 261 €  →  **1 375 €** au 31/08/2026
 
 | Fichier | Ligne | Format écrit | Contexte |
 |---|---|---|---|
@@ -144,7 +265,7 @@ texte exact) et le **format d'écriture** — c'est le format qui piège les rec
 | `README.md` | 27 | `**1 261 €**` | tableau des formations |
 | `devis.html` | 666 | `base: 1261,` | `DEVIS_CONFIG.formules.manuel` |
 
-### 2.3 — `TOTAL_AAC` = 1 629 €
+### 2.3 — `TOTAL_AAC` = 1 629 €  →  **1 775 €** au 31/08/2026
 
 | Fichier | Ligne | Format écrit | Contexte |
 |---|---|---|---|
@@ -177,11 +298,16 @@ texte exact) et le **format d'écriture** — c'est le format qui piège les rec
 | `CLAUDE.md` | 62 | ⚠️ `1 629 € TTC` | arborescence du projet *(anciennement `€1,629`, corrigé le 02/08/2026)* |
 | `devis.html` | 682 | `base: 1629,` | `DEVIS_CONFIG.formules.aac` |
 
-### 2.4 — `HEURE_SUP` manuelle / AAC = 46 €/h
+### 2.4 — `HEURE_SUP` manuelle / AAC = 46 €/h  →  **50 €/h** au 31/08/2026
 
 ⚠️ **Attention** : la valeur `46 €` correspond à **trois postes distincts** — heure
 supplémentaire, présentation à l'examen (manuelle/AAC) et option 2ᵉ passage. Une hausse peut
 ne concerner que l'un des trois. Vérifier le contexte de chaque ligne avant de remplacer.
+
+⚠️ **Après la bascule, c'est pire** : en manuelle/AAC, `50 €` recouvrira **quatre** postes —
+heure supplémentaire, présentation à l'examen, **évaluation de départ** (qui rejoint le tarif
+horaire) et option 2ᵉ passage. Et `50,00 €` est aussi l'**ancien** prix du pack code (§2.7),
+d'où l'ordre de traitement imposé du §4, piège 8.
 
 | Fichier | Ligne | Format écrit | Contexte |
 |---|---|---|---|
@@ -209,7 +335,10 @@ ne concerner que l'un des trois. Vérifier le contexte de chaque ligne avant de 
 | `README.md` | 18 | `**46 €** / heure` | tableau « chiffres clés » (⚠️ n'indique pas le 48 €/h BVA) |
 | `devis.html` | 668, 684 | `prixHeureSup: 46,` | `DEVIS_CONFIG` manuel + aac |
 
-### 2.5 — `HEURE_SUP` automatique = 48 €/h
+### 2.5 — `HEURE_SUP` automatique = 48 €/h  →  **54 €/h** au 31/08/2026
+
+⚠️ Même remarque qu'en §2.4 : après bascule, `54 €` recouvrira **trois** postes BVA — heure
+supplémentaire, présentation à l'examen et **évaluation de départ**.
 
 | Fichier | Ligne | Format écrit | Contexte |
 |---|---|---|---|
@@ -229,7 +358,10 @@ ne concerner que l'un des trois. Vérifier le contexte de chaque ligne avant de 
 | `llms.txt` | 15, 54 | `48 €/heure` | grille / FAQ |
 | `devis.html` | 652 | `prixHeureSup: 48,` | `DEVIS_CONFIG.formules.bva` |
 
-### 2.6 — `DOSSIER` = 200,00 € (identique aux 3 formules)
+### 2.6 — `DOSSIER` = 200,00 € (identique aux 3 formules)  →  **inchangé** au 31/08/2026
+
+*Seul poste qui ne bouge pas. Le tableau source l'intitule « Frais administratifs + dossier
+complet » — harmonisation de libellé optionnelle (§1 bis, « ce qui ne change pas »).*
 
 | Fichier | Ligne | Libellé affiché |
 |---|---|---|
@@ -238,7 +370,11 @@ ne concerner que l'un des trois. Vérifier le contexte de chaque ligne avant de 
 | `formules/conduite-accompagnee.html` | 358 | « Frais administratifs » |
 | `devis.html` | 655, 671, 687 | `{ label: "Frais de dossier & inscription", prix: 200 }` ×3 |
 
-### 2.7 — `CODE` = 50,00 € (identique aux 3 formules)
+### 2.7 — `CODE` = 50,00 € (identique aux 3 formules)  →  **75,00 €** au 31/08/2026
+
+⚠️ **À traiter en premier dans chaque fichier** : `50,00 €` est l'ancien pack code *et* le
+nouveau tarif horaire manuelle/AAC. Une fois le pack code passé à 75,00 €, tout `50` restant
+est sans ambiguïté un nouveau montant (§4, piège 8).
 
 | Fichier | Ligne | Libellé affiché |
 |---|---|---|
@@ -251,40 +387,66 @@ ne concerner que l'un des trois. Vérifier le contexte de chaque ligne avant de 
 « J'ai déjà le code » (fonction `prixCode()` l. 722-725). Changer ce montant change aussi la
 réduction affichée.
 
-### 2.8 — `EVAL` = 45,00 € (identique aux 3 formules)
+### 2.8 — `EVAL` = 45,00 € (identique aux 3 formules)  →  **différencié** au 31/08/2026
 
-| Fichier | Ligne | Libellé affiché |
-|---|---|---|
-| `formules/permis-b-automatique.html` | 391 | « Évaluation de départ » |
-| `formules/permis-b-manuel.html` | 355 | « Évaluation de départ » |
-| `formules/conduite-accompagnee.html` | 372 | « Évaluation de départ » |
-| `devis.html` | 657, 673, 689 | `{ label: "Évaluation de départ", prix: 45 }` ×3 |
+🔴 **Changement de structure.** L'évaluation de départ cesse d'être un montant unique : elle
+est désormais facturée au tarif horaire de la formule — **54,00 € en BVA**, **50,00 € en
+manuelle et AAC**. Chaque occurrence a donc une cible **différente** selon le fichier ; ne
+jamais remplacer `45,00 €` globalement.
+
+| Fichier | Ligne | Libellé affiché | Cible 31/08/2026 |
+|---|---|---|---|
+| `formules/permis-b-automatique.html` | 391 | « Évaluation de départ » | **54,00 €** |
+| `formules/permis-b-manuel.html` | 355 | « Évaluation de départ » | **50,00 €** |
+| `formules/conduite-accompagnee.html` | 372 | « Évaluation de départ » | **50,00 €** |
+| `devis.html` | 657 | `{ label: "Évaluation de départ", prix: 45 }` (bva) | `prix: 54` |
+| `devis.html` | 673 | idem (manuel) | `prix: 50` |
+| `devis.html` | 689 | idem (aac) | `prix: 50` |
 
 ### 2.9 — `CONDUITE_*`, `EXAMEN`, RDV pédagogiques
 
-| Montant | Fichier | Ligne | Contexte |
-|---|---|---|---|
-| **624,00 €** (13 h × 48) | `formules/permis-b-automatique.html` | 398 | ligne « 13h de conduite minimum » |
-| | `devis.html` | 658 | `{ label: "13 h de conduite incluses", detail: "Soit 48 €/h", prix: 624 }` |
-| **920,00 €** (20 h × 46) | `formules/permis-b-manuel.html` | 362 | ligne « 20h de conduite minimum » |
-| | `formules/conduite-accompagnee.html` | 379 | ligne « 20h de conduite minimum » |
-| | `devis.html` | 674, 690 | `prix: 920` (manuel + aac) |
-| **92,00 €** | `formules/conduite-accompagnee.html` | 386 | « 1 RDV préalable · 2h — formation de l'accompagnateur » |
-| **276,00 €** | `formules/conduite-accompagnee.html` | 393 | « 2 RDV pédagogiques » |
-| **138,00 €/session** | `formules/conduite-accompagnee.html` | 391 | détail « 2 × 3h — soit 138,00 €/session » |
-| **368,00 €** | `devis.html` | 691 | ⚠️ `{ label: "RDV préalable + 2 RDV pédagogiques", prix: 368 }` — **agrège 92 + 276**, contrairement à la page AAC qui les sépare. Garder les deux cohérents. |
-| **48,00 €** (examen BVA) | `formules/permis-b-automatique.html` | 405 | « Accompagnement à l'examen · 1 présentation incluse » |
-| | `devis.html` | 659 | `{ label: "Présentation à l'examen", prix: 48 }` |
-| **46,00 €** (examen man.) | `formules/permis-b-manuel.html` | 369 | « Accompagnement à l'examen » |
-| | `devis.html` | 675 | `{ label: "Présentation à l'examen", prix: 46 }` |
-| **46,00 €** (examen AAC) | `formules/conduite-accompagnee.html` | 400 | « Accompagnement à l'examen » |
-| | `devis.html` | 692 | `{ label: "Présentation à l'examen", prix: 46 }` |
-| **46 €** (`EXAMEN_SUP`) | `devis.html` | 702 | option cochable « Présentation supplémentaire à l'examen · En cas de 2ᵉ passage » |
+| Montant | Cible 31/08 | Fichier | Ligne | Contexte |
+|---|---|---|---|---|
+| **624,00 €** (13 h × 48) | **702,00 €** (13 × 54) | `formules/permis-b-automatique.html` | 398 | ligne « 13h de conduite minimum » |
+| | | `devis.html` | 658 | `{ label: "13 h de conduite incluses", detail: "Soit 48 €/h", prix: 624 }` → `detail: "Soit 54 €/h", prix: 702` |
+| **920,00 €** (20 h × 46) | **1 000,00 €** (20 × 50) | `formules/permis-b-manuel.html` | 362 | ligne « 20h de conduite minimum » |
+| | | `formules/conduite-accompagnee.html` | 379 | ligne « 20h de conduite minimum » |
+| | | `devis.html` | 674, 690 | `prix: 920` → `prix: 1000` (manuel + aac), `detail` « Soit 46 €/h » → « Soit 50 €/h » |
+| **92,00 €** | **100,00 €** | `formules/conduite-accompagnee.html` | 386 | « 1 RDV préalable · 2h — formation de l'accompagnateur » |
+| **276,00 €** | **300,00 €** | `formules/conduite-accompagnee.html` | 393 | « 2 RDV pédagogiques » |
+| **138,00 €/session** | **150,00 €/session** | `formules/conduite-accompagnee.html` | 391 | détail « 2 × 3h — soit 138,00 €/session » |
+| **368,00 €** | **400,00 €** | `devis.html` | 691 | ⚠️ `{ label: "RDV préalable + 2 RDV pédagogiques", prix: 368 }` — **agrège 92 + 276**, contrairement à la page AAC qui les sépare. Garder les deux cohérents. |
+| **48,00 €** (examen BVA) | **54,00 €** | `formules/permis-b-automatique.html` | 405 | « Accompagnement à l'examen · 1 présentation incluse » |
+| | | `devis.html` | 659 | `{ label: "Présentation à l'examen", prix: 48 }` → `prix: 54` |
+| **46,00 €** (examen man.) | **50,00 €** | `formules/permis-b-manuel.html` | 369 | « Accompagnement à l'examen » |
+| | | `devis.html` | 675 | `{ label: "Présentation à l'examen", prix: 46 }` → `prix: 50` |
+| **46,00 €** (examen AAC) | **50,00 €** | `formules/conduite-accompagnee.html` | 400 | « Accompagnement à l'examen » |
+| | | `devis.html` | 692 | `{ label: "Présentation à l'examen", prix: 46 }` → `prix: 50` |
+| **46 €** (`EXAMEN_SUP`) | 🔴 **54 € BVA / 50 € man. + AAC** | `devis.html` | 702 | option cochable « Présentation supplémentaire à l'examen · En cas de 2ᵉ passage » — **change de structure**, voir ci-dessous |
 
-### 2.10 — Volumes horaires réglementaires (13 h / 20 h)
+🔴 **`EXAMEN_SUP` devient différencié — la seule modification de code de la bascule.**
+Aujourd'hui `devis.html` déclare `options` comme une liste **globale** (l. 701-703), commune
+aux trois formules :
+
+```javascript
+options: [
+    { id: "examenSup", label: "Présentation supplémentaire à l'examen", detail: "En cas de 2ᵉ passage", prix: 46 },
+],
+```
+
+Un prix unique ne peut plus convenir (54 € en BVA, 50 € ailleurs). Décision actée : porter
+l'option **par formule**. Le rendu et le calcul lisent `DEVIS_CONFIG.options` aux lignes
+**755-756** (construction des cases à cocher), **811-812** (ajout au total) et **854-855**
+(récapitulatif e-mail) : ces trois points doivent résoudre l'option contre la formule
+sélectionnée (`state.formule`) et non contre la liste globale.
+
+### 2.10 — Volumes horaires réglementaires (13 h / 20 h)  →  **inchangés** au 31/08/2026
 
 Ils accompagnent presque toujours un prix. À ne changer **que** si le contenu du forfait
-change (ils sont adossés au minimum légal).
+change (ils sont adossés au minimum légal). La grille du 31/08/2026 conserve 13 h / 20 h,
+ainsi que les 2 h de RDV préalable et les 2 × 3 h de RDV pédagogiques : **rien à modifier
+ici**, mais bien vérifier que les phrases « 20 h à 46 €/h » deviennent « 20 h à 50 €/h »
+sans que le volume ne bouge.
 
 `index.html:333,350` · `formules/index.html:782,795` · `formules/permis-b-*.html`
 (titres, meta, lignes de détail) · `faq.html:63,71,758,772,773` · `llms.txt:54` ·
@@ -292,7 +454,10 @@ change (ils sont adossés au minimum légal).
 `blog/permis-lyceen-etudiant-bayonne.html:258,263,321` ·
 `devis.html:651,667,683` (`hIncluses`).
 
-### 2.11 — `DATE_EFFET` = 09/03/2026 — **12 occurrences**
+### 2.11 — `DATE_EFFET` = 09/03/2026  →  **31/08/2026** — **13 occurrences**
+
+*(Recomptées le 05/08/2026 : **13**, et non 12 comme indiqué jusqu'ici. Les lignes de pied de
+page des 3 pages formules ont par ailleurs glissé de +1 depuis le 02/08.)*
 
 | Fichier | Ligne | Formulation |
 |---|---|---|
@@ -300,17 +465,22 @@ change (ils sont adossés au minimum légal).
 | `faq.html` | 71 | JSON-LD — « Tarifs TTC en vigueur à compter du 09/03/2026. » |
 | `faq.html` | 776 | encart « tip » visible (miroir) |
 | `formules/permis-b-automatique.html` | 363 | sous-titre du bloc tarifaire |
-| `formules/permis-b-automatique.html` | 520 | mention de pied de page |
+| `formules/permis-b-automatique.html` | **521** | mention de pied de page |
 | `formules/permis-b-manuel.html` | 327 | sous-titre du bloc tarifaire |
-| `formules/permis-b-manuel.html` | 484 | mention de pied de page |
+| `formules/permis-b-manuel.html` | **485** | mention de pied de page |
 | `formules/conduite-accompagnee.html` | 344 | sous-titre du bloc tarifaire |
-| `formules/conduite-accompagnee.html` | 579 | mention de pied de page |
+| `formules/conduite-accompagnee.html` | **580** | mention de pied de page |
 | `auto-ecole-anglet.html` | 302 | sous-titre du bloc formules |
 | `auto-ecole-biarritz.html` | 302 | sous-titre du bloc formules |
 | `auto-ecole-bayonne.html` | 370 | sous-titre du bloc formules |
 | `devis.html` | 639 | commentaire « (Tarifs relevés sur le site au 09/03/2026 — à confirmer/actualiser.) » |
 
 ❗ **Absente de `llms.txt` et `README.md`** — à y **ajouter** lors de la prochaine mise à jour.
+
+📄 **Hors site** : `ROADMAP.md:18` cite aussi la date (« l'actuelle, `09/03/2026`, est affichée
+à 12 endroits ») — c'est de la documentation, pas un tarif affiché, mais la ligne devient fausse
+après bascule. La rubrique « Changement de grille tarifaire » de `ROADMAP.md` (l. 10-18) est
+d'ailleurs à clore une fois l'opération faite.
 
 ### 2.12 — Mentions sans montant (à relire, pas forcément à modifier)
 
@@ -332,12 +502,26 @@ change (ils sont adossés au minimum légal).
 ## §3 — Checklist par fichier
 
 Ordre de travail recommandé, du plus structurant au plus périphérique.
-**19 fichiers**, à cocher au fur et à mesure.
+**19 fichiers** porteurs de tarifs (+ `ROADMAP.md`, documentation), à cocher au fur et à mesure.
+
+> **Règle d'or de la bascule du 31/08/2026** : à l'intérieur d'un fichier, traiter les blocs
+> tarifaires **ligne par ligne, de haut en bas**, en commençant toujours par le **pack code
+> (50 → 75)**. Jamais de rechercher/remplacer global sur `50`, `46`, `48` ou `45` : ces
+> nombres changent de sens au cours de l'opération (§4, pièges 8 à 11).
 
 - [ ] **1. `devis.html`** — objet `DEVIS_CONFIG` l. 641-704 : `base`, `hIncluses`,
       `prixHeureSup`, tableau `lignes` des 3 formules, `options[0].prix`.
       Mettre à jour aussi les commentaires l. 620 et 639.
       *Tout le reste de la page est calculé — ne rien toucher en dehors de `DEVIS_CONFIG`.*
+      🔴 **Exception 31/08/2026 — seule modification de code de toute la bascule** :
+      l'option `examenSup` (l. 701-703) est aujourd'hui **globale** et doit devenir
+      **par formule** (54 € BVA / 50 € manuelle & AAC). Adapter les trois points de lecture
+      de `DEVIS_CONFIG.options` : l. 755-756 (rendu des cases), 811-812 (calcul du total),
+      854-855 (récapitulatif e-mail). Détail au §2.9.
+      Valeurs cibles : `bva` → `base: 1085`, `prixHeureSup: 54`, lignes `200 / 75 / 54 /
+      702 (detail « Soit 54 €/h ») / 54` · `manuel` → `base: 1375`, `prixHeureSup: 50`,
+      lignes `200 / 75 / 50 / 1000 (« Soit 50 €/h ») / 50` · `aac` → `base: 1775`,
+      `prixHeureSup: 50`, lignes `200 / 75 / 50 / 1000 / 400 (RDV agrégés) / 50`.
 - [ ] **2. `formules/permis-b-automatique.html`** — title l. 9, meta 12/14/26, JSON-LD 53,
       hero 282, bloc 301, tableau comparatif 336/337/341/342, sous-titre 363, total 369,
       détail 377/384/391/396/398/405, pied de page 520.
@@ -365,16 +549,32 @@ Ordre de travail recommandé, du plus structurant au plus périphérique.
       JSON-LD BlogPosting 112, tableau 219/225/231, callout 241, comparaison 250,
       cartes liées 300/307/314, CTA 325, JSON-LD FAQPage 403/411.
       Penser à `dateModified` + `article:modified_time`.
+      🔴 **Décision 31/08/2026** : l. 250, l'exemple fictif de concurrent « un forfait à
+      **1 000€** incluant seulement 15h » doit devenir **1 100 €** — 1 000 € devient la
+      ligne « 20 h de conduite » réelle de Marti, la collision rendrait la démonstration
+      incompréhensible. *(Cette ligne est listée en zone interdite §6 : c'est l'unique
+      dérogation, explicitement validée.)*
 - [ ] **12. `blog/permis-lyceen-etudiant-bayonne.html`** — tableau 258/263/268, note 274,
       FAQ visible 321/333, JSON-LD FAQPage 461/485. + dates.
 - [ ] **13. `blog/regles-permis-probatoire.html`** — CTA 328 et 720 (AAC uniquement). + dates.
-- [ ] **14. `blog/auto-ecole-en-ligne-ou-marti.html`** — ⚠️ l. 270, format **`1261€`**. + dates.
+- [ ] **14. `blog/auto-ecole-en-ligne-ou-marti.html`** — ⚠️ l. 270, format **`1261€`** →
+      `1375€` (sans espace, invisible à une recherche « 1 261 »). + dates.
+      ℹ️ L. 259 (« souvent 40€ à 50€ de l'heure » reproché aux plateformes en ligne)
+      **reste inchangée** — décision d'Yves du 05/08/2026, malgré le chevauchement avec le
+      futur tarif Marti de 50 €/h. Ne pas la « corriger » spontanément.
 - [ ] **15. `blog/index.html`** — extrait de carte l. 473.
 - [ ] **16. `llms.txt`** — 3, 11-15, 50, 55, 61, 118-119. **Y ajouter la date d'effet.**
-- [ ] **17. `README.md`** — 18 (heure de conduite), 26-28 (tableau formations).
-      **Y ajouter la date d'effet**, et envisager d'y indiquer aussi le 48 €/h BVA.
+- [ ] **17. `README.md`** — 18 (heure de conduite → **50 €/h**), 26-28 (tableau formations
+      → 1 085 / 1 375 / 1 775 €). **Y ajouter la date d'effet (31/08/2026)** et le tarif
+      horaire BVA (**54 €/h**), aujourd'hui absent.
 - [ ] **18. `CLAUDE.md`** — l. 62 (mention du prix AAC dans l'arborescence).
-- [ ] **19. `TARIFS.md`** (ce fichier) — §1, §2 et la date de vérification en tête.
+- [ ] **19. `TARIFS.md`** (ce fichier) — une fois la bascule faite : **promouvoir le §1 bis
+      en §1** (il devient la grille en vigueur), archiver ou supprimer l'ancienne grille et
+      le §1 ter devenu sans objet, reporter les cibles dans le §2, et mettre à jour la date
+      de vérification en tête.
+- [ ] **20. `ROADMAP.md`** *(documentation, pas un tarif affiché)* — clore la rubrique
+      « Changement de grille tarifaire » (l. 10-18) et corriger la l. 18 qui cite
+      `09/03/2026` et un décompte de 12 emplacements (en réalité 13, cf. §2.11).
 
 ---
 
@@ -410,6 +610,32 @@ Ordre de travail recommandé, du plus structurant au plus périphérique.
 7. **`quizz/panneaux/AB25.svg`** ressort sur une recherche « € » : c'est un panneau routier,
    sans rapport. Toujours filtrer avec `| grep -v panneaux`.
 
+### Pièges propres à la bascule du 31/08/2026
+
+8. 🔴 **`50` change de sens en cours d'opération — le piège le plus dangereux.**
+   `50,00 €` est **l'ancien prix du pack code** ; c'est aussi **le nouveau tarif horaire**
+   manuelle/AAC, le nouveau prix de l'évaluation et celui de l'accompagnement examen. Dans un
+   fichier à moitié migré, un `50,00 €` est **indécidable** : impossible de savoir s'il reste
+   à traiter ou s'il est déjà à jour.
+   **Règle** : dans chaque bloc tarifaire, commencer par passer le pack code à 75,00 €, puis
+   descendre ligne par ligne. **Aucun rechercher/remplacer global sur `50`.**
+9. **`967` passe de 3 à 4 chiffres.** Ce n'est pas une simple substitution : il faut **ajouter
+   un séparateur de milliers** au format déjà employé par 1 261 / 1 629 dans le même fichier
+   (`1 085 €`, `1&nbsp;085&nbsp;€`, `"1085"`). Après coup, contrôler visuellement que les
+   conteneurs ne débordent pas : `.formation-price` (`index.html`), `.shortcut-price` et
+   `.result-price-display` (`formules/index.html`), `.price-tag` et `.total-price`
+   (`formules/permis-b-automatique.html`), cartes formules des 3 pages locales.
+10. **`1 000,00 €` introduit une espace de milliers dans une ligne de détail**, ce qui
+    n'existait pas jusqu'ici (`920,00 €`). Format retenu : `1 000,00 €` sur les pages
+    formules, `prix: 1000` dans `devis.html`.
+11. **`45,00 €` n'a plus de cible unique** : 54,00 € en BVA, 50,00 € en manuelle et AAC (§2.8).
+    Idem pour l'option « 2ᵉ passage » du devis (§2.9).
+12. **Deux montants « zone interdite » entrent en collision avec la nouvelle grille** :
+    - `blog/combien-coute-permis-conduire-bayonne.html:250` — exemple fictif « 1 000€ » :
+      **à changer en 1 100 €** (dérogation validée, §3 entrée 11) ;
+    - `blog/auto-ecole-en-ligne-ou-marti.html:259` — « souvent 40€ à 50€ de l'heure » :
+      **à laisser tel quel** (décision d'Yves, §1 bis).
+
 ---
 
 ## §5 — Hors dépôt : les 3 plaquettes PDF
@@ -418,11 +644,16 @@ Elles sont publiquement téléchargeables et présentées comme contenant « les
 vigueur » (`espace-eleves.html:333`). **Claude ne peut pas les régénérer** — c'est une tâche
 manuelle pour Yves, à faire en même temps que la mise à jour du site.
 
+⚠️ **31/08/2026** : les trois plaquettes devront porter la grille du §1 bis (1 085 / 1 375 /
+1 775 €, pack code à 75 €, évaluation et accompagnement examen au tarif horaire) **et** la
+nouvelle date d'effet. Tant qu'elles ne sont pas refaites, le site affichera des tarifs à jour
+et les PDF téléchargeables des tarifs périmés — c'est le point le plus visible pour un élève.
+
 | Fichier | Lié depuis |
 |---|---|
-| `plaquettes/Plaquette_AAC.pdf` | `formules/conduite-accompagnee.html:626`, `espace-eleves.html:336` |
-| `plaquettes/Plaquette_Permis_B_Manuel.pdf` | `formules/permis-b-manuel.html:531`, `espace-eleves.html:341` |
-| `plaquettes/Plaquette_Permis_B_BVA.pdf` | `formules/permis-b-automatique.html:567`, `espace-eleves.html:346` |
+| `plaquettes/Plaquette_AAC.pdf` | `formules/conduite-accompagnee.html:627`, `espace-eleves.html:336` |
+| `plaquettes/Plaquette_Permis_B_Manuel.pdf` | `formules/permis-b-manuel.html:532`, `espace-eleves.html:341` |
+| `plaquettes/Plaquette_Permis_B_BVA.pdf` | `formules/permis-b-automatique.html:568`, `espace-eleves.html:346` |
 
 ---
 
@@ -436,8 +667,8 @@ Les modifier serait une erreur factuelle.
 | **Amendes et sanctions** | `blog/infractions-code-route.html` (~40 montants : 35/45/68/75/90/135/180/300/375/1 500/3 750/4 500/9 000/15 000 €) · `blog/quiz-sanctions.html` (légende l. 517-520 + tableau JS `questions` l. 646-665) · `blog/dangers-alcool.html:558,562,576` · `blog/reflexes-urgence-conduite.html:248,390` · `blog/regles-permis-probatoire.html:374-377,475,519-544` |
 | **Stage de récupération de points** | `blog/regles-permis-probatoire.html:497` — « 200 à 300 € environ » (prestataire tiers) |
 | **Examen du code (tarif d'État)** | `blog/reussir-code-route-premier-coup.html:656,659` — « 30 euros » *(seul montant en toutes lettres du site)* · `blog/combien-coute-permis-conduire-bayonne.html:199` — « environ 30€ » |
-| **Prix d'appel concurrents** | `blog/auto-ecole-en-ligne-ou-marti.html:256` — « 199€ », « moins de 10€ par mois » · `:259` — « souvent 40€ à 50€ de l'heure » |
-| **Exemple fictif** | `blog/combien-coute-permis-conduire-bayonne.html:250` — « un forfait à 1 000€ incluant seulement 15h » (concurrent imaginaire, sert la démonstration) |
+| **Prix d'appel concurrents** | `blog/auto-ecole-en-ligne-ou-marti.html:256` — « 199€ », « moins de 10€ par mois » · `:259` — « souvent 40€ à 50€ de l'heure » ⚠️ chevauche le futur tarif Marti (50 €/h) mais **reste inchangée** : décision d'Yves du 05/08/2026 |
+| **Exemple fictif** | `blog/combien-coute-permis-conduire-bayonne.html:250` — « un forfait à 1 000€ incluant seulement 15h » (concurrent imaginaire, sert la démonstration). 🔴 **Dérogation unique au 31/08/2026** : à porter à **1 100 €**, car 1 000 € devient la ligne « 20 h de conduite » réelle de Marti (§3 entrée 11, §4 piège 12). |
 | **Simulateur d'éco-conduite** | `blog/simulateur-ecoconduite.html:177,179,318-319,324-325,387-399` — prix du carburant et de l'électricité |
 | **Avis clients** | `index.html` (JSON-LD `Review` + carrousel), `llms.txt:88-109` — « tarifs corrects », « prix attractif » : **ne jamais réécrire le texte d'un avis** |
 
@@ -448,13 +679,19 @@ Les modifier serait une erreur factuelle.
 0. **Réunir les informations** : ancienne grille (§1), nouvelle grille, nouvelle date d'effet.
    Vérifier si les volumes horaires inclus changent (§2.10) et si le contenu des forfaits
    change (libellés des lignes de détail).
+   *Pour la bascule du 31/08/2026, tout est déjà réuni : grille au §1 bis, correspondances
+   format par format au §1 ter, décisions actées au §1 bis.*
 1. **Mettre à jour le §1 de ce fichier en premier** — il devient la nouvelle référence, et
-   tout le reste s'y compare.
+   tout le reste s'y compare. *(31/08/2026 : promouvoir le §1 bis en §1, cf. §3 entrée 19.)*
 2. **Dérouler la checklist du §3**, fichier par fichier, en cochant.
+   ⚠️ **Ordre imposé à l'intérieur de chaque bloc tarifaire** : commencer par le **pack code
+   (50 → 75)**, puis descendre ligne par ligne. Tant que des `50,00 €` « ancien pack code »
+   subsistent, on ne peut plus distinguer ce qui est traité de ce qui ne l'est pas
+   (§4, piège 8). Aucun rechercher/remplacer global sur `50`, `46`, `48`, `45`.
 3. **Recalculer les valeurs dérivées** : totaux (somme des lignes), montant de la conduite
-   incluse (h × prix horaire), 138 €/session, 368 € agrégé du devis. Vérifier les invariants
-   du §1.
-4. **Date d'effet** : mettre à jour les 12 occurrences (§2.11) **et l'ajouter** à `llms.txt`
+   incluse (h × prix horaire), le prix par session pédagogique, le montant agrégé des RDV du
+   devis. Vérifier les invariants du §1.
+4. **Date d'effet** : mettre à jour les 13 occurrences (§2.11) **et l'ajouter** à `llms.txt`
    et `README.md`.
 5. **Articles de blog touchés** : mettre à jour `dateModified` (JSON-LD) et
    `article:modified_time` (meta) — convention `CLAUDE.md`. Mettre à jour `<time datetime>`
@@ -468,29 +705,55 @@ Les modifier serait une erreur factuelle.
 
 ## §8 — Contrôles après modification
 
+### A — Les ANCIENS montants ont disparu
+
 ```bash
-# 1) Plus aucune trace des ANCIENS montants (adapter les valeurs à chaque changement)
+# 1) Anciens totaux — doit renvoyer 0 hit
 grep -rn "967\|1261\|1 261\|1&nbsp;261\|1629\|1 629\|1&nbsp;629" \
   --include=*.html --include=*.md --include=*.txt . | grep -v panneaux
 
-# 2) Anciens tarifs horaires (vérifier le contexte : cf. zone interdite §6)
-grep -rn "46 €\|46€\|48 €\|48€" --include=*.html --include=*.md --include=*.txt . \
-  | grep -v panneaux
+# 2) Anciens tarifs horaires 46/48 — 0 hit attendu HORS zone interdite §6
+grep -rn "46 €\|46€\|48 €\|48€\|46,00\|48,00" \
+  --include=*.html --include=*.md --include=*.txt . | grep -v panneaux
 
-# 3) Anciennes lignes de détail
-grep -rn "200,00\|50,00\|45,00\|624,00\|920,00\|92,00\|276,00\|138,00" --include=*.html .
+# 3) Anciennes lignes de détail — seuls 200,00 (inchangé) et les nouveaux 50,00 doivent rester
+grep -rn "45,00\|624,00\|920,00\|92,00\|276,00\|138,00\|368" --include=*.html .
 
-# 4) Tous les prix JSON-LD d'un coup — doivent tous refléter la nouvelle grille
+# 4) Ancienne date d'effet — 0 hit (y compris ROADMAP.md:18, cf. §2.11)
+grep -rn "09/03/2026" --include=*.html --include=*.md --include=*.txt .
+```
+
+### B — Les NOUVEAUX montants sont bien partout
+
+```bash
+# 5) Nouveaux totaux (tous formats, y compris l'espace insécable et le JSON-LD)
+grep -rn "1 085\|1085\|1&nbsp;085\|1 375\|1375\|1&nbsp;375\|1 775\|1775\|1&nbsp;775" \
+  --include=*.html --include=*.md --include=*.txt . | grep -v panneaux
+
+# 6) Nouveaux tarifs horaires (⚠️ vérifier le CONTEXTE de chaque « 50 » : heure sup,
+#    évaluation, accompagnement examen — et plus jamais le pack code)
+grep -rn "50 €\|50€\|54 €\|54€\|50,00\|54,00" \
+  --include=*.html --include=*.md --include=*.txt . | grep -v panneaux
+
+# 7) Nouvelles lignes de détail
+grep -rn "75,00\|702,00\|1 000,00\|100,00\|300,00\|150,00\|400" --include=*.html .
+
+# 8) Nouvelle date d'effet — 13 emplacements (§2.11) + llms.txt + README.md = 15 attendus
+#    hors TARIFS.md et ROADMAP.md
+grep -rn "31/08/2026" --include=*.html --include=*.md --include=*.txt .
+
+# 9) Tous les prix JSON-LD d'un coup — doivent tous refléter la nouvelle grille
+#    (attendu : 1085 / 1375 / 1775 pour les forfaits, 50 / 54 pour les leçons)
 grep -rn '"price"' --include=*.html .
 
-# 5) Cohérence de la date d'effet (doit renvoyer 12 fichiers-lignes, + llms.txt et README.md
-#    une fois la date ajoutée — soit 14)
-grep -rn "09/03/2026" --include=*.html --include=*.md --include=*.txt .
-
-# 6) Config JS de l'estimateur de devis
+# 10) Config JS de l'estimateur de devis (relecture intégrale de DEVIS_CONFIG)
 sed -n '641,705p' devis.html
 ```
 
-**Critère de réussite** : chaque résultat des commandes 1 à 4 doit être soit une occurrence
-déjà mise à jour, soit un montant explicitement classé en **zone interdite (§6)**. Aucun hit
-ne doit rester inexpliqué.
+**Critère de réussite** :
+- Bloc A : **aucun hit**, sauf les montants explicitement classés en **zone interdite (§6)** —
+  dont les ~40 amendes de `blog/infractions-code-route.html` et les « 30 € » du code.
+- Bloc B : chaque hit doit être une occurrence **voulue** ; en particulier, plus aucun `50,00 €`
+  ne doit désigner le pack code (§4, piège 8), et aucun total BVA ne doit rester sans
+  séparateur de milliers (§4, piège 9).
+- Aucun hit ne doit rester inexpliqué dans l'un ou l'autre bloc.
