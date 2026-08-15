@@ -9,13 +9,13 @@
     <title>Questions pièges du code de la route — Auto-École Marti</title>
     <link rel="icon" type="image/png" href="../favicon.ico.png">
     <link rel="apple-touch-icon" href="/favicon.ico.png">
-    <meta name="description" content="Identifiez et maîtrisez les questions pièges du code de la route. Exemples, méthodes et astuces pour ne plus vous tromper. Auto-école Marti, Bayonne.">
+    <meta name="description" content="Questions pièges du code de la route : la méthode en 5 étapes et les 30 pièges les plus fréquents, corrigés et sourcés. Auto-école Marti, Bayonne.">
     <meta name="keywords" content="questions pièges code route, erreurs code route, examen code, pièges examen, astuces code, auto-école Bayonne">
     <meta property="og:title" content="Questions pièges au code de la route : les reconnaître et y répondre — Auto-École Marti">
-    <meta property="og:description" content="Guide complet pour identifier et résoudre les questions pièges de l'examen du code de la route. Exemples, méthodes et astuces.">
+    <meta property="og:description" content="Guide complet pour déjouer les questions pièges de l'examen du code : méthode d'observation et les 30 pièges les plus fréquents.">
     <meta property="og:type" content="article">
     <meta property="article:published_time" content="2026-03-21">
-    <meta property="article:modified_time" content="2026-05-28">
+    <meta property="article:modified_time" content="2026-08-15">
     <meta property="og:site_name" content="Auto-École Marti">
     <link rel="canonical" href="https://autoecolemarti.fr/blog/questions-pieges-code-route">
     <meta property="og:url" content="https://autoecolemarti.fr/blog/questions-pieges-code-route">
@@ -26,7 +26,7 @@
     <meta property="og:image:alt" content="Auto-École Marti — votre permis en confiance à Bayonne, depuis 1962">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Questions pièges au code de la route : les reconnaître et y répondre — Auto-École Marti">
-    <meta name="twitter:description" content="Guide complet pour identifier et résoudre les questions pièges de l'examen du code de la route. Exemples, méthodes et astuces.">
+    <meta name="twitter:description" content="Guide complet pour déjouer les questions pièges de l'examen du code : méthode d'observation et les 30 pièges les plus fréquents.">
     <meta name="twitter:image" content="https://autoecolemarti.fr/og-image.png">
     <link rel="stylesheet" href="../css/fonts.css">
     <link rel="stylesheet" href="../css/blog-article.css">
@@ -92,6 +92,56 @@
             background: var(--rouge-sombre); transform: translateY(-2px);
             box-shadow: 0 8px 30px rgba(214,48,49,0.4);
         }
+        /* ── Fiches "30 pièges" ── */
+        .piege-item {
+            background: var(--article-accent-bg);
+            border-left: 3px solid var(--article-accent);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            padding: 1.2rem 1.5rem 0.6rem;
+            margin: 0 0 1rem;
+            transition: var(--transition);
+        }
+        .piege-item:hover { background: #fff; box-shadow: var(--ombre); }
+        .piege-item h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem; font-weight: 700; color: var(--noir);
+            margin: 0 0 0.7rem; line-height: 1.35;
+            display: flex; align-items: center; gap: 0.6rem;
+        }
+        .piege-item p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+        .piege-item ul, .piege-item ol { margin-bottom: 0.8rem; }
+        .piege-item .piege-table { margin: 1rem 0; }
+        .piege-num {
+            flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+            background: var(--article-accent); color: #fff;
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 0.8rem; font-weight: 700;
+        }
+        .piege-reflexe, .piege-attention {
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            padding: 0.7rem 1rem; margin: 0 0 0.9rem;
+            font-size: 0.92rem; color: var(--noir);
+        }
+        .piege-reflexe {
+            background: rgba(212,168,83,0.14);
+            border-left: 3px solid var(--or);
+        }
+        .piege-reflexe::before { content: '\1F449  '; }
+        .piege-attention {
+            background: rgba(214,48,49,0.09);
+            border-left: 3px solid var(--basque-rouge);
+        }
+        .piege-attention::before { content: '\26A0\FE0F  '; }
+        .piege-item-fort {
+            background: linear-gradient(135deg, #fff5f5 0%, #fce4e4 100%);
+            border-left-width: 5px;
+            box-shadow: var(--ombre);
+        }
+        @media (max-width: 768px) {
+            .piege-item { padding: 1rem 1rem 0.4rem; }
+            .piege-item h4 { font-size: 0.95rem; }
+            .piege-num { width: 24px; height: 24px; font-size: 0.72rem; }
+        }
         @media (max-width: 768px) {
             .inline-cta { flex-direction: column; align-items: flex-start; padding: 1.5rem; }
         }
@@ -104,7 +154,7 @@
     "@type": "BlogPosting",
     "headline": "Questions pièges au code de la route les reconnaître et y répondre",
     "datePublished": "2026-03-21",
-    "dateModified": "2026-05-28",
+    "dateModified": "2026-08-15",
     "image": "https://autoecolemarti.fr/og-image.png",
     "author": {
         "@type": "Organization",
@@ -174,7 +224,7 @@
         </nav>
         <div class="article-hero-meta">
             <span class="article-cat-pill">🚦 Code de la route</span>
-            <span class="article-reading-pill">⏱ 7 min de lecture</span>
+            <span class="article-reading-pill">⏱ 15 min de lecture</span>
         </div>
         <h1>Questions pièges au <em>code de la route</em><br>les reconnaître et y répondre</h1>
         <p class="article-date-pub">Publié le <time datetime="2026-03-21">21 mars 2026</time> · Par l'équipe Auto-École Marti</p>
@@ -286,7 +336,7 @@
         </div>
     </div>
 
-    <p>Environ <strong>40 % des erreurs</strong> au code viennent d'un manque d'observation de détails visuels.</p>
+    <p>Une part importante des erreurs au code ne vient pas d'une méconnaissance de la règle, mais d'un détail visuel qui n'a pas été vu.</p>
 
     <h3>3. Les priorités "contre-intuitives"</h3>
 
@@ -334,7 +384,7 @@
     <ul>
         <li>La météo : pluie, brouillard, neige modifient les limites</li>
         <li>Le type de route : agglomération, route, autoroute</li>
-        <li>Votre statut : jeune conducteur a des limites réduites (-10 km/h)</li>
+        <li>Votre statut : le permis probatoire impose des vitesses réduites, variables selon la route (110 au lieu de 130, 100 au lieu de 110, 80 au lieu de 90)</li>
         <li>L'heure : de nuit certaines limitations changent</li>
         <li>Les conditions spéciales : circulation intense, travaux</li>
     </ul>
@@ -551,6 +601,355 @@
 
     <hr class="section-divider">
 
+    <h2>30 pièges précis à connaître avant le jour J</h2>
+
+    <p>Les six grandes familles ci-dessus vous donnent la méthode. Voici maintenant la liste des <strong>30 pièges les plus fréquents</strong>, ceux que nos moniteurs voient revenir série après série chez nos élèves de Bayonne. Chacun est accompagné du réflexe à adopter.</p>
+
+    <div class="callout callout-info">
+        <div class="callout-icon">📌</div>
+        <div class="callout-body">
+            <strong>Comment utiliser cette liste</strong>
+            <p>Ne la lisez pas d'une traite. Prenez une catégorie par jour, faites une série d'entraînement sur ce thème dans la foulée, puis passez à la suivante. C'est la répétition espacée qui fait la différence, pas le survol.</p>
+        </div>
+    </div>
+
+    <!-- ─────────── CATÉGORIE 1 ─────────── -->
+    <h3>🚦 Priorités et intersections</h3>
+
+    <div class="piege-item">
+        <h4><span class="piege-num">1</span> La priorité à droite « cachée »</h4>
+        <p>Une route <em>paraît</em> être la voie principale : elle est plus large, mieux revêtue, plus fréquentée. Mais en l'absence de toute signalisation de priorité, c'est la <strong>priorité à droite</strong> qui s'applique.</p>
+        <div class="piege-reflexe">Cherchez d'abord le panneau ou le marquage. La largeur de la chaussée n'est jamais un indice de priorité.</div>
+    </div>
+
+    <div class="piege-item">
+        <h4><span class="piege-num">2</span> Le losange jaune</h4>
+        <p><strong>Losange jaune</strong> : vous êtes sur une route à caractère prioritaire — vous conservez la priorité aux intersections suivantes.<br>
+        <strong>Losange jaune barré</strong> : fin de ce caractère prioritaire, les règles habituelles reprennent, priorité à droite comprise.</p>
+        <div class="piege-reflexe">Être prioritaire ne dispense jamais de ralentir et d'observer. Un usager peut se tromper.</div>
+    </div>
+
+    <div class="piege-item">
+        <h4><span class="piege-num">3</span> Feux éteints ou en panne</h4>
+        <p>Quand les feux ne fonctionnent plus, la signalisation fixe présente au carrefour (STOP, cédez-le-passage, panneaux de priorité) reprend la main. S'il n'y en a aucune, on revient à la <strong>priorité à droite</strong>.</p>
+        <div class="piege-reflexe">Feux éteints ≠ carrefour libre. Ralentissez et cherchez les panneaux.</div>
+    </div>
+
+    <div class="piege-item">
+        <h4><span class="piege-num">4</span> STOP : l'arrêt est obligatoire, toujours</h4>
+        <p>Même si le carrefour est parfaitement dégagé et que personne n'arrive, vous devez marquer l'arrêt complet à la ligne d'arrêt — et à défaut de ligne, à l'aplomb du panneau — puis céder le passage <em>(article R. 415-6 du Code de la route)</em>.</p>
+        <div class="piege-attention">Un « stop roulé » à l'examen pratique est une faute éliminatoire. Sur la route, c'est 135 € et 4 points.</div>
+    </div>
+
+    <div class="piege-item">
+        <h4><span class="piege-num">5</span> Cédez-le-passage n'est pas un STOP</h4>
+        <p>Au triangle pointe en bas, vous devez ralentir, observer et <strong>ne vous arrêter que si c'est nécessaire</strong> <em>(article R. 415-7)</em>. S'arrêter systématiquement n'est pas la bonne réponse.</p>
+    </div>
+
+    <div class="piege-item">
+        <h4><span class="piege-num">6</span> Le clignotant ne donne aucune priorité</h4>
+        <p>Un véhicule qui annonce son intention de tourner ou de changer de voie ne devient pas prioritaire pour autant. Le clignotant informe, il n'autorise rien.</p>
+        <div class="piege-attention"><strong>L'exception à retenir :</strong> en agglomération, un bus qui signale son intention de quitter son arrêt, lui, est prioritaire. Vous devez le laisser s'insérer, en ralentissant si besoin.</div>
+    </div>
+
+    <div class="piege-item">
+        <h4><span class="piege-num">7</span> Giratoire et rond-point ne sont pas la même chose</h4>
+        <p>Dans un <strong>carrefour à sens giratoire</strong> — signalé par le panneau bleu à trois flèches accompagné d'un cédez-le-passage à chaque entrée — vous cédez le passage aux véhicules déjà engagés dans l'anneau.</p>
+        <p>Dans un <strong>rond-point</strong> sans cette signalisation, c'est la priorité à droite qui s'applique : ce sont les véhicules qui <em>entrent</em> qui sont prioritaires.</p>
+        <div class="piege-reflexe">À l'approche, votre regard cherche une seule chose : y a-t-il un cédez-le-passage à l'entrée ?</div>
+    </div>
+
+    <!-- ─────────── CATÉGORIE 2 ─────────── -->
+    <h3>🚶 Piétons, cyclistes et usagers vulnérables</h3>
+
+    <div class="piege-item">
+        <h4><span class="piege-num">8</span> Le piéton qui manifeste son intention de traverser ⭐</h4>
+        <p>C'est le grand classique. Vous devez céder le passage — au besoin en vous arrêtant — au piéton qui s'engage régulièrement dans la traversée <strong>ou qui manifeste clairement l'intention de le faire</strong> <em>(article R. 415-11)</em>.</p>
+        <p>Il n'a donc <strong>pas besoin d'être déjà engagé sur le passage</strong> : un piéton arrêté au bord du trottoir, qui vous regarde et avance d'un pas, suffit.</p>
+        <div class="piege-attention">Le refus de priorité à un piéton coûte 135 € et 6 points, l'un des retraits les plus lourds du barème.</div>
+    </div>
+
+    <div class="piege-item">
+        <h4><span class="piege-num">9</span> Aire piétonne</h4>
+        <p>Le piéton y est prioritaire <strong>sur toute la largeur de l'espace</strong>, pas seulement sur des passages matérialisés. Les véhicules autorisés à y circuler — livraisons, riverains, secours — doivent rouler à l'allure du pas.</p>
+    </div>
+
+    <div class="piege-item">
+        <h4><span class="piege-num">10</span> Zone de rencontre</h4>
+        <p>Les piétons y sont prioritaires sur tous les véhicules (sauf les tramways) <strong>et</strong> ils sont autorisés à circuler sur la chaussée, sans toutefois y stationner.</p>
+        <div class="piege-reflexe">Le chiffre à retenir : la vitesse y est limitée à <strong>20 km/h</strong>. À ne pas confondre avec la zone 30.</div>
+    </div>
+
+    <div class="piege-item">
+        <h4><span class="piege-num">11</span> La distance latérale pour dépasser un cycliste</h4>
+        <p><strong>1 mètre en agglomération</strong>, <strong>1,50 mètre hors agglomération</strong> <em>(article R. 414-4)</em>. Cette distance vaut aussi pour un piéton, un cavalier, un animal ou un deux-roues.</p>
+        <div class="piege-reflexe">Si vous ne pouvez pas tenir cette distance, vous ne dépassez pas. Vous attendez.</div>
+    </div>
+
+    <div class="piege-item">
+        <h4><span class="piege-num">12</span> Ligne continue et cycliste : chevaucher, pas franchir</h4>
+        <p>Une ligne continue interdit en principe son franchissement <em>et</em> son chevauchement. Le Code prévoit une exception : le <strong>chevauchement</strong> est autorisé pour dépasser un cycle, une trottinette électrique ou un cyclomobile léger, dans les conditions de sécurité de l'article R. 414-4 <em>(article R. 412-19)</em>.</p>
+        <div class="piege-attention">Chevaucher, c'est mordre sur la ligne. <strong>Franchir entièrement la ligne reste interdit</strong> — et coûte 135 € et 3 points. Cette tolérance a été pensée pour les routes à double sens limitées à 50 km/h, et suppose une visibilité suffisante.</div>
+    </div>
+
+    <!-- ─────────── CATÉGORIE 3 ─────────── -->
+    <h3>🚗 Vitesses : les pièges de chiffres</h3>
+
+    <div class="piege-item">
+        <h4><span class="piege-num">13</span> « 80 » n'est pas une réponse automatique</h4>
+        <p>Depuis 2019, les départements peuvent relever certaines routes à 90 km/h. Sur le terrain, la vitesse dépend du type de route, de la présence d'un terre-plein central, d'une limitation locale et des conditions du moment.</p>
+        <div class="piege-reflexe">Ne répondez jamais « 80 » par réflexe : cherchez le dernier panneau rencontré.</div>
+    </div>
+
+    <div class="piege-item">
+        <h4><span class="piege-num">14</span> Permis probatoire : les vitesses réduites</h4>
+        <p>Pendant le <a href="/blog/regles-permis-probatoire">délai probatoire</a> — et pour tout élève conducteur, conduite accompagnée comprise — les vitesses maximales sont abaissées <em>(article R. 413-5)</em> :</p>
+        <table class="piege-table">
+            <thead>
+                <tr>
+                    <th>Type de route</th>
+                    <th>Conducteur confirmé</th>
+                    <th>Permis probatoire</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Autoroute</td><td>130 km/h</td><td><span class="rep-faux">110 km/h</span></td></tr>
+                <tr><td>Autoroute limitée à 110 / route à chaussées séparées</td><td>110 km/h</td><td><span class="rep-faux">100 km/h</span></td></tr>
+                <tr><td>Route limitée à 90 km/h</td><td>90 km/h</td><td><span class="rep-faux">80 km/h</span></td></tr>
+                <tr><td>Agglomération</td><td>50 km/h</td><td><span class="rep-vrai">50 km/h</span></td></tr>
+            </tbody>
+        </table>
+        <div class="piege-reflexe">En agglomération, rien ne change : c'est 50 pour tout le monde. Le disque « A » reste obligatoire à l'arrière du véhicule.</div>
+    </div>
+
+    <div class="piege-item">
+        <h4><span class="piege-num">15</span> La pluie ne divise pas la vitesse par deux</h4>
+        <p>C'est l'une des idées reçues les plus tenaces. En cas de précipitations, les vitesses sont <em>abaissées</em>, pas divisées :</p>
+        <ul>
+            <li>130 → <strong>110 km/h</strong> sur autoroute</li>
+            <li>110 → <strong>100 km/h</strong> sur route à chaussées séparées</li>
+            <li>90 → <strong>80 km/h</strong> sur les autres routes</li>
+            <li>50 km/h en agglomération : <strong>inchangé</strong></li>
+        </ul>
+        <div class="piege-reflexe">Au-delà du chiffre, la règle générale reste : adapter sa vitesse aux conditions, ce qui peut imposer de rouler bien en dessous du maximum autorisé.</div>
+    </div>
+
+    <div class="piege-item">
+        <h4><span class="piege-num">16</span> Visibilité inférieure à 50 mètres</h4>
+        <p>Brouillard, chute de neige, forte pluie : dès que la visibilité tombe sous 50 mètres, la vitesse maximale est de <strong>50 km/h sur l'ensemble du réseau routier et autoroutier</strong> <em>(article R. 413-2)</em>. Sans exception, autoroute comprise.</p>
+        <div class="piege-reflexe">Repère mnémotechnique : 50 mètres → 50 km/h.</div>
+    </div>
+
+    <div class="piege-item">
+        <h4><span class="piege-num">17</span> Vitesse maximale n'est pas vitesse obligatoire</h4>
+        <p>Un panneau « 90 » indique un plafond, pas une consigne. Vous n'êtes jamais tenu de l'atteindre, et les conditions de circulation imposent souvent de rouler moins vite.</p>
+        <div class="piege-attention">L'inverse est vrai aussi : circuler sans raison valable à une allure anormalement réduite, en gênant les autres usagers, est une infraction.</div>
+    </div>
+
+    <!-- ─────────── CATÉGORIE 4 ─────────── -->
+    <h3>🚥 Feux et signalisation</h3>
+
+    <div class="piege-item">
+        <h4><span class="piege-num">18</span> Le feu jaune fixe (que tout le monde appelle « orange ») ⭐</h4>
+        <p>Il impose l'<strong>arrêt</strong> — pas l'accélération. La seule exception : si, au moment où il s'allume, vous êtes trop près pour vous arrêter dans des conditions de sécurité suffisantes <em>(article R. 412-31)</em>.</p>
+        <div class="piege-reflexe">Petit détail de vocabulaire qui piège à l'examen : le Code parle de feu <strong>jaune</strong>, jamais de feu orange.</div>
+    </div>
+
+    <div class="piege-item">
+        <h4><span class="piege-num">19</span> Le jaune clignotant</h4>
+        <p>Il ne signifie pas « je passe sans réfléchir ». Il impose une <strong>vigilance accrue</strong> et laisse s'appliquer la signalisation en place — ou, à défaut, la priorité à droite.</p>
+    </div>
+
+    <div class="piege-item">
+        <h4><span class="piege-num">20</span> Le passage à niveau : feu <em>rouge</em> clignotant</h4>
+        <p>Aux passages à niveau, ce ne sont pas des feux jaunes mais des <strong>feux rouges clignotants</strong>, généralement accompagnés d'une sonnerie et de demi-barrières. Ils imposent l'<strong>arrêt absolu</strong>, au même titre qu'un feu rouge fixe <em>(article R. 412-30)</em> : 135 € et 4 points.</p>
+        <div class="piege-attention">Ne vous engagez jamais sur un passage à niveau si vous n'êtes pas certain de pouvoir le dégager. S'arrêter ou dépasser sur un passage à niveau est interdit. Un train a besoin de plusieurs centaines de mètres pour s'immobiliser.</div>
+    </div>
+
+    <div class="piege-item">
+        <h4><span class="piege-num">21</span> Les feux à flèche</h4>
+        <p>Une <strong>flèche verte</strong> autorise le mouvement dans la direction indiquée — et uniquement celle-ci. Elle ne vous rend pas prioritaire : vous devez céder le passage aux piétons qui traversent et aux usagers régulièrement engagés.</p>
+        <p>Une <strong>flèche jaune clignotante</strong> autorise également le mouvement, mais sous réserve de céder le passage et avec une prudence renforcée.</p>
+    </div>
+
+    <div class="piege-item">
+        <h4><span class="piege-num">22</span> La signalisation temporaire prime sur la signalisation permanente</h4>
+        <p>Un panneau de chantier jaune l'emporte sur le panneau blanc habituel, et un marquage jaune temporaire l'emporte sur le marquage blanc.</p>
+        <div class="piege-reflexe">L'ordre de priorité à mémoriser : <strong>agent de circulation → signalisation temporaire → feux → panneaux → marquage au sol → règles générales</strong>.</div>
+    </div>
+
+    <!-- ─────────── CATÉGORIE 5 ─────────── -->
+    <h3>🛣️ Placement et dépassement</h3>
+
+    <div class="piege-item">
+        <h4><span class="piege-num">23</span> Sur autoroute, la voie du milieu n'est pas une voie de croisière ⭐</h4>
+        <p>La règle est de circuler sur la voie la plus à droite et de s'y rabattre dès que le dépassement est terminé et que les conditions le permettent. Rester installé sur la voie centrale « par confort » est une faute.</p>
+    </div>
+
+    <div class="piege-item">
+        <h4><span class="piege-num">24</span> Rouler plus vite dans une file n'est pas un dépassement</h4>
+        <p>Sur une chaussée à plusieurs voies dans le même sens et en circulation dense, le fait que votre file avance plus vite que la file voisine ne constitue pas un dépassement au sens du Code. Vous n'avez donc ni à vous déporter, ni à annoncer quoi que ce soit.</p>
+        <div class="piege-attention">En revanche, changer de file pour progresser plus vite, ça, c'est bien un dépassement — avec tous les contrôles qu'il impose.</div>
+    </div>
+
+    <div class="piege-item">
+        <h4><span class="piege-num">25</span> Le clignotant n'autorise pas le changement de voie</h4>
+        <p>Il annonce votre intention, il ne crée aucun droit. La bonne séquence, dans l'ordre :</p>
+        <ol>
+            <li>Rétroviseur intérieur, puis rétroviseur extérieur</li>
+            <li>Clignotant</li>
+            <li>Contrôle de l'angle mort par-dessus l'épaule</li>
+            <li>Déplacement progressif</li>
+        </ol>
+    </div>
+
+    <div class="piege-item">
+        <h4><span class="piege-num">26</span> Le véhicule dans l'angle mort ⭐</h4>
+        <p>Un rétroviseur « vide » ne veut pas dire une voie libre. Les questions mettant en scène une <strong>moto ou un cycliste peu visible</strong> sont parmi les plus fréquentes de l'examen.</p>
+        <div class="piege-reflexe">Pensez aussi aux <a href="/blog/angles-morts">angles morts des autres usagers</a> : ceux d'un poids lourd sont immenses. Si vous ne voyez pas les rétroviseurs du camion, son conducteur ne vous voit pas.</div>
+    </div>
+
+    <!-- ─────────── CATÉGORIE 6 ─────────── -->
+    <h3>🅿️ Arrêt, stationnement et équipements</h3>
+
+    <div class="piege-item">
+        <h4><span class="piege-num">27</span> Arrêt et stationnement : deux notions distinctes</h4>
+        <ul>
+            <li><strong>Arrêt</strong> : immobilisation momentanée, le temps de faire monter ou descendre quelqu'un, ou de charger. Le conducteur reste aux commandes ou à proximité immédiate.</li>
+            <li><strong>Stationnement</strong> : toute immobilisation en dehors de ces circonstances.</li>
+        </ul>
+        <div class="piege-reflexe">La règle qui résout la plupart des questions : <strong>là où l'arrêt est interdit, le stationnement l'est forcément aussi</strong>. L'inverse n'est pas vrai.</div>
+    </div>
+
+    <div class="piege-item">
+        <h4><span class="piege-num">28</span> Le téléphone tenu en main</h4>
+        <p>Interdit dès lors que le véhicule est en circulation : 135 € et 3 points. Être immobilisé à un feu rouge ou dans un embouteillage <strong>ne vous met pas à l'abri</strong> — le véhicule est toujours considéré comme en circulation.</p>
+        <div class="piege-attention">Les <strong>écouteurs, oreillettes et casques audio</strong> sont eux aussi interdits au volant : 135 € et 3 points. Seul le kit mains libres intégré au véhicule est autorisé.</div>
+    </div>
+
+    <div class="piege-item">
+        <h4><span class="piege-num">29</span> La ceinture, même pour 200 mètres</h4>
+        <p>Elle est obligatoire pour tous les occupants, à l'avant comme à l'arrière, quelle que soit la longueur du trajet : 135 € et 3 points. Les dispenses sont rares et relèvent d'un certificat médical ou de situations professionnelles précises.</p>
+        <div class="piege-reflexe">Non attachée, une personne à l'arrière devient un projectile pour ceux de devant en cas de choc.</div>
+    </div>
+
+    <!-- ─────────── PIÈGE 30 ─────────── -->
+    <h3>🧠 Et le piège n° 30 : celui du format de l'examen</h3>
+
+    <div class="piege-item piege-item-fort">
+        <h4><span class="piege-num">30</span> Une question peut avoir plusieurs bonnes réponses ⭐⭐⭐</h4>
+        <p>C'est probablement le piège le plus coûteux, parce qu'il ne relève pas de la règle mais de la manière de répondre.</p>
+        <p>Prenons une question de comportement face à un danger :</p>
+        <ul>
+            <li>A. Je ralentis</li>
+            <li>B. Je contrôle mon rétroviseur</li>
+            <li>C. Je me tiens prêt à freiner</li>
+        </ul>
+        <p>Les trois propositions peuvent être justes en même temps. Or une question n'est validée que si <strong>toutes</strong> les bonnes cases sont cochées et <strong>aucune</strong> mauvaise. Une case oubliée, et le point est perdu.</p>
+        <div class="piege-reflexe">La bonne question à se poser n'est pas « quelle est LA bonne réponse ? » mais <strong>« parmi ces propositions, lesquelles sont vraies dans cette situation précise ? »</strong></div>
+        <div class="piege-attention">Bonne nouvelle depuis la refonte de l'examen : le <strong>nombre de réponses attendues est désormais indiqué à l'écran</strong>. Prenez systématiquement le réflexe de le lire avant de valider.</div>
+    </div>
+
+    <div class="callout callout-info">
+        <div class="callout-icon">⏱️</div>
+        <div class="callout-body">
+            <strong>Le format de l'examen en trois chiffres</strong>
+            <ul>
+                <li><strong>40 questions</strong>, tirées d'une banque officielle et réparties sur 10 thèmes</li>
+                <li><strong>35 bonnes réponses minimum</strong> pour être admis, soit 5 fautes autorisées</li>
+                <li><strong>20 secondes par question</strong>, sans possibilité de revenir en arrière</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2>Les 10 pièges à réviser en priorité</h2>
+
+    <p>Si votre examen approche et que vous devez arbitrer, voici l'ordre dans lequel nous conseillons de reprendre ces pièges — du plus rentable au moins rentable en termes de points gagnés :</p>
+
+    <div class="steps">
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h3>Le piéton qui manifeste son intention</h3>
+                <p>Le piège le plus fréquent de tout l'examen, et celui qui a les conséquences les plus lourdes sur la route.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h3>Plusieurs réponses possibles</h3>
+                <p>Un réflexe de méthode, pas une connaissance. Il se corrige en une seule série d'entraînement.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h3>La priorité à droite</h3>
+                <p>La règle par défaut, celle qu'on oublie précisément parce qu'elle n'est signalée par aucun panneau.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h3>Giratoire ou rond-point</h3>
+                <p>Deux aménagements qui se ressemblent et dont les règles s'inversent.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">5</div>
+            <div class="step-content">
+                <h3>Le feu jaune fixe</h3>
+                <p>Arrêt, sauf impossibilité de s'arrêter en sécurité. Jamais « j'accélère ».</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">6</div>
+            <div class="step-content">
+                <h3>Le rouge clignotant du passage à niveau</h3>
+                <p>Arrêt absolu. C'est aussi le piège dont l'erreur peut être mortelle.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">7</div>
+            <div class="step-content">
+                <h3>L'angle mort</h3>
+                <p>Motos et cyclistes dissimulés : très présent dans les questions en vidéo.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">8</div>
+            <div class="step-content">
+                <h3>Le dépassement d'un cycliste</h3>
+                <p>Distances latérales et chevauchement de la ligne continue : deux points souvent mal sus.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">9</div>
+            <div class="step-content">
+                <h3>La visibilité inférieure à 50 mètres</h3>
+                <p>Une règle simple, un chiffre unique, des points faciles à sécuriser.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">10</div>
+            <div class="step-content">
+                <h3>Le rabattement sur autoroute</h3>
+                <p>Moins fréquent, mais systématiquement mal traité par les candidats.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="callout callout-success">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">
+            <strong>L'astuce qui change tout</strong>
+            <p>Les questions les plus vicieuses ne sont pas celles dont la règle est difficile. Ce sont celles où la règle est simple, mais où l'image contient un détail que vous n'avez pas vu : un panneau derrière un arbre, un cycliste dans l'angle mort, une ligne au sol, un piéton qui s'apprête à traverser, un marquage jaune de chantier.</p>
+            <p>Avec 20 secondes par question, vous n'avez pas le temps de tout regarder deux fois. Consacrez les <strong>5 premières secondes à balayer l'image en entier</strong> pendant que l'énoncé est lu, puis les 15 suivantes à raisonner. C'est ce découpage qui fait la différence entre 33 et 37 bonnes réponses.</p>
+        </div>
+    </div>
+
+    <hr class="section-divider">
+
     <h2>Conclusion : les pièges, une opportunité</h2>
 
     <p>Les questions pièges font partie intégrante de l'examen du Code de la route. Les éviter ne tient pas à la <strong>chance</strong>, mais à une <strong>méthode</strong> :</p>
@@ -695,6 +1094,14 @@
             "acceptedAnswer": {
                 "@type": "Answer",
                 "text": "Les mots à surveiller sont : toujours, jamais, obligatoirement, uniquement. Ces absolus sont souvent inexacts en conduite, car les règles comportent des exceptions et des cas particuliers."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Une question du code de la route peut-elle avoir plusieurs bonnes réponses ?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Oui. Une question peut appeler une ou plusieurs bonnes réponses, et elle n'est validée que si toutes les bonnes cases sont cochées et aucune mauvaise. Depuis la refonte de l'examen, le nombre de réponses attendues est indiqué à l'écran : il faut prendre le réflexe de le lire avant de valider."
             }
         }
     ]
