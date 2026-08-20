@@ -44,7 +44,8 @@
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Permis B boîte automatique", "url": "https://autoecolemarti.fr/formules/permis-b-automatique" },
         { "@type": "ListItem", "position": 2, "name": "Permis B boîte manuelle", "url": "https://autoecolemarti.fr/formules/permis-b-manuel" },
-        { "@type": "ListItem", "position": 3, "name": "Conduite accompagnée (AAC)", "url": "https://autoecolemarti.fr/formules/conduite-accompagnee" }
+        { "@type": "ListItem", "position": 3, "name": "Conduite accompagnée (AAC)", "url": "https://autoecolemarti.fr/formules/conduite-accompagnee" },
+        { "@type": "ListItem", "position": 4, "name": "Code de la route", "url": "https://autoecolemarti.fr/formules/code-de-la-route-bayonne" }
       ]
     }
     </script>
@@ -332,6 +333,31 @@ nav .nav-cta:hover { background: var(--rouge-sombre); transform: translateY(-1px
 .shortcut-card.is-navy .shortcut-cta { color: #1e2a4a; }
 .shortcut-card:hover .shortcut-cta-arrow { transform: translateX(4px); }
 .shortcut-cta-arrow { transition: transform 0.3s ease; }
+
+.shortcut-banner {
+    display: flex; align-items: center; gap: 1.5rem;
+    margin-top: 1.5rem; padding: 1.6rem 1.8rem;
+    background: var(--creme);
+    border: 1px solid var(--gris-clair);
+    border-radius: var(--radius);
+    text-decoration: none; color: var(--noir);
+    transition: var(--transition);
+}
+.shortcut-banner:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--ombre-forte);
+    border-color: transparent;
+}
+.shortcut-banner-icon { font-size: 2rem; line-height: 1; flex-shrink: 0; }
+.shortcut-banner-text { flex: 1; }
+.shortcut-banner-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 700;
+    line-height: 1.2; margin-bottom: 0.25rem;
+}
+.shortcut-banner-text p { font-size: 0.88rem; color: var(--gris); }
+.shortcut-banner .shortcut-cta { flex-shrink: 0; }
+.shortcut-banner:hover .shortcut-cta-arrow { transform: translateX(4px); }
 
 /* Progress */
 .quiz-progress {
@@ -697,6 +723,7 @@ footer { background: var(--noir); color: white; padding: 4rem 2rem 2rem; }
 
     .shortcuts-section { padding: 0 1.2rem 4rem; }
     .shortcuts-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+    .shortcut-banner { flex-direction: column; align-items: flex-start; gap: 1rem; text-align: left; }
     .shortcuts-divider { margin-bottom: 2rem; font-size: 0.75rem; }
     .shortcut-card { padding: 1.8rem 1.6rem; }
 
@@ -810,6 +837,16 @@ footer { background: var(--noir); color: white; padding: 4rem 2rem 2rem; }
                 <span class="shortcut-cta">Découvrir la formule <span class="shortcut-cta-arrow">→</span></span>
             </a>
         </div>
+
+        <!-- Code de la route (inclus dans les 3 formules) -->
+        <a href="https://autoecolemarti.fr/formules/code-de-la-route-bayonne" class="shortcut-banner fade-in">
+            <span class="shortcut-banner-icon" aria-hidden="true">📘</span>
+            <div class="shortcut-banner-text">
+                <div class="shortcut-banner-title">Et le code de la route&nbsp;?</div>
+                <p>Le pack code est inclus dans les trois formules&nbsp;: séances en salle rue Marengo, plateforme internet illimitée et livre de code.</p>
+            </div>
+            <span class="shortcut-cta">Voir la préparation au code <span class="shortcut-cta-arrow">→</span></span>
+        </a>
     </div>
 </section>
 
