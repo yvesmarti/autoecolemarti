@@ -9,9 +9,9 @@
     <title>Code de la route à Bayonne — préparation et examen | Auto-École Marti</title>
     <link rel="icon" type="image/png" href="../favicon.ico.png">
     <link rel="apple-touch-icon" href="/favicon.ico.png">
-    <meta name="description" content="Préparez le code de la route à Bayonne avec l'Auto-École Marti : séances en salle rue Marengo, plateforme internet illimitée, livre de code et suivi de vos résultats jusqu'à l'examen.">
+    <meta name="description" content="Préparez le code de la route à Bayonne avec l'Auto-École Marti : plateforme illimitée, livre de code officiel et suivi de vos résultats jusqu'à l'examen.">
     <meta property="og:title" content="Code de la route à Bayonne — Auto-École Marti">
-    <meta property="og:description" content="Séances de code en salle rue Marengo, plateforme internet illimitée et accompagnement des démarches : préparez l'épreuve théorique à Bayonne avec l'Auto-École Marti.">
+    <meta property="og:description" content="Plateforme internet illimitée, livre de code officiel et accompagnement des démarches : préparez l'épreuve théorique à Bayonne avec l'Auto-École Marti.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://autoecolemarti.fr/formules/code-de-la-route-bayonne">
     <meta property="og:site_name" content="Auto-École Marti">
@@ -23,7 +23,7 @@
     <meta property="og:image:alt" content="Auto-École Marti — votre permis en confiance à Bayonne, depuis 1962">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Code de la route à Bayonne — Auto-École Marti">
-    <meta name="twitter:description" content="Séances de code en salle rue Marengo, plateforme internet illimitée et accompagnement des démarches : préparez l'épreuve théorique à Bayonne avec l'Auto-École Marti.">
+    <meta name="twitter:description" content="Plateforme internet illimitée, livre de code officiel et accompagnement des démarches : préparez l'épreuve théorique à Bayonne avec l'Auto-École Marti.">
     <meta name="twitter:image" content="https://autoecolemarti.fr/og-image.png">
     <link rel="stylesheet" href="../css/fonts.css">
     <script type="application/ld+json">
@@ -31,7 +31,7 @@
       "@context": "https://schema.org",
       "@type": "Course",
       "name": "Préparation au code de la route (ETG) — Auto-École Marti",
-      "description": "Préparation à l'épreuve théorique générale du permis de conduire à Bayonne : séances de code en salle, accès illimité à la plateforme internet, livre de code et suivi individuel jusqu'à l'inscription à l'examen.",
+      "description": "Préparation à l'épreuve théorique générale du permis de conduire à Bayonne : accès illimité à la plateforme internet, livre de code officiel et suivi individuel jusqu'à l'inscription à l'examen.",
       "url": "https://autoecolemarti.fr/formules/code-de-la-route-bayonne",
       "provider": {
         "@type": "DrivingSchool",
@@ -104,8 +104,9 @@
 
         /* AVANTAGES */
         .avantages { background: var(--blanc); }
-        .avantages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+        .avantages-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; }
         .avantage-card {
+            flex: 1 1 280px; max-width: 340px;
             background: var(--creme); border-radius: var(--radius); padding: 1.8rem;
             transition: var(--transition);
         }
@@ -130,7 +131,7 @@
 
         /* EXAMEN — fiche repères */
         .examen { background: var(--blanc); }
-        .facts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.2rem; margin-bottom: 2rem; }
+        .facts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-bottom: 2rem; }
         .fact {
             background: white; border: 1px solid var(--gris-clair); border-radius: var(--radius-sm);
             padding: 1.4rem; text-align: center;
@@ -157,14 +158,44 @@
 
         /* LIENS FORMULES */
         .suite { background: var(--blanc); }
-        .suite-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+        .suite-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
         .suite-card {
-            display: block; background: var(--creme); border-radius: var(--radius); padding: 1.8rem;
+            display: flex; flex-direction: column; background: var(--creme); border-radius: var(--radius); padding: 1.8rem;
             text-decoration: none; color: inherit; transition: var(--transition);
         }
         .suite-card:hover { transform: translateY(-4px); box-shadow: var(--ombre-forte); }
         .suite-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--basque-rouge); }
-        .suite-card p { font-size: 0.88rem; color: var(--gris); }
+        .suite-card p { font-size: 0.88rem; color: var(--gris); margin-bottom: 1.4rem; }
+        .card-btn {
+            align-self: flex-start; margin-top: auto;
+            border: 2px solid var(--basque-rouge); color: var(--basque-rouge);
+            padding: 0.55rem 1.3rem; border-radius: 50px;
+            font-size: 0.85rem; font-weight: 700; transition: var(--transition);
+        }
+        .suite-card:hover .card-btn { background: var(--basque-rouge); color: white; }
+
+        /* BANDEAU CTA INTERMÉDIAIRE */
+        .cta-inline {
+            display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+            margin-top: 2.5rem; padding: 2rem 2.2rem;
+            background: var(--creme); border-left: 4px solid var(--basque-rouge);
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+        .cta-inline h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 0.4rem; }
+        .cta-inline p { font-size: 0.9rem; color: var(--gris); max-width: 460px; }
+        .cta-inline-btns { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+        .btn-primary {
+            background: var(--basque-rouge); color: white; padding: 0.9rem 1.8rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.92rem; text-decoration: none; white-space: nowrap;
+            box-shadow: 0 4px 20px rgba(214,48,49,0.35); transition: var(--transition);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(214,48,49,0.45); }
+        .btn-ghost {
+            border: 2px solid var(--noir); color: var(--noir); padding: 0.9rem 1.8rem; border-radius: 50px;
+            font-weight: 600; font-size: 0.92rem; text-decoration: none; white-space: nowrap;
+            transition: var(--transition);
+        }
+        .btn-ghost:hover { background: var(--noir); color: white; transform: translateY(-2px); }
 
         /* FAQ */
         .faq-code { background: var(--creme); }
@@ -190,7 +221,18 @@
         .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: white; }
 
         /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .suite-grid { grid-template-columns: repeat(2, 1fr); }
+        }
         @media (max-width: 768px) {
+            .facts-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+            .fact { padding: 1.2rem 0.7rem; }
+            .fact .fact-value { font-size: 1.55rem; white-space: nowrap; }
+            .suite-grid { grid-template-columns: 1fr; }
+            .avantage-card { max-width: none; }
+            .cta-inline { flex-direction: column; align-items: flex-start; padding: 1.8rem 1.6rem; }
+            .cta-inline-btns { width: 100%; }
+            .cta-inline-btns a { flex: 1 1 auto; text-align: center; }
             nav .nav-inner { flex-direction: column; align-items: stretch; gap: 0; }
             nav .logo { padding-bottom: 0.35rem; }
             nav .nav-links {
@@ -226,7 +268,6 @@
                     <li role="none"><a role="menuitem" href="/formules/permis-b-automatique">Permis B — Boîte automatique</a></li>
                     <li role="none"><a role="menuitem" href="/formules/conduite-accompagnee">Conduite accompagnée (AAC)</a></li>
                     <li role="none"><a role="menuitem" href="/formules/code-de-la-route-bayonne">Code de la route</a></li>
-                    <li role="none"><a role="menuitem" href="/formules/code-de-la-route-bayonne">Code de la route</a></li>
                 </ul>
             </li>
             <li><a href="/faq">FAQ</a></li>
@@ -249,9 +290,9 @@
     <h1>Code de la route<br><em>à Bayonne</em></h1>
     <p class="subtitle">Le code est la première étape du permis de conduire. Rue Marengo, au cœur du Petit Bayonne, nous vous accompagnons de l'ouverture du dossier jusqu'au jour de l'examen.</p>
     <div class="hero-pills">
-        <span class="hero-pill">Séances en salle</span>
         <span class="hero-pill">Plateforme internet illimitée</span>
-        <span class="hero-pill">Livre de code</span>
+        <span class="hero-pill">Livre de code officiel</span>
+        <span class="hero-pill">Suivi de vos résultats</span>
         <span class="hero-pill">Inclus dans toutes nos formules</span>
     </div>
 </div>
@@ -261,13 +302,8 @@
     <div class="container">
         <div class="section-tag">Notre préparation au code</div>
         <h2>Se préparer <em>sérieusement</em>,<br>sans y aller seul</h2>
-        <p class="section-subtitle">Le pack code est inclus dans nos trois formules&nbsp;: <a href="/formules/permis-b-manuel">permis B boîte manuelle</a>, <a href="/formules/permis-b-automatique">permis B boîte automatique</a> et <a href="/formules/conduite-accompagnee">conduite accompagnée</a>. Il associe le travail en salle, l'entraînement à la maison et un suivi par l'équipe.</p>
+        <p class="section-subtitle">Le pack code est inclus dans nos trois formules&nbsp;: <a href="/formules/permis-b-manuel">permis B boîte manuelle</a>, <a href="/formules/permis-b-automatique">permis B boîte automatique</a> et <a href="/formules/conduite-accompagnee">conduite accompagnée</a>. Il associe l'entraînement en ligne, le livre officiel et un suivi par l'équipe au bureau.</p>
         <div class="avantages-grid">
-            <div class="avantage-card">
-                <div class="icon">🏫</div>
-                <h3>Séances de code en salle</h3>
-                <p>Les séances ont lieu du mardi au vendredi à 18h00 et le samedi à 14h00, au 13 rue Marengo. Chaque séance dure environ 50 minutes et se déroule avec le corrigé commenté.</p>
-            </div>
             <div class="avantage-card">
                 <div class="icon">💻</div>
                 <h3>Plateforme internet illimitée</h3>
@@ -308,7 +344,7 @@
                 <div class="step-num">1</div>
                 <div class="step-body">
                     <h3>Inscription et ouverture du dossier</h3>
-                    <p>Vous passez au bureau avec vos pièces justificatives. Le dossier est enregistré et l'accès à la salle de code est ouvert dès que le dossier est complet et l'acompte versé.</p>
+                    <p>Vous passez au bureau avec vos pièces justificatives. Le dossier est enregistré et vos accès à la plateforme de code sont ouverts dès que le dossier est complet et l'acompte versé.</p>
                 </div>
             </div>
             <div class="step">
@@ -321,8 +357,8 @@
             <div class="step">
                 <div class="step-num">3</div>
                 <div class="step-body">
-                    <h3>Préparation en salle et à la maison</h3>
-                    <p>Vous alternez les séances collectives au bureau et l'entraînement en ligne. L'objectif n'est pas d'enchaîner les séries, mais de comprendre pourquoi une réponse est fausse.</p>
+                    <h3>Préparation à votre rythme</h3>
+                    <p>Vous travaillez les séries et les examens blancs sur la plateforme, le livre officiel sous la main pour reprendre une règle au calme. L'objectif n'est pas d'enchaîner les séries, mais de comprendre pourquoi une réponse est fausse.</p>
                 </div>
             </div>
             <div class="step">
@@ -379,7 +415,7 @@
         <div class="prose">
             <ul class="cout-list">
                 <li><strong>Les frais de dossier</strong> Ils couvrent l'inscription administrative, la demande du numéro NEPH et le suivi de votre dossier.</li>
-                <li><strong>Le pack code</strong> Séances en salle, accès illimité à la plateforme internet et livre de code. Il est inclus dans nos trois formules de permis.</li>
+                <li><strong>Le pack code</strong> Accès illimité à la plateforme internet et livre de code officiel. Il est inclus dans nos trois formules de permis.</li>
                 <li><strong>Les frais d'examen</strong> Fixés par l'État, réglés à l'opérateur agréé, dus à chaque passage. Ils ne sont pas une prestation de l'auto-école.</li>
             </ul>
             <p>Le détail chiffré de chaque poste figure sur <a href="/formules/">la page de nos formules et tarifs</a>, seule source à jour des prix pratiqués. Pour comparer l'ensemble du budget permis dans le secteur, notre article <a href="/blog/combien-coute-permis-conduire-bayonne">combien coûte le permis de conduire à Bayonne</a> détaille poste par poste ce qui se facture et pourquoi.</p>
@@ -395,17 +431,30 @@
         <p class="section-subtitle">Il n'y a pas de durée unique. Tout dépend de votre niveau de départ, de votre régularité et de vos résultats aux examens blancs. Avec un travail régulier de 15 à 20 minutes par jour, beaucoup de candidats atteignent un bon niveau en quelques semaines. L'important n'est pas d'aller vite, mais d'être prêt le jour J&nbsp;: nous vous conseillons de ne réserver l'examen que lorsque vos scores sont stables sur plusieurs séries d'affilée.</p>
         <div class="suite-grid">
             <a class="suite-card" href="/blog/reussir-code-route-premier-coup">
-                <h3>Réussir son code du premier coup →</h3>
+                <h3>Réussir son code du premier coup</h3>
                 <p>Notre méthode de révision, les erreurs classiques et la façon de gérer les questions le jour de l'épreuve.</p>
+                <span class="card-btn">Lire l'article →</span>
             </a>
             <a class="suite-card" href="/blog/questions-pieges-code-route">
-                <h3>Les questions pièges du code →</h3>
+                <h3>Les questions pièges du code</h3>
                 <p>Les formulations qui font perdre des points à des candidats qui connaissent pourtant la règle.</p>
+                <span class="card-btn">Lire l'article →</span>
             </a>
             <a class="suite-card" href="/quizz/quizz_panneaux">
-                <h3>Quiz des panneaux →</h3>
+                <h3>Quiz des panneaux</h3>
                 <p>Plus de 200 panneaux officiels à reconnaître, en accès libre, pour tester vos réflexes.</p>
+                <span class="card-btn">Lancer le quiz →</span>
             </a>
+        </div>
+        <div class="cta-inline">
+            <div class="cta-inline-text">
+                <h3>Envie de vous lancer&nbsp;?</h3>
+                <p>Le pack code est inclus dans nos trois formules. Passez au bureau du 13 rue Marengo ou appelez-nous&nbsp;: nous ouvrons votre dossier et vos accès dans la foulée.</p>
+            </div>
+            <div class="cta-inline-btns">
+                <a href="/formules/" class="btn-primary">Voir nos formules &amp; tarifs</a>
+                <a href="tel:0559591260" class="btn-ghost">📞 05 59 59 12 60</a>
+            </div>
         </div>
     </div>
 </section>
@@ -418,16 +467,19 @@
         <p class="section-subtitle">Le code obtenu, la formation pratique commence — ou se poursuit, si vous avez déjà démarré les heures de conduite. Trois parcours sont possibles à l'Auto-École Marti.</p>
         <div class="suite-grid">
             <a class="suite-card" href="/formules/permis-b-manuel">
-                <h3>Permis B — boîte manuelle →</h3>
+                <h3>Permis B — boîte manuelle</h3>
                 <p>La formation la plus polyvalente&nbsp;: elle permet de conduire tous les véhicules, manuels comme automatiques.</p>
+                <span class="card-btn">Voir la formule →</span>
             </a>
             <a class="suite-card" href="/formules/permis-b-automatique">
-                <h3>Permis B — boîte automatique →</h3>
+                <h3>Permis B — boîte automatique</h3>
                 <p>Un apprentissage plus court, centré sur la route plutôt que sur le passage des vitesses.</p>
+                <span class="card-btn">Voir la formule →</span>
             </a>
             <a class="suite-card" href="/formules/conduite-accompagnee">
-                <h3>Conduite accompagnée (AAC) →</h3>
+                <h3>Conduite accompagnée (AAC)</h3>
                 <p>Dès 15 ans&nbsp;: le code puis 20 heures de conduite, avant de rouler avec un accompagnateur.</p>
+                <span class="card-btn">Voir la formule →</span>
             </a>
         </div>
     </div>
@@ -451,10 +503,6 @@
         <details class="faq-item">
             <summary>Combien de temps le code est-il valable&nbsp;?</summary>
             <div class="faq-answer">Le code reste valable 5 ans pour se présenter aux épreuves pratiques du permis de conduire. Passé ce délai, il faut le repasser.</div>
-        </details>
-        <details class="faq-item">
-            <summary>Quand ont lieu les séances de code&nbsp;?</summary>
-            <div class="faq-answer">Les séances se tiennent au 13 rue Marengo du mardi au vendredi à 18h00 et le samedi à 14h00. Une séance dure environ 50 minutes. L'accès à la salle est ouvert dès que votre dossier d'inscription est complet et l'acompte versé&nbsp;; aucun élève n'est admis après le début d'une séance.</div>
         </details>
         <details class="faq-item">
             <summary>Peut-on passer le code sans avoir commencé la conduite&nbsp;?</summary>
@@ -566,14 +614,6 @@
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Le code reste valable 5 ans pour se présenter aux épreuves pratiques du permis de conduire. Passé ce délai, il faut le repasser."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Quand ont lieu les séances de code ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Les séances se tiennent au 13 rue Marengo du mardi au vendredi à 18h00 et le samedi à 14h00. Une séance dure environ 50 minutes. L'accès à la salle est ouvert dès que votre dossier d'inscription est complet et l'acompte versé ; aucun élève n'est admis après le début d'une séance."
       }
     },
     {
