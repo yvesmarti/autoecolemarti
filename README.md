@@ -27,7 +27,7 @@ Fondée en **1962** par M. Marti, l'auto-école Marti est implantée au cœur de
 | ⚙️ **Permis B — Boîte Manuelle** | **1 261 €** | 20h de conduite min., polyvalence totale (toutes voitures) | [Voir la formule →](https://autoecolemarti.fr/formules/permis-b-manuel) |
 | 👦 **Conduite Accompagnée (AAC)** | **1 629 €** | Dès 15 ans, 20h auto-école + conduite supervisée en famille | [Voir la formule →](https://autoecolemarti.fr/formules/conduite-accompagnee) |
 
-Tous les tarifs sont **TTC**, fournitures comprises (code illimité en salle et en ligne, accompagnement aux examens).
+Tous les tarifs sont **TTC**, fournitures comprises (code illimité en ligne, accompagnement aux examens).
 
 ---
 
