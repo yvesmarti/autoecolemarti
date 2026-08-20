@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="application-name" content="Auto-École Marti">
+    <link rel="preload" href="../fonts/dm-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../fonts/playfair-display-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les 100 questions du permis B : le jour de l'examen — Auto-École Marti</title>
+    <link rel="icon" type="image/png" href="../favicon.ico.png">
+    <link rel="apple-touch-icon" href="/favicon.ico.png">
+    <meta name="description" content="Les 100 questions de l'épreuve pratique du permis B, avec leurs réponses officielles : vérifications intérieures et extérieures, sécurité routière et premiers secours. Déroulé du jour J et livret PDF à télécharger.">
+    <meta name="keywords" content="100 questions permis, vérifications permis B, questions permis de conduire, premiers secours permis, jour de l'examen permis, auto-école Bayonne">
+    <meta property="og:title" content="Les 100 questions du permis B : tout ce qu'il faut savoir le jour de l'examen">
+    <meta property="og:description" content="Les 100 séries officielles avec leurs réponses, classées par thème, plus le déroulé de l'épreuve pratique. Livret PDF téléchargeable.">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-08-20">
+    <meta property="article:modified_time" content="2026-08-20">
+    <meta property="og:site_name" content="Auto-École Marti">
+    <link rel="canonical" href="https://autoecolemarti.fr/blog/100-questions-permis-b-jour-examen">
+    <meta property="og:url" content="https://autoecolemarti.fr/blog/100-questions-permis-b-jour-examen">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:image" content="https://autoecolemarti.fr/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Auto-École Marti — votre permis en confiance à Bayonne, depuis 1962">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Les 100 questions du permis B : tout ce qu'il faut savoir le jour de l'examen">
+    <meta name="twitter:description" content="Les 100 séries officielles avec leurs réponses, classées par thème, plus le déroulé de l'épreuve pratique. Livret PDF téléchargeable.">
+    <meta name="twitter:image" content="https://autoecolemarti.fr/og-image.png">
+    <link rel="stylesheet" href="../css/fonts.css">
+    <link rel="stylesheet" href="../css/blog-article.css">
+    <style>
+        :root {
+            --article-accent: var(--basque-rouge);
+            --article-accent-bg: rgba(214,48,49,0.06);
+            --article-accent-pill: rgba(214,48,49,0.12);
+            --article-hero-gradient: linear-gradient(135deg, #fff5f5 0%, #fce4e4 50%, #f5c6c6 100%);
+            --article-hero-glow: rgba(214,48,49,0.12);
+            --cta-gradient: linear-gradient(135deg, var(--basque-rouge) 0%, var(--rouge-sombre) 100%);
+            --cta-btn-color: var(--basque-rouge);
+            --anthracite: #2d3436;
+        }
+
+        /* ── Bandeau de téléchargement PDF ── */
+        .pdf-banner {
+            display: flex; align-items: center; gap: 1.4rem; flex-wrap: wrap;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #fff5f5 0%, #fce4e4 60%);
+            border: 1.5px solid rgba(214,48,49,0.2);
+            border-radius: var(--radius);
+            padding: 1.6rem 1.9rem; margin: 2.5rem 0;
+        }
+        .pdf-banner-text p { margin: 0 0 0.2rem; font-weight: 700; color: var(--noir); }
+        .pdf-banner-text small { font-size: 0.85rem; color: var(--gris); }
+        .pdf-btn {
+            display: inline-flex; align-items: center; gap: 0.55rem;
+            padding: 0.9rem 1.7rem; background: var(--basque-rouge); color: #fff !important;
+            border-radius: 50px; font-weight: 700; font-size: 0.9rem; text-decoration: none;
+            box-shadow: 0 4px 20px rgba(214,48,49,0.3); transition: var(--transition);
+            white-space: nowrap; flex-shrink: 0; border: none; cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+        }
+        .pdf-btn:hover { background: var(--rouge-sombre); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(214,48,49,0.4); }
+
+        /* ── Barre d'outils des fiches ── */
+        .qa-toolbar {
+            position: sticky; top: 72px; z-index: 20;
+            display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap;
+            background: rgba(255,255,255,0.94); backdrop-filter: blur(10px);
+            border: 1px solid var(--gris-clair); border-radius: 50px;
+            padding: 0.6rem 0.9rem; margin: 2rem 0 1.6rem;
+            box-shadow: var(--ombre);
+        }
+        .qa-toolbar label { font-size: 0.82rem; font-weight: 600; color: var(--gris); }
+        .qa-toolbar input {
+            width: 92px; padding: 0.5rem 0.8rem; font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem; border: 1.5px solid var(--gris-clair); border-radius: 50px;
+            color: var(--noir); background: #fff;
+        }
+        .qa-toolbar input:focus { outline: none; border-color: var(--basque-rouge); }
+        .qa-mini-btn {
+            border: 1.5px solid var(--gris-clair); background: #fff; color: var(--noir);
+            font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 600;
+            padding: 0.5rem 1.1rem; border-radius: 50px; cursor: pointer; transition: var(--transition);
+        }
+        .qa-mini-btn:hover { border-color: var(--basque-rouge); color: var(--basque-rouge); }
+        .qa-serie-msg { font-size: 0.82rem; color: var(--basque-rouge); font-weight: 600; }
+
+        /* ── Fiche question/réponse dépliable ── */
+        .qa {
+            background: #fff; border: 1px solid var(--gris-clair);
+            border-left: 3px solid var(--basque-rouge);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            margin-bottom: 0.7rem; overflow: hidden; transition: var(--transition);
+        }
+        .qa.qa-ps { border-left-color: var(--anthracite); }
+        .qa:hover { box-shadow: var(--ombre); }
+        .qa[open] { background: var(--article-accent-bg); }
+        .qa.qa-ps[open] { background: rgba(45,52,54,0.05); }
+        .qa summary {
+            cursor: pointer; list-style: none; padding: 0.95rem 1.2rem;
+            display: flex; align-items: flex-start; gap: 0.8rem;
+        }
+        .qa summary::-webkit-details-marker { display: none; }
+        .qa-nums { display: flex; flex-wrap: wrap; gap: 3px; flex-shrink: 0; padding-top: 2px; }
+        .qa-nums b {
+            background: var(--basque-rouge); color: #fff; font-size: 0.7rem; font-weight: 700;
+            padding: 2px 6px; border-radius: 4px; letter-spacing: 0.02em;
+        }
+        .qa-ps .qa-nums b { background: var(--anthracite); }
+        .qa-q {
+            flex: 1; display: flex; align-items: flex-start; gap: 0.6rem;
+            font-weight: 600; font-size: 0.95rem; line-height: 1.45; color: var(--noir);
+        }
+        .qa-picto {
+            flex-shrink: 0; width: 30px; height: 30px; border-radius: 6px; color: #fff;
+            display: inline-flex; align-items: center; justify-content: center;
+        }
+        .qa-picto svg { width: 19px; height: 19px; }
+        .qa-chev {
+            flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+            background: var(--article-accent-pill); position: relative; margin-top: 2px;
+            transition: var(--transition);
+        }
+        .qa-ps .qa-chev { background: rgba(45,52,54,0.12); }
+        .qa-chev::before, .qa-chev::after {
+            content: ''; position: absolute; background: var(--basque-rouge);
+            top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 2px;
+        }
+        .qa-ps .qa-chev::before, .qa-ps .qa-chev::after { background: var(--anthracite); }
+        .qa-chev::before { width: 10px; height: 2px; }
+        .qa-chev::after { width: 2px; height: 10px; transition: var(--transition); }
+        .qa[open] .qa-chev::after { height: 2px; }
+        .qa-body { padding: 0 1.2rem 1.1rem 1.2rem; }
+        .qa-rep {
+            margin: 0; background: #faf3f3; border-radius: var(--radius-sm);
+            padding: 0.75rem 0.95rem; font-size: 0.93rem; color: var(--noir); line-height: 1.55;
+        }
+        .qa-ps .qa-rep { background: #f2f3f4; }
+        .qa-rep span {
+            display: block; font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase;
+            font-weight: 700; color: var(--basque-rouge); margin-bottom: 0.25rem;
+        }
+        .qa-ps .qa-rep span { color: var(--anthracite); }
+        .qa-rep.qa-geste { background: rgba(212,168,83,0.14); }
+        .qa-rep.qa-geste span { color: #a37b1e; }
+        .qa-sr { margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px dotted #d9d5cf; }
+        .qa-sr-label {
+            font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase;
+            font-weight: 700; color: var(--basque-rouge);
+        }
+        .qa-sr-q { margin: 0.35rem 0 0.6rem; font-weight: 600; font-size: 0.93rem; color: var(--noir); }
+        .qa.qa-highlight { box-shadow: 0 0 0 3px rgba(214,48,49,0.35); }
+
+        .article-wrap h3 {
+            margin-top: 2.2rem; margin-bottom: 0.9rem;
+            font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700;
+            color: var(--basque-rouge); text-transform: uppercase; letter-spacing: 0.06em;
+        }
+        .section-ps h3 { color: var(--anthracite); }
+
+        .fiche-count { font-size: 0.86rem; color: var(--gris); margin-bottom: 0.4rem; }
+
+        @media (max-width: 768px) {
+            .qa summary { padding: 0.8rem 0.9rem; gap: 0.6rem; }
+            .qa-q { font-size: 0.9rem; }
+            .qa-body { padding: 0 0.9rem 0.9rem; }
+            .qa-toolbar { top: 64px; padding: 0.55rem 0.7rem; gap: 0.5rem; }
+            .pdf-banner { flex-direction: column; align-items: flex-start; padding: 1.3rem; }
+        }
+    </style>
+    <script defer src="/scripts/load-consent.js"></script>
+    <!-- JSON-LD BlogPosting Schema -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Les 100 questions du permis B : tout ce qu'il faut savoir le jour de l'examen",
+    "datePublished": "2026-08-20",
+    "dateModified": "2026-08-20",
+    "image": "https://autoecolemarti.fr/og-image.png",
+    "author": {
+        "@type": "Organization",
+        "@id": "https://autoecolemarti.fr/#business",
+        "name": "Auto-École Marti"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "@id": "https://autoecolemarti.fr/#business",
+        "name": "Auto-École Marti",
+        "url": "https://autoecolemarti.fr",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://autoecolemarti.fr/favicon.ico.png"
+        }
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://autoecolemarti.fr/blog/100-questions-permis-b-jour-examen"
+    },
+    "url": "https://autoecolemarti.fr/blog/100-questions-permis-b-jour-examen",
+    "description": "Les 100 questions de l'épreuve pratique du permis B avec leurs réponses officielles, le déroulé du jour de l'examen et un livret PDF à télécharger."
+}
+    </script>
+    <link rel="stylesheet" href="/css/nav-mobile.css">
+    <script src="/scripts/nav.js" defer></script>
+    <script src="/scripts/article.js" defer></script>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+<!-- ══════════════════════════════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════════════════════════════ -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="/" class="logo">AUTO-ÉCOLE MARTI<span>.</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li class="nav-dropdown">
+                <a href="/#formations" aria-haspopup="true" aria-expanded="false">Formations <span class="nav-caret" aria-hidden="true">▾</span></a>
+                <ul class="nav-dropdown-menu" role="menu">
+                    <li role="none"><a role="menuitem" href="../formules/">Toutes nos formules &amp; tarifs</a></li>
+                    <li role="none"><a role="menuitem" href="/formules/permis-b-manuel">Permis B — Boîte manuelle</a></li>
+                    <li role="none"><a role="menuitem" href="/formules/permis-b-automatique">Permis B — Boîte automatique</a></li>
+                    <li role="none"><a role="menuitem" href="/formules/conduite-accompagnee">Conduite accompagnée (AAC)</a></li>
+                </ul>
+            </li>
+            <li><a href="/blog/" class="active">Blog</a></li>
+            <li><a href="/#contact">Contact</a></li>
+            <li><a data-email="&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#46;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" class="nav-cta">S'inscrire</a></li>
+        </ul>
+    </div>
+</nav>
+
+<main id="main-content">
+<!-- ══════════════════════════════════════════════════════════════
+     ARTICLE HERO
+══════════════════════════════════════════════════════════════ -->
+<div class="article-hero">
+    <div class="article-hero-inner">
+        <nav class="article-breadcrumb" aria-label="Fil d'ariane">
+            <a href="/">Accueil</a>
+            <span>›</span>
+            <a href="/blog/">Blog</a>
+            <span>›</span>
+            <span>Code de la route</span>
+        </nav>
+        <div class="article-hero-meta">
+            <span class="article-cat-pill">🚦 Code de la route</span>
+            <span class="article-reading-pill">⏱ 12 min de lecture</span>
+        </div>
+        <h1>Les <em>100 questions</em> du permis B<br>tout savoir pour le jour de l'examen</h1>
+        <p class="article-date-pub">Publié le <time datetime="2026-08-20">20 août 2026</time> · Par l'équipe Auto-École Marti</p>
+    </div>
+</div>
+
+<div class="back-to-blog">
+    <a href="/blog/" class="back-link">← Retour au blog</a>
+</div>
+
+<article class="article-wrap">
+
+    <div class="article-intro">
+        <p>À la fin de l'épreuve pratique, l'inspecteur pose trois questions : une <strong>vérification du véhicule</strong>, une question de <strong>sécurité routière</strong> et une question de <strong>premiers secours</strong>. Elles valent jusqu'à 3 points sur les 31 de l'examen.</p>
+        <p>Bonne nouvelle : ces questions ne sont pas éliminatoires, et surtout, <strong>la liste complète est connue à l'avance</strong>. Ce sont les seuls points de l'examen que vous pouvez sécuriser à 100 % avant même de monter dans la voiture.</p>
+        <p>Vous trouverez ici les 100 séries officielles avec leurs réponses, ainsi que tout ce qu'il faut prévoir le jour J. Cliquez sur une question pour afficher la réponse.</p>
+    </div>
+
+    <div class="pdf-banner">
+        <div class="pdf-banner-text">
+            <p>📕 Le livret complet en PDF</p>
+            <small>Les 100 séries, leurs réponses et la table de correspondance — 19 pages à imprimer ou à garder sur votre téléphone.</small>
+        </div>
+        <a href="/plaquettes/livret-100-questions-permis-b.pdf" class="pdf-btn" download>⬇ Télécharger le livret</a>
+    </div>
+
+    <h2>Le déroulé de l'épreuve pratique</h2>
+
+    <p>L'examen dure <strong>32 minutes</strong>, dont au moins 25 minutes de conduite effective. Le reste, c'est l'accueil, l'installation au poste de conduite, les manœuvres et les fameuses questions orales.</p>
+
+    <p>Vous êtes noté sur <strong>31 points</strong> et il en faut <strong>20 au minimum</strong>, sans commettre de faute éliminatoire. Sur ces 31 points, 3 se jouent sur les questions orales : autant les avoir en poche.</p>
+
+    <div class="callout callout-warning">
+        <div class="callout-icon">🪪</div>
+        <div class="callout-body">
+            <strong>À ne pas oublier le jour J</strong>
+            <ul>
+                <li>Votre <strong>pièce d'identité en cours de validité</strong> (carte d'identité ou passeport) — sans elle, l'examen ne peut pas avoir lieu</li>
+                <li>Votre <strong>convocation</strong> et les documents qui y sont mentionnés</li>
+                <li>Vos <strong>lunettes ou lentilles</strong> si votre dossier le mentionne</li>
+                <li>Arrivez <strong>15 minutes en avance</strong> : le stress de la dernière minute coûte plus cher que n'importe quelle question</li>
+            </ul>
+        </div>
+    </div>
+
+    <p>Le résultat n'est jamais annoncé sur place : il est consultable en ligne sous 48 heures environ. En cas de réussite, le certificat d'examen (CEPC) vous permet de conduire en attendant le titre définitif.</p>
+
+    <h2>Comment tombent vos trois questions</h2>
+
+    <p>Rien n'est laissé au hasard, et rien n'est vraiment aléatoire non plus : tout dépend du compteur kilométrique de la voiture.</p>
+
+    <div class="steps">
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h4>L'inspecteur relève les deux derniers chiffres du compteur</h4>
+                <p>Si le compteur affiche 45 6<strong>78</strong> km, ce sera la série n° 78. Ce numéro détermine vos questions. Chaque numéro de 01 à 100 correspond à des fiches précises, toutes listées plus bas.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h4>Numéro impair → vérification intérieure. Numéro pair → vérification extérieure</h4>
+                <p>Vous devez montrer ou manipuler un élément du véhicule : c'est une réponse gestuelle autant que verbale. Si vous ne trouvez pas tout de suite, dites à voix haute ce que vous cherchez plutôt que de rester silencieux.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h4>Puis une question de sécurité routière liée à cette vérification</h4>
+                <p>Elle porte presque toujours sur le risque encouru ou sur l'utilité du dispositif. Les deux s'apprennent ensemble : dans les fiches ci-dessous, elles sont toujours présentées côte à côte.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h4>Enfin une question de premiers secours</h4>
+                <p>Celle-ci est indépendante du véhicule. Elle porte sur les gestes qui sauvent, l'alerte des secours et le signal d'alerte aux populations.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="callout callout-info">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">
+            <strong>Les cinq réflexes qui font gagner le point</strong>
+            <ul>
+                <li><strong>Répondez à voix haute et en phrase complète.</strong> Un hochement de tête ou un mot isolé passe souvent pour une réponse incomplète.</li>
+                <li><strong>Pour les vérifications extérieures, la formule attendue est :</strong> « il est propre, en bon état et il fonctionne ». Si quelque chose ne va pas, dites-le.</li>
+                <li><strong>N'inventez pas.</strong> Une réponse fausse et une absence de réponse coûtent la même chose : rien. Mais une tentative logique est souvent valorisée.</li>
+                <li><strong>Entraînez-vous sur le véhicule</strong>, pas seulement sur le papier. Ouvrez le capot, repérez les bocaux, manipulez les commandes.</li>
+                <li><strong>Quand la réponse comporte plusieurs éléments</strong> (« citez deux… »), donnez bien le nombre demandé.</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2>Les 100 questions et leurs réponses</h2>
+
+    <p>Les fiches sont classées par thème. Les pastilles rouges ou grises indiquent les numéros de série concernés. <strong>Cliquez sur une question pour afficher la réponse attendue.</strong></p>
+
+    <div class="qa-toolbar">
+        <label for="serieInput">Ma série n°</label>
+        <input type="number" id="serieInput" min="1" max="100" placeholder="1–100" inputmode="numeric">
+        <button type="button" class="qa-mini-btn" id="serieBtn">Trouver mes questions</button>
+        <button type="button" class="qa-mini-btn" id="toggleAll">Tout afficher</button>
+        <span class="qa-serie-msg" id="serieMsg"></span>
+    </div>
+
+    <h3 style="color:var(--basque-rouge)">Vérifications intérieures — séries impaires</h3>
+    <p class="fiche-count">Tout se fait depuis le poste de conduite : voyants, commandes, documents de bord.</p>
+    <div class="section-int">
+            <h3>Les voyants du tableau de bord</h3>
+            <details class="qa" data-nums="15 75" id="q1">
+            <summary><span class="qa-nums"><b>15</b><b>75</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#d63031" aria-hidden="true"><svg fill="currentColor" height="17" viewBox="0 0 24 24" width="17"><path d="M2.6 13.2h7.4l2.6-2.6h5.2v2.2l-1.8.9v4.9H5.6a3 3 0 0 1-3-3z"></path><path d="M18 4.8s-2 2.4-2 3.4a2 2 0 0 0 4 0c0-1-2-3.4-2-3.4z"></path></svg></span><span>Montrez le voyant d'alerte signalant une pression insuffisante d'huile dans le moteur.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Voyant rouge en forme de burette d'huile.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quelles sont les conditions à respecter pour contrôler le niveau d'huile ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Moteur froid et sur un terrain plat.</p></div>
+            </div></details>
+            <details class="qa" data-nums="23" id="q2">
+            <summary><span class="qa-nums"><b>23</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#d63031" aria-hidden="true"><svg fill="currentColor" height="17" viewBox="0 0 24 24" width="17"><rect height="9.8" rx="1" width="19" x="2.5" y="7.8"></rect><rect height="2.5" width="3.2" x="6" y="5.3"></rect><rect height="2.5" width="3.2" x="14.8" y="5.3"></rect><rect fill="#d63031" height="1.4" width="4.2" x="5.6" y="12"></rect><rect fill="#d63031" height="4.2" width="1.4" x="6.9" y="10.6"></rect><rect fill="#d63031" height="1.4" width="4.2" x="14.2" y="12"></rect></svg></span><span>Montrez le voyant d'alerte signalant un défaut de batterie.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Voyant rouge représentant une batterie.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Qu'est-ce qui peut provoquer la décharge de la batterie, moteur éteint ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Les feux ou les accessoires électriques laissés en fonctionnement.</p></div>
+            </div></details>
+            <details class="qa" data-nums="25 55 81" id="q3">
+            <summary><span class="qa-nums"><b>25</b><b>55</b><b>81</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#d63031" aria-hidden="true"><svg fill="currentColor" height="17" viewBox="0 0 24 24" width="17"><circle cx="12" cy="12" fill="none" r="6.2" stroke="currentColor" stroke-width="1.7"></circle><rect height="4.4" width="1.6" x="11.2" y="8.4"></rect><rect height="1.6" width="1.6" x="11.2" y="14"></rect><path d="M3.6 8.4c-1 2.3-1 4.9 0 7.2M20.4 8.4c1 2.3 1 4.9 0 7.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.7"></path></svg></span><span>De quelle couleur est le voyant qui indique une défaillance du système de freinage ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Réponse : rouge.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quel est le risque de circuler avec un frein de parking mal desserré ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Une dégradation du système de freinage.</p></div>
+            </div></details>
+            <details class="qa" data-nums="27 83" id="q4">
+            <summary><span class="qa-nums"><b>27</b><b>83</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#d63031" aria-hidden="true"><svg fill="currentColor" height="17" viewBox="0 0 24 24" width="17"><path d="M12 3.4a2.3 2.3 0 0 0-2.3 2.3v6.7a4.3 4.3 0 1 0 4.6 0V5.7A2.3 2.3 0 0 0 12 3.4z"></path><path d="M1.4 12.4c.9-1.1 2-1.1 2.9 0s2 1.1 2.9 0M16.8 12.4c.9-1.1 2-1.1 2.9 0s2 1.1 2.9 0M1.4 17.4c.9-1.1 2-1.1 2.9 0s2 1.1 2.9 0M16.8 17.4c.9-1.1 2-1.1 2.9 0s2 1.1 2.9 0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.4"></path></svg></span><span>Montrez le voyant d'alerte signalant une température trop élevée du liquide de refroidissement.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Voyant rouge en forme de thermomètre plongé dans un liquide.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quelle est la conséquence d'une température trop élevée de ce liquide ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Une surchauffe, voire une casse moteur.</p></div>
+            </div></details>
+            <details class="qa" data-nums="29" id="q5">
+            <summary><span class="qa-nums"><b>29</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#d63031" aria-hidden="true"><svg fill="none" height="17" viewBox="0 0 24 24" stroke="currentColor" stroke-linejoin="round" stroke-width="1.6" width="17"><path d="M9.2 4.4h5.6a1 1 0 0 1 1 1v13.2a1 1 0 0 1-1 1H9.2a1 1 0 0 1-1-1V5.4a1 1 0 0 1 1-1z"></path><path d="M8.2 7.8 3.2 10v4.6l5-2.2z"></path><path d="M15.8 7.8 20.8 10v4.6l-5-2.2z"></path></svg></span><span>Montrez le voyant signalant la mauvaise fermeture d'une portière.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Pictogramme de véhicule avec une portière ouverte.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quelle précaution prendre pour que les enfants installés à l'arrière ne puissent pas ouvrir leur portière ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Actionner la sécurité enfant sur les deux portières arrière.</p></div>
+            </div></details>
+            <details class="qa" data-nums="39 89" id="q6">
+            <summary><span class="qa-nums"><b>39</b><b>89</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#d63031" aria-hidden="true"><svg fill="currentColor" height="17" viewBox="0 0 24 24" width="17"><circle cx="9" cy="5.4" r="2.3"></circle><path d="M6.2 20.4v-6.6c0-2.1 1.4-3.5 3.5-3.5h1.1l5.6 10.1z"></path><path d="M11.9 10.6 7.4 19.6" fill="none" stroke="#d63031" stroke-linecap="round" stroke-width="1.8"></path></svg></span><span>Montrez le voyant signalant l'absence de bouclage de la ceinture de sécurité du conducteur.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep qa-geste"><span>Réponse&nbsp;gestuelle</span>Montrez ou manipulez l'élément, et commentez votre geste à voix haute.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">En règle générale, à partir de quel âge un enfant peut-il être installé sur le siège passager avant ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>10 ans.</p></div>
+            </div></details>
+            <details class="qa" data-nums="47" id="q7">
+            <summary><span class="qa-nums"><b>47</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#e07b39" aria-hidden="true"><svg fill="currentColor" height="15.2" viewBox="0 0 100 80" width="19"><g id="g5576" style="fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" transform="matrix(1.0016858,0,0,0.9362703,-6.1705976,-8.1198175)"> <path d="M 44.318182,17.220779 C 8.0885702,28.777818 9.0776235,77.188042 44.318182,86.863636 C 54.05783,64.812004 54.324827,43.229876 44.318182,17.220779 z" id="path5037" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"></path> <path d="M 72.935064,12.662337 C 78.4291,19.288984 84.326798,24.846216 77.24026,32.668831 C 71.973856,41.553109 74.721444,46.159885 78.253247,51.662337 C 81.121928,58.85578 81.469782,60.742309 76.733766,70.655844 C 73.206223,76.164784 74.099874,82.621123 80.025974,90.155844" id="path5041" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"></path> <path d="M 60.779221,33.428572 L 92.435065,33.428572" id="path5039" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"></path> <path d="M 60.652598,52.675325 L 92.308439,52.675325" id="path5572" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"></path> <path d="M 60.652598,70.402598 L 92.308444,70.402598" id="path5574" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"></path> </g></svg></span><span>De quelle couleur est le voyant qui indique au conducteur que le feu de brouillard arrière est allumé ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Réponse : orange.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quelle est la différence entre un voyant orange et un voyant rouge ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Rouge : une anomalie de fonctionnement ou un danger. Orange : un élément important à surveiller.</p></div>
+            </div></details>
+            <details class="qa" data-nums="63 99" id="q8">
+            <summary><span class="qa-nums"><b>63</b><b>99</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#e07b39" aria-hidden="true"><svg fill="currentColor" height="17" viewBox="0 0 24 24" width="17"><path d="M4.5 6.6v6.6a7.5 7.5 0 0 0 15 0V6.6M4.5 6.6h15" fill="none" stroke="currentColor" stroke-width="2"></path><rect height="4.4" width="1.6" x="11.2" y="9"></rect><rect height="1.6" width="1.6" x="11.2" y="14.6"></rect></svg></span><span>Montrez sur le tableau de bord le voyant indiquant une baisse de pression d'air d'un pneumatique.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Dispositif obligatoire sur tous les véhicules neufs mis en circulation depuis le 1 er novembre 2014.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">À quelle fréquence est-il préconisé de vérifier la pression d'air des pneumatiques ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Tous les mois.</p></div>
+            </div></details>
+            <details class="qa" data-nums="11" id="q9">
+            <summary><span class="qa-nums"><b>11</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#e07b39" aria-hidden="true"><svg fill="currentColor" height="17" viewBox="0 0 24 24" width="17"><path d="M5.5 3.5h8a2 2 0 0 1 2 2v14.5h-12V5.5a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.7"></path><rect height="3.4" width="7" x="7" y="6.6"></rect><path d="M15.5 8.5h2.2a2 2 0 0 1 2 2v5a1.6 1.6 0 0 1-3.2 0v-3h-1" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg></span><span>Montrez l'indicateur de niveau de carburant.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep qa-geste"><span>Réponse&nbsp;gestuelle</span>Montrez ou manipulez l'élément, et commentez votre geste à voix haute.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quelles sont les précautions à prendre lors du remplissage du réservoir ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Arrêter le moteur, ne pas fumer, ne pas téléphoner.</p></div>
+            </div></details>
+            <h3>L'éclairage et la signalisation</h3>
+            <details class="qa" data-nums="1 65" id="q10">
+            <summary><span class="qa-nums"><b>01</b><b>65</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#1e2a4a" aria-hidden="true"><svg fill="currentColor" height="17" viewBox="0 0 24 24" width="17"><path d="M3 6h4.6a6 6 0 0 1 0 12H3z"></path><path d="M12 8.4l6 2.2M12 13.4l6 2.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.6"></path><path d="M20.5 6.5v11" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"></path></svg></span><span>Montrez la commande de réglage de hauteur des feux.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Dispositif situé en général à gauche du volant.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Pourquoi doit-on régler la hauteur des feux ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Pour ne pas éblouir les autres usagers.</p></div>
+            </div></details>
+            <details class="qa" data-nums="43 91" id="q11">
+            <summary><span class="qa-nums"><b>43</b><b>91</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#e07b39" aria-hidden="true"><svg fill="currentColor" height="15.2" viewBox="0 0 100 80" width="19"><g id="g5576" style="fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" transform="matrix(1.0016858,0,0,0.9362703,-6.1705976,-8.1198175)"> <path d="M 44.318182,17.220779 C 8.0885702,28.777818 9.0776235,77.188042 44.318182,86.863636 C 54.05783,64.812004 54.324827,43.229876 44.318182,17.220779 z" id="path5037" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"></path> <path d="M 72.935064,12.662337 C 78.4291,19.288984 84.326798,24.846216 77.24026,32.668831 C 71.973856,41.553109 74.721444,46.159885 78.253247,51.662337 C 81.121928,58.85578 81.469782,60.742309 76.733766,70.655844 C 73.206223,76.164784 74.099874,82.621123 80.025974,90.155844" id="path5041" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"></path> <path d="M 60.779221,33.428572 L 92.435065,33.428572" id="path5039" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"></path> <path d="M 60.652598,52.675325 L 92.308439,52.675325" id="path5572" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"></path> <path d="M 60.652598,70.402598 L 92.308444,70.402598" id="path5574" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"></path> </g></svg></span><span>Allumez le ou les feux de brouillard arrière et montrez le voyant correspondant.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep qa-geste"><span>Réponse&nbsp;gestuelle</span>Montrez ou manipulez l'élément, et commentez votre geste à voix haute.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Pouvez-vous les utiliser par forte pluie ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Non.</p></div>
+            </div></details>
+            <details class="qa" data-nums="51 95" id="q12">
+            <summary><span class="qa-nums"><b>51</b><b>95</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#2d3fb5" aria-hidden="true"><svg fill="currentColor" height="15.2" viewBox="0 0 100 80" width="19"><g id="g8305" style="fill:none;stroke:currentColor;stroke-opacity:1" transform="matrix(1.1440027,0,0,1.2187081,2.2845877,4.4707377)"> <path d="M 46.25,7.28125 C 34.785591,10.407751 32.939289,44.611469 46.71875,51.8125 C 55.595263,52.577165 75.175422,42.874274 75.449809,29.872787 C 75.631086,21.28319 63.759384,9.2755739 46.25,7.28125 z" id="path7786" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:4;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"></path> <path d="M 10.542949,11.421875 L 27.582051,11.421875" id="path7784" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:5.07986355px;stroke-linecap:square;stroke-linejoin:miter;stroke-opacity:1"></path> <path d="M 10.542949,21.03125 L 27.582051,21.03125" id="path8297" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:5.07986355px;stroke-linecap:square;stroke-linejoin:miter;stroke-opacity:1"></path> <path d="M 10.542949,30.71875 L 27.582051,30.71875" id="path8299" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:5.07986355px;stroke-linecap:square;stroke-linejoin:miter;stroke-opacity:1"></path> <path d="M 10.621074,39.625 L 27.660176,39.625" id="path8301" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:5.07986355px;stroke-linecap:square;stroke-linejoin:miter;stroke-opacity:1"></path> <path d="M 10.621074,49.625 L 27.660176,49.625" id="path8303" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:5.07986355px;stroke-linecap:square;stroke-linejoin:miter;stroke-opacity:1"></path> </g></svg></span><span>Allumez les feux de route et montrez le voyant correspondant.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep qa-geste"><span>Réponse&nbsp;gestuelle</span>Montrez ou manipulez l'élément, et commentez votre geste à voix haute.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quel est le risque de maintenir les feux de route lors d'un croisement avec d'autres usagers ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Un risque d'éblouissement des autres usagers.</p></div>
+            </div></details>
+            <details class="qa" data-nums="31 85" id="q13">
+            <summary><span class="qa-nums"><b>31</b><b>85</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#d63031" aria-hidden="true"><svg fill="currentColor" height="17" viewBox="0 0 80 80" width="17"><g id="g10556" transform="translate(-19.885022,2.1230082)"> <path d="m 59.885022,7.8769913 17.320507,29.9999997 17.320508,30.000001 -34.641016,-10e-7 -34.641016,-10e-7 17.320508,-29.999999 z" id="path4531" style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:4.5;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"></path> <path d="m 59.885022,22.876992 10.825317,18.75 10.825317,18.75 -21.650635,0 -21.650635,-1e-6 10.825318,-18.749999 z" id="path4533" style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:4.5;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"></path> </g></svg></span><span>Actionnez les feux de détresse.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep qa-geste"><span>Réponse&nbsp;gestuelle</span>Montrez ou manipulez l'élément, et commentez votre geste à voix haute.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quand les utilise-t-on ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>En cas de panne, d'accident ou de ralentissement important.</p></div>
+            </div></details>
+            <h3>La visibilité et le désembuage</h3>
+            <details class="qa" data-nums="3 67" id="q14">
+            <summary><span class="qa-nums"><b>03</b><b>67</b></span>
+            <span class="qa-q"><span>Mettez le rétroviseur intérieur en position « nuit ».</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Si le rétroviseur de l'accompagnateur gêne la manipulation, l'explication suffit. Si le véhicule dispose d'un système automatique, le candidat l'indique.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quel est l'intérêt de la position nuit ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Ne pas être ébloui par les feux du véhicule suiveur.</p></div>
+            </div></details>
+            <details class="qa" data-nums="5 69" id="q15">
+            <summary><span class="qa-nums"><b>05</b><b>69</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#00695c" aria-hidden="true"><svg fill="none" height="17" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" width="17"><path d="M3 16l2.6-9h12.8L21 16z"></path><path d="M17.5 19.5L8 10.5" stroke-linecap="round" stroke-width="1.9"></path></svg></span><span>Faites fonctionner les essuie-glaces avant sur la position la plus rapide.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep qa-geste"><span>Réponse&nbsp;gestuelle</span>Montrez ou manipulez l'élément, et commentez votre geste à voix haute.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Comment détecter leur usure en circulation ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>En cas de pluie, lorsqu'ils laissent des traces sur le pare-brise.</p></div>
+            </div></details>
+            <details class="qa" data-nums="13 73" id="q16">
+            <summary><span class="qa-nums"><b>13</b><b>73</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#00695c" aria-hidden="true"><svg fill="none" height="17" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" width="17"><rect height="9.4" rx="1.4" width="17.2" x="3.4" y="4.4"></rect><path d="M7 20.6c1-1.6-1-2.6 0-4.2M12 20.6c1-1.6-1-2.6 0-4.2M17 20.6c1-1.6-1-2.6 0-4.2" stroke-linecap="round"></path><path d="M5.9 17.5 7 15.9l1.1 1.6M10.9 17.5 12 15.9l1.1 1.6M15.9 17.5 17 15.9l1.1 1.6" stroke-linecap="round" stroke-width="1.4"></path></svg></span><span>Actionnez le dégivrage de la lunette arrière et montrez le voyant ou le repère correspondant.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep qa-geste"><span>Réponse&nbsp;gestuelle</span>Montrez ou manipulez l'élément, et commentez votre geste à voix haute.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quelle peut être la conséquence d'une panne de dégivrage de la lunette arrière ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Une insuffisance ou une absence de visibilité vers l'arrière.</p></div>
+            </div></details>
+            <details class="qa" data-nums="21 79" id="q17">
+            <summary><span class="qa-nums"><b>21</b><b>79</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#00695c" aria-hidden="true"><svg fill="none" height="17" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" width="17"><path d="M4 13.4l2.6-7.4h10.8L20 13.4z"></path><path d="M7 20.6c1-1.6-1-2.6 0-4.2M12 20.6c1-1.6-1-2.6 0-4.2M17 20.6c1-1.6-1-2.6 0-4.2" stroke-linecap="round"></path><path d="M5.9 17.5 7 15.9l1.1 1.6M10.9 17.5 12 15.9l1.1 1.6M15.9 17.5 17 15.9l1.1 1.6" stroke-linecap="round" stroke-width="1.4"></path></svg></span><span>Positionnez la commande pour diriger l'air vers le pare-brise.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>La position automatique de désembuage peut être utilisée si le véhicule en est équipé.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Citez deux éléments complémentaires permettant un désembuage efficace.</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>La commande de vitesse de ventilation · la commande d'air chaud · la climatisation.</p></div>
+            </div></details>
+            <details class="qa" data-nums="49 93" id="q18">
+            <summary><span class="qa-nums"><b>49</b><b>93</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#00695c" aria-hidden="true"><svg fill="none" height="17" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" width="17"><path d="M4 15l2.8-8.5h10.4L20 15z"></path><path d="M8.5 12.5a3.5 3.5 0 0 1 7 0" stroke-linecap="round"></path><path d="M15.5 10.6l1.6 1.9-2.2 1" stroke-linecap="round"></path></svg></span><span>Montrez la commande de recyclage de l'air.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep qa-geste"><span>Réponse&nbsp;gestuelle</span>Montrez ou manipulez l'élément, et commentez votre geste à voix haute.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quel peut être le risque de maintenir le recyclage de l'air de manière prolongée ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Un risque de mauvaise visibilité par l'apparition de buée sur les surfaces vitrées.</p></div>
+            </div></details>
+            <details class="qa" data-nums="59 97" id="q19">
+            <summary><span class="qa-nums"><b>59</b><b>97</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#00695c" aria-hidden="true"><svg fill="none" height="17" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" width="17"><rect height="9.5" rx="1.5" width="17" x="3.5" y="5"></rect><path d="M18 19L8.5 11" stroke-linecap="round" stroke-width="1.9"></path></svg></span><span>Faites fonctionner l'essuie-glace arrière du véhicule.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep qa-geste"><span>Réponse&nbsp;gestuelle</span>Montrez ou manipulez l'élément, et commentez votre geste à voix haute.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Pour une bonne visibilité vers l'arrière, en plus de l'essuie-glace, quelle commande pouvez-vous actionner par temps de pluie ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>La commande de désembuage arrière. Le terme « dégivrage » est accepté.</p></div>
+            </div></details>
+            <h3>La sécurité des occupants</h3>
+            <details class="qa" data-nums="19" id="q20">
+            <summary><span class="qa-nums"><b>19</b></span>
+            <span class="qa-q"><span>Montrez la commande de réglage du volant.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Le candidat montre l'emplacement ; il ne lui est pas demandé de modifier le réglage.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Pourquoi est-il important de bien régler son volant ? Citez deux exemples.</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Le confort de conduite · l'accessibilité aux commandes · la visibilité du tableau de bord · l'efficacité des airbags.</p></div>
+            </div></details>
+            <details class="qa" data-nums="45" id="q21">
+            <summary><span class="qa-nums"><b>45</b></span>
+            <span class="qa-q"><span>Montrez comment régler la hauteur de l'appui-tête du siège conducteur.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep qa-geste"><span>Réponse&nbsp;gestuelle</span>Montrez ou manipulez l'élément, et commentez votre geste à voix haute.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quelle est son utilité ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Retenir le mouvement de la tête en cas de choc et limiter les blessures.</p></div>
+            </div></details>
+            <details class="qa" data-nums="37 87" id="q22">
+            <summary><span class="qa-nums"><b>37</b><b>87</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#d63031" aria-hidden="true"><svg fill="currentColor" height="17" viewBox="0 0 24 24" width="17"><circle cx="7.5" cy="6" r="2.4"></circle><path d="M5 20.5v-6.5c0-2.1 1.4-3.5 3.4-3.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.9"></path><circle cx="16" cy="14.5" fill="none" r="4.6" stroke="currentColor" stroke-width="1.9"></circle></svg></span><span>Montrez la commande permettant de désactiver l'airbag du passager avant.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Souvent située dans la boîte à gants ou sur le côté du tableau de bord.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Dans quelle situation doit-on le désactiver ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Lors du transport d'un enfant à l'avant dans un siège auto installé dos à la route.</p></div>
+            </div></details>
+            <details class="qa" data-nums="61" id="q23">
+            <summary><span class="qa-nums"><b>61</b></span>
+            <span class="qa-q"><span>Indiquez où se situent les attaches de type Isofix dans le véhicule.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Ces attaches sont obligatoires sur les véhicules neufs depuis 2011.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Peut-on fixer tous les sièges enfant sur des attaches de type Isofix ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Non : uniquement ceux qui sont compatibles avec ce type d'attache.</p></div>
+            </div></details>
+            <h3>Les aides à la conduite et l'avertisseur</h3>
+            <details class="qa" data-nums="33" id="q24">
+            <summary><span class="qa-nums"><b>33</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#1e2a4a" aria-hidden="true"><svg fill="currentColor" height="17" viewBox="0 0 24 24" width="17"><circle cx="12" cy="12" fill="none" r="8" stroke="currentColor" stroke-width="1.7"></circle><path d="M12 12l4.2-3.6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.9"></path><circle cx="12" cy="12" r="1.5"></circle></svg></span><span>Montrez la commande permettant d'actionner le régulateur de vitesse.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Généralement sur le volant ou sur une manette de la colonne de direction.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Sans actionner la commande du régulateur, comment le désactiver rapidement ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>En appuyant sur la pédale de frein ou d'embrayage.</p></div>
+            </div></details>
+            <details class="qa" data-nums="57" id="q25">
+            <summary><span class="qa-nums"><b>57</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#1e2a4a" aria-hidden="true"><svg fill="currentColor" height="17" viewBox="0 0 24 24" width="17"><circle cx="12" cy="12" fill="none" r="8" stroke="currentColor" stroke-width="1.7"></circle><rect height="1.9" width="8.4" x="7.8" y="11.1"></rect></svg></span><span>Si le véhicule en est équipé, montrez la commande du limiteur de vitesse.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep qa-geste"><span>Réponse&nbsp;gestuelle</span>Montrez ou manipulez l'élément, et commentez votre geste à voix haute.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quelle est l'utilité d'un limiteur de vitesse ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Ne pas dépasser la vitesse programmée par le conducteur.</p></div>
+            </div></details>
+            <details class="qa" data-nums="35" id="q26">
+            <summary><span class="qa-nums"><b>35</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#1e2a4a" aria-hidden="true"><svg fill="currentColor" height="17" viewBox="0 0 24 24" width="17"><path d="M3.5 9.6v4.8h3.2l5.8 3.8V5.8L6.7 9.6z"></path><path d="M16 8.6c1.7 1.8 1.7 5 0 6.8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.7"></path><path d="M19.2 6.2c2.8 2.9 2.8 8.7 0 11.6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"></path></svg></span><span>Sans l'actionner, montrez la commande de l'avertisseur sonore.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Désigner la zone centrale du volant, sans appuyer dessus.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Dans quel cas peut-on utiliser l'avertisseur sonore en agglomération ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>En cas de danger immédiat.</p></div>
+            </div></details>
+            <h3>Les documents et équipements obligatoires</h3>
+            <details class="qa" data-nums="9" id="q27">
+            <summary><span class="qa-nums"><b>09</b></span>
+            <span class="qa-q"><span>Vérifiez la présence du certificat d'immatriculation du véhicule (ou carte grise).</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Se trouve généralement dans la boîte à gants. La photocopie est acceptée.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quels sont les deux autres documents obligatoires à présenter en cas de contrôle par les forces de l'ordre ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>L'attestation d'assurance et le permis de conduire.</p></div>
+            </div></details>
+            <details class="qa" data-nums="41" id="q28">
+            <summary><span class="qa-nums"><b>41</b></span>
+            <span class="qa-q"><span>Vérifiez la présence de l'attestation d'assurance du véhicule et de sa vignette sur le pare-brise.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep qa-geste"><span>Réponse&nbsp;gestuelle</span>Montrez ou manipulez l'élément, et commentez votre geste à voix haute.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quels sont les deux autres documents obligatoires à présenter en cas de contrôle par les forces de l'ordre ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Le certificat d'immatriculation et le permis de conduire. Le terme « carte grise » est accepté.</p></div>
+            </div></details>
+            <details class="qa" data-nums="53" id="q29">
+            <summary><span class="qa-nums"><b>53</b></span>
+            <span class="qa-q"><span>Vérifiez la présence du constat amiable dans le véhicule.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep qa-geste"><span>Réponse&nbsp;gestuelle</span>Montrez ou manipulez l'élément, et commentez votre geste à voix haute.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">En cas d'accident, dans quel délai doit-il être transmis à l'assureur ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>5 jours.</p></div>
+            </div></details>
+            <details class="qa" data-nums="7 71" id="q30">
+            <summary><span class="qa-nums"><b>07</b><b>71</b></span>
+            <span class="qa-q"><span>Vérifiez la présence du gilet de haute visibilité.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Le candidat doit indiquer où il se trouve, sans obligation de le sortir. Le terme « gilet jaune » est accepté.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">En cas de panne ou d'accident, quel autre accessoire de sécurité est obligatoire ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Le triangle de pré-signalisation.</p></div>
+            </div></details>
+            <details class="qa" data-nums="17 77" id="q31">
+            <summary><span class="qa-nums"><b>17</b><b>77</b></span>
+            <span class="qa-q"><span>Vérifiez la présence de l'éthylotest.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep qa-geste"><span>Réponse&nbsp;gestuelle</span>Montrez ou manipulez l'élément, et commentez votre geste à voix haute.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">À partir de quel taux d'alcoolémie, en période de permis probatoire, est-on en infraction ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>0,2 g/l, c'est-à-dire zéro verre : dès le premier verre, ce seuil peut être dépassé.</p></div>
+            </div></details>
+    </div>
+
+    <h3 style="color:var(--basque-rouge)">Vérifications extérieures — séries paires</h3>
+    <p class="fiche-count">Autour et sous le capot : niveaux, pneumatiques, éclairage, équipements de sécurité.</p>
+    <div class="section-ext">
+            <h3>Sous le capot : les niveaux</h3>
+            <details class="qa" data-nums="22 80" id="q32">
+            <summary><span class="qa-nums"><b>22</b><b>80</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#d63031" aria-hidden="true"><svg fill="currentColor" height="17" viewBox="0 0 24 24" width="17"><path d="M2.6 13.2h7.4l2.6-2.6h5.2v2.2l-1.8.9v4.9H5.6a3 3 0 0 1-3-3z"></path><path d="M18 4.8s-2 2.4-2 3.4a2 2 0 0 0 4 0c0-1-2-3.4-2-3.4z"></path></svg></span><span>Montrez où doit s'effectuer le contrôle du niveau d'huile moteur.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Le candidat montre la jauge. Aucune manipulation n'est exigée.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quel est le principal risque d'un manque d'huile moteur ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Un risque de détérioration ou de casse du moteur.</p></div>
+            </div></details>
+            <details class="qa" data-nums="36" id="q33">
+            <summary><span class="qa-nums"><b>36</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#d63031" aria-hidden="true"><svg fill="currentColor" height="17" viewBox="0 0 24 24" width="17"><path d="M2.6 13.2h7.4l2.6-2.6h5.2v2.2l-1.8.9v4.9H5.6a3 3 0 0 1-3-3z"></path><path d="M18 4.8s-2 2.4-2 3.4a2 2 0 0 0 4 0c0-1-2-3.4-2-3.4z"></path></svg></span><span>Montrez où s'effectue le remplissage de l'huile moteur.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Le candidat montre le bouchon de remplissage.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quel est le risque d'un manque d'huile moteur ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Un risque de détérioration ou de casse du moteur.</p></div>
+            </div></details>
+            <details class="qa" data-nums="8 70" id="q34">
+            <summary><span class="qa-nums"><b>08</b><b>70</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#d63031" aria-hidden="true"><svg fill="currentColor" height="17" viewBox="0 0 24 24" width="17"><circle cx="12" cy="12" fill="none" r="6.2" stroke="currentColor" stroke-width="1.7"></circle><rect height="4.4" width="1.6" x="11.2" y="8.4"></rect><rect height="1.6" width="1.6" x="11.2" y="14"></rect><path d="M3.6 8.4c-1 2.3-1 4.9 0 7.2M20.4 8.4c1 2.3 1 4.9 0 7.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.7"></path></svg></span><span>Montrez où s'effectue le contrôle du niveau du liquide de frein.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Le candidat montre que le niveau se situe entre le mini et le maxi.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quelle est la conséquence d'un niveau insuffisant du liquide de frein ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Une perte d'efficacité du freinage.</p></div>
+            </div></details>
+            <details class="qa" data-nums="12 72" id="q35">
+            <summary><span class="qa-nums"><b>12</b><b>72</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#d63031" aria-hidden="true"><svg fill="currentColor" height="17" viewBox="0 0 24 24" width="17"><path d="M12 3.4a2.3 2.3 0 0 0-2.3 2.3v6.7a4.3 4.3 0 1 0 4.6 0V5.7A2.3 2.3 0 0 0 12 3.4z"></path><path d="M1.4 12.4c.9-1.1 2-1.1 2.9 0s2 1.1 2.9 0M16.8 12.4c.9-1.1 2-1.1 2.9 0s2 1.1 2.9 0M1.4 17.4c.9-1.1 2-1.1 2.9 0s2 1.1 2.9 0M16.8 17.4c.9-1.1 2-1.1 2.9 0s2 1.1 2.9 0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.4"></path></svg></span><span>Montrez où s'effectue le remplissage du liquide de refroidissement.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Le candidat ouvre le capot et montre le bocal.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quel est le danger si l'on complète le niveau du liquide lorsque le moteur est chaud ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Un risque de brûlure.</p></div>
+            </div></details>
+            <details class="qa" data-nums="2" id="q36">
+            <summary><span class="qa-nums"><b>02</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#00695c" aria-hidden="true"><svg fill="none" height="17" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" width="17"><path d="M4 14.6l2.6-8h10.8L20 14.6z"></path><path d="M8.2 20.4c.6-1.9 1.8-3.2 3.6-3.8M11.5 20.6c.2-1.7.9-3.1 2.2-4.1M14.8 20.6c-.2-1.5.3-2.7 1.3-3.7" stroke-linecap="round" stroke-width="1.4"></path></svg></span><span>Montrez où s'effectue le remplissage du produit lave-glace.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Le candidat ouvre le capot et montre le bocal.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Pourquoi est-il préférable d'utiliser un liquide spécial en hiver ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Pour éviter le gel du liquide.</p></div>
+            </div></details>
+            <details class="qa" data-nums="50" id="q37">
+            <summary><span class="qa-nums"><b>50</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#00695c" aria-hidden="true"><svg fill="none" height="17" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" width="17"><path d="M4 14.6l2.6-8h10.8L20 14.6z"></path><path d="M8.2 20.4c.6-1.9 1.8-3.2 3.6-3.8M11.5 20.6c.2-1.7.9-3.1 2.2-4.1M14.8 20.6c-.2-1.5.3-2.7 1.3-3.7" stroke-linecap="round" stroke-width="1.4"></path></svg></span><span>Montrez l'orifice de remplissage du produit lave-glace.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep qa-geste"><span>Réponse&nbsp;gestuelle</span>Montrez ou manipulez l'élément, et commentez votre geste à voix haute.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quel est le principal risque d'une absence de liquide lave-glace ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Une mauvaise visibilité.</p></div>
+            </div></details>
+            <details class="qa" data-nums="66 100" id="q38">
+            <summary><span class="qa-nums"><b>66</b><b>100</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#00695c" aria-hidden="true"><svg fill="none" height="17" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" width="17"><path d="M4 14.6l2.6-8h10.8L20 14.6z"></path><path d="M8.2 20.4c.6-1.9 1.8-3.2 3.6-3.8M11.5 20.6c.2-1.7.9-3.1 2.2-4.1M14.8 20.6c-.2-1.5.3-2.7 1.3-3.7" stroke-linecap="round" stroke-width="1.4"></path></svg></span><span>Montrez où se situent les gicleurs de lave-glace avant.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep qa-geste"><span>Réponse&nbsp;gestuelle</span>Montrez ou manipulez l'élément, et commentez votre geste à voix haute.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quelle est la principale conséquence d'un dispositif de lave-glace défaillant ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Une mauvaise visibilité, due à l'impossibilité de nettoyer le pare-brise.</p></div>
+            </div></details>
+            <details class="qa" data-nums="24" id="q39">
+            <summary><span class="qa-nums"><b>24</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#d63031" aria-hidden="true"><svg fill="currentColor" height="17" viewBox="0 0 24 24" width="17"><rect height="9.8" rx="1" width="19" x="2.5" y="7.8"></rect><rect height="2.5" width="3.2" x="6" y="5.3"></rect><rect height="2.5" width="3.2" x="14.8" y="5.3"></rect><rect fill="#d63031" height="1.4" width="4.2" x="5.6" y="12"></rect><rect fill="#d63031" height="4.2" width="1.4" x="6.9" y="10.6"></rect><rect fill="#d63031" height="1.4" width="4.2" x="14.2" y="12"></rect></svg></span><span>Montrez l'emplacement de la batterie du véhicule.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep qa-geste"><span>Réponse&nbsp;gestuelle</span>Montrez ou manipulez l'élément, et commentez votre geste à voix haute.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quelle est la solution en cas de panne de batterie pour démarrer le véhicule sans le déplacer ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Brancher une deuxième batterie en parallèle (les « + » ensemble et les « − » ensemble) ou la remplacer.</p></div>
+            </div></details>
+            <h3>Les pneumatiques</h3>
+            <details class="qa" data-nums="4 68" id="q40">
+            <summary><span class="qa-nums"><b>04</b><b>68</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#e07b39" aria-hidden="true"><svg fill="currentColor" height="17" viewBox="0 0 24 24" width="17"><path d="M4.5 6.6v6.6a7.5 7.5 0 0 0 15 0V6.6M4.5 6.6h15" fill="none" stroke="currentColor" stroke-width="2"></path><rect height="4.4" width="1.6" x="11.2" y="9"></rect><rect height="1.6" width="1.6" x="11.2" y="14.6"></rect></svg></span><span>Contrôlez l'état du flanc sur l'un des pneumatiques.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Le pneumatique doit être en bon état. Toute anomalie doit être signalée.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Citez un endroit où l'on peut trouver les pressions préconisées pour les pneumatiques.</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Sur une plaque apposée sur une portière · dans la notice d'utilisation du véhicule · au niveau de la trappe à carburant.</p></div>
+            </div></details>
+            <details class="qa" data-nums="38 86" id="q41">
+            <summary><span class="qa-nums"><b>38</b><b>86</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#e07b39" aria-hidden="true"><svg fill="currentColor" height="17" viewBox="0 0 24 24" width="17"><path d="M4.5 6.6v6.6a7.5 7.5 0 0 0 15 0V6.6M4.5 6.6h15" fill="none" stroke="currentColor" stroke-width="2"></path><rect height="4.4" width="1.6" x="11.2" y="9"></rect><rect height="1.6" width="1.6" x="11.2" y="14.6"></rect></svg></span><span>À l'aide de la plaque indicative, donnez la pression préconisée pour les pneumatiques arrière, véhicule chargé.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep qa-geste"><span>Réponse&nbsp;gestuelle</span>Montrez ou manipulez l'élément, et commentez votre geste à voix haute.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">À quelle fréquence est-il préconisé de vérifier la pression des pneus ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Chaque mois pour une utilisation normale, et avant chaque long trajet.</p></div>
+            </div></details>
+            <details class="qa" data-nums="32 84" id="q42">
+            <summary><span class="qa-nums"><b>32</b><b>84</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#e07b39" aria-hidden="true"><svg fill="none" height="17" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" width="17"><circle cx="12" cy="12" r="8.5"></circle><circle cx="12" cy="12" r="3.6"></circle><path d="M12 3.5v4.9M12 15.6v4.9M3.5 12h4.9M15.6 12h4.9"></path></svg></span><span>Sur le flanc d'un pneumatique, désignez le repère du témoin d'usure de la bande de roulement.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep qa-geste"><span>Réponse&nbsp;gestuelle</span>Montrez ou manipulez l'élément, et commentez votre geste à voix haute.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Qu'est-ce que l'aquaplanage, et quelle peut être sa conséquence ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>La présence d'un film d'eau entre le pneumatique et la chaussée, pouvant entraîner une perte de contrôle du véhicule.</p></div>
+            </div></details>
+            <h3>L'éclairage et la signalisation</h3>
+            <details class="qa" data-nums="26 82" id="q43">
+            <summary><span class="qa-nums"><b>26</b><b>82</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#00695c" aria-hidden="true"><svg fill="currentColor" height="15.2" viewBox="0 0 100 80" width="19"><g id="g7457" style="fill:none;stroke:currentColor;stroke-width:4;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" transform="translate(-1.7157738,1.4298115)"> <path d="M 57.830882,14.125 C 44.030851,28.899845 46.946694,41.708117 51.158088,54.363971 C 94.6764,58.59333 109.02805,20.122028 57.830882,14.125 z" id="path6896" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:4;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"></path> <path d="M 19.87438,26.385541 L 44.467138,18.80754" id="path7407" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"></path> <path d="M 18.587549,35.893788 L 40.892609,29.173674" id="path7409" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"></path> <path d="M 17.300719,44.901599 L 39.033854,38.324466" id="path7411" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"></path> <path d="M 16.728795,53.909412 L 39.462798,46.903336" id="path7413" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"></path> <path d="M 15.441964,63.346168 L 41.750496,54.91028" id="path7415" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"></path> </g></svg></span><span>Contrôlez l'état, la propreté et le fonctionnement des feux de croisement.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Propres, en bon état et en fonctionnement. Toute anomalie doit être signalée.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quelles sont les conséquences d'un mauvais réglage de ces feux ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Une mauvaise vision vers l'avant et un risque d'éblouissement des autres usagers.</p></div>
+            </div></details>
+            <details class="qa" data-nums="20 78" id="q44">
+            <summary><span class="qa-nums"><b>20</b><b>78</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#2d3fb5" aria-hidden="true"><svg fill="currentColor" height="15.2" viewBox="0 0 100 80" width="19"><g id="g8305" style="fill:none;stroke:currentColor;stroke-opacity:1" transform="matrix(1.1440027,0,0,1.2187081,2.2845877,4.4707377)"> <path d="M 46.25,7.28125 C 34.785591,10.407751 32.939289,44.611469 46.71875,51.8125 C 55.595263,52.577165 75.175422,42.874274 75.449809,29.872787 C 75.631086,21.28319 63.759384,9.2755739 46.25,7.28125 z" id="path7786" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:4;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"></path> <path d="M 10.542949,11.421875 L 27.582051,11.421875" id="path7784" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:5.07986355px;stroke-linecap:square;stroke-linejoin:miter;stroke-opacity:1"></path> <path d="M 10.542949,21.03125 L 27.582051,21.03125" id="path8297" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:5.07986355px;stroke-linecap:square;stroke-linejoin:miter;stroke-opacity:1"></path> <path d="M 10.542949,30.71875 L 27.582051,30.71875" id="path8299" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:5.07986355px;stroke-linecap:square;stroke-linejoin:miter;stroke-opacity:1"></path> <path d="M 10.621074,39.625 L 27.660176,39.625" id="path8301" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:5.07986355px;stroke-linecap:square;stroke-linejoin:miter;stroke-opacity:1"></path> <path d="M 10.621074,49.625 L 27.660176,49.625" id="path8303" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:5.07986355px;stroke-linecap:square;stroke-linejoin:miter;stroke-opacity:1"></path> </g></svg></span><span>Contrôlez l'état, la propreté et le fonctionnement des feux de route.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Propres, en bon état et en fonctionnement. Toute anomalie doit être signalée.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Citez un cas d'utilisation de l'appel lumineux.</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Pour avertir de son approche · en cas de danger · à la place de l'avertisseur sonore.</p></div>
+            </div></details>
+            <details class="qa" data-nums="30" id="q45">
+            <summary><span class="qa-nums"><b>30</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#00695c" aria-hidden="true"><svg fill="currentColor" height="15.2" viewBox="0 0 100 80" width="19"><path d="M 9.1691026,20.404288 C 8.141975,20.350768 7.134389,20.9004 6.660681,21.884256 6.0371668,23.196065 6.569902,24.772533 7.8898076,25.396047 l 17.7345404,8.553717 c 1.311809,0.631612 2.888277,0.08268 3.511791,-1.229126 0.631612,-1.311808 0.09078,-2.880179 -1.229127,-3.51179 L 10.172471,20.65513 C 9.844519,20.495202 9.5114785,20.422128 9.1691026,20.404288 z m 80.3447464,0 c -0.340102,0.02935 -0.658434,0.130961 -0.978284,0.30101 l -16.129153,8.553718 c -1.287515,0.680196 -1.792,2.24936 -1.103706,3.536875 0.680197,1.287515 2.274444,1.783902 3.561959,1.103705 l 16.129153,-8.528634 c 1.287515,-0.680197 1.758817,-2.274443 1.078621,-3.561958 -0.510153,-0.959563 -1.5383,-1.492778 -2.55859,-1.404716 z M 35.33194,28.180395 c -4.558938,0 -4.916506,9.906863 -4.916506,12.943455 0,8.599631 1.661279,12.96854 4.916506,12.96854 7.676507,0 12.241098,-4.854764 12.241098,-12.96854 0,-8.105678 -4.564591,-12.943455 -12.241098,-12.943455 z m 29.724797,0 c -7.668409,0 -12.241098,4.837777 -12.241098,12.943455 0,4.15406 1.144131,7.415185 3.411453,9.682508 2.145859,2.145859 5.201928,3.286032 8.829645,3.286032 3.255227,0 4.916506,-4.368909 4.916506,-12.96854 0,-3.036592 -0.357568,-12.943455 -4.916506,-12.943455 z m -28.470586,5.468359 c 3.78157,0.461562 5.719201,2.835183 5.719201,7.475096 0,4.656109 -1.94652,7.063703 -5.744285,7.525265 -0.380587,-1.085075 -0.877948,-3.379303 -0.877948,-7.525265 0,-3.417179 0.490055,-6.09041 0.903032,-7.475096 z m 27.216375,0 c 0.421074,1.384686 0.903032,4.057917 0.903032,7.475096 0,4.178353 -0.497361,6.489566 -0.877948,7.550349 -1.328003,-0.145756 -2.79488,-0.487132 -3.888054,-1.580305 -1.247027,-1.23893 -1.856232,-3.265451 -1.856232,-5.970044 0,-4.639913 1.94573,-7.013534 5.719202,-7.475096 z M 5.5318913,38.013408 c -1.4575648,-0.0162 -2.6597185,1.134207 -2.6840113,2.583674 -0.02429,1.457564 1.1511939,2.667816 2.6087586,2.684011 L 26.70297,43.607188 c 1.457565,0.02429 2.659718,-1.151194 2.684011,-2.608759 0.02429,-1.449466 -1.12611,-2.642731 -2.583674,-2.658927 L 5.5318913,38.013408 z m 87.7195057,0 -19.666027,0.326094 c -1.457565,0.0162 -2.607967,1.226448 -2.583674,2.684012 0.0162,1.457564 1.20946,2.607967 2.658927,2.583674 l 19.691111,-0.326095 c 1.449467,-0.02429 2.599865,-1.226447 2.583675,-2.684011 -0.03243,-1.449467 -1.234545,-2.59987 -2.684012,-2.583674 z m -66.62368,10.05877 c -0.341616,0.0167 -0.675416,0.118024 -1.003369,0.275927 L 7.8898076,56.876738 c -1.3118082,0.639709 -1.8526408,2.20808 -1.2291266,3.511791 0.6397085,1.311807 2.1999821,1.860737 3.51179,1.229126 l 17.734541,-8.528633 c 1.311808,-0.631612 1.860739,-2.20808 1.229127,-3.511791 -0.473708,-0.983856 -1.483571,-1.555156 -2.508422,-1.505053 z m 46.731895,0.02509 c -0.840757,0.08944 -1.636844,0.574935 -2.056906,1.379631 -0.688294,1.279418 -0.183809,2.873665 1.103706,3.561959 l 16.129153,8.553718 c 1.279415,0.680196 2.856679,0.183809 3.536874,-1.103706 0.680196,-1.279417 0.208894,-2.889859 -1.078621,-3.561958 L 74.864665,48.398273 C 74.381847,48.143199 73.864066,48.0436 73.359612,48.097263 z" id="path932" style="fill:currentColor;fill-opacity:1;fill-rule:nonzero;stroke:none"></path></svg></span><span>Contrôlez l'état, la propreté et le fonctionnement des feux de position à l'avant et à l'arrière du véhicule.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Propres, en bon état et en fonctionnement. Toute anomalie doit être signalée.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Par temps clair, à quelle distance doivent-ils être visibles ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>À 150 mètres.</p></div>
+            </div></details>
+            <details class="qa" data-nums="14 74" id="q46">
+            <summary><span class="qa-nums"><b>14</b><b>74</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#00695c" aria-hidden="true"><svg fill="currentColor" height="17" viewBox="0 0 24 24" width="17"><path d="M10.4 5.8 4 12l6.4 6.2z"></path><path d="M13.6 5.8 20 12l-6.4 6.2z"></path></svg></span><span>Contrôlez l'état, la propreté et le fonctionnement de tous les clignotants côté trottoir.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Propres, en bon état et en fonctionnement. Toute anomalie doit être signalée.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quelle est la signification d'un clignotement plus rapide ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Le non-fonctionnement de l'une des ampoules.</p></div>
+            </div></details>
+            <details class="qa" data-nums="46 90" id="q47">
+            <summary><span class="qa-nums"><b>46</b><b>90</b></span>
+            <span class="qa-q"><span>Avec l'assistance de l'accompagnateur, contrôlez l'état, la propreté et le fonctionnement des feux de stop.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Propres, en bon état et en fonctionnement. Toute anomalie doit être signalée.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quelle est la conséquence en cas de panne des feux de stop ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Un manque d'information pour les usagers suiveurs et un risque de collision.</p></div>
+            </div></details>
+            <details class="qa" data-nums="44" id="q48">
+            <summary><span class="qa-nums"><b>44</b></span>
+            <span class="qa-q"><span>Avec l'assistance de l'accompagnateur, contrôlez l'état, la propreté et le fonctionnement du ou des feux de recul.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Propres, en bon état et en fonctionnement. Toute anomalie doit être signalée.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quelles sont leurs deux utilités ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Éclairer la zone de recul la nuit · avertir les autres usagers de la manœuvre.</p></div>
+            </div></details>
+            <details class="qa" data-nums="16" id="q49">
+            <summary><span class="qa-nums"><b>16</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#e07b39" aria-hidden="true"><svg fill="currentColor" height="15.2" viewBox="0 0 100 80" width="19"><g id="g5576" style="fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" transform="matrix(1.0016858,0,0,0.9362703,-6.1705976,-8.1198175)"> <path d="M 44.318182,17.220779 C 8.0885702,28.777818 9.0776235,77.188042 44.318182,86.863636 C 54.05783,64.812004 54.324827,43.229876 44.318182,17.220779 z" id="path5037" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"></path> <path d="M 72.935064,12.662337 C 78.4291,19.288984 84.326798,24.846216 77.24026,32.668831 C 71.973856,41.553109 74.721444,46.159885 78.253247,51.662337 C 81.121928,58.85578 81.469782,60.742309 76.733766,70.655844 C 73.206223,76.164784 74.099874,82.621123 80.025974,90.155844" id="path5041" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"></path> <path d="M 60.779221,33.428572 L 92.435065,33.428572" id="path5039" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"></path> <path d="M 60.652598,52.675325 L 92.308439,52.675325" id="path5572" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"></path> <path d="M 60.652598,70.402598 L 92.308444,70.402598" id="path5574" style="fill:none;fill-rule:evenodd;stroke:currentColor;stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"></path> </g></svg></span><span>Contrôlez l'état, la propreté et le fonctionnement du ou des feux de brouillard arrière.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Propres, en bon état et en fonctionnement. Toute anomalie doit être signalée.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Dans quels cas les utilise-t-on ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Par temps de brouillard et par temps de neige.</p></div>
+            </div></details>
+            <details class="qa" data-nums="18 76" id="q50">
+            <summary><span class="qa-nums"><b>18</b><b>76</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#d63031" aria-hidden="true"><svg fill="currentColor" height="17" viewBox="0 0 80 80" width="17"><g id="g10556" transform="translate(-19.885022,2.1230082)"> <path d="m 59.885022,7.8769913 17.320507,29.9999997 17.320508,30.000001 -34.641016,-10e-7 -34.641016,-10e-7 17.320508,-29.999999 z" id="path4531" style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:4.5;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"></path> <path d="m 59.885022,22.876992 10.825317,18.75 10.825317,18.75 -21.650635,0 -21.650635,-1e-6 10.825318,-18.749999 z" id="path4533" style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:4.5;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"></path> </g></svg></span><span>Contrôlez l'état, la propreté et le fonctionnement des feux de détresse à l'avant et à l'arrière.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Propres, en bon état et en fonctionnement. Toute anomalie doit être signalée.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Dans quels cas doit-on les utiliser ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>En cas de panne, d'accident ou de ralentissement important.</p></div>
+            </div></details>
+            <details class="qa" data-nums="52 92" id="q51">
+            <summary><span class="qa-nums"><b>52</b><b>92</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#00695c" aria-hidden="true"><svg fill="currentColor" height="17" viewBox="0 0 24 24" width="17"><circle cx="12" cy="12" r="3.4"></circle><path d="M12 3.6v3.4M12 17v3.4M3.6 12H7M17 12h3.4M6.1 6.1l2.4 2.4M15.5 15.5l2.4 2.4M17.9 6.1l-2.4 2.4M8.5 15.5l-2.4 2.4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.6"></path></svg></span><span>Vérifiez l'état, la propreté et le fonctionnement des feux diurnes.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Propres, en bon état et en fonctionnement. Toute anomalie doit être signalée.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quelle est leur utilité ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Rendre le véhicule plus visible le jour.</p></div>
+            </div></details>
+            <details class="qa" data-nums="56 96" id="q52">
+            <summary><span class="qa-nums"><b>56</b><b>96</b></span>
+            <span class="qa-q"><span>Montrez où s'effectue le changement d'une ampoule à l'avant du véhicule.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Si le candidat a des difficultés pour ouvrir le capot, l'accompagnateur peut lui indiquer comment procéder.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quelles sont les conséquences en cas de panne d'un feu de croisement ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Une mauvaise visibilité et le risque d'être confondu avec un deux-roues.</p></div>
+            </div></details>
+            <details class="qa" data-nums="58 98" id="q53">
+            <summary><span class="qa-nums"><b>58</b><b>98</b></span>
+            <span class="qa-q"><span>Montrez où s'effectue le changement d'une ampoule à l'arrière du véhicule.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep qa-geste"><span>Réponse&nbsp;gestuelle</span>Montrez ou manipulez l'élément, et commentez votre geste à voix haute.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quelles sont les conséquences en cas de panne d'un feu de position arrière ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Être mal vu et un risque de collision.</p></div>
+            </div></details>
+            <h3>La visibilité et l'identification du véhicule</h3>
+            <details class="qa" data-nums="10" id="q54">
+            <summary><span class="qa-nums"><b>10</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#00695c" aria-hidden="true"><svg fill="none" height="17" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" width="17"><path d="M3 16l2.6-9h12.8L21 16z"></path><path d="M17.5 19.5L8 10.5" stroke-linecap="round" stroke-width="1.9"></path></svg></span><span>Contrôlez l'état de tous les balais d'essuie-glace du véhicule.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep qa-geste"><span>Réponse&nbsp;gestuelle</span>Montrez ou manipulez l'élément, et commentez votre geste à voix haute.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quel est le risque de circuler avec des balais d'essuie-glace défectueux ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Une mauvaise visibilité en cas d'intempéries.</p></div>
+            </div></details>
+            <details class="qa" data-nums="6" id="q55">
+            <summary><span class="qa-nums"><b>06</b></span>
+            <span class="qa-q"><span>Vérifiez l'état et la propreté des plaques d'immatriculation.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Vérification des plaques à l'avant et à l'arrière : propres et en bon état. Toute anomalie doit être signalée.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quelles sont les précautions à prendre en cas d'installation d'un porte-vélo ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>La plaque d'immatriculation et les feux doivent rester visibles.</p></div>
+            </div></details>
+            <details class="qa" data-nums="40" id="q56">
+            <summary><span class="qa-nums"><b>40</b></span>
+            <span class="qa-q"><span>Vérifiez le fonctionnement de l'éclairage de la plaque d'immatriculation à l'arrière.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Toute anomalie doit être signalée.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Un défaut d'éclairage de la plaque lors du contrôle technique entraîne-t-il une contre-visite ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Oui.</p></div>
+            </div></details>
+            <details class="qa" data-nums="28" id="q57">
+            <summary><span class="qa-nums"><b>28</b></span>
+            <span class="qa-q"><span>Vérifiez l'état et la propreté des dispositifs réfléchissants.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Dispositifs propres et en bon état. Toute anomalie doit être signalée.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quelle est l'utilité des dispositifs réfléchissants ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Rendre le véhicule visible la nuit.</p></div>
+            </div></details>
+            <h3>Le capot, le coffre et la trappe à carburant</h3>
+            <details class="qa" data-nums="48" id="q58">
+            <summary><span class="qa-nums"><b>48</b></span>
+            <span class="qa-q"><span>Ouvrez et refermez le capot, puis vérifiez sa bonne fermeture.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Si le candidat a des difficultés pour ouvrir le capot, l'accompagnateur peut lui indiquer comment procéder.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">En roulant, quel est le risque d'une mauvaise fermeture du capot ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Un risque d'ouverture du capot pouvant entraîner un accident.</p></div>
+            </div></details>
+            <details class="qa" data-nums="64" id="q59">
+            <summary><span class="qa-nums"><b>64</b></span>
+            <span class="qa-q"><span>Procédez à l'ouverture du capot puis à sa fermeture, en vous assurant de son verrouillage.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Si le candidat a des difficultés pour ouvrir le capot, l'accompagnateur peut lui indiquer comment procéder.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Pour un capot s'ouvrant depuis l'avant du véhicule, quelle est l'utilité du dispositif de sécurité ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Empêcher l'ouverture du capot en circulation en cas de mauvais verrouillage.</p></div>
+            </div></details>
+            <details class="qa" data-nums="60" id="q60">
+            <summary><span class="qa-nums"><b>60</b></span>
+            <span class="qa-q"><span>Ouvrez et refermez le coffre, puis vérifiez sa bonne fermeture.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep qa-geste"><span>Réponse&nbsp;gestuelle</span>Montrez ou manipulez l'élément, et commentez votre geste à voix haute.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Lorsque vous transportez un poids important dans le coffre, quelles précautions prendre concernant les pneumatiques et l'éclairage avant ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Augmenter la pression des pneumatiques et régler la hauteur des feux avant.</p></div>
+            </div></details>
+            <details class="qa" data-nums="62" id="q61">
+            <summary><span class="qa-nums"><b>62</b></span>
+            <span class="qa-q"><span>Ouvrez et refermez le coffre, puis vérifiez sa bonne fermeture.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep qa-geste"><span>Réponse&nbsp;gestuelle</span>Montrez ou manipulez l'élément, et commentez votre geste à voix haute.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quels sont les risques de circuler avec des objets sur la plage arrière ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Une mauvaise visibilité vers l'arrière et un risque de projection en cas de freinage brusque ou de choc.</p></div>
+            </div></details>
+            <details class="qa" data-nums="34" id="q62">
+            <summary><span class="qa-nums"><b>34</b></span>
+            <span class="qa-q"><span>Ouvrez la trappe à carburant et/ou vérifiez la bonne fermeture du bouchon.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep qa-geste"><span>Réponse&nbsp;gestuelle</span>Montrez ou manipulez l'élément, et commentez votre geste à voix haute.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Quelles sont les précautions à prendre lors du remplissage du réservoir ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Arrêter le moteur, ne pas fumer, ne pas téléphoner.</p></div>
+            </div></details>
+            <h3>La sécurité et les équipements</h3>
+            <details class="qa" data-nums="42 88" id="q63">
+            <summary><span class="qa-nums"><b>42</b><b>88</b></span>
+            <span class="qa-q"><span>Indiquez où se situe la sécurité enfant sur l'une des portières arrière du véhicule.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep qa-geste"><span>Réponse&nbsp;gestuelle</span>Montrez ou manipulez l'élément, et commentez votre geste à voix haute.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Si la sécurité enfant est enclenchée, est-il possible d'ouvrir la portière arrière depuis l'extérieur ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Oui.</p></div>
+            </div></details>
+            <details class="qa" data-nums="54 94" id="q64">
+            <summary><span class="qa-nums"><b>54</b><b>94</b></span>
+            <span class="qa-q"><span class="qa-picto" style="background:#d63031" aria-hidden="true"><svg fill="none" height="17" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" width="17"><path d="M12 4.5l8.5 14.5H3.5z"></path><path d="M12 9.5l4 7H8z"></path></svg></span><span>Vérifiez la présence du triangle de pré-signalisation.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep qa-geste"><span>Réponse&nbsp;gestuelle</span>Montrez ou manipulez l'élément, et commentez votre geste à voix haute.</p>
+            <div class="qa-sr"><span class="qa-sr-label">Question de sécurité routière</span><p class="qa-sr-q">Utilise-t-on le triangle de pré-signalisation sur autoroute ?</p><p class="qa-rep"><span>Réponse&nbsp;attendue</span>Non.</p></div>
+            </div></details>
+    </div>
+
+    <h3 style="color:var(--anthracite)">Premiers secours — toutes séries</h3>
+    <p class="fiche-count">Protéger, alerter, secourir : la troisième question, posée quel que soit le numéro de série.</p>
+    <div class="section-ps">
+            <h3>1. Protéger</h3>
+            <details class="qa qa-ps" data-nums="1 38 65 86" id="q65">
+            <summary><span class="qa-nums"><b>01</b><b>38</b><b>65</b><b>86</b></span>
+            <span class="qa-q"><span>Comment et pourquoi protéger une zone de danger en cas d'accident de la route ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>En délimitant clairement et largement la zone de danger, de façon visible, pour protéger les victimes et éviter un sur-accident.</p>
+            </div></details>
+            <details class="qa qa-ps" data-nums="8 20 70 78" id="q66">
+            <summary><span class="qa-nums"><b>08</b><b>20</b><b>70</b><b>78</b></span>
+            <span class="qa-q"><span>En cas de panne ou d'accident, quel équipement de sécurité doit être porté avant de quitter le véhicule ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Le gilet de haute visibilité, à enfiler avant de sortir du véhicule. Le terme « gilet jaune » est accepté.</p>
+            </div></details>
+            <details class="qa qa-ps" data-nums="13 25 73 81" id="q67">
+            <summary><span class="qa-nums"><b>13</b><b>25</b><b>73</b><b>81</b></span>
+            <span class="qa-q"><span>Hors autoroute ou endroit dangereux, en cas de panne ou d'accident, où doit être placé le triangle de pré-signalisation ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>À environ 30 mètres de la panne ou de l'accident ; ou avant un virage ; ou avant un sommet de côte.</p>
+            </div></details>
+            <details class="qa qa-ps" data-nums="19 26 82" id="q68">
+            <summary><span class="qa-nums"><b>19</b><b>26</b><b>82</b></span>
+            <span class="qa-q"><span>Dans quelle situation peut-on déplacer une victime ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>En présence d'un danger réel, immédiat et non contrôlable. Le déplacement de la victime doit rester exceptionnel.</p>
+            </div></details>
+            <details class="qa qa-ps" data-nums="14 37 74 87" id="q69">
+            <summary><span class="qa-nums"><b>14</b><b>37</b><b>74</b><b>87</b></span>
+            <span class="qa-q"><span>Quelles sont les conditions pour réaliser le dégagement d'urgence d'une victime en présence d'un danger réel, immédiat et non contrôlable ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>La victime doit être visible et facile à atteindre, et rien ne doit gêner son dégagement. Il faut être sûr de pouvoir le réaliser.</p>
+            </div></details>
+            <details class="qa qa-ps" data-nums="7 32 71 84" id="q70">
+            <summary><span class="qa-nums"><b>07</b><b>32</b><b>71</b><b>84</b></span>
+            <span class="qa-q"><span>Si un dégagement d'urgence de la victime est nécessaire, où doit-elle être déplacée ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Dans un endroit suffisamment éloigné du danger et de ses conséquences.</p>
+            </div></details>
+            <h3>2. Alerter</h3>
+            <details class="qa qa-ps" data-nums="10 57" id="q71">
+            <summary><span class="qa-nums"><b>10</b><b>57</b></span>
+            <span class="qa-q"><span>Quels sont les numéros d'urgence à composer ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Le 18 : sapeurs-pompiers. Le 15 : SAMU. Le 112 : numéro d'urgence valable dans toute l'Union européenne.</p>
+            </div></details>
+            <details class="qa qa-ps" data-nums="9 34" id="q72">
+            <summary><span class="qa-nums"><b>09</b><b>34</b></span>
+            <span class="qa-q"><span>Pourquoi l'alerte auprès des services de secours doit-elle être rapide et précise ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Pour permettre aux services de secours d'apporter les moyens adaptés aux victimes dans le délai le plus court.</p>
+            </div></details>
+            <details class="qa qa-ps" data-nums="16 45" id="q73">
+            <summary><span class="qa-nums"><b>16</b><b>45</b></span>
+            <span class="qa-q"><span>Par quels moyens doit être réalisée l'alerte des secours ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>À l'aide d'un téléphone portable ou, à défaut, d'un téléphone fixe ou d'une borne d'appel d'urgence.</p>
+            </div></details>
+            <details class="qa qa-ps" data-nums="15 40 75" id="q74">
+            <summary><span class="qa-nums"><b>15</b><b>40</b><b>75</b></span>
+            <span class="qa-q"><span>Quelles sont les trois informations à transmettre aux services de secours ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Le numéro de téléphone d'où l'appel est émis · la nature du problème · sa localisation la plus précise possible.</p>
+            </div></details>
+            <details class="qa qa-ps" data-nums="4 33 68" id="q75">
+            <summary><span class="qa-nums"><b>04</b><b>33</b><b>68</b></span>
+            <span class="qa-q"><span>Sur autoroute, comment indiquer avec précision le lieu de l'accident depuis un téléphone portable ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>En indiquant le numéro de l'autoroute, le sens de circulation et le point kilométrique.</p>
+            </div></details>
+            <details class="qa qa-ps" data-nums="27 46 83 90" id="q76">
+            <summary><span class="qa-nums"><b>27</b><b>46</b><b>83</b><b>90</b></span>
+            <span class="qa-q"><span>Lors d'un appel avec les services de secours, pourquoi devez-vous attendre que votre correspondant vous autorise à raccrocher ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Parce qu'il peut nous conseiller ou nous guider dans la réalisation des gestes à faire, ou à ne pas faire, jusqu'à l'arrivée des secours.</p>
+            </div></details>
+            <details class="qa qa-ps" data-nums="28 52 92" id="q77">
+            <summary><span class="qa-nums"><b>28</b><b>52</b><b>92</b></span>
+            <span class="qa-q"><span>À quel moment pouvez-vous mettre fin à un appel avec les secours ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Uniquement lorsque notre correspondant nous invite à le faire.</p>
+            </div></details>
+            <h3>3. Examiner la victime</h3>
+            <details class="qa qa-ps" data-nums="29 56 96" id="q78">
+            <summary><span class="qa-nums"><b>29</b><b>56</b><b>96</b></span>
+            <span class="qa-q"><span>Citez les trois manières d'évaluer l'état de conscience d'une victime.</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Lui poser des questions simples (« comment ça va ? », « vous m'entendez ? ») · lui secouer doucement les épaules · lui prendre la main en lui demandant d'exécuter un geste simple (« serrez-moi la main »).</p>
+            </div></details>
+            <details class="qa qa-ps" data-nums="5 61 69" id="q79">
+            <summary><span class="qa-nums"><b>05</b><b>61</b><b>69</b></span>
+            <span class="qa-q"><span>Comment vérifier la respiration d'une victime ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Regarder si le ventre et la poitrine se soulèvent, et sentir de l'air à l'expiration.</p>
+            </div></details>
+            <details class="qa qa-ps" data-nums="6" id="q80">
+            <summary><span class="qa-nums"><b>06</b></span>
+            <span class="qa-q"><span>Qu'est-ce qu'une perte de connaissance ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>C'est lorsque la victime ne répond pas et ne réagit pas, mais respire.</p>
+            </div></details>
+            <details class="qa qa-ps" data-nums="43 91" id="q81">
+            <summary><span class="qa-nums"><b>43</b><b>91</b></span>
+            <span class="qa-q"><span>Quels sont les signes d'un arrêt cardiaque ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>La victime ne répond pas, ne réagit pas, et ne respire pas ou présente une respiration anormale.</p>
+            </div></details>
+            <details class="qa qa-ps" data-nums="47 63 99" id="q82">
+            <summary><span class="qa-nums"><b>47</b><b>63</b><b>99</b></span>
+            <span class="qa-q"><span>Qu'est-ce qu'un arrêt cardiaque ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Le cœur ne fonctionne plus, ou fonctionne d'une façon anarchique.</p>
+            </div></details>
+            <details class="qa qa-ps" data-nums="41 62" id="q83">
+            <summary><span class="qa-nums"><b>41</b><b>62</b></span>
+            <span class="qa-q"><span>Qu'est-ce qu'une hémorragie ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>C'est une perte de sang prolongée qui ne s'arrête pas. Elle imbibe de sang un mouchoir en quelques secondes.</p>
+            </div></details>
+            <h3>4. Secourir : la victime inconsciente</h3>
+            <details class="qa qa-ps" data-nums="11 59 97" id="q84">
+            <summary><span class="qa-nums"><b>11</b><b>59</b><b>97</b></span>
+            <span class="qa-q"><span>Quels comportements adopter en présence d'une victime qui ne répond pas et ne réagit pas, mais respire ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>La placer en position stable sur le côté (position latérale de sécurité) · alerter les secours · surveiller sa respiration jusqu'à l'arrivée des secours.</p>
+            </div></details>
+            <details class="qa qa-ps" data-nums="18 76" id="q85">
+            <summary><span class="qa-nums"><b>18</b><b>76</b></span>
+            <span class="qa-q"><span>Dans quel cas peut-on positionner une victime en position latérale de sécurité (PLS) ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Si la victime ne répond pas, ne réagit pas et respire.</p>
+            </div></details>
+            <details class="qa qa-ps" data-nums="35" id="q86">
+            <summary><span class="qa-nums"><b>35</b></span>
+            <span class="qa-q"><span>Pourquoi ne faut-il pas laisser une personne en perte de connaissance allongée sur le dos ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Parce qu'elle risque un étouffement, par des liquides présents dans la gorge ou par la chute de la langue en arrière.</p>
+            </div></details>
+            <details class="qa qa-ps" data-nums="30 49 93" id="q87">
+            <summary><span class="qa-nums"><b>30</b><b>49</b><b>93</b></span>
+            <span class="qa-q"><span>Quels sont les risques pour une personne en perte de connaissance allongée sur le dos ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>L'arrêt respiratoire et l'arrêt cardiaque.</p>
+            </div></details>
+            <h3>5. Secourir : l'arrêt cardiaque et l'hémorragie</h3>
+            <details class="qa qa-ps" data-nums="17 54 77 94" id="q88">
+            <summary><span class="qa-nums"><b>17</b><b>54</b><b>77</b><b>94</b></span>
+            <span class="qa-q"><span>Quel comportement doit-on adopter en présence d'une victime en arrêt cardiaque ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>ALERTER : alerter immédiatement les secours. MASSER : pratiquer une réanimation cardio-pulmonaire. DÉFIBRILLER : utiliser un défibrillateur automatisé externe (DAE) si possible.</p>
+            </div></details>
+            <details class="qa qa-ps" data-nums="24 50" id="q89">
+            <summary><span class="qa-nums"><b>24</b><b>50</b></span>
+            <span class="qa-q"><span>Pourquoi faut-il pratiquer immédiatement une réanimation cardio-pulmonaire sur une victime en arrêt cardiaque ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Parce que les lésions du cerveau surviennent dès les premières minutes.</p>
+            </div></details>
+            <details class="qa qa-ps" data-nums="48 53" id="q90">
+            <summary><span class="qa-nums"><b>48</b><b>53</b></span>
+            <span class="qa-q"><span>Quel est le risque principal d'un arrêt cardiaque sans intervention des secours ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>La mort de la victime, qui survient en quelques minutes.</p>
+            </div></details>
+            <details class="qa qa-ps" data-nums="44 66 100" id="q91">
+            <summary><span class="qa-nums"><b>44</b><b>66</b><b>100</b></span>
+            <span class="qa-q"><span>Qu'est-ce qu'un défibrillateur automatisé externe (DAE) ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>C'est un appareil qui peut permettre de rétablir une activité cardiaque normale chez une victime en arrêt cardiaque.</p>
+            </div></details>
+            <details class="qa qa-ps" data-nums="36 60" id="q92">
+            <summary><span class="qa-nums"><b>36</b><b>60</b></span>
+            <span class="qa-q"><span>L'utilisation d'un défibrillateur automatisé externe sur une victime qui n'est pas en arrêt cardiaque présente-t-elle un risque ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Non, car le défibrillateur ne se déclenche que lorsque la victime est en arrêt cardiaque.</p>
+            </div></details>
+            <details class="qa qa-ps" data-nums="12 55 72" id="q93">
+            <summary><span class="qa-nums"><b>12</b><b>55</b><b>72</b></span>
+            <span class="qa-q"><span>Comment arrêter une hémorragie ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>En appuyant fortement sur l'endroit qui saigne, avec les doigts ou avec la paume de la main, en interposant un tissu propre sur la plaie.</p>
+            </div></details>
+            <details class="qa qa-ps" data-nums="42 64 88" id="q94">
+            <summary><span class="qa-nums"><b>42</b><b>64</b><b>88</b></span>
+            <span class="qa-q"><span>Quels sont les risques pour une personne victime d'une hémorragie ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Une détresse circulatoire ou un arrêt cardiaque.</p>
+            </div></details>
+            <h3>6. L'alerte aux populations et la formation</h3>
+            <details class="qa qa-ps" data-nums="21 51 79 95" id="q95">
+            <summary><span class="qa-nums"><b>21</b><b>51</b><b>79</b><b>95</b></span>
+            <span class="qa-q"><span>Quel est l'objectif du Système d'alerte et d'information des populations (SAIP) ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Avertir la population d'un danger imminent, ou qu'un événement grave est en train de se produire.</p>
+            </div></details>
+            <details class="qa qa-ps" data-nums="3 39 67 89" id="q96">
+            <summary><span class="qa-nums"><b>03</b><b>39</b><b>67</b><b>89</b></span>
+            <span class="qa-q"><span>Comment est composé le signal d'alerte du SAIP diffusé par les sirènes ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Il se compose de deux codes distincts : le Signal national d'alerte (SNA), variation du signal sur trois cycles successifs ; et le signal de fin d'alerte, un signal continu.</p>
+            </div></details>
+            <details class="qa qa-ps" data-nums="22 58 80 98" id="q97">
+            <summary><span class="qa-nums"><b>22</b><b>58</b><b>80</b><b>98</b></span>
+            <span class="qa-q"><span>Comment est diffusée l'alerte émise par le SAIP ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Grâce aux sirènes, aux médias tels que Radio France et France Télévisions, ou encore grâce à l'application SAIP.</p>
+            </div></details>
+            <details class="qa qa-ps" data-nums="2 31 85" id="q98">
+            <summary><span class="qa-nums"><b>02</b><b>31</b><b>85</b></span>
+            <span class="qa-q"><span>Quels comportements adopter en cas de diffusion du signal d'alerte du SAIP ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>Se mettre en sécurité · s'informer grâce aux médias et aux sites internet des autorités dès que leur consultation est possible · respecter les consignes des autorités.</p>
+            </div></details>
+            <details class="qa qa-ps" data-nums="23" id="q99">
+            <summary><span class="qa-nums"><b>23</b></span>
+            <span class="qa-q"><span>À partir de quel âge peut-on suivre une formation aux premiers secours ?</span></span>
+            <span class="qa-chev" aria-hidden="true"></span></summary>
+            <div class="qa-body">
+            <p class="qa-rep"><span>Réponse&nbsp;attendue</span>À partir de 10 ans.</p>
+            </div></details>
+    </div>
+
+    <div class="pdf-banner">
+        <div class="pdf-banner-text">
+            <p>📕 Emportez le livret partout</p>
+            <small>Version PDF imprimable : les 100 séries, leurs réponses et la table de correspondance série → questions.</small>
+        </div>
+        <a href="/plaquettes/livret-100-questions-permis-b.pdf" class="pdf-btn" download>⬇ Télécharger le livret</a>
+    </div>
+
+    <h2>Ce que ces questions disent de votre conduite</h2>
+
+    <p>On les révise souvent la veille, en catastrophe, comme une formalité. C'est dommage : derrière chaque question, il y a une habitude de conducteur. Savoir où se trouve le témoin d'usure d'un pneu, c'est aussi savoir quand changer ses pneus. Connaître les conditions de contrôle du niveau d'huile, c'est éviter une casse moteur.</p>
+
+    <p>Ces trois points ne sont pas seulement un filet de sécurité pour l'examen. Ils sont le premier réflexe d'entretien de votre future voiture.</p>
+
+    <div class="callout callout-success">
+        <div class="callout-icon">✅</div>
+        <div class="callout-body">
+            <strong>Notre conseil</strong>
+            <p>Révisez ces fiches par blocs de dix, sur plusieurs jours, plutôt qu'en une seule fois. Et lors d'une de vos dernières leçons, demandez à votre moniteur de vous interroger dans le véhicule : c'est là que tout se met en place.</p>
+        </div>
+    </div>
+
+    <h2>Source et mise à jour</h2>
+
+    <p>Ces fiches reprennent la banque de questions officielle applicable à l'épreuve pratique du permis B depuis le 1<sup>er</sup> janvier 2018, dans sa version révisée par la Délégation à la sécurité routière. Les 100 séries y figurent, sans exception et sans doublon.</p>
+
+    <p>Les questions ont été légèrement reformulées pour la lisibilité, mais les réponses attendues sont conservées dans leur formulation officielle. Les pictogrammes qui accompagnent certaines fiches sont des schémas de repérage : les symboles réels varient d'un modèle de véhicule à l'autre, rien ne remplace l'observation de la voiture elle-même. En cas d'évolution de la banque officielle, la version en vigueur au jour de l'examen prévaut.</p>
+
+</article>
+
+<!-- ══════════════════════════════════════════════════════════════
+     ARTICLES LIÉS
+══════════════════════════════════════════════════════════════ -->
+<div class="related-wrap">
+    <div class="related-inner">
+        <h2>À lire aussi</h2>
+        <div class="related-grid">
+            <a href="/blog/comment-reussir-son-permis-conduire" class="related-card">
+                <div class="related-card-icon">🎯</div>
+                <div class="related-card-body">
+                    <small>Conseils pratiques</small>
+                    <p>Comment réussir son permis de conduire</p>
+                </div>
+            </a>
+            <a href="/blog/questions-pieges-code-route" class="related-card">
+                <div class="related-card-icon">🚦</div>
+                <div class="related-card-body">
+                    <small>Code de la route</small>
+                    <p>Questions pièges au code : les reconnaître et y répondre</p>
+                </div>
+            </a>
+            <a href="/blog/reflexes-urgence-conduite" class="related-card">
+                <div class="related-card-icon">🆘</div>
+                <div class="related-card-body">
+                    <small>Outils pédagogiques</small>
+                    <p>Les bons réflexes en situation d'urgence</p>
+                </div>
+            </a>
+            <a href="/quizz/quizz_panneaux" class="related-card">
+                <div class="related-card-icon">🚸</div>
+                <div class="related-card-body">
+                    <small>Outils pédagogiques</small>
+                    <p>Quiz : connaissez-vous les panneaux de signalisation ?</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CTA BANNER
+══════════════════════════════════════════════════════════════ -->
+<div class="cta-banner">
+    <h2>Prêt à passer votre examen en confiance ?</h2>
+    <p>À Bayonne depuis 1962, l'auto-école Marti prépare ses élèves à l'épreuve pratique dans les conditions réelles de l'examen.</p>
+    <a data-email="&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#46;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" class="btn">S'inscrire chez Marti →</a>
+</div>
+
+</main>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════════ -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="logo">MARTI<span>.</span></div>
+                <p>Auto-école de confiance à Bayonne depuis 1962. Formations permis B, conduite accompagnée et boîte automatique.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Formations</h3>
+                <ul>
+                    <li><a href="/formules/permis-b-manuel">Permis B</a></li>
+                    <li><a href="/formules/conduite-accompagnee">Conduite accompagnée</a></li>
+                    <li><a href="/formules/permis-b-automatique">Boîte automatique</a></li>
+                    <li><a href="/#offres">Offres spéciales</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Navigation</h3>
+                <ul>
+                    <li><a href="/">Accueil</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/espace-eleves">Espace élèves</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact</h3>
+                <ul>
+                    <li><a href="tel:0559591260">05 59 59 12 60</a></li>
+                    <li><a href="tel:0622008209">06 22 00 82 09</a></li>
+                    <li><a data-email="&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#46;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" data-show-email="true">&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#46;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></li>
+                    <li><a href="/#contact">13 rue Marengo, Bayonne</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Auto-École Marti — Bayonne. Tous droits réservés.</span>
+            <span>SIRET : 382 930 188 00018 · APE : 8500Z</span>
+            <a href="/mentions-legales" class="footer-legal-link">Règlement intérieur &amp; mentions légales</a>
+        </div>
+    </div>
+</footer>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "Comment sont choisies les questions posées à l'examen du permis B ?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "L'inspecteur relève les deux derniers chiffres du compteur kilométrique du véhicule : ils donnent le numéro de série, de 01 à 100. Un numéro impair correspond à une vérification intérieure, un numéro pair à une vérification extérieure. S'y ajoutent une question de sécurité routière liée à cette vérification et une question de premiers secours."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Les questions du permis sont-elles éliminatoires ?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Non. Une mauvaise réponse ne fait pas échouer à l'examen : ces questions ne peuvent que rapporter des points. Elles valent jusqu'à 3 points sur les 31 de l'épreuve pratique, et peuvent donc faire la différence pour atteindre les 20 points requis."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Combien de temps dure l'épreuve pratique du permis B ?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "L'épreuve dure 32 minutes, dont au moins 25 minutes de conduite effective. Le reste du temps est consacré à l'accueil, à la vérification des documents, à l'installation au poste de conduite et aux questions orales."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Quels documents faut-il apporter le jour de l'examen du permis ?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Une pièce d'identité en cours de validité (carte nationale d'identité ou passeport) est obligatoire : sans elle, le candidat ne peut pas passer l'épreuve. Il faut aussi présenter la convocation et les documents qui y sont mentionnés, ainsi que ses lunettes ou lentilles si le dossier le prévoit."
+            }
+        }
+    ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "item": "https://autoecolemarti.fr"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://autoecolemarti.fr/blog/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Les 100 questions du permis B",
+            "item": "https://autoecolemarti.fr/blog/100-questions-permis-b-jour-examen"
+        }
+    ]
+}
+</script>
+
+<script>
+/* ── Fiches : recherche par numéro de série + tout afficher/masquer ── */
+(function () {
+    var all = Array.prototype.slice.call(document.querySelectorAll('.qa'));
+    var input = document.getElementById('serieInput');
+    var btn = document.getElementById('serieBtn');
+    var msg = document.getElementById('serieMsg');
+    var toggle = document.getElementById('toggleAll');
+    var REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function clearHighlight() {
+        all.forEach(function (d) { d.classList.remove('qa-highlight'); });
+    }
+
+    function findSerie() {
+        var n = parseInt(input.value, 10);
+        if (!n || n < 1 || n > 100) {
+            msg.textContent = 'Entrez un numéro entre 1 et 100.';
+            return;
+        }
+        clearHighlight();
+        var found = all.filter(function (d) {
+            return d.dataset.nums.split(' ').indexOf(String(n)) !== -1;
+        });
+        if (!found.length) { msg.textContent = 'Série introuvable.'; return; }
+        found.forEach(function (d) { d.open = true; d.classList.add('qa-highlight'); });
+        msg.textContent = 'Série ' + n + ' : ' + found.length + ' fiche(s) à réviser.';
+        found[0].scrollIntoView({ behavior: REDUCE ? 'auto' : 'smooth', block: 'center' });
+    }
+
+    if (btn) btn.addEventListener('click', findSerie);
+    if (input) input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') { e.preventDefault(); findSerie(); }
+    });
+
+    if (toggle) toggle.addEventListener('click', function () {
+        var open = toggle.dataset.open === '1';
+        all.forEach(function (d) { d.open = !open; });
+        toggle.dataset.open = open ? '0' : '1';
+        toggle.textContent = open ? 'Tout afficher' : 'Tout masquer';
+        if (open) { clearHighlight(); msg.textContent = ''; }
+    });
+})();
+</script>
+<script defer src="/scripts/email-decoder.js"></script>
+</body>
+</html>
