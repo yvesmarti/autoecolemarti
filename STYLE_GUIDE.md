@@ -110,6 +110,21 @@ Hero fond : `#f0f4ff` → `#dbe5ff`
 
 ---
 
+### Outils Pédagogiques — Violet `#6d28d9`
+```css
+--article-accent: #6d28d9;
+--article-accent-dark: #4c1d95;
+--article-accent-bg: rgba(124, 58, 237, 0.06);
+--article-accent-pill: rgba(124, 58, 237, 0.12);
+--article-hero-gradient: linear-gradient(135deg, #f5f0ff, #e5d5ff, #d4b8ff);
+--article-hero-glow: rgba(124, 58, 237, 0.10);
+--cta-gradient: linear-gradient(135deg, #6d28d9, #4c1d95);
+--cta-btn-color: #6d28d9;
+```
+Hero fond : `#f5f0ff` → `#e5d5ff` | Carte du hub : `.article-thumb.outils` + `.article-cat.violet`
+
+---
+
 ### Tarifs — Orange doré `#e07b39`
 ```css
 --article-accent: #e07b39;
@@ -251,4 +266,4 @@ Bordure gauche : `4px solid`, padding : `1.4rem 1.6rem`
 
 ---
 
-*Dernière mise à jour : mars 2026*
+*Dernière mise à jour : août 2026*

@@ -32,13 +32,14 @@
     <link rel="stylesheet" href="../css/blog-article.css">
     <style>
         :root {
-            --article-accent: var(--basque-rouge);
-            --article-accent-bg: rgba(214,48,49,0.06);
-            --article-accent-pill: rgba(214,48,49,0.12);
-            --article-hero-gradient: linear-gradient(135deg, #fff5f5 0%, #fce4e4 50%, #f5c6c6 100%);
-            --article-hero-glow: rgba(214,48,49,0.12);
-            --cta-gradient: linear-gradient(135deg, var(--basque-rouge) 0%, var(--rouge-sombre) 100%);
-            --cta-btn-color: var(--basque-rouge);
+            --article-accent: #6d28d9;
+            --article-accent-dark: #4c1d95;
+            --article-accent-bg: rgba(124,58,237,0.06);
+            --article-accent-pill: rgba(124,58,237,0.12);
+            --article-hero-gradient: linear-gradient(135deg, #f5f0ff 0%, #e5d5ff 50%, #d4b8ff 100%);
+            --article-hero-glow: rgba(124,58,237,0.1);
+            --cta-gradient: linear-gradient(135deg, #6d28d9 0%, #4c1d95 100%);
+            --cta-btn-color: #6d28d9;
             --anthracite: #2d3436;
         }
 
@@ -46,8 +47,8 @@
         .pdf-banner {
             display: flex; align-items: center; gap: 1.4rem; flex-wrap: wrap;
             justify-content: space-between;
-            background: linear-gradient(135deg, #fff5f5 0%, #fce4e4 60%);
-            border: 1.5px solid rgba(214,48,49,0.2);
+            background: linear-gradient(135deg, #f5f0ff 0%, #e5d5ff 60%);
+            border: 1.5px solid rgba(124,58,237,0.2);
             border-radius: var(--radius);
             padding: 1.6rem 1.9rem; margin: 2.5rem 0;
         }
@@ -55,13 +56,13 @@
         .pdf-banner-text small { font-size: 0.85rem; color: var(--gris); }
         .pdf-btn {
             display: inline-flex; align-items: center; gap: 0.55rem;
-            padding: 0.9rem 1.7rem; background: var(--basque-rouge); color: #fff !important;
+            padding: 0.9rem 1.7rem; background: var(--article-accent); color: #fff !important;
             border-radius: 50px; font-weight: 700; font-size: 0.9rem; text-decoration: none;
-            box-shadow: 0 4px 20px rgba(214,48,49,0.3); transition: var(--transition);
+            box-shadow: 0 4px 20px rgba(124,58,237,0.3); transition: var(--transition);
             white-space: nowrap; flex-shrink: 0; border: none; cursor: pointer;
             font-family: 'DM Sans', sans-serif;
         }
-        .pdf-btn:hover { background: var(--rouge-sombre); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(214,48,49,0.4); }
+        .pdf-btn:hover { background: var(--article-accent-dark); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(124,58,237,0.4); }
 
         /* ── Barre d'outils des fiches ── */
         .qa-toolbar {
@@ -78,19 +79,19 @@
             font-size: 0.9rem; border: 1.5px solid var(--gris-clair); border-radius: 50px;
             color: var(--noir); background: #fff;
         }
-        .qa-toolbar input:focus { outline: none; border-color: var(--basque-rouge); }
+        .qa-toolbar input:focus { outline: none; border-color: var(--article-accent); }
         .qa-mini-btn {
             border: 1.5px solid var(--gris-clair); background: #fff; color: var(--noir);
             font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 600;
             padding: 0.5rem 1.1rem; border-radius: 50px; cursor: pointer; transition: var(--transition);
         }
-        .qa-mini-btn:hover { border-color: var(--basque-rouge); color: var(--basque-rouge); }
-        .qa-serie-msg { font-size: 0.82rem; color: var(--basque-rouge); font-weight: 600; }
+        .qa-mini-btn:hover { border-color: var(--article-accent); color: var(--article-accent); }
+        .qa-serie-msg { font-size: 0.82rem; color: var(--article-accent); font-weight: 600; }
 
         /* ── Fiche question/réponse dépliable ── */
         .qa {
             background: #fff; border: 1px solid var(--gris-clair);
-            border-left: 3px solid var(--basque-rouge);
+            border-left: 3px solid var(--article-accent);
             border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
             margin-bottom: 0.7rem; overflow: hidden; transition: var(--transition);
         }
@@ -105,7 +106,7 @@
         .qa summary::-webkit-details-marker { display: none; }
         .qa-nums { display: flex; flex-wrap: wrap; gap: 3px; flex-shrink: 0; padding-top: 2px; }
         .qa-nums b {
-            background: var(--basque-rouge); color: #fff; font-size: 0.7rem; font-weight: 700;
+            background: var(--article-accent); color: #fff; font-size: 0.7rem; font-weight: 700;
             padding: 2px 6px; border-radius: 4px; letter-spacing: 0.02em;
         }
         .qa-ps .qa-nums b { background: var(--anthracite); }
@@ -125,7 +126,7 @@
         }
         .qa-ps .qa-chev { background: rgba(45,52,54,0.12); }
         .qa-chev::before, .qa-chev::after {
-            content: ''; position: absolute; background: var(--basque-rouge);
+            content: ''; position: absolute; background: var(--article-accent);
             top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 2px;
         }
         .qa-ps .qa-chev::before, .qa-ps .qa-chev::after { background: var(--anthracite); }
@@ -140,7 +141,7 @@
         .qa-ps .qa-rep { background: #f2f3f4; }
         .qa-rep span {
             display: block; font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase;
-            font-weight: 700; color: var(--basque-rouge); margin-bottom: 0.25rem;
+            font-weight: 700; color: var(--article-accent); margin-bottom: 0.25rem;
         }
         .qa-ps .qa-rep span { color: var(--anthracite); }
         .qa-rep.qa-geste { background: rgba(212,168,83,0.14); }
@@ -148,15 +149,15 @@
         .qa-sr { margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px dotted #d9d5cf; }
         .qa-sr-label {
             font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase;
-            font-weight: 700; color: var(--basque-rouge);
+            font-weight: 700; color: var(--article-accent);
         }
         .qa-sr-q { margin: 0.35rem 0 0.6rem; font-weight: 600; font-size: 0.93rem; color: var(--noir); }
-        .qa.qa-highlight { box-shadow: 0 0 0 3px rgba(214,48,49,0.35); }
+        .qa.qa-highlight { box-shadow: 0 0 0 3px rgba(124,58,237,0.35); }
 
         .article-wrap h3 {
             margin-top: 2.2rem; margin-bottom: 0.9rem;
             font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700;
-            color: var(--basque-rouge); text-transform: uppercase; letter-spacing: 0.06em;
+            color: var(--article-accent); text-transform: uppercase; letter-spacing: 0.06em;
         }
         .section-ps h3 { color: var(--anthracite); }
 
@@ -244,10 +245,10 @@
             <span>›</span>
             <a href="/blog/">Blog</a>
             <span>›</span>
-            <span>Code de la route</span>
+            <span>Outils pédagogiques</span>
         </nav>
         <div class="article-hero-meta">
-            <span class="article-cat-pill">🚦 Code de la route</span>
+            <span class="article-cat-pill">🛠️ Outil pédagogique</span>
             <span class="article-reading-pill">⏱ 12 min de lecture</span>
         </div>
         <h1>Les <em>100 questions</em> du permis B<br>tout savoir pour le jour de l'examen</h1>
@@ -357,7 +358,7 @@
         <span class="qa-serie-msg" id="serieMsg"></span>
     </div>
 
-    <h3 style="color:var(--basque-rouge)">Vérifications intérieures — séries impaires</h3>
+    <h3>Vérifications intérieures — séries impaires</h3>
     <p class="fiche-count">Tout se fait depuis le poste de conduite : voyants, commandes, documents de bord.</p>
     <div class="section-int">
             <h3>Les voyants du tableau de bord</h3>
@@ -616,7 +617,7 @@
             </div></details>
     </div>
 
-    <h3 style="color:var(--basque-rouge)">Vérifications extérieures — séries paires</h3>
+    <h3>Vérifications extérieures — séries paires</h3>
     <p class="fiche-count">Autour et sous le capot : niveaux, pneumatiques, éclairage, équipements de sécurité.</p>
     <div class="section-ext">
             <h3>Sous le capot : les niveaux</h3>
