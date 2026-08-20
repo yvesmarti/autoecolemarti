@@ -61,6 +61,7 @@
 │
 ├── formules/                     # Course/pricing pages
 │   ├── index.html                # Hub interactif: quiz 3 étapes → recommandation personnalisée
+│   ├── code-de-la-route-bayonne.html # Préparation au code (ETG) à Bayonne — sans tarif, renvoie vers /formules/
 │   ├── conduite-accompagnee.html # AAC supervised driving, age 15+, 1 629 € TTC
 │   ├── permis-b-manuel.html      # Manual transmission license
 │   └── permis-b-automatique.html # Automatic transmission license
@@ -258,7 +259,7 @@ Fluid type scale uses `clamp()`:
 - **⚠️ Uses inline CSS** (no separate stylesheet — exception to the rule)
 - JSON-LD BreadcrumbList schema
 
-### Formules Detail Pages (`formules/conduite-accompagnee.html`, `permis-b-manuel.html`, `permis-b-automatique.html`)
+### Formules Detail Pages (`formules/conduite-accompagnee.html`, `permis-b-manuel.html`, `permis-b-automatique.html`, `code-de-la-route-bayonne.html`)
 - Hero with price + age requirement
 - Advantages grid
 - Itemized tariff breakdown
@@ -267,6 +268,15 @@ Fluid type scale uses `clamp()`:
 - PDF lightbox viewer (PDF.js 3.11.174 via CDN) — linked to plaquettes PDFs
 - Booking CTA
 - FAQs
+- **`code-de-la-route-bayonne.html` — page ETG, sans grille tarifaire** : elle ne porte **aucun
+  montant Marti** (le pack code est une ligne incluse dans les 3 forfaits, pas un produit isolé)
+  et renvoie vers `/formules/` et `/blog/combien-coute-permis-conduire-bayonne` pour les prix ;
+  son seul chiffre est le « 30 € » du tarif d'État de l'examen. Sections : avantages, déroulé en
+  6 étapes, examen, coût, articles liés, FAQ, CTA. JSON-LD `Course` + `hasCourseInstance`
+  (`courseMode: Blended`). **Pas de lightbox PDF ni de plaquette** (exception dans la famille).
+  Maillée depuis les 3 pages formules détail (étape « Préparation au code »), le bandeau du hub
+  `formules/index.html`, la FAQ (« Comment se passe l'examen ? »), `espace-eleves.html` et
+  3 articles de blog. Sitemap priority 0.9 (préfixe `formules/`).
 
 ### Blog (`blog/index.html` + 22 articles)
 - Blog hub has featured article + 22 article cards with category filters (dont 1 carte « bientôt disponible »)
@@ -503,7 +513,7 @@ npm run sitemap
 - **Featured pricing card**: navy `#1e2a4a` + gold `#d4a853` accents + "POPULAIRE" badge
 - **Blog hero heights**: `52vh` (shorter than homepage at `88vh`)
 - **formules/index.html** uses **inline CSS** (no external stylesheet) — this is an intentional exception
-- **Shell CSS partagé (`css/base.css`)** : les 7 pages de la famille « formules détail + pages locales » (`auto-ecole-anglet`, `auto-ecole-bayonne`, `auto-ecole-biarritz`, `espace-eleves`, `formules/conduite-accompagnee`, `formules/permis-b-manuel`, `formules/permis-b-automatique`) chargent `css/base.css` (reset, `:root` cœur, navbar desktop, footer, skip-link/focus) et ne gardent en `<style>` inline que le **spécifique page** (hero, sections, cartes, boutons) + leurs **variables `:root` propres** (`--vert`, `--page-accent`, `--aac`…) + d'éventuels **overrides d'accent nav** (ex. `nav .nav-links a:hover` en `--aac`/`--page-accent`). Ordre impératif : `fonts.css` → `base.css` → `<style>` inline → `nav-mobile.css`. Les autres pages (`index`, `faq`, `404`, `merci`, `reservation`, `mentions-legales`, `formules/index`, quiz, blog) restent **volontairement autonomes** (systèmes de design distincts) — ne pas leur imposer `base.css`.
+- **Shell CSS partagé (`css/base.css`)** : les 8 pages de la famille « formules détail + pages locales » (`auto-ecole-anglet`, `auto-ecole-bayonne`, `auto-ecole-biarritz`, `espace-eleves`, `formules/code-de-la-route-bayonne`, `formules/conduite-accompagnee`, `formules/permis-b-manuel`, `formules/permis-b-automatique`) chargent `css/base.css` (reset, `:root` cœur, navbar desktop, footer, skip-link/focus) et ne gardent en `<style>` inline que le **spécifique page** (hero, sections, cartes, boutons) + leurs **variables `:root` propres** (`--vert`, `--page-accent`, `--aac`…) + d'éventuels **overrides d'accent nav** (ex. `nav .nav-links a:hover` en `--aac`/`--page-accent`). Ordre impératif : `fonts.css` → `base.css` → `<style>` inline → `nav-mobile.css`. Les autres pages (`index`, `faq`, `404`, `merci`, `reservation`, `mentions-legales`, `formules/index`, quiz, blog) restent **volontairement autonomes** (systèmes de design distincts) — ne pas leur imposer `base.css`.
 - **Email links** always use `data-email` HTML entity obfuscation + JS decoding (no raw `mailto:` in HTML)
 - **Internal links use clean (extensionless) URLs** matching the canonicals/sitemap — never link to `*.html`. Use root-relative paths: `/` (homepage), `/faq`, `/formules/`, `/formules/conduite-accompagnee`, `/blog/`, `/blog/<slug>`, `/quizz/quizz_panneaux`, `/mentions-legales`, etc. Full absolute URLs (JSON-LD `@id`/`url`, JS redirects) also stay extensionless (`https://autoecolemarti.fr/blog/<slug>`). This consolidates SEO signals — Cloudflare Pages **308-redirects** `/<page>.html` → `/<page>` (permanent), so linking the clean form directly avoids a needless redirect hop and keeps all link equity on the canonical URL. Le fichier `_redirects` (301) couvre les mêmes paires au cas où (indépendant du mécanisme natif).
 - **JSON-LD schemas** in use: `FAQPage` + `BreadcrumbList` (faq.html), `BreadcrumbList` (formules, articles, blog hub, quiz), `BlogPosting` with `datePublished` + `dateModified` + `mainEntityOfPage` (articles — exactly ONE article-type block per page, in the `<head>`), `Course` with `hasCourseInstance` (formules detail), `ItemList` (formules hub), `CollectionPage` (blog hub), `Quiz`/`LearningResource` (quizz), `LocalBusiness`/`DrivingSchool` + `Review`/`AggregateRating` + `sameAs` (homepage). Phone in JSON-LD is always E.164: `+33559591260`.
