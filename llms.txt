@@ -1,6 +1,6 @@
 # Auto-École Marti
 
-> Auto-école à Bayonne (64100) en activité depuis 1962. Située au 13 rue Marengo, en plein cœur du Petit Bayonne. Note Google : 4,9/5 (80 avis). L'une des auto-écoles les moins chères du Pays Basque : permis B dès 967 € TTC. Téléphone : 05 59 59 12 60.
+> Auto-école à Bayonne (64100) en activité depuis 1962. Située au 13 rue Marengo, en plein cœur du Petit Bayonne. Note Google : 4,9/5 (80 avis). L'une des auto-écoles les moins chères du Pays Basque : permis B dès 1 055 € TTC. Téléphone : 05 59 59 12 60.
 
 ## Qui sommes-nous
 
@@ -8,11 +8,12 @@ L'auto-école Marti est une institution locale du Pays Basque, fondée en 1962 p
 
 ## Formations disponibles et tarifs
 
-- **Permis B boîte automatique** : 967 € TTC (forfait complet, l'option la plus économique)
-- **Permis B boîte manuelle** : 1 261 € TTC (forfait complet)
-- **Conduite accompagnée (AAC)** : 1 629 € TTC — accessible dès 15 ans
-- **Leçon de conduite boîte manuelle** : 46 €/heure
-- **Leçon de conduite boîte automatique** : 48 €/heure
+- **Permis B boîte automatique** : 1 055 € TTC (forfait complet, l'option la plus économique)
+- **Permis B boîte manuelle** : 1 375 € TTC (forfait complet)
+- **Conduite accompagnée (AAC)** : 1 775 € TTC — accessible dès 15 ans
+- **Leçon de conduite boîte manuelle** : 50 €/heure
+- **Leçon de conduite boîte automatique** : 52 €/heure
+- **Tarifs TTC en vigueur à compter du** : 31/08/2026
 
 Toutes les formules incluent : frais de dossier, préparation au code, évaluation de départ et accompagnement à l'examen.
 
@@ -47,18 +48,18 @@ L'auto-école accueille les habitants de Bayonne et des communes voisines, avec 
 - **Auto-école à Anglet** : point de rendez-vous conduite à la Place Quintaou, en plein Anglet ; accès direct aux routes d'examen du BAB. https://autoecolemarti.fr/auto-ecole-anglet
 - **Auto-école à Biarritz** : élèves biarrots accueillis de longue date ; leçons au départ d'Anglet (Place Quintaou) ou de Bayonne, au choix. https://autoecolemarti.fr/auto-ecole-biarritz
 
-Les tarifs sont identiques quelle que soit la commune : 967 € (boîte automatique), 1 261 € (boîte manuelle), 1 629 € (conduite accompagnée).
+Les tarifs sont identiques quelle que soit la commune : 1 055 € (boîte automatique), 1 375 € (boîte manuelle), 1 775 € (conduite accompagnée).
 
 ## Questions fréquentes (FAQ)
 
 **Combien d'heures faut-il pour passer le permis B ?**
-La loi fixe un minimum légal de 20 heures en boîte manuelle et 13 heures en boîte automatique. Des heures supplémentaires peuvent s'ajouter à 46 €/h (manuelle) ou 48 €/h (automatique).
+La loi fixe un minimum légal de 20 heures en boîte manuelle et 13 heures en boîte automatique. Des heures supplémentaires peuvent s'ajouter à 50 €/h (manuelle) ou 52 €/h (automatique).
 
 **Quelle est la différence entre boîte manuelle et boîte automatique ?**
 Le permis boîte manuelle autorise à conduire tous les véhicules (manuels et automatiques). Le permis boîte automatique (mention BVA) limite aux véhicules automatiques ; une mise à niveau de 2 heures suffit pour lever cette restriction.
 
 **Quels sont vos tarifs pour le permis B ?**
-Permis boîte automatique : 967 € TTC. Permis boîte manuelle : 1 261 € TTC. Conduite accompagnée (AAC) : 1 629 € TTC.
+Permis boîte automatique : 1 055 € TTC. Permis boîte manuelle : 1 375 € TTC. Conduite accompagnée (AAC) : 1 775 € TTC. Tarifs TTC en vigueur à compter du 31/08/2026.
 
 **C'est quoi la conduite accompagnée (AAC) ?**
 L'AAC permet de commencer la formation dès 15 ans. Après 20 heures en auto-école, l'élève pratique avec un accompagnateur agréé pendant au moins 1 an et 3 000 km. L'examen est accessible dès 17 ans. La période probatoire est réduite à 2 ans (au lieu de 3).
@@ -115,8 +116,8 @@ Fondée en 1962, l'auto-école Marti est l'une des plus anciennes et des mieux n
 - [Accueil](https://autoecolemarti.fr/): Présentation générale, tarifs, avis clients
 - [FAQ](https://autoecolemarti.fr/faq): Réponses aux questions fréquentes sur le permis B, les tarifs et la conduite accompagnée
 - [Permis B boîte manuelle](https://autoecolemarti.fr/formules/permis-b-manuel): Détail du forfait, programme, conditions
-- [Permis B boîte automatique](https://autoecolemarti.fr/formules/permis-b-automatique): Forfait le moins cher de l'école, dès 967 €
-- [Conduite accompagnée (AAC)](https://autoecolemarti.fr/formules/conduite-accompagnee): Formation dès 15 ans, 1 629 € TTC
+- [Permis B boîte automatique](https://autoecolemarti.fr/formules/permis-b-automatique): Forfait le moins cher de l'école, dès 1 055 €
+- [Conduite accompagnée (AAC)](https://autoecolemarti.fr/formules/conduite-accompagnee): Formation dès 15 ans, 1 775 € TTC
 - [Code de la route à Bayonne](https://autoecolemarti.fr/formules/code-de-la-route-bayonne): Préparation à l'ETG — plateforme internet illimitée, livre de code officiel et suivi jusqu'à l'examen
 - [Choisir sa formule](https://autoecolemarti.fr/formules/): Quiz interactif pour trouver la formation adaptée à son profil
 - [Auto-école à Bayonne](https://autoecolemarti.fr/auto-ecole-bayonne): Bureau 13 rue Marengo (Petit Bayonne) — accès, horaires et quartiers desservis

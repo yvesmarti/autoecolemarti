@@ -636,7 +636,7 @@ footer { background: var(--noir); color: white; padding: 4rem 2rem 2rem; }
 //   • « Vient d'une autre auto-école » = déduit (heures déjà faites × prixHeureSup),
 //                               PLAFONNÉ à « hIncluses » (= minimum légal de la formule :
 //                               13 h en boîte auto, 20 h en manuelle/AAC).
-//  (Tarifs relevés sur le site au 09/03/2026 — à confirmer/actualiser.)
+//  (Tarifs relevés sur le site au 31/08/2026 — à confirmer/actualiser.)
 // ═══════════════════════════════════════════════════════════════════════
 const DEVIS_CONFIG = {
     maxHeuresSup: 20,           // borne haute du sélecteur d'heures supplémentaires
@@ -647,60 +647,64 @@ const DEVIS_CONFIG = {
             nom: "Boîte automatique",
             sousTitre: "Permis B — BVA · dès 18 ans",
             icone: "🚗",
-            base: 967,
+            base: 1055,
             hIncluses: 13,
-            prixHeureSup: 48,
+            prixHeureSup: 52,
             sujetEmail: "Devis%20Permis%20Automatique%20(BVA)",
             lignes: [
                 { label: "Frais de dossier & inscription", prix: 200 },
-                { id: "code", label: "Pack code de la route", prix: 50 },
-                { label: "Évaluation de départ", prix: 45 },
-                { label: "13 h de conduite incluses", detail: "Soit 48 €/h", prix: 624 },
-                { label: "Présentation à l'examen", prix: 48 },
+                { id: "code", label: "Pack code de la route", prix: 75 },
+                { label: "Évaluation de départ", prix: 52 },
+                { label: "13 h de conduite incluses", detail: "Soit 52 €/h", prix: 676 },
+                { label: "Présentation à l'examen", prix: 52 },
+            ],
+            options: [
+                { id: "examenSup", label: "Présentation supplémentaire à l'examen", detail: "En cas de 2ᵉ passage", prix: 52 },
             ],
         },
         manuel: {
             nom: "Permis traditionnel",
             sousTitre: "Permis B — boîte manuelle · valable partout",
             icone: "⚙️",
-            base: 1261,
+            base: 1375,
             hIncluses: 20,
-            prixHeureSup: 46,
+            prixHeureSup: 50,
             sujetEmail: "Devis%20Permis%20B%20Manuel",
             lignes: [
                 { label: "Frais de dossier & inscription", prix: 200 },
-                { id: "code", label: "Pack code de la route", prix: 50 },
-                { label: "Évaluation de départ", prix: 45 },
-                { label: "20 h de conduite incluses", detail: "Soit 46 €/h", prix: 920 },
-                { label: "Présentation à l'examen", prix: 46 },
+                { id: "code", label: "Pack code de la route", prix: 75 },
+                { label: "Évaluation de départ", prix: 50 },
+                { label: "20 h de conduite incluses", detail: "Soit 50 €/h", prix: 1000 },
+                { label: "Présentation à l'examen", prix: 50 },
+            ],
+            options: [
+                { id: "examenSup", label: "Présentation supplémentaire à l'examen", detail: "En cas de 2ᵉ passage", prix: 50 },
             ],
         },
         aac: {
             nom: "Conduite accompagnée",
             sousTitre: "Permis B — AAC · dès 15 ans",
             icone: "🎓",
-            base: 1629,
+            base: 1775,
             hIncluses: 20,
-            prixHeureSup: 46,
+            prixHeureSup: 50,
             sujetEmail: "Devis%20Conduite%20Accompagnée%20(AAC)",
             lignes: [
                 { label: "Frais de dossier & inscription", prix: 200 },
-                { id: "code", label: "Pack code de la route", prix: 50 },
-                { label: "Évaluation de départ", prix: 45 },
-                { label: "20 h de conduite incluses", detail: "Soit 46 €/h", prix: 920 },
-                { label: "RDV préalable + 2 RDV pédagogiques", prix: 368 },
-                { label: "Présentation à l'examen", prix: 46 },
+                { id: "code", label: "Pack code de la route", prix: 75 },
+                { label: "Évaluation de départ", prix: 50 },
+                { label: "20 h de conduite incluses", detail: "Soit 50 €/h", prix: 1000 },
+                { label: "RDV préalable + 2 RDV pédagogiques", prix: 400 },
+                { label: "Présentation à l'examen", prix: 50 },
+            ],
+            options: [
+                { id: "examenSup", label: "Présentation supplémentaire à l'examen", detail: "En cas de 2ᵉ passage", prix: 50 },
             ],
         },
     },
 
     // Ordre d'affichage des formules
     ordre: ["bva", "manuel", "aac"],
-
-    // Compléments facultatifs (cochables)
-    options: [
-        { id: "examenSup",   label: "Présentation supplémentaire à l'examen", detail: "En cas de 2ᵉ passage", prix: 46 },
-    ],
 };
 
 // ═══════════════════════════════════════
@@ -745,6 +749,7 @@ function buildFormules() {
             // Replafonner les heures déjà réalisées au minimum légal de la nouvelle formule
             const max = DEVIS_CONFIG.formules[state.formule].hIncluses;
             if (state.heuresAcquises > max) state.heuresAcquises = max;
+            buildOptions(); // le prix des options (ex. 2ᵉ passage) dépend de la formule
             render();
         });
     });
@@ -752,10 +757,11 @@ function buildFormules() {
 
 // — Construire les options —
 function buildOptions() {
+    const f = DEVIS_CONFIG.formules[state.formule];
     const wrap = document.getElementById('options-list');
-    wrap.innerHTML = DEVIS_CONFIG.options.map(o => `
+    wrap.innerHTML = f.options.map(o => `
         <label class="option-toggle">
-            <input type="checkbox" data-option="${o.id}">
+            <input type="checkbox" data-option="${o.id}" ${state.options.has(o.id) ? 'checked' : ''}>
             <span class="check"></span>
             <span class="option-body">
                 <span class="option-label">${o.label}</span>
@@ -808,7 +814,7 @@ function render() {
         lines += lineHTML(`${state.heuresSup} h de conduite supplémentaires`, coutSup, `Soit ${euro(f.prixHeureSup)}/h`, 'extra');
     }
 
-    DEVIS_CONFIG.options.forEach(o => {
+    f.options.forEach(o => {
         if (state.options.has(o.id)) {
             total += o.prix;
             lines += lineHTML(o.label, o.prix, null, 'extra');
@@ -851,7 +857,7 @@ function lineHTML(label, prix, detail, kind) {
 
 function updateEmailCta(f, total) {
     const cta = document.getElementById('r-cta-email');
-    const optsTxt = DEVIS_CONFIG.options
+    const optsTxt = f.options
         .filter(o => state.options.has(o.id))
         .map(o => '- ' + o.label).join('\n');
     const corps =
