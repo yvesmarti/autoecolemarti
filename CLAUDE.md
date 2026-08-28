@@ -62,7 +62,7 @@
 ├── formules/                     # Course/pricing pages
 │   ├── index.html                # Hub interactif: quiz 3 étapes → recommandation personnalisée
 │   ├── code-de-la-route-bayonne.html # Préparation au code (ETG) à Bayonne — sans tarif, renvoie vers /formules/
-│   ├── conduite-accompagnee.html # AAC supervised driving, age 15+, 1 629 € TTC
+│   ├── conduite-accompagnee.html # AAC supervised driving, age 15+, 1 775 € TTC
 │   ├── permis-b-manuel.html      # Manual transmission license
 │   └── permis-b-automatique.html # Automatic transmission license
 │
@@ -503,7 +503,7 @@ npm run sitemap
 
 - **⚠️ Tarifs — `TARIFS.md` fait autorité** : les prix sont écrits en dur dans **19 fichiers**
   (contenu visible, `<meta>`, JSON-LD `Offer`/`Course`, `DEVIS_CONFIG` de `devis.html`) sous
-  9 formats différents (`967€`, `967&nbsp;€`, `"967"`, `1261€` sans espace, `920,00 €`…).
+  9 formats différents (`1 055€`, `1&nbsp;055&nbsp;€`, `"1055"`, `1375€` sans espace, `1 000,00 €`…).
   **Lire `TARIFS.md` avant toute modification de prix** (inventaire ligne à ligne, checklist,
   pièges, montants à ne pas toucher : amendes, prix concurrents, tarifs d'État), **et le mettre
   à jour après**. Ne jamais faire un rechercher/remplacer naïf sur un montant.
