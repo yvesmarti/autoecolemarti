@@ -111,10 +111,10 @@ grep avant la prochaine bascule**, cet inventaire décrit surtout les emplacemen
 | Fichier | Ligne | Format écrit | Contexte |
 |---|---|---|---|
 | `index.html` | 13, 16, 27 | `1 055€` | meta description / og / twitter |
-| `index.html` | 101 | `"price": "1055"` | JSON-LD Offer « Forfait Permis B — Boîte automatique » |
-| `index.html` | 328 | `1 055€` | **commentaire HTML** `<!-- BOÎTE AUTOMATIQUE — 1 055€ -->` |
-| `index.html` | 332 | `1 055€` | `.formation-price` carte formule |
-| `index.html` | 473 | `1 055€` | argumentaire « nos forfaits démarrent à… » |
+| `index.html` | 102 | `"price": "1055"` | JSON-LD Offer « Forfait Permis B — Boîte automatique » |
+| `index.html` | 333 | `1 055€` | **commentaire HTML** `<!-- BOÎTE AUTOMATIQUE — 1 055€ -->` |
+| `index.html` | 337 | `1 055€` | `.formation-price` carte formule |
+| `index.html` | 478 | `1 055€` | argumentaire « nos forfaits démarrent à… » |
 | `formules/index.html` | 9, 11, 23 | `1 055€` | title / og:title / twitter:title |
 | `formules/index.html` | 10, 12, 24 | `1 055€` | meta / og / twitter description |
 | `formules/index.html` | 760 | `1&nbsp;055&nbsp;€` | chapô hero |
@@ -157,8 +157,8 @@ grep avant la prochaine bascule**, cet inventaire décrit surtout les emplacemen
 | Fichier | Ligne | Format écrit | Contexte |
 |---|---|---|---|
 | `index.html` | 94 | `"price": "1375"` | JSON-LD Offer « Forfait Permis B — Boîte manuelle » |
-| `index.html` | 344 | `1 375€` | **commentaire HTML** |
-| `index.html` | 349 | `1 375€` | `.formation-price` carte formule |
+| `index.html` | 349 | `1 375€` | **commentaire HTML** |
+| `index.html` | 354 | `1 375€` | `.formation-price` carte formule |
 | `formules/index.html` | 10, 12, 24 | `1 375€` | meta / og / twitter description |
 | `formules/index.html` | 760, 794 | `1&nbsp;375&nbsp;€` | chapô hero / raccourci |
 | `formules/index.html` | 1093, 1137 | `1 375€` | pastilles « autres formules » |
@@ -192,9 +192,9 @@ grep avant la prochaine bascule**, cet inventaire décrit surtout les emplacemen
 
 | Fichier | Ligne | Format écrit | Contexte |
 |---|---|---|---|
-| `index.html` | 108 | `"price": "1775"` | JSON-LD Offer « Forfait Conduite Accompagnée (AAC) » |
-| `index.html` | 361 | `1 775€` | **commentaire HTML** |
-| `index.html` | 365 | `1 775€` | `.formation-price` carte formule |
+| `index.html` | 110 | `"price": "1775"` | JSON-LD Offer « Forfait Conduite Accompagnée (AAC) » |
+| `index.html` | 366 | `1 775€` | **commentaire HTML** |
+| `index.html` | 370 | `1 775€` | `.formation-price` carte formule |
 | `formules/index.html` | 10, 12, 24 | `1 775€` | meta / og / twitter description |
 | `formules/index.html` | 760, 807 | `1&nbsp;775&nbsp;€` | chapô hero / raccourci |
 | `formules/index.html` | 1072 | `1 775€` | résultat quiz AAC |
