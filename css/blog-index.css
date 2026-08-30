@@ -276,6 +276,7 @@ section { padding: 6rem 2rem; }
     background: white; border-radius: var(--radius);
     border: 1px solid #eee; transition: var(--transition);
     overflow: hidden; display: flex; flex-direction: column;
+    position: relative;
 }
 .article-card:hover {
     transform: translateY(-6px);
@@ -327,6 +328,11 @@ section { padding: 6rem 2rem; }
     font-size: 1.18rem; font-weight: 700; line-height: 1.35;
     margin-bottom: 0.7rem; color: var(--noir);
 }
+/* Le titre porte l'ancre descriptive du lien : c'est le seul lien de la carte,
+   et sa zone de clic est étendue à toute la carte (pas de JS). */
+.article-title a { color: inherit; text-decoration: none; }
+.article-title a::after { content: ""; position: absolute; inset: 0; }
+.article-title a:focus-visible { outline: 2px solid var(--basque-rouge); outline-offset: 3px; }
 .article-excerpt {
     font-size: 0.88rem; color: var(--gris);
     line-height: 1.7; flex: 1;
