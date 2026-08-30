@@ -6,10 +6,10 @@
     <link rel="preload" href="../fonts/dm-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="../fonts/playfair-display-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarif Auto-École Bayonne : Permis dès 1 055€ TTC</title>
-    <meta name="description" content="Comparez nos tarifs : permis B automatique 1 055€, manuel 1 375€, conduite accompagnée 1 775€ TTC. Auto-école Bayonne depuis 1962, devis en 2 minutes.">
-    <meta property="og:title" content="Tarif Auto-École Bayonne : Permis dès 1 055€ TTC">
-    <meta property="og:description" content="Comparez nos tarifs : permis B automatique 1 055€, manuel 1 375€, conduite accompagnée 1 775€ TTC. Auto-école Bayonne depuis 1962, devis en 2 minutes.">
+    <title>Tarifs auto-école à Bayonne — 3 formules dès 1 055 € TTC</title>
+    <meta name="description" content="Trois forfaits tout compris, sans frais cachés : dossier, code, évaluation et accompagnement à l'examen inclus. Boîte automatique dès 1 055 € TTC à Bayonne.">
+    <meta property="og:title" content="Tarifs auto-école à Bayonne — 3 formules dès 1 055 € TTC">
+    <meta property="og:description" content="Trois forfaits tout compris, sans frais cachés : dossier, code, évaluation et accompagnement à l'examen inclus. Boîte automatique dès 1 055 € TTC à Bayonne.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://autoecolemarti.fr/formules/">
     <link rel="canonical" href="https://autoecolemarti.fr/formules/">
@@ -20,8 +20,8 @@
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Auto-École Marti — votre permis en confiance à Bayonne, depuis 1962">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Tarif Auto-École Bayonne : Permis dès 1 055€ TTC">
-    <meta name="twitter:description" content="Comparez nos tarifs : permis B automatique 1 055€, manuel 1 375€, conduite accompagnée 1 775€ TTC. Auto-école Bayonne depuis 1962, devis en 2 minutes.">
+    <meta name="twitter:title" content="Tarifs auto-école à Bayonne — 3 formules dès 1 055 € TTC">
+    <meta name="twitter:description" content="Trois forfaits tout compris, sans frais cachés : dossier, code, évaluation et accompagnement à l'examen inclus. Boîte automatique dès 1 055 € TTC à Bayonne.">
     <meta name="twitter:image" content="https://autoecolemarti.fr/og-image.png">
     <link rel="icon" type="image/png" href="../favicon.ico.png">
     <link rel="apple-touch-icon" href="/favicon.ico.png">
@@ -358,6 +358,32 @@ nav .nav-cta:hover { background: var(--rouge-sombre); transform: translateY(-1px
 .shortcut-banner-text p { font-size: 0.88rem; color: var(--gris); }
 .shortcut-banner .shortcut-cta { flex-shrink: 0; }
 .shortcut-banner:hover .shortcut-cta-arrow { transform: translateX(4px); }
+
+/* ── Ce que comprend chaque tarif ── */
+.inclus-section { background: var(--creme); padding: 5rem 2rem; }
+.inclus-inner { max-width: 1100px; margin: 0 auto; }
+.inclus-grid {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 1.2rem; margin-top: 2.5rem;
+}
+.inclus-item {
+    flex: 0 1 clamp(240px, 30%, 330px);
+    background: white; border: 1px solid var(--gris-clair);
+    border-radius: var(--radius-sm); padding: 1.4rem 1.5rem;
+}
+.inclus-item-title {
+    font-weight: 700; font-size: 0.98rem; margin-bottom: 0.4rem;
+    display: flex; align-items: flex-start; gap: 0.55rem; line-height: 1.35;
+}
+.inclus-item p { font-size: 0.88rem; color: var(--gris); line-height: 1.65; margin: 0; }
+.inclus-note {
+    max-width: 720px; margin: 2.2rem auto 0; text-align: center;
+    font-size: 0.9rem; color: var(--gris); line-height: 1.7;
+}
+@media (max-width: 768px) {
+    .inclus-section { padding: 4rem 1.2rem; }
+    .inclus-item { flex-basis: 100%; }
+}
 
 /* Progress */
 .quiz-progress {
@@ -783,8 +809,8 @@ footer { background: var(--noir); color: white; padding: 4rem 2rem 2rem; }
 <header class="page-hero">
     <div class="page-hero-inner" style="animation: fadeInUp 0.8s ease-out both;">
         <div class="page-hero-badge">Tarifs &amp; Formations à Bayonne</div>
-        <h1>Quel est le prix du permis<br>de conduire à <em>Bayonne</em> ?</h1>
-        <p>Boîte automatique dès <strong>1&nbsp;055&nbsp;€</strong>, permis B manuel à partir de <strong>1&nbsp;375&nbsp;€</strong>, conduite accompagnée dès <strong>1&nbsp;775&nbsp;€</strong>. Répondez à 3 questions pour trouver la formule faite pour vous.</p>
+        <h1>Nos formules et tarifs <br>de permis à <em>Bayonne</em></h1>
+        <p>Trois formations, trois prix clairs et tout compris : boîte automatique dès <strong>1&nbsp;055&nbsp;€</strong>, permis B manuel à partir de <strong>1&nbsp;375&nbsp;€</strong>, conduite accompagnée dès <strong>1&nbsp;775&nbsp;€</strong>. Répondez à 3 questions pour trouver la formule faite pour vous.</p>
     </div>
 </header>
 
@@ -847,6 +873,48 @@ footer { background: var(--noir); color: white; padding: 4rem 2rem 2rem; }
             </div>
             <span class="shortcut-cta">Voir la préparation au code <span class="shortcut-cta-arrow">→</span></span>
         </a>
+    </div>
+</section>
+
+<!-- ═══ CE QUE COMPREND CHAQUE TARIF ═══ -->
+<section class="inclus-section">
+    <div class="inclus-inner">
+
+        <div class="shortcuts-header fade-in">
+            <h2>Ce que comprend <em>chaque tarif</em></h2>
+            <p>Le prix affiché est le prix payé. Ces cinq postes sont inclus dans les trois formules, sans supplément.</p>
+        </div>
+
+        <div class="inclus-grid">
+            <div class="inclus-item fade-in">
+                <div class="inclus-item-title"><span aria-hidden="true">📁</span> Frais de dossier</div>
+                <p>Inscription administrative, demande de votre numéro NEPH et suivi du dossier auprès de l'ANTS.</p>
+            </div>
+            <div class="inclus-item fade-in">
+                <div class="inclus-item-title"><span aria-hidden="true">📘</span> Pack code</div>
+                <p>Accès illimité à la plateforme de code en ligne, livre officiel et séances en salle avec un moniteur.</p>
+            </div>
+            <div class="inclus-item fade-in">
+                <div class="inclus-item-title"><span aria-hidden="true">🚦</span> Évaluation de départ</div>
+                <p>Une première séance en circulation pour situer votre niveau et bâtir un parcours réaliste.</p>
+            </div>
+            <div class="inclus-item fade-in">
+                <div class="inclus-item-title"><span aria-hidden="true">🚗</span> Heures de conduite</div>
+                <p>Le volume réglementaire propre à votre formule, avec un moniteur diplômé d'État.</p>
+            </div>
+            <div class="inclus-item fade-in">
+                <div class="inclus-item-title"><span aria-hidden="true">🎯</span> Accompagnement à l'examen</div>
+                <p>Véhicule et moniteur mis à disposition le jour J, sans frais de présentation supplémentaires.</p>
+            </div>
+        </div>
+
+        <p class="inclus-note fade-in">
+            Aucun frais caché : ni frais de présentation, ni supplément de code, ni frais de restitution de dossier.
+            Si vous avez besoin de leçons au-delà du volume réglementaire, elles sont facturées au tarif horaire
+            indiqué sur la page de votre formule. Pour comprendre en détail ce qui fait varier le prix d'un permis,
+            consultez notre <a href="/blog/combien-coute-permis-conduire-bayonne">guide du budget permis à Bayonne</a>.
+        </p>
+
     </div>
 </section>
 
