@@ -160,19 +160,35 @@
         .suite { background: var(--blanc); }
         .suite-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
         .suite-card {
-            display: flex; flex-direction: column; background: var(--creme); border-radius: var(--radius); padding: 1.8rem;
-            text-decoration: none; color: inherit; transition: var(--transition);
+            display: flex; flex-direction: column;
+            background: white; border: 1px solid var(--gris-clair);
+            border-radius: var(--radius); padding: 1.8rem;
+            text-decoration: none; color: inherit;
+            box-shadow: var(--ombre);
+            transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
         }
-        .suite-card:hover { transform: translateY(-4px); box-shadow: var(--ombre-forte); }
+        .suite-card:hover,
+        .suite-card:focus-visible { transform: translateY(-6px); box-shadow: var(--ombre-forte); border-color: transparent; }
         .suite-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--basque-rouge); }
         .suite-card p { font-size: 0.88rem; color: var(--gris); margin-bottom: 1.4rem; }
         .card-btn {
+            display: inline-flex; align-items: center; gap: 0.45rem;
             align-self: flex-start; margin-top: auto;
             border: 2px solid var(--basque-rouge); color: var(--basque-rouge);
             padding: 0.55rem 1.3rem; border-radius: 50px;
-            font-size: 0.85rem; font-weight: 700; transition: var(--transition);
+            font-size: 0.85rem; font-weight: 700;
+            transition: background-color var(--transition), color var(--transition);
         }
-        .suite-card:hover .card-btn { background: var(--basque-rouge); color: white; }
+        .card-btn .arrow { transition: transform var(--transition); }
+        .suite-card:hover .card-btn,
+        .suite-card:focus-visible .card-btn { background: var(--basque-rouge); color: white; }
+        .suite-card:hover .arrow,
+        .suite-card:focus-visible .arrow { transform: translateX(4px); }
+        @media (prefers-reduced-motion: reduce) {
+            .suite-card, .card-btn, .card-btn .arrow { transition: none; }
+            .suite-card:hover, .suite-card:focus-visible { transform: none; }
+            .suite-card:hover .arrow, .suite-card:focus-visible .arrow { transform: none; }
+        }
 
         /* BANDEAU CTA INTERMÉDIAIRE */
         .cta-inline {
@@ -433,17 +449,17 @@
             <a class="suite-card" href="/blog/reussir-code-route-premier-coup">
                 <h3>Réussir son code du premier coup</h3>
                 <p>Notre méthode de révision, les erreurs classiques et la façon de gérer les questions le jour de l'épreuve.</p>
-                <span class="card-btn">Lire l'article →</span>
+                <span class="card-btn">Lire l'article <span class="arrow" aria-hidden="true">→</span></span>
             </a>
             <a class="suite-card" href="/blog/questions-pieges-code-route">
                 <h3>Les questions pièges du code</h3>
                 <p>Les formulations qui font perdre des points à des candidats qui connaissent pourtant la règle.</p>
-                <span class="card-btn">Lire l'article →</span>
+                <span class="card-btn">Lire l'article <span class="arrow" aria-hidden="true">→</span></span>
             </a>
             <a class="suite-card" href="/quizz/quizz_panneaux">
                 <h3>Quiz des panneaux</h3>
                 <p>Plus de 200 panneaux officiels à reconnaître, en accès libre, pour tester vos réflexes.</p>
-                <span class="card-btn">Lancer le quiz →</span>
+                <span class="card-btn">Lancer le quiz <span class="arrow" aria-hidden="true">→</span></span>
             </a>
         </div>
         <div class="cta-inline">
@@ -469,17 +485,17 @@
             <a class="suite-card" href="/formules/permis-b-manuel">
                 <h3>Permis B — boîte manuelle</h3>
                 <p>La formation la plus polyvalente&nbsp;: elle permet de conduire tous les véhicules, manuels comme automatiques.</p>
-                <span class="card-btn">Voir la formule →</span>
+                <span class="card-btn">Voir la formule <span class="arrow" aria-hidden="true">→</span></span>
             </a>
             <a class="suite-card" href="/formules/permis-b-automatique">
                 <h3>Permis B — boîte automatique</h3>
                 <p>Un apprentissage plus court, centré sur la route plutôt que sur le passage des vitesses.</p>
-                <span class="card-btn">Voir la formule →</span>
+                <span class="card-btn">Voir la formule <span class="arrow" aria-hidden="true">→</span></span>
             </a>
             <a class="suite-card" href="/formules/conduite-accompagnee">
                 <h3>Conduite accompagnée (AAC)</h3>
                 <p>Dès 15 ans&nbsp;: le code puis 20 heures de conduite, avant de rouler avec un accompagnateur.</p>
-                <span class="card-btn">Voir la formule →</span>
+                <span class="card-btn">Voir la formule <span class="arrow" aria-hidden="true">→</span></span>
             </a>
         </div>
     </div>
