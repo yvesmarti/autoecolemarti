@@ -1,0 +1,11 @@
+# Dépendances de développement (playwright, pour les captures d'écran)
+node_modules/
+
+# Captures d'écran de comparaison avant/après (npm run shot)
+.captures/
+
+# Divers
+.DS_Store
+*.log
+*.tmp
+*.bak

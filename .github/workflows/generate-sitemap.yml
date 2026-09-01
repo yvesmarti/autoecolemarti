@@ -1,4 +1,4 @@
-name: Generate Sitemap
+name: Générer sitemap.xml et SITE.md
 
 on:
   push:
@@ -29,15 +29,18 @@ jobs:
       - name: Generate sitemap
         run: node scripts/generate-sitemap.js
 
+      - name: Generate SITE.md
+        run: node scripts/generate-site-map.js
+
       - name: Commit sitemap changes
         run: |
-          if git diff --quiet sitemap.xml; then
-            echo "✓ Sitemap inchangé, aucun commit nécessaire"
+          if git diff --quiet sitemap.xml SITE.md; then
+            echo "✓ sitemap.xml et SITE.md inchangés, aucun commit nécessaire"
           else
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add sitemap.xml
-            git commit -m "docs: update sitemap.xml [skip ci]"
+            git add sitemap.xml SITE.md
+            git commit -m "docs: régénère sitemap.xml et SITE.md [skip ci]"
             git push
-            echo "✓ Sitemap mis à jour et pushé"
+            echo "✓ sitemap.xml et SITE.md mis à jour et pushés"
           fi

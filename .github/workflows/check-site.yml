@@ -1,0 +1,36 @@
+name: Contrôle qualité du site
+
+# Rejoue `npm run check` : liens, balises SEO, JSON-LD, cohérence des dates,
+# couverture du sitemap et intégrité de la grille tarifaire.
+#
+# ⚠️ MODE OBSERVATION — ce contrôle N'ÉCHOUE JAMAIS pour l'instant.
+# Il affiche les problèmes dans l'onglet « Actions » sans bloquer la mise en ligne,
+# le temps de vérifier qu'il ne crie pas à tort.
+#
+# POUR LE PASSER EN BLOQUANT (une seule ligne à modifier) :
+#   retirer « --warn-only » de la commande de l'étape « Contrôle qualité » ci-dessous.
+# Une pull request avec une erreur ne pourra alors plus être fusionnée.
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    name: Contrôles automatiques
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Contrôle qualité
+        # Retirer --warn-only pour rendre ce contrôle bloquant.
+        run: node scripts/check-site.js --warn-only

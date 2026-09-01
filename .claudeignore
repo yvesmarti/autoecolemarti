@@ -1,9 +1,11 @@
 # Claude Code ignore file for Auto-École Marti
 # This file helps prevent timeouts by excluding large/binary files and system directories
 
-# SVG road signs database (100+ files, data only)
+# SVG road signs database (294 files, data only)
 quizz/panneaux/
-panneaux_data.js
+# Gros fichier de données statiques (le motif doit porter le chemin complet,
+# sans quoi il ne correspond à rien)
+quizz/panneaux_data.js
 
 # Font files (binary, not modified during development)
 fonts/
@@ -17,11 +19,14 @@ fonts/
 *.swo
 *~
 
-# Node/build artifacts (if ever used)
+# Node/build artifacts
 node_modules/
 dist/
 build/
 .DS_Store
+
+# Captures d'écran de comparaison (npm run shot)
+.captures/
 
 # Log files
 *.log

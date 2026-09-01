@@ -1,0 +1,139 @@
+{
+  "_lisezMoi": [
+    "Référentiel machine des tarifs affichés sur le site. Remplace l'inventaire manuel de l'ancien TARIFS.md.",
+    "Les prix ne sont PAS injectés depuis ce fichier : ils restent écrits en dur dans les pages HTML",
+    "(le site est volontairement sans étape de build). Ce fichier sert de source de vérité pour",
+    "`npm run check`, qui vérifie les additions, la présence de chaque montant dans les bons fichiers,",
+    "et l'absence de reliquat d'une grille précédente.",
+    "Procédure de bascule : mettre à jour ce fichier EN PREMIER, puis les pages, puis `npm run check`."
+  ],
+
+  "enVigueurDepuis": "2026-08-31",
+  "derniereBascule": "2026-08-28",
+
+  "formules": {
+    "bva": {
+      "libelle": "Permis B — boîte automatique",
+      "total": 1055,
+      "dossier": 200,
+      "code": 75,
+      "evaluation": 52,
+      "heuresIncluses": 13,
+      "conduite": 676,
+      "examen": 52,
+      "heureSup": 52
+    },
+    "manuelle": {
+      "libelle": "Permis B — boîte manuelle",
+      "total": 1375,
+      "dossier": 200,
+      "code": 75,
+      "evaluation": 50,
+      "heuresIncluses": 20,
+      "conduite": 1000,
+      "examen": 50,
+      "heureSup": 50
+    },
+    "aac": {
+      "libelle": "Conduite accompagnée (AAC)",
+      "total": 1775,
+      "dossier": 200,
+      "code": 75,
+      "evaluation": 50,
+      "heuresIncluses": 20,
+      "conduite": 1000,
+      "rdvPrealable": 100,
+      "rdvPedagogiques": 300,
+      "examen": 50,
+      "heureSup": 50
+    }
+  },
+
+  "derives": {
+    "_note": "Valeurs affichées telles quelles sur le site mais déduites de la grille ci-dessus.",
+    "sessionRdv": { "valeur": 150, "formule": "aac.rdvPedagogiques / 2" },
+    "rdvAgrege": { "valeur": 400, "formule": "aac.rdvPrealable + aac.rdvPedagogiques", "ou": "devis.html uniquement" }
+  },
+
+  "_invariants": [
+    "Pour chaque formule : dossier + code + evaluation + conduite + examen (+ rdvPrealable + rdvPedagogiques pour l'AAC) === total",
+    "Pour chaque formule : heuresIncluses * heureSup === conduite",
+    "aac.rdvPrealable === 2 * aac.heureSup   (RDV préalable = 2 h)",
+    "aac.rdvPedagogiques === 6 * aac.heureSup (2 RDV de 3 h)",
+    "Ces règles sont rejouées par scripts/check-site.js — ne pas les recopier ailleurs."
+  ],
+
+  "presence": {
+    "_note": [
+      "Fichiers qui DOIVENT contenir chaque total. Remplace l'inventaire ligne à ligne de l'ancien TARIFS.md :",
+      "le script cherche lui-même les occurrences, il ne se fie pas à des numéros de ligne qui périment.",
+      "Un fichier manquant = occurrence oubliée lors d'une bascule. Un fichier en trop = nouvelle occurrence",
+      "à ajouter ici (le script le signale en avertissement, pas en erreur).",
+      "Seuls les 3 totaux sont contrôlés : ils sont assez distinctifs pour ne pas générer de faux positifs.",
+      "Les petits montants (200, 75, 1000…) coïncident avec des distances, des durées ou des amendes."
+    ],
+    "bva.total": [
+      "README.md", "auto-ecole-anglet.html", "auto-ecole-bayonne.html", "auto-ecole-biarritz.html",
+      "blog/combien-coute-permis-conduire-bayonne.html", "blog/index.html",
+      "blog/permis-lyceen-etudiant-bayonne.html", "devis.html", "faq.html",
+      "formules/index.html", "formules/permis-b-automatique.html", "index.html", "llms.txt"
+    ],
+    "manuelle.total": [
+      "README.md", "auto-ecole-anglet.html", "auto-ecole-bayonne.html", "auto-ecole-biarritz.html",
+      "blog/auto-ecole-en-ligne-ou-marti.html", "blog/combien-coute-permis-conduire-bayonne.html",
+      "blog/index.html", "blog/permis-lyceen-etudiant-bayonne.html", "devis.html", "faq.html",
+      "formules/index.html", "formules/permis-b-automatique.html", "formules/permis-b-manuel.html",
+      "index.html", "llms.txt"
+    ],
+    "aac.total": [
+      "README.md", "auto-ecole-anglet.html", "auto-ecole-bayonne.html", "auto-ecole-biarritz.html",
+      "blog/combien-coute-permis-conduire-bayonne.html", "blog/index.html",
+      "blog/permis-lyceen-etudiant-bayonne.html", "blog/regles-permis-probatoire.html",
+      "devis.html", "faq.html", "formules/conduite-accompagnee.html", "formules/index.html",
+      "index.html", "llms.txt"
+    ]
+  },
+
+  "grillesPrecedentes": [
+    {
+      "enVigueurDu": "2026-03-09",
+      "jusquAu": "2026-08-30",
+      "_note": "Montants qui ne doivent plus apparaître nulle part. 50 € est volontairement absent de cette liste : c'était l'ancien pack code, c'est aussi le tarif horaire actuel manuelle/AAC.",
+      "montantsDisparus": [967, 1261, 1629, 624, 920, 276, 92, 48, 46, 45]
+    }
+  ],
+
+  "zonesInterdites": {
+    "_note": [
+      "Montants qui ressortent dans les mêmes recherches mais NE SONT PAS des tarifs Marti.",
+      "Les modifier lors d'une bascule serait une erreur factuelle.",
+      "Ces fichiers sont exclus du contrôle « reliquat d'ancienne grille » (mais pas des autres contrôles)."
+    ],
+    "blog/infractions-code-route.html": "amendes et sanctions (~40 montants de 35 € à 15 000 €)",
+    "blog/quiz-sanctions.html": "amendes et sanctions (légende + tableau JS des questions)",
+    "blog/dangers-alcool.html": "amendes liées à l'alcoolémie",
+    "blog/reflexes-urgence-conduite.html": "amendes",
+    "blog/regles-permis-probatoire.html": "amendes + stage de récupération de points (200 à 300 €, prestataire tiers)",
+    "blog/reussir-code-route-premier-coup.html": "30 euros = tarif d'État de l'examen du code (seul montant en toutes lettres du site)",
+    "blog/combien-coute-permis-conduire-bayonne.html": "30 € tarif d'État + exemple fictif de concurrent à 1 100 € (porté de 1 000 € le 28/08/2026 pour ne plus entrer en collision avec la conduite incluse Marti)",
+    "blog/auto-ecole-en-ligne-ou-marti.html": "prix d'appel concurrents : 199 €, « moins de 10 € par mois », « souvent 40 € à 50 € de l'heure » — cette dernière phrase chevauche le tarif manuelle Marti mais reste INCHANGÉE (décision Yves du 05/08/2026)",
+    "blog/simulateur-ecoconduite.html": "prix du carburant et de l'électricité",
+    "formules/code-de-la-route-bayonne.html": "30 € tarif d'État de l'examen du code — la page ne porte volontairement aucun tarif Marti"
+  },
+
+  "nePasReecrire": {
+    "_note": [
+      "Contenus à ne pas réécrire lors d'une bascule tarifaire, mais qui NE contiennent pas de montant hors-Marti :",
+      "ces fichiers restent donc soumis au contrôle « reliquat d'ancienne grille »."
+    ],
+    "index.html": "avis clients en JSON-LD Review + carrousel : ne jamais réécrire le texte d'un avis",
+    "llms.txt": "avis clients cités (« tarifs corrects », « prix attractif ») : ne jamais les réécrire"
+  },
+
+  "horsDepot": {
+    "_note": "Claude ne peut pas régénérer ces PDF : c'est une tâche manuelle pour Yves, à faire en même temps que la bascule du site.",
+    "plaquettes/Plaquette_AAC.pdf": "lié depuis formules/conduite-accompagnee.html et espace-eleves.html",
+    "plaquettes/Plaquette_Permis_B_Manuel.pdf": "lié depuis formules/permis-b-manuel.html et espace-eleves.html",
+    "plaquettes/Plaquette_Permis_B_BVA.pdf": "lié depuis formules/permis-b-automatique.html et espace-eleves.html"
+  }
+}
