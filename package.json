@@ -4,7 +4,11 @@
   "description": "Site web auto-école Marti",
   "main": "index.html",
   "scripts": {
-    "sitemap": "node scripts/generate-sitemap.js"
+    "check": "node scripts/check-site.js",
+    "docs": "node scripts/generate-site-map.js",
+    "sitemap": "node scripts/generate-sitemap.js",
+    "serve": "node scripts/serve.js",
+    "shot": "node scripts/screenshot.js"
   },
   "keywords": [
     "auto-école",
@@ -18,5 +22,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/yvesmarti/autoecolemarti"
+  },
+  "devDependencies": {
+    "playwright": "^1.49.0"
   }
 }

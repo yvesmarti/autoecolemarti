@@ -1,0 +1,351 @@
+<!--
+════════════════════════════════════════════════════════════════════════════
+  GABARIT D'ARTICLE DE BLOG — Auto-École Marti
+  Ce dossier (.claude/) n'est jamais déployé : le gabarit ne sort pas du dépôt.
+
+  MODE D'EMPLOI
+  1. Copier ce fichier vers blog/<slug>.html
+  2. Remplacer tous les {{MARQUEURS}} (chercher « {{ » pour n'en oublier aucun)
+  3. Supprimer ce commentaire d'en-tête
+  4. Dérouler la checklist ci-dessous
+  5. Lancer `npm run check` — il vérifie 8 des 10 points automatiquement
+
+  MARQUEURS
+  {{SLUG}}            slug de l'URL, sans .html            ex. angles-morts
+  {{TITRE_ONGLET}}    <title>, ~60 car. + « — Auto-École Marti »
+  {{TITRE_H1}}        titre affiché ; mettre 2-4 mots en <em> (style maison)
+  {{TITRE_COURT}}     libellé du fil d'ariane               ex. Les angles morts
+  {{DESCRIPTION}}     meta description, 150-160 caractères
+  {{MOTS_CLES}}       5-8 mots-clés séparés par des virgules
+  {{DATE_PUBLI}}      AAAA-MM-JJ
+  {{DATE_PUBLI_FR}}   ex. 8 mai 2026
+  {{DATE_MODIF}}      AAAA-MM-JJ (= DATE_PUBLI à la création)
+  {{CATEGORIE}}       libellé visible                       ex. Conduite
+  {{CATEGORIE_SLUG}}  valeur data-category du hub           ex. conduite
+  {{EMOJI_CAT}}       emoji de la pastille de catégorie
+  {{TEMPS_LECTURE}}   nombre de minutes (compter ~200 mots/min)
+  {{ACCENT}}          couleur d'accent de la catégorie (voir tableau ci-dessous)
+  {{ACCENT_RGB}}      la même en r,g,b                      ex. 0,105,92
+  {{GRADIENT_HERO}}   dégradé du hero, 3 tons clairs de l'accent
+  {{ACCENT_SOMBRE}}   version foncée de l'accent, pour le CTA
+
+  COULEURS D'ACCENT PAR CATÉGORIE
+  ⚠️ STYLE_GUIDE.md §3 fait autorité : y copier le bloc CSS complet de la
+  catégorie (dégradé du hero et gradient du CTA compris) plutôt que d'improviser.
+
+  | Catégorie             | Accent    | rgb          | CTA foncé |
+  |-----------------------|-----------|--------------|-----------|
+  | Code de la route      | #d63031   | 214,48,49    | #922b21   |
+  | Conduite              | #00695c   | 0,105,92     | #004d40   |
+  | Conduite accompagnée  | #00695c   | 0,105,92     | #00695c   |
+  | Conseils pratiques    | #d4a853   | 212,168,83   | #b8860b   |
+  | Réglementation        | #2d3fb5   | 63,94,251    | #2d3fb5   |
+  | Outils pédagogiques   | #6d28d9   | 124,58,237   | #4c1d95   |
+  | Tarifs & financement  | #e07b39   | 224,123,57   | #c45e1a   |
+
+  CHECKLIST — 6 ENDROITS À METTRE À JOUR EN PLUS DE CE FICHIER
+  [ ] 1. blog/index.html — ajouter la carte de l'article
+         (<article class="article-card" data-category="{{CATEGORIE_SLUG}}">,
+          date affichée == {{DATE_PUBLI}}, sinon `npm run check` le signale)
+  [ ] 2. Maillage interne — au moins 2 articles existants doivent pointer vers
+         celui-ci (bloc « Articles connexes »), et celui-ci vers 2 autres.
+         Varier les textes de liens : Google déprécie les ancres identiques.
+  [ ] 3. llms.txt — ajouter la ligne de l'article
+  [ ] 4. _redirects — ajouter la règle 301 /blog/{{SLUG}}.html → /blog/{{SLUG}}
+  [ ] 5. npm run sitemap — régénère sitemap.xml (sinon la CI le fait au push)
+  [ ] 6. npm run docs — régénère SITE.md
+  [ ] 7. npm run check — doit finir sans erreur
+
+  RAPPELS DE CONVENTIONS
+  - Liens internes SANS .html (Cloudflare redirige sinon en 308 inutile)
+  - Aucun mailto: en clair : utiliser data-email avec entités HTML
+  - Exactement UN bloc JSON-LD BlogPosting, dans le <head>
+  - dateModified et article:modified_time doivent rester synchronisés
+  - Pas de tarif en dur sans raison : renvoyer vers /formules/
+════════════════════════════════════════════════════════════════════════════
+-->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="application-name" content="Auto-École Marti">
+    <link rel="preload" href="../fonts/dm-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../fonts/playfair-display-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITRE_ONGLET}} — Auto-École Marti</title>
+    <link rel="icon" type="image/png" href="../favicon.ico.png">
+    <link rel="apple-touch-icon" href="/favicon.ico.png">
+    <meta name="description" content="{{DESCRIPTION}}">
+    <meta name="keywords" content="{{MOTS_CLES}}, auto-école Marti, Bayonne">
+    <meta property="og:title" content="{{TITRE_H1_SANS_BALISES}} — Auto-École Marti">
+    <meta property="og:description" content="{{DESCRIPTION}}">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="{{DATE_PUBLI}}">
+    <meta property="article:modified_time" content="{{DATE_MODIF}}">
+    <meta property="og:site_name" content="Auto-École Marti">
+    <link rel="canonical" href="https://autoecolemarti.fr/blog/{{SLUG}}">
+    <meta property="og:url" content="https://autoecolemarti.fr/blog/{{SLUG}}">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:image" content="https://autoecolemarti.fr/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Auto-École Marti — votre permis en confiance à Bayonne, depuis 1962">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{TITRE_H1_SANS_BALISES}} — Auto-École Marti">
+    <meta name="twitter:description" content="{{DESCRIPTION}}">
+    <meta name="twitter:image" content="https://autoecolemarti.fr/og-image.png">
+    <link rel="stylesheet" href="../css/fonts.css">
+    <link rel="stylesheet" href="../css/blog-article.css">
+    <style>
+        /* Accent de catégorie — seul bloc à personnaliser par article */
+        :root {
+            --article-accent:        {{ACCENT}};
+            --article-accent-bg:     rgba({{ACCENT_RGB}},0.06);
+            --article-accent-pill:   rgba({{ACCENT_RGB}},0.12);
+            --article-hero-gradient: {{GRADIENT_HERO}};
+            --article-hero-glow:     rgba({{ACCENT_RGB}},0.1);
+            --cta-gradient:          linear-gradient(135deg, {{ACCENT}} 0%, {{ACCENT_SOMBRE}} 100%);
+        }
+
+        /* Styles spécifiques à cet article (encarts, tableaux, quiz…) :
+           n'ajouter ici que ce que css/blog-article.css ne couvre pas déjà. */
+    </style>
+    <script defer src="/scripts/load-consent.js"></script>
+    <!-- JSON-LD BlogPosting Schema -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "{{TITRE_H1_SANS_BALISES}}",
+    "datePublished": "{{DATE_PUBLI}}",
+    "dateModified": "{{DATE_MODIF}}",
+    "image": "https://autoecolemarti.fr/og-image.png",
+    "author": {
+        "@type": "Organization",
+        "@id": "https://autoecolemarti.fr/#business",
+        "name": "Auto-École Marti"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "@id": "https://autoecolemarti.fr/#business",
+        "name": "Auto-École Marti",
+        "url": "https://autoecolemarti.fr",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://autoecolemarti.fr/favicon.ico.png"
+        }
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://autoecolemarti.fr/blog/{{SLUG}}"
+    },
+    "url": "https://autoecolemarti.fr/blog/{{SLUG}}",
+    "description": "{{DESCRIPTION}}"
+}
+    </script>
+    <link rel="stylesheet" href="/css/nav-mobile.css">
+    <script src="/scripts/nav.js" defer></script>
+    <script src="/scripts/article.js" defer></script>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+<!-- ══════════════════════════════════════════════════════════════
+     NAVBAR — identique sur tous les articles, ne pas modifier
+══════════════════════════════════════════════════════════════ -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="/" class="logo">AUTO-ÉCOLE MARTI<span>.</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li class="nav-dropdown">
+                <a href="/#formations" aria-haspopup="true" aria-expanded="false">Formations <span class="nav-caret" aria-hidden="true">▾</span></a>
+                <ul class="nav-dropdown-menu" role="menu">
+                    <li role="none"><a role="menuitem" href="/formules/">Toutes nos formules &amp; tarifs</a></li>
+                    <li role="none"><a role="menuitem" href="/formules/permis-b-manuel">Permis B — Boîte manuelle</a></li>
+                    <li role="none"><a role="menuitem" href="/formules/permis-b-automatique">Permis B — Boîte automatique</a></li>
+                    <li role="none"><a role="menuitem" href="/formules/conduite-accompagnee">Conduite accompagnée (AAC)</a></li>
+                    <li role="none"><a role="menuitem" href="/formules/code-de-la-route-bayonne">Code de la route</a></li>
+                </ul>
+            </li>
+            <li><a href="/blog/" class="active">Blog</a></li>
+            <li><a href="/#contact">Contact</a></li>
+            <li><a data-email="&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#46;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" class="nav-cta">S'inscrire</a></li>
+        </ul>
+    </div>
+</nav>
+
+<main id="main-content">
+<!-- ══════════════════════════════════════════════════════════════
+     HERO DE L'ARTICLE
+══════════════════════════════════════════════════════════════ -->
+<div class="article-hero">
+    <div class="article-hero-inner">
+        <nav class="article-breadcrumb" aria-label="Fil d'ariane">
+            <a href="/">Accueil</a>
+            <span>›</span>
+            <a href="/blog/">Blog</a>
+            <span>›</span>
+            <span>{{CATEGORIE}}</span>
+        </nav>
+        <div class="article-hero-meta">
+            <span class="article-cat-pill">{{EMOJI_CAT}} {{CATEGORIE}}</span>
+            <span class="article-reading-pill">⏱ {{TEMPS_LECTURE}} min de lecture</span>
+        </div>
+        <h1>{{TITRE_H1}}</h1>
+        <p class="article-date-pub">Publié le <time datetime="{{DATE_PUBLI}}">{{DATE_PUBLI_FR}}</time> · Par l'équipe Auto-École Marti</p>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CONTENU
+══════════════════════════════════════════════════════════════ -->
+<div class="back-to-blog">
+    <a href="/blog/" class="back-link">← Retour au blog</a>
+</div>
+
+<article class="article-wrap">
+
+    <div class="article-intro">
+        <p>{{ACCROCHE — 2 à 3 phrases qui posent le problème concret du lecteur}}</p>
+    </div>
+
+    <h2>{{TITRE_SECTION_1}}</h2>
+    <p>{{CONTENU}}</p>
+
+    <!-- Encarts disponibles (css/blog-article.css) :
+         .callout-info (vert) · .callout-warning (or) ·
+         .callout-success (vert clair) · .callout-danger (rouge) -->
+    <div class="callout-info">
+        <p><strong>À retenir :</strong> {{POINT_CLE}}</p>
+    </div>
+
+    <h2>{{TITRE_SECTION_2}}</h2>
+    <p>{{CONTENU}}</p>
+
+    <h2>{{TITRE_SECTION_3}}</h2>
+    <p>{{CONTENU}}</p>
+
+    <!-- Bloc de synthèse en fin d'article (fond sombre) -->
+    <div class="summary">
+        <div class="rule">{{PHRASE_A_RETENIR}}</div>
+        <p>{{SYNTHESE}}</p>
+    </div>
+
+</article>
+
+<!-- ══════════════════════════════════════════════════════════════
+     ARTICLES CONNEXES — 2 minimum, textes de liens variés
+══════════════════════════════════════════════════════════════ -->
+<div class="related-wrap">
+    <div class="related-inner">
+        <h2>Articles connexes</h2>
+        <div class="related-grid">
+            <a href="/blog/{{SLUG_CONNEXE_1}}" class="related-card">
+                <div class="related-card-icon">{{EMOJI_1}}</div>
+                <div class="related-card-body">
+                    <small>{{CATEGORIE_CONNEXE_1}}</small>
+                    <p>{{TITRE_CONNEXE_1}}</p>
+                </div>
+            </a>
+            <a href="/blog/{{SLUG_CONNEXE_2}}" class="related-card">
+                <div class="related-card-icon">{{EMOJI_2}}</div>
+                <div class="related-card-body">
+                    <small>{{CATEGORIE_CONNEXE_2}}</small>
+                    <p>{{TITRE_CONNEXE_2}}</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CTA
+══════════════════════════════════════════════════════════════ -->
+<div class="cta-banner">
+    <h2>Prêt à passer votre permis ?</h2>
+    <p>Rejoignez l'auto-école Marti à Bayonne et bénéficiez d'un suivi personnalisé depuis 1962.</p>
+    <a data-email="&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#46;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" class="btn">Nous contacter →</a>
+</div>
+
+</main>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER — identique sur tous les articles, ne pas modifier
+══════════════════════════════════════════════════════════════ -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="logo">MARTI<span>.</span></div>
+                <p>Auto-école de confiance à Bayonne depuis 1962. Formations permis B, conduite accompagnée et boîte automatique.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Formations</h3>
+                <ul>
+                    <li><a href="/formules/permis-b-manuel">Permis B</a></li>
+                    <li><a href="/formules/conduite-accompagnee">Conduite accompagnée</a></li>
+                    <li><a href="/formules/permis-b-automatique">Boîte automatique</a></li>
+                    <li><a href="/#offres">Offres spéciales</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Navigation</h3>
+                <ul>
+                    <li><a href="/">Accueil</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/espace-eleves">Espace élèves</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact</h3>
+                <ul>
+                    <li><a href="tel:0559591260">05 59 59 12 60</a></li>
+                    <li><a href="tel:0622008209">06 22 00 82 09</a></li>
+                    <li><a data-email="&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#46;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" data-show-email="true">&#97;&#117;&#116;&#111;&#101;&#99;&#111;&#108;&#101;&#46;&#109;&#97;&#114;&#116;&#105;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></li>
+                    <li><a href="/#contact">13 rue Marengo, Bayonne</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Auto-École Marti — Bayonne. Tous droits réservés.</span>
+            <span>SIRET : 382 930 188 00018 · APE : 8500Z</span>
+            <a href="/mentions-legales" class="footer-legal-link">Règlement intérieur &amp; mentions légales</a>
+        </div>
+    </div>
+</footer>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "item": "https://autoecolemarti.fr"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://autoecolemarti.fr/blog/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "{{TITRE_COURT}}",
+            "item": "https://autoecolemarti.fr/blog/{{SLUG}}"
+        }
+    ]
+}
+</script>
+<script defer src="/scripts/email-decoder.js"></script>
+<script>
+window.addEventListener('scroll', function(){
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+</script>
+</body>
+</html>

@@ -79,4 +79,31 @@ Zone d'intervention : **Bayonne · Anglet · Biarritz · Saint-Jean-de-Luz** et 
 
 ---
 
+## 🛠️ Développement
+
+Site statique : aucune étape de build n'est nécessaire pour le publier. Node ne sert qu'à
+l'outillage de maintenance.
+
+```bash
+npm install          # une seule fois (Playwright, pour les captures d'écran)
+
+npm run serve        # aperçu local sur http://localhost:8080
+npm run check        # contrôle qualité : liens, balises SEO, JSON-LD, dates, sitemap, tarifs
+npm run docs         # régénère SITE.md (inventaire du site)
+npm run sitemap      # régénère sitemap.xml
+npm run shot -- /faq # captures desktop + mobile dans .captures/
+```
+
+| Fichier | Rôle |
+|---|---|
+| `SITE.md` | 🤖 inventaire généré des pages, articles et feuilles de style |
+| `STYLE_GUIDE.md` | design system : couleurs, typographie, composants |
+| `data/tarifs.json` | grille tarifaire de référence, contrôlée automatiquement |
+| `CLAUDE.md` | conventions et pièges du projet |
+
+Deux workflows GitHub Actions tournent à chaque push : l'un régénère `sitemap.xml` et
+`SITE.md`, l'autre lance le contrôle qualité (en mode alerte, non bloquant).
+
+---
+
 *Site statique HTML/CSS/JS hébergé sur Cloudflare Pages — SIRET 382 930 188 00018*
