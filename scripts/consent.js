@@ -27,3 +27,6 @@ tarteaucitron.init({
 
 tarteaucitron.user.gtagUa = 'G-DEK5H3Z9DR';
 (tarteaucitron.job = tarteaucitron.job || []).push('gtag');
+
+tarteaucitron.user.clarity = 'ylw1yo2vnw';
+(tarteaucitron.job = tarteaucitron.job || []).push('clarity');
