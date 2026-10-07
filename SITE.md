@@ -34,7 +34,7 @@
 | `combien-coute-permis-conduire-bayonne` | tarifs | 2026-04-12 | 2026-08-30 | Combien coûte le permis de conduire à Bayonne en 2026 ? |
 | `comment-reussir-son-permis-conduire` | conseils-pratiques | 2026-03-04 | 2026-05-28 | Comment réussir son permis de conduire ? Le guide complet |
 | `conduire-sur-le-bab-guide-complet` | conseils-pratiques | 2025-06-01 | 2026-08-02 | Conduire sur le BAB : Guide complet pour éviter les pièges de Bayonne… |
-| `conduite-supervisee` | conduite-accompagnee | 2026-03-04 | 2026-05-28 | La conduite supervisée dès 18 ans : votre alternative flexible pour r… |
+| `conduite-supervisee` | conduite-accompagnee | 2026-03-04 | 2026-10-07 | La conduite supervisée dès 18 ans : votre alternative flexible pour r… |
 | `dangers-alcool` | outils-pedagogiques | 2026-03-22 | 2026-05-28 | Alcool au volant |
 | `distances-securite` | outils-pedagogiques | 2026-03-22 | 2026-05-28 | Distances de sécurité |
 | `fatigue-volant` | conseils-pratiques | 2026-05-08 | 2026-05-28 | La fatigue au volant |
