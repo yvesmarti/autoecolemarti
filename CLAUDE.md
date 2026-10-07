@@ -186,13 +186,21 @@ et tout reliquat de l'ancienne grille.
 
 Ces choix ne se devinent pas en lisant le code — les respecter.
 
-- **`auto-ecole-bayonne.html` — anti-cannibalisation.** L'accueil possède déjà le mot-clé
-  principal (`<h1>` « Auto-école à Bayonne — votre permis depuis 1962 », priorité 1.0). La page
-  locale vise donc la **longue traîne de proximité** : `<h1>` « Auto-école à *Bayonne centre* »,
-  section quartiers desservis, accès au bureau et horaires. **Ne jamais lui redonner le H1 ni
-  les accroches de l'accueil** (« élue meilleure auto-école de Bayonne », « auto école pas chère
-  à Bayonne », « Une institution du Petit Bayonne »). Si l'accueil et cette page se disputent
-  « auto-école Bayonne » dans Search Console, **c'est l'accueil qui doit gagner**.
+- **`auto-ecole-bayonne.html` — anti-cannibalisation.** L'accueil possède le mot-clé principal
+  « auto-école à Bayonne » : `<title>` « Auto-école à Bayonne depuis 1962 | Auto-École Marti »
+  et `<h1>` « Auto-école à *Bayonne*, votre permis depuis 1962. » (priorité 1.0). **Ne pas
+  remplacer ces deux balises par le nom de marque** : le retrait du mot-clé du H1 (août 2026) a
+  rendu le classement de l'accueil instable dès septembre. La page locale vise la **longue
+  traîne de proximité** : `<title>` « Petit Bayonne et Bayonne centre : accès, horaires… »,
+  `<h1>` « Votre auto-école en plein *Petit Bayonne* », section quartiers desservis, accès au
+  bureau et horaires. **Ne jamais lui redonner le H1 ni les accroches de l'accueil** (« élue
+  meilleure auto-école de Bayonne », « auto école pas chère à Bayonne », « Une institution du
+  Petit Bayonne »). Si l'accueil et cette page se disputent « auto-école Bayonne » dans Search
+  Console, **c'est l'accueil qui doit gagner**.
+- **Ancres « auto-école à Bayonne » : réservées à l'accueil.** Aucun lien portant ce texte (ou
+  une variante) ne doit pointer ailleurs que vers `/`. Les liens vers la page locale utilisent
+  des ancres de proximité (« Bayonne centre », « Petit Bayonne – rue Marengo »…). De même,
+  `/formules/` ne met pas « auto-école » dans son `<title>` (intention « formules et tarifs »).
 - **`formules/code-de-la-route-bayonne.html` ne porte aucun tarif Marti.** Le pack code est une
   ligne incluse dans les 3 forfaits, pas un produit isolé : la page renvoie vers `/formules/`
   pour les prix. Son seul chiffre est le 30 € de l'examen d'État. Pas de plaquette PDF non plus

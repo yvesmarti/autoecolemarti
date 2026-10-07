@@ -5,7 +5,7 @@
 > Il remplace l'inventaire manuel qui vivait dans `CLAUDE.md` : celui-ci périmait
 > à chaque page ajoutée, celui-là décrit toujours l'état réel du dépôt.
 
-- **Généré le** : 2026-09-01
+- **Généré le** : 2026-10-07
 - **Pages HTML** : 40 (dont 5 en `noindex`)
 - **Articles de blog** : 22
 
@@ -53,7 +53,7 @@
 
 | Fichier | URL | Indexée | Titre (H1) | JSON-LD | CSS propre |
 |---|---|---|---|---|---|
-| `index.html` | `/` | oui (1.0) | Auto-École Marti à Bayonne — votre permis depuis 1962. | City, DrivingSchool, EducationalOrganization, Language, LocalBusiness, OfferCatalog, WebSite | index.css |
+| `index.html` | `/` | oui (1.0) | Auto-école à Bayonne , votre permis depuis 1962. | City, DrivingSchool, EducationalOrganization, Language, LocalBusiness, OfferCatalog, WebSite | index.css |
 
 ## Formules — hub
 
@@ -75,7 +75,7 @@
 | Fichier | URL | Indexée | Titre (H1) | JSON-LD | CSS propre |
 |---|---|---|---|---|---|
 | `auto-ecole-anglet.html` | `/auto-ecole-anglet` | oui (0.8) | Auto-école à Anglet | BreadcrumbList, City, DrivingSchool, FAQPage, LocalBusiness, OfferCatalog | base.css, nav-mobile.css |
-| `auto-ecole-bayonne.html` | `/auto-ecole-bayonne` | oui (0.8) | Auto-école à Bayonne centre | BreadcrumbList, City, DrivingSchool, FAQPage, LocalBusiness, OfferCatalog | base.css, nav-mobile.css |
+| `auto-ecole-bayonne.html` | `/auto-ecole-bayonne` | oui (0.8) | Votre auto-école en plein Petit Bayonne | BreadcrumbList, City, DrivingSchool, FAQPage, LocalBusiness, OfferCatalog | base.css, nav-mobile.css |
 | `auto-ecole-biarritz.html` | `/auto-ecole-biarritz` | oui (0.8) | Auto-école à Biarritz | BreadcrumbList, City, DrivingSchool, FAQPage, LocalBusiness, OfferCatalog | base.css, nav-mobile.css |
 
 ## Blog — hub
