@@ -5,15 +5,15 @@
 > Il remplace l'inventaire manuel qui vivait dans `CLAUDE.md` : celui-ci périmait
 > à chaque page ajoutée, celui-là décrit toujours l'état réel du dépôt.
 
-- **Généré le** : 2026-10-07
-- **Pages HTML** : 40 (dont 5 en `noindex`)
+- **Généré le** : 2026-10-08
+- **Pages HTML** : 41 (dont 5 en `noindex`)
 - **Articles de blog** : 22
 
 | Famille | Pages |
 |---|---|
 | Accueil | 1 |
 | Formules — hub | 1 |
-| Formules — pages détail | 4 |
+| Formules — pages détail | 5 |
 | Pages locales (SEO) | 3 |
 | Blog — hub | 1 |
 | Blog — articles | 22 |
@@ -67,6 +67,7 @@
 |---|---|---|---|---|---|
 | `formules/code-de-la-route-bayonne.html` | `/formules/code-de-la-route-bayonne` | oui (0.9) | Code de la route à Bayonne | BreadcrumbList, Course, DrivingSchool, FAQPage | base.css, nav-mobile.css |
 | `formules/conduite-accompagnee.html` | `/formules/conduite-accompagnee` | oui (0.9) | Conduite Accompagnée | BreadcrumbList, Course, DrivingSchool | base.css, nav-mobile.css |
+| `formules/conduite-supervisee.html` | `/formules/conduite-supervisee` | oui (0.9) | Conduite supervisée | BreadcrumbList, Course, DrivingSchool, FAQPage | base.css, nav-mobile.css |
 | `formules/permis-b-automatique.html` | `/formules/permis-b-automatique` | oui (0.9) | Permis B Boîte Automatique | BreadcrumbList, Course, DrivingSchool | base.css, nav-mobile.css |
 | `formules/permis-b-manuel.html` | `/formules/permis-b-manuel` | oui (0.9) | Permis B Boîte Manuelle | BreadcrumbList, Course, DrivingSchool | base.css, nav-mobile.css |
 
@@ -110,13 +111,13 @@
 
 | Fichier | Chargée par |
 |---|---|
-| `css/base.css` | `auto-ecole-anglet.html`, `auto-ecole-bayonne.html`, `auto-ecole-biarritz.html`, `espace-eleves.html`, `formules/code-de-la-route-bayonne.html`, `formules/conduite-accompagnee.html`, `formules/permis-b-automatique.html`, `formules/permis-b-manuel.html` |
+| `css/base.css` | 9 pages |
 | `css/blog-article.css` | 22 pages |
 | `css/blog-index.css` | `blog/index.html` |
 | `css/fonts-legal.css` | `blog/reflexes-quiz.html`, `mentions-legales.html` |
-| `css/fonts.css` | 40 pages |
+| `css/fonts.css` | 41 pages |
 | `css/index.css` | `blog/index.html`, `index.html` |
-| `css/nav-mobile.css` | 38 pages |
+| `css/nav-mobile.css` | 39 pages |
 | `css/tarteaucitron-custom.css` | aucune page (injectée par un script) |
 
 ### Scripts (`scripts/`)

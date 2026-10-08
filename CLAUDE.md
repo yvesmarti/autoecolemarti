@@ -58,7 +58,7 @@ Toujours l'URL propre, en chemin absolu : `/faq`, `/formules/conduite-accompagne
 `/blog/<slug>`, `/blog/` et `/` pour les index. Les URLs absolues (JSON-LD, redirections JS)
 suivent la même règle. Cloudflare redirige `/page.html` en **308** ; pointer directement la
 forme propre évite ce détour et concentre le jus SEO sur l'URL canonique. Le fichier
-`_redirects` (39 règles 301) couvre les mêmes paires par sécurité. → contrôlé par `npm run check`
+`_redirects` (40 règles 301) couvre les mêmes paires par sécurité. → contrôlé par `npm run check`
 
 ### Adresses e-mail — jamais en clair
 Pas de `mailto:` dans le HTML. Toujours l'obfuscation par entités :
@@ -210,7 +210,7 @@ Ces choix ne se devinent pas en lisant le code — les respecter.
   nav/footer/CTA et retirer le `noindex` si l'indexation est souhaitée.
 - **`formules/index.html` utilise du CSS inline** (pas de feuille externe) — exception
   intentionnelle, ne pas « corriger ».
-- **`css/base.css` est réservé à 8 pages** : les 4 pages formules détail, les 3 pages locales et
+- **`css/base.css` est réservé à 9 pages** : les 5 pages formules détail, les 3 pages locales et
   `espace-eleves`. Ordre de chargement impératif : `fonts.css` → `base.css` → `<style>` inline →
   `nav-mobile.css`. Les autres pages (accueil, FAQ, 404, merci, reservation, mentions légales,
   hub formules, quiz, blog) sont **volontairement autonomes** — systèmes de design distincts,
