@@ -6,7 +6,7 @@
    Chargé par les pages de la famille « formules / pages locales » :
    auto-ecole-anglet, auto-ecole-biarritz, espace-eleves,
    formules/conduite-accompagnee, formules/permis-b-manuel,
-   formules/permis-b-automatique.
+   formules/permis-b-automatique, formules/conduite-supervisee.
 
    Ordre de chargement impératif sur chaque page :
      fonts.css → base.css → <style> inline (spécifique page + overrides)
