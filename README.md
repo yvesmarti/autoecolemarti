@@ -12,7 +12,7 @@ Fondée en **1962** par M. Marti, l'auto-école Marti est implantée au cœur de
 
 | | |
 |---|---|
-| ⭐ Note Google | **4,9 / 5** (80 avis) |
+| ⭐ Note Google | **4,9 / 5** (88 avis) |
 | 📅 Fondée en | **1962** |
 | 👨‍🎓 Expérience | **64 ans** de formation |
 | 💶 Tarif leçon (manuelle / AAC) | **50 €** / heure |
